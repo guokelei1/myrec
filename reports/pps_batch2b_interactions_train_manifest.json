@@ -1,0 +1,43 @@
+{
+  "artifact_path": "artifacts/batch2b/interactions_train.jsonl",
+  "artifact_sha256": "dcc91391c303e6e8c69506a837620be2601bdd6df249cda624f4d1caf417ad32",
+  "created_at": "2026-07-08T20:52:34.578159+00:00",
+  "duplicate_keys": 819894,
+  "history_click_events": 774013,
+  "history_purchase_events": 51125,
+  "input_assertions": {
+    "accepted_input": "records_train.jsonl",
+    "forbidden_inputs": [
+      "qrels_dev.jsonl",
+      "qrels_test.jsonl",
+      "records_dev.jsonl",
+      "records_test.jsonl"
+    ],
+    "train_only_path_assertion": true
+  },
+  "input_path": "data/standardized/kuaisearch/v0_lite/records_train.jsonl",
+  "input_sha256": "2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8",
+  "qrels_read": false,
+  "request_click_positive_events": 217057,
+  "request_positive_events": 233015,
+  "request_purchase_positive_events": 15958,
+  "schema": {
+    "event_time": "integer timestamp copied from train history ts or train request ts",
+    "event_type": "click|purchase; purchase wins duplicate conflicts",
+    "item_id": "candidate/history item id string",
+    "request_id": "example train request that contributed the interaction",
+    "sources": "history and/or request_positive",
+    "user_id": "user id string"
+  },
+  "sort_key": [
+    "user_id",
+    "event_time",
+    "item_id"
+  ],
+  "standardized_dir": "data/standardized/kuaisearch/v0_lite",
+  "train_candidate_rows": 6241354,
+  "train_records": 163717,
+  "unique_interactions": 238259,
+  "unique_items": 188300,
+  "unique_users": 48218
+}
