@@ -7,6 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from myrec.data.batch2b_interactions import export_train_interactions_from_path
+from myrec.baselines.recbole_adapter import write_recbole_atomic_interactions
 
 
 def _write_jsonl(path, rows):
@@ -76,6 +77,43 @@ class Batch2bInteractionsTest(unittest.TestCase):
 
             with self.assertRaisesRegex(ValueError, "train-only"):
                 export_train_interactions_from_path(dev, root / "out.jsonl")
+
+    def test_recbole_atomic_export(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            interactions = root / "interactions_train.jsonl"
+            output_root = root / "atomic"
+            _write_jsonl(
+                interactions,
+                [
+                    {
+                        "event_time": 2,
+                        "event_type": "purchase",
+                        "item_id": "i2",
+                        "request_id": "r2",
+                        "sources": ["request_positive"],
+                        "user_id": "u1",
+                    },
+                    {
+                        "event_time": 1,
+                        "event_type": "click",
+                        "item_id": "i1",
+                        "request_id": "r1",
+                        "sources": ["history"],
+                        "user_id": "u1",
+                    },
+                ],
+            )
+
+            manifest = write_recbole_atomic_interactions(interactions, output_root, "toy")
+            inter_path = output_root / "toy" / "toy.inter"
+            lines = inter_path.read_text(encoding="utf-8").splitlines()
+
+            self.assertEqual(lines[0], "user_id:token\titem_id:token\ttimestamp:float")
+            self.assertEqual(lines[1:], ["u1\ti2\t2", "u1\ti1\t1"])
+            self.assertEqual(manifest["rows"], 2)
+            self.assertEqual(manifest["unique_items"], 2)
+            self.assertEqual(manifest["event_counts"], {"click": 1, "purchase": 1})
 
 
 if __name__ == "__main__":

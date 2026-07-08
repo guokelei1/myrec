@@ -16,7 +16,7 @@
 | B4 | 2 | SASRec/BERT4Rec | strong history baseline placeholder | history sequence | RecBole + original papers | adapter-only | retired placeholder; superseded by B4o |
 | B5 | 2 | DIN/DCNv2 | industrial baseline placeholder | full structured features | KuaiSearch official | style adapter | retired placeholder; superseded by B5o |
 | B6 | 2 | HEM/ZAM/TEM | PPS classic baseline placeholder | query + history + item text | PPS classic papers/code | style adapter | retired placeholder; superseded by B6o |
-| B4o | 2b | RecBole SASRec/BERT4Rec | official strong history baseline | history sequence | RecBole + original papers | official code | in progress |
+| B4o | 2b | RecBole SASRec/BERT4Rec | official strong history baseline | history sequence | RecBole + original papers | official code | complete |
 | B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code | in progress |
 | B6o | 2b | HEM/ZAM/TEM | PPS classic baseline | query + history + item text | PPS classic papers/code | official/faithful TBD | in progress |
 | B6+ | 2 | MAI/NAM-style | recent PPS/when-personalize baseline | query + history + item text | recent PPS papers | feasibility TBD | candidate |
@@ -207,12 +207,12 @@ Output score definition: RecBole next-item candidate score mapped to every fixed
 Config path: configs/baselines/b4o_sasrec_recbole.yaml
 Environment group: recbole
 Tuning budget: 16 KuaiSearch dev evaluations; first run is RecBole official/default SASRec config; BERT4Rec, if attempted, shares this pool
-Dev evals used: 0/16
-Determinism check: pending
-Run IDs: pending
-Known limitations: must run in python 3.10/isolated pps-recbole environment because active python 3.13 cannot install RecBole 1.2.1 dependency ray<=2.6.3. Environment also pins setuptools<81 because ray 2.6.3 imports pkg_resources.
-Current status: in progress
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Unified train-interaction artifact is recorded in reports/pps_batch2b_interactions_train_manifest.json. RecBole/ml-100k sanity passed in reports/b4o_env_sanity.md: loss decreased from 336.5817 to 299.0741 over 3 epochs and example-split test NDCG@10 = 0.0358. Next required work is the RecBole atomic data adapter and fixed-candidate scoring adapter.
+Dev evals used: 6/16 tuning + 3 frozen seeds; 8 evaluator entries because the selected seed is also a tuning run
+Determinism check: passed on same-seed h128 retrain for first 1000 dev requests; 42968/42968 score rows exact, max_abs_score_diff=0.0; report reports/b4o_determinism_check.json
+Run IDs: 20260709_kuaisearch_b4o_sasrec_recbole_dev_s20260708; 20260709_kuaisearch_b4o_sasrec_recbole_t01_len20_dev_s20260708; 20260709_kuaisearch_b4o_sasrec_recbole_t02_drop02_dev_s20260708; 20260709_kuaisearch_b4o_sasrec_recbole_t04_lr0005_dev_s20260708; 20260709_kuaisearch_b4o_sasrec_recbole_t03_h128_dev_s20260708; 20260709_kuaisearch_b4o_sasrec_recbole_t05_l1_dev_s20260708; 20260709_kuaisearch_b4o_sasrec_recbole_h128_dev_s20260709; 20260709_kuaisearch_b4o_sasrec_recbole_h128_dev_s20260710
+Known limitations: must run in python 3.10/isolated pps-recbole environment because active python 3.13 cannot install RecBole 1.2.1 dependency ray<=2.6.3. Environment also pins setuptools<81 because ray 2.6.3 imports pkg_resources. Vocab coverage review in reports/b4o_vocab_coverage.md found only 22.2% dev candidate rows in the train-interaction item vocab; B4o keeps the documented cold-last policy rather than adding untrained candidate embeddings.
+Current status: complete
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Unified train-interaction artifact is recorded in reports/pps_batch2b_interactions_train_manifest.json. RecBole/ml-100k sanity passed in reports/b4o_env_sanity.md: loss decreased from 336.5817 to 299.0741 over 3 epochs and example-split test NDCG@10 = 0.0358. Vocab coverage exceeded the 30% cold-start review threshold and was reviewed in reports/b4o_vocab_coverage.md. Best official RecBole SASRec run is 20260709_kuaisearch_b4o_sasrec_recbole_t03_h128_dev_s20260708 with NDCG@10=0.2976, MRR=0.2788, Recall@10=0.5169, pNDCG@10=0.3236. It is significantly above Random but significantly below B0b and B7-bge, consistent with a pure item-ID sequential baseline under a query-conditioned fixed candidate pool.
 
 ID: B5o
 Method: KuaiSearch official DIN/DCNv2

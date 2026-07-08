@@ -65,3 +65,11 @@
 {"method_id": "b8b_llm_rerank_h5", "ndcg@10": 0.3293280039250813, "run_id": "20260708_kuaisearch_b8b_qwen25_7b_h5_dev", "split": "dev", "timestamp": "2026-07-08T16:49:10.056283+00:00"}
 {"method_id": "b8b_llm_rerank_h20", "ndcg@10": 0.3292831076112709, "run_id": "20260708_kuaisearch_b8b_qwen25_7b_h20_dev", "split": "dev", "timestamp": "2026-07-08T17:11:55.634454+00:00"}
 {"method_id": "b8b_llm_rerank_h50", "ndcg@10": 0.3293488257090152, "run_id": "20260708_kuaisearch_b8b_qwen25_7b_h50_dev", "split": "dev", "timestamp": "2026-07-08T17:20:20.108904+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.2967317227734511, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:17:24.884488+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.2966828689999447, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_t01_len20_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:23:46.084906+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.296308747678492, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_t02_drop02_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:35:11.777480+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.2964578194810487, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_t04_lr0005_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:37:53.595413+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.2975842774179958, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_t03_h128_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:42:52.120365+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.29752688357151946, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_t05_l1_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:47:11.055321+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.2967061632217145, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_h128_dev_s20260709", "split": "dev", "timestamp": "2026-07-08T21:52:00.722358+00:00"}
+{"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.29716654733876435, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_h128_dev_s20260710", "split": "dev", "timestamp": "2026-07-08T21:56:39.462267+00:00"}
