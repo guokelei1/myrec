@@ -86,8 +86,18 @@
       "evidence": "B5 is explicitly deferred out of Batch 1 in doc 13."
     },
     "manual_top5_review": {
-      "status": "not_completed",
-      "evidence": "A 20-request top-5 review sheet was generated at reports/b1_bm25_top5_review.md, but it still requires human pass/fail review to satisfy doc 11 C2."
+      "status": "assistant_review_draft_completed_human_pending",
+      "evidence": "reports/b1_bm25_top5_review.md now contains an assistant review draft: 16 pass and 4 need human review. Human confirmation is still required to satisfy doc 11 C2.",
+      "assistant_review": {
+        "pass": 16,
+        "need_human_review": 4,
+        "flagged_request_ids": [
+          "ks_472f62b7df908af764cd3512",
+          "ks_7cff314f1557d17102f2665a",
+          "ks_9095ea4a4cb8e31ccad3822b",
+          "ks_c5de6c84ba5da740b7a60ce6"
+        ]
+      }
     }
   },
   "conclusion": "C2 is not passed under the frozen gate because B1 BM25 is not significantly better than B0a Popularity, despite request-local BM25, CJK 2/3-gram, exact phrase boost, jieba, global item-catalog IDF, and character coverage variants. Follow-up diagnostics in reports/pps_c2_b1_diagnostics.json support the data-property explanation: BM25 responds to the true query, fixed candidates are already query-conditioned, and B0a matches train-only records. Per protocol, M3 remains exploratory until a human completes the top-5 review and explicitly revises the C2 rule or otherwise resolves the query-only baseline issue."

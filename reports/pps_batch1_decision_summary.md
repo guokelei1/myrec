@@ -50,10 +50,12 @@ data-property explanation:
   AUC 0.6721.
 - B0a audit passed: stats exactly match train records, and train max ts is
   before dev min ts.
+- Top-5 review draft completed: 16 pass, 4 need human review.
 
 Next action is a human protocol decision: either keep C2 failed as written, or
 approve the explicit amendment draft in `reports/pps_c2_gate_amendment.md`.
-The manual 20-request top-5 review is still incomplete.
+The 20-request top-5 review draft still needs human confirmation, especially
+the 4 flagged cases.
 
 See `reports/pps_c2_b1_issue_and_options.md` for amendment options. The active
 B1 variant uses global item-catalog IDF plus exact query phrase boost; it still

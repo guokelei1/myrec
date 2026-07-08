@@ -52,7 +52,8 @@ headroom. Popularity can be competitive because it ranks among already-relevant
 candidates using aggregate click strength.
 
 The generated top-5 review sheet (`reports/b1_bm25_top5_review.md`) still needs
-human pass/fail review to satisfy the original C2 text.
+human pass/fail review to satisfy the original C2 text. It now contains an
+assistant review draft: 16 pass and 4 need human review.
 
 ## Options
 

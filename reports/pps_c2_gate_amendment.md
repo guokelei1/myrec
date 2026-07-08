@@ -63,6 +63,23 @@ For KuaiSearch fixed candidate pools, replace the single dominance rule
 The original B1-vs-B0a result remains reported as a dataset property: popularity
 is competitive inside an already query-filtered candidate set.
 
+## Top-5 Review Draft
+
+`reports/b1_bm25_top5_review.md` now contains an assistant review draft:
+
+- Pass: 16 / 20.
+- Need human review: 4 / 20.
+- Flagged requests:
+  `ks_472f62b7df908af764cd3512`,
+  `ks_7cff314f1557d17102f2665a`,
+  `ks_9095ea4a4cb8e31ccad3822b`,
+  `ks_c5de6c84ba5da740b7a60ce6`.
+
+The flagged cases are interpretable failures or ambiguities: complementary-item
+intent, question-like query with an unverified attribute, one-character query
+with all-zero BM25 scores, and a geographic constraint partially missed by
+BM25. Human confirmation is still required before this review can satisfy C2.
+
 ## Rationale
 
 The original rule was designed to catch bugs where the query field, tokenizer,

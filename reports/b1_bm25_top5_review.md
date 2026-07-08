@@ -5,6 +5,8 @@ This sheet is generated without reading qrels. It is for manual sanity inspectio
 - Seed: 20260708
 - Sampled requests: 20
 - Scores: `runs/20260708_kuaisearch_b1_bm25_globalidf_exact10_dev/scores.jsonl`
+- Assistant review draft: 16 pass, 4 need human review.
+- Protocol status: human confirmation still required before this satisfies C2.
 
 ## 1. `ks_0860527807e92c4ab3a45fbd`
 
@@ -16,7 +18,7 @@ Query: 福神半袖
 4. `107977` score=13.737943 | 福神短袖t恤男士夏季2025新款港风潮牌宽松百搭半袖韩版情侣款T恤 | 无品牌 | 男装 / T恤 / UNKNOWN
 5. `1534457` score=13.737943 | 福神男士圆领t恤上衣夏季新款大众潮流宽松短袖青春打底休闲半袖 | 无品牌 | 男装 / T恤 / UNKNOWN
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items match the 福神 short-sleeve T-shirt intent.
 
 ## 2. `ks_0ba0a1eecb81dafa7f7ab25f`
 
@@ -28,7 +30,7 @@ Query: 包装袋
 4. `1295517` score=36.379519 | 高颜值黑白蝴蝶自封袋出卡手帐礼品包装袋文创打包袋包装袋礼品袋 | 无品牌 | 收纳整理 / 家庭收纳用具 / 收纳袋
 5. `775091` score=32.353623 | 卡通HelloKitty包装纸大尺寸ins高颜值礼物kt猫打包纸礼物包装袋 | 无品牌 | 文化用品/学习用具 / 纸张/本册 / 包装材料
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are packaging bags or packaging paper.
 
 ## 3. `ks_0d49ad6e80927cc18e0ccdbb`
 
@@ -40,7 +42,7 @@ Query: 眼线胶笔防水防汗不晕染
 4. `1140297` score=122.701043 | xixi眼线胶笔彩色防水防汗不晕染女棕色初学者新手持久眼线液膏 | xixi | 美妆 / 彩妆 / 眼线产品
 5. `1140287` score=120.877950 | 茗希芝刀锋刷眼线胶笔防水防汗不易晕染速干顺滑不掉色自然眼线笔 | 茗希芝/MINSHZEE | 美妆 / 彩妆 / 眼线产品
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are waterproof/sweatproof eyeliner products.
 
 ## 4. `ks_145ab6f90bf0ac4fd73f2074`
 
@@ -52,7 +54,7 @@ Query: 卫衣男潮流
 4. `1977081` score=22.713763 | 卫衣男美式潮牌高街个性嘻哈字母圆领宽松秋冬款长袖上衣潮流ins | 诺朗语 | 男装 / 卫衣 / UNKNOWN
 5. `46710` score=22.240892 | 白色印花卫衣男2024年新款潮牌秋季潮流百搭宽松纯色痞帅长袖上衣 | 无品牌 | 男装 / 卫衣 / UNKNOWN
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are men's trendy sweatshirts.
 
 ## 5. `ks_442bfc4fa57097ab91c91d28`
 
@@ -64,7 +66,7 @@ Query: 唇刷
 4. `3255110` score=20.203259 | 艺术家双头唇线笔唇刷勾勒嘟嘟唇持久显色哑光防水口红笔推荐平价 | ZVEV | 美妆 / 彩妆 / 唇笔
 5. `93034` score=20.203259 | 嘟嘟唇的秘密!艺术家唇线笔双头唇刷卧蚕笔一体多用立体饱满唇型 | 卡比郎/kobeleen | 美妆 / 彩妆 / 唇笔
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top-5 items are lip brushes or lip products with brush applicators.
 
 ## 6. `ks_472f62b7df908af764cd3512`
 
@@ -76,7 +78,7 @@ Query: 适合黑色背带裤的上衣
 4. `2267070` score=31.352988 | 2025新款奶系黑色牛仔背带裤女春季宽松减龄可爱高腰直筒连体长裤 | 无品牌 | 女装 / 裤子 / 背带裤装
 5. `2267079` score=31.248199 | 黑色牛仔背带裤女2025新款春季宽松慵懒风显瘦设计感小众裤子 | 无品牌 | 女装 / 裤子 / 背带裤装
 
-Review note: TODO manual pass/fail.
+Review note: NEED HUMAN REVIEW. The query asks for tops suitable for black overalls, but BM25 ranks black overalls and overall sets, so it overmatches the mentioned garment rather than the requested complementary item.
 
 ## 7. `ks_52efed414a37afa07050cfd8`
 
@@ -88,7 +90,7 @@ Query: 中长款羽绒服
 4. `406207` score=71.070332 | 雅鹿中长款羽绒服女冬季新款冬季韩版休闲时尚保暖加厚鸭绒外套潮 | 雅鹿/V | 女装 / 羽绒服 / UNKNOWN
 5. `41604` score=44.164954 | 女式中长款休闲羽绒服 33086 | 无品牌 | 女装 / 羽绒服 / UNKNOWN
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are mid-length down jackets.
 
 ## 8. `ks_5ac6fe3ad23a3e640bd62666`
 
@@ -100,7 +102,7 @@ Query: 高光
 4. `519458` score=19.881306 | 面中凹陷救星~哑光高光粉饼纯白色面部提亮眼头卧蚕遮泪沟画截断 | MGL | 美妆 / 彩妆 / 面部高光产品
 5. `279204` score=17.578827 | 美式芭比~柏贝妮高光笔学生哑光显白眼部提亮卧蚕笔爆闪眼影笔 | 柏贝妮 | 美妆 / 彩妆 / 眼影
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top-5 items are face highlighters or adjacent highlighting makeup products.
 
 ## 9. `ks_7cff314f1557d17102f2665a`
 
@@ -112,7 +114,7 @@ Query: 电饭煲内胆为什么用医用级别的？
 4. `3864777` score=59.706210 | Midea/美的电饭煲内胆原装原厂配件3L/4L/5L升聚能釜蜂窝不粘内锅 | 美的/MIDEA | 家用电器 / 厨房小电 / 厨房小电配件
 5. `1236140` score=39.379492 | 苏泊尔蓝钻球釜不粘内胆电饭煲 双热源加热电饭煲【自播专属】 | 苏泊尔/SUPOR | 家用电器 / 厨房小电 / 电饭煲设备
 
-Review note: TODO manual pass/fail.
+Review note: NEED HUMAN REVIEW. The query is question-like and includes the attribute phrase 医用级别; BM25 retrieves rice-cooker inner-pot products but does not verify the medical-grade aspect or answer the question.
 
 ## 10. `ks_903de2fb464cc613d4dfea9f`
 
@@ -124,7 +126,7 @@ Query: 弹弓带
 4. `769419` score=5.947846 | 弹弓皮筋高弹力带防冻耐磨强力传统圆皮筋1745弾工弹工耐用大威力 | 狼威 | 户外/垂钓装备 / 户外装备 / 防护及救生装备
 5. `709146` score=5.872094 | 止血带乳胶管弹弓皮筋高弹性压脉带软管弹力橡胶带拉力绳拉力器 | 无品牌 | 户外/垂钓装备 / 户外装备 / 防护及救生装备
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top-5 items are slingshot bands or close slingshot band accessories.
 
 ## 11. `ks_9095ea4a4cb8e31ccad3822b`
 
@@ -136,7 +138,7 @@ Query: 酒
 4. `1568492` score=0.000000 | 50ml柠檬伏特加小瓶便利店原味调酒微醺迷你小酒版伏特加调酒 | 杰特希尔 | 酒类 / 洋酒 / 伏特加酒
 5. `271798` score=0.000000 | 【主播专属】贵州53度酱香型白酒粮食酒峥心酿高度酱酒口粮酒 | 峥心酿 | 酒类 / 白酒 / UNKNOWN
 
-Review note: TODO manual pass/fail.
+Review note: NEED HUMAN REVIEW. The retrieved candidates are alcohol products, but BM25 scores are all zero, so the ordering is effectively tie-break/candidate-order rather than lexical scoring for the one-character query.
 
 ## 12. `ks_95ff0deeaa743ac413a758f8`
 
@@ -148,7 +150,7 @@ Query: 鬼冢虎高版本
 4. `190686` score=10.132895 | 夏季经典冢虎透气头层皮复古透气情侣休闲鞋男女百搭防臭小白鞋 | 无品牌 | 女鞋 / 休闲鞋 / 休闲板鞋
 5. `34799` score=0.000000 | 经典款虎子龙限皮料板鞋（366现货） | 无品牌 | 女鞋 / 休闲鞋 / 休闲板鞋
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top results match Onitsuka Tiger / high-version shoe intent; lower zero-score items are weaker but still shoe-related.
 
 ## 13. `ks_a83183b5d3cf6d59d8f459ce`
 
@@ -160,7 +162,7 @@ Query: 苹果16promax大牌大䃼
 4. `80840` score=4.455888 | 【12期免息】iPhone 16 Pro Max 手机（至高立减 1200 元） | 苹果/Apple | 手机/数码/电脑办公 / 手机及配件 / 手机设备
 5. `289458` score=4.314465 | iPhone 16 Pro 手机 256G (叠加减1745元)【地方补贴全国可用】 | 苹果/Apple | 手机/数码/电脑办公 / 手机及配件 / 手机设备
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top-5 items match iPhone 16 Pro Max / Apple phone intent despite query typos.
 
 ## 14. `ks_aef471d5dccf57b75b450e6c`
 
@@ -172,7 +174,7 @@ Query: 德福道酱香肘
 4. `2344149` score=37.371158 | 【元帅切片】拍一发12个酱香猪皮包肉肘真空熟食酱香卷肘开袋即食 | 德福道传统美味/DEFUDAO | 零食/坚果/特产 / 肉干肉脯/熏腊卤味/熟食 / 猪肉制品
 5. `3479807` score=35.497321 | 【楠楠专属】69.9到手14个酱香卷肘真空包装开袋即食山东特产1 | 德福道传统美味/DEFUDAO | 零食/坚果/特产 / 肉干肉脯/熏腊卤味/熟食 / 猪肉制品
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are 德福道酱香肘 or close sauce-flavored pork elbow products.
 
 ## 15. `ks_b6dde8ee15fd73d721937a29`
 
@@ -184,7 +186,7 @@ Query: 贴纸
 4. `324092` score=16.572796 | 700贴文学发疯文学表情贴纸沙雕diy搞笑学习创意装饰趣味贴画VV | 无品牌 | 文化用品/学习用具 / 纸张/本册 / 装饰贴纸
 5. `444234` score=16.493728 | 新表情横版Emoji创意手账可爱翻白眼含贴纸爆款抖 贴画黄豆卡通 | 无品牌 | 文化用品/学习用具 / 纸张/本册 / 装饰贴纸
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are stickers.
 
 ## 16. `ks_c5d460cacd9598c9b620423b`
 
@@ -196,7 +198,7 @@ Query: 百褶裙
 4. `2376677` score=35.526582 | 9592 褶皱丝绒百褶裙 | 无品牌 | 女装 / 半身裙 / UNKNOWN
 5. `1523937` score=35.380341 | 0813 6102 欧货百褶裙（配腰带） | 无品牌 | 女装 / 半身裙 / UNKNOWN
 
-Review note: TODO manual pass/fail.
+Review note: PASS. All top-5 items are pleated skirts.
 
 ## 17. `ks_c5de6c84ba5da740b7a60ce6`
 
@@ -208,7 +210,7 @@ Query: 海南金煌芒
 4. `26146` score=0.000000 | 中国大陆凯特芒四川攀枝花凯特芒大脸芒新鲜现摘整箱包邮 | 无品牌 | 生鲜 / 水果 / 芒果类水果
 5. `465700` score=0.000000 | B变软吃 现摘攀枝花凯特芒青皮芒果 香甜肉厚新鲜水果 坏果包赔 | 无品牌 | 生鲜 / 水果 / 芒果类水果
 
-Review note: TODO manual pass/fail.
+Review note: NEED HUMAN REVIEW. The top results match 金煌芒 mango, but the top-1 item says 云南 rather than 海南 and lower items drift to other mango varieties, so the geographic constraint is only partly respected.
 
 ## 18. `ks_c7977cc149c060395e91cc01`
 
@@ -220,7 +222,7 @@ Query: 九号外观装饰小配件
 4. `2511068` score=13.920207 | 九号电动车车标Q系列Q85C/Q80C/Q90立体标原厂标 | 九号/Ninebot | 电动车/摩托车/船舶 / 装饰养护 / 电动车摩托车盖帽配件
 5. `83465` score=11.552278 | 电动车九号小q装饰品防冻手尾部装饰可爱把手套特粗毛线韭号改造 | 无品牌 | 电动车/摩托车/船舶 / 电动车/摩托车零配件 / 其他零部件
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top-5 items are Ninebot/electric-bike appearance decoration accessories or close vehicle decorations.
 
 ## 19. `ks_dee055af3a80a35761d1cb26`
 
@@ -232,7 +234,7 @@ Query: 内裤独立包装
 4. `1205047` score=52.417845 | 蕉树 7.0蔓越莓冰皮凉感内裤32A独立密封包装6791 | 蕉树 | 内衣/家居服/袜子 / 内裤 / 女士内衣裤
 5. `1063138` score=52.417845 | 蕉树 7.0蔓越莓冰皮凉感内裤32A独立密封包装6791 | 蕉树 | 内衣/家居服/袜子 / 内裤 / 女士内衣裤
 
-Review note: TODO manual pass/fail.
+Review note: PASS. Top-5 items are underwear with independent packaging or closely matching underwear packaging links.
 
 ## 20. `ks_f271b7f4fe27fd13cc8f1c20`
 
@@ -244,5 +246,4 @@ Query: 学生党梳子
 4. `1384271` score=12.351039 | 气垫梳子头部按摩梳子学生宿舍直发长发卷发梳家用大板梳梳头神器 | 无品牌 | 个护清洁 / 个护用具 / 经络按摩梳
 5. `546090` score=12.351039 | 可爱气囊梳蓬松梳子Hello Kitty梳子便携干湿两用宿舍学生按摩梳 | 无品牌 | 个护清洁 / 个护用具 / 气垫梳/气囊梳
 
-Review note: TODO manual pass/fail.
-
+Review note: PASS. Top-5 items are combs suitable for student-use styling/portable scenarios.

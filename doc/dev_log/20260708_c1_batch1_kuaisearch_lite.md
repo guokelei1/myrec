@@ -83,6 +83,12 @@ rather than "BM25 is broken" or "B0a leaked dev/test clicks". C2 still remains
 failed unless a human explicitly approves the amendment draft in
 `reports/pps_c2_gate_amendment.md` and completes the manual top-5 review.
 
+The top-5 review sheet now has an assistant review draft: 16/20 pass and 4/20
+need human review. The flagged cases are not random noise; they identify query
+classes where lexical matching is brittle inside the fixed candidate set:
+complementary-item intent, question-like intent, one-character all-zero BM25
+scoring, and a partly missed geographic constraint.
+
 M3 was run after C2 failed and is therefore exploratory. It showed oracle
 NDCG@10 0.4232 and +28.0% relative headroom over B7-bge, with split-half
 headroom +28.2% / +27.9%. This should not be promoted to C3 evidence until
