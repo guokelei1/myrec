@@ -13,9 +13,12 @@
 | B7 | 1 | Static mixture | key control | query score + history score | self | self-implemented | first |
 | M3 | 1 | Per-request oracle | headroom analysis | baseline scores | self | analysis only | first |
 | B3 | 2 | Cross-encoder reranker | query-only upper bound | query + item text | bge-reranker or similar | zero-shot | complete |
-| B4 | 2 | SASRec/BERT4Rec | strong history baseline | history sequence | RecBole + original papers | adapter-only | adapter complete; official pending |
-| B5 | 2 | DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | style adapter | adapter complete; official pending |
-| B6 | 2 | HEM/ZAM/TEM | PPS classic baseline | query + history + item text | PPS classic papers/code | style adapter | adapter complete; official pending |
+| B4 | 2 | SASRec/BERT4Rec | strong history baseline placeholder | history sequence | RecBole + original papers | adapter-only | retired placeholder; superseded by B4o |
+| B5 | 2 | DIN/DCNv2 | industrial baseline placeholder | full structured features | KuaiSearch official | style adapter | retired placeholder; superseded by B5o |
+| B6 | 2 | HEM/ZAM/TEM | PPS classic baseline placeholder | query + history + item text | PPS classic papers/code | style adapter | retired placeholder; superseded by B6o |
+| B4o | 2b | RecBole SASRec/BERT4Rec | official strong history baseline | history sequence | RecBole + original papers | official code | in progress |
+| B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code | in progress |
+| B6o | 2b | HEM/ZAM/TEM | PPS classic baseline | query + history + item text | PPS classic papers/code | official/faithful TBD | in progress |
 | B6+ | 2 | MAI/NAM-style | recent PPS/when-personalize baseline | query + history + item text | recent PPS papers | feasibility TBD | candidate |
 | B8a | 2 | Raw-history LLM rerank | quality/cost upper bound | query + history + candidates | Qwen or similar | prompt baseline | complete |
 | B8b | 2 | MemRerank-style memory rerank | quality/cost upper bound | query + memory + candidates | MemRerank-style | style-adapted | complete |
@@ -131,8 +134,8 @@ Dev evals used: 7/16, including two failed weak variants retained in dev_eval_lo
 Determinism check: 3 seeds: 20260708/20260709/20260710; mean NDCG@10 = 0.2881, std = 0.0007
 Run IDs: 20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260708; 20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260709; 20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260710
 Known limitations: RecBole 1.2.1 is not installable in the active Python 3.13 environment because ray<=2.6.3 has no cp313 wheel; this is not an official RecBole run.
-Current status: adapter complete; official RecBole baseline pending
-Acceptance notes: B4 sanity vs Random passes for best seed: +0.0076 CI [0.0025, 0.0128]. It is significantly below B0b by -0.0252 CI [-0.0306, -0.0197].
+Current status: retired placeholder (superseded by B4o)
+Acceptance notes: B4 sanity vs Random passes for best seed: +0.0076 CI [0.0025, 0.0128]. It is significantly below B0b by -0.0252 CI [-0.0306, -0.0197]. This adapter remains appendix/implementation evidence only and must not support main-table claims about official SASRec/BERT4Rec strength.
 
 ID: B5
 Method: KuaiSearch DCN/DIN-style hashed adapter
@@ -149,8 +152,8 @@ Dev evals used: 3/16
 Determinism check: 3 seeds: 20260708/20260709/20260710; mean NDCG@10 = 0.2922, std = 0.0011
 Run IDs: 20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260708; 20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260709; 20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260710
 Known limitations: official ranking code expects precomputed query/title embeddings and raw user feature files outside the standardized blind-record interface; ±10% official alignment is not complete.
-Current status: adapter complete; official alignment pending
-Acceptance notes: best seed NDCG@10 = 0.2931; significantly below B7-best by -0.0375 CI [-0.0430, -0.0317].
+Current status: retired placeholder (superseded by B5o)
+Acceptance notes: best seed NDCG@10 = 0.2931; significantly below B7-best by -0.0375 CI [-0.0430, -0.0317]. This adapter remains appendix/implementation evidence only and must not support main-table claims about official KuaiSearch DIN/DCNv2 strength.
 
 ID: B6
 Method: PPS-classic style hashed query-history fusion adapter
@@ -167,8 +170,8 @@ Dev evals used: 3/16
 Determinism check: 3 seeds: 20260708/20260709/20260710; mean NDCG@10 = 0.2929, std = 0.0003
 Run IDs: 20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260708; 20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260709; 20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260710
 Known limitations: not an official HEM/ZAM/TEM reproduction; text-overlap feature construction is slow.
-Current status: style-adapted complete; official PPS-classic reproduction pending
-Acceptance notes: best seed NDCG@10 = 0.2933; significantly below B7-best by -0.0373 CI [-0.0429, -0.0316].
+Current status: retired placeholder (superseded by B6o)
+Acceptance notes: best seed NDCG@10 = 0.2933; significantly below B7-best by -0.0373 CI [-0.0429, -0.0316]. This adapter remains appendix/implementation evidence only and must not support main-table claims about official or externally validated HEM/ZAM/TEM strength.
 
 ID: B8a/B8b
 Method: LLM raw-history and memory-style top-20 rerank
@@ -187,6 +190,67 @@ Run IDs: 20260708_kuaisearch_b8a_qwen25_7b_h5_dev; 20260708_kuaisearch_b8a_qwen2
 Known limitations: Qwen2.5-7B required manual resume for the last shard; all runs only rerank the fixed 2000-request subset and use B7-bge fallback outside that subset. Full-dev metrics are therefore mostly base-run scores plus subset changes; B8 comparisons use same-subset reports.
 Current status: complete
 Acceptance notes: B8a best full-dev NDCG@10 = 0.3302 (h=50), B8b best full-dev NDCG@10 = 0.3293 (h=50). On the fixed subset, B8a h=50 vs B7-bge delta = -0.0019 CI [-0.0089, 0.0050]; B8b h=50 vs B8a h=50 delta = -0.0053 CI [-0.0120, 0.0014]. Parse failure rates are <=0.15%.
+```
+
+## Batch 2b Official Baseline Cards
+
+```text
+ID: B4o
+Method: RecBole SASRec/BERT4Rec
+Role: official strong history baseline
+Evidence channels: history item_id sequence + candidate item_id
+Source paper/repo: RecBole 1.2.1; SASRec/BERT4Rec original papers
+Venue/year: ICDM 2018 / CIKM 2019
+Implementation type: official code
+Input fields used: history.item_id; candidate.item_id; train interactions from records_train only
+Output score definition: RecBole next-item candidate score mapped to every fixed candidate; out-of-vocab candidates use frozen cold-start margin
+Config path: configs/baselines/b4o_sasrec_recbole.yaml
+Environment group: recbole
+Tuning budget: 16 KuaiSearch dev evaluations; first run is RecBole official/default SASRec config; BERT4Rec, if attempted, shares this pool
+Dev evals used: 0/16
+Determinism check: pending
+Run IDs: pending
+Known limitations: must run in python 3.10/isolated pps-recbole environment because active python 3.13 cannot install RecBole 1.2.1 dependency ray<=2.6.3.
+Current status: in progress
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Next required work is environment sanity on RecBole/ml-100k, then unified train-interaction export and RecBole data/scoring adapters.
+
+ID: B5o
+Method: KuaiSearch official DIN/DCNv2
+Role: official industrial ranking baseline
+Evidence channels: query + history + item text + candidate item_id + train labels
+Source paper/repo: https://github.com/benchen4395/KuaiSearch commit 7ce0471b659112096f0aa7e892ed0aa4c972246a
+Venue/year: KuaiSearch dataset/repo
+Implementation type: official code, alignment pending
+Input fields used: query; frozen history item/category/event/time; candidate text/category/item_id; train clicked/purchased labels
+Output score definition: official DIN/DCNv2 ranking score exported for fixed candidates and evaluated only by the shared evaluator
+Config path: configs/baselines/b5o_kuaisearch_din_dcnv2.yaml
+Environment group: kuaisearch
+Tuning budget: 16 KuaiSearch dev evaluations; first run is official/default hyperparameters
+Dev evals used: 0/16
+Determinism check: pending
+Run IDs: pending
+Known limitations: official pipeline may require precomputed query/title embeddings and raw user features; missing standardized fields must be defaulted and listed in reports/b5o_protocol_diff.md. If official alignment cannot be verified, downgrade per doc 14.
+Current status: in progress
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. B5o starts only after B4o and B6o have completed or reached their documented downgrade/blocking decisions.
+
+ID: B6o
+Method: HEM/ZAM/TEM official or externally validated faithful reproduction
+Role: PPS classic baseline
+Evidence channels: query + history + item text + candidate item_id + train labels
+Source paper/repo: HEM / ZAM / TEM official code or faithful reimplementation with Amazon PPS benchmark validation
+Venue/year: SIGIR 2017 / CIKM 2019 / SIGIR 2020
+Implementation type: official/faithful TBD
+Input fields used: query; frozen click/purchase history; candidate title/brand/category/item_id; train clicked/purchased labels
+Output score definition: PPS classic query-history-item score exported for every fixed candidate and evaluated only by the shared evaluator
+Config path: configs/baselines/b6o_pps_classic.yaml
+Environment group: pps_classic
+Tuning budget: 16 KuaiSearch dev evaluations shared by selected HEM/ZAM/TEM variants; each variant first run uses paper/default hyperparameters
+Dev evals used: 0/16
+Determinism check: pending
+Run IDs: pending
+Known limitations: official code may require old TensorFlow and Amazon review fields. Any review-field mismatch must be documented; unvalidated reimplementations cannot enter the main table as faithful baselines.
+Current status: in progress
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. B6o proceeds after B4o, before B5o, per doc 14 priority.
 ```
 
 ## Card Template
