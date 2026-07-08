@@ -1,0 +1,41 @@
+method_id: b8b_llm_memory_rerank
+dataset_id: kuaisearch
+dataset_version: v0_lite
+split: dev
+status: active_batch2
+model_name: Qwen/Qwen2.5-7B-Instruct
+variant: memory_then_rerank
+base_run_id: 20260708_kuaisearch_b7_bge_dev_a02
+subset:
+  request_ids: reports/b8_dev_subset_request_ids_seed20260708.txt
+  seed: 20260708
+  sample_size: 2000
+candidate_truncation:
+  top_k: 20
+  base_run: 20260708_kuaisearch_b7_bge_dev_a02
+generation:
+  max_new_tokens: 64
+  batch_size: 8
+  dtype: bfloat16
+history_lengths: [5, 20, 50]
+score_definition: >
+  Qwen2.5-7B-Instruct first extracts a short preference memory from recent
+  history, then reranks the base-run top-20 candidates on the same fixed
+  2000-request dev subset. Non-subset requests and parse failures fall back to
+  the base run; scores still cover full dev and assert the full candidate
+  manifest.
+input_fields:
+  - records_dev.query
+  - records_dev.history.title
+  - records_dev.history.cat
+  - records_dev.history.event
+  - records_dev.candidates.title
+  - records_dev.candidates.brand
+  - records_dev.candidates.seller
+  - records_dev.candidates.cat
+  - base_run_scores
+tuning_budget:
+  class: zero-shot
+  dev_evals_budget: 3
+  history_lengths_are_budget: true
+qrels_read: false

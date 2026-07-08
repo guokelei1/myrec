@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    -0.011978752786431474,
+    0.0015612705156445774
+  ],
+  "delta": -0.005177525491072497,
+  "metric": "ndcg@10",
+  "num_requests": 2000,
+  "request_ids_path": "reports/b8_dev_subset_request_ids_seed20260708.txt",
+  "samples": 10000,
+  "seed": 20260708,
+  "significant_a_gt_b": false
+}

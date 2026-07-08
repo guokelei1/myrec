@@ -1,0 +1,28 @@
+method_id: b3_cross_encoder_zero_shot
+dataset_id: kuaisearch
+dataset_version: v0_lite
+split: dev
+status: active_batch2
+model_name: BAAI/bge-reranker-base
+model_choice_note: >
+  Zero-shot Chinese-capable cross-encoder reranker. Batch 2 uses the base
+  checkpoint first because full-dev fixed-candidate scoring is tractable on
+  one A40 and does not require train labels.
+document_template: title + brand + seller + cat_l1 + cat_l2 + cat_l3
+score_definition: cross-encoder relevance score for (query, candidate document)
+max_length: 256
+batch_size: 512
+pair_chunk_size: 8192
+device: cuda:0
+tuning_budget:
+  class: zero-shot
+  declared_configs: 1
+  prompt_or_template_changes: 0
+  dev_evals_budget: 1
+input_fields:
+  - records_dev.query
+  - records_dev.candidates.title
+  - records_dev.candidates.brand
+  - records_dev.candidates.seller
+  - records_dev.candidates.cat
+qrels_read: false

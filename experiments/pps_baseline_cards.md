@@ -12,13 +12,13 @@
 | B2z | 1 | Dense bi-encoder zero-shot | query-only semantic | query + item text | bge/gte weights | zero-shot | first |
 | B7 | 1 | Static mixture | key control | query score + history score | self | self-implemented | first |
 | M3 | 1 | Per-request oracle | headroom analysis | baseline scores | self | analysis only | first |
-| B3 | 2 | Cross-encoder reranker | query-only upper bound | query + item text | bge-reranker or similar | zero-shot/fine-tuned | deferred |
-| B4 | 2 | SASRec/BERT4Rec | strong history baseline | history sequence | RecBole + original papers | adapter-only | deferred |
-| B5 | 2 | DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code + adapter | deferred |
-| B6 | 2 | HEM/ZAM/TEM | PPS classic baseline | query + history + item text | PPS classic papers/code | official/reimplementation TBD | deferred |
+| B3 | 2 | Cross-encoder reranker | query-only upper bound | query + item text | bge-reranker or similar | zero-shot | complete |
+| B4 | 2 | SASRec/BERT4Rec | strong history baseline | history sequence | RecBole + original papers | adapter-only | adapter complete; official pending |
+| B5 | 2 | DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | style adapter | adapter complete; official pending |
+| B6 | 2 | HEM/ZAM/TEM | PPS classic baseline | query + history + item text | PPS classic papers/code | style adapter | adapter complete; official pending |
 | B6+ | 2 | MAI/NAM-style | recent PPS/when-personalize baseline | query + history + item text | recent PPS papers | feasibility TBD | candidate |
-| B8a | 2 | Raw-history LLM rerank | quality/cost upper bound | query + history + candidates | Qwen or similar | prompt baseline | deferred |
-| B8b | 2 | MemRerank-style memory rerank | quality/cost upper bound | query + memory + candidates | MemRerank-style | style-adapted | deferred |
+| B8a | 2 | Raw-history LLM rerank | quality/cost upper bound | query + history + candidates | Qwen or similar | prompt baseline | complete |
+| B8b | 2 | MemRerank-style memory rerank | quality/cost upper bound | query + memory + candidates | MemRerank-style | style-adapted | complete |
 
 ## Batch 1 Run Cards
 
@@ -93,6 +93,100 @@ Input fields used: per-request metrics for B2z, B0b, B7-bge
 Run IDs: 20260708_kuaisearch_m3_oracle_dev
 Current status: protocol-valid after C2 reissue
 Acceptance notes: M3 gate passes with oracle NDCG@10 = 0.4232 and +28.0% relative headroom over B7-bge. The original pre-C2 copy is preserved at reports/pps_m3_headroom_summary_exploratory_pre_c2.json; the active report is reissued as protocol-valid because M3 is read-only over unchanged per-request metric inputs.
+```
+
+## Batch 2 Run Cards
+
+```text
+ID: B3
+Method: Cross-encoder reranker
+Role: query-only semantic upper-bound check
+Evidence channels: query + item text
+Source paper/repo: BAAI/bge-reranker-base official weights
+Implementation type: zero-shot
+Input fields used: query; candidate title/brand/seller/category; candidate item_id for keys
+Output score definition: cross-encoder score for (query, B1 document text)
+Config path: configs/baselines/b3_cross_encoder.yaml
+Environment group: gpu, cuda:0 A40
+Tuning budget: zero-shot, 1 declared config
+Dev evals used: 1/1
+Determinism check: deterministic inference config; no sampling
+Run IDs: 20260708_kuaisearch_b3_bge_reranker_base_zs_dev
+Known limitations: full-dev scoring took 499.8s for 575,609 pairs; no fine-tuning run yet.
+Current status: complete
+Acceptance notes: NDCG@10 = 0.3068; vs B2z delta +0.0011 CI [-0.0031, 0.0053], not significant.
+
+ID: B4
+Method: SASRec-style hashed sequence adapter
+Role: strong history baseline placeholder
+Evidence channels: history item_id sequence + candidate item_id
+Source paper/repo: SASRec/BERT4Rec target; RecBole requested by protocol
+Implementation type: self-contained adapter, not RecBole
+Input fields used: history.item_id; candidate.item_id; train clicked labels
+Output score definition: online logistic item-id transition ranker plus train-only item-bias prior
+Config path: configs/baselines/b4_sasrec_style_hashed.yaml
+Environment group: core CPU
+Tuning budget: trainable, 16 dev evals
+Dev evals used: 7/16, including two failed weak variants retained in dev_eval_log
+Determinism check: 3 seeds: 20260708/20260709/20260710; mean NDCG@10 = 0.2881, std = 0.0007
+Run IDs: 20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260708; 20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260709; 20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260710
+Known limitations: RecBole 1.2.1 is not installable in the active Python 3.13 environment because ray<=2.6.3 has no cp313 wheel; this is not an official RecBole run.
+Current status: adapter complete; official RecBole baseline pending
+Acceptance notes: B4 sanity vs Random passes for best seed: +0.0076 CI [0.0025, 0.0128]. It is significantly below B0b by -0.0252 CI [-0.0306, -0.0197].
+
+ID: B5
+Method: KuaiSearch DCN/DIN-style hashed adapter
+Role: industrial CTR/ranking baseline placeholder
+Evidence channels: full standardized fields
+Source paper/repo: https://github.com/benchen4395/KuaiSearch commit 7ce0471b659112096f0aa7e892ed0aa4c972246a
+Implementation type: self-contained adapter, not official code execution
+Input fields used: user_id, query, history item/category, candidate item text/category, train clicked labels
+Output score definition: online logistic CTR ranker over user, query, item text/category, and history overlap features
+Config path: configs/baselines/b5_kuaisearch_dcn_din_style_hashed.yaml
+Environment group: core CPU
+Tuning budget: trainable, 16 dev evals
+Dev evals used: 3/16
+Determinism check: 3 seeds: 20260708/20260709/20260710; mean NDCG@10 = 0.2922, std = 0.0011
+Run IDs: 20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260708; 20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260709; 20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260710
+Known limitations: official ranking code expects precomputed query/title embeddings and raw user feature files outside the standardized blind-record interface; ±10% official alignment is not complete.
+Current status: adapter complete; official alignment pending
+Acceptance notes: best seed NDCG@10 = 0.2931; significantly below B7-best by -0.0375 CI [-0.0430, -0.0317].
+
+ID: B6
+Method: PPS-classic style hashed query-history fusion adapter
+Role: PPS classic baseline placeholder
+Evidence channels: query + history + item text
+Source paper/repo: HEM/ZAM/TEM target methods; no official adapter present
+Implementation type: style-adapted local implementation
+Input fields used: query, history item/title/category, candidate item text/category, train clicked labels
+Output score definition: online logistic PPS-style ranker over query-document, history-document, and gated personalization overlap features
+Config path: configs/baselines/b6_pps_classic_style_hashed.yaml
+Environment group: core CPU
+Tuning budget: trainable, 16 dev evals
+Dev evals used: 3/16
+Determinism check: 3 seeds: 20260708/20260709/20260710; mean NDCG@10 = 0.2929, std = 0.0003
+Run IDs: 20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260708; 20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260709; 20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260710
+Known limitations: not an official HEM/ZAM/TEM reproduction; text-overlap feature construction is slow.
+Current status: style-adapted complete; official PPS-classic reproduction pending
+Acceptance notes: best seed NDCG@10 = 0.2933; significantly below B7-best by -0.0373 CI [-0.0429, -0.0316].
+
+ID: B8a/B8b
+Method: LLM raw-history and memory-style top-20 rerank
+Role: quality/cost upper bound
+Evidence channels: query + history + item text + base top-20
+Source paper/repo: Qwen/Qwen2.5-7B-Instruct; MemRerank-style for B8b
+Implementation type: zero-shot / style-adapted
+Input fields used: query, history title/category/event, candidate text/category, B7-bge scores for top-20 truncation and fallback
+Output score definition: LLM reranks B7-bge top-20 on fixed 2000-request dev subset; non-subset requests preserve B7-bge scores
+Config path: configs/baselines/b8a_llm_rerank.yaml; configs/baselines/b8b_llm_rerank.yaml
+Environment group: gpu
+Tuning budget: 3 history lengths per variant
+Dev evals used: B8a 3/3; B8b 3/3
+Determinism check: subset fixed at reports/b8_dev_subset_request_ids_seed20260708.txt
+Run IDs: 20260708_kuaisearch_b8a_qwen25_7b_h5_dev; 20260708_kuaisearch_b8a_qwen25_7b_h20_dev; 20260708_kuaisearch_b8a_qwen25_7b_h50_dev; 20260708_kuaisearch_b8b_qwen25_7b_h5_dev; 20260708_kuaisearch_b8b_qwen25_7b_h20_dev; 20260708_kuaisearch_b8b_qwen25_7b_h50_dev
+Known limitations: Qwen2.5-7B required manual resume for the last shard; all runs only rerank the fixed 2000-request subset and use B7-bge fallback outside that subset. Full-dev metrics are therefore mostly base-run scores plus subset changes; B8 comparisons use same-subset reports.
+Current status: complete
+Acceptance notes: B8a best full-dev NDCG@10 = 0.3302 (h=50), B8b best full-dev NDCG@10 = 0.3293 (h=50). On the fixed subset, B8a h=50 vs B7-bge delta = -0.0019 CI [-0.0089, 0.0050]; B8b h=50 vs B8a h=50 delta = -0.0053 CI [-0.0120, 0.0014]. Parse failure rates are <=0.15%.
 ```
 
 ## Card Template

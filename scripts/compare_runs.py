@@ -21,6 +21,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--metric", default="ndcg@10")
     parser.add_argument("--samples", type=int, default=10000)
     parser.add_argument("--seed", type=int, default=20260708)
+    parser.add_argument("--request-ids", default=None)
     return parser.parse_args()
 
 
@@ -33,6 +34,7 @@ def main() -> int:
         metric=args.metric,
         samples=args.samples,
         seed=args.seed,
+        request_ids_path=args.request_ids,
     )
     print(result)
     return 0

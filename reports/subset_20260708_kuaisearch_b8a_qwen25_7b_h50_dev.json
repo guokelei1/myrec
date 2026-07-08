@@ -1,0 +1,12 @@
+{
+  "mrr": 0.3084504303469775,
+  "ndcg@10": 0.33007687560604104,
+  "num_requests": 2000,
+  "purchase_coverage": 0.126,
+  "purchase_ndcg@10": 0.3180163917117443,
+  "purchase_num_requests": 252,
+  "recall@10": 0.5443483424663572,
+  "request_ids_path": "reports/b8_dev_subset_request_ids_seed20260708.txt",
+  "request_ids_sha256": "a700e1b4e507e1b3375d3df17f6547a07c6f2711ba9703a8a7541fb74eb8f02f",
+  "run_id": "20260708_kuaisearch_b8a_qwen25_7b_h50_dev"
+}

@@ -22,12 +22,17 @@
 | B7-bm25 | `20260708_kuaisearch_b7_bm25_finalb1_dev_a01` | 0.3292 | 0.3105 | 0.5438 | 0.3510 (0.1401) | vs B0b: +0.0153, [0.0109, 0.0198] | 20260708 | 11/11 replacement | complete; uses final active B1 |
 | B7-bge | `20260708_kuaisearch_b7_bge_dev_a02` | 0.3305 | 0.3141 | 0.5418 | 0.3469 (0.1401) | vs B0b: +0.0166, [0.0121, 0.0211] | 20260708 | 11/11 | complete |
 | M3 oracle | `20260708_kuaisearch_m3_oracle_dev` | 0.4232 | — | — | — | headroom vs B7-bge: +28.0% rel.; CI [+27.2%, +28.9%] | 20260708 | — | protocol-valid after C2 reissue |
-| B3 | | | | | | vs B2z | | /16 | deferred |
-| B4 | | | | | | vs B0b | | /16 | deferred |
-| B5 | | | | | | vs B7-best | | /16 | deferred |
-| B6 | | | | | | vs B7-best | | /16 | deferred |
-| B8a | | | | | | vs B7-best（同抽样子集） | | /3 | deferred |
-| B8b | | | | | | vs B8a（同抽样子集） | | /3 | deferred |
+| B3 | `20260708_kuaisearch_b3_bge_reranker_base_zs_dev` | 0.3068 | 0.2819 | 0.5275 | 0.3217 (0.1401) | vs B2z: +0.0011, [-0.0031, 0.0053] | zero-shot | 1/1 | complete; not significant over B2z |
+| B4 | `20260708_kuaisearch_b4_sasrec_style_hashed_prior_dev_s20260709` | 0.2887 | 0.2673 | 0.5101 | 0.2973 (0.1401) | vs B0b: -0.0252, [-0.0306, -0.0197]; sanity vs Random: +0.0076, [0.0025, 0.0128] | 20260708/09/10; mean 0.2881±0.0007 | 7/16 | adapter complete; RecBole blocked on Python 3.13/ray |
+| B5 | `20260708_kuaisearch_b5_dcn_din_style_hashed_dev_s20260709` | 0.2931 | 0.2716 | 0.5147 | 0.2975 (0.1401) | vs B7-best: -0.0375, [-0.0430, -0.0317] | 20260708/09/10; mean 0.2922±0.0011 | 3/16 | adapter complete; official alignment not complete |
+| B6 | `20260708_kuaisearch_b6_pps_classic_style_hashed_dev_s20260709` | 0.2933 | 0.2704 | 0.5171 | 0.3078 (0.1401) | vs B7-best: -0.0373, [-0.0429, -0.0316] | 20260708/09/10; mean 0.2929±0.0003 | 3/16 | style-adapted complete; not official HEM/ZAM/TEM |
+| B8a | `20260708_kuaisearch_b8a_qwen25_7b_h5_dev` | 0.3294 | 0.3129 | 0.5407 | 0.3468 (0.1401) | vs B7-best on 2000-request subset: -0.0069, [-0.0139, 0.0002] | zero-shot | 1/3 | complete; raw-history h=5 |
+| B8a | `20260708_kuaisearch_b8a_qwen25_7b_h20_dev` | 0.3301 | 0.3133 | 0.5421 | 0.3460 (0.1401) | vs B7-best on 2000-request subset: -0.0024, [-0.0093, 0.0045] | zero-shot | 2/3 | complete; raw-history h=20 |
+| B8a | `20260708_kuaisearch_b8a_qwen25_7b_h50_dev` | 0.3302 | 0.3134 | 0.5422 | 0.3463 (0.1401) | vs B7-best on 2000-request subset: -0.0019, [-0.0089, 0.0050] | zero-shot | 3/3 | complete; raw-history h=50 |
+| B8b | `20260708_kuaisearch_b8b_qwen25_7b_h5_dev` | 0.3293 | 0.3135 | 0.5407 | 0.3474 (0.1401) | vs B8a h=5 on same subset: -0.0005, [-0.0069, 0.0058] | zero-shot | 1/3 | complete; memory-style h=5 |
+| B8b | `20260708_kuaisearch_b8b_qwen25_7b_h20_dev` | 0.3293 | 0.3135 | 0.5407 | 0.3486 (0.1401) | vs B8a h=20 on same subset: -0.0052, [-0.0120, 0.0016] | zero-shot | 2/3 | complete; memory-style h=20 |
+| B8b | `20260708_kuaisearch_b8b_qwen25_7b_h50_dev` | 0.3293 | 0.3137 | 0.5406 | 0.3477 (0.1401) | vs B8a h=50 on same subset: -0.0053, [-0.0120, 0.0014] | zero-shot | 3/3 | complete; memory-style h=50 |
+| M3 Batch2 oracle | `20260708_kuaisearch_m3_batch2_oracle_dev` | 0.5468 | — | — | — | headroom vs B7-bge: +65.4% rel.; CI [+64.2%, +66.7%] | 20260708 | — | analysis only; multi-channel oracle, selection-noise caveat |
 
 ## Test（Phase 5 冻结后一次性填写）
 
@@ -44,3 +49,15 @@
 | bootstrap 95% CI 下界 | +27.2% relative | ≥ +2% |
 | split-half（两半各自 headroom） | +28.2%, +27.9% | 同向且都 ≥ +2% |
 | oracle 通道选择分布 | B2z 60.6%, B0b 35.1%, B7-bge 4.3% | 无单通道 >90% |
+
+## M3 Batch 2 Oracle 摘要
+
+| 项 | 值 | 判据 |
+|---|---|---|
+| oracle NDCG@10 | 0.5468 | analysis only; 多通道 per-request max |
+| 最强单方法 NDCG@10 | 0.3305 (`static_b7_bge`) | B8a h=50 full-dev = 0.3302 |
+| headroom（relative） | +65.4% | ≥ +5% |
+| bootstrap 95% CI 下界 | +64.2% relative | ≥ +2% |
+| split-half（两半各自 headroom） | +65.8%, +65.1% | 同向且都 ≥ +2% |
+| oracle 通道选择分布 | B2z 29.8%, B0b 20.8%, B3 16.8%, B4 12.2%, B5 8.1%, B6 7.2%, B7 2.5%, B8 variants 2.8% total | 无单通道 >90% |
+| caveat | 方法数增多会抬高 per-request oracle，不能当作可部署增益 | 仅证明异质性和 headroom 仍存在 |
