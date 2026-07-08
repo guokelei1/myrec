@@ -1,4 +1,4 @@
-# C2 B1 Issue and Options
+# C2 B1 Issue Resolution
 
 Date: 2026-07-08
 
@@ -20,6 +20,11 @@ Current best B1 run:
 B1 tuning budget is effectively exhausted. Tried variants include request-local
 BM25, CJK 2/3-gram, exact phrase boost, jieba, global item-catalog IDF, and
 character coverage boost.
+
+Resolution: the original dominance rule remains failed, but C2 has been
+reissued as passed under the approved revised gate in
+`reports/pps_c2_baseline_gate.json`. The failure is retained as a dataset
+property, not hidden or overwritten.
 
 ## Diagnostic Evidence
 
@@ -51,56 +56,58 @@ candidates are already query-relevant, so lexical query reranking has limited
 headroom. Popularity can be competitive because it ranks among already-relevant
 candidates using aggregate click strength.
 
-The generated top-5 review sheet (`reports/b1_bm25_top5_review.md`) still needs
-human pass/fail review to satisfy the original C2 text. It now contains an
-assistant review draft: 16 pass and 4 need human review.
+The generated top-5 review sheet (`reports/b1_bm25_top5_review.md`) was
+confirmed by user decision on 2026-07-08: 16 direct pass and 4 pass as
+documented lexical limitations. The documented classes are complementary-item
+intent, question-like query with unverified attribute, single-character query
+tokenizer mismatch, and partial attribute/geographic match.
 
-## Options
+## Decision
+
+Option B was approved by user decision on 2026-07-08: amend C2 for
+query-conditioned candidate sets.
+
+The approved revised gate requires:
+
+- Shuffled-query BM25 canary passes on dev.
+- Relevance-table lexical check passes.
+- Candidate-pool query conditioning is documented.
+- B0a popularity audit passes.
+- B1 top-5 manual review passes with documented allowed limitation classes.
+- B1/B2z use the same document template and have nondegenerate score coverage.
+- B2z and B1 remain logged query-only baselines.
+- The C2 report explicitly states that KuaiSearch fixed candidates are already
+  query-conditioned, so query-only reranking has limited marginal gain.
+
+Consequences already applied:
+
+- `reports/pps_c2_gate_amendment.md` is marked approved.
+- `reports/pps_c2_baseline_gate.json` is reissued with `overall_status:
+  passed`.
+- `reports/pps_m3_headroom_summary.json` is reissued as protocol-valid; the
+  exploratory pre-C2 copy is preserved separately.
+- B7-bm25 was rerun against the final active B1 run, and the earlier grid was
+  retired as a formal Batch 1 result.
+
+## Rejected Alternatives
 
 ### Option A - Keep Frozen C2 As Written
 
-Status: C2 remains failed.
+Status: rejected by user decision.
 
 Consequence:
 
 - Stop before protocol-valid M3/C3.
-- Current M3 report remains exploratory only.
+- The M3 report would not have become protocol-valid.
 - Next work is outside this execution task: redesign or strengthen query-only
   baseline, or revisit dataset choice.
 
-This is the strictest protocol interpretation.
+This was the strictest protocol interpretation, but the diagnostics directly
+tested the original bug modes and supported amendment rather than stopping.
 
 ### Option B - Amend C2 For Query-Conditioned Candidate Sets
 
-Replace the hard rule `B1 BM25 significantly > B0a popularity` with a query-only
-sanity suite:
-
-- Shuffled-query BM25 canary passes on dev: original query scores fixed
-  candidates significantly higher than shuffled query scores.
-- Relevance-table lexical check passes: rel=3 pairs have higher true-query
-  BM25 advantage than rel=0 pairs.
-- Candidate-pool query conditioning is documented: actual candidate BM25 scores
-  significantly exceed random catalog item scores.
-- B0a popularity audit passes: train-only stats and no meaningful
-  popularity/position inflation evidence.
-- B1 top-5 manual review passes on 20 sampled requests.
-- B1/B2z use exactly the same document template.
-- B1/B2z score coverage is nondegenerate: low all-zero/all-tie request rate.
-- B2z and B1 are both logged query-only baselines, even if neither significantly
-  beats popularity.
-- The C2 report states that KuaiSearch fixed candidates are already
-  query-conditioned, so query-only reranking is expected to have limited
-  marginal gain.
-
-Consequence:
-
-- Requires an explicit human protocol amendment before C2 can pass.
-- After amendment, M3 should be rerun or at least reissued as protocol-valid.
-- B7-bm25 should be rerun against the final active B1 run if it is kept as a
-  formal Batch 1 line.
-
-This is the most pragmatic route if the goal is dataset/baseline construction
-rather than proving query-only lexical dominance.
+Status: approved and applied.
 
 ### Option C - Replace B1 With Stronger Lexical Baseline
 
@@ -113,12 +120,12 @@ Consequence:
 - May still fail if candidate sets are already query-conditioned.
 - Adds implementation complexity without directly testing the proposed design.
 
-This is only worth doing if C2 must remain unchanged and B1 must pass literally.
+Status: not pursued for this frozen slice. This is only worth doing if a later
+protocol version requires literal B1 dominance again.
 
 ## Recommendation
 
-Use Option B, but only after explicit human approval. It preserves the spirit of
-C2: ensuring the query-only baseline is sane and comparable, without requiring a
-dominance relation that may not be appropriate after query-conditioned recall.
-
-Until then, C2 remains failed and M3 remains exploratory.
+No further B1 tuning is recommended in this Batch 1 slice. Future C3/M5 wording
+should avoid the old claim that query-only methods fail specifically in high
+entropy buckets; the supported statement is that query signal is already largely
+saturated inside the fixed candidate pool.

@@ -34,3 +34,14 @@
 {"method_id": "b1_bm25", "ndcg@10": 0.305318515123445, "run_id": "20260708_kuaisearch_b1_bm25_globalidf_dev", "split": "dev", "timestamp": "2026-07-08T13:21:00.873385+00:00"}
 {"method_id": "b1_bm25", "ndcg@10": 0.30540968596236795, "run_id": "20260708_kuaisearch_b1_bm25_globalidf_exact10_dev", "split": "dev", "timestamp": "2026-07-08T13:22:34.535481+00:00"}
 {"method_id": "b1_bm25", "ndcg@10": 0.3049323207224392, "run_id": "20260708_kuaisearch_b1_bm25_globalidf_cov10_dev", "split": "dev", "timestamp": "2026-07-08T13:25:02.819033+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3139167214574482, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a00", "split": "dev", "timestamp": "2026-07-08T14:05:23.369825+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3292316341530289, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a01", "split": "dev", "timestamp": "2026-07-08T14:05:32.194418+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.32915243525778115, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a02", "split": "dev", "timestamp": "2026-07-08T14:05:41.046340+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.32871149381512493, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a03", "split": "dev", "timestamp": "2026-07-08T14:05:49.966296+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3282162679146703, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a04", "split": "dev", "timestamp": "2026-07-08T14:05:58.864737+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3268592457105366, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a05", "split": "dev", "timestamp": "2026-07-08T14:06:07.753807+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3222331445519369, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a06", "split": "dev", "timestamp": "2026-07-08T14:06:16.538979+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3188187254463357, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a07", "split": "dev", "timestamp": "2026-07-08T14:06:25.379111+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.31552155129252796, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a08", "split": "dev", "timestamp": "2026-07-08T14:06:34.174640+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.3124713467357523, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a09", "split": "dev", "timestamp": "2026-07-08T14:06:43.057354+00:00"}
+{"method_id": "b7_bm25", "ndcg@10": 0.30540968596236795, "run_id": "20260708_kuaisearch_b7_bm25_finalb1_dev_a10", "split": "dev", "timestamp": "2026-07-08T14:06:52.021012+00:00"}

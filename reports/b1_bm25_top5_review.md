@@ -5,8 +5,12 @@ This sheet is generated without reading qrels. It is for manual sanity inspectio
 - Seed: 20260708
 - Sampled requests: 20
 - Scores: `runs/20260708_kuaisearch_b1_bm25_globalidf_exact10_dev/scores.jsonl`
-- Assistant review draft: 16 pass, 4 need human review.
-- Protocol status: human confirmation still required before this satisfies C2.
+- Review status: confirmed passed by user decision on 2026-07-08.
+- Assistant draft outcome: 16 direct pass, 4 documented lexical limitations.
+- Protocol status: satisfies the revised C2 query-only sanity suite.
+- Documented limitation classes: complementary-item intent, question-like query
+  with unverified attribute, single-character tokenizer mismatch, and partial
+  attribute/geographic match.
 
 ## 1. `ks_0860527807e92c4ab3a45fbd`
 
@@ -78,7 +82,7 @@ Query: 适合黑色背带裤的上衣
 4. `2267070` score=31.352988 | 2025新款奶系黑色牛仔背带裤女春季宽松减龄可爱高腰直筒连体长裤 | 无品牌 | 女装 / 裤子 / 背带裤装
 5. `2267079` score=31.248199 | 黑色牛仔背带裤女2025新款春季宽松慵懒风显瘦设计感小众裤子 | 无品牌 | 女装 / 裤子 / 背带裤装
 
-Review note: NEED HUMAN REVIEW. The query asks for tops suitable for black overalls, but BM25 ranks black overalls and overall sets, so it overmatches the mentioned garment rather than the requested complementary item.
+Review note: CONFIRMED PASS WITH LIMITATION. The query asks for tops suitable for black overalls, but BM25 ranks black overalls and overall sets. This is documented as complementary-item intent lexical brittleness, not a query-field or tokenizer bug.
 
 ## 7. `ks_52efed414a37afa07050cfd8`
 
@@ -114,7 +118,7 @@ Query: 电饭煲内胆为什么用医用级别的？
 4. `3864777` score=59.706210 | Midea/美的电饭煲内胆原装原厂配件3L/4L/5L升聚能釜蜂窝不粘内锅 | 美的/MIDEA | 家用电器 / 厨房小电 / 厨房小电配件
 5. `1236140` score=39.379492 | 苏泊尔蓝钻球釜不粘内胆电饭煲 双热源加热电饭煲【自播专属】 | 苏泊尔/SUPOR | 家用电器 / 厨房小电 / 电饭煲设备
 
-Review note: NEED HUMAN REVIEW. The query is question-like and includes the attribute phrase 医用级别; BM25 retrieves rice-cooker inner-pot products but does not verify the medical-grade aspect or answer the question.
+Review note: CONFIRMED PASS WITH LIMITATION. The query is question-like and includes the attribute phrase 医用级别; BM25 retrieves rice-cooker inner-pot products but does not verify the medical-grade aspect or answer the question. This is documented as question-like intent with an unverified attribute.
 
 ## 10. `ks_903de2fb464cc613d4dfea9f`
 
@@ -138,7 +142,7 @@ Query: 酒
 4. `1568492` score=0.000000 | 50ml柠檬伏特加小瓶便利店原味调酒微醺迷你小酒版伏特加调酒 | 杰特希尔 | 酒类 / 洋酒 / 伏特加酒
 5. `271798` score=0.000000 | 【主播专属】贵州53度酱香型白酒粮食酒峥心酿高度酱酒口粮酒 | 峥心酿 | 酒类 / 白酒 / UNKNOWN
 
-Review note: NEED HUMAN REVIEW. The retrieved candidates are alcohol products, but BM25 scores are all zero, so the ordering is effectively tie-break/candidate-order rather than lexical scoring for the one-character query.
+Review note: CONFIRMED PASS WITH LIMITATION. The retrieved candidates are alcohol products, but BM25 scores are all zero, so the ordering is effectively tie-break/candidate-order rather than lexical scoring for the one-character query. This is documented as single-character query tokenizer mismatch.
 
 ## 12. `ks_95ff0deeaa743ac413a758f8`
 
@@ -210,7 +214,7 @@ Query: 海南金煌芒
 4. `26146` score=0.000000 | 中国大陆凯特芒四川攀枝花凯特芒大脸芒新鲜现摘整箱包邮 | 无品牌 | 生鲜 / 水果 / 芒果类水果
 5. `465700` score=0.000000 | B变软吃 现摘攀枝花凯特芒青皮芒果 香甜肉厚新鲜水果 坏果包赔 | 无品牌 | 生鲜 / 水果 / 芒果类水果
 
-Review note: NEED HUMAN REVIEW. The top results match 金煌芒 mango, but the top-1 item says 云南 rather than 海南 and lower items drift to other mango varieties, so the geographic constraint is only partly respected.
+Review note: CONFIRMED PASS WITH LIMITATION. The top results match 金煌芒 mango, but the top-1 item says 云南 rather than 海南 and lower items drift to other mango varieties, so the geographic constraint is only partly respected. This is documented as partial attribute/geographic match.
 
 ## 18. `ks_c7977cc149c060395e91cc01`
 

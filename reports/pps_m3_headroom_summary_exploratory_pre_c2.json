@@ -36,13 +36,9 @@
   },
   "gate_status": "passed",
   "headroom_relative": 0.2802350111200613,
-  "protocol_reissue": {
-    "status": "protocol_valid",
-    "authorized_by": "user message on 2026-07-08 after C2 amendment approval",
-    "c2_report": "reports/pps_c2_baseline_gate.json",
-    "exploratory_pre_c2_copy": "reports/pps_m3_headroom_summary_exploratory_pre_c2.json",
-    "rerun_required": false,
-    "rationale": "M3 is a read-only oracle analysis over unchanged per-request metric inputs; after C2 was reissued as passed under the approved revised gate, the same M3 artifact is reissued as protocol-valid."
+  "protocol_status": {
+    "status": "exploratory_pre_c2",
+    "note": "This copy preserves the M3 report generated before C2 was reissued as passed. Do not use this copy as the protocol-valid C3 input."
   },
   "input_run_ids": {
     "history_b0b": "20260708_kuaisearch_b0b_recent_behavior_dev",

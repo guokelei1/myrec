@@ -56,8 +56,8 @@ Implementation type: self-implemented
 Input fields used: query; candidate title/brand/seller/category
 Config path: configs/baselines/b1_bm25.yaml
 Run IDs: 20260708_kuaisearch_b1_bm25_dev; 20260708_kuaisearch_b1_bm25_cjk23_dev; 20260708_kuaisearch_b1_bm25_exact_dev; 20260708_kuaisearch_b1_bm25_jieba2_dev; 20260708_kuaisearch_b1_bm25_globalidf_dev; 20260708_kuaisearch_b1_bm25_globalidf_exact10_dev; 20260708_kuaisearch_b1_bm25_globalidf_cov10_dev
-Current status: C2 failed
-Acceptance notes: best variant NDCG@10 = 0.3054, not significant over B0a; this blocks C2. See reports/pps_c2_b1_issue_and_options.md.
+Current status: accepted under approved revised C2 gate
+Acceptance notes: best variant NDCG@10 = 0.3054 and original B1-vs-B0a dominance rule failed; retained as a KuaiSearch candidate-pool dataset property. Revised sanity suite passed: shuffled-query canary, candidate-pool query conditioning, relevance-table lexical signal, B0a train-only audit, shared template/coverage checks, and confirmed top-5 review with four documented lexical limitation classes.
 
 ID: B2z
 Method: Dense bi-encoder zero-shot
@@ -73,9 +73,9 @@ Method: Static mixture, BM25 + recent-behavior
 Implementation type: self-implemented analysis of upstream scores
 Input fields used: B1 scores; B0b scores
 Config path: configs/baselines/b7_bm25.yaml
-Run IDs: 20260708_kuaisearch_b7_bm25_dev_a00..a10
+Run IDs: 20260708_kuaisearch_b7_bm25_dev_a00..a10; 20260708_kuaisearch_b7_bm25_finalb1_dev_a00..a10
 Current status: complete
-Acceptance notes: best alpha = 0.1; alpha curve saved under runs/20260708_kuaisearch_b7_bm25_dev_grid/alpha_curve.json.
+Acceptance notes: original 20260708_kuaisearch_b7_bm25_dev_a00..a10 grid is retired because it used an earlier B1 score run. Formal Batch 1 line is 20260708_kuaisearch_b7_bm25_finalb1_dev_a01, best alpha = 0.1, NDCG@10 = 0.3292, significantly above B0b by +0.0153 CI [0.0109, 0.0198].
 
 ID: B7-bge
 Method: Static mixture, dense bi-encoder + recent-behavior
@@ -91,8 +91,8 @@ Method: Per-request oracle
 Implementation type: analysis only
 Input fields used: per-request metrics for B2z, B0b, B7-bge
 Run IDs: 20260708_kuaisearch_m3_oracle_dev
-Current status: exploratory
-Acceptance notes: M3 gate itself passes, but C2 failed before M3, so this is not yet protocol-valid C3 evidence.
+Current status: protocol-valid after C2 reissue
+Acceptance notes: M3 gate passes with oracle NDCG@10 = 0.4232 and +28.0% relative headroom over B7-bge. The original pre-C2 copy is preserved at reports/pps_m3_headroom_summary_exploratory_pre_c2.json; the active report is reissued as protocol-valid because M3 is read-only over unchanged per-request metric inputs.
 ```
 
 ## Card Template

@@ -2,7 +2,8 @@
 
 Date: 2026-07-08
 
-Current status: C2 remains failed under the frozen rule.
+Current status: resolved. C2 is reissued as passed under the approved revised
+gate in `reports/pps_c2_baseline_gate.json`.
 
 ## Evidence Now Available
 
@@ -13,29 +14,38 @@ Current status: C2 remains failed under the frozen rule.
   - Candidate pool vs random catalog passed.
   - Relevance-table lexical signal passed.
   - B0a train-only audit passed.
-- Top-5 review draft: `reports/b1_bm25_top5_review.md`.
-  - 16 pass.
-  - 4 need human review.
+- Top-5 review: `reports/b1_bm25_top5_review.md`.
+  - 16 direct pass.
+  - 4 confirmed pass with documented lexical limitations.
 
-## Remaining Human Decisions
+## Human Decisions
 
-1. Decide whether the explicit amendment in
-   `reports/pps_c2_gate_amendment.md` is approved.
-2. Confirm or override the assistant top-5 review draft.
-3. If the amendment is approved and the review passes, reissue C2 with the
-   revised gate. Do not delete the original failed B1-vs-B0a result.
-4. If C2 is reissued as passed, rerun or reissue M3 as protocol-valid and
-   clearly separate it from the exploratory M3 generated while C2 was failed.
+1. Amendment approved by user decision on 2026-07-08.
+2. Top-5 review confirmed passed with four documented lexical limitation
+   classes.
+3. C2 reissued with the revised gate. The original failed B1-vs-B0a result is
+   retained.
+4. M3 reissued as protocol-valid without rerun because it is a read-only oracle
+   analysis and its inputs did not change. The exploratory pre-C2 report is
+   preserved as `reports/pps_m3_headroom_summary_exploratory_pre_c2.json`.
 
-## If Amendment Is Rejected
+## Superseded Branches
 
-Keep C2 failed. The current M3 report remains exploratory, and Phase 2 should
-not advance to C3. Further B1 tuning should not continue without reopening the
-dev-evaluation budget.
+The rejection branch is closed by the user decision. Further B1 tuning remains
+closed unless a new protocol decision reopens the dev-evaluation budget.
 
-## If Top-5 Review Fails
+The top-5 failure branch is closed by the user decision. The flagged cases are
+documented query classes: complementary-item intent, question-like intent,
+single-character all-zero BM25 scoring, and a partly missed geographic
+constraint.
 
-Keep C2 failed unless the failure is narrowed to a documented query class and
-the revised gate explicitly allows that class. The current flagged cases include
-complementary-item intent, question-like intent, one-character all-zero BM25
-scoring, and a partly missed geographic constraint.
+## Follow-up Completed
+
+B7-bm25 was rerun against the final active B1 run
+`20260708_kuaisearch_b1_bm25_globalidf_exact10_dev`.
+
+- New best run: `20260708_kuaisearch_b7_bm25_finalb1_dev_a01`.
+- Best alpha: 0.1.
+- NDCG@10: 0.3292.
+- Compare vs B0b: +0.0153, 95% CI [0.0109, 0.0198].
+- Compare B7-bge vs final-B1 B7-bm25: +0.0013, 95% CI [-0.0024, 0.0050].

@@ -16,11 +16,12 @@
 | Random | `20260708_kuaisearch_random_c1` | 0.2811 | 0.2583 | 0.5011 | 0.2998 (0.1401) | — | 20260708 | instrumentation | complete |
 | B0a | `20260708_kuaisearch_b0a_popularity_dev` | 0.3013 | 0.2796 | 0.5216 | 0.3252 (0.1401) | vs Random: +0.0202, [0.0149, 0.0255] | 20260708 | 1/9 | complete |
 | B0b | `20260708_kuaisearch_b0b_recent_behavior_dev` | 0.3139 | 0.2983 | 0.5268 | 0.3416 (0.1401) | vs Random: +0.0328, [0.0274, 0.0383] | 20260708 | 1/9 | complete |
-| B1 | `20260708_kuaisearch_b1_bm25_globalidf_exact10_dev` | 0.3054 | 0.2801 | 0.5294 | 0.3280 (0.1401) | vs B0a: +0.0041, [-0.0012, 0.0098] | 20260708 | 8/9 | C2 failed |
+| B1 | `20260708_kuaisearch_b1_bm25_globalidf_exact10_dev` | 0.3054 | 0.2801 | 0.5294 | 0.3280 (0.1401) | vs B0a: +0.0041, [-0.0012, 0.0098] | 20260708 | 8/9 | accepted under revised C2; original dominance failure retained |
 | B2z | `20260708_kuaisearch_b2z_bge_small_zh_dev` | 0.3056 | 0.2823 | 0.5264 | 0.3198 (0.1401) | vs B1: +0.0002, [-0.0041, 0.0045] | 20260708 | 1/1 | complete |
-| B7-bm25 | `20260708_kuaisearch_b7_bm25_dev_a01` | 0.3276 | 0.3088 | 0.5412 | 0.3483 (0.1401) | vs B0b: +0.0137, [0.0093, 0.0181] | 20260708 | 11/11 | complete; uses earlier B1 score run |
+| B7-bm25 | `20260708_kuaisearch_b7_bm25_dev_a01` | 0.3276 | 0.3088 | 0.5412 | 0.3483 (0.1401) | vs B0b: +0.0137, [0.0093, 0.0181] | 20260708 | 11/11 | retired; used earlier B1 score run |
+| B7-bm25 | `20260708_kuaisearch_b7_bm25_finalb1_dev_a01` | 0.3292 | 0.3105 | 0.5438 | 0.3510 (0.1401) | vs B0b: +0.0153, [0.0109, 0.0198] | 20260708 | 11/11 replacement | complete; uses final active B1 |
 | B7-bge | `20260708_kuaisearch_b7_bge_dev_a02` | 0.3305 | 0.3141 | 0.5418 | 0.3469 (0.1401) | vs B0b: +0.0166, [0.0121, 0.0211] | 20260708 | 11/11 | complete |
-| M3 oracle | `20260708_kuaisearch_m3_oracle_dev` | 0.4232 | — | — | — | headroom vs B7-bge: +28.0% rel.; CI [+27.2%, +28.9%] | 20260708 | — | exploratory; C2 blocked |
+| M3 oracle | `20260708_kuaisearch_m3_oracle_dev` | 0.4232 | — | — | — | headroom vs B7-bge: +28.0% rel.; CI [+27.2%, +28.9%] | 20260708 | — | protocol-valid after C2 reissue |
 | B3 | | | | | | vs B2z | | /16 | deferred |
 | B4 | | | | | | vs B0b | | /16 | deferred |
 | B5 | | | | | | vs B7-best | | /16 | deferred |
@@ -37,8 +38,8 @@
 
 | 项 | 值 | 判据 |
 |---|---|---|
-| oracle NDCG@10 | 0.4232 | exploratory; C2 not passed |
-| 最强单方法 NDCG@10 | 0.3305 (`static_b7_bge`) | |
+| oracle NDCG@10 | 0.4232 | protocol-valid after C2 reissue |
+| 最强单方法 NDCG@10 | 0.3305 (`static_b7_bge`) | B7-bm25 final-B1 = 0.3292 |
 | headroom（relative） | +28.0% | ≥ +5% |
 | bootstrap 95% CI 下界 | +27.2% relative | ≥ +2% |
 | split-half（两半各自 headroom） | +28.2%, +27.9% | 同向且都 ≥ +2% |

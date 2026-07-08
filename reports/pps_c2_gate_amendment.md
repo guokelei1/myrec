@@ -1,10 +1,15 @@
-# C2 Gate Amendment Draft
+# C2 Gate Amendment
 
 Date: 2026-07-08
 
-Status: draft only. This document does not amend the frozen protocol until a
-human approves a protocol change. `reports/pps_c2_baseline_gate.json` keeps the
-original C2 failure.
+Status: approved by user decision on 2026-07-08. This is a post-hoc amendment
+to the frozen C2 gate for KuaiSearch fixed candidate pools. The original
+B1-vs-B0a failure is retained as a dataset property in
+`reports/pps_c2_baseline_gate.json`.
+
+Authorization source: user message accepting the amendment and confirming the
+four flagged top-5 review cases as documented lexical limitations rather than
+instrument bugs.
 
 ## Original Gate
 
@@ -42,7 +47,7 @@ Interpretation: B1 BM25 is mechanically responsive to query text, and the fixed
 candidate pools are already query-conditioned. The failed dominance relation
 therefore does not by itself prove a query field or tokenizer bug.
 
-## Proposed Revised Gate
+## Approved Revised Gate
 
 For KuaiSearch fixed candidate pools, replace the single dominance rule
 `B1 BM25 significantly > B0a popularity` with this query-only sanity suite:
@@ -63,22 +68,25 @@ For KuaiSearch fixed candidate pools, replace the single dominance rule
 The original B1-vs-B0a result remains reported as a dataset property: popularity
 is competitive inside an already query-filtered candidate set.
 
-## Top-5 Review Draft
+## Top-5 Review Confirmation
 
-`reports/b1_bm25_top5_review.md` now contains an assistant review draft:
+`reports/b1_bm25_top5_review.md` is confirmed passed under the revised C2
+sanity suite:
 
-- Pass: 16 / 20.
-- Need human review: 4 / 20.
-- Flagged requests:
+- Direct pass: 16 / 20.
+- Confirmed pass with documented lexical limitations: 4 / 20.
+- Flagged request classes:
   `ks_472f62b7df908af764cd3512`,
   `ks_7cff314f1557d17102f2665a`,
   `ks_9095ea4a4cb8e31ccad3822b`,
   `ks_c5de6c84ba5da740b7a60ce6`.
 
-The flagged cases are interpretable failures or ambiguities: complementary-item
-intent, question-like query with an unverified attribute, one-character query
-with all-zero BM25 scores, and a geographic constraint partially missed by
-BM25. Human confirmation is still required before this review can satisfy C2.
+The flagged cases are accepted as documented lexical limitation classes:
+
+- complementary-item intent;
+- question-like query with an unverified attribute;
+- single-character query tokenizer mismatch;
+- partial attribute/geographic match.
 
 ## Rationale
 

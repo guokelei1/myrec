@@ -11,6 +11,7 @@ python scripts/run_core_baseline.py --method b0b --standardized-dir data/standar
 python scripts/run_core_baseline.py --method b1 --standardized-dir data/standardized/kuaisearch/v0_lite --split dev --run-id 20260708_kuaisearch_b1_bm25_globalidf_exact10_dev --bm25-idf-scope global --bm25-exact-match-boost 10.0
 python scripts/run_dense_biencoder.py --standardized-dir data/standardized/kuaisearch/v0_lite --split dev
 python scripts/run_b7_grid.py --standardized-dir data/standardized/kuaisearch/v0_lite --split dev
+python scripts/run_b7_grid.py --standardized-dir data/standardized/kuaisearch/v0_lite --split dev --query-run-id 20260708_kuaisearch_b1_bm25_globalidf_exact10_dev --history-run-id 20260708_kuaisearch_b0b_recent_behavior_dev --run-prefix 20260708_kuaisearch_b7_bm25_finalb1_dev --method-id b7_bm25 --config configs/baselines/b7_bm25.yaml
 python scripts/run_b7_grid.py --standardized-dir data/standardized/kuaisearch/v0_lite --split dev --query-run-id 20260708_kuaisearch_b2z_bge_small_zh_dev --history-run-id 20260708_kuaisearch_b0b_recent_behavior_dev --run-prefix 20260708_kuaisearch_b7_bge_dev --method-id b7_bge --config configs/baselines/b7_bge.yaml
 python scripts/run_m3_oracle.py
 ```
@@ -40,17 +41,16 @@ All Batch 1 methods produced `scores.jsonl`, `metrics.json`, and
 | B0b | `20260708_kuaisearch_b0b_recent_behavior_dev` | 0.3139 |
 | B1 | `20260708_kuaisearch_b1_bm25_globalidf_exact10_dev` | 0.3054 |
 | B2z | `20260708_kuaisearch_b2z_bge_small_zh_dev` | 0.3056 |
-| B7-bm25 | `20260708_kuaisearch_b7_bm25_dev_a01` | 0.3276 |
+| B7-bm25 | `20260708_kuaisearch_b7_bm25_finalb1_dev_a01` | 0.3292 |
 | B7-bge | `20260708_kuaisearch_b7_bge_dev_a02` | 0.3305 |
 
-C2 failed because B1 was not significantly better than B0a. After follow-up
-diagnosis, the best B1 variant is
+C2 originally failed because B1 was not significantly better than B0a. After
+follow-up diagnosis, the best B1 variant is
 `20260708_kuaisearch_b1_bm25_globalidf_exact10_dev`: NDCG@10 0.3054 vs B0a
 0.3013, delta +0.0041, 95% CI [-0.0012, 0.0098]. Tried variants include
 request-local BM25, CJK 2/3-gram BM25, exact query phrase boost, jieba,
-global item-catalog IDF, and character coverage boost. B1 dev tuning budget is
-effectively consumed, so further B1 tuning is stopped pending a protocol
-decision.
+global item-catalog IDF, and character coverage boost. B1 dev tuning budget was
+consumed, and the original dominance failure is retained as a dataset property.
 
 Interpretation note: this does not directly invalidate the PPS design. It
 indicates that in a query-conditioned fixed candidate set, lexical query-only
@@ -79,17 +79,23 @@ They do not read `qrels_dev/test` and do not append to `dev_eval_log`. Results:
   Spearman is -0.0018.
 
 Conclusion: the diagnostics support "candidate pool already query-filtered"
-rather than "BM25 is broken" or "B0a leaked dev/test clicks". C2 still remains
-failed unless a human explicitly approves the amendment draft in
-`reports/pps_c2_gate_amendment.md` and completes the manual top-5 review.
+rather than "BM25 is broken" or "B0a leaked dev/test clicks". User decision on
+2026-07-08 approved the C2 amendment in `reports/pps_c2_gate_amendment.md`.
+C2 is reissued as passed under the revised query-only sanity suite while the
+original B1-vs-B0a failure remains visible.
 
-The top-5 review sheet now has an assistant review draft: 16/20 pass and 4/20
-need human review. The flagged cases are not random noise; they identify query
-classes where lexical matching is brittle inside the fixed candidate set:
-complementary-item intent, question-like intent, one-character all-zero BM25
-scoring, and a partly missed geographic constraint.
+The top-5 review sheet is confirmed: 16/20 direct pass and 4/20 pass as
+documented lexical limitations. The accepted classes are complementary-item
+intent, question-like query with unverified attribute, single-character query
+tokenizer mismatch, and partial attribute/geographic match.
 
-M3 was run after C2 failed and is therefore exploratory. It showed oracle
-NDCG@10 0.4232 and +28.0% relative headroom over B7-bge, with split-half
-headroom +28.2% / +27.9%. This should not be promoted to C3 evidence until
-the C2 query-only sanity check is resolved or revised.
+The old B7-bm25 grid used an earlier B1 run and is retired as a formal Batch 1
+line. The final-B1 replacement grid has best run
+`20260708_kuaisearch_b7_bm25_finalb1_dev_a01`, alpha 0.1, NDCG@10 0.3292, and
+significantly beats B0b by +0.0153 CI [0.0109, 0.0198].
+
+M3 was first run before C2 reissue; that copy is preserved at
+`reports/pps_m3_headroom_summary_exploratory_pre_c2.json`. Because M3 is a
+read-only oracle over unchanged per-request metrics, it is reissued as
+protocol-valid after C2 passed. It showed oracle NDCG@10 0.4232 and +28.0%
+relative headroom over B7-bge, with split-half headroom +28.2% / +27.9%.
