@@ -210,9 +210,9 @@ Tuning budget: 16 KuaiSearch dev evaluations; first run is RecBole official/defa
 Dev evals used: 0/16
 Determinism check: pending
 Run IDs: pending
-Known limitations: must run in python 3.10/isolated pps-recbole environment because active python 3.13 cannot install RecBole 1.2.1 dependency ray<=2.6.3.
+Known limitations: must run in python 3.10/isolated pps-recbole environment because active python 3.13 cannot install RecBole 1.2.1 dependency ray<=2.6.3. Environment also pins setuptools<81 because ray 2.6.3 imports pkg_resources.
 Current status: in progress
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Next required work is environment sanity on RecBole/ml-100k, then unified train-interaction export and RecBole data/scoring adapters.
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Unified train-interaction artifact is recorded in reports/pps_batch2b_interactions_train_manifest.json. RecBole/ml-100k sanity passed in reports/b4o_env_sanity.md: loss decreased from 336.5817 to 299.0741 over 3 epochs and example-split test NDCG@10 = 0.0358. Next required work is the RecBole atomic data adapter and fixed-candidate scoring adapter.
 
 ID: B5o
 Method: KuaiSearch official DIN/DCNv2

@@ -35,6 +35,8 @@ pip-wheel-metadata/
 venv/
 env/
 ENV/
+!configs/env/
+!configs/env/**
 
 # Notebook and interactive-session noise
 .ipynb_checkpoints/
