@@ -1,0 +1,296 @@
+{
+  "check_id": "kuaisearch_c0_history_leakage_recall_cross_reference",
+  "classification": {
+    "checked_requests": 1000,
+    "counts": {
+      "future_only": 135,
+      "past_supported": 3332,
+      "same_time_only": 95,
+      "unobserved": 32373
+    },
+    "future_only_examples": [
+      {
+        "event_times": [
+          488011
+        ],
+        "history_item_id": 617471,
+        "query": "蔓越莓女性益生菌",
+        "request_id": "ks_f6f10b480b1d5cb211da4ca4",
+        "session_id": "337279",
+        "time_index": 487984,
+        "user_id": "80011"
+      },
+      {
+        "event_times": [
+          502277
+        ],
+        "history_item_id": 367316,
+        "query": "二大爷",
+        "request_id": "ks_f1a85fd424ecad993daeea63",
+        "session_id": "293354",
+        "time_index": 502266,
+        "user_id": "39603"
+      },
+      {
+        "event_times": [
+          514282
+        ],
+        "history_item_id": 5239394,
+        "query": "护发乳液",
+        "request_id": "ks_5efaea465953cfcd9831b682",
+        "session_id": "513402",
+        "time_index": 512729,
+        "user_id": "94539"
+      },
+      {
+        "event_times": [
+          865159
+        ],
+        "history_item_id": 894298,
+        "query": "面膜补水",
+        "request_id": "ks_9b94513a3b56dca9e74d4491",
+        "session_id": "454349",
+        "time_index": 551543,
+        "user_id": "87772"
+      },
+      {
+        "event_times": [
+          865159
+        ],
+        "history_item_id": 172666,
+        "query": "面膜补水",
+        "request_id": "ks_9b94513a3b56dca9e74d4491",
+        "session_id": "454349",
+        "time_index": 551543,
+        "user_id": "87772"
+      },
+      {
+        "event_times": [
+          824403
+        ],
+        "history_item_id": 4104368,
+        "query": "秋款吊带两件套",
+        "request_id": "ks_5a29bd597a7d6b6775a47d55",
+        "session_id": "293117",
+        "time_index": 552089,
+        "user_id": "17688"
+      },
+      {
+        "event_times": [
+          556282
+        ],
+        "history_item_id": 115942,
+        "query": "假睫毛",
+        "request_id": "ks_920695dae225601415a0025d",
+        "session_id": "551536",
+        "time_index": 555637,
+        "user_id": "64295"
+      },
+      {
+        "event_times": [
+          817275,
+          817372
+        ],
+        "history_item_id": 235504,
+        "query": "增高鞋",
+        "request_id": "ks_02e0477d1d872f08a933997b",
+        "session_id": "303458",
+        "time_index": 577379,
+        "user_id": "18494"
+      },
+      {
+        "event_times": [
+          593768
+        ],
+        "history_item_id": 3419550,
+        "query": "吃丸兽官方旗舰店",
+        "request_id": "ks_c5ed809f6acae3547024678a",
+        "session_id": "503288",
+        "time_index": 583145,
+        "user_id": "335"
+      },
+      {
+        "event_times": [
+          601181
+        ],
+        "history_item_id": 394654,
+        "query": "女童卫衣鲨鱼裤",
+        "request_id": "ks_149fcb3fd824972779974f5f",
+        "session_id": "422655",
+        "time_index": 587654,
+        "user_id": "9880"
+      }
+    ],
+    "manual_review_required": false,
+    "missing_request_examples": [],
+    "missing_sampled_requests": 0,
+    "observed_history_items": 3562,
+    "rates": {
+      "future_only_over_observed": 0.03790005614823133,
+      "observed_over_total_history": 0.09912341728120216,
+      "past_supported_over_total_history": 0.09272297203283707,
+      "same_time_only_over_observed": 0.026670409882088714,
+      "same_time_only_over_total_history": 0.0026436621678029774,
+      "unobserved_over_total_history": 0.9008765827187978
+    },
+    "same_time_only_examples": [
+      {
+        "event_times": [
+          495133
+        ],
+        "history_item_id": 1549097,
+        "query": "唯滋",
+        "request_id": "ks_d209153ec7b1a21adb991b5d",
+        "session_id": "550465",
+        "time_index": 495133,
+        "user_id": "50526"
+      },
+      {
+        "event_times": [
+          515883
+        ],
+        "history_item_id": 2879601,
+        "query": "飞利浦声卡音响一体机2025新款",
+        "request_id": "ks_437849ac53c611aab8712ecc",
+        "session_id": "545301",
+        "time_index": 515883,
+        "user_id": "36253"
+      },
+      {
+        "event_times": [
+          515894
+        ],
+        "history_item_id": 185169,
+        "query": "女童高腰内裤纯棉",
+        "request_id": "ks_e5db8d62896763b35538ca4f",
+        "session_id": "308989",
+        "time_index": 515894,
+        "user_id": "40791"
+      },
+      {
+        "event_times": [
+          534001
+        ],
+        "history_item_id": 56291,
+        "query": "男裤子2025新款男潮款",
+        "request_id": "ks_d8b65aadbc3c8b443215aa49",
+        "session_id": "384290",
+        "time_index": 534001,
+        "user_id": "87236"
+      },
+      {
+        "event_times": [
+          551543
+        ],
+        "history_item_id": 616283,
+        "query": "面膜补水",
+        "request_id": "ks_9b94513a3b56dca9e74d4491",
+        "session_id": "454349",
+        "time_index": 551543,
+        "user_id": "87772"
+      },
+      {
+        "event_times": [
+          552015
+        ],
+        "history_item_id": 2956634,
+        "query": "小腿袜",
+        "request_id": "ks_1b069a7cff2ddf63ee572a58",
+        "session_id": "301691",
+        "time_index": 552015,
+        "user_id": "69743"
+      },
+      {
+        "event_times": [
+          569959
+        ],
+        "history_item_id": 94672,
+        "query": "洗眼睛护理液",
+        "request_id": "ks_c266c492b1c2f8835c994427",
+        "session_id": "500583",
+        "time_index": 569959,
+        "user_id": "58972"
+      },
+      {
+        "event_times": [
+          574233
+        ],
+        "history_item_id": 4569899,
+        "query": "8100",
+        "request_id": "ks_844f35bdd13b54a923ebd438",
+        "session_id": "500864",
+        "time_index": 574233,
+        "user_id": "10532"
+      },
+      {
+        "event_times": [
+          576557
+        ],
+        "history_item_id": 4099321,
+        "query": "风衣外套女款2025款时尚春秋",
+        "request_id": "ks_6d535d43d5af60ab7a83e29c",
+        "session_id": "290415",
+        "time_index": 576557,
+        "user_id": "47613"
+      },
+      {
+        "event_times": [
+          596740,
+          596788
+        ],
+        "history_item_id": 6361222,
+        "query": "真维斯官方旗舰店正品",
+        "request_id": "ks_965e24d526ecbb81d596a34d",
+        "session_id": "458740",
+        "time_index": 596740,
+        "user_id": "95102"
+      }
+    ],
+    "total_history_items": 35935
+  },
+  "dataset_id": "kuaisearch",
+  "dataset_version": "v0_lite",
+  "generated_at": "2026-07-08T12:18:59.593338+00:00",
+  "rank_history_lookup": {
+    "checked_requests": 1000,
+    "history_fields": [
+      "recently_clicked_item_ids",
+      "recently_purchased_item_ids"
+    ],
+    "missing_sampled_requests": 0,
+    "path": "data/raw/kuaisearch/rank_lite/train.jsonl"
+  },
+  "raw_dir": "data/raw/kuaisearch",
+  "recall_event_index": {
+    "median_time_index": 487978,
+    "path": "data/raw/kuaisearch/recall_lite/train.jsonl",
+    "rows": 555553,
+    "time_index_max": 965265,
+    "time_index_min": 1,
+    "total_events": 682228,
+    "user_item_pairs": 635766,
+    "users": 102086
+  },
+  "rule": {
+    "caveat": "This is log-internal cross-reference evidence, not an official per-event timestamp guarantee. Unobserved history items are neutral and cannot be falsified within the recall window.",
+    "manual_review_if": {
+      "same_time_only_observed_rate_gt": 0.05
+    },
+    "pass_if": {
+      "checked_requests": 1000,
+      "future_only_observed_rate_max": 0.001,
+      "past_supported_total_history_rate_min": 0.2
+    },
+    "sample_source": "recall_lite requests with time_index >= global median"
+  },
+  "sample_size": 1000,
+  "sampling": {
+    "eligible_requests": 277777,
+    "sample_request_ids_sha256": "2fd568b90f7a2c4453c5dc4724d77b01aa8919843e860dab7b47a1b0652a957a",
+    "sampled_requests": 1000,
+    "time_index_max": 964512,
+    "time_index_min": 487984
+  },
+  "seed": 20260708,
+  "status": "failed"
+}

@@ -1,0 +1,41 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "v0_lite",
+  "source": {
+    "hf_repo": "benchen4395/KuaiSearch",
+    "repo_type": "dataset",
+    "official_repo": "https://github.com/benchen4395/KuaiSearch",
+    "official_commit_observed": "7ce0471b659112096f0aa7e892ed0aa4c972246a",
+    "paper": "https://arxiv.org/abs/2602.11518"
+  },
+  "raw_dir": "data/raw/kuaisearch",
+  "files": [
+    {
+      "path": "users_lite/train.jsonl",
+      "size_bytes": 13395477
+    },
+    {
+      "path": "relevance/train.jsonl",
+      "size_bytes": 15827789
+    },
+    {
+      "path": "recall_lite/train.jsonl",
+      "size_bytes": 257794992
+    },
+    {
+      "path": "items_lite/train.jsonl",
+      "size_bytes": 2789868956
+    },
+    {
+      "path": "rank_lite/train.jsonl",
+      "size_bytes": 16749137750
+    }
+  ],
+  "sampling": {
+    "seed": 20260708,
+    "target_window_requests": 250000,
+    "target_train_requests": 200000,
+    "target_dev_requests": 25000,
+    "target_test_requests": 25000
+  }
+}

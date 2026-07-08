@@ -1,0 +1,175 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*~
+.swp
+.swo
+.idea/
+.vscode/
+
+# Python bytecode and local tooling caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Python packaging and build outputs
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Local environments and secrets
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+ENV/
+
+# Notebook and interactive-session noise
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------------------------
+# Local-only paper workspace areas.
+# Keep the directory README files so the expected layout is documented in Git.
+# ---------------------------------------------------------------------------
+
+/data/**
+!/data/
+!/data/README.md
+
+/models/**
+!/models/
+!/models/README.md
+
+/runs/**
+!/runs/
+!/runs/README.md
+
+/artifacts/**
+!/artifacts/
+!/artifacts/README.md
+
+/tmp/**
+!/tmp/
+!/tmp/README.md
+
+# ---------------------------------------------------------------------------
+# Common alternate names for local-only heavy outputs (catch accidental drops)
+# ---------------------------------------------------------------------------
+
+/datasets/
+/downloads/
+/checkpoints/
+/logs/
+/outputs/
+/cache/
+/.cache/
+/hf_cache/
+/wandb/
+/mlruns/
+/lightning_logs/
+/tensorboard/
+
+# ---------------------------------------------------------------------------
+# Proposed-system (systems/) local heavy outputs.
+# Source code under systems/ is tracked; generated artifacts are not.
+# ---------------------------------------------------------------------------
+
+/systems/**/checkpoints/
+/systems/**/runs/
+/systems/**/logs/
+/systems/**/outputs/
+/systems/**/.cache/
+/systems/**/wandb/
+/systems/**/mlruns/
+
+# ---------------------------------------------------------------------------
+# Baseline working copies: track source + patches + notes, ignore generated
+# artifacts (caught by global patterns below as well).
+# ---------------------------------------------------------------------------
+
+/baselines/**/checkpoints/
+/baselines/**/runs/
+/baselines/**/logs/
+/baselines/**/outputs/
+/baselines/**/.cache/
+/baselines/**/wandb/
+/baselines/**/mlruns/
+/baselines/**/saved_models/
+/baselines/**/__pycache__/
+
+# ---------------------------------------------------------------------------
+# Model weights, checkpoints, indexes, and binary experiment artifacts
+# ---------------------------------------------------------------------------
+
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.onnx
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.faiss
+*.index
+
+# ---------------------------------------------------------------------------
+# Large dataset / intermediate formats. Put real data under data/.
+# ---------------------------------------------------------------------------
+
+*.jsonl
+*.ndjson
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.arrow
+*.npy
+*.npz
+*.sqlite
+*.sqlite3
+*.db
+*.lmdb
+
+# ---------------------------------------------------------------------------
+# Archives and compressed downloads
+# ---------------------------------------------------------------------------
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.tbz2
+*.tar.xz
+*.txz
+*.gz
+*.bz2
+*.xz
+*.7z
+*.rar
+
+# ---------------------------------------------------------------------------
+# Allow intentionally curated small fixtures and report tables.
+# ---------------------------------------------------------------------------
+
+!tests/fixtures/**
+!examples/**
+!reports/**/*.csv
+!reports/**/*.tsv
+!reports/**/*.json
+!reports/**/*.jsonl
