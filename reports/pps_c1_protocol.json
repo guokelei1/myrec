@@ -1,0 +1,374 @@
+{
+  "c0_report": {
+    "history_future_leakage": {
+      "evidence": {
+        "caveat": "Raw ranking recently_* history failed leakage cross-reference and is rejected. Standardized history is rebuilt from recall-window events with event_time < request_time; this guarantees no future leakage by construction but yields shorter histories and empty history for early-window requests.",
+        "construction": "For each selected request, history is the same user's click/purchase events from selected recall-window requests with event_time < request_time; keep the most recent <= 50 events in ascending time order.",
+        "fallback_history_source": "recall_prior_events",
+        "history_length_distribution": {
+          "count": 188170,
+          "history_present_rate": 0.5968698517298188,
+          "max": 50,
+          "mean": 5.438130413987352,
+          "median": 1,
+          "min": 0
+        },
+        "history_present_rate": 0.5968698517298188,
+        "method": "fallback_history_construction",
+        "raw_recently_fields_used": false,
+        "raw_recently_leakage_report_path": "reports/pps_c0_history_leakage_check.json",
+        "raw_recently_leakage_report_sha256": "66a6675f049e024fdcc98fefbf89aa9e607c2773176934658ae0d3645a0aa2e0",
+        "standardized_manifest_path": "data/standardized/kuaisearch/v0_lite/manifest.json",
+        "standardized_manifest_sha256": "75757fc79828124c702b8da79a39f0ab17a8beaad9a2ad5925bc96b57721d56b"
+      },
+      "rule": "History must not contain future events. Because raw ranking recently_* failed the registered cross-reference check, standardized records use only recall prior events with event_time < request_time.",
+      "status": "passed"
+    },
+    "overall_status": "passed",
+    "path": "reports/pps_c0_data_audit.json",
+    "sha256": "a5365499be54567c97e57515189c41aa008681822bf07a4b831aab52fbc79a45"
+  },
+  "candidate_manifest_path": "data/standardized/kuaisearch/v0_lite/candidate_manifest.json",
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "checks": {
+    "canaries": {
+      "evidence": {
+        "expectation": "random/shuffled-label canaries remain low while positive-title leak canary surges",
+        "metrics": {
+          "label_shuffle": {
+            "method_id": "c1_shuffled_label_canary",
+            "mrr": 0.25958434172923295,
+            "ndcg@10": 0.28307944359093534,
+            "purchase_ndcg@10": 0.30132940005672354,
+            "recall@10": 0.5055653591287579
+          },
+          "positive_title_leak": {
+            "method_id": "c1_positive_title_leak_canary",
+            "mrr": 0.9583848504968755,
+            "ndcg@10": 0.9578829048378927,
+            "purchase_ndcg@10": 0.809584467828241,
+            "recall@10": 0.9851186185869505
+          },
+          "random": {
+            "method_id": "random",
+            "mrr": 0.2583233822479589,
+            "ndcg@10": 0.28112086560687927,
+            "purchase_ndcg@10": 0.2998186361015795,
+            "recall@10": 0.5011115256042645
+          }
+        },
+        "run_ids": {
+          "label_shuffle": "20260708_kuaisearch_label_shuffle_c1",
+          "positive_title_leak": "20260708_kuaisearch_positive_title_leak_c1",
+          "random": "20260708_kuaisearch_random_c1"
+        },
+        "threshold": {
+          "positive_title_leak_minus_random_like_min": 0.5,
+          "positive_title_leak_ndcg_min": 0.8
+        }
+      },
+      "status": "passed"
+    },
+    "candidate_hash_assertion": {
+      "evidence": {
+        "expected_failure": "candidate_manifest_sha256 mismatch",
+        "message": "metadata candidate_manifest_sha256 mismatch: bad_hash != 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e"
+      },
+      "status": "passed"
+    },
+    "candidate_manifest": {
+      "evidence": {
+        "by_split": {
+          "dev": {
+            "candidate_count_distribution": {
+              "count": 12229,
+              "max": 1500,
+              "mean": 47.069179818464306,
+              "median": 24,
+              "min": 5,
+              "total": 575609
+            },
+            "manifest_candidates": 575609,
+            "manifest_requests": 12229,
+            "record_candidates": 575609,
+            "record_requests": 12229
+          },
+          "test": {
+            "candidate_count_distribution": {
+              "count": 12224,
+              "max": 1875,
+              "mean": 48.3215804973822,
+              "median": 24,
+              "min": 5,
+              "total": 590683
+            },
+            "manifest_candidates": 590683,
+            "manifest_requests": 12224,
+            "record_candidates": 590683,
+            "record_requests": 12224
+          },
+          "train": {
+            "candidate_count_distribution": {
+              "count": 163717,
+              "max": 2196,
+              "mean": 38.12282169841861,
+              "median": 18,
+              "min": 5,
+              "total": 6241354
+            },
+            "manifest_candidates": 6241354,
+            "manifest_requests": 163717,
+            "record_candidates": 6241354,
+            "record_requests": 163717
+          }
+        },
+        "candidate_manifest_path": "data/standardized/kuaisearch/v0_lite/candidate_manifest.json",
+        "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+        "mismatches": {}
+      },
+      "status": "passed"
+    },
+    "history_causality": {
+      "evidence": {
+        "examples": [],
+        "rule": "every standardized history event must have event.ts < request.ts",
+        "violations": {
+          "dev": 0,
+          "test": 0,
+          "train": 0
+        }
+      },
+      "status": "passed"
+    },
+    "label_isolation": {
+      "evidence": {
+        "dev_label_field_candidates": 0,
+        "method": "structured JSON scan of records_dev/test candidates",
+        "test_label_field_candidates": 0,
+        "violations": {}
+      },
+      "status": "passed"
+    },
+    "metric_unit_tests": {
+      "evidence": {
+        "command": "/home/gkl/miniconda3/bin/python -m unittest discover -s tests",
+        "output_tail": [
+          "...",
+          "----------------------------------------------------------------------",
+          "Ran 3 tests in 0.000s",
+          "",
+          "OK"
+        ],
+        "returncode": 0
+      },
+      "status": "passed"
+    },
+    "qrels_consistency": {
+      "evidence": {
+        "errors": {},
+        "qrels_dev_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+        "qrels_test_sha256": "b89fb1bdcd9825b3ad0db94b8dff6f712c69f4cab177929a9c9040003c8598de"
+      },
+      "status": "passed"
+    },
+    "split_manifest": {
+      "evidence": {
+        "counts": {
+          "dev": 12229,
+          "test": 12224,
+          "train": 163717
+        },
+        "mismatches": {},
+        "split_manifest_path": "data/standardized/kuaisearch/v0_lite/split_manifest.json",
+        "split_manifest_sha256": "cdb69df184445ebbdd5504a4bdb1071b11197151458bc785162db1dba80a1f8c"
+      },
+      "status": "passed"
+    }
+  },
+  "dataset_id": "kuaisearch",
+  "dataset_version": "v0_lite",
+  "files": {
+    "candidate_manifest": {
+      "current_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+      "manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+      "path": "data/standardized/kuaisearch/v0_lite/candidate_manifest.json",
+      "rows": null,
+      "sha256_matches_manifest": true,
+      "size_bytes": 158868366
+    },
+    "item_catalog": {
+      "current_sha256": null,
+      "manifest_sha256": "a04595a3d4dceda90e29a613cf0a9f7c7e1a7dadcb2d63f5435e14611ad18e38",
+      "path": "data/standardized/kuaisearch/v0_lite/item_catalog.jsonl",
+      "rows": 2966962,
+      "sha256_matches_manifest": null,
+      "size_bytes": 688841463
+    },
+    "qrels_dev": {
+      "current_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+      "manifest_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+      "path": "data/standardized/kuaisearch/v0_lite/qrels_dev.jsonl",
+      "rows": 12229,
+      "sha256_matches_manifest": true,
+      "size_bytes": 1242498
+    },
+    "qrels_test": {
+      "current_sha256": "b89fb1bdcd9825b3ad0db94b8dff6f712c69f4cab177929a9c9040003c8598de",
+      "manifest_sha256": "b89fb1bdcd9825b3ad0db94b8dff6f712c69f4cab177929a9c9040003c8598de",
+      "path": "data/standardized/kuaisearch/v0_lite/qrels_test.jsonl",
+      "rows": 12224,
+      "sha256_matches_manifest": true,
+      "size_bytes": 1257906
+    },
+    "records_dev": {
+      "current_sha256": "caa376ccad79df7b96fe945d1f5f922570a2977f7edaa728d20046751b814533",
+      "manifest_sha256": "caa376ccad79df7b96fe945d1f5f922570a2977f7edaa728d20046751b814533",
+      "path": "data/standardized/kuaisearch/v0_lite/records_dev.jsonl",
+      "rows": 12229,
+      "sha256_matches_manifest": true,
+      "size_bytes": 161876185
+    },
+    "records_test": {
+      "current_sha256": "6533b83af900a9b2b3ce431448d9a795675fd69446d4b93b1a554df5b6518048",
+      "manifest_sha256": "6533b83af900a9b2b3ce431448d9a795675fd69446d4b93b1a554df5b6518048",
+      "path": "data/standardized/kuaisearch/v0_lite/records_test.jsonl",
+      "rows": 12224,
+      "sha256_matches_manifest": true,
+      "size_bytes": 167249567
+    },
+    "records_train": {
+      "current_sha256": "2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8",
+      "manifest_sha256": "2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8",
+      "path": "data/standardized/kuaisearch/v0_lite/records_train.jsonl",
+      "rows": 163717,
+      "sha256_matches_manifest": true,
+      "size_bytes": 1894311251
+    },
+    "split_manifest": {
+      "current_sha256": "cdb69df184445ebbdd5504a4bdb1071b11197151458bc785162db1dba80a1f8c",
+      "manifest_sha256": "cdb69df184445ebbdd5504a4bdb1071b11197151458bc785162db1dba80a1f8c",
+      "path": "data/standardized/kuaisearch/v0_lite/split_manifest.json",
+      "rows": null,
+      "sha256_matches_manifest": true,
+      "size_bytes": 6586001
+    },
+    "standardized_manifest": {
+      "path": "data/standardized/kuaisearch/v0_lite/manifest.json",
+      "sha256": "75757fc79828124c702b8da79a39f0ab17a8beaad9a2ad5925bc96b57721d56b"
+    }
+  },
+  "generated_at": "2026-07-08T12:37:51.415465+00:00",
+  "history_source": {
+    "construction": "For each selected request, history is the same user's click/purchase events from selected recall-window requests with event_time < request_time; keep the most recent <= 50 events in ascending time order.",
+    "max_history_len": 50,
+    "raw_recently_fields_used": false,
+    "reason": "raw ranking recently_* fields failed C0 leakage cross-reference",
+    "type": "recall_prior_events_fallback"
+  },
+  "overall_status": "passed",
+  "report_id": "pps_c1_protocol",
+  "split_summary": {
+    "dev": {
+      "candidate_count": 575609,
+      "candidate_count_distribution": {
+        "count": 12229,
+        "max": 1500,
+        "mean": 47.069179818464306,
+        "median": 24,
+        "min": 5,
+        "total": 575609
+      },
+      "clicked_candidate_rate": 0.050443964566224644,
+      "clicked_request_rate": 1.0,
+      "history_length_distribution": {
+        "count": 12229,
+        "max": 50,
+        "mean": 7.7473219396516475,
+        "median": 2,
+        "min": 0,
+        "total": 94742
+      },
+      "label_source": "qrels_dev.jsonl",
+      "purchased_candidate_rate": 0.0031080125571351386,
+      "purchased_request_rate": 0.14007686646496034,
+      "request_count": 12229,
+      "text_coverage_distribution": {
+        "count": 12229,
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0
+      },
+      "user_count": 7028
+    },
+    "test": {
+      "candidate_count": 590683,
+      "candidate_count_distribution": {
+        "count": 12224,
+        "max": 1875,
+        "mean": 48.3215804973822,
+        "median": 24,
+        "min": 5,
+        "total": 590683
+      },
+      "clicked_candidate_rate": 0.05122036693116274,
+      "clicked_request_rate": 1.0,
+      "history_length_distribution": {
+        "count": 12224,
+        "max": 50,
+        "mean": 8.459833115183246,
+        "median": 3,
+        "min": 0,
+        "total": 103413
+      },
+      "label_source": "qrels_test.jsonl",
+      "purchased_candidate_rate": 0.0033842179307682803,
+      "purchased_request_rate": 0.15518651832460734,
+      "request_count": 12224,
+      "text_coverage_distribution": {
+        "count": 12224,
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0
+      },
+      "user_count": 7231
+    },
+    "train": {
+      "candidate_count": 6241354,
+      "candidate_count_distribution": {
+        "count": 163717,
+        "max": 2196,
+        "mean": 38.12282169841861,
+        "median": 18,
+        "min": 5,
+        "total": 6241354
+      },
+      "clicked_candidate_rate": 0.03726210690821254,
+      "clicked_request_rate": 0.5921132197633722,
+      "history_length_distribution": {
+        "count": 163717,
+        "max": 50,
+        "mean": 5.0400263869970745,
+        "median": 1,
+        "min": 0,
+        "total": 825138
+      },
+      "label_source": "records_train candidate labels",
+      "purchased_candidate_rate": 0.0025568169983628554,
+      "purchased_request_rate": 0.09296529987722717,
+      "request_count": 163717,
+      "text_coverage_distribution": {
+        "count": 163717,
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0
+      },
+      "user_count": 48218
+    }
+  },
+  "standardized_dir": "data/standardized/kuaisearch/v0_lite",
+  "standardized_manifest_path": "data/standardized/kuaisearch/v0_lite/manifest.json",
+  "standardized_manifest_sha256": "75757fc79828124c702b8da79a39f0ab17a8beaad9a2ad5925bc96b57721d56b"
+}
