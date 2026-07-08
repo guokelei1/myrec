@@ -1,0 +1,21 @@
+method_id: b7_bge
+dataset_id: kuaisearch
+dataset_version: v0_lite
+split: dev
+query_run_id: 20260708_kuaisearch_b2z_bge_small_zh_dev
+history_run_id: 20260708_kuaisearch_b0b_recent_behavior_dev
+score_definition: alpha * z(query_score) + (1 - alpha) * z(history_score)
+zscore_scope: within request
+alpha_grid:
+  - 0.0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1.0
+qrels_read: false

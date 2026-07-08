@@ -1,0 +1,17 @@
+method_id: b2z_dense_biencoder_zero_shot
+dataset_id: kuaisearch
+dataset_version: v0_lite
+split: dev
+status: active_batch1
+model_name: BAAI/bge-small-zh-v1.5
+model_choice_note: >
+  Batch 1 uses a small Chinese BGE zero-shot model to keep full-dev fixed
+  candidate scoring tractable. bge-m3 remains a heavier Batch 2 candidate.
+document_template: title + brand + seller + cat_l1 + cat_l2 + cat_l3
+score_definition: cosine(query_embedding, candidate_document_embedding)
+normalize_embeddings: true
+max_seq_length: 256
+batch_size: 1024
+query_prefix: ""
+device: cuda:0
+qrels_read: false

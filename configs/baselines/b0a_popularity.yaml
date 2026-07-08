@@ -1,0 +1,12 @@
+method_id: b0a_popularity
+dataset_id: kuaisearch
+dataset_version: v0_lite
+split: dev
+score_definition: log1p(train_clicked_candidate_count)
+input_fields:
+  - records_train.candidates.item_id
+  - records_train.candidates.clicked
+  - records_dev.candidates.item_id
+qrels_read: false
+artifacts:
+  popularity_stats: artifacts/baselines/kuaisearch_b0a_popularity_stats.jsonl
