@@ -1,0 +1,11 @@
+{
+  "map@100": 0.075922632115467,
+  "missing_ranklist_examples": [],
+  "missing_ranklist_queries": 0,
+  "mrr@100": 0.07598084668173342,
+  "ndcg@10": 0.08854399734281883,
+  "positive_queries": 665,
+  "qrels_path": "artifacts/batch2b/b6o_amazon_alignment/cellphones/indexed/min_count5/official_query_split/test.qrels",
+  "ranked_queries": 665,
+  "ranklist_path": "artifacts/batch2b/b6o_hem_cellphones_official/test.bias_product.ranklist"
+}

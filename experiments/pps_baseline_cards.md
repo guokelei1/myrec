@@ -18,7 +18,7 @@
 | B6 | 2 | HEM/ZAM/TEM | PPS classic baseline placeholder | query + history + item text | PPS classic papers/code | style adapter | retired placeholder; superseded by B6o |
 | B4o | 2b | RecBole SASRec/BERT4Rec | official strong history baseline | history sequence | RecBole + original papers | official code | complete |
 | B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code | in progress |
-| B6o | 2b | HEM/ZAM/TEM | PPS classic baseline | query + history + item text | PPS classic papers/code | official/faithful TBD | in progress |
+| B6o | 2b | HEM official | PPS classic baseline | query + history + item text | PPS classic papers/code | official code; alignment failed | blocked: external alignment failed |
 | B6+ | 2 | MAI/NAM-style | recent PPS/when-personalize baseline | query + history + item text | recent PPS papers | feasibility TBD | candidate |
 | B8a | 2 | Raw-history LLM rerank | quality/cost upper bound | query + history + candidates | Qwen or similar | prompt baseline | complete |
 | B8b | 2 | MemRerank-style memory rerank | quality/cost upper bound | query + memory + candidates | MemRerank-style | style-adapted | complete |
@@ -234,12 +234,12 @@ Current status: in progress
 Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. B5o starts only after B4o and B6o have completed or reached their documented downgrade/blocking decisions.
 
 ID: B6o
-Method: HEM/ZAM/TEM official or externally validated faithful reproduction
+Method: HEM official code, with TEM/ZAM family source retained for fallback
 Role: PPS classic baseline
 Evidence channels: query + history + item text + candidate item_id + train labels
-Source paper/repo: HEM / ZAM / TEM official code or faithful reimplementation with Amazon PPS benchmark validation
+Source paper/repo: HEM official repo `QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search` at `cd089d0ecf277e2fcdccb35f4989d05ef3e81032`; TEM/ProdSearch repo `kepingbi/ProdSearch` at `449335ba652fe7c877a008e154157d7b2a4b0e76`
 Venue/year: SIGIR 2017 / CIKM 2019 / SIGIR 2020
-Implementation type: official/faithful TBD
+Implementation type: official HEM code path; external Amazon alignment failed before KuaiSearch adapter
 Input fields used: query; frozen click/purchase history; candidate title/brand/category/item_id; train clicked/purchased labels
 Output score definition: PPS classic query-history-item score exported for every fixed candidate and evaluated only by the shared evaluator
 Config path: configs/baselines/b6o_pps_classic.yaml
@@ -248,9 +248,9 @@ Tuning budget: 16 KuaiSearch dev evaluations shared by selected HEM/ZAM/TEM vari
 Dev evals used: 0/16
 Determinism check: pending
 Run IDs: pending
-Known limitations: official code may require old TensorFlow and Amazon review fields. Any review-field mismatch must be documented; unvalidated reimplementations cannot enter the main table as faithful baselines.
-Current status: in progress
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. B6o proceeds after B4o, before B5o, per doc 14 priority.
+Known limitations: official code requires old TensorFlow and Amazon review fields. The official-code run is end-to-end executable but did not reproduce the Cell Phones & Accessories target within +/-10%; unvalidated reimplementations cannot enter the main table as faithful baselines.
+Current status: blocked: external alignment failed
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. HEM Path 1 evidence is documented in reports/b6o_official_alignment.md: best observed MAP@100 = 0.0759 and best observed NDCG@10 = 0.0932, below the target 0.124/0.153 by more than the +/-10% tolerance. No KuaiSearch dev evaluation has been produced; B6o must not enter the formal table until a corrected official alignment or faithful reimplementation passes the same external gate.
 ```
 
 ## Card Template

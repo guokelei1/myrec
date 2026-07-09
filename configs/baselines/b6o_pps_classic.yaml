@@ -1,0 +1,99 @@
+method_id: b6o_hem_official
+dataset_id: kuaisearch
+dataset_version: v0_lite
+implementation_type: official_hem_external_alignment_then_adapter
+environment_group: pps_classic
+environment_name: pps-classic
+env_freeze: configs/env/pps_classic.txt
+
+standardized_dir: data/standardized/kuaisearch/v0_lite
+candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+
+upstream:
+  hem_repo: https://github.com/QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search
+  hem_commit: cd089d0ecf277e2fcdccb35f4989d05ef3e81032
+  hem_license: Apache-2.0
+  tem_repo: https://github.com/kepingbi/ProdSearch
+  tem_commit: 449335ba652fe7c877a008e154157d7b2a4b0e76
+  tem_license: Apache-2.0
+
+external_alignment:
+  counts_against_kuaisearch_dev_budget: false
+  status: failed
+  dataset: amazon_product_search_cell_phones_and_accessories
+  benchmark_repo_commit: 64907e59b4ce27738e61607f2d6b16b62dee92ac
+  raw_review_sha256: 477f09973936c491c4c138436c477ba257d2e1fc556480c80fb75ebae10b4dab
+  raw_meta_sha256: 71dd91522ece7d4f18184b15f3110d4c77d909c5475745b6019a91497393bb39
+  split_manifest: reports/b6o_hem_benchmark_split_manifest.json
+  report: reports/b6o_official_alignment.md
+  eval_reports:
+    cosine: reports/b6o_hem_official_eval.json
+    product: reports/b6o_hem_official_eval_product.json
+    bias_product: reports/b6o_hem_official_eval_bias_product.json
+  target_metrics:
+    map@100: 0.124
+    mrr@100: 0.124
+    ndcg@10: 0.153
+  acceptance_tolerance_relative: 0.10
+
+hem_official_parameters:
+  data_dir: artifacts/batch2b/b6o_amazon_alignment/cellphones/indexed/min_count5/
+  input_train_dir: artifacts/batch2b/b6o_amazon_alignment/cellphones/indexed/min_count5/official_query_split/
+  train_dir: artifacts/batch2b/b6o_hem_cellphones_official/
+  similarity_func: cosine
+  net_struct: simplified_fs
+  embed_size: 100
+  window_size: 3
+  max_train_epoch: 20
+  steps_per_checkpoint: 400
+  negative_sample: 5
+  subsampling_rate: 0.0
+  l2_lambda: 0.005
+  batch_size: 64
+  rank_cutoff: 100
+
+train_interactions:
+  path: artifacts/batch2b/interactions_train.jsonl
+  manifest: reports/pps_batch2b_interactions_train_manifest.json
+  sha256: dcc91391c303e6e8c69506a837620be2601bdd6df249cda624f4d1caf417ad32
+  input_sha256: 2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8
+  qrels_read: false
+
+input_fields_used:
+  - records_train.query
+  - records_train.history.item_id
+  - records_train.candidates.item_id
+  - records_train.candidates.title
+  - records_train.candidates.brand
+  - records_train.candidates.category
+  - records_train.candidates.clicked
+  - records_train.candidates.purchased
+  - records_dev.query
+  - records_dev.history.item_id
+  - records_dev.candidates.item_id
+  - records_dev.candidates.title
+  - records_dev.candidates.brand
+  - records_dev.candidates.category
+
+forbidden_fields:
+  - qrels_dev
+  - qrels_test
+  - records_dev.candidates.clicked
+  - records_dev.candidates.purchased
+  - records_test.candidates.clicked
+  - records_test.candidates.purchased
+  - user_global_sequence_at_inference
+
+kuaisearch_adapter:
+  status: blocked_external_alignment_failed
+  inference_history: frozen_record_history_max_50
+  item_text_template: title_brand_category
+  score_definition: official_hem_query_user_item_score_for_each_fixed_candidate
+  candidate_coverage: all fixed candidates must receive exactly one score
+  protocol_diff_report: reports/b6o_protocol_diff.md
+
+tuning_budget:
+  kuaisearch_dev_evals: 16
+  first_eval: paper_or_official_default_after_external_alignment
+  frozen_config_seeds: [20260708, 20260709, 20260710]
+  external_alignment_counts_against_budget: false
