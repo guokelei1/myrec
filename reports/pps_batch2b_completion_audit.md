@@ -3,16 +3,17 @@
 Date: 2026-07-09
 
 Status: Batch 2b official-baseline work is complete for the current decision
-scope. B4o produced the only formal KuaiSearch dev result; B5o passed external
-Stage A under a declared proxy split; B6o is permanently downgraded after failed
-external alignment. No B5o/B6o KuaiSearch dev evaluation has been produced.
+scope. B4o and B5o produced formal KuaiSearch dev results; B5o remains
+explicitly `official-code, proxy-aligned (last-time 10% split)`. B6o is
+permanently downgraded after failed external alignment. No B6o KuaiSearch dev
+evaluation has been produced.
 
 ## Current Decisions
 
 | Baseline | Decision | Consequence |
 |---|---|---|
 | B4o RecBole SASRec | Complete formal dev baseline | Keep in Batch 2b results |
-| B5o KuaiSearch DIN/DCNv2 | Aligned under proxy last-time split | Stage A evidence only; Stage B dev adapter needs separate authorization |
+| B5o KuaiSearch DIN/DCNv2 | Complete formal dev baseline under proxy-aligned identity | Keep in Batch 2b results with caveat |
 | B6o HEM official | Permanently downgraded | No issue post, no rerun, no KuaiSearch adapter |
 
 ## Checklist Audit
@@ -31,12 +32,13 @@ external alignment. No B5o/B6o KuaiSearch dev evaluation has been produced.
 | B5o official-format materializer repair | `src/myrec/baselines/kuaisearch_materializer.py`; `tests/test_kuaisearch_materializer.py` | Done |
 | B5o smoke AUC direction check | `reports/b5o_smoke_auc_direction_check.md` | Done; no reversal found |
 | B5o full proxy DNN + DCNv2 Stage A | `reports/b5o_official_alignment.md`; `artifacts/batch2b/b5o_proxy_lasttime_full/` | Done; proxy-aligned |
-| B5o Stage B KuaiSearch adapter/dev run | Requires separate decision after proxy Stage A | Not started |
+| B5o Stage B KuaiSearch adapter/dev run | `reports/b5o_official_alignment.md`; `reports/b5o_protocol_diff.md`; `experiments/pps_results.md` | Done; proxy-aligned formal dev result |
+| B5o determinism and comparisons | `reports/b5o_determinism_check.json`; comparison reports vs Random/B0b/B7-bge | Done |
 | M3 reissue after Batch 2b | Should include qualified new methods only after final candidate decision | Deferred |
 
 ## Evidence Summary
 
-B4o is the only Batch 2b method with a protocol-valid formal KuaiSearch dev run:
+B4o produced a protocol-valid formal KuaiSearch dev run:
 
 - best seed NDCG@10: 0.2976
 - mean over frozen seeds: 0.2972 +/- 0.0004
@@ -58,6 +60,21 @@ Both B5o full proxy runs are within +/-10% of the paper Table 7 metric scale,
 but the exact paper split is still unverified. The correct claim is
 `aligned under proxy last-time split`.
 
+B5o Stage B evidence:
+
+- implementation identity: `official-code, proxy-aligned (last-time 10% split)`
+- artifact root: `artifacts/batch2b/b5o_stageb_standardized`
+- formal dev evals: 6/16
+- best formal run: `20260709_kuaisearch_b5o_dnn_dev_s20260708`
+- best NDCG@10: 0.3088
+- DNN mean over frozen seeds: 0.3063 +/- 0.0030
+- DCNv2 mean over frozen seeds: 0.3054 +/- 0.0002
+- determinism: first 1000 dev requests, 42,968/42,968 score rows exact,
+  `max_abs_score_diff=0.0`
+- vs Random: +0.0277, CI [0.0224, 0.0331]
+- vs B0b: -0.0051, CI [-0.0105, 0.0004]
+- vs B7-bge: -0.0217, CI [-0.0272, -0.0162]
+
 B6o is not eligible for KuaiSearch formal dev evaluation:
 
 - best HEM MAP@100: 0.0759 vs target about 0.124
@@ -68,8 +85,6 @@ B6o is not eligible for KuaiSearch formal dev evaluation:
 
 ## Remaining Work
 
-- Decide separately whether B5o should enter Stage B on PPS standardized data
-  under the proxy caveat.
-- Reissue M3 only after deciding whether B5o proxy-aligned evidence belongs in
-  the candidate set.
+- Reissue M3 only if the next phase needs the oracle candidate set to include
+  B5o. The current Batch 2b completion decision does not require a rerun.
 - Do not run B6o again or post the upstream issue draft.

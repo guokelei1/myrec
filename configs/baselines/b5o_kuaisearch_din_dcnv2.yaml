@@ -138,7 +138,7 @@ materializer:
   full_proxy_root: artifacts/batch2b/b5o_proxy_lasttime_full
   full_proxy_manifest: artifacts/batch2b/b5o_proxy_lasttime_full/materializer_manifest.json
 
-input_fields_used_if_future_adapter_is_authorized:
+input_fields_used_by_stage_b_adapter:
   - records_train.query
   - records_train.history.item_id
   - records_train.candidates.item_id
@@ -162,12 +162,13 @@ forbidden_fields:
   - user_global_sequence_at_inference
 
 kuaisearch_adapter:
-  status: stage_b_authorized_not_evaluated
-  reason: proxy Stage A passed, but the Table 7 split is not independently verifiable and any PPS dev adapter needs a separate decision
+  status: stage_b_completed_proxy_aligned
+  reason: proxy Stage A passed; Stage B completed under the same proxy-aligned identity, while the Table 7 split remains independently unverifiable
   required_report_before_any_dev_run: reports/b5o_protocol_diff.md
+  final_summary: reports/pps_batch2b_b5o_summary.md
 
 stage_b:
-  status: authorized_not_evaluated
+  status: completed
   adapter: src/myrec/baselines/kuaisearch_official_adapter.py
   runner: scripts/run_b5o_kuaisearch_official.py
   artifact_root: artifacts/batch2b/b5o_stageb_standardized
@@ -263,15 +264,57 @@ stage_b:
   dev_eval_budget:
     total: 16
     used_before_stage_b: 0
+    used_after_stage_b: 6
     external_alignment_counts_against_budget: false
+  formal_runs:
+    DNN:
+      - run_id: 20260709_kuaisearch_b5o_dnn_dev_s20260708
+        seed: 20260708
+        ndcg_at_10: 0.30878205523137797
+      - run_id: 20260709_kuaisearch_b5o_dnn_dev_s20260709
+        seed: 20260709
+        ndcg_at_10: 0.30301965494189387
+      - run_id: 20260709_kuaisearch_b5o_dnn_dev_s20260710
+        seed: 20260710
+        ndcg_at_10: 0.3072060002467944
+    DCNv2:
+      - run_id: 20260709_kuaisearch_b5o_dcnv2_dev_s20260708
+        seed: 20260708
+        ndcg_at_10: 0.3055531286853501
+      - run_id: 20260709_kuaisearch_b5o_dcnv2_dev_s20260709
+        seed: 20260709
+        ndcg_at_10: 0.3051343804416217
+      - run_id: 20260709_kuaisearch_b5o_dcnv2_dev_s20260710
+        seed: 20260710
+        ndcg_at_10: 0.30556543975345224
+  frozen_summary:
+    DNN:
+      mean_ndcg_at_10: 0.30633590347335543
+      sample_std_ndcg_at_10: 0.0029781060374713527
+      best_run_id: 20260709_kuaisearch_b5o_dnn_dev_s20260708
+    DCNv2:
+      mean_ndcg_at_10: 0.305417649626808
+      sample_std_ndcg_at_10: 0.0002453955257467794
+      best_run_id: 20260709_kuaisearch_b5o_dcnv2_dev_s20260710
+  determinism:
+    report: reports/b5o_determinism_check.json
+    base_run_id: 20260709_kuaisearch_b5o_dnn_dev_s20260708
+    requests: 1000
+    score_rows: 42968
+    exact_match: true
+    max_abs_score_diff: 0.0
   compare_against:
     random: 20260708_kuaisearch_random_c1
     b0b: 20260708_kuaisearch_b0b_recent_behavior_dev
     b7_best: 20260708_kuaisearch_b7_bge_dev_a02
+  compare_reports:
+    random: reports/compare_b5o_dnn_s20260708_vs_random.json
+    b0b: reports/compare_b5o_dnn_s20260708_vs_b0b.json
+    b7_best: reports/compare_b5o_dnn_s20260708_vs_b7_bge.json
 
 tuning_budget:
   kuaisearch_dev_evals: 16
-  used: 0
-  first_eval: official_default_if_future_adapter_authorized
+  used: 6
+  first_eval: official_default_completed
   frozen_config_seeds: [20260708, 20260709, 20260710]
   external_alignment_counts_against_budget: false

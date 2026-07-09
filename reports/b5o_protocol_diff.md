@@ -5,8 +5,10 @@ Date: 2026-07-09
 Scope: Batch 2b B5o, locked upstream commit
 `7ce0471b659112096f0aa7e892ed0aa4c972246a`.
 
-Status: Stage A passed under the authorized last-time proxy split. The exact
-paper split remains unverified and no KuaiSearch dev run has been produced.
+Status: Stage A passed under the authorized last-time proxy split. Stage B
+formal KuaiSearch dev runs are complete under the same caveat. The exact paper
+split remains unverified, so the correct identity remains
+`official-code, proxy-aligned (last-time 10% split)`.
 
 ## Official Ranking Pipeline Requirements
 
@@ -22,11 +24,11 @@ paper split remains unverified and no KuaiSearch dev run has been produced.
 | Split | sample field `split == "test"` else train, then random 10% valid | Local public `rank_lite/train.jsonl` has no test rows; the authorized proxy uses last 10% by `time_index`, with threshold ties assigned to test; the exact Table 7 split boundary is still unverified |
 | Metrics | test LogLoss and ROC-AUC | Paper Table 7 provides Logloss/ROC-AUC targets |
 
-## Fairness-Matrix Mapping For Any Future Adapter
+## Fairness-Matrix Mapping For Stage B Adapter
 
 | Official feature | Allowed standardized source | B5o decision |
 |---|---|---|
-| Query text embedding | `records_*.query` encoded by frozen public text encoder | Allowed only after external alignment issue is resolved or downgraded scope is explicit |
+| Query text embedding | `records_*.query` encoded by frozen public text encoder | Used under the explicit proxy-aligned caveat |
 | Target title embedding | candidate/item catalog title text encoded by the same frozen encoder | Allowed, cache under `artifacts/batch2b/` with hash |
 | User id | `record.user_id` | Allowed |
 | User gender/age | Not present in standardized records | Must use missing/default bucket; this is a protocol loss relative to official code |
@@ -198,3 +200,53 @@ Budget and search space:
 - this prompt authorizes DNN and DCNv2 with official defaults plus frozen seeds
   `[20260708, 20260709, 20260710]`;
 - no additional hyperparameter grid is authorized in this run.
+
+## Stage B Outcome
+
+The adapter completed the authorized Stage B runs without official source
+patches and without method-side qrels reads.
+
+Materialized PPS artifact root:
+`artifacts/batch2b/b5o_stageb_standardized`.
+
+| Quantity | Value |
+|---|---:|
+| Train records | 163,717 |
+| Train rank rows | 6,241,354 |
+| Dev records | 12,229 |
+| Dev score rows | 575,609 |
+| Corpus items | 2,778,902 |
+| Users | 52,133 |
+| Query keys | 175,946 |
+| Item title embeddings | `(2778902, 512)` |
+| Query embeddings | `(175946, 512)` |
+
+Formal run summary:
+
+| Model | Frozen seeds | Best run | Best NDCG@10 | Mean NDCG@10 | Dev evals |
+|---|---|---|---:|---:|---:|
+| DNN | 20260708/20260709/20260710 | `20260709_kuaisearch_b5o_dnn_dev_s20260708` | 0.3088 | 0.3063 +/- 0.0030 | 3 |
+| DCNv2 | 20260708/20260709/20260710 | `20260709_kuaisearch_b5o_dcnv2_dev_s20260710` | 0.3056 | 0.3054 +/- 0.0002 | 3 |
+
+Budget used: 6/16 KuaiSearch dev evaluations.
+
+Determinism:
+
+- report: `reports/b5o_determinism_check.json`;
+- check: reload frozen DNN best checkpoint and rescore first 1000 dev requests;
+- qrels read: false;
+- rows compared: 42,968;
+- exact match: true;
+- `max_abs_score_diff`: 0.0.
+
+Shared-evaluator comparisons for the best DNN run:
+
+| Comparison | Delta NDCG@10 | 95% CI |
+|---|---:|---|
+| vs Random | +0.0277 | [0.0224, 0.0331] |
+| vs B0b | -0.0051 | [-0.0105, 0.0004] |
+| vs B7-bge | -0.0217 | [-0.0272, -0.0162] |
+
+Conclusion: B5o is a protocol-valid Stage B baseline under the proxy-aligned
+identity, but it is not stronger than B7-bge and should not be reported as a
+caveat-free upstream split result.

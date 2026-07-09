@@ -73,3 +73,9 @@
 {"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.29752688357151946, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_t05_l1_dev_s20260708", "split": "dev", "timestamp": "2026-07-08T21:47:11.055321+00:00"}
 {"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.2967061632217145, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_h128_dev_s20260709", "split": "dev", "timestamp": "2026-07-08T21:52:00.722358+00:00"}
 {"method_id": "b4o_sasrec_recbole", "ndcg@10": 0.29716654733876435, "run_id": "20260709_kuaisearch_b4o_sasrec_recbole_h128_dev_s20260710", "split": "dev", "timestamp": "2026-07-08T21:56:39.462267+00:00"}
+{"method_id": "b5o_kuaisearch_official", "ndcg@10": 0.30878205523137797, "run_id": "20260709_kuaisearch_b5o_dnn_dev_s20260708", "split": "dev", "timestamp": "2026-07-09T09:21:07.621879+00:00"}
+{"method_id": "b5o_kuaisearch_official", "ndcg@10": 0.3055531286853501, "run_id": "20260709_kuaisearch_b5o_dcnv2_dev_s20260708", "split": "dev", "timestamp": "2026-07-09T10:00:53.896829+00:00"}
+{"method_id": "b5o_kuaisearch_official", "ndcg@10": 0.30301965494189387, "run_id": "20260709_kuaisearch_b5o_dnn_dev_s20260709", "split": "dev", "timestamp": "2026-07-09T10:59:51.048413+00:00"}
+{"method_id": "b5o_kuaisearch_official", "ndcg@10": 0.3072060002467944, "run_id": "20260709_kuaisearch_b5o_dnn_dev_s20260710", "split": "dev", "timestamp": "2026-07-09T11:03:10.929871+00:00"}
+{"method_id": "b5o_kuaisearch_official", "ndcg@10": 0.3051343804416217, "run_id": "20260709_kuaisearch_b5o_dcnv2_dev_s20260709", "split": "dev", "timestamp": "2026-07-09T11:38:45.785771+00:00"}
+{"method_id": "b5o_kuaisearch_official", "ndcg@10": 0.30556543975345224, "run_id": "20260709_kuaisearch_b5o_dcnv2_dev_s20260710", "split": "dev", "timestamp": "2026-07-09T11:39:05.328009+00:00"}

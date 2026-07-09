@@ -226,12 +226,12 @@ Output score definition: official DIN/DCNv2 ranking score exported for fixed can
 Config path: configs/baselines/b5o_kuaisearch_din_dcnv2.yaml
 Environment group: kuaisearch
 Tuning budget: 16 KuaiSearch dev evaluations; first run is official/default hyperparameters
-Dev evals used: 0/16
-Determinism check: not applicable; no formal KuaiSearch dev run
-Run IDs: none
+Dev evals used: 6/16
+Determinism check: passed on frozen DNN checkpoint rescore for first 1000 dev requests; 42968/42968 score rows exact, max_abs_score_diff=0.0; report reports/b5o_determinism_check.json
+Run IDs: 20260709_kuaisearch_b5o_dnn_dev_s20260708; 20260709_kuaisearch_b5o_dnn_dev_s20260709; 20260709_kuaisearch_b5o_dnn_dev_s20260710; 20260709_kuaisearch_b5o_dcnv2_dev_s20260708; 20260709_kuaisearch_b5o_dcnv2_dev_s20260709; 20260709_kuaisearch_b5o_dcnv2_dev_s20260710
 Known limitations: official ranking code is executable and proxy Stage A passed, but the exact paper last-day split remains unavailable. The accepted full Stage A run uses a last-time 10% proxy by `time_index`, with threshold ties assigned to test, so it can only be claimed as `official-code, proxy-aligned (last-time 10% split)`. Details are in reports/b5o_official_alignment.md, reports/b5o_protocol_diff.md, and doc/baseline_notes/20260709_b5o_stage_a_split_decision.md.
-Current status: proxy-aligned Stage A complete; Stage B authorized but not yet evaluated
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: materializer full proxy target coverage 1.0, official BGE encoding produced 555,553 query embeddings and 6,206,709 item embeddings, and official default DNN/DCNv2 runs landed within +/-10% of Table 7 under the proxy split. DNN final LogLoss/AUC = 0.160731/0.613133; DCNv2 final LogLoss/AUC = 0.162635/0.616348. The low smoke AUC was checked in reports/b5o_smoke_auc_direction_check.md; no score/label reversal was found. Full proxy runs are external alignment only and do not spend KuaiSearch dev budget.
+Current status: complete formal dev baseline under proxy-aligned identity
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: materializer full proxy target coverage 1.0, official BGE encoding produced 555,553 query embeddings and 6,206,709 item embeddings, and official default DNN/DCNv2 runs landed within +/-10% of Table 7 under the proxy split. DNN final LogLoss/AUC = 0.160731/0.613133; DCNv2 final LogLoss/AUC = 0.162635/0.616348. The low smoke AUC was checked in reports/b5o_smoke_auc_direction_check.md; no score/label reversal was found. Stage B uses the official DNN/DCNv2 model family on PPS standardized data with label-free dev scoring and shared evaluator only. Best formal run is DNN seed 20260708 with NDCG@10=0.3088, MRR=0.2850, Recall@10=0.5334, pNDCG@10=0.3191. DNN three-seed mean NDCG@10=0.3063+/-0.0030; DCNv2 three-seed mean NDCG@10=0.3054+/-0.0002. The best DNN run is significantly above Random (+0.0277 CI [0.0224, 0.0331]), not significantly above B0b (-0.0051 CI [-0.0105, 0.0004]), and significantly below B7-bge (-0.0217 CI [-0.0272, -0.0162]).
 
 ID: B6o
 Method: HEM official code, with TEM/ZAM family source retained for fallback
