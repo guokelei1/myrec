@@ -2,8 +2,9 @@
 
 Date: 2026-07-09
 
-Status: alignment not verifiable from the official repository at the locked
-commit. No KuaiSearch dev evaluation has been produced.
+Status: alignment still not verifiable from the official repository at the
+locked commit. A bounded Stage A materializer repair smoke passed, but no full
+Table 7 alignment run and no KuaiSearch dev evaluation has been produced.
 
 ## Source
 
@@ -87,8 +88,84 @@ section 4.1, this means B5o must be downgraded to
 `official-code, alignment-not-verifiable`; it must not be described as an
 official reproduction in the main table.
 
+## Stage A Repair Smoke: 2026-07-09
+
+Based on the approved repair prompt, an official-format materializer was added:
+
+- source: `src/myrec/baselines/kuaisearch_materializer.py`
+- test: `tests/test_kuaisearch_materializer.py`
+- smoke manifest:
+  `artifacts/batch2b/b5o_materializer_smoke/materializer_manifest.json`
+
+Smoke command:
+
+```bash
+PYTHONPATH=src python -m myrec.baselines.kuaisearch_materializer \
+  --raw-dir data/raw/kuaisearch \
+  --output-root artifacts/batch2b/b5o_materializer_smoke \
+  --max-rank-rows 2000 \
+  --test-fraction 0.10 \
+  --min-target-coverage 0.999
+```
+
+Materializer smoke evidence:
+
+| Quantity | Value |
+|---|---:|
+| Ranking rows | 2000 |
+| Unique target items | 1997 |
+| Target coverage | 1.0000 |
+| Corpus rows | 2151 |
+| Users | 9 |
+| Synthetic missing users | 0 |
+| Invalid age/gender coercions | 0 |
+
+The official `ranking/data/process.py` then ran successfully with
+`BAAI/bge-small-zh-v1.5`. Its root-level outputs were moved into `./data/`,
+which is the path consumed by `ranking/datasets.py`; no official source patch
+was needed for the embedding path mismatch.
+
+Official DNN 1-epoch smoke:
+
+```bash
+conda run -n pps-kuaisearch accelerate launch --num_processes 1 \
+  /data/gkl/myrec/baselines/kuaisearch_official/ranking/main.py \
+  --model DNN --data_dir data --batch_size 512 --num_epochs 1 \
+  --mixed_precision no --save_dir checkpoints_dnn_smoke
+```
+
+Smoke output:
+
+| Metric | Value |
+|---|---:|
+| Train rows | 1512 |
+| Valid rows | 168 |
+| Test rows | 320 |
+| Valid LogLoss | 0.6424 |
+| Valid AUC | 0.6509 |
+| Test LogLoss | 0.6439 |
+| Test AUC | 0.3779 |
+
+This smoke proves that the materializer fixes the official loader path, user
+schema, and missing-user fallback issues on public raw data. It is not a paper
+number alignment result: it uses only 2000 ranking rows and a provisional
+last-time split.
+
+## Remaining Blocker
+
+The full Table 7 reproduction needs an explicit test split. The local public
+`rank_lite/train.jsonl` rows carry `split=train`, and the locked official
+loader only treats rows with `split == "test"` as test. The repo code/README
+does not expose the exact paper Table 7 last-day boundary. Starting full
+DNN/DCNv2/DIN alignment with an invented split would produce a non-defensible
+official-reproduction claim.
+
+The decision point and candidate options are recorded in
+`doc/baseline_notes/20260709_b5o_stage_a_split_decision.md`.
+
 ## Verdict
 
-B5o Stage A is downgraded: official code is present and executable, but paper
-number alignment is not verifiable at the locked commit without protocol
-bridges. No Stage B KuaiSearch dev evaluation is authorized from this evidence.
+B5o Stage A remains downgraded for now: official code is present and executable,
+and the public-file materializer smoke passes, but paper-number alignment is not
+yet verifiable without an authorized split policy or upstream-confirmed split.
+No Stage B KuaiSearch dev evaluation is authorized from this evidence.

@@ -220,7 +220,7 @@ Role: official industrial ranking baseline
 Evidence channels: query + history + item text + candidate item_id + train labels
 Source paper/repo: https://github.com/benchen4395/KuaiSearch commit 7ce0471b659112096f0aa7e892ed0aa4c972246a
 Venue/year: KuaiSearch dataset/repo
-Implementation type: official code, alignment not verifiable at locked commit
+Implementation type: official code, materializer smoke passed, full alignment not verifiable without split decision
 Input fields used: query; frozen history item/category/event/time; candidate text/category/item_id; train clicked/purchased labels
 Output score definition: official DIN/DCNv2 ranking score exported for fixed candidates and evaluated only by the shared evaluator
 Config path: configs/baselines/b5o_kuaisearch_din_dcnv2.yaml
@@ -229,9 +229,9 @@ Tuning budget: 16 KuaiSearch dev evaluations; first run is official/default hype
 Dev evals used: 0/16
 Determinism check: not applicable; no formal KuaiSearch dev run
 Run IDs: none
-Known limitations: official ranking code is executable but the locked repo has path/schema mismatches against the public files: embedding preprocessing writes to root while training reads `./data`, users expose `age_bucket` while loader expects `age`, missing-user fallbacks exceed embedding cardinalities, demo rank/item ids are incompatible, and paper/code text encoder descriptions differ. Details are in reports/b5o_protocol_diff.md.
+Known limitations: official ranking code is executable. The new materializer fixes the public-file path/schema issues at smoke scale: target coverage is checked, `age_bucket` is mapped to `age`, missing users are assigned legal buckets, and official BGE outputs are placed under `./data`. Full Table 7 alignment is still blocked because the public ranking file carries `split=train` and the exact paper last-day test boundary is not exposed. Details are in reports/b5o_protocol_diff.md and doc/baseline_notes/20260709_b5o_stage_a_split_decision.md.
 Current status: downgraded: official-code, alignment-not-verifiable
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: `pps-kuaisearch` environment and official DCNv1 smoke passed, but paper-number alignment cannot be verified from the locked upstream pipeline without adapter decisions or source patches. No KuaiSearch dev evaluation has been produced; B5o is appendix/secondary evidence only until a future authorized adapter run.
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: `pps-kuaisearch` environment passed, the official-format materializer smoke passed on 2000 raw ranking rows with target coverage 1.0, official BGE encoding ran, and official DNN 1-epoch train/eval completed. This remains smoke evidence only; no full Table 7 alignment run or KuaiSearch dev evaluation has been produced until the split policy is authorized.
 
 ID: B6o
 Method: HEM official code, with TEM/ZAM family source retained for fallback
@@ -248,9 +248,9 @@ Tuning budget: 16 KuaiSearch dev evaluations shared by selected HEM/ZAM/TEM vari
 Dev evals used: 0/16
 Determinism check: pending
 Run IDs: pending
-Known limitations: official code requires old TensorFlow and Amazon review fields. The official-code run is end-to-end executable but did not reproduce the Cell Phones & Accessories target within +/-10%; unvalidated reimplementations cannot enter the main table as faithful baselines.
+Known limitations: official code requires old TensorFlow and Amazon review fields. The official-code run is end-to-end executable but did not reproduce the Cell Phones & Accessories target within +/-10%; unvalidated reimplementations cannot enter the main table as faithful baselines. The 2026-07-09 limited reconnaissance found no public original `query_split/` or checkpoint and no deterministic reconstruction bug that justifies another 20-epoch run.
 Current status: blocked: external alignment failed
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. HEM Path 1 evidence is documented in reports/b6o_official_alignment.md: best observed MAP@100 = 0.0759 and best observed NDCG@10 = 0.0932, below the target 0.124/0.153 by more than the +/-10% tolerance. No KuaiSearch dev evaluation has been produced; B6o must not enter the formal table until a corrected official alignment or faithful reimplementation passes the same external gate.
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. HEM Path 1 evidence is documented in reports/b6o_official_alignment.md: best observed MAP@100 = 0.0759 and best observed NDCG@10 = 0.0932, below the target 0.124/0.153 by more than the +/-10% tolerance. Upstream issue text is drafted at doc/baseline_notes/20260709_b6o_upstream_issue_draft.md but not posted. No KuaiSearch dev evaluation has been produced; B6o must not enter the formal table until a corrected official alignment or faithful reimplementation passes the same external gate.
 ```
 
 ## Card Template

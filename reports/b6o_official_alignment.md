@@ -137,6 +137,54 @@ and protocol-diff finding, not a KuaiSearch result.
   reconstruction drops eight product-query entries whose metadata-derived query
   text does not match the public benchmark query list.
 
+## Limited Reconnaissance: 2026-07-09
+
+Scope: no new training run. This check only inspected public upstream material
+and compared split construction logic.
+
+Public upstream check:
+
+- `QingyaoAi/Amazon-Product-Search-Datasets`
+  (`https://github.com/QingyaoAi/Amazon-Product-Search-Datasets`) lists only four dataset
+  directories plus README. The README defines the public files as
+  `query_text.txt.gz`, `train.qrels.gz`, `train_review_id.txt.gz`, and
+  `test.qrels.gz`; it does not expose HEM indexed `query_split/`,
+  `product_query.txt.gz`, `query.txt.gz`, or checkpoints.
+- `QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search`
+  (`https://github.com/QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search`)
+  points users to the dataset repo for original data, provides the official
+  preparation script, and has no GitHub releases/checkpoints.
+- Its issue tracker already has an open issue asking how to feed the public
+  dataset repo into HEM, with no maintainer answer visible.
+- Related `kepingbi/ProdSearch`
+  (`https://github.com/kepingbi/ProdSearch`) and
+  `kepingbi/ConvProductSearchNF`
+  (`https://github.com/kepingbi/ConvProductSearchNF`) repos refer
+  back to the same HEM/Amazon data flow or the same HEM partition; they do not
+  provide the original HEM `query_split/` for this run.
+
+Script logic check:
+
+| Check | Official `split_train_test_data.py` | Our reconstruction |
+|---|---|---|
+| Review split | Randomly hide 30% reviews per user, no fixed seed in the script | Uses public `train_review_id.txt.gz` as authoritative train ids and assigns all remaining indexed reviews to test |
+| Query split | Randomly choose 30% test queries, then move one query back if an item would have no train query | Uses public train/test qids from qrels; does not resample |
+| Qrels generation | Emits positive qrels from user purchased products and product-query assignments | Copies public train/test qrels exactly |
+| Query text/index | Builds `query.txt.gz` from metadata-derived `product_query.txt.gz` | Maps public `query_text.txt.gz` into indexed vocab; drops product-query entries whose metadata text is absent from public query text |
+
+The check did not identify a deterministic bug in our reconstruction that
+justifies another 20-epoch run. The remaining gap is the absence of original
+random split state and indexed product-query artifacts. Re-running with the same
+inputs would only repeat the failed protocol-diff condition.
+
+Issue draft:
+
+- `doc/baseline_notes/20260709_b6o_upstream_issue_draft.md`
+
+This draft asks upstream for the original Cell Phones & Accessories
+`query_split/`, `product_query.txt.gz`, `query.txt.gz`, train/test query index
+files, exact split seed/settings, or checkpoints. It has not been posted.
+
 Next action: do not adapt this checkpoint to KuaiSearch. Either obtain the
 exact original indexed split/model settings, or run a separate faithful
 reimplementation/alignment attempt and require the same +/-10% external gate

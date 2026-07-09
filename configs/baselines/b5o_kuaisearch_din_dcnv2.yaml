@@ -19,6 +19,7 @@ external_alignment:
   status: alignment_not_verifiable
   report: reports/b5o_official_alignment.md
   protocol_diff: reports/b5o_protocol_diff.md
+  split_decision_note: doc/baseline_notes/20260709_b5o_stage_a_split_decision.md
   counts_against_kuaisearch_dev_budget: false
   paper_targets:
     DNN:
@@ -49,6 +50,39 @@ smoke:
   test_logloss: 0.745868
   test_auc: 0.387255
   note: code/environment sanity only, not an alignment result
+
+materializer:
+  status: smoke_passed
+  source: src/myrec/baselines/kuaisearch_materializer.py
+  test: tests/test_kuaisearch_materializer.py
+  raw_dir: data/raw/kuaisearch
+  smoke_root: artifacts/batch2b/b5o_materializer_smoke
+  smoke_manifest: artifacts/batch2b/b5o_materializer_smoke/materializer_manifest.json
+  output_files:
+    rank: data/rank.jsonl
+    corpus: data/corpus.jsonl
+    users: data/users.jsonl
+  age_bucket_to_age:
+    "0-11": "0-11"
+    "12-17": "12-17"
+    "18-23": "18-23"
+    "24-30": "24-30"
+    "31-40": "31-40"
+    "41-49": "41-49"
+    "50+": "50+"
+  missing_user_defaults:
+    gender: M
+    age: "31-40"
+  embedding_encoder: BAAI/bge-small-zh-v1.5
+  embedding_placement: move_official_process_outputs_to_loader_data_dir
+  smoke_rows: 2000
+  smoke_target_coverage: 1.0
+  smoke_official_dnn:
+    num_epochs: 1
+    test_logloss: 0.643912
+    test_auc: 0.377851
+    note: loader/trainer path sanity only, not a Table 7 alignment result
+  full_alignment_split_policy: blocked_pending_authorization
 
 input_fields_used_if_future_adapter_is_authorized:
   - records_train.query
