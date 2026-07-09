@@ -146,17 +146,55 @@ Table 7 metric scale under this proxy split:
 This does not remove the split caveat. The correct status is
 `official-code, proxy-aligned (last-time 10% split)`.
 
-## Required Decision Before Any Formal B5o Dev Run
+## Stage B Adapter Protocol
 
-Proceeding to a KuaiSearch dev run requires a scoped adapter under the same
-proxy-aligned identity. The adapter must:
+Authorized identity: `official-code, proxy-aligned (last-time 10% split)`.
+This is a scoped PPS adapter under the Stage A split caveat, not a caveat-free
+official baseline claim.
 
-- materialize official-format `rank.jsonl`, `corpus.jsonl`, and `users.jsonl`
-  from train-only standardized or raw train data;
-- explicitly map `age_bucket` to `age` or default missing demographics;
-- write embeddings to the exact paths consumed by `ranking/datasets.py`;
-- preserve frozen per-request history at inference;
-- emit per-fixed-candidate `scores.jsonl` for the shared PPS evaluator.
+Implementation boundary:
 
-Until that decision is authorized, B5o remains external Stage A evidence only:
-proxy-aligned but not yet a formal PPS dev baseline run.
+- adapter source: `src/myrec/baselines/kuaisearch_official_adapter.py`;
+- runner: `scripts/run_b5o_kuaisearch_official.py`;
+- artifact root: `artifacts/batch2b/b5o_stageb_standardized`;
+- official source patch: none planned; if ever required, write
+  `reports/b5o_patch.diff` before running.
+
+Field mapping:
+
+| Official field | PPS source / rule |
+|---|---|
+| `rank.jsonl.session_id` | `request_id`, used as the official query embedding key |
+| `original_session_id` | standardized `session_id`, retained for audit only |
+| `query` | `records_train/dev.query` |
+| `target_item_id` | fixed candidate `item_id` |
+| `is_clicked`, `is_purchased` | train candidate labels only; dev score rows use dummy zeros and are not evaluated by official metrics |
+| `recently_clicked_item_ids` | current record frozen click history, <=50 before official loader truncates to 20 |
+| `recently_purchased_item_ids` | current record frozen purchase history retained in JSONL; locked loader ignores it |
+| `users.jsonl.gender` | default `M`, because standardized records expose no official demographic field |
+| `users.jsonl.age` | default `31-40`, a legal official bucket |
+| category ids | deterministic text-category mapping into official embedding ranges |
+| query/title embeddings | `BAAI/bge-small-zh-v1.5`, CLS pooling, max length 32, float16 cache under artifact root |
+
+Training and scoring:
+
+- training `rank.jsonl` contains train candidate rows only, with labels from
+  `records_train.candidates.clicked/purchased`;
+- the shared train-interaction artifact remains the provenance record for
+  train-only user behavior:
+  `artifacts/batch2b/interactions_train.jsonl`
+  (`dcc91391c303e6e8c69506a837620be2601bdd6df249cda624f4d1caf417ad32`);
+- official training keeps the locked trainer/model classes and official default
+  hyperparameters for the first run;
+- dev rows are materialized separately as `score_dev.jsonl`; they are never put
+  into official `test_loader` because official test evaluation requires labels;
+- dev scoring is a label-free forward pass through the trained official model,
+  writing full fixed-candidate coverage to `runs/<run_id>/scores.jsonl`;
+- only the shared PPS evaluator reads `qrels_dev.jsonl` after scores exist.
+
+Budget and search space:
+
+- budget: 16 KuaiSearch dev evaluations for B5o;
+- this prompt authorizes DNN and DCNv2 with official defaults plus frozen seeds
+  `[20260708, 20260709, 20260710]`;
+- no additional hyperparameter grid is authorized in this run.
