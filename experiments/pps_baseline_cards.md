@@ -17,7 +17,7 @@
 | B5 | 2 | DIN/DCNv2 | industrial baseline placeholder | full structured features | KuaiSearch official | style adapter | retired placeholder; superseded by B5o |
 | B6 | 2 | HEM/ZAM/TEM | PPS classic baseline placeholder | query + history + item text | PPS classic papers/code | style adapter | retired placeholder; superseded by B6o |
 | B4o | 2b | RecBole SASRec/BERT4Rec | official strong history baseline | history sequence | RecBole + original papers | official code | complete |
-| B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code | in progress |
+| B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code; alignment not verifiable | downgraded |
 | B6o | 2b | HEM official | PPS classic baseline | query + history + item text | PPS classic papers/code | official code; alignment failed | blocked: external alignment failed |
 | B6+ | 2 | MAI/NAM-style | recent PPS/when-personalize baseline | query + history + item text | recent PPS papers | feasibility TBD | candidate |
 | B8a | 2 | Raw-history LLM rerank | quality/cost upper bound | query + history + candidates | Qwen or similar | prompt baseline | complete |
@@ -220,18 +220,18 @@ Role: official industrial ranking baseline
 Evidence channels: query + history + item text + candidate item_id + train labels
 Source paper/repo: https://github.com/benchen4395/KuaiSearch commit 7ce0471b659112096f0aa7e892ed0aa4c972246a
 Venue/year: KuaiSearch dataset/repo
-Implementation type: official code, alignment pending
+Implementation type: official code, alignment not verifiable at locked commit
 Input fields used: query; frozen history item/category/event/time; candidate text/category/item_id; train clicked/purchased labels
 Output score definition: official DIN/DCNv2 ranking score exported for fixed candidates and evaluated only by the shared evaluator
 Config path: configs/baselines/b5o_kuaisearch_din_dcnv2.yaml
 Environment group: kuaisearch
 Tuning budget: 16 KuaiSearch dev evaluations; first run is official/default hyperparameters
 Dev evals used: 0/16
-Determinism check: pending
-Run IDs: pending
-Known limitations: official pipeline may require precomputed query/title embeddings and raw user features; missing standardized fields must be defaulted and listed in reports/b5o_protocol_diff.md. If official alignment cannot be verified, downgrade per doc 14.
-Current status: in progress
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. B5o starts only after B4o and B6o have completed or reached their documented downgrade/blocking decisions.
+Determinism check: not applicable; no formal KuaiSearch dev run
+Run IDs: none
+Known limitations: official ranking code is executable but the locked repo has path/schema mismatches against the public files: embedding preprocessing writes to root while training reads `./data`, users expose `age_bucket` while loader expects `age`, missing-user fallbacks exceed embedding cardinalities, demo rank/item ids are incompatible, and paper/code text encoder descriptions differ. Details are in reports/b5o_protocol_diff.md.
+Current status: downgraded: official-code, alignment-not-verifiable
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: `pps-kuaisearch` environment and official DCNv1 smoke passed, but paper-number alignment cannot be verified from the locked upstream pipeline without adapter decisions or source patches. No KuaiSearch dev evaluation has been produced; B5o is appendix/secondary evidence only until a future authorized adapter run.
 
 ID: B6o
 Method: HEM official code, with TEM/ZAM family source retained for fallback

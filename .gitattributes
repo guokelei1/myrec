@@ -2,3 +2,4 @@
 # whitespace policy to imported historical source trees.
 baselines/pps_classic/hem_official/** -whitespace
 baselines/pps_classic/prodsearch_tem/** -whitespace
+baselines/kuaisearch_official/** -whitespace

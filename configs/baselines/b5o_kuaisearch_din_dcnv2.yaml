@@ -1,0 +1,86 @@
+method_id: b5o_kuaisearch_official
+dataset_id: kuaisearch
+dataset_version: v0_lite
+implementation_type: official_code_alignment_not_verifiable
+environment_group: kuaisearch
+environment_name: pps-kuaisearch
+env_manifest: configs/env/kuaisearch.txt
+
+standardized_dir: data/standardized/kuaisearch/v0_lite
+candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+
+upstream:
+  repo: https://github.com/benchen4395/KuaiSearch
+  commit: 7ce0471b659112096f0aa7e892ed0aa4c972246a
+  license: MIT
+  local_dir: baselines/kuaisearch_official
+
+external_alignment:
+  status: alignment_not_verifiable
+  report: reports/b5o_official_alignment.md
+  protocol_diff: reports/b5o_protocol_diff.md
+  counts_against_kuaisearch_dev_budget: false
+  paper_targets:
+    DNN:
+      logloss: 0.1588
+      roc_auc: 0.6258
+    WideDeep:
+      logloss: 0.1598
+      roc_auc: 0.6217
+    DCN:
+      logloss: 0.1611
+      roc_auc: 0.6194
+    DCNv2:
+      logloss: 0.1603
+      roc_auc: 0.6239
+    DIN:
+      logloss: 0.1606
+      roc_auc: 0.6262
+
+smoke:
+  status: passed
+  run_root: artifacts/batch2b/b5o_official_smoke
+  model: DCNv1
+  num_epochs: 1
+  rows: 200
+  train_rows: 160
+  test_rows: 40
+  synthetic_random_embeddings: true
+  test_logloss: 0.745868
+  test_auc: 0.387255
+  note: code/environment sanity only, not an alignment result
+
+input_fields_used_if_future_adapter_is_authorized:
+  - records_train.query
+  - records_train.history.item_id
+  - records_train.candidates.item_id
+  - records_train.candidates.title
+  - records_train.candidates.category
+  - records_train.candidates.clicked
+  - records_train.candidates.purchased
+  - records_dev.query
+  - records_dev.history.item_id
+  - records_dev.candidates.item_id
+  - records_dev.candidates.title
+  - records_dev.candidates.category
+
+forbidden_fields:
+  - qrels_dev
+  - qrels_test
+  - records_dev.candidates.clicked
+  - records_dev.candidates.purchased
+  - records_test.candidates.clicked
+  - records_test.candidates.purchased
+  - user_global_sequence_at_inference
+
+kuaisearch_adapter:
+  status: blocked_pending_authorization_after_alignment_downgrade
+  reason: official stage-A alignment not verifiable at locked commit
+  required_report_before_any_dev_run: reports/b5o_protocol_diff.md
+
+tuning_budget:
+  kuaisearch_dev_evals: 16
+  used: 0
+  first_eval: official_default_if_future_adapter_authorized
+  frozen_config_seeds: [20260708, 20260709, 20260710]
+  external_alignment_counts_against_budget: false
