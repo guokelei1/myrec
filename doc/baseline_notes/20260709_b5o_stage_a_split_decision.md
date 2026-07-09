@@ -4,6 +4,25 @@ Date: 2026-07-09
 
 Scope: Batch 2b B5o repair attempt, external alignment only.
 
+## Decision: Option A Authorized
+
+Decision date: 2026-07-09.
+
+Use Option A for the bounded Stage A run: a last-time 10% proxy split by
+`time_index`. This is not an upstream-confirmed paper split. Conclusions are
+therefore intentionally asymmetric:
+
+- If DNN/DCNv2 align within +/-10%, the result can only be stated as
+  `aligned under proxy last-time split`; whether it can support a main-table
+  official claim remains pending upstream split confirmation.
+- If DNN/DCNv2 differ by more than +/-10%, the result cannot distinguish
+  construction error from split-protocol difference; B5o remains
+  `official-code, alignment-not-verifiable`, and no tuning loop is allowed.
+
+Proxy definition: `split_policy=last_time_fraction`, `test_fraction=0.10`,
+time field `time_index`, and threshold ties assigned to test by
+`time_index >= test_time_min`.
+
 ## What Is Fixed
 
 The official-format materializer now exists at

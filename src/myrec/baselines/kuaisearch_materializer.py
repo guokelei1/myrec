@@ -49,8 +49,9 @@ def materialize_official_ranking_format(
     last-day split when the public raw file contains only ``split=train`` rows:
     rows at or above the time-index threshold that yields the latest
     ``test_fraction`` of materialized ranking rows are marked ``split=test``.
-    If the exact day boundary is later recovered, use ``last_time_cutoff`` with
-    that ``test_time_min`` instead.
+    Ties at the threshold are included in test, so the actual test fraction may
+    exceed the requested value. If the exact day boundary is later recovered,
+    use ``last_time_cutoff`` with that ``test_time_min`` instead.
     """
 
     raw_dir = Path(raw_dir)
@@ -74,24 +75,32 @@ def materialize_official_ranking_format(
         test_fraction=test_fraction,
         test_time_min=test_time_min,
     )
-    item_map = _load_needed_items(paths["items"], scan["needed_item_ids"])
+    loaded_item_ids, corpus_rows = _write_needed_corpus(
+        paths["items"],
+        data_dir / "corpus.jsonl",
+        scan["needed_item_ids"],
+    )
     user_map, user_stats = _load_needed_users(paths["users"], scan["needed_user_ids"])
     _fill_missing_users(user_map, scan["needed_user_ids"], user_stats)
 
     target_items = scan["target_item_ids"]
-    covered_targets = target_items & set(item_map)
+    covered_targets = target_items & loaded_item_ids
     target_coverage = len(covered_targets) / len(target_items) if target_items else 1.0
     status = "passed" if target_coverage >= min_target_coverage else "failed"
 
-    corpus_rows = _write_corpus(data_dir / "corpus.jsonl", item_map)
     users_rows = _write_users(data_dir / "users.jsonl", user_map)
     rank_stats = _write_rank(
         paths["rank"],
         data_dir / "rank.jsonl",
-        item_map=item_map,
+        loaded_item_ids=loaded_item_ids,
         max_rank_rows=max_rank_rows,
         split_threshold=scan["split_threshold"],
         split_policy=split_policy,
+    )
+    actual_test_fraction = (
+        rank_stats["split_counts"].get("test", 0) / rank_stats["rows"]
+        if rank_stats["rows"]
+        else 0.0
     )
 
     manifest = {
@@ -106,7 +115,9 @@ def materialize_official_ranking_format(
         "split": {
             "policy": split_policy,
             "test_fraction": test_fraction,
+            "actual_test_fraction": actual_test_fraction,
             "test_time_min": scan["split_threshold"],
+            "tie_handling": "rows with time_index >= test_time_min are test; threshold ties are included in test",
             "source": (
                 "public rank_lite/train.jsonl has no test rows; this is an explicit "
                 "last-time proxy pending an upstream-confirmed last-day boundary"
@@ -132,7 +143,7 @@ def materialize_official_ranking_format(
             "corpus_rows_written": corpus_rows,
             "users_rows_written": users_rows,
             "unique_needed_items": len(scan["needed_item_ids"]),
-            "loaded_needed_items": len(item_map),
+            "loaded_needed_items": len(loaded_item_ids),
             "unique_needed_users": len(scan["needed_user_ids"]),
             "loaded_or_synthetic_users": len(user_map),
         },
@@ -212,29 +223,37 @@ def _scan_rank_rows(
     }
 
 
-def _load_needed_items(items_path: Path, needed_item_ids: set[int]) -> dict[int, dict[str, Any]]:
-    item_map: dict[int, dict[str, Any]] = {}
-    for row in iter_jsonl(items_path):
-        item_id = int(row["item_id"])
-        if item_id not in needed_item_ids:
-            continue
-        item_map[item_id] = {
-            "item_id": item_id,
-            "item_title": str(row.get("item_title") or ""),
-            "brand_id": int(row.get("brand_id") or 0),
-            "brand_name": str(row.get("brand_name") or ""),
-            "seller_id": int(row.get("seller_id") or 0),
-            "seller_name": str(row.get("seller_name") or ""),
-            "category_level1_id": int(row.get("category_level1_id") or 0),
-            "category_level1_name": str(row.get("category_level1_name") or ""),
-            "category_level2_id": int(row.get("category_level2_id") or 0),
-            "category_level2_name": str(row.get("category_level2_name") or ""),
-            "category_level3_id": int(row.get("category_level3_id") or 0),
-            "category_level3_name": str(row.get("category_level3_name") or ""),
-        }
-        if len(item_map) == len(needed_item_ids):
-            break
-    return item_map
+def _official_item_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "item_id": int(row["item_id"]),
+        "item_title": str(row.get("item_title") or ""),
+        "brand_id": int(row.get("brand_id") or 0),
+        "brand_name": str(row.get("brand_name") or ""),
+        "seller_id": int(row.get("seller_id") or 0),
+        "seller_name": str(row.get("seller_name") or ""),
+        "category_level1_id": int(row.get("category_level1_id") or 0),
+        "category_level1_name": str(row.get("category_level1_name") or ""),
+        "category_level2_id": int(row.get("category_level2_id") or 0),
+        "category_level2_name": str(row.get("category_level2_name") or ""),
+        "category_level3_id": int(row.get("category_level3_id") or 0),
+        "category_level3_name": str(row.get("category_level3_name") or ""),
+    }
+
+
+def _write_needed_corpus(items_path: Path, output_path: Path, needed_item_ids: set[int]) -> tuple[set[int], int]:
+    loaded_item_ids: set[int] = set()
+    rows = 0
+    with output_path.open("w", encoding="utf-8") as handle:
+        for row in iter_jsonl(items_path):
+            item_id = int(row["item_id"])
+            if item_id not in needed_item_ids:
+                continue
+            handle.write(json.dumps(_official_item_row(row), ensure_ascii=False, sort_keys=True) + "\n")
+            loaded_item_ids.add(item_id)
+            rows += 1
+            if rows == len(needed_item_ids):
+                break
+    return loaded_item_ids, rows
 
 
 def _load_needed_users(users_path: Path, needed_user_ids: set[int]) -> tuple[dict[int, dict[str, Any]], dict[str, Any]]:
@@ -286,15 +305,6 @@ def _fill_missing_users(user_map: dict[int, dict[str, Any]], needed_user_ids: se
         stats["synthetic_missing_users"] += 1
 
 
-def _write_corpus(path: Path, item_map: dict[int, dict[str, Any]]) -> int:
-    rows = 0
-    with path.open("w", encoding="utf-8") as handle:
-        for item_id in sorted(item_map):
-            handle.write(json.dumps(item_map[item_id], ensure_ascii=False, sort_keys=True) + "\n")
-            rows += 1
-    return rows
-
-
 def _write_users(path: Path, user_map: dict[int, dict[str, Any]]) -> int:
     rows = 0
     with path.open("w", encoding="utf-8") as handle:
@@ -308,7 +318,7 @@ def _write_rank(
     rank_path: Path,
     output_path: Path,
     *,
-    item_map: dict[int, dict[str, Any]],
+    loaded_item_ids: set[int],
     max_rank_rows: int | None,
     split_threshold: int,
     split_policy: str,
@@ -326,7 +336,7 @@ def _write_rank(
     with output_path.open("w", encoding="utf-8") as handle:
         for row in iter_jsonl(rank_path):
             target = int(row["target_item_id"])
-            if target not in item_map:
+            if target not in loaded_item_ids:
                 stats["missing_target_rows"] += 1
                 if len(missing_examples) < 20:
                     missing_examples.append(target)

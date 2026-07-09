@@ -17,8 +17,8 @@
 | B5 | 2 | DIN/DCNv2 | industrial baseline placeholder | full structured features | KuaiSearch official | style adapter | retired placeholder; superseded by B5o |
 | B6 | 2 | HEM/ZAM/TEM | PPS classic baseline placeholder | query + history + item text | PPS classic papers/code | style adapter | retired placeholder; superseded by B6o |
 | B4o | 2b | RecBole SASRec/BERT4Rec | official strong history baseline | history sequence | RecBole + original papers | official code | complete |
-| B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official code; alignment not verifiable | downgraded |
-| B6o | 2b | HEM official | PPS classic baseline | query + history + item text | PPS classic papers/code | official code; alignment failed | blocked: external alignment failed |
+| B5o | 2b | KuaiSearch DIN/DCNv2 | official industrial baseline | full structured features | KuaiSearch official | official-code, proxy-aligned (last-time 10% split) | proxy-aligned; Stage B authorized |
+| B6o | 2b | HEM official | PPS classic baseline | query + history + item text | PPS classic papers/code | official code; alignment failed | permanently downgraded |
 | B6+ | 2 | MAI/NAM-style | recent PPS/when-personalize baseline | query + history + item text | recent PPS papers | feasibility TBD | candidate |
 | B8a | 2 | Raw-history LLM rerank | quality/cost upper bound | query + history + candidates | Qwen or similar | prompt baseline | complete |
 | B8b | 2 | MemRerank-style memory rerank | quality/cost upper bound | query + memory + candidates | MemRerank-style | style-adapted | complete |
@@ -220,7 +220,7 @@ Role: official industrial ranking baseline
 Evidence channels: query + history + item text + candidate item_id + train labels
 Source paper/repo: https://github.com/benchen4395/KuaiSearch commit 7ce0471b659112096f0aa7e892ed0aa4c972246a
 Venue/year: KuaiSearch dataset/repo
-Implementation type: official code, materializer smoke passed, full alignment not verifiable without split decision
+Implementation type: official-code, proxy-aligned (last-time 10% split)
 Input fields used: query; frozen history item/category/event/time; candidate text/category/item_id; train clicked/purchased labels
 Output score definition: official DIN/DCNv2 ranking score exported for fixed candidates and evaluated only by the shared evaluator
 Config path: configs/baselines/b5o_kuaisearch_din_dcnv2.yaml
@@ -229,9 +229,9 @@ Tuning budget: 16 KuaiSearch dev evaluations; first run is official/default hype
 Dev evals used: 0/16
 Determinism check: not applicable; no formal KuaiSearch dev run
 Run IDs: none
-Known limitations: official ranking code is executable. The new materializer fixes the public-file path/schema issues at smoke scale: target coverage is checked, `age_bucket` is mapped to `age`, missing users are assigned legal buckets, and official BGE outputs are placed under `./data`. Full Table 7 alignment is still blocked because the public ranking file carries `split=train` and the exact paper last-day test boundary is not exposed. Details are in reports/b5o_protocol_diff.md and doc/baseline_notes/20260709_b5o_stage_a_split_decision.md.
-Current status: downgraded: official-code, alignment-not-verifiable
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: `pps-kuaisearch` environment passed, the official-format materializer smoke passed on 2000 raw ranking rows with target coverage 1.0, official BGE encoding ran, and official DNN 1-epoch train/eval completed. This remains smoke evidence only; no full Table 7 alignment run or KuaiSearch dev evaluation has been produced until the split policy is authorized.
+Known limitations: official ranking code is executable and proxy Stage A passed, but the exact paper last-day split remains unavailable. The accepted full Stage A run uses a last-time 10% proxy by `time_index`, with threshold ties assigned to test, so it can only be claimed as `official-code, proxy-aligned (last-time 10% split)`. Details are in reports/b5o_official_alignment.md, reports/b5o_protocol_diff.md, and doc/baseline_notes/20260709_b5o_stage_a_split_decision.md.
+Current status: proxy-aligned Stage A complete; Stage B authorized but not yet evaluated
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. Stage A evidence is recorded in reports/b5o_official_alignment.md: materializer full proxy target coverage 1.0, official BGE encoding produced 555,553 query embeddings and 6,206,709 item embeddings, and official default DNN/DCNv2 runs landed within +/-10% of Table 7 under the proxy split. DNN final LogLoss/AUC = 0.160731/0.613133; DCNv2 final LogLoss/AUC = 0.162635/0.616348. The low smoke AUC was checked in reports/b5o_smoke_auc_direction_check.md; no score/label reversal was found. Full proxy runs are external alignment only and do not spend KuaiSearch dev budget.
 
 ID: B6o
 Method: HEM official code, with TEM/ZAM family source retained for fallback
@@ -239,18 +239,18 @@ Role: PPS classic baseline
 Evidence channels: query + history + item text + candidate item_id + train labels
 Source paper/repo: HEM official repo `QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search` at `cd089d0ecf277e2fcdccb35f4989d05ef3e81032`; TEM/ProdSearch repo `kepingbi/ProdSearch` at `449335ba652fe7c877a008e154157d7b2a4b0e76`
 Venue/year: SIGIR 2017 / CIKM 2019 / SIGIR 2020
-Implementation type: official HEM code path; external Amazon alignment failed before KuaiSearch adapter
+Implementation type: official HEM code path; permanently downgraded after failed external Amazon alignment
 Input fields used: query; frozen click/purchase history; candidate title/brand/category/item_id; train clicked/purchased labels
 Output score definition: PPS classic query-history-item score exported for every fixed candidate and evaluated only by the shared evaluator
 Config path: configs/baselines/b6o_pps_classic.yaml
 Environment group: pps_classic
 Tuning budget: 16 KuaiSearch dev evaluations shared by selected HEM/ZAM/TEM variants; each variant first run uses paper/default hyperparameters
 Dev evals used: 0/16
-Determinism check: pending
-Run IDs: pending
-Known limitations: official code requires old TensorFlow and Amazon review fields. The official-code run is end-to-end executable but did not reproduce the Cell Phones & Accessories target within +/-10%; unvalidated reimplementations cannot enter the main table as faithful baselines. The 2026-07-09 limited reconnaissance found no public original `query_split/` or checkpoint and no deterministic reconstruction bug that justifies another 20-epoch run.
-Current status: blocked: external alignment failed
-Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. HEM Path 1 evidence is documented in reports/b6o_official_alignment.md: best observed MAP@100 = 0.0759 and best observed NDCG@10 = 0.0932, below the target 0.124/0.153 by more than the +/-10% tolerance. Upstream issue text is drafted at doc/baseline_notes/20260709_b6o_upstream_issue_draft.md but not posted. No KuaiSearch dev evaluation has been produced; B6o must not enter the formal table until a corrected official alignment or faithful reimplementation passes the same external gate.
+Determinism check: not applicable; no formal KuaiSearch dev run
+Run IDs: none
+Known limitations: official code requires old TensorFlow and Amazon review fields. The official-code run is end-to-end executable but did not reproduce the Cell Phones & Accessories target within +/-10%; unvalidated reimplementations cannot enter the main table as faithful baselines. The 2026-07-09 limited reconnaissance checked five public external sources, found no public original `query_split/` or checkpoint, and found no deterministic reconstruction bug that justifies another 20-epoch run.
+Current status: permanently downgraded: alignment-not-verifiable
+Acceptance notes: Step 0 budget amendment is recorded in reports/pps_batch2b_budget_amendment.md. HEM Path 1 evidence is documented in reports/b6o_official_alignment.md: best observed MAP@100 = 0.0759 and best observed NDCG@10 = 0.0932, below the target 0.124/0.153 by more than the +/-10% tolerance. The upstream issue draft is archival only and will not be posted. No KuaiSearch dev evaluation has been produced; B6o exits the formal main-table alignment path.
 ```
 
 ## Card Template

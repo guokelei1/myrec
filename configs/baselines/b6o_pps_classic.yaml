@@ -1,7 +1,7 @@
 method_id: b6o_hem_official
 dataset_id: kuaisearch
 dataset_version: v0_lite
-implementation_type: official_hem_external_alignment_then_adapter
+implementation_type: official_hem_permanently_downgraded_after_external_alignment
 environment_group: pps_classic
 environment_name: pps-classic
 env_freeze: configs/env/pps_classic.txt
@@ -19,7 +19,7 @@ upstream:
 
 external_alignment:
   counts_against_kuaisearch_dev_budget: false
-  status: failed
+  status: permanently_downgraded_alignment_not_verifiable
   dataset: amazon_product_search_cell_phones_and_accessories
   benchmark_repo_commit: 64907e59b4ce27738e61607f2d6b16b62dee92ac
   raw_review_sha256: 477f09973936c491c4c138436c477ba257d2e1fc556480c80fb75ebae10b4dab
@@ -85,7 +85,7 @@ forbidden_fields:
   - user_global_sequence_at_inference
 
 kuaisearch_adapter:
-  status: blocked_external_alignment_failed
+  status: blocked_permanent_external_alignment_not_verifiable
   inference_history: frozen_record_history_max_50
   item_text_template: title_brand_category
   score_definition: official_hem_query_user_item_score_for_each_fixed_candidate

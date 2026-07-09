@@ -2,10 +2,10 @@
 
 Date: 2026-07-09
 
-Status: failed external alignment. HEM official code path runs end to end,
-but the best Cell Phones & Accessories metric is outside the +/-10% target
-band. No KuaiSearch dev evaluation has been produced, and B6o must not enter
-the formal KuaiSearch baseline table from this run.
+Status: permanently downgraded after failed external alignment. HEM official
+code path runs end to end, but the best Cell Phones & Accessories metric is
+outside the +/-10% target band. No KuaiSearch dev evaluation has been produced,
+and B6o exits the formal main-table alignment path.
 
 ## Source
 
@@ -163,6 +163,14 @@ Public upstream check:
   back to the same HEM/Amazon data flow or the same HEM partition; they do not
   provide the original HEM `query_split/` for this run.
 
+External sources checked:
+
+1. `https://github.com/QingyaoAi/Amazon-Product-Search-Datasets`
+2. `https://github.com/QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search`
+3. `https://github.com/QingyaoAi/Hierarchical-Embedding-Model-for-Personalized-Product-Search/issues/1`
+4. `https://github.com/kepingbi/ProdSearch`
+5. `https://github.com/kepingbi/ConvProductSearchNF`
+
 Script logic check:
 
 | Check | Official `split_train_test_data.py` | Our reconstruction |
@@ -177,15 +185,22 @@ justifies another 20-epoch run. The remaining gap is the absence of original
 random split state and indexed product-query artifacts. Re-running with the same
 inputs would only repeat the failed protocol-diff condition.
 
-Issue draft:
+## Permanent Downgrade Decision
 
-- `doc/baseline_notes/20260709_b6o_upstream_issue_draft.md`
+Decision date: 2026-07-09.
 
-This draft asks upstream for the original Cell Phones & Accessories
-`query_split/`, `product_query.txt.gz`, `query.txt.gz`, train/test query index
-files, exact split seed/settings, or checkpoints. It has not been posted.
+No deterministic reconstruction bug was found, and no public source exposes the
+original HEM indexed split artifacts or checkpoint. Per the Batch 2b stop-loss
+rule, B6o is permanently downgraded to `alignment-not-verifiable` for this
+paper workflow:
 
-Next action: do not adapt this checkpoint to KuaiSearch. Either obtain the
-exact original indexed split/model settings, or run a separate faithful
-reimplementation/alignment attempt and require the same +/-10% external gate
-before any KuaiSearch B6o dev evaluation.
+- do not post the upstream issue draft;
+- do not wait for an author reply;
+- do not run another 20-epoch alignment attempt from the same reconstruction;
+- do not adapt this checkpoint or reconstruction to KuaiSearch;
+- keep the failed alignment and reconnaissance as evidence that no local,
+  bounded fix was available.
+
+The retained issue draft is
+`doc/baseline_notes/20260709_b6o_upstream_issue_draft.md`, but it is archival
+only.

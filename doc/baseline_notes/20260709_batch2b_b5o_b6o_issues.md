@@ -136,8 +136,8 @@ KuaiSearch paper Table 7 ranking targets：
    - paper 说 query/title embedding 来自 BERT encoder；
    - repo 的 `ranking/data/process.py` 使用 `BAAI/bge-small-zh-v1.5`。
 
-这些问题需要 adapter 或 patch 才能跑 full alignment。因此 B5o 当前状态应是
-`official-code, alignment-not-verifiable`，不能硬标 official reproduction。
+这些问题需要 adapter 或 patch 才能跑 full alignment。因此 B5o 当时状态应是
+`official-code, alignment-not-verifiable`，不能声明为无 caveat 的官方基线。
 
 ### 修复方向
 
@@ -154,14 +154,14 @@ KuaiSearch paper Table 7 ranking targets：
    - 然后跑 DNN/DCNv2/DIN，对齐 Table 7。
 
 3. 若仍对不齐：降级为 adapter baseline。
-   - 明确说明不是 official-aligned reproduction；
+   - 明确说明不是无 caveat 的官方基线；
    - 可以作为 appendix/secondary baseline；
    - formal PPS 主表不能把它称作“KuaiSearch official DIN/DCNv2”。
 
 ## 对 Batch 2b 的影响
 
 - B4o 是目前唯一完成 formal KuaiSearch dev 的官方实现 baseline。
-- B6o 和 B5o 都不能进入主表 official-aligned baseline。
+- B6o 和 B5o 都不能作为无 caveat 的官方基线进入主表。
 - Batch 2b 不能写成“官方 B4/B5/B6 全部验证后仍弱”。
 - 更稳妥的论文表述是：
   - 官方 RecBole SASRec 在当前 fixed-candidate PPS setting 下没有超过 B0b/B7；

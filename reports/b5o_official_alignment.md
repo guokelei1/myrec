@@ -2,9 +2,9 @@
 
 Date: 2026-07-09
 
-Status: alignment still not verifiable from the official repository at the
-locked commit. A bounded Stage A materializer repair smoke passed, but no full
-Table 7 alignment run and no KuaiSearch dev evaluation has been produced.
+Status: Stage A passed as `official-code, proxy-aligned (last-time 10% split)`.
+This is not an upstream-confirmed Table 7 split guarantee. No KuaiSearch PPS dev
+evaluation has been produced.
 
 ## Source
 
@@ -12,7 +12,7 @@ Table 7 alignment run and no KuaiSearch dev evaluation has been produced.
 - Locked commit: `7ce0471b659112096f0aa7e892ed0aa4c972246a`
 - License: MIT
 - Environment: `pps-kuaisearch`, recorded in `configs/env/kuaisearch.txt`
-- CLI sanity: `ranking/main.py --help` passed under `pps-kuaisearch`.
+- CLI sanity: `ranking/main.py --help` passed under `pps-kuaisearch`
 
 ## Paper Targets
 
@@ -27,145 +27,130 @@ Table 7:
 | DCNv2 | 0.1603 | 0.6239 |
 | DIN | 0.1606 | 0.6262 |
 
-The official `ranking/main.py` reports `LogLoss` and `AUC`, so these are the
-nominal alignment targets.
+## Adapter Fixes
 
-## What Ran
+The official repository does not expose a direct public-file reproduction path:
+raw files are `rank_lite/items_lite/users_lite`, the official loader expects
+`data/rank.jsonl`, `data/corpus.jsonl`, and `data/users.jsonl`, embeddings are
+written to `./` but loaded from `./data/`, released users use `age_bucket` while
+the loader reads `age`, and the released code uses
+`BAAI/bge-small-zh-v1.5` despite the paper's BERT wording.
 
-A tiny official-code smoke run was executed to verify that the checked-out
-ranking code can train and evaluate in the `pps-kuaisearch` environment.
+Repair source:
 
-Smoke input:
+- `src/myrec/baselines/kuaisearch_materializer.py`
+- `tests/test_kuaisearch_materializer.py`
+- protocol diff: `reports/b5o_protocol_diff.md`
 
-- Source: `baselines/kuaisearch_official/demo/rank.jsonl`
-- Rows: 200
-- Train rows: 160
-- Test rows: 40
-- Synthetic bridge: `age = age_bucket`, minimal `corpus.jsonl`, random 512-d
-  query/item embeddings
-- Command: `accelerate launch --num_processes 1 ranking/main.py --model DCNv1
-  --data_dir data --batch_size 64 --num_epochs 1 --mixed_precision no`
+The adapter maps `age_bucket -> age`, emits legal default rows for missing
+users, checks target item coverage, and moves official BGE outputs into the
+loader's `./data/` path. No official source patch was required.
 
-Smoke output:
+## Smoke AUC Direction Check
 
-| Metric | Value |
-|---|---:|
-| Train loss | 0.6980 |
-| Valid loss | 0.6055 |
-| Valid AUC | 0.7857 |
-| Test LogLoss | 0.7459 |
-| Test AUC | 0.3873 |
+The 2000-row smoke reported DNN test AUC 0.377851. Before full runs, this was
+checked in `reports/b5o_smoke_auc_direction_check.md`:
 
-This smoke run is environment/code-path evidence only. It uses synthetic random
-embeddings and a schema bridge, so it is not an alignment result and does not
-count against the KuaiSearch dev budget.
+- official AUC equals manual AUC: 0.377851
+- reversing scores or labels gives 0.622149
+- materialized labels preserve raw `is_clicked` / `is_purchased`
+- the official label rule is `is_clicked == 1 or is_purchased == 1`
 
-## Why Alignment Is Not Verifiable
+Conclusion: no score-direction or label-inversion implementation bug was found.
+The smoke AUC was treated as a tiny-split warning only.
 
-The current official repository does not provide a self-consistent, direct
-stage-A reproduction path for the paper ranking numbers:
+## Proxy Full Materialization
 
-- The official scripts expect `data/rank.jsonl`, `data/corpus.jsonl`, and
-  `data/users.jsonl`, while the released raw files are organized as
-  `rank_lite/train.jsonl`, `items_lite/train.jsonl`, and
-  `users_lite/train.jsonl`.
-- `ranking/data/process.py` writes `query_emb.npy`, `session_id2idx.json`,
-  `item_title_emb.npy`, and `item_id2idx.json` into the current working
-  directory, but `ranking/datasets.py` reads those files from `./data/`.
-- Released user rows use `age_bucket`; `ranking/datasets.py` reads `age`.
-  With a matched user row this produces `age_idx = None`; with a missing user,
-  the fallback indices `gender=2` and `age=9` exceed the declared embedding
-  cardinalities `(2, 8)` and `(7, 16)`.
-- The demo ranking file and demo item file use incompatible item-id spaces:
-  the 200 demo ranking targets are reindexed ids 38-330, while the demo item
-  file contains original ids in the thousands/millions; target coverage is 0.
-- The paper text describes query/title embeddings from a BERT encoder, while
-  the released `ranking/data/process.py` uses `BAAI/bge-small-zh-v1.5`.
+Authorized proxy: `last_time_fraction`, latest 10% by `time_index`, with
+threshold ties assigned to test. Decision note:
+`doc/baseline_notes/20260709_b5o_stage_a_split_decision.md`.
 
-These gaps require adapter decisions or source patches before the official
-ranking pipeline can be run on the public files. Under `doc/14_official_baseline_plan.md`
-section 4.1, this means B5o must be downgraded to
-`official-code, alignment-not-verifiable`; it must not be described as an
-official reproduction in the main table.
-
-## Stage A Repair Smoke: 2026-07-09
-
-Based on the approved repair prompt, an official-format materializer was added:
-
-- source: `src/myrec/baselines/kuaisearch_materializer.py`
-- test: `tests/test_kuaisearch_materializer.py`
-- smoke manifest:
-  `artifacts/batch2b/b5o_materializer_smoke/materializer_manifest.json`
-
-Smoke command:
+Command:
 
 ```bash
 PYTHONPATH=src python -m myrec.baselines.kuaisearch_materializer \
   --raw-dir data/raw/kuaisearch \
-  --output-root artifacts/batch2b/b5o_materializer_smoke \
-  --max-rank-rows 2000 \
+  --output-root artifacts/batch2b/b5o_proxy_lasttime_full \
+  --split-policy last_time_fraction \
   --test-fraction 0.10 \
   --min-target-coverage 0.999
 ```
 
-Materializer smoke evidence:
+Manifest: `artifacts/batch2b/b5o_proxy_lasttime_full/materializer_manifest.json`
 
 | Quantity | Value |
 |---|---:|
-| Ranking rows | 2000 |
-| Unique target items | 1997 |
-| Target coverage | 1.0000 |
-| Corpus rows | 2151 |
-| Users | 9 |
+| Ranking rows | 17,800,904 |
+| Unique target items | 5,548,777 |
+| Target coverage | 1.000000 |
+| Corpus rows/items | 6,206,709 |
+| Users | 102,086 |
 | Synthetic missing users | 0 |
-| Invalid age/gender coercions | 0 |
+| Positive labels | 682,228 |
+| Negative labels | 17,118,676 |
+| Test threshold | `time_index >= 867165` |
+| Train rows | 16,020,759 |
+| Test rows | 1,780,145 |
+| Actual test fraction | 0.100003 |
 
-The official `ranking/data/process.py` then ran successfully with
-`BAAI/bge-small-zh-v1.5`. Its root-level outputs were moved into `./data/`,
-which is the path consumed by `ranking/datasets.py`; no official source patch
-was needed for the embedding path mismatch.
+Official BGE encoding:
 
-Official DNN 1-epoch smoke:
-
-```bash
-conda run -n pps-kuaisearch accelerate launch --num_processes 1 \
-  /data/gkl/myrec/baselines/kuaisearch_official/ranking/main.py \
-  --model DNN --data_dir data --batch_size 512 --num_epochs 1 \
-  --mixed_precision no --save_dir checkpoints_dnn_smoke
-```
-
-Smoke output:
-
-| Metric | Value |
+| Artifact | Shape / count |
 |---|---:|
-| Train rows | 1512 |
-| Valid rows | 168 |
-| Test rows | 320 |
-| Valid LogLoss | 0.6424 |
-| Valid AUC | 0.6509 |
-| Test LogLoss | 0.6439 |
-| Test AUC | 0.3779 |
+| `data/query_emb.npy` | `(555553, 512)`, float16 |
+| `data/session_id2idx.json` | 555,553 entries |
+| `data/item_title_emb.npy` | `(6206709, 512)`, float16 |
+| `data/item_id2idx.json` | 6,206,709 entries |
 
-This smoke proves that the materializer fixes the official loader path, user
-schema, and missing-user fallback issues on public raw data. It is not a paper
-number alignment result: it uses only 2000 ranking rows and a provisional
-last-time split.
+BGE command log: `artifacts/batch2b/b5o_proxy_lasttime_full/bge_process.stdout`.
+Elapsed wall time: 21:09.
 
-## Remaining Blocker
+## Proxy Alignment Runs
 
-The full Table 7 reproduction needs an explicit test split. The local public
-`rank_lite/train.jsonl` rows carry `split=train`, and the locked official
-loader only treats rows with `split == "test"` as test. The repo code/README
-does not expose the exact paper Table 7 last-day boundary. Starting full
-DNN/DCNv2/DIN alignment with an invented split would produce a non-defensible
-official-reproduction claim.
+Both runs used the locked official `ranking/main.py` defaults:
+`batch_size=4096`, `num_epochs=30`, `lr=1e-3`, `weight_decay=1e-5`,
+`mixed_precision=bf16`, seed 42, and `early_stop_patience=2`.
 
-The decision point and candidate options are recorded in
-`doc/baseline_notes/20260709_b5o_stage_a_split_decision.md`.
+Run count against the Stage A stop-loss cap: 2/6.
+
+| Method | Target Logloss | Target AUC | Proxy LogLoss | Proxy AUC | Rel. Logloss Diff | Rel. AUC Diff | Verdict |
+|---|---:|---:|---:|---:|---:|---:|---|
+| DNN | 0.1588 | 0.6258 | 0.160731 | 0.613133 | +1.22% | -2.02% | within +/-10% |
+| DCNv2 | 0.1603 | 0.6239 | 0.162635 | 0.616348 | +1.46% | -1.21% | within +/-10% |
+
+DNN details:
+
+- log: `artifacts/batch2b/b5o_proxy_lasttime_full/train_dnn_proxy.stdout`
+- early stop: epoch 8
+- best checkpoint epoch: 6
+- best valid LogLoss/AUC: 0.153592 / 0.689025
+- final test LogLoss/AUC: 0.160731 / 0.613133
+- elapsed wall time: 2:46:26
+
+DCNv2 details:
+
+- log: `artifacts/batch2b/b5o_proxy_lasttime_full/train_dcnv2_proxy.stdout`
+- early stop: epoch 5
+- best checkpoint epoch: 3
+- best valid LogLoss/AUC: 0.150727 / 0.714827
+- final test LogLoss/AUC: 0.162635 / 0.616348
+- elapsed wall time: 1:46:00
+
+Large checkpoints were removed after metrics were recorded; logs and materialized
+data remain under ignored `artifacts/`.
 
 ## Verdict
 
-B5o Stage A remains downgraded for now: official code is present and executable,
-and the public-file materializer smoke passes, but paper-number alignment is not
-yet verifiable without an authorized split policy or upstream-confirmed split.
-No Stage B KuaiSearch dev evaluation is authorized from this evidence.
+B5o Stage A is `official-code, proxy-aligned (last-time 10% split)`. The result
+is strong enough to say the locked official ranking code and adapter match the
+Table 7 metric scale under the proxy split.
+
+The claim is intentionally limited:
+
+- it is not an upstream-confirmed Table 7 split guarantee;
+- it does not authorize a main-table official claim without the caveat;
+- it does not consume KuaiSearch PPS dev budget;
+- it does not start Stage B on PPS standardized data.
+
+Next decision, if desired: whether to run a scoped Stage B KuaiSearch adapter
+under the same caveat, or keep B5o as an external-aligned proxy baseline only.

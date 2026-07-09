@@ -5,8 +5,8 @@ Date: 2026-07-09
 Scope: Batch 2b B5o, locked upstream commit
 `7ce0471b659112096f0aa7e892ed0aa4c972246a`.
 
-Status: downgrade report with a bounded Stage A repair attempt. B5o remains
-`official-code, alignment-not-verifiable`; no KuaiSearch dev run was produced.
+Status: Stage A passed under the authorized last-time proxy split. The exact
+paper split remains unverified and no KuaiSearch dev run has been produced.
 
 ## Official Ranking Pipeline Requirements
 
@@ -19,7 +19,7 @@ Status: downgrade report with a bounded Stage A repair attempt. B5o remains
 | Item title embeddings | `./data/item_title_emb.npy` + `./data/item_id2idx.json` | Same path mismatch as query embeddings |
 | History | `recently_clicked_item_ids` only, max 20 | Standardized records have frozen history click/purchase events; official path ignores purchased history |
 | Label | `is_clicked == 1 or is_purchased == 1` | Compatible with raw ranking rows; formal PPS dev labels remain forbidden |
-| Split | sample field `split == "test"` else train, then random 10% valid | Local public `rank_lite/train.jsonl` has no test rows; the materializer supports an explicit last-time proxy, but the exact Table 7 split boundary is still unverified |
+| Split | sample field `split == "test"` else train, then random 10% valid | Local public `rank_lite/train.jsonl` has no test rows; the authorized proxy uses last 10% by `time_index`, with threshold ties assigned to test; the exact Table 7 split boundary is still unverified |
 | Metrics | test LogLoss and ROC-AUC | Paper Table 7 provides Logloss/ROC-AUC targets |
 
 ## Fairness-Matrix Mapping For Any Future Adapter
@@ -83,33 +83,73 @@ Age mapping:
 Missing or invalid user features use `gender=M`, `age=31-40` so the official
 fallback indices `gender=2` and `age=9` are never reached.
 
-Smoke artifact:
+Smoke artifacts:
 
 - `artifacts/batch2b/b5o_materializer_smoke/materializer_manifest.json`
+- `reports/b5o_smoke_auc_direction_check.md`
 - 2000 ranking rows
 - target item coverage: 1997/1997 unique target ids, rate 1.0
 - users: 9/9 matched, 0 synthetic missing users
 - official BGE process completed with `BAAI/bge-small-zh-v1.5`
 - official DNN 1-epoch smoke completed: test LogLoss 0.643912, AUC 0.377851
+- the low smoke AUC was manually checked: official AUC equals manual AUC, and
+  the materializer preserves the raw click/purchase label fields
 
 This smoke validates the official loader/trainer path only. It is not a Table 7
 alignment run because the subset is tiny and uses a provisional split.
 
-## Remaining Decision Before Full Stage A
+## Authorized Proxy Split For Full Stage A
 
-The materializer can technically produce full official-format data, but the
-paper Table 7 split remains unverified. The local public ranking file carries
-`split=train` for all checked rows, while the official loader requires
-`split=test` rows. The materializer implements a deterministic
-`last_time_fraction` proxy and an explicit `last_time_cutoff` mode, but using
-either for full Table 7 alignment needs authorization.
+The materializer can produce full official-format data. The paper Table 7 split
+remains unverified: the local public ranking file carries `split=train` for all
+checked rows, while the official loader requires `split=test` rows.
 
-See `doc/baseline_notes/20260709_b5o_stage_a_split_decision.md`.
+Authorized proxy for the bounded Stage A run:
 
-## Required Decision Before Any Formal B5o Run
+- policy: `last_time_fraction`
+- test fraction: `0.10`
+- time field: `time_index`
+- tie handling: `time_index >= test_time_min` is assigned to test, so the
+  actual test fraction may exceed exactly 10%
 
-Proceeding to a KuaiSearch dev run would require a scoped adapter, not a clean
-official reproduction. The adapter would need to:
+Conclusion rule:
+
+- proxy +/-10% alignment can only be reported as
+  `official-code, proxy-aligned (last-time 10% split)`, with the split caveat;
+- proxy >10% difference leaves B5o as
+  `official-code, alignment-not-verifiable`, with no tuning loop.
+
+Decision note:
+`doc/baseline_notes/20260709_b5o_stage_a_split_decision.md`.
+
+## Proxy Stage A Outcome
+
+Full proxy artifact root:
+`artifacts/batch2b/b5o_proxy_lasttime_full`.
+
+The full materializer passed with target coverage 1.0, 17,800,904 ranking rows,
+6,206,709 corpus items, and a proxy test split of 1,780,145 rows
+(`time_index >= 867165`, actual fraction 0.100003).
+
+Official BGE encoding generated `(555553, 512)` query embeddings and
+`(6206709, 512)` item-title embeddings with the locked repo encoder
+`BAAI/bge-small-zh-v1.5`.
+
+The official default DNN and DCNv2 runs both landed within +/-10% of the paper
+Table 7 metric scale under this proxy split:
+
+| Method | Proxy LogLoss | Proxy AUC | Table 7 Logloss | Table 7 AUC | Verdict |
+|---|---:|---:|---:|---:|---|
+| DNN | 0.160731 | 0.613133 | 0.1588 | 0.6258 | proxy-aligned |
+| DCNv2 | 0.162635 | 0.616348 | 0.1603 | 0.6239 | proxy-aligned |
+
+This does not remove the split caveat. The correct status is
+`official-code, proxy-aligned (last-time 10% split)`.
+
+## Required Decision Before Any Formal B5o Dev Run
+
+Proceeding to a KuaiSearch dev run requires a scoped adapter under the same
+proxy-aligned identity. The adapter must:
 
 - materialize official-format `rank.jsonl`, `corpus.jsonl`, and `users.jsonl`
   from train-only standardized or raw train data;
@@ -118,5 +158,5 @@ official reproduction. The adapter would need to:
 - preserve frozen per-request history at inference;
 - emit per-fixed-candidate `scores.jsonl` for the shared PPS evaluator.
 
-Until that decision is authorized, B5o remains a downgraded secondary baseline
-candidate and not a formal official-aligned main-table run.
+Until that decision is authorized, B5o remains external Stage A evidence only:
+proxy-aligned but not yet a formal PPS dev baseline run.

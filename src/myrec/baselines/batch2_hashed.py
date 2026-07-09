@@ -654,7 +654,7 @@ def _implementation_note(method: str) -> str:
         return (
             "No official HEM/ZAM/TEM adapter is present in the repo. This run is "
             "a PPS-classic style shallow query-history fusion adapter over the "
-            "allowed standardized fields, not an official reproduction."
+            "allowed standardized fields, not a caveat-free official baseline claim."
         )
     raise ValueError(method)
 
