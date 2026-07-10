@@ -4,6 +4,30 @@
 `12_experiment_execution_protocol.md` 定义环境、GPU、run 和评测边界。本文回答：
 每个 baseline 如何实现、如何导出分数、如何验收，避免 baseline 只停留在列表层面。
 
+2026-07-10 M3 修订提示：现有 same-label per-request oracle 被 Random 通道
+复现，因此 M3 产物只能保留为失败诊断。任何后续 headroom 实现必须增加
+Random null 或独立 selection/evaluation；见
+`reports/pps_m3_m4_random_canary_audit.json`。
+当前 positive motivation 不再尝试修复 oracle，而由 `doc/17` 的 matched
+wrong-user history 控制替代；baseline 数值与身份边界不受该替代影响。
+
+2026-07-10 C5-R2 prequential amendment：`doc/22` 将 request-time history
+明确为 as-of evidence。训练参数和聚合统计仍只能来自 train；但统一 record 中
+已经冻结、严格早于当前请求的行为可以在显式 prequential 控制中使用，前提是
+true/wrong 两侧采用相同可用信息策略、同 timestamp 后才更新 donor pool，且
+materializer/scorer 不读取当前请求 qrels。该 amendment 不允许 future behavior
+或任何 test-time selection。
+
+2026-07-10 C5-R3 terminal amendment：`doc/23` 的固定 removal ablation 表明
+full B0b/D2s 的有效 history signal 集中于 exact item recurrence；category-only
+对 D2p 0/3 seed 显著，full D2s 对 item-only 3/3 seed 显著更差。item-only mean
+0.3453755 现为最强静态 baseline。它是 benchmark control，不是 proposed
+system；primary/fallback 均失败后不得把 exact recurrence、coarse category 或
+multi-granular mixing 事后包装成已验证 primitive。该负结果同时揭示了
+evidence-fidelity failure，可支持 architecture/protocol formulation；完整实现与
+训练仍由新的 design-specific pre-outcome gate 把关。C5-R3 新增 6 次固定 dev
+evaluator 调用且不构成 tuning。
+
 核心原则：
 
 1. 所有 baseline 读取同一个 standardized JSONL；
@@ -37,7 +61,10 @@ data/standardized/<dataset_id>/<version>/
 record schema 并重新通过 C1。
 
 **train 统计的边界**：允许用 `records_train.jsonl` 的标签做统计特征（如
-popularity、query 点击熵），禁止用 dev/test 的任何标签或行为构造任何特征。
+popularity、query 点击熵），禁止用当前/未来 dev/test 标签或行为拟合参数、
+聚合统计或选择配置。唯一例外是 `doc/22` 定义的 prequential request-time
+history：只读取统一 record 内严格早于当前请求的事件，不读取当前 qrels，且
+所有比较侧必须使用同一 as-of policy。
 
 **请求内 z-score 的统一定义**（B0b/B1/B2z 导出、B7 消费，实现进
 `src/myrec/`，不许各方法自写）：

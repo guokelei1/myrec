@@ -1,0 +1,73 @@
+{
+  "report": "pps_m3_bidirectional_slice",
+  "date": "20260709",
+  "status": "analysis-only (read-only re-analysis of tracked M3 oracle artifact)",
+  "source_artifact": "runs/20260708_kuaisearch_m3_oracle_dev/oracle_choices.jsonl",
+  "source_run_id": "20260708_kuaisearch_m3_oracle_dev",
+  "metric": "ndcg@10",
+  "num_requests": 12229,
+  "channels": {
+    "query_b2z": {
+      "global_metric": 0.3056464293874881,
+      "run_id": "20260708_kuaisearch_b2z_bge_small_zh_dev"
+    },
+    "history_b0b": {
+      "global_metric": 0.3139167214574482,
+      "run_id": "20260708_kuaisearch_b0b_recent_behavior_dev"
+    },
+    "static_b7_bge": {
+      "global_metric": 0.3305274446695661,
+      "run_id": "20260708_kuaisearch_b7_bge_dev_a02"
+    }
+  },
+  "oracle_choice_distribution": {
+    "query_b2z": {
+      "count": 7414,
+      "rate": 0.6062637991659171
+    },
+    "history_b0b": {
+      "count": 4287,
+      "rate": 0.3505601439201897
+    },
+    "static_b7_bge": {
+      "count": 528,
+      "rate": 0.0431760569138932
+    }
+  },
+  "claim": "Tie-aware evidence shows two strict failure subsets: B7-bge is below query-only on 12.53% of all requests and below history-only on 30.35%. The frozen assignment slices remain useful for conditional averages, but the 60.6% query assignment is not a strict-preference or failure rate.",
+  "bidirectional_slices": {
+    "over_personalization_query_optimal": {
+      "oracle_choice": "query_b2z",
+      "share_of_requests": 0.6062637991659171,
+      "interpretation": "this is the frozen query-first assignment slice and includes ties; B7-bge is strictly below query-only on 18.61% of this slice (12.53% of all requests), which is the defensible over-personalization subset",
+      "query_b2z_mean_ndcg10": 0.3475579316327762,
+      "static_b7_bge_mean_ndcg10": 0.3088049693783775,
+      "static_b7_bge_delta_vs_query": -0.038752962254398726,
+      "static_b7_bge_delta_vs_query_relative": -0.11150072758329235,
+      "requests_where_b7_strictly_hurts_vs_query": 1380,
+      "requests_where_b7_strictly_hurts_rate": 0.18613434043701105,
+      "history_b0b_mean_ndcg10": 0.1784834913544924,
+      "history_b0b_delta_vs_query_relative": -0.4864640535866837,
+      "requests_where_b0b_strictly_hurts_vs_query": 4318,
+      "requests_where_b0b_strictly_hurts_rate": 0.5824116536282709
+    },
+    "under_personalization_history_optimal": {
+      "oracle_choice": "history_b0b",
+      "share_of_requests": 0.3505601439201897,
+      "interpretation": "on requests where pure history is the best available channel, query-only and the static mixture both use too little history (under-personalization)",
+      "history_b0b_mean_ndcg10": 0.5399211216195144,
+      "static_b7_bge_mean_ndcg10": 0.3427200272962681,
+      "static_b7_bge_delta_vs_history_relative": -0.3652405627913462,
+      "query_b2z_mean_ndcg10": 0.23189021170867052,
+      "query_b2z_delta_vs_history_relative": -0.5705109460931871,
+      "requests_where_query_underperforms_history": 4287,
+      "requests_where_query_underperforms_history_rate": 1.0
+    }
+  },
+  "aggregate_paradox": {
+    "static_b7_bge_global": 0.3305274446695661,
+    "query_b2z_global": 0.3056464293874881,
+    "b7_beats_query_global_delta": 0.02488101528207798,
+    "explanation": "B7-bge wins in aggregate over query-only while remaining strictly below query-only on 12.53% of all requests and strictly below history-only on 30.35%. The 60.6% query-assigned slice contains many ties and must not be described as a 60.6% loss rate. See reports/pps_m3_tie_aware_audit.json."
+  }
+}

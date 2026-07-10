@@ -1,0 +1,130 @@
+{
+  "architecture_ready": false,
+  "architecture_ready_field_semantics": "Backward-compatible field: false means not ready for full implementation/training; it does not block design formulation.",
+  "design_formulation_ready": true,
+  "implementation_training_authorized": false,
+  "implementation_training_ready": false,
+  "motivation_complete": true,
+  "primitive_validated": false,
+  "authorized_next_stage": "Formulate the evidence-fidelity calibration architecture, nearest-neighbor mechanism table, controls, and a frozen pre-implementation design gate. Do not start full training until that gate passes.",
+  "claim_boundary": {
+    "not_supported": [
+      "randomized or causal user-identity effects",
+      "independent value from coarse category history alignment",
+      "established query-to-event attention",
+      "semantic preference transfer beyond exact repeat items",
+      "per-request fixed-channel oracle headroom",
+      "learnable channel routing",
+      "a currently validated or implementation-authorized proposed-system architecture"
+    ],
+    "supported": [
+      "the fixed candidate pool is query-conditioned",
+      "D2p is a strong legal non-personalized base",
+      "exact repeat-item history is a stable candidate-aligned signal beyond D2p",
+      "category-only history has no significant independent gain in the frozen control",
+      "adding the category component significantly weakens item-only ranking on history-present requests",
+      "exact non-personalized fallback when history is absent",
+      "history evidence has unequal empirical fidelity, creating a traceable design problem"
+    ]
+  },
+  "current_static_waterline": {
+    "method": "C5-R3 item-only D2s",
+    "run_pattern": "20260710_kuaisearch_c5r3_d2s_item_only_dev_s{seed}",
+    "three_seed_mean_ndcg@10": 0.34537554266578646,
+    "future_two_percent_threshold": 0.3522830535191022
+  },
+  "date": "2026-07-10",
+  "decision": {
+    "architecture_ready": false,
+    "design_formulation_ready": true,
+    "fallback_passed": false,
+    "gate_version": "C5-R3",
+    "implementation_training_authorized": false,
+    "implementation_training_ready": false,
+    "outcome": "TERMINAL_FAIL",
+    "primary_passed": false,
+    "scientific_terminal": "c5r3_multigranular_and_coarse_semantic_paths_only",
+    "stage_interpretation": "C5-R3 kills its two preregistered claims. It does not prohibit formulating a new evidence-fidelity design hypothesis derived from the observed contrast."
+  },
+  "evidence": {
+    "category_only_vs_d2p_history_present": {
+      "deltas": [
+        0.0005940913161763098,
+        0.0005321124061544057,
+        -0.000028203846972088483
+      ],
+      "significant_seeds": 0,
+      "three_seed_mean_relative_gain": 0.0011478928239851633
+    },
+    "component_audit": {
+      "candidate_rows_checked": 575609,
+      "max_abs_error_vs_public_and_upstream_b0b": 7.105427357601002e-15,
+      "tolerance": 1e-12,
+      "violations": 0
+    },
+    "full_d2s_vs_item_only_history_present": {
+      "deltas": [
+        -0.005382776512452721,
+        -0.005210304690010927,
+        -0.006336340985693214
+      ],
+      "full_significantly_worse_seeds": 3
+    },
+    "history_structure": {
+      "history_absent": 4110,
+      "history_present": 8119,
+      "item_component_nonzero_requests": 3442,
+      "category_component_nonzero_requests": 5974
+    },
+    "item_only_vs_d2p_history_present": {
+      "deltas": [
+        0.03203959171008375,
+        0.03213999878865582,
+        0.03263482113835763
+      ],
+      "significant_seeds": 3
+    },
+    "no_history_equivalence": {
+      "metric_mismatches": 0,
+      "num_requests": 4110,
+      "rank_mismatches": 0
+    }
+  },
+  "historical_boundaries": {
+    "C5-R2": "Aggregate freshness-balanced correct-history value survived, but same-query identity specificity failed the frozen 2/3 rule.",
+    "D1": "Mean-history and query-attentive residuals did not stably beat their base.",
+    "M3_M4": "Construct validity failed under the Random-channel null."
+  },
+  "insight": {
+    "architecture_consequence": "Design one candidate-conditioned evidence-fidelity calibration primitive that preserves reliable recurrence and admits a transferable residual only when joint query/history/candidate evidence supports it. This is a design hypothesis, not an established outcome.",
+    "design_falsification": "Before full implementation, freeze and pass a gate requiring no degradation versus item-only on repeat-present requests, stable positive value over D2p on the 4677 non-repeat history-present requests, failure of coarse-only/wrong-user/shuffled-event/query-masked controls to reproduce the value, and exact D2p fallback without history.",
+    "falsification_result": "The multi-granular primary and sole coarse-semantic fallback both failed exactly as frozen.",
+    "name": "unequal evidence fidelity: reliable recurrence versus unvalidated transfer",
+    "observation": "In the frozen KuaiSearch B0b/D2s bundle, stable history gain is concentrated in exact candidate-item recurrence. Coarse category alignment has no independent significant gain and weakens item-only ranking when added; treating both as equally reliable is therefore empirically wrong."
+  },
+  "integrity": {
+    "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+    "dev_evaluations_added": 6,
+    "dev_evaluations_logged_exactly_once": true,
+    "passed": true,
+    "qrels_read_by_materialization_or_scoring": false,
+    "qrels_sha256_shared_evaluator_only": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+    "test_read": false
+  },
+  "independent_consistency_audit": {
+    "path": "reports/pps_c5r3_consistency_audit.json",
+    "status": "passed"
+  },
+  "protocol": {
+    "config": "configs/analysis/c5r3_candidate_history_alignment.yaml",
+    "config_sha256": "ee0437939566e46bb74e13d35433cc7cf26343a41040d9d20d454d2ecf3c246f",
+    "path": "doc/23_c5r3_candidate_history_alignment_protocol.md",
+    "pre_outcome_locked": true,
+    "protocol_sha256": "37116692a80066a37fc85fd9f77321f2b51039f5e11039195acc68ca5a11dd6f"
+  },
+  "report": "pps_c5_insight_audit",
+  "source_report": "reports/pps_c5r3_candidate_history_alignment.json",
+  "source_report_sha256": "a09cd6d6724ee745a3d7f94f7ab6120f59649ee229e0f9c29f1e7e59877daf4b",
+  "status": "motivation_complete_design_formulation_ready_training_gated",
+  "test_split_read": false
+}

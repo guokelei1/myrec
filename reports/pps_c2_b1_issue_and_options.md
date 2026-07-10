@@ -127,5 +127,6 @@ protocol version requires literal B1 dominance again.
 
 No further B1 tuning is recommended in this Batch 1 slice. Future C3/M5 wording
 should avoid the old claim that query-only methods fail specifically in high
-entropy buckets; the supported statement is that query signal is already largely
-saturated inside the fixed candidate pool.
+entropy buckets. The supported statement is that the fixed pool is already
+query-conditioned and the tested lexical/zero-shot query-only scorers have
+limited marginal click signal; universal query saturation is not established.

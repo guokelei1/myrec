@@ -1,0 +1,240 @@
+{
+  "analysis_id": "d2s_static_full_waterline_v1",
+  "calibration": {
+    "beta": 0.3,
+    "d2p_alpha": 0.6,
+    "report": "reports/pps_d2s_train_only_calibration.json"
+  },
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "comparisons_seed20260708": {
+    "d2s_vs_b0b": {
+      "ci95": [
+        0.023060807637490244,
+        0.03214286580334463
+      ],
+      "delta": 0.027596938701226214,
+      "metric": "ndcg@10",
+      "num_requests": 12229,
+      "samples": 10000,
+      "seed": 20260708,
+      "significant_a_gt_b": true
+    },
+    "d2s_vs_b7": {
+      "ci95": [
+        0.007224561593793752,
+        0.014771061085675281
+      ],
+      "delta": 0.010986215489108388,
+      "metric": "ndcg@10",
+      "num_requests": 12229,
+      "samples": 10000,
+      "seed": 20260708,
+      "significant_a_gt_b": true
+    },
+    "d2s_vs_d2h": {
+      "ci95": [
+        0.0037327412927855904,
+        0.009011199762388738
+      ],
+      "delta": 0.006362740409498102,
+      "metric": "ndcg@10",
+      "num_requests": 12229,
+      "samples": 10000,
+      "seed": 20260708,
+      "significant_a_gt_b": true
+    },
+    "d2s_vs_d2p": {
+      "ci95": [
+        0.014663557689492077,
+        0.020744451175830077
+      ],
+      "delta": 0.01769782341888677,
+      "metric": "ndcg@10",
+      "num_requests": 12229,
+      "samples": 10000,
+      "seed": 20260708,
+      "significant_a_gt_b": true
+    }
+  },
+  "decision": {
+    "baseline_to_beat": "D2s",
+    "baseline_to_beat_mean_ndcg@10": 0.34162898451860496,
+    "d2s_replaces_d2h": true,
+    "interpretation": "The complete static combination of frozen D2p and correct-user history significantly exceeds D2h. D2s replaces D2h as the binding design waterline while preserving the same identity and no-history boundaries."
+  },
+  "dev_evaluations": 6,
+  "identity_control": {
+    "history_present": {
+      "20260708": {
+        "ci95": [
+          0.030768523577845593,
+          0.04040777891130545
+        ],
+        "delta": 0.03557048929320002,
+        "metric": "ndcg@10",
+        "num_requests": 8119,
+        "request_ids_path": "artifacts/analysis/c3_history_identity_controls/history_present_request_ids.txt",
+        "samples": 10000,
+        "seed": 20260708,
+        "significant_a_gt_b": true
+      },
+      "20260709": {
+        "ci95": [
+          0.03020352175278418,
+          0.039980327743190186
+        ],
+        "delta": 0.035101496367602146,
+        "metric": "ndcg@10",
+        "num_requests": 8119,
+        "request_ids_path": "artifacts/analysis/c3_history_identity_controls/history_present_request_ids.txt",
+        "samples": 10000,
+        "seed": 20260708,
+        "significant_a_gt_b": true
+      },
+      "20260710": {
+        "ci95": [
+          0.030460895074800324,
+          0.04031619370113126
+        ],
+        "delta": 0.035423876846950635,
+        "metric": "ndcg@10",
+        "num_requests": 8119,
+        "request_ids_path": "artifacts/analysis/c3_history_identity_controls/history_present_request_ids.txt",
+        "samples": 10000,
+        "seed": 20260708,
+        "significant_a_gt_b": true
+      }
+    },
+    "history_present_mean_delta": 0.03536528750258427,
+    "same_query": {
+      "20260708": {
+        "ci95": [
+          0.01989628265491923,
+          0.03552329586273624
+        ],
+        "delta": 0.027715507985324975,
+        "metric": "ndcg@10",
+        "num_requests": 2709,
+        "request_ids_path": "artifacts/analysis/c3_history_identity_controls/same_query_all_seeds_request_ids.txt",
+        "samples": 10000,
+        "seed": 20260708,
+        "significant_a_gt_b": true
+      },
+      "20260709": {
+        "ci95": [
+          0.02021444090270395,
+          0.035920809546135544
+        ],
+        "delta": 0.028082036083699285,
+        "metric": "ndcg@10",
+        "num_requests": 2709,
+        "request_ids_path": "artifacts/analysis/c3_history_identity_controls/same_query_all_seeds_request_ids.txt",
+        "samples": 10000,
+        "seed": 20260708,
+        "significant_a_gt_b": true
+      },
+      "20260710": {
+        "ci95": [
+          0.01925067847395259,
+          0.03492924753126389
+        ],
+        "delta": 0.02708771412610078,
+        "metric": "ndcg@10",
+        "num_requests": 2709,
+        "request_ids_path": "artifacts/analysis/c3_history_identity_controls/same_query_all_seeds_request_ids.txt",
+        "samples": 10000,
+        "seed": 20260708,
+        "significant_a_gt_b": true
+      }
+    },
+    "same_query_mean_delta": 0.027628419398375015
+  },
+  "no_history_metric_equivalence": {
+    "20260708": {
+      "metric_mismatches": {
+        "mrr": 0,
+        "ndcg@10": 0,
+        "recall@10": 0
+      },
+      "request_count": 4110,
+      "status": "passed"
+    },
+    "20260709": {
+      "metric_mismatches": {
+        "mrr": 0,
+        "ndcg@10": 0,
+        "recall@10": 0
+      },
+      "request_count": 4110,
+      "status": "passed"
+    },
+    "20260710": {
+      "metric_mismatches": {
+        "mrr": 0,
+        "ndcg@10": 0,
+        "recall@10": 0
+      },
+      "request_count": 4110,
+      "status": "passed"
+    }
+  },
+  "qrels_read_by_calibration_or_scoring": false,
+  "score_audit": "reports/pps_d2s_score_audit.json",
+  "test_read": false,
+  "variants": {
+    "true": {
+      "mean_ndcg@10": 0.34162898451860496,
+      "sample_std_ndcg@10": 0.00037112647715625596,
+      "seeds": [
+        {
+          "mrr": 0.3265749240397992,
+          "ndcg@10": 0.34151366015867446,
+          "recall@10": 0.5530284330449513,
+          "run_id": "20260710_kuaisearch_d2s_static_true_history_dev_s20260708",
+          "seed": 20260708
+        },
+        {
+          "mrr": 0.3269731595637466,
+          "ndcg@10": 0.3420440821207815,
+          "recall@10": 0.5547200612398678,
+          "run_id": "20260710_kuaisearch_d2s_static_true_history_dev_s20260709",
+          "seed": 20260709
+        },
+        {
+          "mrr": 0.3266080020793385,
+          "ndcg@10": 0.3413292112763589,
+          "recall@10": 0.552675520921181,
+          "run_id": "20260710_kuaisearch_d2s_static_true_history_dev_s20260710",
+          "seed": 20260710
+        }
+      ]
+    },
+    "wrong": {
+      "mean_ndcg@10": 0.318149487484221,
+      "sample_std_ndcg@10": 0.0005130083409032568,
+      "seeds": [
+        {
+          "mrr": 0.2951887345581881,
+          "ndcg@10": 0.31789792685493,
+          "recall@10": 0.5395325392097002,
+          "run_id": "20260710_kuaisearch_d2s_static_wrong_history_dev_s20260708",
+          "seed": 20260708
+        },
+        {
+          "mrr": 0.29531729196821027,
+          "ndcg@10": 0.3187397196211036,
+          "recall@10": 0.5420892117204287,
+          "run_id": "20260710_kuaisearch_d2s_static_wrong_history_dev_s20260709",
+          "seed": 20260709
+        },
+        {
+          "mrr": 0.29522724636315906,
+          "ndcg@10": 0.3178108159766294,
+          "recall@10": 0.5405770969793116,
+          "run_id": "20260710_kuaisearch_d2s_static_wrong_history_dev_s20260710",
+          "seed": 20260710
+        }
+      ]
+    }
+  }
+}

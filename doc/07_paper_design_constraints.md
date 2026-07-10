@@ -4,6 +4,12 @@ This document is normative. It defines constraints that any future paper design
 must satisfy. It does not choose the current method, current main insight, or
 current architecture direction.
 
+PPS audit amendment (2026-07-10): an oracle that selects and evaluates a
+per-request winner on the same labels must include a Random-channel null or an
+independent selection/evaluation split. Split-half stability after taking the
+maximum is insufficient. Without this control, oracle headroom cannot satisfy
+Tier 1 evidence hygiene.
+
 The role of this document is to prevent a common failure mode:
 
 ```text

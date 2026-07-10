@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    0.032822498958461725,
+    0.04297500304986877
+  ],
+  "delta": 0.037890466245529705,
+  "metric": "ndcg@10",
+  "num_requests": 7614,
+  "request_ids_path": "artifacts/analysis/c5r_temporal_symmetric_identity/freshness_balanced_all_seeds_request_ids.txt",
+  "samples": 10000,
+  "seed": 20260708,
+  "significant_a_gt_b": true
+}

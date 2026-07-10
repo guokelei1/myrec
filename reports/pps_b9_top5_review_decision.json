@@ -1,0 +1,33 @@
+{
+  "date": "2026-07-10",
+  "models": {
+    "tem": {
+      "direct_query_match_top1": 18,
+      "documented_flags": [
+        "ks_f3f444cab33f9bae55f94f25: off-topic jump-rope and swimwear items at ranks 4/5",
+        "ks_fe72eab23ba6ba2b0dcb0ca3: category-adjacent electric pot at rank 1 and off-topic toothbrush at rank 4"
+      ],
+      "reviewed_requests": 20,
+      "status": "preliminary"
+    },
+    "zam": {
+      "direct_query_match_top1": 19,
+      "documented_flags": [
+        "ks_36b30d4bee3354e9f668b0e9: category-adjacent girl's outerwear rather than a direct long-windbreaker match at rank 1",
+        "ks_f3f444cab33f9bae55f94f25: off-topic jump-rope item at rank 5",
+        "ks_fe72eab23ba6ba2b0dcb0ca3: off-topic toothbrush item at rank 4"
+      ],
+      "reviewed_requests": 20,
+      "status": "preliminary"
+    }
+  },
+  "qrels_read": false,
+  "records_test_read": false,
+  "reviewer": null,
+  "authorization": null,
+  "provenance_status": "pending_author_confirmation",
+  "review_path": "reports/pps_b9_top5_review.md",
+  "review_scope": "label-free pipeline-integrity review; confirmation does not claim uniformly strong relevance",
+  "seed": 20260708,
+  "status": "preliminary"
+}

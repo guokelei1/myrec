@@ -102,5 +102,6 @@ Any later C0/C2/C3 write-up should state that KuaiSearch fixed candidates appear
 query-filtered by log-internal diagnostics. The resulting task is better framed
 as preference ranking within query-relevant candidates, not first-stage lexical
 retrieval. M4/M5 wording should avoid claiming that query-only methods fail only
-in high-entropy buckets; the stronger finding may be that query signal is
-saturated throughout the fixed candidate set.
+in high-entropy buckets. The supported finding is narrower: the candidate pool
+is query-conditioned and the tested lexical/zero-shot query-only scorers add
+limited marginal click signal.

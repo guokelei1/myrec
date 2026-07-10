@@ -1,0 +1,13 @@
+{
+  "examples": [],
+  "max_abs_diff": 0.0,
+  "original_path": "runs/20260710_kuaisearch_b9t_tem_r2_dev_s20260708/scores.jsonl",
+  "original_sha256": "cbe7436cdf231dee3832d6c81c1df37489b359f0c247afbefa3f246dac174855",
+  "repeat_path": "runs/20260710_kuaisearch_b9t_tem_r2_dev_s20260708/determinism_repeat/scores.jsonl",
+  "repeat_sha256": "cbe7436cdf231dee3832d6c81c1df37489b359f0c247afbefa3f246dac174855",
+  "request_count": 1000,
+  "score_rows": 42968,
+  "status": "passed",
+  "tolerance": 0.0,
+  "unequal_rows": 0
+}

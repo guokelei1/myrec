@@ -1,0 +1,15 @@
+{
+  "eligible_count": 96939,
+  "features_train_sub_path": "artifacts/m4/m4_features_train_sub.parquet",
+  "features_train_sub_sha256": "ed91dd9dfa1a2d8ca72d3617da1d2ddcb0b5f610f8624becf7b40e5c43caa1ea",
+  "filters": {
+    "no_clicked_positive": 66778
+  },
+  "qrels_dev_read": false,
+  "records_train_sha256": "2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8",
+  "report": "pps_r1_train_subset_manifest",
+  "request_count": 20000,
+  "seed": 20260708,
+  "source": "artifacts/m4/m4_train_subset_request_ids.txt",
+  "source_sha256": "d32bbf39b9767c24cef5a80cd5f07d6269b9c4c01d4eaf9a99432532d9694c2a"
+}

@@ -57,6 +57,13 @@
   "metric": "ndcg@10",
   "num_requests": 12229,
   "oracle_metric": 0.4231528068020273,
+  "posthoc_construct_validity": {
+    "report": "reports/pps_m3_m4_random_canary_audit.json",
+    "status": "failed",
+    "random_canary_oracle_metric": 0.4325222834872259,
+    "random_canary_headroom_relative": 0.3085820571409005,
+    "interpretation": "The frozen computation is accurate, but Random exceeds it; do not use +28.0% as positive adaptive-headroom evidence."
+  },
   "run_id": "20260708_kuaisearch_m3_oracle_dev",
   "split_half": {
     "first": {

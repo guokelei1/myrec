@@ -1,0 +1,654 @@
+{
+  "identity": "official-code, adapter to KuaiSearch interface, not externally aligned",
+  "materializer": {
+    "candidate_padding": {
+      "algorithm": "sha256(seed, request_id) start offset then cyclic first unseen product",
+      "dev_size": 1500,
+      "fillers_disjoint_from_original": true,
+      "original_candidates_preserved_in_order": true,
+      "valid_size": 500
+    },
+    "cold_product_coverage": {
+      "dev_candidate_rows": 575609,
+      "dev_candidate_rows_seen_as_train_target": 126620,
+      "dev_row_train_target_coverage": 0.21997571267996158,
+      "dev_unique_candidates": 396822,
+      "dev_unique_candidates_seen_as_train_target": 46459,
+      "dev_unique_train_target_coverage": 0.11707768218495951,
+      "train_unique_clicked_targets": 185621
+    },
+    "multi_positive_guard": {
+      "input_history_sibling_item_overlaps": 42387,
+      "note": "Input overlaps are legitimate prior events; the adapter adds zero current-request positives.",
+      "sibling_positives_added_by_adapter": 0,
+      "synthetic_histories_equal_input": true
+    },
+    "path": "artifacts/b9_prodsearch/full/materializer_manifest.json",
+    "sha256": "c3b08fb14bc4a5cddee9a32f1aa205fa93c2579d0388194c67a58049e81dfd0b"
+  },
+  "minimal_claimable_relative_effect": 0.02,
+  "models": {
+    "tem": {
+      "best_metrics": {
+        "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+        "generated_at": "2026-07-10T02:28:35.857507+00:00",
+        "generated_by": "myrec.eval.evaluator",
+        "method_id": "b9t_tem",
+        "mrr": 0.272855401418095,
+        "ndcg@10": 0.2947693400659837,
+        "num_requests": 12229,
+        "purchase_coverage": 0.14007686646496034,
+        "purchase_ndcg@10": 0.31951583357522456,
+        "purchase_num_requests": 1713,
+        "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+        "recall@10": 0.5163251607493374,
+        "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260710",
+        "scores_sha256": "6815452478c104f53e747b2c27b48edc3436b191ec47bf25bcc6138392afebe7",
+        "split": "dev"
+      },
+      "best_run_claimable_above": {
+        "b0b": false,
+        "b7_bge": false,
+        "r1b": false
+      },
+      "best_run_comparisons": {
+        "b0b": {
+          "ci95": [
+            -0.024464729394415692,
+            -0.013778413031867913
+          ],
+          "delta": -0.019147381391464508,
+          "metric": "ndcg@10",
+          "num_requests": 12229,
+          "samples": 10000,
+          "seed": 20260708,
+          "significant_a_gt_b": false
+        },
+        "b7_bge": {
+          "ci95": [
+            -0.04122478673455589,
+            -0.030279813172780112
+          ],
+          "delta": -0.035758104603582336,
+          "metric": "ndcg@10",
+          "num_requests": 12229,
+          "samples": 10000,
+          "seed": 20260708,
+          "significant_a_gt_b": false
+        },
+        "r1b": {
+          "ci95": [
+            -0.01787557688850416,
+            -0.007167289848825916
+          ],
+          "delta": -0.012407192829056867,
+          "metric": "ndcg@10",
+          "num_requests": 12229,
+          "samples": 10000,
+          "seed": 20260708,
+          "significant_a_gt_b": false
+        }
+      },
+      "best_run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260710",
+      "best_seed": 20260710,
+      "checks": {
+        "all_seeds_significant_above_random": true,
+        "determinism_exact_first_1000": true,
+        "loss_decreased_all_seeds": true,
+        "three_seeds": true,
+        "top5_review_confirmed": false
+      },
+      "determinism": {
+        "examples": [],
+        "max_abs_diff": 0.0,
+        "original_path": "runs/20260710_kuaisearch_b9t_tem_r2_dev_s20260708/scores.jsonl",
+        "original_sha256": "cbe7436cdf231dee3832d6c81c1df37489b359f0c247afbefa3f246dac174855",
+        "repeat_path": "runs/20260710_kuaisearch_b9t_tem_r2_dev_s20260708/determinism_repeat/scores.jsonl",
+        "repeat_sha256": "cbe7436cdf231dee3832d6c81c1df37489b359f0c247afbefa3f246dac174855",
+        "request_count": 1000,
+        "score_rows": 42968,
+        "status": "passed",
+        "tolerance": 0.0,
+        "unequal_rows": 0
+      },
+      "mean_ndcg@10": 0.294016727849123,
+      "reference_ndcg@10": {
+        "b0b": 0.3139167214574482,
+        "b7_bge": 0.3305274446695661,
+        "r1b": 0.3071765328950406
+      },
+      "runs": [
+        {
+          "execution_recovery": {
+            "checkpoint_sha256": "1f85f75285870aefad5835b1ef956827e2eee6ac6c94339b1d1dc4b130d3f371",
+            "elapsed_seconds": 156.81303949281573,
+            "reason": "The completed 20-epoch training invocation reached label-free scoring, then hit an all-empty-history batch whose upstream index tensor defaulted to float. The adapter patch now sets index tensor dtypes explicitly to torch.long; scoring resumed from the unchanged best checkpoint without retraining.",
+            "score_resume_metadata": "runs/20260710_kuaisearch_b9t_tem_r2_dev_s20260708/score_resume/metadata.json",
+            "status": "passed"
+          },
+          "loss_decreased": true,
+          "metrics": {
+            "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+            "generated_at": "2026-07-10T02:28:28.472878+00:00",
+            "generated_by": "myrec.eval.evaluator",
+            "method_id": "b9t_tem",
+            "mrr": 0.270296733418308,
+            "ndcg@10": 0.29272887786783036,
+            "num_requests": 12229,
+            "purchase_coverage": 0.14007686646496034,
+            "purchase_ndcg@10": 0.31258030115937935,
+            "purchase_num_requests": 1713,
+            "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+            "recall@10": 0.5132371883170925,
+            "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260708",
+            "scores_sha256": "cbe7436cdf231dee3832d6c81c1df37489b359f0c247afbefa3f246dac174855",
+            "split": "dev"
+          },
+          "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260708",
+          "seed": 20260708,
+          "vs_random": {
+            "ci95": [
+              0.006474178677043083,
+              0.016907595904760677
+            ],
+            "delta": 0.011608012260951078,
+            "metric": "ndcg@10",
+            "num_requests": 12229,
+            "samples": 10000,
+            "seed": 20260708,
+            "significant_a_gt_b": true
+          }
+        },
+        {
+          "execution_recovery": null,
+          "loss_decreased": true,
+          "metrics": {
+            "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+            "generated_at": "2026-07-10T02:28:32.166734+00:00",
+            "generated_by": "myrec.eval.evaluator",
+            "method_id": "b9t_tem",
+            "mrr": 0.2711117385234479,
+            "ndcg@10": 0.29455196561355507,
+            "num_requests": 12229,
+            "purchase_coverage": 0.14007686646496034,
+            "purchase_ndcg@10": 0.3229900278113885,
+            "purchase_num_requests": 1713,
+            "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+            "recall@10": 0.5173492435572239,
+            "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260709",
+            "scores_sha256": "217041e0abbd34022bc83f9c8f22f0ac8605486e41e3d7844ed8dc38dc8f13c4",
+            "split": "dev"
+          },
+          "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260709",
+          "seed": 20260709,
+          "vs_random": {
+            "ci95": [
+              0.00840619171830501,
+              0.018632877699047014
+            ],
+            "delta": 0.013431100006675804,
+            "metric": "ndcg@10",
+            "num_requests": 12229,
+            "samples": 10000,
+            "seed": 20260708,
+            "significant_a_gt_b": true
+          }
+        },
+        {
+          "execution_recovery": null,
+          "loss_decreased": true,
+          "metrics": {
+            "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+            "generated_at": "2026-07-10T02:28:35.857507+00:00",
+            "generated_by": "myrec.eval.evaluator",
+            "method_id": "b9t_tem",
+            "mrr": 0.272855401418095,
+            "ndcg@10": 0.2947693400659837,
+            "num_requests": 12229,
+            "purchase_coverage": 0.14007686646496034,
+            "purchase_ndcg@10": 0.31951583357522456,
+            "purchase_num_requests": 1713,
+            "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+            "recall@10": 0.5163251607493374,
+            "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260710",
+            "scores_sha256": "6815452478c104f53e747b2c27b48edc3436b191ec47bf25bcc6138392afebe7",
+            "split": "dev"
+          },
+          "run_id": "20260710_kuaisearch_b9t_tem_r2_dev_s20260710",
+          "seed": 20260710,
+          "vs_random": {
+            "ci95": [
+              0.008550798711910144,
+              0.018826332911195176
+            ],
+            "delta": 0.013648474459104448,
+            "metric": "ndcg@10",
+            "num_requests": 12229,
+            "samples": 10000,
+            "seed": 20260708,
+            "significant_a_gt_b": true
+          }
+        }
+      ],
+      "status": "provisional; human review pending",
+      "std_ndcg@10": 0.0009149612355645961
+    },
+    "zam": {
+      "best_metrics": {
+        "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+        "generated_at": "2026-07-10T02:28:24.767997+00:00",
+        "generated_by": "myrec.eval.evaluator",
+        "method_id": "b9z_zam",
+        "mrr": 0.2791268932014708,
+        "ndcg@10": 0.29939591092388346,
+        "num_requests": 12229,
+        "purchase_coverage": 0.14007686646496034,
+        "purchase_ndcg@10": 0.3209133548572811,
+        "purchase_num_requests": 1713,
+        "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+        "recall@10": 0.5176598857020022,
+        "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260710",
+        "scores_sha256": "63d995cb93d8e7ead22ea63a2a8f32f971a3193050019ff27e3b36ec8eb64b76",
+        "split": "dev"
+      },
+      "best_run_claimable_above": {
+        "b0b": false,
+        "b7_bge": false,
+        "r1b": false
+      },
+      "best_run_comparisons": {
+        "b0b": {
+          "ci95": [
+            -0.019781994096820854,
+            -0.009118016961574254
+          ],
+          "delta": -0.014520810533564806,
+          "metric": "ndcg@10",
+          "num_requests": 12229,
+          "samples": 10000,
+          "seed": 20260708,
+          "significant_a_gt_b": false
+        },
+        "b7_bge": {
+          "ci95": [
+            -0.036503475222550215,
+            -0.025649111419091413
+          ],
+          "delta": -0.031131533745682633,
+          "metric": "ndcg@10",
+          "num_requests": 12229,
+          "samples": 10000,
+          "seed": 20260708,
+          "significant_a_gt_b": false
+        },
+        "r1b": {
+          "ci95": [
+            -0.013153455092722933,
+            -0.002288103262558556
+          ],
+          "delta": -0.0077806219711571666,
+          "metric": "ndcg@10",
+          "num_requests": 12229,
+          "samples": 10000,
+          "seed": 20260708,
+          "significant_a_gt_b": false
+        }
+      },
+      "best_run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260710",
+      "best_seed": 20260710,
+      "checks": {
+        "all_seeds_significant_above_random": true,
+        "determinism_exact_first_1000": true,
+        "loss_decreased_all_seeds": true,
+        "three_seeds": true,
+        "top5_review_confirmed": false
+      },
+      "determinism": {
+        "examples": [],
+        "max_abs_diff": 0.0,
+        "original_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/scores.jsonl",
+        "original_sha256": "266b20304f6d71d3e25b9330651f43eb0e18642fe0e098764327213ef6d2db51",
+        "repeat_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/determinism_repeat/scores.jsonl",
+        "repeat_sha256": "266b20304f6d71d3e25b9330651f43eb0e18642fe0e098764327213ef6d2db51",
+        "request_count": 1000,
+        "score_rows": 42968,
+        "status": "passed",
+        "tolerance": 0.0,
+        "unequal_rows": 0
+      },
+      "mean_ndcg@10": 0.2986198292007261,
+      "reference_ndcg@10": {
+        "b0b": 0.3139167214574482,
+        "b7_bge": 0.3305274446695661,
+        "r1b": 0.3071765328950406
+      },
+      "runs": [
+        {
+          "execution_recovery": {
+            "authorization": "user approved checkpoint resume without full restart in chat on 2026-07-10",
+            "best_post_resume_epoch": 20,
+            "best_post_resume_mrr": 0.06553119732753715,
+            "completed_epoch_20": true,
+            "implementation_fixes": [
+              "explicit torch.long dtype for all-empty-history index batches",
+              "dimension-specific squeeze for singleton shuffled training batches"
+            ],
+            "interrupted_compatibility_probe_before_final_resume": false,
+            "post_resume_validations": [
+              {
+                "epoch": 14,
+                "mrr": 0.05917533453711916
+              },
+              {
+                "epoch": 15,
+                "mrr": 0.05869446206438277
+              },
+              {
+                "epoch": 16,
+                "mrr": 0.060879601435983616
+              },
+              {
+                "epoch": 17,
+                "mrr": 0.06385965795175406
+              },
+              {
+                "epoch": 18,
+                "mrr": 0.06341004842304748
+              },
+              {
+                "epoch": 19,
+                "mrr": 0.06471235071442741
+              },
+              {
+                "epoch": 20,
+                "mrr": 0.06553119732753715
+              }
+            ],
+            "pre_resume_best_mrr": 0.054886053698952414,
+            "preserved_pre_resume_checkpoint": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/official/model_best_epoch13_pre_resume.ckpt",
+            "preserved_pre_resume_checkpoint_sha256": "383c2292cf419d04e79dd045c6223577e0e78e7a582e6b26d38a9a32dc0367ba",
+            "resume_command": "CUDA_VISIBLE_DEVICES=0 conda run -n pps-prodsearch python main.py --model_name ZAM --mode train --seed 20260708 --data_dir /data/gkl/myrec/artifacts/b9_prodsearch/full/data --input_train_dir /data/gkl/myrec/artifacts/b9_prodsearch/full/split --save_dir /data/gkl/myrec/runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/official --rankfname official.ranklist --embedding_size 128 --lr 0.002 --max_train_epoch 20 --batch_size 32 --valid_batch_size 16 --valid_candi_size 500 --test_candi_size 1500 --candi_batch_size 500 --rank_cutoff 1500 --num_workers 4 --uprev_review_limit 20 --do_seq_review_train true --do_seq_review_test true --train_review_only false --fix_train_review true --has_valid true --decay_method adam --query_encoder_name fs --pv_window_size 1 --device cuda --train_from /data/gkl/myrec/runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/official/model_epoch_13.ckpt",
+            "resume_command_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/resume_command.sh",
+            "resume_command_sha256": "27ac3fd11f3005eb2fce4bfe7192c843d8f733e34d2dff331897614e7a7aa929",
+            "resume_from_epoch": 13,
+            "resume_stderr_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/resume_stderr.log",
+            "resume_stderr_sha256": "3185b786ff16a860201d544acb0e9b7f6c11ca55f0d317bb3c0cfce566079039",
+            "resume_stdout_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260708/resume_stdout.log",
+            "resume_stdout_sha256": "eedadf428f66fadd39e19f04939a364e74d163232990f1fe9660a0a6e0b997ef",
+            "resume_working_directory": "baselines/pps_prodsearch",
+            "rng_caveat": "The official checkpoint stores model and optimizer state but not Python/NumPy/PyTorch RNG states. The resumed trajectory is therefore not bit-identical to an uninterrupted run; final selection uses only the upstream train-only validation.",
+            "rng_state_restored": false,
+            "status": "passed",
+            "strategy": "resume_from_complete_checkpoint_without_retraining_prior_epochs"
+          },
+          "loss_decreased": true,
+          "metrics": {
+            "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+            "generated_at": "2026-07-10T02:28:17.273171+00:00",
+            "generated_by": "myrec.eval.evaluator",
+            "method_id": "b9z_zam",
+            "mrr": 0.27733247299259595,
+            "ndcg@10": 0.29859839377409697,
+            "num_requests": 12229,
+            "purchase_coverage": 0.14007686646496034,
+            "purchase_ndcg@10": 0.31829969550046827,
+            "purchase_num_requests": 1713,
+            "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+            "recall@10": 0.5185697394425008,
+            "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260708",
+            "scores_sha256": "266b20304f6d71d3e25b9330651f43eb0e18642fe0e098764327213ef6d2db51",
+            "split": "dev"
+          },
+          "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260708",
+          "seed": 20260708,
+          "vs_random": {
+            "ci95": [
+              0.012294955752482035,
+              0.022740469637704524
+            ],
+            "delta": 0.017477528167217662,
+            "metric": "ndcg@10",
+            "num_requests": 12229,
+            "samples": 10000,
+            "seed": 20260708,
+            "significant_a_gt_b": true
+          }
+        },
+        {
+          "execution_recovery": {
+            "authorization": "user approved checkpoint resume without full restart in chat on 2026-07-10",
+            "best_post_resume_epoch": 20,
+            "best_post_resume_mrr": 0.06483330981866085,
+            "completed_epoch_20": true,
+            "implementation_fixes": [
+              "explicit torch.long dtype for all-empty-history index batches",
+              "dimension-specific squeeze for singleton shuffled training batches"
+            ],
+            "interrupted_compatibility_probe_before_final_resume": false,
+            "post_resume_validations": [
+              {
+                "epoch": 14,
+                "mrr": 0.05802750755574248
+              },
+              {
+                "epoch": 15,
+                "mrr": 0.06017495175530183
+              },
+              {
+                "epoch": 16,
+                "mrr": 0.06188580767983894
+              },
+              {
+                "epoch": 17,
+                "mrr": 0.06371527005913011
+              },
+              {
+                "epoch": 18,
+                "mrr": 0.059824396489201265
+              },
+              {
+                "epoch": 19,
+                "mrr": 0.0634253574609237
+              },
+              {
+                "epoch": 20,
+                "mrr": 0.06483330981866085
+              }
+            ],
+            "pre_resume_best_mrr": 0.05616326608801893,
+            "preserved_pre_resume_checkpoint": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260709/official/model_best_epoch13_pre_resume.ckpt",
+            "preserved_pre_resume_checkpoint_sha256": "7617ac8c19cd0a7ad6e0955cd111944586e4208ec41c286b158042b502b6f473",
+            "resume_command": "CUDA_VISIBLE_DEVICES=2 conda run -n pps-prodsearch python main.py --model_name ZAM --mode train --seed 20260709 --data_dir /data/gkl/myrec/artifacts/b9_prodsearch/full/data --input_train_dir /data/gkl/myrec/artifacts/b9_prodsearch/full/split --save_dir /data/gkl/myrec/runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260709/official --rankfname official.ranklist --embedding_size 128 --lr 0.002 --max_train_epoch 20 --batch_size 32 --valid_batch_size 16 --valid_candi_size 500 --test_candi_size 1500 --candi_batch_size 500 --rank_cutoff 1500 --num_workers 4 --uprev_review_limit 20 --do_seq_review_train true --do_seq_review_test true --train_review_only false --fix_train_review true --has_valid true --decay_method adam --query_encoder_name fs --pv_window_size 1 --device cuda --train_from /data/gkl/myrec/runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260709/official/model_epoch_13.ckpt",
+            "resume_command_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260709/resume_command.sh",
+            "resume_command_sha256": "50d6a1caed8cc4a79a33304fada3d0189a26f8b81f7a3d95c18622e06eb96650",
+            "resume_from_epoch": 13,
+            "resume_stderr_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260709/resume_stderr.log",
+            "resume_stderr_sha256": "59fd2e3046883b405dc9de0a69b08d8dba6816e287941655b4bfd503ecff1c7f",
+            "resume_stdout_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260709/resume_stdout.log",
+            "resume_stdout_sha256": "5a9e3a5cb33af7e80316c75a06922b4d7548204ebd1d43442ddde468c758f598",
+            "resume_working_directory": "baselines/pps_prodsearch",
+            "rng_caveat": "The official checkpoint stores model and optimizer state but not Python/NumPy/PyTorch RNG states. The resumed trajectory is therefore not bit-identical to an uninterrupted run; final selection uses only the upstream train-only validation.",
+            "rng_state_restored": false,
+            "status": "passed",
+            "strategy": "resume_from_complete_checkpoint_without_retraining_prior_epochs"
+          },
+          "loss_decreased": true,
+          "metrics": {
+            "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+            "generated_at": "2026-07-10T02:28:21.053743+00:00",
+            "generated_by": "myrec.eval.evaluator",
+            "method_id": "b9z_zam",
+            "mrr": 0.27738226168874297,
+            "ndcg@10": 0.29786518290419783,
+            "num_requests": 12229,
+            "purchase_coverage": 0.14007686646496034,
+            "purchase_ndcg@10": 0.31977886335877725,
+            "purchase_num_requests": 1713,
+            "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+            "recall@10": 0.5154765914145553,
+            "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260709",
+            "scores_sha256": "a98509059304542b29929d14267fc853863ce7238a5f42a320b01852461a5ed0",
+            "split": "dev"
+          },
+          "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260709",
+          "seed": 20260709,
+          "vs_random": {
+            "ci95": [
+              0.011636228363981886,
+              0.02203078050811653
+            ],
+            "delta": 0.01674431729731855,
+            "metric": "ndcg@10",
+            "num_requests": 12229,
+            "samples": 10000,
+            "seed": 20260708,
+            "significant_a_gt_b": true
+          }
+        },
+        {
+          "execution_recovery": {
+            "authorization": "user approved checkpoint resume without full restart in chat on 2026-07-10",
+            "best_post_resume_epoch": 18,
+            "best_post_resume_mrr": 0.06440779973780754,
+            "completed_epoch_20": true,
+            "implementation_fixes": [
+              "explicit torch.long dtype for all-empty-history index batches",
+              "dimension-specific squeeze for singleton shuffled training batches"
+            ],
+            "interrupted_compatibility_probe_before_final_resume": true,
+            "post_resume_validations": [
+              {
+                "epoch": 13,
+                "mrr": 0.051909783896019884
+              },
+              {
+                "epoch": 14,
+                "mrr": 0.05743361743819463
+              },
+              {
+                "epoch": 15,
+                "mrr": 0.058970740410965936
+              },
+              {
+                "epoch": 16,
+                "mrr": 0.06330965284033552
+              },
+              {
+                "epoch": 17,
+                "mrr": 0.06165416631675047
+              },
+              {
+                "epoch": 18,
+                "mrr": 0.06440779973780754
+              },
+              {
+                "epoch": 19,
+                "mrr": 0.06402228085603748
+              },
+              {
+                "epoch": 20,
+                "mrr": 0.06397697211459698
+              }
+            ],
+            "pre_resume_best_mrr": 0.05708962033527929,
+            "preserved_pre_resume_checkpoint": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260710/official/model_best_epoch12_pre_resume.ckpt",
+            "preserved_pre_resume_checkpoint_sha256": "2f4a126b1d5036bfecb2b2d39a9f237ba545c737da081ba19a39fdadfcd7897b",
+            "resume_command": "CUDA_VISIBLE_DEVICES=3 conda run -n pps-prodsearch python main.py --model_name ZAM --mode train --seed 20260710 --data_dir /data/gkl/myrec/artifacts/b9_prodsearch/full/data --input_train_dir /data/gkl/myrec/artifacts/b9_prodsearch/full/split --save_dir /data/gkl/myrec/runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260710/official --rankfname official.ranklist --embedding_size 128 --lr 0.002 --max_train_epoch 20 --batch_size 32 --valid_batch_size 16 --valid_candi_size 500 --test_candi_size 1500 --candi_batch_size 500 --rank_cutoff 1500 --num_workers 4 --uprev_review_limit 20 --do_seq_review_train true --do_seq_review_test true --train_review_only false --fix_train_review true --has_valid true --decay_method adam --query_encoder_name fs --pv_window_size 1 --device cuda --train_from /data/gkl/myrec/runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260710/official/model_epoch_12.ckpt",
+            "resume_command_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260710/resume_command.sh",
+            "resume_command_sha256": "2d551baa87af2368fac184d4a301244cdc67af66158c0b46ef095d3aaf2b5748",
+            "resume_from_epoch": 12,
+            "resume_stderr_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260710/resume2_stderr.log",
+            "resume_stderr_sha256": "8af2364c9e18271313f3da86669d909dd0e0b15509efde34d3140de5b20f126e",
+            "resume_stdout_path": "runs/20260710_kuaisearch_b9z_zam_r2_dev_s20260710/resume2_stdout.log",
+            "resume_stdout_sha256": "e5d4e158f42b0b6455885b4a7dff4345f4e32b6c0b9a29aff008ee8eb3c4efbd",
+            "resume_working_directory": "baselines/pps_prodsearch",
+            "rng_caveat": "The official checkpoint stores model and optimizer state but not Python/NumPy/PyTorch RNG states. The resumed trajectory is therefore not bit-identical to an uninterrupted run; final selection uses only the upstream train-only validation.",
+            "rng_state_restored": false,
+            "status": "passed",
+            "strategy": "resume_from_complete_checkpoint_without_retraining_prior_epochs"
+          },
+          "loss_decreased": true,
+          "metrics": {
+            "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+            "generated_at": "2026-07-10T02:28:24.767997+00:00",
+            "generated_by": "myrec.eval.evaluator",
+            "method_id": "b9z_zam",
+            "mrr": 0.2791268932014708,
+            "ndcg@10": 0.29939591092388346,
+            "num_requests": 12229,
+            "purchase_coverage": 0.14007686646496034,
+            "purchase_ndcg@10": 0.3209133548572811,
+            "purchase_num_requests": 1713,
+            "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+            "recall@10": 0.5176598857020022,
+            "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260710",
+            "scores_sha256": "63d995cb93d8e7ead22ea63a2a8f32f971a3193050019ff27e3b36ec8eb64b76",
+            "split": "dev"
+          },
+          "run_id": "20260710_kuaisearch_b9z_zam_r2_dev_s20260710",
+          "seed": 20260710,
+          "vs_random": {
+            "ci95": [
+              0.013149373317473914,
+              0.023526056294152043
+            ],
+            "delta": 0.01827504531700415,
+            "metric": "ndcg@10",
+            "num_requests": 12229,
+            "samples": 10000,
+            "seed": 20260708,
+            "significant_a_gt_b": true
+          }
+        }
+      ],
+      "status": "provisional; human review pending",
+      "std_ndcg@10": 0.0006251008855636806
+    }
+  },
+  "report": "pps_b9_neighbor_summary",
+  "review": {
+    "authorization": null,
+    "date": "2026-07-10",
+    "models": {
+      "tem": {
+        "direct_query_match_top1": 18,
+        "documented_flags": [
+          "ks_f3f444cab33f9bae55f94f25: off-topic jump-rope and swimwear items at ranks 4/5",
+          "ks_fe72eab23ba6ba2b0dcb0ca3: category-adjacent electric pot at rank 1 and off-topic toothbrush at rank 4"
+        ],
+        "reviewed_requests": 20,
+        "status": "preliminary"
+      },
+      "zam": {
+        "direct_query_match_top1": 19,
+        "documented_flags": [
+          "ks_36b30d4bee3354e9f668b0e9: category-adjacent girl's outerwear rather than a direct long-windbreaker match at rank 1",
+          "ks_f3f444cab33f9bae55f94f25: off-topic jump-rope item at rank 5",
+          "ks_fe72eab23ba6ba2b0dcb0ca3: off-topic toothbrush item at rank 4"
+        ],
+        "reviewed_requests": 20,
+        "status": "preliminary"
+      }
+    },
+    "provenance_status": "pending_author_confirmation",
+    "qrels_read": false,
+    "records_test_read": false,
+    "review_path": "reports/pps_b9_top5_review.md",
+    "review_scope": "label-free pipeline-integrity review; confirmation does not claim uniformly strong relevance",
+    "reviewer": null,
+    "seed": 20260708,
+    "status": "preliminary"
+  },
+  "status": "provisional_human_review_pending",
+  "stop_loss": {
+    "accounting_note": "Includes short environment-aborted processes, smoke/rescore work, formal runs, and checkpoint continuation; see doc/dev_log/20260710_b9_option_a_execution.md.",
+    "checkpoint_resume_counted_as_new_full_attempt": false,
+    "extended_after_results": false,
+    "full_training_attempts_per_model_cap": 2,
+    "gpu_days_cap": 4,
+    "grid_combinations_per_model": 1,
+    "observed_gpu_days_conservative_upper_bound": 1.2,
+    "within_gpu_days_cap": true
+  },
+  "wording_branch": "b9_human_review_pending"
+}

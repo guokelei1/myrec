@@ -1,0 +1,35 @@
+{
+  "analysis_id": "d2s_static_full_waterline_v1",
+  "base_config": {
+    "last_modified_local": "2026-07-10T19:05:36.350980848+08:00",
+    "path": "configs/analysis/d2s_static_full_control.yaml",
+    "sha256": "e20b1206369ab7eb8cff53499e052ffe14cc5628c44c3bdd55362acfd64e65ab"
+  },
+  "calibration_report": {
+    "last_modified_local": "2026-07-10T19:07:04.775432364+08:00",
+    "path": "reports/pps_d2s_train_only_calibration.json",
+    "sha256": "b086ed006fcd1ead39f96bdc94da9c14fff115ca0e4dbca0b48f595c733be7b6"
+  },
+  "final_config": {
+    "last_modified_local": "2026-07-10T19:07:17.961207723+08:00",
+    "path": "configs/analysis/d2s_static_full_control_final.yaml",
+    "sha256": "557c3960e4e6e15eb200fa53e820856b51eabb07fc5caeb3c235a336c2d5405d"
+  },
+  "first_dev_evaluation": {
+    "run_id": "20260710_kuaisearch_d2s_static_true_history_dev_s20260708",
+    "timestamp_local": "2026-07-10T19:08:46.281449+08:00",
+    "timestamp_utc": "2026-07-10T11:08:46.281449+00:00"
+  },
+  "first_score_file": {
+    "last_modified_local": "2026-07-10T19:07:26.707059560+08:00",
+    "run_id": "20260710_kuaisearch_d2s_static_true_history_dev_s20260708"
+  },
+  "ordering": "protocol/base config -> train-only calibration -> final config -> dev scoring -> shared dev evaluation",
+  "protocol": {
+    "last_modified_local": "2026-07-10T19:05:36.350980848+08:00",
+    "path": "doc/21_d2s_static_full_waterline_protocol.md",
+    "sha256": "446329432564e9ef5fd12a432d443697c3d064f52d9ad6267013246fe37fc76f"
+  },
+  "status": "ordering-verified",
+  "test_read": false
+}

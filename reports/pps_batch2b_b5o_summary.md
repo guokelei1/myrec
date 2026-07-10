@@ -1,9 +1,21 @@
 # B5o KuaiSearch Official Summary
 
+> **Current supersession / 当前解释（2026-07-10）.** 下文的
+> benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
+> [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
+> 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
+> 为准：motivation complete，design formulation ready；implementation/training
+> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+
 Date: 2026-07-09
 
 Status: accepted formal B5o dev baseline under
 `official-code, proxy-aligned (last-time 10% split)`.
+
+Current-boundary note (2026-07-10): all B5o results below remain valid historical
+baseline evidence. C5-R3 item-only mean 0.3453755 is now the static waterline,
+and the terminal motivation gate does not authorize system design. Any “current
+baseline” wording below is scoped to the original Batch 2b decision.
 
 ## Boundary
 

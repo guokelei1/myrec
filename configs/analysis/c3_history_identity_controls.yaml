@@ -1,0 +1,70 @@
+analysis_id: c3r_history_identity_controls
+status: locked_before_evaluation
+locked_at: "2026-07-10T00:00:00+08:00"
+dataset_id: kuaisearch
+dataset_version: v0_lite
+source_split: train
+target_split: dev
+standardized_dir: data/standardized/kuaisearch/v0_lite
+
+seeds:
+  - 20260708
+  - 20260709
+  - 20260710
+
+frozen_runs:
+  query: 20260708_kuaisearch_b2z_bge_small_zh_dev
+  true_history: 20260708_kuaisearch_b0b_recent_behavior_dev
+  true_static_mixture: 20260708_kuaisearch_b7_bge_dev_a02
+  query_only_reference: 20260708_kuaisearch_b2z_bge_small_zh_dev
+
+static_mixture:
+  alpha: 0.2
+  score_definition: alpha * z(query_score) + (1 - alpha) * z(history_score)
+  zscore_scope: within_request
+
+wrong_history:
+  donor_split: train
+  query_normalization: Unicode NFKC, lowercase, remove all whitespace
+  require_different_user: true
+  require_donor_request_before_target_request: true
+  keep_empty_target_history_empty: true
+  history_length_bins:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 32
+    - 50
+  donor_priority:
+    - normalized_query_and_history_length_bin
+    - normalized_query
+    - candidate_major_category_and_history_length_bin
+    - candidate_major_category
+    - history_length_bin
+    - global
+  max_donors_per_pool: 32
+
+subsets:
+  history_present: target history length > 0
+  same_query_wrong_history: all three seeds use a donor matched on normalized query
+  history_absent: target history length == 0
+
+gate:
+  min_same_query_requests: 1000
+  require_all_history_present_ci_lower_gt_zero: true
+  same_query_min_significant_seeds: 2
+  require_same_query_mean_delta_gt_zero: true
+  require_history_absent_b7_equals_query_only: true
+  require_existing_b7_vs_b0b_ci_lower_gt_zero: true
+  require_existing_b7_vs_b2z_ci_lower_gt_zero: true
+
+claim_boundary:
+  supported_if_passed: >-
+    Query and the correct user's prior behavior provide complementary aggregate
+    signal inside the query-conditioned candidate pool, and the history signal
+    is identity-specific under matched wrong-user controls.
+  not_supported: >-
+    Per-request channel routing, oracle headroom, or learnable adaptive channel
+    selection.

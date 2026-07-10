@@ -1,0 +1,75 @@
+{
+  "analysis_id": "d2s_static_full_waterline_v1",
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "final_config_sha256": "557c3960e4e6e15eb200fa53e820856b51eabb07fc5caeb3c235a336c2d5405d",
+  "no_history_fallback": {
+    "20260708": {
+      "candidate_rows": 183290,
+      "max_affine_error": 0.0,
+      "request_count": 4110,
+      "status": "passed",
+      "true_wrong_exact_mismatches": 0
+    },
+    "20260709": {
+      "candidate_rows": 183290,
+      "max_affine_error": 0.0,
+      "request_count": 4110,
+      "status": "passed",
+      "true_wrong_exact_mismatches": 0
+    },
+    "20260710": {
+      "candidate_rows": 183290,
+      "max_affine_error": 0.0,
+      "request_count": 4110,
+      "status": "passed",
+      "true_wrong_exact_mismatches": 0
+    }
+  },
+  "qrels_read": false,
+  "runs": {
+    "20260710_kuaisearch_d2s_static_true_history_dev_s20260708": {
+      "method_id": "d2s_static_true_history",
+      "request_count": 12229,
+      "score_rows": 575609,
+      "scores_sha256": "6352ebd4eb296c229b37cb70721a85f2b2d5c088c528fc9f4b0a414500cc6187",
+      "status": "passed"
+    },
+    "20260710_kuaisearch_d2s_static_true_history_dev_s20260709": {
+      "method_id": "d2s_static_true_history",
+      "request_count": 12229,
+      "score_rows": 575609,
+      "scores_sha256": "e055a2ef94081e530cea0974c28704d0d4748b9c7898ada3178586f1a6ca267f",
+      "status": "passed"
+    },
+    "20260710_kuaisearch_d2s_static_true_history_dev_s20260710": {
+      "method_id": "d2s_static_true_history",
+      "request_count": 12229,
+      "score_rows": 575609,
+      "scores_sha256": "eebead2be8c37a22d88881e0f9ac15dd8d544eab7cbdcb3f7ed47f101f013fb8",
+      "status": "passed"
+    },
+    "20260710_kuaisearch_d2s_static_wrong_history_dev_s20260708": {
+      "method_id": "d2s_static_wrong_history",
+      "request_count": 12229,
+      "score_rows": 575609,
+      "scores_sha256": "cc77e52cbca54b3843744b7842366fd085e9006f4526f9b31c992c7d7f0699b6",
+      "status": "passed"
+    },
+    "20260710_kuaisearch_d2s_static_wrong_history_dev_s20260709": {
+      "method_id": "d2s_static_wrong_history",
+      "request_count": 12229,
+      "score_rows": 575609,
+      "scores_sha256": "bdf5fff48afc374a9b310a5b58b9625dfe60e324c4280146abe94ef23235c9ed",
+      "status": "passed"
+    },
+    "20260710_kuaisearch_d2s_static_wrong_history_dev_s20260710": {
+      "method_id": "d2s_static_wrong_history",
+      "request_count": 12229,
+      "score_rows": 575609,
+      "scores_sha256": "e663ec07e87ab0da0e887000b1f21c7654c5b7d770971108b0302f2096fbd79e",
+      "status": "passed"
+    }
+  },
+  "status": "passed",
+  "test_read": false
+}

@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    0.03020352175278418,
+    0.039980327743190186
+  ],
+  "delta": 0.035101496367602146,
+  "metric": "ndcg@10",
+  "num_requests": 8119,
+  "request_ids_path": "artifacts/analysis/c3_history_identity_controls/history_present_request_ids.txt",
+  "samples": 10000,
+  "seed": 20260708,
+  "significant_a_gt_b": true
+}

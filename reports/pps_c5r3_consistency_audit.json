@@ -1,0 +1,65 @@
+{
+  "analysis_id": "c5r3_candidate_history_alignment",
+  "audit_generated_at": "2026-07-10T21:58:08+08:00",
+  "audit_type": "independent_read_only_recompute_and_repository_consistency",
+  "checks": {
+    "all_12_point_deltas_recomputed_from_per_request_metrics": true,
+    "all_44_unit_tests_passed": true,
+    "all_new_dev_runs_logged_exactly_once": true,
+    "all_structured_files_parse": true,
+    "candidate_and_qrels_hashes_consistent": true,
+    "current_report_hash_chain_closes": true,
+    "git_diff_check_passed": true,
+    "ignored_run_and_artifact_boundaries_passed": true,
+    "no_history_metric_equivalence_recomputed": true,
+    "no_proposed_system_worktree_changes": true,
+    "no_test_run_metadata_found": true,
+    "result_registry_rounded_metrics_match": true
+  },
+  "decision_recompute": {
+    "architecture_ready": false,
+    "fallback_passed": false,
+    "outcome": "TERMINAL_FAIL",
+    "primary_passed": false
+  },
+  "dev_eval_reconciliation": {
+    "c5r3_new_evaluations": 6,
+    "c5r3_unique_run_ids": 6,
+    "repository_dev_log_entries": 136,
+    "repository_dev_log_unique_run_ids": 134,
+    "result_registry_metric_rows_checked": 43
+  },
+  "hashes": {
+    "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+    "config_sha256": "ee0437939566e46bb74e13d35433cc7cf26343a41040d9d20d454d2ecf3c246f",
+    "materialization_manifest_sha256": "1f94a113aa47368a4f6cd817147a92a887d25b9591e84980665eeaeebb4a9add",
+    "protocol_sha256": "37116692a80066a37fc85fd9f77321f2b51039f5e11039195acc68ca5a11dd6f",
+    "qrels_dev_sha256_shared_evaluator_only": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+    "source_report_sha256": "a09cd6d6724ee745a3d7f94f7ab6120f59649ee229e0f9c29f1e7e59877daf4b"
+  },
+  "independent_recompute": {
+    "category_only_overall_mean_ndcg@10": 0.3241930653006828,
+    "category_only_three_seed_mean_relative_gain_history_present": 0.0011478928239851633,
+    "history_absent_requests": 4110,
+    "history_present_requests": 8119,
+    "item_only_overall_mean_ndcg@10": 0.34537554266578646,
+    "item_only_overall_sample_std_ndcg@10": 0.0002501100577316362,
+    "no_history_metric_mismatches": 0
+  },
+  "ordering": {
+    "executable_config_final_mtime": "2026-07-10T21:32:30.348748663+08:00",
+    "first_dev_evaluation_mtime": "2026-07-10T21:36:03.470235586+08:00",
+    "first_materialization_manifest_mtime": "2026-07-10T21:33:32.051357088+08:00",
+    "protocol_final_mtime": "2026-07-10T21:32:30.347748669+08:00",
+    "protocol_and_config_precede_scores_and_evaluation": true
+  },
+  "source_report": "reports/pps_c5r3_candidate_history_alignment.json",
+  "status": "passed",
+  "structured_parse": {
+    "json_files": 190,
+    "jsonl_files": 1,
+    "jsonl_rows": 136,
+    "yaml_files": 28
+  },
+  "test_read": false
+}

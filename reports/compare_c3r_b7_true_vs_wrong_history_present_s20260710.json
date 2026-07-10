@@ -1,0 +1,20 @@
+{
+  "ci95": [
+    0.037993044322936466,
+    0.04835377364541129
+  ],
+  "delta": 0.0432003850961159,
+  "metric": "ndcg@10",
+  "num_requests": 8119,
+  "provenance": {
+    "request_ids_sha256": "824b7df3c115e90047a6e8a53befddd2a3e70bc20d5fe15397c1cabf3ceb61ce",
+    "run_a": "20260708_kuaisearch_b7_bge_dev_a02",
+    "run_a_per_request_sha256": "bfa29a133674f90772eadefdf68e5451db0d9c28136066f675eb4c7138d82930",
+    "run_b": "20260710_kuaisearch_c3r_b7_wrong_history_dev_s20260710",
+    "run_b_per_request_sha256": "cf1009d2b1a9d0e70086bd267b38f9e8334c6ef745e7b8306cfd80c51697f48b"
+  },
+  "request_ids_path": "artifacts/analysis/c3_history_identity_controls/history_present_request_ids.txt",
+  "samples": 10000,
+  "seed": 20260708,
+  "significant_a_gt_b": true
+}

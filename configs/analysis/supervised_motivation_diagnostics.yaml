@@ -1,0 +1,115 @@
+analysis_id: supervised_motivation_diagnostics_v1
+status: locked_before_internal_calibration
+date: "2026-07-10"
+dataset_id: kuaisearch
+dataset_version: v0_lite
+standardized_dir: data/standardized/kuaisearch/v0_lite
+
+embedding_artifact:
+  root: artifacts/batch2b/b5o_stageb_standardized/data
+  encoder: BAAI/bge-small-zh-v1.5
+  pooling: CLS token
+  dimension: 512
+  dtype: float16
+  query_embeddings: query_emb.npy
+  item_embeddings: item_title_emb.npy
+  query_index: session_id2idx.json
+  item_index: item_id2idx.json
+  manifest: artifacts/batch2b/b5o_stageb_standardized/stageb_embedding_manifest.json
+
+materialized_data:
+  output_dir: artifacts/analysis/supervised_motivation_diagnostics/data
+  source_splits:
+    - train
+    - dev
+  label: clicked
+  drop_train_requests_without_clicked_positive: true
+  drop_reason: multi-positive listwise loss is undefined without a positive
+  history_limit: 50
+  qrels_read: false
+
+internal_calibration:
+  split: last 10 percent of train requests by frozen record order
+  train_fraction: 0.90
+  dev_evaluations: 0
+  selection_metric: ndcg@10
+  max_epochs: 8
+  patience: 2
+  min_delta: 0.0001
+  allowed_hyperparameter_retries: 1
+  retry_condition: numerical failure or failure to exceed both frozen input features on internal validation
+
+model:
+  projection_dim: 128
+  dropout: 0.10
+  batch_size_requests: 512
+  max_padded_candidates_per_batch: 65536
+  max_padded_history_events_per_batch: 32768
+  learning_rate: 0.002
+  weight_decay: 0.0001
+  gradient_clip_norm: 5.0
+  amp_dtype: float16
+  loss: multi-positive listwise softmax
+  max_history_length: 50
+  base_features:
+    - within-request zscore of frozen BGE cosine
+    - within-request zscore of train-only item log-click count
+    - within-request zscore of learned low-rank query-item interaction
+  residual_features:
+    - within-request zscore of frozen B0b recent-behavior score
+    - within-request zscore of learned history-candidate interaction
+
+variants:
+  - id: d1q
+    name: supervised_query_base
+    history: disabled
+  - id: d1m
+    name: recency_mean_history_residual
+    base: frozen seed-matched d1q
+    history: recency-weighted mean, query-independent
+  - id: d1a
+    name: query_attentive_history_residual
+    base: frozen seed-matched d1q
+    history: query-attention over events followed by candidate interaction
+
+seeds:
+  - 20260708
+  - 20260709
+  - 20260710
+
+final_evaluation:
+  split: dev
+  evaluator: scripts/evaluate_scores.py
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  evaluations: 9
+  role: fixed supervised motivation diagnostics, not proposed-system tuning
+  significance_seed: 20260708
+  report_all_seed_directions: true
+  test_read: false
+
+interpretation_branches:
+  supervised_query_at_or_above_b7: >-
+    Withdraw the claim that query-only signal is saturated. Promote the
+    supervised query model to the baseline-to-beat and retain personalization
+    motivation only if a history residual improves it.
+  residual_above_query_but_not_b7: >-
+    Correct-user history is learnable, but the diagnostic architecture does not
+    beat the static waterline; motivate the representation/interaction problem,
+    not adaptive headroom.
+  residual_above_b7: >-
+    Train-fitted history use is viable. Query-attentive versus mean-history
+    determines whether query-conditioned event use has direct diagnostic support.
+  query_attention_not_above_mean: >-
+    Do not claim query-conditioned event selection is established; design may
+    retain it only as a falsifiable hypothesis.
+  no_residual_above_query: >-
+    Preserve the matched-history identity result but withdraw history
+    learnability as a positive motivation claim for this representation family.
+
+paper_boundary:
+  internal_dev_gate_only: true
+  final_confirmation: untouched test or secondary track after system freeze
+  prohibited_claims:
+    - universal query saturation
+    - causal online personalization effect
+    - proposed-system performance

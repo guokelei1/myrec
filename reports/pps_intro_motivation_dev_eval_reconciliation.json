@@ -1,0 +1,94 @@
+{
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "budget_interpretation": "These are fixed motivation/baseline controls authorized by their listed protocols, not proposed-system tuning. R1 includes its one pre-registered recheck; D1/D2/D2h/D2s epochs and weights were selected on train only, never from these dev metrics. C5-R2 adds three fixed wrong-history controls. C5-R3 adds six fixed removal-ablation evaluations with the existing beta and no tuning; its primary, sole fallback, and terminal rule were frozen before outcomes.",
+  "date": "2026-07-10",
+  "dev_eval_log": "reports/dev_eval_log.jsonl",
+  "duplicate_run_ids": {
+    "20260710_kuaisearch_r1a_router_cv_dev": 2,
+    "20260710_kuaisearch_r1b_router_lr_dev": 2
+  },
+  "groups": {
+    "b9_neighbors": {
+      "evaluator_invocations": 6,
+      "protocol": "doc/16_next_round_c3_router_neighbor_plan.md section 3",
+      "status": "fixed three-seed evaluations; supplementary while human-review provenance remains pending",
+      "unique_run_ids": 6
+    },
+    "c3r_identity_control": {
+      "evaluator_invocations": 6,
+      "protocol": "doc/17_intro_motivation_repair_protocol.md",
+      "status": "fixed three-seed wrong-history controls",
+      "unique_run_ids": 6
+    },
+    "c5r2_temporal_identity_repair": {
+      "evaluator_invocations": 3,
+      "protocol": "doc/22_c5r_temporal_symmetric_identity_protocol.md",
+      "status": "fixed three-seed temporal wrong-D2s controls; scientific gate failed",
+      "unique_run_ids": 3
+    },
+    "c5r3_candidate_history_alignment": {
+      "evaluator_invocations": 6,
+      "protocol": "doc/23_c5r3_candidate_history_alignment_protocol.md",
+      "status": "fixed item-only/category-only removal ablations; integrity passed; primary and sole fallback failed; terminal benchmark/analysis-only",
+      "unique_run_ids": 6
+    },
+    "d1_supervised_diagnostics": {
+      "evaluator_invocations": 12,
+      "protocol": "doc/18_supervised_motivation_diagnostics_protocol.md",
+      "status": "nine frozen model evaluations plus three authorized wrong-history rescores",
+      "unique_run_ids": 12
+    },
+    "d2_nonpersonalized_controls": {
+      "evaluator_invocations": 6,
+      "protocol": "doc/19_finetuned_nonpersonalized_control_protocol.md",
+      "status": "fixed two-variant, three-seed evaluations",
+      "unique_run_ids": 6
+    },
+    "d2h_static_waterline": {
+      "evaluator_invocations": 6,
+      "protocol": "doc/20_d2h_static_history_waterline_protocol.md",
+      "status": "fixed true/wrong-history evaluations without retraining",
+      "unique_run_ids": 6
+    },
+    "d2s_complete_static_waterline": {
+      "evaluator_invocations": 6,
+      "protocol": "doc/21_d2s_static_full_waterline_protocol.md",
+      "status": "post-result fairness repair; fixed true/wrong-history evaluations without retraining",
+      "unique_run_ids": 6
+    },
+    "r1_router": {
+      "evaluator_invocations": 4,
+      "protocol": "doc/16_next_round_c3_router_neighbor_plan.md section 5.2",
+      "reconciliation": "reports/pps_r1_dev_eval_reconciliation.json",
+      "status": "two coupled outputs evaluated once and rechecked once under the frozen low-recovery branch",
+      "unique_run_ids": 2
+    }
+  },
+  "metrics_file_checks": {
+    "candidate_hash_mismatches": 0,
+    "log_metric_mismatches": 0,
+    "missing_metrics_files": 0,
+    "qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc"
+  },
+  "repository_wide_checks": {
+    "dev_eval_log_entries": 136,
+    "dev_eval_log_metric_mismatches": 0,
+    "dev_eval_log_missing_metrics_files": 0,
+    "dev_eval_log_unique_run_ids": 134,
+    "local_result_registry_rows_checked": 43,
+    "local_result_registry_rounded_ndcg_mismatches": 0,
+    "registered_oracle_rows_without_run_metrics": [
+      "20260708_kuaisearch_m3_oracle_dev",
+      "20260708_kuaisearch_m3_batch2_oracle_dev"
+    ],
+    "splits_in_dev_eval_log": [
+      "dev"
+    ]
+  },
+  "report": "pps_intro_motivation_dev_eval_reconciliation",
+  "scope": "55 evaluator invocations appended during the R1/B9 and repaired intro-motivation work, including C5-R2 and the terminal C5-R3 component gate",
+  "status": "reconciled",
+  "test_read": false,
+  "total_evaluator_invocations": 55,
+  "unique_run_ids": 53
+}

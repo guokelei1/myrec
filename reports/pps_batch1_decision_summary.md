@@ -28,6 +28,11 @@ same 11 alpha points and is documented as a replacement budget line.
 
 ## M3 Protocol-Valid Readout
 
+Superseding construct-validity note (2026-07-10): the readout below remains an
+accurate frozen computation, but a Random-channel oracle reaches 0.4325/+30.9%
+and exceeds it. The numbers cannot support adaptive-headroom or channel-
+heterogeneity claims; see `reports/pps_m3_m4_random_canary_audit.json`.
+
 M3 was originally generated before C2 was reissued. Because it is a read-only
 oracle analysis over unchanged per-request metric inputs, it has been reissued
 as protocol-valid after the C2 amendment approval. The pre-C2 copy is preserved
@@ -38,7 +43,8 @@ at `reports/pps_m3_headroom_summary_exploratory_pre_c2.json`.
 - Headroom: +28.0% relative.
 - Bootstrap 95% CI relative: [+27.2%, +28.9%].
 - Split halves: +28.2% and +27.9% relative.
-- Oracle choices: B2z 60.6%, B0b 35.1%, B7-bge 4.3%.
+- Oracle tie-broken assignments: B2z 60.6%, B0b 35.1%, B7-bge 4.3%; these are
+  not strict-preference rates.
 
 ## Decision
 

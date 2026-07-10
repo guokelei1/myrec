@@ -3,6 +3,23 @@
 状态：执行计划。前置：doc 11（数据与实验计划）、doc 12（执行协议）、
 doc 13（baseline 实现计划）、`reports/pps_batch2_decision_summary.md`。
 
+2026-07-10 审计注：本计划的官方 baseline 身份、预算和结果仍有效；其中所有
+"M3 +28% headroom" motivation 条款已被
+`reports/pps_m3_m4_random_canary_audit.json` 暂停，不再是可辩护结论。
+当前设计动机改由 C3-R/C5-R 的 aggregate complementarity 与 matched-history
+identity control 提供；本计划中的 baseline 结果继续作为静态 waterline 对照。
+后续 `doc/18`--`doc/21` 将完整静态水线强化为 D2s 0.3416；D2h 0.3352
+是遗漏 popularity 的有效中间对照。下文 B7=0.3305 与 M3 headroom 仅保留
+预注册/历史语义，不是当前系统门槛。
+
+2026-07-10 C5-R3 终局更新：`doc/23` 的固定 component ablation 又将当前
+静态水线更新为 item-only D2s mean 0.3453755。category-only 0/3 显著，full
+D2s 3/3 显著弱于 item-only，primary/fallback 均失败。官方 baseline 数字继续
+有效；它们不能验证 C5-R3 已失败的两个 primitive，却与 component audit 一起
+暴露“代表性系统未可靠利用超出 exact recurrence 的历史证据”这一有限缺口。
+该缺口允许 architecture/protocol formulation，正式实现/训练仍须通过新的
+design-specific gate。下文所有 B7/D2s “binding”措辞均为历史水线。
+
 ## 0. 为什么有这个批次
 
 Batch 2 的 B4/B5/B6 是 hashed-logistic 简化 adapter，全部显著低于 B0b/B7。

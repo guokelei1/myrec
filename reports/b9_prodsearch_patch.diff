@@ -1,0 +1,261 @@
+diff --git a/.gitignore b/.gitignore
+index c1ebc08..7321ced 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -3,6 +3,7 @@ ConvProductSearchNF
+ src
+ HEM
+ *log*
++!others/logging.py
+ *bak*
+ *.sh
+ *.pyc
+diff --git a/data/batch_data.py b/data/batch_data.py
+index 8970b72..f245dac 100644
+--- a/data/batch_data.py
++++ b/data/batch_data.py
+@@ -15,11 +15,13 @@ class ItemPVBatch(object):
+             self.to_tensor()
+ 
+     def to_tensor(self):
+-        self.query_word_idxs = torch.tensor(self.query_word_idxs)
+-        self.target_prod_idxs = torch.tensor(self.target_prod_idxs)
+-        self.candi_prod_idxs = torch.tensor(self.candi_prod_idxs)
+-        self.u_item_idxs = torch.tensor(self.u_item_idxs)
+-        self.pos_iword_idxs = torch.tensor(self.pos_iword_idxs)
++        # Explicit index dtype is required when a whole batch has empty history;
++        # torch otherwise infers float for a rectangular [[], ...] tensor.
++        self.query_word_idxs = torch.tensor(self.query_word_idxs, dtype=torch.long)
++        self.target_prod_idxs = torch.tensor(self.target_prod_idxs, dtype=torch.long)
++        self.candi_prod_idxs = torch.tensor(self.candi_prod_idxs, dtype=torch.long)
++        self.u_item_idxs = torch.tensor(self.u_item_idxs, dtype=torch.long)
++        self.pos_iword_idxs = torch.tensor(self.pos_iword_idxs, dtype=torch.long)
+ 
+     def to(self, device):
+         if device == "cpu":
+@@ -55,17 +57,17 @@ class ItemPVBatch_seg(object):
+             self.to_tensor()
+ 
+     def to_tensor(self):
+-        self.query_word_idxs = torch.tensor(self.query_word_idxs)
+-        self.target_prod_idxs = torch.tensor(self.target_prod_idxs)
++        self.query_word_idxs = torch.tensor(self.query_word_idxs, dtype=torch.long)
++        self.target_prod_idxs = torch.tensor(self.target_prod_idxs, dtype=torch.long)
+         #self.candi_prod_idxs = torch.tensor(self.candi_prod_idxs)
+-        self.neg_seg_idxs = torch.tensor(self.neg_seg_idxs)
+-        self.neg_seq_item_idxs = torch.tensor(self.neg_seq_item_idxs)
++        self.neg_seg_idxs = torch.tensor(self.neg_seg_idxs, dtype=torch.long)
++        self.neg_seq_item_idxs = torch.tensor(self.neg_seq_item_idxs, dtype=torch.long)
+         if self.pos_seg_idxs is not None:
+-            self.pos_seg_idxs = torch.tensor(self.pos_seg_idxs)
++            self.pos_seg_idxs = torch.tensor(self.pos_seg_idxs, dtype=torch.long)
+         if self.pos_seq_item_idxs is not None:
+-            self.pos_seq_item_idxs = torch.tensor(self.pos_seq_item_idxs)
++            self.pos_seq_item_idxs = torch.tensor(self.pos_seq_item_idxs, dtype=torch.long)
+         if self.pos_iword_idxs is not None:
+-            self.pos_iword_idxs = torch.tensor(self.pos_iword_idxs)
++            self.pos_iword_idxs = torch.tensor(self.pos_iword_idxs, dtype=torch.long)
+ 
+     def to(self, device):
+         if device == "cpu":
+diff --git a/data/item_pv_dataloader.py b/data/item_pv_dataloader.py
+index 251b7bd..d28ed83 100644
+--- a/data/item_pv_dataloader.py
++++ b/data/item_pv_dataloader.py
+@@ -125,10 +125,10 @@ class ItemPVDataloader(DataLoader):
+         #        self.prod_data.product_size,
+         #        size=(len(batch), self.args.neg_per_pos), p=self.prod_data.product_dists)
+         cur_no = 0
+-        for word_idxs, review_idx in batch:
++        for word_idxs, review_idx, line_no in batch:
+             batch_word_idxs.append(word_idxs)
+             user_idx, prod_idx = self.global_data.review_u_p[review_idx]
+-            query_idx = random.choice(self.prod_data.product_query_idx[prod_idx])
++            query_idx = self.prod_data.review_query_idx[line_no]
+             query_word_idxs = self.global_data.query_words[query_idx]
+ 
+             u_prev_review_idxs = self.get_user_review_idxs(
+@@ -150,10 +150,10 @@ class ItemPVDataloader(DataLoader):
+                 self.prod_data.product_size,
+                 size=(len(batch), self.args.neg_per_pos), p=self.prod_data.product_dists)
+         cur_no = 0
+-        for word_idxs, review_idx in batch:
++        for word_idxs, review_idx, line_no in batch:
+             batch_word_idxs.append(word_idxs)
+             user_idx, prod_idx = self.global_data.review_u_p[review_idx]
+-            query_idx = random.choice(self.prod_data.product_query_idx[prod_idx])
++            query_idx = self.prod_data.review_query_idx[line_no]
+             query_word_idxs = self.global_data.query_words[query_idx]
+ 
+             u_prev_review_idxs = self.get_user_review_idxs(user_idx, review_idx, self.args.do_seq_review_train, fix=False)
+@@ -191,4 +191,3 @@ class ItemPVDataloader(DataLoader):
+         batch = ItemPVBatch(query_word_idxs, target_prod_idxs, [], pos_seg_idxs,
+                 neg_seg_idxs, pos_seq_item_idxs, neg_seq_item_idxs, pos_iword_idxs=pos_iword_idxs)
+         return batch
+-
+diff --git a/data/item_pv_dataset.py b/data/item_pv_dataset.py
+index 920673b..32d631a 100644
+--- a/data/item_pv_dataset.py
++++ b/data/item_pv_dataset.py
+@@ -42,8 +42,8 @@ class ItemPVDataset(Dataset):
+             if (line_id+1) % 10000 == 0:
+                 progress = (line_id+1.) / len(prod_data.review_info) * 100
+                 print("{}% data processed".format(progress))
+-            #query_idx = prod_data.review_query_idx[line_id]
+-            query_idxs = prod_data.product_query_idx[prod_idx]
++            # PPS adapter: KuaiSearch queries are request-level, not product-level.
++            query_idxs = [prod_data.review_query_idx[line_id]]
+             for query_idx in query_idxs:
+                 if (user_idx, query_idx) in uq_set:
+                     continue
+@@ -85,11 +85,15 @@ class ItemPVDataset(Dataset):
+                     continue
+                 word_idxs.append(word_idx)
+                 if len(word_idxs) == self.pv_window_size:
+-                    train_data.append([word_idxs, review_idx])
++                    train_data.append([word_idxs, review_idx, line_no])
+                     word_idxs = []
+                 entry_id += 1
+         if len(word_idxs) > 0:
+-            train_data.append([word_idxs+[self.word_pad_idx]*(self.pv_window_size-len(word_idxs)), review_idx])
++            train_data.append([
++                word_idxs+[self.word_pad_idx]*(self.pv_window_size-len(word_idxs)),
++                review_idx,
++                line_no,
++            ])
+         return train_data
+ 
+     def __len__(self):
+diff --git a/main.py b/main.py
+index 7d6d74f..1795628 100644
+--- a/main.py
++++ b/main.py
+@@ -6,6 +6,7 @@ import argparse
+ import random
+ import glob
+ import os
++import numpy as np
+ 
+ from others.logging import logger, init_logger
+ from models.ps_model import ProductRanker, build_optim
+@@ -152,7 +153,8 @@ def create_model(args, global_data, prod_data, load_path=''):
+     #if load_path != '':
+         logger.info('Loading checkpoint from %s' % load_path)
+         checkpoint = torch.load(load_path,
+-                                map_location=lambda storage, loc: storage)
++                                map_location=lambda storage, loc: storage,
++                                weights_only=False)
+         opt = vars(checkpoint['opt'])
+         for k in opt.keys():
+             if (k in model_flags):
+@@ -172,6 +174,7 @@ def train(args):
+ 
+     torch.manual_seed(args.seed)
+     random.seed(args.seed)
++    np.random.seed(args.seed)
+     torch.backends.cudnn.deterministic = True
+     if args.device == "cuda":
+         torch.cuda.manual_seed(args.seed)
+@@ -188,7 +191,7 @@ def train(args):
+     del trainer
+     torch.cuda.empty_cache()
+     trainer = Trainer(args, best_model, None)
+-    trainer.test(args, global_data, test_prod_data, args.rankfname)
++    trainer.test(args, global_data, test_prod_data, args.rankfname, cutoff=args.rank_cutoff)
+ 
+ def validate(args):
+     cp_files = sorted(glob.glob(os.path.join(args.save_dir, 'model_epoch_*.ckpt')))
+@@ -211,7 +214,7 @@ def validate(args):
+ 
+     best_model, _ = create_model(args, global_data, test_prod_data, best_model)
+     trainer = Trainer(args, best_model, None)
+-    trainer.test(args, global_data, test_prod_data, args.rankfname)
++    trainer.test(args, global_data, test_prod_data, args.rankfname, cutoff=args.rank_cutoff)
+ 
+ def get_product_scores(args):
+     global_data = GlobalProdSearchData(args, args.data_dir, args.input_train_dir)
+@@ -219,9 +222,14 @@ def get_product_scores(args):
+     model_path = os.path.join(args.save_dir, 'model_best.ckpt')
+     best_model, _ = create_model(args, global_data, test_prod_data, model_path)
+     trainer = Trainer(args, best_model, None)
+-    trainer.test(args, global_data, test_prod_data, args.rankfname)
++    trainer.test(args, global_data, test_prod_data, args.rankfname, cutoff=args.rank_cutoff)
+ 
+ def main(args):
++    torch.manual_seed(args.seed)
++    random.seed(args.seed)
++    np.random.seed(args.seed)
++    if args.device == "cuda":
++        torch.cuda.manual_seed(args.seed)
+     if not os.path.isdir(args.save_dir):
+         os.makedirs(args.save_dir)
+     init_logger(os.path.join(args.save_dir, args.log_file))
+diff --git a/models/item_transformer.py b/models/item_transformer.py
+index 886cf21..913f8a1 100644
+--- a/models/item_transformer.py
++++ b/models/item_transformer.py
+@@ -19,6 +19,11 @@ from others.logging import logger
+ from others.util import pad, load_pretrain_embeddings, load_user_item_embeddings
+ 
+ 
++def _batched_vector_dot(left, right):
++    """Return one dot product per batch row without dropping batch size one."""
++    return torch.bmm(left.unsqueeze(1), right.unsqueeze(2)).squeeze(-1).squeeze(-1)
++
++
+ class ItemTransformerRanker(nn.Module):
+     def __init__(self, args, device, vocab_size, product_size, vocab_words, word_dists=None):
+         super(ItemTransformerRanker, self).__init__()
+@@ -407,7 +412,7 @@ class ItemTransformerRanker(nn.Module):
+                     mask = 1-neg_item_seq_mask)
+             neg_out_emb = 0.5 * top_vecs[:,out_pos,:] + 0.5 * query_emb.squeeze(1)
+ 
+-        pos_scores = torch.bmm(pos_out_emb.unsqueeze(1), target_item_emb.unsqueeze(2)).squeeze()
++        pos_scores = _batched_vector_dot(pos_out_emb, target_item_emb)
+         neg_scores = torch.bmm(neg_out_emb.unsqueeze(1), neg_item_emb.view(batch_size*neg_k, -1).unsqueeze(2))
+         neg_scores = neg_scores.view(batch_size, neg_k)
+         if self.args.sim_func == "bias_product":
+@@ -584,4 +589,3 @@ class ItemTransformerRanker(nn.Module):
+             self.transformer_encoder.initialize_parameters(logger)
+         if logger:
+             logger.info(" ItemTransformerRanker initialization finished.")
+-
+diff --git a/models/neural.py b/models/neural.py
+index aea9c7a..7aeec79 100644
+--- a/models/neural.py
++++ b/models/neural.py
+@@ -211,7 +211,7 @@ class MultiHeadedAttention(nn.Module):
+             #mask is (batch_size, 1, key_len)
+             if len(mask.size()) == 3:
+                 mask = mask.unsqueeze(1).expand_as(scores)
+-            scores = scores.masked_fill(mask, -1e18)
++            scores = scores.masked_fill(mask.bool(), -1e18)
+ 
+         # 3) Apply attention dropout and compute context vectors.
+ 
+@@ -241,4 +241,3 @@ class MultiHeadedAttention(nn.Module):
+         # aeq(d, d_)
+ 
+         # Return one attn
+-
+diff --git a/trainer.py b/trainer.py
+index 7cc7fb6..3f984e0 100644
+--- a/trainer.py
++++ b/trainer.py
+@@ -107,6 +107,11 @@ class Trainer(object):
+                 best_checkpoint_path = os.path.join(model_dir, 'model_best.ckpt')
+                 logger.info("Copying %s to checkpoint %s" % (checkpoint_path, best_checkpoint_path))
+                 shutil.copyfile(checkpoint_path, best_checkpoint_path)
++            # PPS adapter: retain only the current epoch and the copied best
++            # checkpoint. This changes storage policy, not training semantics.
++            previous_checkpoint = os.path.join(model_dir, 'model_epoch_%d.ckpt' % (current_epoch - 1))
++            if current_epoch > 1 and os.path.exists(previous_checkpoint):
++                os.remove(previous_checkpoint)
+         return best_checkpoint_path
+ 
+     def _save(self, epoch, checkpoint_path):
+@@ -224,4 +229,3 @@ class Trainer(object):
+         if args.model_name == "review_transformer":
+             self.model.clear_review_embbeddings()
+         return all_prod_idxs, all_prod_scores, all_target_idxs, all_query_idxs, all_user_idxs
+-

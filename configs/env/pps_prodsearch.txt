@@ -1,0 +1,9 @@
+python==3.13.12
+torch==2.12.1+cu130
+numpy==2.4.3
+scikit-learn==1.8.0
+PyYAML==6.0.3
+
+# Local creation used for B9:
+# conda create -n pps-prodsearch --clone base -y
+# conda run -n pps-prodsearch python baselines/pps_prodsearch/main.py --help

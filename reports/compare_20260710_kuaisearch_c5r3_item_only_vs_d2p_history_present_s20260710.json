@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    0.028941784006217653,
+    0.03626897977825883
+  ],
+  "delta": 0.03263482113835763,
+  "metric": "ndcg@10",
+  "num_requests": 8119,
+  "request_ids_path": "artifacts/analysis/c5r_temporal_symmetric_identity/history_present_request_ids.txt",
+  "samples": 10000,
+  "seed": 20260708,
+  "significant_a_gt_b": true
+}

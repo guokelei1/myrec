@@ -1,0 +1,30 @@
+{
+  "analysis_id": "d2s_static_full_waterline_v1",
+  "calibration": {
+    "beta_metrics": {
+      "0.0": 0.30067130109385126,
+      "0.1": 0.32681354241568483,
+      "0.2": 0.32714031847158503,
+      "0.3": 0.327249032285762,
+      "0.4": 0.3267495710026377,
+      "0.5": 0.3269511457872336,
+      "0.6": 0.3253843792532896,
+      "0.7": 0.3222199257896785,
+      "0.8": 0.31861972706693487,
+      "0.9": 0.3161913747454283,
+      "1.0": 0.31367708498209973
+    },
+    "d2p_alpha": 0.6,
+    "request_count": 9694,
+    "selected_beta": 0.3,
+    "selected_ndcg@10": 0.327249032285762,
+    "tie_break": "largest beta (more D2p) wins"
+  },
+  "checkpoint_path": "models/diagnostics/20260710_kuaisearch_d2t_calibrate_s20260708/model.pt",
+  "checkpoint_sha256": "247f27e2cbeef90e3fa5a5f5c2b8488db26e1542aa1617cec19e4b8316373572",
+  "config_path": "configs/analysis/d2s_static_full_control.yaml",
+  "config_sha256": "e20b1206369ab7eb8cff53499e052ffe14cc5628c44c3bdd55362acfd64e65ab",
+  "feature_scope": "frozen D2p plus causal B0b on final 10 percent retained train; popularity counts use first 90 percent internal train only",
+  "qrels_read": false,
+  "test_read": false
+}

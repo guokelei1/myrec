@@ -2,6 +2,10 @@
 
 Date: 2026-07-08
 
+Superseding note (2026-07-10): artifact/protocol checks below remain valid, but
+M3 construct validity does not. A Random-channel oracle exceeds M3; see
+`reports/pps_m3_m4_random_canary_audit.json`.
+
 Scope: objective in
 `/home/gkl/.codex/attachments/290d17dc-e8e6-427d-a057-ac6280096bd4/pasted-text-1.txt`.
 
@@ -72,11 +76,13 @@ Evidence: `reports/pps_m3_headroom_summary.json`.
 - Relative headroom: +28.0%.
 - Bootstrap relative CI: [+27.2%, +28.9%].
 - Split halves: +28.2% and +27.9%.
-- Choice distribution: B2z 60.6%, B0b 35.1%, B7-bge 4.3%.
+- Tie-broken assignment: B2z 60.6%, B0b 35.1%, B7-bge 4.3%; not strict
+  preference.
 
-Protocol status: protocol-valid after C2 reissue. The exploratory pre-C2 copy is
+Protocol status at issuance: protocol-valid after C2 reissue. The exploratory pre-C2 copy is
 preserved at `reports/pps_m3_headroom_summary_exploratory_pre_c2.json`; no rerun
 was required because M3 is read-only over unchanged per-request metric inputs.
+This ordering validity does not cure the later construct-validity failure.
 
 ## Redline Audit
 

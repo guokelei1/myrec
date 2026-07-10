@@ -7,6 +7,12 @@ Stage B PPS dev evaluation is complete under the same caveat. This is not an
 upstream-confirmed Table 7 split guarantee, and B5o must always be reported with
 the proxy-aligned identity.
 
+Current-boundary note (2026-07-10): C5-R3 item-only mean 0.3453755 supersedes
+B7/D2s as the static waterline. This file remains the historical official-code
+alignment record. Its “current baseline” wording does not validate a design
+primitive; the combined evidence now permits architecture/protocol formulation,
+while implementation/training remains gated by a design-specific falsifier.
+
 ## Source
 
 - Upstream repository: `https://github.com/benchen4395/KuaiSearch`
@@ -242,4 +248,5 @@ The claim is intentionally limited:
 Result implication: B5o is significant over Random, statistically tied or
 slightly below B0b, and significantly below B7-bge. This preserves the current
 baseline-to-beat as B7-bge and supports the fixed-candidate-pool diagnosis that
-query relevance is already mostly saturated by recall.
+the pool is already query-conditioned. It does not establish universal query
+signal saturation.

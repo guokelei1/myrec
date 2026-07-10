@@ -1,0 +1,63 @@
+analysis_id: supervised_motivation_diagnostics_v1_final
+status: locked_before_any_supervised_dev_evaluation
+locked_at: "2026-07-10"
+dataset_id: kuaisearch
+dataset_version: v0_lite
+
+protocol:
+  path: doc/18_supervised_motivation_diagnostics_protocol.md
+  base_config: configs/analysis/supervised_motivation_diagnostics.yaml
+  base_config_sha256: 509fe62ad6b6fdc33a38a1e7857ccb98338a0829ded1fb42770489ee72da3f79
+  data_manifest: artifacts/analysis/supervised_motivation_diagnostics/data/manifest.json
+  data_manifest_sha256: bb8e5984b8f41190193e9a84914aa369715bd3ab46261558836a6be11cb19d86
+  internal_reference_metrics: artifacts/analysis/supervised_motivation_diagnostics/internal_reference_metrics.json
+  internal_reference_metrics_sha256: 48c3618c3476d4d837d0d428d1e66ff65f590bb79545593c25ba883102166302
+
+calibration:
+  split: final 10 percent of retained train requests in frozen record order
+  metric: ndcg@10
+  min_delta: 0.0001
+  d1q:
+    run_id: 20260710_kuaisearch_d1q_calibrate_s20260708
+    summary_sha256: fc3dcf48be6db62cbb6e6668274507fe0ce1e87038ee5c66e66c5a974c628aa0
+    selected_epoch: 1
+    selected_metric: 0.3078731434636475
+  d1m:
+    run_id: 20260710_kuaisearch_d1m_calibrate_s20260708
+    summary_sha256: f7a6dc322ef204a05437cd617a5404975363ff129566119d18a47eda9f515f38
+    selected_epoch: 3
+    selected_metric: 0.30809209332782556
+  d1a:
+    run_id: 20260710_kuaisearch_d1a_calibrate_s20260708
+    summary_sha256: 648b049963d99e5eb114df3d6850da062a06d59a54d8bf9c24fa0a640b25971e
+    selected_epoch: 1
+    selected_metric: 0.3082752320035505
+    note: epoch 3 reached 0.30830974118401766 but did not exceed epoch 1 by the frozen min_delta
+
+final_training:
+  train_scope: all 96939 retained positive train requests
+  hyperparameters: exactly those in the hashed base config
+  seeds:
+    - 20260708
+    - 20260709
+    - 20260710
+  variants:
+    d1q:
+      epochs: 1
+      base_checkpoint: null
+    d1m:
+      epochs: 3
+      base_checkpoint: seed-matched final d1q
+    d1a:
+      epochs: 1
+      base_checkpoint: seed-matched final d1q
+
+final_evaluation:
+  split: dev
+  authorized_evaluations: 9
+  evaluator: scripts/evaluate_scores.py
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  significance_seed: 20260708
+  qrels_read_by_training_or_scoring: false
+  test_read: false
+  no_dev_selected_retry: true

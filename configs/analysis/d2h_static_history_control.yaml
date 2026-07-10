@@ -1,0 +1,44 @@
+analysis_id: d2h_static_history_waterline_v1
+status: locked_before_train_only_alpha_calibration
+date: "2026-07-10"
+dataset_id: kuaisearch
+dataset_version: v0_lite
+
+protocol_path: doc/20_d2h_static_history_waterline_protocol.md
+d2_config: configs/analysis/finetuned_nonpersonalized_control.yaml
+d2_final_config: configs/analysis/finetuned_nonpersonalized_control_final.yaml
+d2_calibration_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_calibrate_s20260708/model.pt
+packed_data_dir: artifacts/analysis/supervised_motivation_diagnostics/data
+
+score_definition: alpha * within-request-z(D2t) + (1-alpha) * within-request-z(B0b)
+alpha_grid:
+  - 0.0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1.0
+alpha_tie_break: largest alpha
+
+seeds:
+  - 20260708
+  - 20260709
+  - 20260710
+
+dev_sources:
+  d2t_run_pattern: 20260710_kuaisearch_d2t_finetuned_text_dev_s{seed}
+  true_b0b_run: 20260708_kuaisearch_b0b_recent_behavior_dev
+  wrong_b0b_run_pattern: 20260710_kuaisearch_c3r_b0b_wrong_history_dev_s{seed}
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+
+evaluation:
+  authorized_dev_evaluations: 6
+  shared_evaluator: scripts/evaluate_scores.py
+  significance_seed: 20260708
+  qrels_read_by_calibration_or_scoring: false
+  test_read: false

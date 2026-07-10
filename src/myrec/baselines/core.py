@@ -71,7 +71,7 @@ def write_recent_behavior_scores(
     standardized_dir = Path(standardized_dir)
 
     def score_record(record: dict[str, Any]) -> dict[str, float]:
-        return _recent_behavior_scores(record)
+        return recent_behavior_scores(record)
 
     return _write_scores_from_records(
         standardized_dir=standardized_dir,
@@ -98,6 +98,11 @@ def write_recent_behavior_scores(
             },
         },
     )
+
+
+def recent_behavior_scores(record: dict[str, Any]) -> dict[str, float]:
+    """Score one record with the frozen B0b recent-behavior definition."""
+    return _recent_behavior_scores(record)
 
 
 def write_bm25_scores(

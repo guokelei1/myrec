@@ -38,6 +38,10 @@ evaluation has been produced.
 
 ## Evidence Summary
 
+Per doc/07 Section 11, paper-facing trainable results use the frozen-seed mean
+and variability below. Highest-seed values are retained only for run-level
+traceability and conservative paired comparisons.
+
 B4o produced a protocol-valid formal KuaiSearch dev run:
 
 - best seed NDCG@10: 0.2976

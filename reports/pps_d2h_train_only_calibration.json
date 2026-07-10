@@ -1,0 +1,29 @@
+{
+  "analysis_id": "d2h_static_history_waterline_v1",
+  "calibration": {
+    "alpha_metrics": {
+      "0.0": 0.30067130109385126,
+      "0.1": 0.3231935702140596,
+      "0.2": 0.323146430624615,
+      "0.3": 0.322907025618126,
+      "0.4": 0.32297098354152404,
+      "0.5": 0.3224638489551905,
+      "0.6": 0.31915002254914404,
+      "0.7": 0.316044313810853,
+      "0.8": 0.3122457874299917,
+      "0.9": 0.30792746731843273,
+      "1.0": 0.30503187532345816
+    },
+    "request_count": 9694,
+    "selected_alpha": 0.1,
+    "selected_ndcg@10": 0.3231935702140596,
+    "tie_break": "largest alpha (more text) wins"
+  },
+  "checkpoint_path": "models/diagnostics/20260710_kuaisearch_d2t_calibrate_s20260708/model.pt",
+  "checkpoint_sha256": "247f27e2cbeef90e3fa5a5f5c2b8488db26e1542aa1617cec19e4b8316373572",
+  "config_path": "configs/analysis/d2h_static_history_control.yaml",
+  "config_sha256": "b34b722f8172dd07f4e5e03b71950d91ac6e9de54cc7acbcb29ac49c4161692b",
+  "feature_scope": "D2t plus causal B0b on final 10 percent retained train",
+  "qrels_read": false,
+  "test_read": false
+}
