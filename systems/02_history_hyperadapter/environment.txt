@@ -1,0 +1,18 @@
+# C02 private environment manifest
+name: myrec-c02
+prefix_policy: /data/gkl/conda_envs (machine-local prefix is not tracked)
+created_from: pps-kuaisearch
+create_command: CONDA_ENVS_PATH=/data/gkl/conda_envs conda create -n myrec-c02 --clone pps-kuaisearch -y
+python: 3.10.20
+torch: 2.6.0+cu124
+torch_cuda_runtime: 12.4
+transformers: 5.12.1
+sentence-transformers: 5.6.0
+numpy: 1.24.3
+pyyaml: 6.0.2
+pypdf: 5.8.0 (literature audit only; not imported by model/train/scoring)
+physical_gpu: 1
+program_device: cuda:0
+gpu_model_observed_before_lock: NVIDIA A40 46GB
+deterministic_cublas_workspace_config: :4096:8
+online_llm_calls: 0

@@ -1,0 +1,8 @@
+Environment: /data/gkl/conda_envs/myrec-c36
+Source clone: /data/gkl/conda_envs/myrec-c35
+Physical GPUs: 0,1,2 (one registered seed per GPU)
+Program device: cuda:0
+Deterministic CUBLAS: :4096:8
+Python: 3.10.20
+PyTorch: 2.6.0+cu124
+Transformers: 5.12.1

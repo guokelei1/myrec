@@ -1,0 +1,13 @@
+# Created by cloning the read-only base; the prefix itself is machine-local.
+creation_command=CONDA_ENVS_PATH=/data/gkl/conda_envs conda create -n myrec-c01 --clone pps-kuaisearch -y
+environment=myrec-c01
+prefix=/data/gkl/conda_envs/myrec-c01
+python=3.10.20
+torch=2.6.0+cu124
+torch_cuda=12.4
+numpy=1.24.3
+pyyaml=6.0.2
+gpu=NVIDIA A40
+physical_gpu=0
+binding=CUDA_VISIBLE_DEVICES=0
+online_llm_calls=0

@@ -1,0 +1,33 @@
+{
+  "aggregate_sha256": "a7112498e34e1dc7347e0a501e80f32ca61c10fc36ae56af4d3966a8d09f8c3d",
+  "candidate_id": "c44",
+  "created_at": "2026-07-12T00:50:59.809031+00:00",
+  "declarations": {
+    "dev_test_qrels_read": false,
+    "optimizer_steps": 0,
+    "repository_dataset_read": false,
+    "synthetic_outcome_observed": false,
+    "train_labels_read": false
+  },
+  "external_inputs_sha256": {
+    "reports/pps_c43_train_gate.json": "85a9e347495af87f558e417745f8a31c35d111db6e491deb7eac39c7c54459b7",
+    "src/myrec/eval/metrics.py": "53f6800e893a34d240f6a7c9971f60ae86fb984f8fe99669f0df579bf7b45f18"
+  },
+  "files_sha256": {
+    ".gitignore": "c254f5ea2681f98dd84e6849a3eaf69cc5319a279e125d6f7646a89a17c0f645",
+    "README.md": "e0cbbe8966a51e8523e1a27572ad00a527f7aebde8312b599490bd2ce76c0660",
+    "configs/design_gate.yaml": "f9c2bcae6df30ddff8b8e047673cd12ceea1046c45c1ce40519d5ba315ca9127",
+    "model/__init__.py": "a32bb8e12974a66e6f561fa44682e90be9c8d54461d5dc20560a0e7c11419c3d",
+    "model/partial_logit_flow.py": "7be8850207cc0f56bf41a885b44fe782d1be2b193977d805a5885803f7a05528",
+    "notes/design_gate_protocol.md": "1c7253246893513d4b55b5acb4fc300aa84c9d979f756660094e748ea10f3fa9",
+    "notes/nearest_neighbors.md": "494befeeb699f6f6f4e110e57e0796caaa52d9415a8df5c2e479e5d11c7f4308",
+    "notes/proposal.md": "a1b0a9130d8bb9ee7e9bab0c2d1049198af7199460a68a6377be1e28d5157add",
+    "probe/freeze_design.py": "2701686fbea5c2bdfec3f70c44029c8a6439035e313c7fe59e962be13d352723",
+    "probe/run_design_gate.py": "25747cb94015b88120716d0b3f0f070ae57ff8727aa628a86ba830b0c0576cdb",
+    "tests/test_model.py": "067df041df5bb9875a6456829e68e963fbd5a24e29130599f4882251204ba944",
+    "tests/test_protocol.py": "a4d4bdc24e6bda2427770fe6190e7abb1dd1d4bb2a4ae40e47f42a039c6a6d11"
+  },
+  "git_commit_at_lock": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+  "lock_id": "c44_partial_evidence_logit_flow_design_v1",
+  "status": "locked_before_data_free_outcome"
+}

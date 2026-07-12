@@ -1,0 +1,110 @@
+candidate_id: c75
+gate_id: c75_frozen_semantic_query_relay_kuai_v1
+status: pre_outcome_design
+run_id_prefix: 20260712_kuaisearch_c75_
+
+paths:
+  proposal: systems/75_frozen_semantic_query_relay_transformer/notes/proposal.md
+  mechanism_fingerprint: systems/75_frozen_semantic_query_relay_transformer/notes/mechanism_fingerprint.md
+  nearest_neighbors: systems/75_frozen_semantic_query_relay_transformer/notes/nearest_neighbors.md
+  protocol: systems/75_frozen_semantic_query_relay_transformer/notes/train_gate_protocol.md
+  review: systems/75_frozen_semantic_query_relay_transformer/notes/preimplementation_review.md
+  g0_lock: systems/75_frozen_semantic_query_relay_transformer/notes/g0_lock.json
+  g0_report: systems/75_frozen_semantic_query_relay_transformer/notes/g0_report.json
+  execution_lock: systems/75_frozen_semantic_query_relay_transformer/notes/execution_lock.json
+  c74_design_report: reports/pps_c74_semantic_conservative_query_relay_design_gate.json
+  c74_a0_report: reports/pps_c74_pretrained_lm_probe_a0.json
+  c74_adaptive_model: systems/74_semantic_conservative_query_relay_transformer/model/adaptive_semantic_relay.py
+  c74_data_bridge: systems/74_semantic_conservative_query_relay_transformer/train/data_bridge.py
+  c26_selection: artifacts/c26_query_pivot_token_bridge_transformer/train_gate_v1/selection.json
+  c26_artifact_root: artifacts/c26_query_pivot_token_bridge_transformer/train_gate_v1
+  packed_train_root: artifacts/analysis/supervised_motivation_diagnostics/data/train
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-zh-v1.5/snapshots/7999e1d3359715c523056ef9478215996d62a620
+  shared_metric_source: src/myrec/eval/metrics.py
+  artifact_root: artifacts/c75_frozen_semantic_query_relay_transformer/kuai_v1
+  checkpoint_root: models/c75_frozen_semantic_query_relay_transformer/kuai_v1
+  a0_report: reports/pps_c75_frozen_semantic_query_relay_a0.json
+  promoted_report: reports/pps_c75_frozen_semantic_query_relay.json
+
+selection:
+  source_role: c26_fit_exposed_formulation
+  source_requests: 6000
+  train_requests: 4800
+  validation_requests: 1200
+  split_seed: 20264500
+  max_history: 20
+  sampled_candidates: 8
+  positive_candidates_per_request: 1
+  fixed_anchor_requests: 256
+  fixed_anchor_selection_seed: 20265300
+  fixed_anchor_candidate_seed: 20265310
+
+resources:
+  g0_physical_gpu: 3
+  seed_to_physical_gpu:
+    "20265301": 0
+    "20265302": 1
+    "20265303": 2
+
+model:
+  modes:
+    - semantic_conservative_relay
+    - coupled_value_relay
+    - pooled_semantic_relay
+    - factual_semantic_relay
+  input_dim: 512
+  route_rank: 16
+  inherited_trainable_last_lm_layers_argument: 2
+  backbone_frozen: true
+  backbone_forced_eval: true
+  temperature: 0.1
+  profile_scale: 1.0
+  correction_scale: 3.0
+  route_init_std: 0.02
+
+training:
+  seeds: [20265301, 20265302, 20265303]
+  epochs: 1
+  max_requests_per_batch: 8
+  validation_max_requests_per_batch: 4
+  max_encoded_sequences_per_batch: 256
+  route_learning_rate: 0.0003
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  checkpoint_selection: fixed_final_state_only
+  attempts: 1
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20265320
+  hash_folds: 3
+  fixed_anchor_final_over_initial_loss_max: 0.995
+  primary_minus_base_min: 0.001
+  primary_minus_coupled_min: 0.0005
+  primary_minus_pooled_min: 0.0005
+  primary_minus_factual_min: 0.0005
+  true_minus_wrong_min: 0.001
+  primary_order_change_fraction_min: 0.10
+  primary_top10_change_fraction_min: 0.01
+  wrong_order_change_fraction_min: 0.05
+  wrong_top10_change_fraction_min: 0.01
+  control_order_change_fraction_min: 0.05
+  control_top10_change_fraction_min: 0.005
+  primary_correction_rms_min: 0.01
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000002
+  exact_fallback_tolerance: 0.0
+  require_each_seed_positive: true
+  require_two_of_three_folds_positive: true
+
+authorization:
+  c74_design_gate_pass_required: true
+  implementation_and_unit_tests: true
+  label_free_G0_before_training: true
+  exposed_fit_train_labels_after_execution_lock: true
+  validation_labels_after_A0_only: true
+  amazon_probe_after_kuai_A1_pass_only: true
+  fresh_features_scores_labels: false
+  dev: false
+  test: false
+  qrels: false

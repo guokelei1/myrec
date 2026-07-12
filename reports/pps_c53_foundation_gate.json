@@ -1,0 +1,54 @@
+{
+  "candidate_id": "c53",
+  "gate_id": "c53_strong_anchor_joint_context_v1",
+  "status": "failed_A0_terminal",
+  "decision": "close_generic_joint_context_as_immediate_foundation",
+  "locks": {
+    "proposal_sha256": "ec5ea6541a0ac24faa89a121966e8dda00e59ad09e10d47787fd241a8bbcb48e",
+    "execution_sha256": "5f234deb71404db5dae76c09c68df12ef9c180d398d74f7e2bb094e0173e5598",
+    "a0_report_sha256": "db815e5fef18f1e69cce36c386e4b59b48fb0bbe89fef6548e433569d2e0a021"
+  },
+  "label_access": {
+    "fit_labels_read": true,
+    "internal_A_labels_read": false,
+    "fresh_reserve_opened": false,
+    "dev_test_qrels_opened": false
+  },
+  "domains": {
+    "kuai": {
+      "requests": 600,
+      "base": "registered_seed20260708_D2p",
+      "seeds": [20263701, 20263702, 20263703],
+      "loss_decreased": [true, false, false],
+      "joint_minus_independent_order_change_fraction": [0.5033333333, 0.52, 0.5033333333],
+      "joint_minus_independent_top10_change_fraction": [0.02, 0.0416666667, 0.0366666667],
+      "true_minus_wrong_order_change_fraction": [0.09, 0.08, 0.1116666667],
+      "true_minus_wrong_top10_change_fraction": [0.0016666667, 0.0, 0.0],
+      "all_A0_checks_passed": false
+    },
+    "amazon": {
+      "requests": 300,
+      "base": "registered_frozen_BGE",
+      "seeds": [20263711, 20263712, 20263713],
+      "loss_decreased": [true, true, true],
+      "joint_minus_independent_order_change_fraction": [1.0, 1.0, 1.0],
+      "joint_minus_independent_top10_change_fraction": [0.8133333333, 0.85, 0.86],
+      "true_minus_wrong_order_change_fraction": [1.0, 1.0, 1.0],
+      "true_minus_wrong_top10_change_fraction": [0.3366666667, 0.1733333333, 0.34],
+      "all_A0_checks_passed": true
+    }
+  },
+  "post_terminal_label_free_diagnostic": {
+    "kuai_true_wrong_correction_correlation": [0.9981600746, 0.9993491767, 0.9976392051],
+    "amazon_true_wrong_correction_correlation": [0.9836556619, 0.9953613732, 0.9903452564],
+    "kuai_ensemble_joint_vs_base_top10_change_fraction": 0.025,
+    "amazon_ensemble_joint_vs_base_top10_change_fraction": 1.0
+  },
+  "interpretation": "The same joint Transformer learned stable candidate-list reranking, but most correction direction was history-invariant. Kuai failed the binding history load-bearing and convergence checks; Amazon's much weaker base was completely overwritten and true/wrong corrections remained highly correlated. No utility labels were opened and no architecture claim advanced.",
+  "claims": {
+    "known_foundation_only": true,
+    "architecture_innovation": false,
+    "utility_result": false,
+    "cross_domain_positive": false
+  }
+}

@@ -1,0 +1,163 @@
+candidate_id: c06
+gate_id: c06_real_mechanism_gate_v1
+status: coordinator_authorized_pending_preoutcome_execution_lock
+seed: 20260708
+environment: myrec-repo-default-py313-torch2.12.1-cu130
+program_device: cuda:0
+run_prefix: 20260711_kuaisearch_c06_
+g0_run_id: 20260711_kuaisearch_c06_real_g0_s20260708
+audit_run_id: 20260711_kuaisearch_c06_real_audit_s20260708
+variant_run_ids:
+  local_hodge: 20260711_kuaisearch_c06_local_hodge_s20260708
+  untrusted: 20260711_kuaisearch_c06_untrusted_s20260708
+  direct_learned: 20260711_kuaisearch_c06_direct_gate_s20260708
+  centered_cross_attention: 20260711_kuaisearch_c06_centered_attention_s20260708
+
+resources:
+  g0_physical_gpu: 0
+  audit_physical_gpu: 0
+  variant_physical_gpus:
+    local_hodge: 0
+    untrusted: 1
+    direct_learned: 2
+    centered_cross_attention: 3
+  one_process_per_visible_gpu: true
+  cross_gpu_shared_writes: false
+
+paths:
+  candidate_source_root: systems/06_conservative_wedge_flow_transformer
+  real_gate_lock: systems/06_conservative_wedge_flow_transformer/notes/c06_real_gate_lock.json
+  d2_config: configs/analysis/finetuned_nonpersonalized_control.yaml
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  packed_train_root: artifacts/analysis/supervised_motivation_diagnostics/data
+  packed_manifest: artifacts/analysis/supervised_motivation_diagnostics/data/manifest.json
+  packed_manifest_sha256: bb8e5984b8f41190193e9a84914aa369715bd3ab46261558836a6be11cb19d86
+  query_tokens: artifacts/analysis/finetuned_nonpersonalized_control/tokens
+  query_token_manifest: artifacts/analysis/finetuned_nonpersonalized_control/tokens/manifest.json
+  query_token_manifest_sha256: 18e285a88388dabbad0c09273de086415250c0bcc6201f5cf34c35f45bf260f6
+  raw_item_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy
+  calibration_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_calibrate_s20260708/model.pt
+  internal_train_popularity: artifacts/analysis/supervised_motivation_diagnostics/data/item_log_click_internal_train.npy
+  train_candidate_labels: artifacts/analysis/supervised_motivation_diagnostics/data/train/candidate_labels.npy
+  c05_selection: artifacts/c05_candidate_contrastive_evidence/g2a_v1/selection.json
+  c05_selection_sha256: e7e48c03e0e84ed779494beb1365fdcd6945c09cabd772553b3e281af6666eef
+  artifact_root: artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1
+  checkpoint_root: models/c06_conservative_wedge_flow_transformer/real_gate_v1
+
+integrity:
+  calibration_checkpoint_sha256: 247f27e2cbeef90e3fa5a5f5c2b8488db26e1542aa1617cec19e4b8316373572
+  internal_train_popularity_sha256: d8fd4b618454d8797408bec9d2d219c3bf3059b34283db0816cf059a46ae8e7b
+  packed_cut_request_index: 87245
+  packed_train_requests: 96939
+  c05_selected_requests: 12000
+  full_candidate_sets_required: true
+  key_alignment:
+    - request_id
+    - candidate_item_id
+  forbid_dev_test_qrels_metrics: true
+  forbid_final_d2_checkpoint: true
+  forbid_full_train_popularity: true
+  primary_dev_evaluator_calls_authorized: 0
+  test_access_authorized: false
+
+selection:
+  fit_requests: 12000
+  internal_A_requests: 1200
+  internal_B_requests: 600
+  escrow_requests: 515
+  nohistory_requests: 512
+  fit_range:
+    - 0
+    - 87245
+  postcut_range:
+    - 87245
+    - 96939
+  structural_nonrepeat_uses_complete_history: true
+  hash_payload: "c06-relative-v1\\0<role>\\0<request_id>"
+  exclude_every_c05_selected_request: true
+  freeze_before_any_label_shaped_array: true
+
+base:
+  d2p_alpha: 0.6
+  compute_dtype: float32
+  autocast: false
+  max_requests_per_batch: 192
+  max_padded_candidates_per_batch: 32768
+  max_padded_history_per_batch: 4096
+  item_state_batch_size: 8192
+
+model:
+  family: candidate_local_hodge_trusted_flow_probe
+  input_dim: 512
+  flow_dim: 32
+  max_history: 20
+  history_prior: uniform
+  score_delta_max: 1.0
+  centered_compute_rounds: 4
+  dataset_specific_features: false
+  category_features: false
+  handcrafted_action_or_recency_multiplier: false
+
+controls:
+  parameter_difference_max_fraction: 0.02
+  flop_difference_max_fraction: 0.10
+  flop_reference:
+    candidates: 48
+    history: 20
+
+training:
+  variants:
+    - local_hodge
+    - untrusted
+    - direct_learned
+    - centered_cross_attention
+  epochs: 2
+  seed: 20260708
+  checkpoint_selection: fixed_final_epoch_only
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  amp_dtype: bfloat16
+  max_requests_per_batch: 24
+  max_padded_candidate_rows: 1536
+  max_padded_history_rows: 480
+  request_weighting: mean_within_each_dynamic_batch_equal_optimizer_step
+  corruption_weight: 0.0
+  candidate_sampling: false
+  one_shot_attempts_per_variant: 1
+
+a0_gate:
+  common_mode_ratio_max: 0.00001
+  zero_sum_abs_tolerance: 0.00001
+  delta_range_fraction_of_bound_min: 0.001
+  requests_with_delta_range_fraction_min: 0.10
+  requests_with_any_order_change_fraction_min: 0.05
+  requests_with_top10_membership_change_fraction_min: 0.01
+  counterfactual_delta_change_fraction_min: 0.05
+  counterfactual_order_change_fraction_min: 0.01
+  deterministic_rescore_max_abs_difference: 0.0
+  pool_diagnostic_requests: 128
+  pool_diagnostics_binding_invariance_threshold: null
+
+a1_gate:
+  ndcg10_delta_over_d2p_min: 0.001
+  ndcg10_delta_over_each_control_min: 0.0005
+  paired_bootstrap_samples: 10000
+  bootstrap_seed: 20260708
+  hash_folds: 3
+  all_hash_folds_positive: true
+  clicked_minus_unclicked_ci_low_strictly_positive: true
+
+authorization:
+  design: true
+  cpu_synthetic_contracts: true
+  cohort_materialization: true
+  gpu_smoke: true
+  train_variants: true
+  a0_a1_audit: true
+  delayed_B: false
+  escrow: false
+  dev: false
+  full_training: false
+  test: false

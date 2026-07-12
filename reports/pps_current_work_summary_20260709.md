@@ -1,11 +1,18 @@
 # PPS Current Work Summary
 
-> **Current supersession / 当前解释（2026-07-10）.** 下文的
+> **Current supersession (2026-07-13).** This file is a 2026-07-09 snapshot,
+> not the current work queue. C01--C80 is closed; current R0 authorization is
+> defined by [`doc/31`](../doc/31_problem_discovery_and_architecture_iteration_protocol.md).
+
+> **Terminal supersession / 当前解释（2026-07-11）.** 下文的
 > benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
 > [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
 > 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
-> 为准：motivation complete，design formulation ready；implementation/training
-> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+>、[`terminal closure`](../doc/dev_log/20260711_architecture_exploration_terminal_closure.md)
+> 为准：motivation complete；后续 C01--C16 已关闭，未得到经过验证的架构
+> primitive，也未授权 proposed-system dev/full/test evaluation。C5-R3 FAIL
+> 及全部数字不变。正文中的
+> `current` / `final` / `next` 均为 2026-07-09 快照或其历史 supersession。
 
 Date: 2026-07-09
 
@@ -14,16 +21,17 @@ Status: historical snapshot, superseded by
 Random-channel construct-validity audit. Baseline numbers remain valid; the
 router/readiness conclusions below do not.
 
-Final resolution: C3-R/C5-R and C5-R2 were superseded by the finite C5-R3
+Historical resolution recorded after this snapshot: C3-R/C5-R and C5-R2 were superseded by the finite C5-R3
 component gate. Item-only mean 0.3453755 is now the binding static baseline;
 category-only is nonsignificant in 3/3 seeds; primary and fallback both fail.
-Motivation is complete as benchmark/analysis-only and proposed-system design is
-not authorized. See `reports/pps_intro_motivation_completion_20260710.md`.
+At that gate-local stage, motivation was recorded as benchmark/analysis-only
+and proposed-system design was not authorized. See the now-superseded stage
+wording in `reports/pps_intro_motivation_completion_20260710.md`.
 
 Scope: concise status summary through Batch 2b official-baseline work. No method
 used test data; C1 had only structurally audited the held-out files.
 
-## Current Position
+## Historical Position At This Snapshot
 
 The project is past the early data/protocol and baseline credibility gates for
 the current KuaiSearch dev workflow. The main active conclusion is that the
@@ -40,8 +48,9 @@ Batch 2b official-baseline work is complete for the current decision scope:
 - B6o HEM official: permanently downgraded to `alignment-not-verifiable`; no
   KuaiSearch dev evaluation was produced.
 
-The next numerical baseline remains B7-bge, but protocol-valid proposed-system
-development is now paused pending C3 construct repair and C5 adjudication.
+At this snapshot, the next numerical baseline was B7-bge and protocol-valid
+proposed-system development was paused pending C3 construct repair and C5
+adjudication.
 
 ## Key Decisions So Far
 
@@ -142,6 +151,7 @@ B6o evidence:
 ## Suggested Next Step
 
 Historical 2026-07-09 decision: use B7-bge as the formal baseline-to-beat and
-move into proposed-system development. This action is superseded by the C5-R3
-terminal note at the top of this file and must not be executed. The original M3
-oracle must likewise not be reissued as headroom evidence.
+move into proposed-system development. That action was first superseded by the
+C5-R3 gate-local terminal decision; that no-design stage label is itself now
+superseded by the current `doc/15`/`doc/24` four-candidate protocol. The original
+M3 oracle must still not be reissued as headroom evidence.

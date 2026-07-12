@@ -1,0 +1,17 @@
+{
+  "aggregate_sha256": "ff897f24769f4bdb5c4f08a23e97c953769bda6973241f5a9e6432d370ff78eb",
+  "candidate_id": "c54",
+  "created_at": "2026-07-12T04:22:26.771593+00:00",
+  "d0_report": {
+    "path": "artifacts/c54_history_carrier_competition_transformer/mechanism_gate_v1/d0_report.json",
+    "sha256": "abd84416264cfa1a66bbc5d336c896bfa458b53a938e850b36ac490e4990dccf"
+  },
+  "declarations": {
+    "C53_A_labels_unopened": true,
+    "fit_labels_not_yet_read_by_C54": true,
+    "fresh_reserve_dev_test_qrels_closed": true
+  },
+  "lock_id": "c54_execution_v1",
+  "proposal_lock_sha256": "75bd949dbc91401ab38eec4aa3c3634be325f55bf934e5ae7f005fda37a6359e",
+  "status": "locked_before_c54_fit_or_A_score"
+}

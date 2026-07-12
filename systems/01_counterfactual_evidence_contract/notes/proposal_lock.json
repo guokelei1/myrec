@@ -1,0 +1,46 @@
+{
+  "budget": {
+    "authorized_primary_dev_evaluator_calls": 1,
+    "max_a40_gpu_hours": 8.0,
+    "max_implementation_attempts": 2,
+    "scope": "proposal lock, minimal implementation, unit/smoke/train-internal checks, and one single-seed dev screening only"
+  },
+  "candidate_hash": "d7c2ba6e2b1c168ed40fa36dcfb95031bdade4f48df0e7a687998e4ea594a546",
+  "candidate_hash_definition": "sha256 of the ordered sha256sum lines for README.md, environment.txt, proposal.md, mechanism_fingerprint.md, nearest_neighbors.md, gate_protocol.md, and configs/screening.yaml",
+  "candidate_id": "c01",
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "declarations": {
+    "c01_dev_outcome_read_before_lock": false,
+    "c01_train_internal_outcome_read_before_lock": false,
+    "other_candidate_design_or_code_read_before_lock": false,
+    "test_records_or_qrels_read": false,
+    "text": "At lock time no C01 learned model, train-internal metric, dev score, or dev metric existed or had been read. The initial broad counterfactual-attention idea was narrowed after primary-source review of CFT and CARD, before any outcome. Sibling prompts, designs, code, runs, and notes were not read."
+  },
+  "design_files": {
+    "README.md": "e8f988b041c3a9b1fe360894a8e32613af71bda2065840cdda3287273c6b7d4f",
+    "configs/screening.yaml": "3189ad10244a9b549fd699006724e5d648b6cb8101d07ee588c11eafd9c8760b",
+    "environment.txt": "864ea9a09a69844181430e8b950f063fe48a161988e6ab5e508d4760f55b58a9",
+    "notes/gate_protocol.md": "d68708ee01cff680ca9f321f7ee084100fe9d9c854097824bbcd7ef3e38ef0df",
+    "notes/mechanism_fingerprint.md": "88c6c151111e6acdbd9004d55280f7f3999df43a5cee0585ddb970322f2b0871",
+    "notes/nearest_neighbors.md": "8eee677bf16ad267e37f1e155d6f8cb3d851d36c044229be369a8806d3fa05f3",
+    "notes/proposal.md": "84c5fdbfcfac230a5187cdaa0fc5f76ef94a1de3d8fcfac0e73d96cb49caeedb"
+  },
+  "environment": {
+    "conda_env": "myrec-c01",
+    "conda_envs_path": "/data/gkl/conda_envs",
+    "cuda_visible_devices": "0",
+    "physical_gpu": 0,
+    "python": "3.10.20",
+    "torch": "2.6.0+cu124"
+  },
+  "git": {
+    "commit": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+    "dirty": true,
+    "note": "Pre-existing unrelated user changes are preserved; C01 does not commit or clean the worktree."
+  },
+  "locked_at": "2026-07-11T00:19:23+08:00",
+  "mechanism": "Counterfactual Evidence-Contract Transformer with a multi-twin Counterfactual Quantile Contract",
+  "run_id": "20260710_kuaisearch_c01_cect_screen_s20260708",
+  "seed": 20260708,
+  "status": "locked_before_any_c01_outcome"
+}

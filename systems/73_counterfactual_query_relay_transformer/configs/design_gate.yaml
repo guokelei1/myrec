@@ -1,0 +1,82 @@
+candidate_id: c73
+gate_id: c73_counterfactual_query_relay_design_v1
+status: pre_outcome_design
+run_id_prefix: 20260712_synthetic_c73_
+
+paths:
+  proposal: systems/73_counterfactual_query_relay_transformer/notes/proposal.md
+  mechanism_fingerprint: systems/73_counterfactual_query_relay_transformer/notes/mechanism_fingerprint.md
+  nearest_neighbors: systems/73_counterfactual_query_relay_transformer/notes/nearest_neighbors.md
+  design_gate_protocol: systems/73_counterfactual_query_relay_transformer/notes/design_gate_protocol.md
+  preimplementation_review: systems/73_counterfactual_query_relay_transformer/notes/preimplementation_review.md
+  proposal_lock: systems/73_counterfactual_query_relay_transformer/notes/proposal_lock.json
+  artifact_root: artifacts/c73_counterfactual_query_relay_transformer/design_gate_v1
+  promoted_report: reports/pps_c73_counterfactual_query_relay_design_gate.json
+
+resources:
+  seed_to_physical_gpu:
+    "20265001": 0
+    "20265002": 1
+    "20265003": 2
+
+data:
+  generator_seed: 20265000
+  train_examples: 4096
+  validation_examples: 2048
+  query_tokens: 4
+  history_events: 8
+  candidates: 12
+  dimension: 48
+  key_dimension: 12
+  value_dimension: 12
+  no_history_fraction: 0.20
+  repeat_fraction: 0.20
+  noise_std: 0.08
+  validation_shift: nuisance_target_to_distractor
+
+model:
+  modes:
+    - counterfactual_query_relay
+    - late_state_difference
+    - pooled_query_relay
+    - factual_query_relay
+  hidden_dimension: 64
+  heads: 4
+  ffn_dimension: 128
+  dropout: 0.0
+  correction_cap: 3.0
+
+training:
+  seeds: [20265001, 20265002, 20265003]
+  batch_size: 128
+  steps: 600
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+
+evaluation:
+  ndcg_k: 10
+  supported_primary_min: 0.72
+  supported_gain_over_base_min: 0.10
+  primary_minus_late_min: 0.025
+  primary_minus_pooled_min: 0.025
+  primary_minus_factual_min: 0.010
+  wrong_gain_retention_max: 0.45
+  shuffled_gain_retention_max: 0.55
+  coarse_gain_retention_max: 0.55
+  query_mask_gain_retention_max: 0.05
+  repeat_ndcg_min: 0.995
+  no_history_ndcg_min: 0.995
+  exact_fallback_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000001
+  deterministic_tolerance: 0.0
+  require_all_seeds: true
+
+authorization:
+  data_free_design_and_gpu_gate: true
+  repository_data: false
+  repository_labels: false
+  pretrained_lm_probe_after_gate_pass_only: true
+  dev: false
+  test: false
+  qrels: false

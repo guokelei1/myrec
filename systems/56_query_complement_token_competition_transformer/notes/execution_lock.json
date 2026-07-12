@@ -1,0 +1,38 @@
+{
+  "candidate_id": "c56",
+  "created_at": "2026-07-12T13:06:51+08:00",
+  "gate_id": "c56_query_complement_token_competition_v1",
+  "locked_files": {
+    "systems/56_query_complement_token_competition_transformer/README.md": "f426ad551a5c2f7d0c51ef5a7190ccad6105ceebd7c76497ca01db6feb4d52a1",
+    "systems/56_query_complement_token_competition_transformer/configs/signal_gate.yaml": "7f1e58b3dc94ec8e4038d95633bce373b148fb710f7bdd996c054d1c71690f5a",
+    "systems/56_query_complement_token_competition_transformer/environment.txt": "04268d925b1a39bb3c80b902cd730a6971f27239d24c8ee06eac76023f1fae77",
+    "systems/56_query_complement_token_competition_transformer/model/__init__.py": "1ad4229fb0e516d35c61be0987adb7fe10dddf7644695206850531e987f4728e",
+    "systems/56_query_complement_token_competition_transformer/model/query_complement.py": "a0280fc8ffc4357b54e4398a34a0017bb72402f7262009767c986c1f6c533fde",
+    "systems/56_query_complement_token_competition_transformer/notes/nearest_neighbors.md": "008223b1cf1a9271a9cdde774e2dae3018e252dfee0c28aa6b269f4adf90136d",
+    "systems/56_query_complement_token_competition_transformer/notes/proposal.md": "1a197134d0d41b1c880e33dd8ede00094689fb3ddbb354d79fb6cdfec643b4f0",
+    "systems/56_query_complement_token_competition_transformer/notes/proposal_lock.json": "e0940b4e5ab0bd32a7e1059fb9529e6da886fe87509a5c82c7a28c1c0253253a",
+    "systems/56_query_complement_token_competition_transformer/probe/__init__.py": "2ae6d8ae81a6d6bce78e4b87b409befad9f8d32bd3b7ebf4a3910a47c34da2a6",
+    "systems/56_query_complement_token_competition_transformer/probe/locking.py": "13d9040210b0e26f6e4079c84c9a6bdbdbaf2754353e0053cd055cf8ab4d8544",
+    "systems/56_query_complement_token_competition_transformer/probe/materialize_contextual.py": "c35c2d811b2ebda0c9d087b926d39ae6e52e2fde008c612d056db2f969a68f9f",
+    "systems/56_query_complement_token_competition_transformer/probe/materialize_selection.py": "c2b71e8fb7e0ca3a2b680617ef83a99a28207c2e9d1faf2809bbb0b7d954fc8a",
+    "systems/56_query_complement_token_competition_transformer/tests/test_model.py": "93a96288501e202ecbc2a79d4ae942a623e65043c2a45d1386e6f8b3e1448067",
+    "systems/56_query_complement_token_competition_transformer/tests/test_objective.py": "10fca65eadb1baf7f98a5f4d41661519b7c9a897fba6f7807e6133ae9e12fb18",
+    "systems/56_query_complement_token_competition_transformer/train/__init__.py": "2a85af2ac40526a279f1b65febb9e0f87d268c8447d66ee9326ad27cb59cca47",
+    "systems/56_query_complement_token_competition_transformer/train/data.py": "f27d33f27de134e9a45962f428d81099b3850b2a84ae52a9241e538eda2b818c",
+    "systems/56_query_complement_token_competition_transformer/train/run_signal_gate.py": "4b19e1568eaadd6b9d3b55500e917aafed1421badcfada7652ffec9f43cef73e"
+  },
+  "status": "frozen_before_selection_contextual_materialization_or_c56_training",
+  "unit_tests": {
+    "command": "/data/gkl/conda_envs/myrec-c38/bin/python -m pytest -q systems/56_query_complement_token_competition_transformer/tests",
+    "passed": 9
+  },
+  "unopened": [
+    "c56_holdout_fit_labels",
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

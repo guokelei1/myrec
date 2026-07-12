@@ -1,0 +1,52 @@
+{
+  "candidate_id": "c19",
+  "gate_id": "g1_oriented_lag_synthetic_v1",
+  "status": "locked_before_learned_outcome",
+  "locked_at": "2026-07-11T14:52:36+08:00",
+  "git_commit": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+  "git_dirty": true,
+  "aggregate_sha256": "5453db5423e896f1a2487a3abe948a7f7813caacf93152920c1bb1f2ab0ded49",
+  "files_sha256": {
+    "README.md": "1629a609104514972d9be7beb82120622edc478f8fb3787319ec13e0da479e72",
+    "configs/synthetic_gate.yaml": "7d5316896e7e97b89df1f89db5a41026c6111635d40cb47bf2158d80c0b45dcd",
+    "environment.txt": "8558a794443d0d9954192ee4d7c59edf4e432ebfa448265525f03e03c33d4b81",
+    "model/__init__.py": "d34fffcbd41ce15bc31dd983c2e2df566f3bfae09462da8e7687f6a2570940b5",
+    "model/olt.py": "1ecb0ed0eb31b5cdd253091aab6e33fe213f14cc5811d86b581a73d6cc46428b",
+    "notes/gate_protocol.md": "ac8fead625ba4ea29c6f8a7e4f43221b613d796d8b40772e2c8320da7864e787",
+    "notes/mechanism_fingerprint.md": "6b5351c6c8681c27419fa2b18367e6d7c41f9f5f0a89798ebc0823862caea909",
+    "notes/nearest_neighbors.md": "e2c2905d6bb7a08ea6987ec6233c71fe4b4b2434f69d9e3c219135bccc8a13c0",
+    "notes/proposal.md": "d9ca2617142fea40df115110aba4a1890b53612d4294447765855dbc830c081d",
+    "tests/test_model.py": "0bd06ff73273f74f60f3b7acf82520de6dbf1083794eada4ee94eb7e62f87ef4",
+    "tests/test_operator.py": "b8fbea8f7311d853e6c4c9772b3faad8a9d9c6297d042d38049b8d1ca8511a83",
+    "tests/test_protocol.py": "f156d46203ad9d0276aedbe2129ee9ceddf1cc2e9c4461af08fb3f592cc3d73e",
+    "tests/test_synthetic.py": "0cd5f19a2b12b4e0750453c27325c67891efd50e746ad1b498e7a959282ac45b",
+    "train/__init__.py": "be1d6859d83d10cc9a922ae4d31341902b7651559b4115c33cc207daa5818209",
+    "train/run_synthetic_gate.py": "486c3d5d2de6454f534cd8b72268b2eb6faf328ac8ab8d77dc9325504b6f2c4e",
+    "train/synthetic.py": "2b82e16d9b756f4d8938d1115ba2a3bfb04f155107e068dbe32ac583ae39472e"
+  },
+  "environment": {
+    "path": "/data/gkl/conda_envs/myrec-c19",
+    "python": "3.10.20",
+    "torch": "2.6.0+cu124",
+    "cuda_build": "12.4",
+    "pytest": "9.1.1",
+    "pyyaml": "6.0.2"
+  },
+  "execution": {
+    "physical_gpu": 3,
+    "visible_device": "cuda:0",
+    "seeds": [20260721, 20260722, 20260723],
+    "learned_attempts": 1,
+    "command": "CUBLAS_WORKSPACE_CONFIG=:4096:8 CUDA_VISIBLE_DEVICES=3 /data/gkl/conda_envs/myrec-c19/bin/python systems/19_oriented_lag_transformer/train/run_synthetic_gate.py --config systems/19_oriented_lag_transformer/configs/synthetic_gate.yaml --device cuda:0"
+  },
+  "pre_outcome_evidence": {
+    "structural_tests_passed": 18,
+    "structural_tests_total": 18,
+    "learned_outcome_exists": false,
+    "repository_data_read": false,
+    "standardized_records_read": false,
+    "dev_evaluator_calls": 0,
+    "test_access": false,
+    "dev_eval_log_sha256": "54b3760a211b1e8047a2615de39398873d27b7f64531f4860747ea7e0cb2bb44"
+  }
+}

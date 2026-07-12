@@ -1,0 +1,670 @@
+{
+  "A0": {
+    "activity": {
+      "primary_vs_asymmetric_routing": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1197,
+        "top10_fraction": 0.9975
+      },
+      "primary_vs_base": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1197,
+        "top10_fraction": 0.9975
+      },
+      "primary_vs_c38_unprojected": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 890,
+        "top10_fraction": 0.7416666666666667
+      },
+      "primary_vs_fixed_semantic": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1197,
+        "top10_fraction": 0.9975
+      },
+      "primary_vs_semantic_routing": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1197,
+        "top10_fraction": 0.9975
+      },
+      "primary_vs_single_wide_routing": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1197,
+        "top10_fraction": 0.9975
+      },
+      "primary_vs_uniform_semantic": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1197,
+        "top10_fraction": 0.9975
+      },
+      "true_vs_wrong": {
+        "any_count": 1197,
+        "any_fraction": 0.9975,
+        "requests": 1200,
+        "top10_count": 1060,
+        "top10_fraction": 0.8833333333333333
+      }
+    },
+    "checks": {
+      "asymmetric_routing_order_distinct": true,
+      "asymmetric_routing_top10_distinct": true,
+      "c38_unprojected_order_distinct": true,
+      "c38_unprojected_top10_distinct": true,
+      "checkpoint_hashes_preserved": true,
+      "dev_test_closed": true,
+      "equal_capacity": true,
+      "fixed_semantic_order_distinct": true,
+      "fixed_semantic_top10_distinct": true,
+      "functional_contracts": true,
+      "model_contracts": true,
+      "primary_identity_loop": true,
+      "primary_order_active": true,
+      "primary_top10_active": true,
+      "semantic_routing_order_distinct": true,
+      "semantic_routing_top10_distinct": true,
+      "single_wide_routing_order_distinct": true,
+      "single_wide_routing_top10_distinct": true,
+      "uniform_semantic_order_distinct": true,
+      "uniform_semantic_top10_distinct": true,
+      "wrong_order_distinct": true,
+      "wrong_top10_distinct": true,
+      "zero_optimizer_steps": true
+    }
+  },
+  "A1": {
+    "checks": {
+      "clicked_direction_ci": true,
+      "over_asymmetric_routing_all_seeds": true,
+      "over_asymmetric_routing_ci": false,
+      "over_asymmetric_routing_effect": true,
+      "over_base_all_folds": true,
+      "over_base_all_seeds": true,
+      "over_base_ci": true,
+      "over_base_effect": true,
+      "over_c38_unprojected_all_folds": true,
+      "over_c38_unprojected_all_seeds": true,
+      "over_c38_unprojected_ci": true,
+      "over_c38_unprojected_effect": true,
+      "over_semantic_routing_all_seeds": true,
+      "over_semantic_routing_ci": false,
+      "over_semantic_routing_effect": true,
+      "over_single_wide_routing_all_seeds": true,
+      "over_single_wide_routing_ci": true,
+      "over_single_wide_routing_effect": true,
+      "true_over_wrong_all_folds": true,
+      "true_over_wrong_all_seeds": true,
+      "true_over_wrong_ci": true
+    },
+    "clicked_direction": {
+      "mean": 0.5436456465519344,
+      "percentile_95_ci": [
+        0.5058140743175754,
+        0.5805824155957671
+      ],
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20262602
+    },
+    "comparisons": {
+      "asymmetric_routing": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.0654416370992865,
+            "requests": 359
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.006651485560405012,
+            "requests": 416
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.01511485921062728,
+            "requests": 425
+          }
+        ],
+        "mean": 0.01653062545604645,
+        "percentile_95_ci": [
+          -0.0055812579765976466,
+          0.039119890567167546
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262505
+      },
+      "base": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.10933596733837898,
+            "requests": 359
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.1156355813389812,
+            "requests": 416
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.10707157128689018,
+            "requests": 425
+          }
+        ],
+        "mean": 0.11071785992368546,
+        "percentile_95_ci": [
+          0.08568911930429919,
+          0.13532858757920524
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262501
+      },
+      "c38_unprojected": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.019125783505963088,
+            "requests": 359
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.0064591384389292295,
+            "requests": 416
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.006462387308166733,
+            "requests": 425
+          }
+        ],
+        "mean": 0.010249727062671807,
+        "percentile_95_ci": [
+          0.004672083904461205,
+          0.015830135950088663
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262502
+      },
+      "semantic_routing": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.0645725056387071,
+            "requests": 359
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.004744729425922319,
+            "requests": 416
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.015189929310747044,
+            "requests": 425
+          }
+        ],
+        "mean": 0.015583014173676697,
+        "percentile_95_ci": [
+          -0.006375530822571305,
+          0.03827750117078221
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262503
+      },
+      "single_wide_routing": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.06829241066889431,
+            "requests": 359
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.015462929488642222,
+            "requests": 416
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.0044204611990509395,
+            "requests": 425
+          }
+        ],
+        "mean": 0.024225715073176318,
+        "percentile_95_ci": [
+          0.0020235011543567934,
+          0.04629619016584777
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262504
+      },
+      "wrong_history": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.02658389535921773,
+            "requests": 359
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.043775676076834046,
+            "requests": 416
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.034179468016591816,
+            "requests": 425
+          }
+        ],
+        "mean": 0.03523381132414471,
+        "percentile_95_ci": [
+          0.024063246289488527,
+          0.046410367946748986
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262506
+      }
+    },
+    "seed_averaged_ndcg10": {
+      "asymmetric_routing": 0.31681593493655247,
+      "base": 0.2226287004689135,
+      "c38_unprojected": 0.32309683332992717,
+      "coupled_content": 0.33334656039259897,
+      "fixed_semantic": 0.273363775395744,
+      "primary_wrong": 0.29811274906845425,
+      "semantic_routing": 0.3177635462189223,
+      "single_wide_routing": 0.3091208453194226,
+      "uniform_semantic": 0.22540312312357305
+    },
+    "seed_differences": {
+      "asymmetric_routing": {
+        "20262101": 0.02350690508984366,
+        "20262102": 0.01582481289031576,
+        "20262103": 0.010260158387979942
+      },
+      "base": {
+        "20262101": 0.1134259115526634,
+        "20262102": 0.10598223060266186,
+        "20262103": 0.11274543761573116
+      },
+      "c38_unprojected": {
+        "20262101": 0.008091371755378371,
+        "20262102": 0.01196453650226292,
+        "20262103": 0.010693272930374132
+      },
+      "primary_wrong": {
+        "20262101": 0.037082226097636437,
+        "20262102": 0.03609025306767871,
+        "20262103": 0.03252895480711898
+      },
+      "semantic_routing": {
+        "20262101": 0.022602191996212856,
+        "20262102": 0.012064054130786043,
+        "20262103": 0.0120827963940312
+      },
+      "single_wide_routing": {
+        "20262101": 0.03325065193445315,
+        "20262102": 0.016527572606088156,
+        "20262103": 0.02289892067898764
+      }
+    }
+  },
+  "candidate_id": "c42",
+  "created_at": "2026-07-12T00:11:59.189250+00:00",
+  "dev_test_opened": false,
+  "execution_lock_sha256": "97606d0360c3516ee85b80715b96551a9df1a0304b6c20051751a9ce45362b37",
+  "internal_A_labels_opened": true,
+  "internal_A_scores_opened": true,
+  "optimizer_steps": 0,
+  "proposal_lock_sha256": "3fdaf93488c3478b102a9c9180b7e95958daa5837dcfdb2f662336e814834b54",
+  "seed_reports": {
+    "20262101": {
+      "c38_checkpoint": {
+        "path": "models/c38_cross_domain_global_tangent_transfer/train_gate_v1/seed_20261301_query_attended_unprojected.pt",
+        "sha256": "e6732ca38bcf3b224d516aaecfcf684201580b349632f080ae5d0313f5a34d97"
+      },
+      "c38_seed": 20261301,
+      "candidate_id": "c42",
+      "created_at": "2026-07-12T00:11:40.407730+00:00",
+      "dev_test_read": false,
+      "execution_lock_sha256": "97606d0360c3516ee85b80715b96551a9df1a0304b6c20051751a9ce45362b37",
+      "functional_control_reports": {
+        "c38_unprojected": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "fixed_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "uniform_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        }
+      },
+      "internal_A_labels_opened": false,
+      "internal_A_scores_opened": true,
+      "mode_reports": {
+        "asymmetric_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_asymmetric_routing.pt",
+          "checkpoint_sha256": "0924e25224bef7b6810fd7cda436526fa6c6ab107233aa8ca770c3e295e9d76c",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "1a25809f5f7ddc9cb4576ee5142067e33e86717d3813563d290ad3632d849be2"
+        },
+        "coupled_content": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_coupled_content.pt",
+          "checkpoint_sha256": "7f64c8608bfb8d6a604e383a7bc61f198d382d6e68a862c156ccdb3201687702",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "loop_assignment": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "semantic_carrier_exact": false,
+          "state_sha256": "a2114a270f7c176a5d95829c7728dfd59497200b9032fb278442018bc4de3bb2",
+          "states_finite": true
+        },
+        "semantic_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_semantic_routing.pt",
+          "checkpoint_sha256": "cc529191b5788c5f0e93470075a61a12d8ac3e53de70739e36b4e949834d424e",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "271824b9f28583b3e572ce6c11b844929a9717d1f0d18cdec3563847928813f5"
+        },
+        "single_wide_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_single_wide_routing.pt",
+          "checkpoint_sha256": "7745a5c8432f9832b3f3b932e7fe77fb5055971c0f38d5c6d62a1ed3c36b92a5",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "7f7bed2d9a7806df0bec5702481e9bbde66b278493a292fc27cde00ee9f79a28"
+        }
+      },
+      "optimizer_steps": 0,
+      "physical_gpu": 0,
+      "proposal_lock_sha256": "3fdaf93488c3478b102a9c9180b7e95958daa5837dcfdb2f662336e814834b54",
+      "score_artifact": {
+        "path": "artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1/seed_20262101_scores.npz",
+        "sha256": "900de6985d5a3962a77d95625750568ac32bacdb829befc1f974f62e32d7c643"
+      },
+      "seed": 20262101
+    },
+    "20262102": {
+      "c38_checkpoint": {
+        "path": "models/c38_cross_domain_global_tangent_transfer/train_gate_v1/seed_20261302_query_attended_unprojected.pt",
+        "sha256": "e580e134f37565b95cc47f42f4481533b63375604414a6d76ccd8e4afca13404"
+      },
+      "c38_seed": 20261302,
+      "candidate_id": "c42",
+      "created_at": "2026-07-12T00:11:42.640264+00:00",
+      "dev_test_read": false,
+      "execution_lock_sha256": "97606d0360c3516ee85b80715b96551a9df1a0304b6c20051751a9ce45362b37",
+      "functional_control_reports": {
+        "c38_unprojected": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "fixed_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "uniform_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        }
+      },
+      "internal_A_labels_opened": false,
+      "internal_A_scores_opened": true,
+      "mode_reports": {
+        "asymmetric_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_asymmetric_routing.pt",
+          "checkpoint_sha256": "cbafab0818b9662f653ceb731148c80465b96070995ceafa67c6f6a8041cff48",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "9135ae7ee18101ce34e302e6eaec433349b38fd059c7634529fda3564ee21b58"
+        },
+        "coupled_content": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_coupled_content.pt",
+          "checkpoint_sha256": "3d89b712d81f47c1415874846c7c045e80de7d45b70ea27d18c02d7136a247c2",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "loop_assignment": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "semantic_carrier_exact": false,
+          "state_sha256": "8717da1a0845394d683d5d8e19cda776dfee04db71fdd62e14aed41e886dfee4",
+          "states_finite": true
+        },
+        "semantic_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_semantic_routing.pt",
+          "checkpoint_sha256": "cd1740258f57d1c930475c04b3d8631352e61d0925ca171053ed4cef87cfacff",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "741905d4cb2a61ac9f736c6d8efb6dfecb14bdaef5eebb77982c064e8b9f16aa"
+        },
+        "single_wide_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_single_wide_routing.pt",
+          "checkpoint_sha256": "5557180e42e414f108a255fad98e446f21a90674ca0cd91e11f8d2e9efacdf1c",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "78bb090cc427fcd98c978cfcabee5e60a28ba95f0ac0694eaa857ee68a555d5c"
+        }
+      },
+      "optimizer_steps": 0,
+      "physical_gpu": 1,
+      "proposal_lock_sha256": "3fdaf93488c3478b102a9c9180b7e95958daa5837dcfdb2f662336e814834b54",
+      "score_artifact": {
+        "path": "artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1/seed_20262102_scores.npz",
+        "sha256": "b9005b837b8e2361e6043695b8843d172df201e026e7ddc51263ee167f04dde6"
+      },
+      "seed": 20262102
+    },
+    "20262103": {
+      "c38_checkpoint": {
+        "path": "models/c38_cross_domain_global_tangent_transfer/train_gate_v1/seed_20261303_query_attended_unprojected.pt",
+        "sha256": "6c67e1996fde17e6c5a19c61cc3fa8747b37505fd41981f2c0a19c0bb82d8543"
+      },
+      "c38_seed": 20261303,
+      "candidate_id": "c42",
+      "created_at": "2026-07-12T00:11:41.222874+00:00",
+      "dev_test_read": false,
+      "execution_lock_sha256": "97606d0360c3516ee85b80715b96551a9df1a0304b6c20051751a9ce45362b37",
+      "functional_control_reports": {
+        "c38_unprojected": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "fixed_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "uniform_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        }
+      },
+      "internal_A_labels_opened": false,
+      "internal_A_scores_opened": true,
+      "mode_reports": {
+        "asymmetric_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_asymmetric_routing.pt",
+          "checkpoint_sha256": "bd4334d8c660e03e4576a7e13c44d1d88378ada13d1a7e7e61a7b16917281b78",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "e32b6ab3b52db3f350b649160429de8b1c5e581e71648a8293ccae9bb2619864"
+        },
+        "coupled_content": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_coupled_content.pt",
+          "checkpoint_sha256": "e20b7008992bb115fe661c664f4f6509a09db8e10ff2300c8e4e8b8462bff6cf",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "loop_assignment": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "semantic_carrier_exact": false,
+          "state_sha256": "ab71ceb11d34ebd99e1729e6464a43ab1d36f0ffcd58b51ad85aee1a5dad62f5",
+          "states_finite": true
+        },
+        "semantic_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_semantic_routing.pt",
+          "checkpoint_sha256": "478aface0be23104468f30785ef5fe712ae0e71be953442a3b43e05d1d157379",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "8550c21d882c152038fa4452fd590ffd9b108ff6c022750644bf91df632432c3"
+        },
+        "single_wide_routing": {
+          "checkpoint_path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_single_wide_routing.pt",
+          "checkpoint_sha256": "1d9b31d0435a2c30768c4c618fdd7f513c705bcf750decc070e98eb4b14c0686",
+          "diagnostics": {
+            "candidate_permutation_max_abs": 0.0,
+            "deterministic_max_abs": 0.0,
+            "nohistory_max_abs": 0.0,
+            "query_absent_wrapper_max_abs": 0.0,
+            "repeat_wrapper_max_abs": 0.0
+          },
+          "optimizer_steps": 0,
+          "parameters": 49152,
+          "state_sha256": "b62c9c845ddc429c5072ba05447716b1820febaeca6eccdc597da83a2d622746"
+        }
+      },
+      "optimizer_steps": 0,
+      "physical_gpu": 2,
+      "proposal_lock_sha256": "3fdaf93488c3478b102a9c9180b7e95958daa5837dcfdb2f662336e814834b54",
+      "score_artifact": {
+        "path": "artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1/seed_20262103_scores.npz",
+        "sha256": "d40ba3e0eb7cbb1d56314a579e65660b3a834c1ea323d0615cf10abfb60960da"
+      },
+      "seed": 20262103
+    }
+  },
+  "status": "failed_A1_terminal"
+}

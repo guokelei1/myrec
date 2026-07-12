@@ -1,0 +1,52 @@
+{
+  "c47_signal_execution_lock_sha256": "18ab517585f26542b5a8fdbf27ddd9b8d8276b4d2b248bce08f640dd9bdf1e76",
+  "candidate_id": "c51",
+  "created_at": "2026-07-12T03:15:50.319942+00:00",
+  "declarations": {
+    "C47_A_already_exposed": true,
+    "C51_scores_metrics_opened": false,
+    "dev_test_qrels_opened": false,
+    "fresh_reserve_opened": false
+  },
+  "external_inputs_sha256": {
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/a0_report.json": "037693b8775ed0322e9f08a81183aef0cfb27e01990886f6aaac7718d8e0b876",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_feature_selection.json": "0a2bd5286fd18176e2c7f0b283d29b7dec5da60e9995384c889b8e31fbb30569",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/base_scores.npy": "ecce730c62221311b4bbc9f752f8f01b0582a9f56b52fc007acaf37764af5d2e",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/candidate_item_positions.npy": "4a2baced5666111a7f09bc1f3a65bc721581d0b80c796084ea49005921f141e4",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/candidate_offsets.npy": "71a6ec9932c118c87642fa6bce4bcc94c8aa12c803c026b548143b81193acb49",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/embedding_manifest.json": "8206779ef3a375dc709f45706a1c8fcc637268d3e626b9727152f83ac0ebdfc3",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/feature_manifest.json": "2d160460617bebc1a2a3abdb965359019e674021d936537bc81770e6ea45c54c",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/feature_request_indices.npy": "94a1d0d006ef7f3fc96a85c2896a86aacdc4da50d3bb07f8ea0d59f7ec2a265a",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/item_embeddings.npy": "959189104faaa6f9c45fdbe4935e429f14f5e4eaadcba2b15a4c822ef0b2aecc",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/items.jsonl": "0dfec54493ae8c0a56989328afd7b755a37601bc9ddd0a8e7d0ef371e499809c",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/query_embeddings.npy": "38efdd7809519c1a087ff0d998ea86810a9128d00de90d195ebf3489c0148ebc",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/requests.jsonl": "457d6493d32592681caa2aeec113277b8fc86d421580c0a725e2af15bbde3ca8",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/true_history_item_positions.npy": "abd6c9e800e08d1c1d6e423de5fbc1a083cdfd58fbb903ead0419553c6919025",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/true_history_offsets.npy": "27feab18d44b9d1e4dcfa31312637554ca11064ac1e3b06cde802d8ff0fab629",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/wrong_history_item_positions.npy": "89786e873de5dd160938575dd7c7a01ae81c8cb82c730a230d2baff39b8160e4",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features/wrong_history_offsets.npy": "7fe0fc2d2cbc70970f653400b6ad5e6a624bc05cbc832dc5e23cc40f399deb59",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_fixed_score_report.json": "3ef2be3bcd207158a19cca5036b95302ca506e8e57d459ddea0dea4722e7f616",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_fixed_scores.npz": "9624231aa082b032b37bfa5983de8fc2677af9e2f43d3e0c63607ba686f372a4",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/kuai_fixed_score_report.json": "a3666aad0715fed32478af1ce52a4b7e4cbc57aceab9a5a142b5f04ea8070254",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/kuai_fixed_scores.npz": "dcaefbb39cdaccf1d34960fb8aa8553b3bbd48c570e7ca519f13900290c03553",
+    "artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/selection.json": "547b3d7874307c08924e606914243976182a17779b970fc3b1ade3159bea1855",
+    "reports/pps_c47_signal_gate.json": "4718c5300b302f3d8a234fba7df295a273563cac4a6ca9df03cd8a0b259291f8",
+    "systems/47_posterior_supported_ridge_transformer/configs/signal_gate_v1.yaml": "118717ae166bcbc4bede9cf5577cc8e66cd0910b6c320b0113529683b5e42334",
+    "systems/47_posterior_supported_ridge_transformer/notes/signal_execution_lock.json": "18ab517585f26542b5a8fdbf27ddd9b8d8276b4d2b248bce08f640dd9bdf1e76"
+  },
+  "local_files_sha256": {
+    "systems/51_affinity_covariance_transformer/README.md": "57077ca735264cf86fc0bc718bbd16cdfc1af6a3efe9d0f735677409f3366e6f",
+    "systems/51_affinity_covariance_transformer/configs/formulation_gate.yaml": "295e6a1d05401c0f570723474bc11b67cf0f0b5fd689b1fef4d9d2f31a0c6918",
+    "systems/51_affinity_covariance_transformer/model/__init__.py": "c98ddabcde4e63c8fecdb6bb01a9a8c67f6f20c6e4ab5d6825f37d336dee9714",
+    "systems/51_affinity_covariance_transformer/model/affinity_covariance.py": "0179679672080fe2d3939627dbb82f30b7343462bb9e3bf91da875c891d4ca22",
+    "systems/51_affinity_covariance_transformer/notes/nearest_neighbors.md": "6f644a7ae22ca297ed2f989449f227cda11e55442b8c8449a6a67f5233b9a38f",
+    "systems/51_affinity_covariance_transformer/notes/proposal.md": "4e8d9d0ed51ad0c1cbd0f64ace60f5aeed6b9277e43ec566cf2f217c49c2c99e",
+    "systems/51_affinity_covariance_transformer/notes/reduction_audit.md": "4e7fa82d66e5ad4f482bd7dc12ff69d098ca71e9e917df4329a7ae35b7450d6c",
+    "systems/51_affinity_covariance_transformer/probe/__init__.py": "a624c8e2615c7e6768c6c7a9dff0911fe0eebb931625fce2c2d78a6e1b1b6d72",
+    "systems/51_affinity_covariance_transformer/probe/freeze_lock.py": "16541e6450789c471fc7ad5d400c8ad0fe4bd8b68b465fc248838becd2a45831",
+    "systems/51_affinity_covariance_transformer/probe/run_formulation_gate.py": "b0cb8d978e6ccdae3b3e07f828dfb67a16b1828691d5679f3fc6ea035978ec41",
+    "systems/51_affinity_covariance_transformer/tests/test_operator.py": "67f131334a53adea6736c8f2cd7f0e2bfa0834cfc6fa139bf47ea2191af0344b"
+  },
+  "status": "locked_before_C51_covariance_scores",
+  "test_stdout": "....                                                                     [100%]\n4 passed in 1.86s"
+}

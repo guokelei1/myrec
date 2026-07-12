@@ -1,0 +1,163 @@
+candidate_id: c04_prefix_delta_lm
+method_name: Counterfactual Prefix-Delta Language Recommender
+seed: 20260708
+candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+
+lock_context:
+  git_commit: fb2325384afa551c6c7236ee1a83531d93f2eb42
+  dirty_worktree_expected: true
+  environment: myrec-c04
+  physical_gpu: 3
+  visible_device_in_code: cuda:0
+
+paths:
+  standardized_dir: data/standardized/kuaisearch/v0_lite
+  records_train: data/standardized/kuaisearch/v0_lite/records_train.jsonl
+  records_dev: data/standardized/kuaisearch/v0_lite/records_dev.jsonl
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  packed_data_dir: artifacts/analysis/supervised_motivation_diagnostics/data
+  probe_data_dir: artifacts/c04_prefix_delta_lm/probe_v1
+  probe_train: artifacts/c04_prefix_delta_lm/probe_v1/train_examples.jsonl
+  probe_internal: artifacts/c04_prefix_delta_lm/probe_v1/internal_examples.jsonl
+  model_dir: models/c04_prefix_delta_lm
+  d2p_dev_scores: runs/20260710_kuaisearch_d2p_text_pop_dev_s20260708/scores.jsonl
+  d2p_dev_metrics: runs/20260710_kuaisearch_d2p_text_pop_dev_s20260708/per_request_metrics.jsonl
+  item_only_dev_scores: runs/20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260708/scores.jsonl
+  item_only_dev_metrics: runs/20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260708/per_request_metrics.jsonl
+  no_history_ids: systems/04_prefix_delta_lm/protocol/no_history_request_ids.txt
+  repeat_present_ids: systems/04_prefix_delta_lm/protocol/repeat_present_request_ids.txt
+  nonrepeat_present_ids: systems/04_prefix_delta_lm/protocol/nonrepeat_history_present_request_ids.txt
+
+anchor:
+  definition: frozen D2p teacher on train only; never an inference score channel
+  d2_config: configs/analysis/finetuned_nonpersonalized_control.yaml
+  d2_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_final_s20260708/model.pt
+  d2p_alpha: 0.6
+  max_requests_per_batch: 256
+  max_padded_candidates_per_batch: 65536
+
+model:
+  family: compact masked Transformer cross-encoder
+  backbone: BAAI/bge-small-zh-v1.5
+  local_files_only: true
+  d2_initialization_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_final_s20260708/model.pt
+  max_length: 128
+  query_tokens: 16
+  max_history_events: 4
+  event_tokens: 12
+  candidate_tokens: 40
+  lora_rank: 8
+  lora_alpha: 16.0
+  lora_dropout: 0.05
+  lora_layers: 2
+  delta_clip: 1.0
+  tangent_epsilon: 1.0e-6
+  final_logit: null LM logit plus bounded candidate-order-tangent of factual-minus-null LM logits
+
+materialization:
+  train_requests: 8000
+  internal_requests: 1000
+  candidates_per_request: 12
+  selection: deterministic hash within the frozen train/internal ranges
+
+training:
+  epochs: 2
+  batch_requests: 4
+  gradient_accumulation: 4
+  learning_rate: 0.0005
+  weight_decay: 0.01
+  gradient_clip_norm: 1.0
+  amp_dtype: bfloat16
+  corruption_cycle:
+    - wrong
+    - shuffled
+    - query_masked
+    - coarse
+
+loss:
+  ranking_weight: 1.0
+  anchor_weight: 0.75
+  consistency_weight: 0.25
+  transfer_weight: 0.25
+  repeat_weight: 0.15
+  anchor_temperature: 1.0
+  transfer_margin: 0.10
+  repeat_margin: 0.05
+
+controls:
+  paired_delta:
+    epochs: 2
+    train_request_limit: 8000
+    internal_request_limit: 1000
+  single_pass:
+    description: matched structured [q,H,c] LM with no null/delta operator
+    epochs: 1
+    train_request_limit: 1500
+    internal_request_limit: 500
+  paired_no_tangent:
+    description: same two LM prefixes with ordinary centered factual-minus-null logits
+    epochs: 1
+    train_request_limit: 1500
+    internal_request_limit: 500
+  concat_head:
+    description: flat query/history/candidate concatenation with an ordinary ranking head
+    epochs: 1
+    train_request_limit: 1500
+    internal_request_limit: 500
+  static_lora:
+    description: ordinary static LoRA query/candidate ranker using only the null-history path
+    epochs: 1
+    train_request_limit: 1500
+    internal_request_limit: 500
+  identity_shortcut:
+    description: null LM anchor plus exact-repeat identity shortcut only
+    epochs: 1
+    train_request_limit: 1500
+    internal_request_limit: 500
+
+scoring:
+  run_id: 20260710_kuaisearch_c04_prefix_delta_screen_s20260708
+  candidate_batch_size: 384
+  diagnostic_history_requests: 256
+  method_id: c04_prefix_delta_lm
+  one_primary_dev_evaluator_call: true
+  deterministic_rescore_requests: 1000
+
+run_ids:
+  paired_delta: 20260710_kuaisearch_c04_paired_probe_train_s20260708
+  paired_no_tangent: 20260710_kuaisearch_c04_paired_no_tangent_train_s20260708
+  single_pass: 20260710_kuaisearch_c04_single_pass_train_s20260708_r2
+  concat_head: 20260710_kuaisearch_c04_concat_head_train_s20260708
+  static_lora: 20260710_kuaisearch_c04_static_lora_train_s20260708
+  identity_shortcut: 20260710_kuaisearch_c04_identity_shortcut_train_s20260708
+  screening: 20260710_kuaisearch_c04_prefix_delta_screen_s20260708
+
+screening_stop_loss:
+  overall_ndcg_min: 0.32381583673978764
+  item_only_seed_ndcg: 0.345087358948813
+  max_absolute_gap_below_item_only: 0.010
+  nonrepeat_vs_d2p_delta_min: 0.0
+  nonrepeat_vs_d2p_ci_low_min: -0.001
+  repeat_vs_item_only_delta_min: -0.003
+  no_history_rank_mismatches_max: 0
+  corruption_delta_ratio_max: 0.50
+  internal_anchor_pair_concordance_min: 0.80
+  latency_ms_per_request_max: 250.0
+  peak_gpu_gib_max: 20.0
+
+full_gate_thresholds_pending_authorization:
+  repeat_vs_item_only_delta_min: 0.0
+  repeat_noninferiority_ci_low_min: -0.001
+  nonrepeat_vs_d2p_delta_min: 0.006
+  nonrepeat_vs_d2p_ci_low_min: 0.0
+  corrupt_vs_true_gain_ci_upper_max: 0.001
+  no_history_score_and_rank_mismatches_max: 0
+  deterministic_rescore_max_abs_difference: 0.0
+  matched_single_pass_must_not_reproduce_gain: true
+
+budget:
+  implementation_attempts_max: 2
+  a40_gpu_hours_max: 8.0
+  primary_dev_evaluator_calls_max: 1
+  full_gate_and_multi_seed_authorized: false
+  test_access_authorized: false

@@ -1,0 +1,2 @@
+Reuse `/data/gkl/conda_envs/myrec-c38`.  Frozen scoring uses four registered
+A40 GPUs; sorted float64 set reductions are required and no checkpoint exists.

@@ -1,0 +1,337 @@
+{
+  "A0_report_sha256": "037693b8775ed0322e9f08a81183aef0cfb27e01990886f6aaac7718d8e0b876",
+  "A_labels_opened_after_A0": true,
+  "candidate_id": "c47",
+  "claims": {
+    "dev_test_result": false,
+    "fixed_operator_signal_only": true,
+    "trained_architecture_result": false
+  },
+  "created_at": "2026-07-12T02:34:12.581038+00:00",
+  "decision": "close_C47_before_trainable_implementation",
+  "dev_test_records_labels_qrels_opened": false,
+  "domains": {
+    "amazon": {
+      "candidate_key_sha256": "8e1cf261f2d1b330e650bd2909a84d50a382542262868cc232c0eae7a61ec082",
+      "checks": {
+        "candidate_key_asserted": true,
+        "clicked_direction_ci": true,
+        "clicked_true_minus_wrong_ci": true,
+        "plain_ridge_all_folds_positive": true,
+        "plain_ridge_ci": false,
+        "plain_ridge_effect": true,
+        "query_base_all_folds_positive": true,
+        "query_base_ci": true,
+        "query_base_effect": true,
+        "softmax_attention_all_folds_positive": false,
+        "softmax_attention_ci": false,
+        "softmax_attention_effect": false,
+        "wrong_history_all_folds_positive": true,
+        "wrong_history_ci": true,
+        "wrong_history_effect": true
+      },
+      "clicked_correction_direction": {
+        "mean": 0.03004032532684505,
+        "percentile_95_ci": [
+          0.02556499869422987,
+          0.034695061594558256
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263160
+      },
+      "clicked_true_minus_wrong": {
+        "mean": 0.025254039485007526,
+        "percentile_95_ci": [
+          0.0207966104359366,
+          0.03006680022428433
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263161
+      },
+      "comparisons": {
+        "plain_ridge": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0017265678898329305,
+              "requests": 103
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.01764682619024163,
+              "requests": 104
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.004470650322821735,
+              "requests": 93
+            }
+          ],
+          "mean": 0.008096256321534477,
+          "percentile_95_ci": [
+            -0.0024386301628213244,
+            0.019214609846352322
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263141
+        },
+        "query_base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.027676945778174263,
+              "requests": 103
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.01461467626810847,
+              "requests": 104
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.029774207255737227,
+              "requests": 93
+            }
+          ],
+          "mean": 0.023798843406062635,
+          "percentile_95_ci": [
+            0.0016650103078987449,
+            0.04611279566692901
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263140
+        },
+        "softmax_attention": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.004820246094674162,
+              "requests": 103
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.007546615526687724,
+              "requests": 104
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.002735182832122088,
+              "requests": 93
+            }
+          ],
+          "mean": 0.00011330221212243567,
+          "percentile_95_ci": [
+            -0.01010838703016144,
+            0.010245570471046381
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263142
+        },
+        "wrong_history": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.028387003563565105,
+              "requests": 103
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.037107099404641186,
+              "requests": 104
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.0274275594636949,
+              "requests": 93
+            }
+          ],
+          "mean": 0.031112542450845045,
+          "percentile_95_ci": [
+            0.013281554880990967,
+            0.04886009040593768
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263143
+        }
+      },
+      "mean_ndcg10": {
+        "base": 0.2532023496589781,
+        "plain_ridge": 0.2689049367435063,
+        "posterior_supported": 0.27700119306504073,
+        "softmax_attention": 0.2768878908529183,
+        "wrong_posterior": 0.24588865061419568
+      },
+      "requests": 300,
+      "status": "failed"
+    },
+    "kuai": {
+      "candidate_key_sha256": "26981687951c4e2ac70f84e2861b00e44523dbd5f876db528ed0049f43e85a43",
+      "checks": {
+        "candidate_key_asserted": true,
+        "clicked_direction_ci": false,
+        "clicked_true_minus_wrong_ci": false,
+        "plain_ridge_all_folds_positive": false,
+        "plain_ridge_ci": false,
+        "plain_ridge_effect": false,
+        "query_base_all_folds_positive": true,
+        "query_base_ci": false,
+        "query_base_effect": true,
+        "softmax_attention_all_folds_positive": false,
+        "softmax_attention_ci": false,
+        "softmax_attention_effect": false,
+        "wrong_history_all_folds_positive": true,
+        "wrong_history_ci": false,
+        "wrong_history_effect": true
+      },
+      "clicked_correction_direction": {
+        "mean": 0.0010629922419320792,
+        "percentile_95_ci": [
+          -0.0004333602901533595,
+          0.002598596591592164
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263160
+      },
+      "clicked_true_minus_wrong": {
+        "mean": 0.0012602595862699672,
+        "percentile_95_ci": [
+          -0.0002048587330088291,
+          0.0027840516386471183
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263161
+      },
+      "comparisons": {
+        "plain_ridge": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.0014687309649109778,
+              "requests": 199
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.00553110758852168,
+              "requests": 207
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.0014705184998945436,
+              "requests": 194
+            }
+          ],
+          "mean": -0.0028708288697013563,
+          "percentile_95_ci": [
+            -0.007849716454072793,
+            0.001889268316097416
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263141
+        },
+        "query_base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.004315037897074992,
+              "requests": 199
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.005471695984458269,
+              "requests": 207
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.009593746753579855,
+              "requests": 194
+            }
+          ],
+          "mean": 0.0064208674674921295,
+          "percentile_95_ci": [
+            -0.0011300715461239846,
+            0.013792650310309027
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263140
+        },
+        "softmax_attention": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.011172367193561059,
+              "requests": 199
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.0016162792392237918,
+              "requests": 207
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.012182897727637405,
+              "requests": 194
+            }
+          ],
+          "mean": 0.000323981191460531,
+          "percentile_95_ci": [
+            -0.010351937693901326,
+            0.011097451513217671
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263142
+        },
+        "wrong_history": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.008362550759053797,
+              "requests": 199
+            },
+            {
+              "fold": 1,
+              "mean_difference": 3.9010870507138006e-05,
+              "requests": 207
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.00737319017046897,
+              "requests": 194
+            }
+          ],
+          "mean": 0.0051710362405294405,
+          "percentile_95_ci": [
+            -0.0020502971434927277,
+            0.012624984475716191
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263143
+        }
+      },
+      "mean_ndcg10": {
+        "base": 0.30087024014165054,
+        "plain_ridge": 0.31016193647884405,
+        "posterior_supported": 0.3072911076091427,
+        "softmax_attention": 0.30696712641768215,
+        "wrong_posterior": 0.30212007136861324
+      },
+      "requests": 600,
+      "status": "failed"
+    }
+  },
+  "gate_id": "c47_posterior_supported_ridge_signal_v1",
+  "selection_sha256": "547b3d7874307c08924e606914243976182a17779b970fc3b1ade3159bea1855",
+  "signal_execution_lock_sha256": "18ab517585f26542b5a8fdbf27ddd9b8d8276b4d2b248bce08f640dd9bdf1e76",
+  "status": "failed_S0_terminal"
+}

@@ -1,7 +1,12 @@
 # 12 - 实验执行与资源隔离协议
 
-状态：执行协议。前置：`11_experiment_and_dataset_plan.md` 定义任务、数据、
-baseline 和 checkpoint；本文只规定实验如何在本机可复现、可并行、可审计地运行。
+状态：当前执行协议。`doc/11` 定义任务、数据和 checkpoint；`doc/31` 定义
+problem-discovery/architecture 状态机；本文只规定 run 如何可复现、可并行、可审计。
+
+C01--C80 的候选 GPU 映射与隔离规则已经失效，保留在 `doc/24` 和 candidate-local
+records 中作为历史。当前不授权 C81 或新的 architecture GPU run；只授权
+`doc/31_problem_discovery_and_architecture_iteration_protocol.md` §12 的 R0 audit、
+observability、strong-baseline 和 failure-discovery 工作。
 
 目标：
 
@@ -14,7 +19,7 @@ baseline 和 checkpoint；本文只规定实验如何在本机可复现、可并
 
 ## 1. 环境分组
 
-每个 baseline 只允许在所属环境组中运行。不同组可以用不同 conda/venv/Docker，
+每个 baseline/candidate 只允许在所属环境组中运行。不同组可以用不同 conda/venv/Docker，
 但组内脚本必须从同一个统一 JSONL 接口读取数据。
 
 | 组 | 建议环境名 | 覆盖方法 | 说明 |
@@ -25,6 +30,8 @@ baseline 和 checkpoint；本文只规定实验如何在本机可复现、可并
 | kuaisearch | `pps-kuaisearch` | B5 DIN/DCNv2 官方代码 | 以官方 repo 依赖为准，适配层在本仓库记录 |
 | pps_classic | `pps-classic` | B6 HEM/ZAM/TEM/MAI-style | 老代码依赖单独隔离 |
 | llm | `pps-llm` | B8 raw-history LLM、MemRerank-style | 大模型推理和缓存单独管理 |
+| discovery | declared per R0 run | full-token observability, baseline tuning, failure atlas | environment frozen in run metadata |
+| hypothesis | declared after Failure Card | future Hxx-local work | not authorized until doc/31 entry passes |
 
 规则：
 
@@ -34,6 +41,10 @@ baseline 和 checkpoint；本文只规定实验如何在本机可复现、可并
 - 上游 baseline 若需要修改依赖，修改原因写入对应
   `baselines/<baseline_name>/README.md` 或 manifest。
 - 不允许为了跑通某个 baseline 修改统一 evaluator；只能改 adapter 或 score 导出。
+- R0 discovery run 可共享同一只读 base environment，但每个 run 必须记录完整环境
+  和 config hash；依赖变化必须生成新的 environment manifest。
+- future Hxx 若需要独立依赖，使用 hypothesis-local environment manifest；不能让
+  未登记的环境变化隐式传播到 matched controls。
 
 ---
 
@@ -52,6 +63,11 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<command>.py --config ... --run-id ...
 
 脚本内部统一使用可见设备里的 `cuda:0`。不要在脚本里硬编码物理 GPU 编号。
 
+每个 run 的 config/metadata 声明允许的 physical GPU 和最大 GPU-hours。启动前检查
+设备，不能自行改用未登记 GPU。默认单卡；使用 DDP/自动 placement 必须在 outcome
+前写入协议并对 matched controls 使用同等资源。并行只是资源调度，不用于制造或
+隔离 architecture hypothesis。
+
 ### 2.2 并行粒度
 
 | 类型 | 默认资源 | 是否适合并行 | 例子 |
@@ -60,7 +76,7 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<command>.py --config ... --run-id ...
 | embedding scoring | 单 GPU | 可以每卡一个 run | B2、B3 的 dev/test scoring |
 | trainable baseline | 单 GPU | 每卡一个 run，优先固定 seed | B4、B5、B6 |
 | LLM rerank | 独占 GPU 或独占服务 | 单独排队 | B8、MemRerank-style |
-| shared evaluator | CPU | 可以并行，但必须只读 | `evaluate_scores.py` |
+| shared evaluator | CPU | **必须串行** | `evaluate_scores.py` + common `flock` |
 
 多卡机器上的建议原则：
 
@@ -68,6 +84,8 @@ CUDA_VISIBLE_DEVICES=0 python scripts/<command>.py --config ... --run-id ...
 - 同一张 GPU 同时最多跑一个显存占用大的训练或 LLM 推理任务。
 - 轻量 baseline 可以和 GPU 任务并行，但不得写入同一个 `runs/<run_id>/`。
 - dev exploration 可以多 run 并行；test 只在冻结配置后运行一次。
+- 独立 R0/Hxx trial 可以并行训练和打分，但每个 trial 使用唯一 run/model/artifact
+  前缀。并行 trial 不能在运行中依据 sibling outcome 修改自己的 config。
 
 ### 2.3 推荐排队顺序
 
@@ -78,6 +96,22 @@ Phase 0-2 的早期并行顺序：
 3. GPU：B2 zero-shot embedding scoring；
 4. GPU：B4/B5/B6 训练型 baseline；
 5. GPU/LLM：B8 和 MemRerank-style，只在 dev 抽样上做成本-质量曲线。
+
+### 2.4 共享 evaluator 必须串行
+
+当前 evaluator 对 `reports/dev_eval_log.jsonl` 使用 append，但没有进程级锁。
+因此 trial 可以并行产出 `scores.jsonl`，**不能并行调用共享 dev evaluator**。
+每次 dev 评测必须持有同一个外部锁：
+
+```bash
+flock tmp/pps_dev_evaluator.lock \
+  python scripts/evaluate_scores.py \
+  --run-id <unique_run_id> \
+  --candidate-manifest data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+```
+
+不得使用 candidate-local evaluator、临时 qrels 副本或私有论文指标绕开该锁。
+锁只串行 evaluator；不得借锁读取其他 candidate 的未公开设计或输出。
 
 ---
 
@@ -124,6 +158,9 @@ runs/<run_id>/
 - `metrics.json` 只能由共享 evaluator 生成，不由方法脚本自己写主指标。
 - 原始日志、score dump、checkpoint、cache 都留在 `runs/`、`models/` 或
   `artifacts/`，不进 git。
+- doc/31 run 还必须在 metadata 中登记 `research_phase`、`failure_id`、
+  `hypothesis_id`、`implementation_id`、`trial_id`、`change_class` 和
+  `dev_call_index`；不适用字段显式写 `null`。
 
 ---
 
@@ -192,6 +229,10 @@ runs/<run_id>/
 - 每个方法进入论文主表时，其 dev 评测次数必须与 baseline card 登记的
   tuning budget（doc 13 §2.5）对得上；对不上要么补记原因，要么按超预算
   处理（结果标注 asymmetric budget）。
+- R0/Hxx discovery 按 `doc/13 §2.5` 和 hypothesis-local budget 正常使用 dev
+  feedback；score-affecting trial 都计数。mechanical retry 仅在不调用 evaluator、
+  不改变数学/训练/score 语义时不计数。
+- confirmation run 不属于 dev tuning；其 lock 之后禁止根据 outcome 调整。
 
 **复跑确定性**：
 

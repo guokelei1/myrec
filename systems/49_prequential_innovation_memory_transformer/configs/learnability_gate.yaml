@@ -1,0 +1,74 @@
+candidate_id: c49
+gate_id: c49_prequential_innovation_memory_learnability_v1
+status: prelock_draft
+
+paths:
+  candidate_root: systems/49_prequential_innovation_memory_transformer
+  proposal_lock: systems/49_prequential_innovation_memory_transformer/notes/proposal_lock.json
+  artifact_root: artifacts/c49_prequential_innovation_memory_transformer/learnability_v1
+  checkpoint_root: models/c49_prequential_innovation_memory_transformer/learnability_v1
+  promoted_report: reports/pps_c49_learnability_gate.json
+  c47_config: systems/47_posterior_supported_ridge_transformer/configs/signal_gate_v1.yaml
+  c47_signal_lock: systems/47_posterior_supported_ridge_transformer/notes/signal_execution_lock.json
+  c47_signal_report: reports/pps_c47_signal_gate.json
+  c38_config: systems/38_cross_domain_global_tangent_transfer/configs/train_gate.yaml
+  c38_proposal_lock: systems/38_cross_domain_global_tangent_transfer/notes/proposal_lock.json
+  c38_execution_lock: systems/38_cross_domain_global_tangent_transfer/notes/execution_lock.json
+
+resources:
+  program_device: cuda:0
+  kuai_seed_to_physical_gpu:
+    "20263301": 0
+    "20263302": 1
+    "20263303": 2
+  amazon_seed_to_physical_gpu:
+    "20263311": 0
+    "20263312": 1
+    "20263313": 2
+
+model:
+  width: 128
+  heads: 4
+  layers: 2
+  ff_multiplier: 2
+  max_history: 20
+  temperature: 0.1
+
+memory:
+  ridge: 1.0
+  softmax_temperature: 0.1
+  normalization_epsilon: 0.000001
+  correction_scale: 1.0
+
+training:
+  steps: 500
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  kuai_seeds: [20263301, 20263302, 20263303]
+  amazon_seeds: [20263311, 20263312, 20263313]
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20263320
+  hash_folds: 3
+  primary_minus_base_min: 0.002
+  primary_minus_raw_krr_min: 0.0005
+  primary_minus_softmax_min: 0.0005
+  primary_minus_delta_min: 0.0005
+  primary_minus_shuffled_min: 0.002
+  true_minus_wrong_min: 0.002
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000001
+  primary_raw_order_change_min: 0.05
+  true_wrong_order_change_min: 0.05
+
+authorization:
+  label_free_fit_training_after_lock: true
+  exposed_c47_A_features_after_lock: true
+  exposed_c47_A_labels_after_A0_only: true
+  fresh_reserve: false
+  dev: false
+  test: false
+  qrels: false

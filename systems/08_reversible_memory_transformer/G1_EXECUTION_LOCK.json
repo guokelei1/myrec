@@ -1,0 +1,74 @@
+{
+  "lock_name": "c08_g1_execution_lock",
+  "lock_version": 1,
+  "locked_before_learned_outcome": true,
+  "aggregate_rule": "sha256 of UTF-8 concatenation of '<file_sha256>  <relative_path>\\n' in ascending relative_path order",
+  "aggregate_sha256": "51d7c0a0f8c940f85271313293b9d16ba77e158040369211d11e19da004bd924",
+  "files_sha256": {
+    ".gitignore": "70314f1bdb4864129432550091f59951827f95ac16c037e25ba91bfdad3b6551",
+    "G1_PROTOCOL_AMENDMENT.md": "2e7295d49c1a59d4099c8ffaf5c1f03927307189c03c73c3ebaced603deca74f",
+    "PRE_OUTCOME_LOCK.json": "f764bbd5c1a6e96da963c1c75fb9fca87f9032a7e81cf35101bcdf7a777a6a23",
+    "g1_protocol.py": "2b24a037c0fcdb5a80a5763f9b57c3a6fc4a88a9092d5eef869efbb7a39dd327",
+    "reversible_memory.py": "e66fc0cacab72e4a324ced25cf9198a75b6f10ed30d82732699c58116511c248",
+    "run_g1.py": "672bba86b2c6fe2847306355449eaece8a5a992d168a79515d93a6fc43e3b10c",
+    "test_g1_protocol.py": "48ca909fdfa8cc4b1706a430df21adc9e8c25f716fba6521d7deef68aac12211",
+    "test_reversible_memory.py": "b528eb077a5a6d709e4991f7cbc1d170339ba26e0fb2a53ebfd9cfbeb799824a",
+    "verify_g1_lock.py": "69dc70fa28807d512198ec67d628c222c2a15d2f463bac6ec8c14bfc55e08f94"
+  },
+  "protocol_constants": {
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "adam_epsilon": 1e-08,
+    "batch_size": 64,
+    "candidate_count": 8,
+    "corruption_margin_retention_max": 0.25,
+    "dropout": 0.0,
+    "evaluation_requests": 1024,
+    "evidence_width": 16,
+    "gradient_clip_norm": 1.0,
+    "history_length": 8,
+    "learning_rate": 0.003,
+    "mechanisms": [
+      "rwpu",
+      "ordinary",
+      "attention",
+      "pooled_ffn"
+    ],
+    "optimizer_steps": 400,
+    "permutation_max_error": 1e-06,
+    "repeat_fraction": 0.5,
+    "repeat_noninferiority_pp": 0.01,
+    "seeds": [
+      20260711,
+      20260712,
+      20260713
+    ],
+    "stream_offsets": {
+      "eval_structure": 201,
+      "eval_values": 202,
+      "model_initialization": 401,
+      "shuffle_history": 302,
+      "train_schedule": 103,
+      "train_structure": 101,
+      "train_values": 102,
+      "wrong_history": 301
+    },
+    "styles_per_topic": 2,
+    "supported_best_control_advantage_pp": 0.05,
+    "supported_ordinary_advantage_pp": 0.03,
+    "tie_salt": "c08_g1_tie_v1",
+    "topic_count": 4,
+    "train_requests": 4096,
+    "transformer_ffn_width": 32,
+    "transformer_heads": 4,
+    "weight_decay": 0.0001
+  },
+  "execution": {
+    "command": "CUDA_VISIBLE_DEVICES=\"\" PYTHONDONTWRITEBYTECODE=1 python run_g1.py --execution-lock G1_EXECUTION_LOCK.json",
+    "one_shot": true,
+    "raw_artifact_template": "runs/g1_51d7c0a0f8c940f8/",
+    "repository_data_access": false,
+    "gpu_access": false,
+    "dev_or_test_access": false
+  }
+}

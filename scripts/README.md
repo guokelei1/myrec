@@ -5,7 +5,8 @@ Runnable command-line entry points for the full PPS workflow:
 - dataset download and audit;
 - preprocessing and standardized record export;
 - baseline training / scoring;
-- proposed-system training / scoring;
+- R0 observability, strong-baseline training/scoring, and failure discovery;
+- future proposed-system training/scoring only after doc/31 authorization;
 - evaluation (single shared evaluator for all methods);
 - motivation experiment drivers (M1-M6);
 - checkpoint report generation.
@@ -15,6 +16,10 @@ Current read-only evidence audits include:
 - `audit_m3_ties.py` - tie-aware interpretation of frozen M3 choices;
 - `audit_m3_m4_random_canary.py` - tests whether Random reproduces M3/M4;
 - `check_b9_determinism.py` - exact score reproducibility for B9.
+
+Current authorization is R0 only. C01--C80 candidate scripts are historical;
+running them does not reopen a candidate. New architecture entry points require
+a passed Failure Card and Hxx registration under `doc/31`.
 
 Current motivation-repair entry points:
 
@@ -36,6 +41,16 @@ Current motivation-repair entry points:
   and writes the C3-R report;
 - `finalize_c5r_insight_gate.py` - historical C5-R promotion; superseded by
   the C5-R2 temporal control.
+
+Current Amazon-C4 secondary-track entry points:
+
+- `prepare_amazon_c4_standardized.py` - joins the official Amazon-C4 query
+  table with the temporal history release, constructs a frozen sampled-1M
+  BM25 candidate pool, joins Amazon Reviews 2023 metadata, and writes the
+  unified label-isolated JSONL interface;
+- `audit_amazon_c4_protocol.py` - runs the C1-style candidate/split/history,
+  train-blind, qrels, metric, and candidate-hash checks without authorizing a
+  model-side dev evaluation.
 
 Current supervised strengthening entry points:
 

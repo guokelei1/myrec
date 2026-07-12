@@ -1,0 +1,42 @@
+{
+  "candidate_id": "c29",
+  "created_at": "2026-07-11T16:17:00.262452+00:00",
+  "declarations": {
+    "delayed_B_features_labels_scores_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "auth_profile_sizes.npy": "1e1823deff8969a18c0b0b2aec6acbddfb3153c51320e6d28c907e840b815cb1",
+    "auth_true_items.npy": "23637839f0140fdf333fe8e4a3e89c9660ca1c365fa3e63aeaa05de3bc0e0788",
+    "auth_true_offsets.npy": "fd17a338553203fae980fdffb66164bb565c18d1eea2729981d642c9f8779b66",
+    "auth_true_source_counts.npy": "f5d42a9e88888f426926fa2b2d511c5c15606c43adeb18244ad9f15095b0c869",
+    "auth_wrong_items.npy": "5acec928e48f38d233abb7a162ac3660c41d1d04312bf732d628b01491387266",
+    "auth_wrong_offsets.npy": "e84a5622c518ff5f573c43afeaa17d0ea51f903f5e178d45b5d11c1933583717",
+    "auth_wrong_source_counts.npy": "4253e4dd0343809c49dd570257ca641bc70038c3456d74b33fdb9469603839e3",
+    "authentication_request_indices.npy": "d8ecafe2df1068a2cc6ae0aaf679604bd02fa8c399da8b53724ab99fc03be9c3",
+    "base_scores.npy": "c6bafb7c1eec367288f8521965be12c2c5ab4b3147170db60347463414a8d8bd",
+    "feature_candidate_offsets.npy": "dac27327b1f4b3bcbeee9863b069d19ffd548fdd2b4522238536b0a17a21f3b1",
+    "feature_request_indices.npy": "d8ecafe2df1068a2cc6ae0aaf679604bd02fa8c399da8b53724ab99fc03be9c3",
+    "fit_label_offsets.npy": "f0e2e999b0694cd3ee279a21153bcfe424209afd8b3604f53865c838ccc8cba4",
+    "fit_labels.npy": "0ac63ae0a0886661d5a48d7221ecccbad3c7b144b8221cd8754d440895b0dbc2",
+    "fit_request_indices.npy": "dc0b05bfa88fa03fab9f31b87a8fb8738968b4f5e37a017907ad3c5b0e48b315",
+    "item_attention_mask.npy": "aea4d173b36c76cacbbdbb05aecdf40666a50505b8719de1d114cb04873fe6d9",
+    "item_content_mask.npy": "8dc2ad8dcb2be50e7236f09eab35fd9ccafa3fbf64c35cd38495a3d843ad3150",
+    "item_embedding_indices.npy": "4eb247bc5a07b0192b6052dc4e22dc5a65dcf1411c1b2669b0e08f5b183a9932",
+    "item_token_ids.npy": "43b4199e9dc2985ef13705819b0dc653ca980604872a18192efd86146e59026f",
+    "query_attention_mask.npy": "a9974d9660873594a81b4b1edd6adb5f23bba7ede12d3ab69ceb6f4210699953",
+    "query_content_mask.npy": "e113a4de637f0749627aa305b14e48423dbf612745e91dad1801a962952db5b0",
+    "query_token_ids.npy": "2109620895b33426cbcd50b9b8ee338a6a845aca717c91cec4bcd060857a1b44"
+  },
+  "g0_report_path": "artifacts/c29_causally_authenticated_mediation_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "a838231a6aac917c6aed73c16b5c18f56681df78c433fcce1b69bfe27119c937",
+  "lock_id": "c29_causally_authenticated_mediation_execution_v1",
+  "proposal_lock_sha256": "02b60a9b5e00b6091930d68bba7305cc98dba80cc989321fb9345161f146af99",
+  "selection_sha256": "8661edc2f058bbefcb3fe1218266963004c8bebc0523c899a91acbb63a99de94",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

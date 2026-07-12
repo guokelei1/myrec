@@ -2,19 +2,21 @@
 
 Date: 2026-07-10
 
-Status: **motivation complete; ready to formulate a bounded proposed-system
-design, with implementation/training gated by a new pre-implementation
-falsifier**.
+Status: **C01--C80 closed with no validated proposed architecture. The latest
+full-token positive control supports representation-interface repair but does
+not yet establish an ordinary Transformer architecture defect.**
 
 Scope: Section 1 through the transition into design formulation. No concrete
-model architecture is specified or empirically validated here. All reported numbers are KuaiSearch dev
-diagnostics copied from registered artifacts; citation markers remain
-placeholders pending the bibliography.
+model architecture is specified or empirically validated here. The repository's
+decision to explore LLM4Rec/Transformer rankers is an external project-design
+constraint, not an empirical conclusion of this motivation section. All
+reported numbers are KuaiSearch dev diagnostics copied from registered
+artifacts; citation markers remain placeholders pending the bibliography.
 
-The current argument is closed by the pre-outcome component protocol in
-`doc/23_c5r3_candidate_history_alignment_protocol.md`. The temporal C5-R2,
-train-frozen matched-history, and M3/M4 oracle arguments are retained as
-historical/failed diagnostics and are not used to authorize system design.
+The C5-R3 component result remains valid, but the later full-token observability
+and edge-attribution experiments revise its design interpretation. The current
+boundary is `doc/31`; the C01--C80 terminal result is recorded in
+`doc/dev_log/20260712_c01_c80_terminal_retrospective.md`.
 
 ---
 
@@ -68,9 +70,10 @@ but its same-query identity effect is not significant in two of three seeds.
 Third, an exact pre-registered decomposition shows that the stable history gain
 is concentrated in exact repeat-item memory: category-only history adds no
 significant value, and adding it makes the item-only ranker worse in every seed.
-The motivation therefore exposes a strong repeat-item shortcut and motivates a
-bounded design question: how to preserve reliable recurrence while preventing
-unsupported history transfer from contaminating the query-conditioned ranking.
+The motivation therefore exposes a strong repeat-item shortcut and a bounded
+measurement question: where does transferable history signal remain observable
+after recurrence is removed, and does an ordinary full-token Transformer
+already capture it?
 
 ## 2. Motivating Observations
 
@@ -234,7 +237,7 @@ evidence: the current data support aggregate correct-history use, but not a
 completed identity-specific premise, an oracle-shaped routing architecture, or
 a claim that cheap features can choose a winning fixed channel.
 
-### 2.5 Bounded design insight: calibrate history evidence by fidelity
+### 2.5 Revised boundary: observe the source before designing the mechanism
 
 The completed motivation supports the following diagnostic observation:
 
@@ -245,25 +248,27 @@ The completed motivation supports the following diagnostic observation:
 > repeat-item ranker when the two are combined.
 
 This exposes a benchmark and modeling risk: aggregate improvements over
-query-only controls can be mistaken for semantic personalization even when
-exact recurrence is the load-bearing feature. It also yields a concrete design
-insight: history should not enter the ranker as uniformly trustworthy context.
-The system should calibrate candidate-history evidence by its empirical
-fidelity—preserving reliable recurrence while allowing a transferable residual
-only when the joint query, candidate, and history support it. The item-only
-control, with a mean NDCG@10 of 0.3453755, remains the numeric waterline.
+query-only controls can be mistaken for semantic personalization when exact
+recurrence is load-bearing. It does not yet imply a particular calibration
+primitive. The item-only control, with mean NDCG@10 0.3453755, remains the
+KuaiSearch static waterline.
 
-This consequence is a **design hypothesis**, not a post-hoc claim that C5-R3
-passed. C5-R3 still falsifies multi-granular additivity and coarse-category
-fallback. The next permitted stage is to formulate one end-to-end
-candidate-conditioned evidence-fidelity calibration primitive and freeze its
-cheap falsifier. Before full training, that falsifier must show no degradation
-on repeat-present requests, stable positive value over D2p on the 4,677
-history-present requests without exact-repeat candidates, failure of
-coarse-only/wrong-user/shuffled-event/query-masked evidence to reproduce the
-gain, and exact D2p fallback without history. Only then may the implementation
-claim transferable personalization. Test remains unavailable for choosing or
-rescuing the premise.
+A later representation-boundary test changes the design transition. On Amazon,
+pooled text history reaches only `true-null +0.001661`, whereas an ordinary
+full-token joint Transformer reaches `+0.025298` and `true-wrong +0.035944`,
+with positive user-cluster intervals. Frozen edge interventions show that
+bidirectional Q--H, C--H, and history-read-context paths carry this effect.
+True versus shuffled history is not significantly different, so event order is
+not currently an established mechanism premise.
+
+The most direct implication is therefore to preserve raw token interactions and
+first develop a strong ordinary full-token baseline. These results establish a
+representation-interface failure, not an architecture defect. A new primitive
+is justified only after that baseline is normally tuned and exhibits a
+ranking-relevant failure that replicates, survives simple repairs, and localizes
+to a concrete model locus. The active next stage is problem discovery under
+`doc/31`, not another candidate in the C-series. Test remains unavailable for
+choosing or rescuing a premise.
 
 ---
 
@@ -288,6 +293,8 @@ and structurally audited held-out files.
 | SASRec 0.2972; DNN/DCNv2 0.3063/0.3054; provisional ZAM/TEM 0.2986/0.2940 | `experiments/pps_results.md` |
 | Random oracle 0.4325 exceeds M3 0.4232; Random-label M4 AUC 0.6952 exceeds 0.6688 | `reports/pps_m3_m4_random_canary_audit.json` |
 | R1b 0.3072; -0.0234 vs B7 | `reports/pps_r1_router_summary.json` |
+| Amazon full-token true-null +0.025298; true-wrong +0.035944; both CIs positive | `reports/pps_amazon_token_history_observability_v1.json` |
+| Q--H, C--H, and history-read-context edges are load-bearing | `reports/pps_amazon_token_edge_attribution_v1.json` |
 
 Claim boundaries: the paper says "tested query-only/non-personalized scorers,"
 "representative learned methods," and "exact-repeat concentration in the tested

@@ -1,0 +1,17 @@
+{
+  "incident_id": "20260711_qrels_schema_inspection_glob",
+  "status": "recorded_and_quarantined",
+  "occurred_after_c28_terminal": true,
+  "cause": "interactive schema-inspection glob omitted an explicit qrels exclusion",
+  "scope": {
+    "qrels_dev_first_record_printed": true,
+    "qrels_test_first_record_printed": true,
+    "model_or_training_code_read_qrels": false,
+    "scoring_code_read_qrels": false,
+    "evaluator_called": false,
+    "selection_or_feature_use": false,
+    "checkpoint_contamination": false
+  },
+  "decision": "quarantine printed relevance IDs; preserve prior run validity; withdraw only the stronger repository-wide operator-unseen claim for subsequent work",
+  "containment": "all future schema reads use explicit file allow-lists; qrels remain forbidden to model, training, scoring, and selection code"
+}

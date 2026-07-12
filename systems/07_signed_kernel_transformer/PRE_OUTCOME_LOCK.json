@@ -1,0 +1,20 @@
+{
+  "candidate": "C07_pairwise_deadzone_signed_kernel_transformer",
+  "locked_at": "2026-07-11T10:59:13+08:00",
+  "status": "frozen_before_semantic_synthetic_outcomes",
+  "semantic_probe_run": false,
+  "repository_data_read": false,
+  "labels_or_qrels_read": false,
+  "gpu_used": false,
+  "normative_files": {
+    "proposal.md": "624c3a62660f2ca53555b5af928b13011f82dab27edda7f0033c17657628fc82",
+    "mechanism_fingerprint.md": "459111c56451ac534d178e0505783b8a442f74dad0277932b8785bd59f9b94ab",
+    "nearest_neighbor_audit.md": "c7b11a72d3063c510549e2a548cf4304586155f1a894eb63d4b56edba43b383e",
+    "pre_outcome_gate.md": "e75c1334f17db75d2e98d25af1ba304be5d73f7f142682ad77a47d0249a9f303",
+    "src/signed_kernel_transformer.py": "764d865908852ed2cfbe96c9dc5f5e9f5bf300dbe2531a2a24f1a30389e067b6",
+    "src/__init__.py": "9c8c5c3bcf0ecc95817ed2b4929fcba295a8576a7d40741f432657b8e9ea23a9",
+    "tests/test_signed_kernel_transformer.py": "67f27afce7c476337e4df9b12777d87deced861978955a5ae14bd507a57ce04a"
+  },
+  "combined_manifest_sha256": "66308db14f00e20de860a2060d147329fb93fa07b806951c227a5499746c2edd",
+  "post_lock_rule": "Any normative-file change requires a new lock before any semantic outcome is generated."
+}

@@ -1,0 +1,115 @@
+candidate_id: c21
+gate_id: c21_train_path_signal_v1
+status: pre_outcome_selection_and_implementation
+selection_seed: 20260727
+run_id: 20260711_kuaisearch_c21_train_path_signal_v1
+environment: /data/gkl/conda_envs/myrec-c21
+program_device: cuda:0
+
+resources:
+  physical_gpu: 1
+  one_process_per_visible_gpu: true
+
+paths:
+  c06_selection: artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1/selection.json
+  c06_selection_sha256: 837fa5a86f30d32cb554e39949c76933c9623cbf3be0d560ad8d775326c7fc0b
+  c06_g0_report: artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1/g0_report.json
+  c06_g0_report_sha256: 7430dae9c56b257cb64a9c75e3e0cbf932856d9419e296b64fa1e9cc81a0af1e
+  c06_artifact_root: artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1
+  packed_train_root: artifacts/analysis/supervised_motivation_diagnostics/data/train
+  shared_metric_source: src/myrec/eval/metrics.py
+  selection: artifacts/c21_contiguous_path_closure_transformer/train_signal_v1/selection.json
+  selection_sha256: 6903d0363d3e95357909c4a73d3ae703e62fd8276d91aac894da9307642384a8
+  artifact_root: artifacts/c21_contiguous_path_closure_transformer/train_signal_v1
+  checkpoint_root: models/c21_contiguous_path_closure_transformer/train_signal_v1
+  proposal_lock: systems/21_contiguous_path_closure_transformer/notes/train_signal_gate_lock.json
+
+registered_inputs:
+  fit_request_indices_sha256: 61a8dca359eb3b545249c74abf25c0e7e953c1612c6b31473bb7ef958f7abf44
+  fit_label_offsets_sha256: 507c52d5be2a7b3dbc923a90fc7ae3de7a91a046dac6517ab18de58fff0eeb27
+  fit_labels_sha256: 7a65b7f9bed781899a4944f5ebcd1ec44d1b04c2f3204c01a7950f5ac7557b9b
+  feature_request_indices_sha256: 8cfb0c88ec74aa4598e874ce7ac13ff68392162af1ac4eb8719448e03d0bd4d3
+  feature_candidate_offsets_sha256: ef242e7e73183c72d1934f195ffc8769dcb70a59a9a093506e61ce72d71b7e3b
+  base_scores_sha256: b9e31ce1da3160e2827bb60dfe729e3ceff375336eb7086091c7365dc4296276
+  query_embeddings_sha256: f314869255ac121e9a85225c63a2c460e99bc75a14babfe2e686c70358f496bd
+  item_embedding_indices_sha256: 0c1b2ed32b767670c15d1250572839aa2c1a58ef55985c4fca5a698ac8a3dff8
+  item_embeddings_sha256: b0fe6bb6c546a677fbd2acf67cf07d04a9bac9ee2ed637c3f0fb37e0face1086
+
+selection:
+  source_role: fit
+  source_requests: 12000
+  train_fit_requests: 9000
+  internal_probe_requests: 3000
+  hash_payload: "c21-path-signal-v1\\0<request_id>"
+  freeze_before_compact_fit_labels_open: true
+
+model:
+  input_dim: 512
+  projection_dim: 32
+  max_history: 20
+  max_horizon: 3
+  evidence_temperature: 0.2
+  score_delta_max: 1.0
+  dataset_specific_features: false
+  category_features: false
+  action_features: false
+  recency_features: false
+
+training:
+  modes:
+    - contiguous_path
+    - one_step
+    - unordered_pair
+    - endpoint_only
+    - pooled_history
+  seeds:
+    - 20260727
+    - 20260728
+    - 20260729
+  epochs: 2
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  max_requests_per_batch: 48
+  max_padded_candidate_rows: 3072
+  max_padded_history_rows: 960
+  checkpoint_selection: fixed_final_state_only
+  candidate_sampling: false
+  corruption_training: false
+  attempts: 1
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20260727
+  hash_folds: 3
+  wrong_history_payload: "c21-wrong-history-v1\\0<request_id>"
+  shuffle_payload: "c21-shuffle-v1\\0<request_id>"
+
+gate:
+  ndcg10_delta_over_d2p_min: 0.001
+  ndcg10_delta_over_each_control_min: 0.0005
+  all_seed_differences_positive: true
+  all_hash_folds_positive: true
+  paired_ci_low_strictly_positive: true
+  corruption_retention_max: 0.25
+  corruption_retention_ci_high_max: 0.50
+  requests_with_any_order_change_fraction_min: 0.05
+  requests_with_top10_membership_change_fraction_min: 0.01
+  clicked_minus_unclicked_ci_low_strictly_positive: true
+  deterministic_rescore_max_abs_difference: 0.0
+  candidate_center_sum_abs_max: 0.00001
+  nohistory_bitwise_base: true
+  query_absent_bitwise_base: true
+
+authorization:
+  label_free_selection: true
+  synthetic_unit_tests: true
+  compact_fit_label_training_after_lock: true
+  compact_fit_label_probe_after_lock: true
+  c06_internal_A: false
+  c06_internal_B: false
+  c06_escrow: false
+  original_train_label_array: false
+  dev: false
+  test: false
+  full_transformer_training: false

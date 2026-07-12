@@ -1,0 +1,5 @@
+python=3.11
+pytorch=2.x
+numpy
+pyyaml
+pytest

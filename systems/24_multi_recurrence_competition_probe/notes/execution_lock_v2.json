@@ -1,0 +1,28 @@
+{
+  "candidate_id": "c24",
+  "created_at": "2026-07-11T10:23:00Z",
+  "declarations": {
+    "escrow_dev_test_opened": false,
+    "fit_labels_reused_only_from_locked_C23_G0": true,
+    "internal_A_labels_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_output_sha256": {
+    "base_scores.npy": "3239e0f64912ad4dadca429927ef7d5b47e4f3de0643dcfc2f8ee2a47932d753",
+    "feature_candidate_offsets.npy": "38c089aa4e91a77749bf53d5b7676d074bfd5f37c44d383fa88a75559b181a91",
+    "feature_request_indices.npy": "42857dfd2d3b61ab962ac9e93e695f9dd3793dfb4f283bf418effca2f4363369",
+    "fit_label_offsets.npy": "36e498cb509acc075d6487664f5114f7893a36de494c1c4ad065dff70a3aca1b",
+    "fit_labels.npy": "3cbd5c04125a82564015504f207eed6b326287b640dc7c0d8c2a9a0368b73c33",
+    "fit_request_indices.npy": "b05c8d4a8613708b7ad99a5ba7af4a4953685677c8df06d932a45cdf468f8692",
+    "item_embedding_indices.npy": "7658fd0a7ba1f610440611150a248c0baf0b9c317ad1e8529c57e07a5b32b37f",
+    "item_embeddings.npy": "6b9adbf6f027c902e15fdefda914b7c0ea07ee40d11148922c5833921aa6cadd",
+    "query_embeddings.npy": "86133471422bfa083e0deff7ac428dccd7c70e9e18d393452e178335c1613a5e"
+  },
+  "g0_report_path": "artifacts/c24_multi_recurrence_competition_probe/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "9d13c31ea2fe2b61579066510330e348e9b6fbd8e4386361b475936b98a49b9f",
+  "lock_id": "c24_multi_recurrence_execution_v2",
+  "proposal_lock_sha256": "f161c40f60d3f7ccbe957dee5cfd88786883ea5873cb3725957b0dbd0a0f4244",
+  "selection_sha256": "f21b706508d4841718911d753ecc1d0b4f20d35304dbae5fb5e9aa977d431ba2",
+  "status": "locked_after_G0_before_training_or_internal_A_access"
+}

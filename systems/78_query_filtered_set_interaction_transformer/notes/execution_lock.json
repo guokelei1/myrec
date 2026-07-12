@@ -1,0 +1,27 @@
+{
+  "boundary": {
+    "attempts": 1,
+    "dev_test_qrels": false,
+    "labels": false,
+    "repository_data": false
+  },
+  "candidate_id": "c78",
+  "created_at": "2026-07-12T15:10:06.378388+00:00",
+  "decision": "authorize_three_seed_data_free_gate",
+  "inherited_sha256": {
+    "c76_generator": "b0dd22ee840920f5b0bf0feca34d75857936c9c8315c8402ed9f8aa1723f8683",
+    "c77_operator": "6b4be5bce3da6ce54538ffa5faaa7ce66fd1b2415ab1a74225fc3c46dfeb3b8c"
+  },
+  "proposal_lock_sha256": "95c9210225964c32957a32606a56984974411bf4ce5435ee0188c6872e4d0e28",
+  "source_sha256": {
+    "configs/design_gate.yaml": "d15fdf49b5bce8c18be59422989b5a1fb8faa616a468875969eb0872c04c05fe",
+    "model/__init__.py": "2b72e1d8d111ea3ddecae286d8b9ff62e930e49e973ad4977ece02d064dab5fc",
+    "model/qfsi.py": "c5a377f95605d8d0448c5814101e2ead95ce8df75af2efa619cee906f0ad53d0",
+    "probe/c76_surface.py": "155b3d33deee53810d5dba529341aa58faccbef28158ab397fb564ec94dc563b",
+    "probe/c77_operator.py": "dbe7fa42cf285e1b08baf2e569723219be949de37b89a54cf97f988cecab6ba0",
+    "probe/freeze_lock.py": "f2289f8feefd0b790005e9b9ccea7518bbe1adecb14a6f73c83fe12713b1bfe4",
+    "probe/run_design_gate.py": "ee79839f94bec5a00beb2d9508e5512930e65d1c3999ce27202876e1a5e1c11f",
+    "probe/summarize_design_gate.py": "f5042f20d2a6fdece2306a09de2c9d448792f807fa3d17fe0895196cb3aee1a3",
+    "tests/test_model.py": "60762421da113d2951e3cc1410b128d37b0d3d2c96ced6b1f3f0825024de6fa4"
+  }
+}

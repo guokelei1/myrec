@@ -1,0 +1,954 @@
+{
+  "A0": {
+    "activity": {
+      "primary_vs_asymmetric_routing": {
+        "any_count": 1153,
+        "any_fraction": 0.9608333333333333,
+        "requests": 1200,
+        "top10_count": 162,
+        "top10_fraction": 0.135
+      },
+      "primary_vs_base": {
+        "any_count": 1199,
+        "any_fraction": 0.9991666666666666,
+        "requests": 1200,
+        "top10_count": 1195,
+        "top10_fraction": 0.9958333333333333
+      },
+      "primary_vs_c38_unprojected": {
+        "any_count": 1199,
+        "any_fraction": 0.9991666666666666,
+        "requests": 1200,
+        "top10_count": 1198,
+        "top10_fraction": 0.9983333333333333
+      },
+      "primary_vs_coupled_content": {
+        "any_count": 1199,
+        "any_fraction": 0.9991666666666666,
+        "requests": 1200,
+        "top10_count": 1198,
+        "top10_fraction": 0.9983333333333333
+      },
+      "primary_vs_fixed_semantic": {
+        "any_count": 1192,
+        "any_fraction": 0.9933333333333333,
+        "requests": 1200,
+        "top10_count": 1071,
+        "top10_fraction": 0.8925
+      },
+      "primary_vs_single_wide_routing": {
+        "any_count": 1190,
+        "any_fraction": 0.9916666666666667,
+        "requests": 1200,
+        "top10_count": 707,
+        "top10_fraction": 0.5891666666666666
+      },
+      "primary_vs_uniform_semantic": {
+        "any_count": 1192,
+        "any_fraction": 0.9933333333333333,
+        "requests": 1200,
+        "top10_count": 1140,
+        "top10_fraction": 0.95
+      },
+      "true_vs_wrong": {
+        "any_count": 1199,
+        "any_fraction": 0.9991666666666666,
+        "requests": 1200,
+        "top10_count": 1195,
+        "top10_fraction": 0.9958333333333333
+      }
+    },
+    "checks": {
+      "asymmetric_routing_order_distinct": true,
+      "asymmetric_routing_top10_distinct": true,
+      "both_factors_active": true,
+      "c38_unprojected_order_distinct": true,
+      "c38_unprojected_top10_distinct": true,
+      "candidate_permutation": true,
+      "coupled_content_order_distinct": true,
+      "coupled_content_top10_distinct": true,
+      "delayed_B_closed": true,
+      "deterministic": true,
+      "dev_test_qrels_closed": true,
+      "equal_capacity": true,
+      "exact_fallbacks": true,
+      "finite_training": true,
+      "fixed_semantic_order_distinct": true,
+      "fixed_semantic_top10_distinct": true,
+      "functional_control_contracts": true,
+      "paired_initialization": true,
+      "parameters_updated": true,
+      "primary_order_active": true,
+      "primary_top10_active": true,
+      "raw_semantic_profile": true,
+      "seed_specific_initialization": true,
+      "simplex_attention": true,
+      "single_wide_routing_order_distinct": true,
+      "single_wide_routing_top10_distinct": true,
+      "uniform_semantic_order_distinct": true,
+      "uniform_semantic_top10_distinct": true,
+      "wrong_order_distinct": true,
+      "wrong_top10_distinct": true
+    }
+  },
+  "A1": {
+    "checks": {
+      "clicked_direction_ci": true,
+      "over_asymmetric_routing_all_seeds": true,
+      "over_asymmetric_routing_ci": false,
+      "over_asymmetric_routing_effect": true,
+      "over_base_all_folds": true,
+      "over_base_all_seeds": true,
+      "over_base_ci": true,
+      "over_base_effect": true,
+      "over_c38_unprojected_all_folds": false,
+      "over_c38_unprojected_all_seeds": false,
+      "over_c38_unprojected_ci": false,
+      "over_c38_unprojected_effect": false,
+      "over_coupled_content_all_seeds": false,
+      "over_coupled_content_ci": false,
+      "over_coupled_content_effect": false,
+      "over_fixed_semantic_all_folds": true,
+      "over_fixed_semantic_all_seeds": true,
+      "over_fixed_semantic_ci": true,
+      "over_fixed_semantic_effect": true,
+      "over_single_wide_routing_all_seeds": false,
+      "over_single_wide_routing_ci": false,
+      "over_single_wide_routing_effect": false,
+      "true_over_wrong_ci": true
+    },
+    "clicked_direction": {
+      "mean": 0.014286277666687965,
+      "percentile_95_ci": [
+        0.010249337224988267,
+        0.01835096226679161
+      ],
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20262202
+    },
+    "comparisons": {
+      "asymmetric_routing": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": -0.0007688149906904116,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.001111230296478521,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.0030193185787340004,
+            "requests": 413
+          }
+        ],
+        "mean": 0.0011334153958686003,
+        "percentile_95_ci": [
+          -0.0005148747151381448,
+          0.002772540750500078
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262106
+      },
+      "base": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.06943951208114661,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.05808599334653167,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.12110506490504022,
+            "requests": 413
+          }
+        ],
+        "mean": 0.08360686971418423,
+        "percentile_95_ci": [
+          0.06103732534742351,
+          0.10620897698561305
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262101
+      },
+      "c38_unprojected": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": -0.05336824684969412,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": -0.044502944068603806,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.03678404543448232,
+            "requests": 413
+          }
+        ],
+        "mean": -0.044838396143978304,
+        "percentile_95_ci": [
+          -0.06805361713712467,
+          -0.021390353006796627
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262102
+      },
+      "coupled_content": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": -0.06472765574893168,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": -0.053589190374184574,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.03467824331856659,
+            "requests": 413
+          }
+        ],
+        "mean": -0.050839904826519865,
+        "percentile_95_ci": [
+          -0.07449337600196844,
+          -0.02718201026408243
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262107
+      },
+      "fixed_semantic": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.04919724360783479,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.046914375139785656,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.04099056953631367,
+            "requests": 413
+          }
+        ],
+        "mean": 0.045646066819223965,
+        "percentile_95_ci": [
+          0.03450840803472625,
+          0.05697500820353254
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262103
+      },
+      "single_wide_routing": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": -0.0014503775407239783,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": -0.0011305401050627421,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.003915700999365103,
+            "requests": 413
+          }
+        ],
+        "mean": -0.0021970447807208053,
+        "percentile_95_ci": [
+          -0.007310525101193816,
+          0.002985528385719161
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262105
+      },
+      "uniform_semantic": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.10798992499852544,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.09059341081527204,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.0995051396113175,
+            "requests": 413
+          }
+        ],
+        "mean": 0.0995318543460924,
+        "percentile_95_ci": [
+          0.08454761527732606,
+          0.11462191160546527
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262104
+      },
+      "wrong_history": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.1334117028278652,
+            "requests": 405
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.15663884136374176,
+            "requests": 382
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.15287603367760957,
+            "requests": 413
+          }
+        ],
+        "mean": 0.1475046491292396,
+        "percentile_95_ci": [
+          0.1273098348718069,
+          0.16787349967565401
+        ],
+        "requests": 1200,
+        "samples": 10000,
+        "seed": 20262108
+      }
+    },
+    "seed_averaged_ndcg10": {
+      "asymmetric_routing": 0.30448352989093,
+      "base": 0.2220100755726144,
+      "c38_unprojected": 0.350455341430777,
+      "coupled_content": 0.35645685011331857,
+      "fixed_semantic": 0.2599708784675747,
+      "primary_wrong": 0.1581122961575591,
+      "semantic_routing": 0.30561694528679867,
+      "single_wide_routing": 0.30781399006751947,
+      "uniform_semantic": 0.2060850909407063
+    },
+    "seed_differences": {
+      "asymmetric_routing": {
+        "20262101": 0.00039917518258446934,
+        "20262102": 0.0009957319077589636,
+        "20262103": 0.002005339097262366
+      },
+      "base": {
+        "20262101": 0.08105978218841746,
+        "20262102": 0.08502244344089752,
+        "20262103": 0.0847383835132377
+      },
+      "c38_unprojected": {
+        "20262101": -0.05070460595795784,
+        "20262102": -0.03667606348777774,
+        "20262103": -0.047134518986199345
+      },
+      "coupled_content": {
+        "20262101": -0.05420151509141925,
+        "20262102": -0.04317693089011938,
+        "20262103": -0.055141268498020965
+      },
+      "fixed_semantic": {
+        "20262101": 0.04309897929345721,
+        "20262102": 0.04706164054593727,
+        "20262103": 0.04677758061827743
+      },
+      "single_wide_routing": {
+        "20262101": 0.00048771593999405373,
+        "20262102": -0.0032414993761097502,
+        "20262103": -0.0038373509060467205
+      },
+      "uniform_semantic": {
+        "20262101": 0.09698476682032563,
+        "20262102": 0.10094742807280568,
+        "20262103": 0.10066336814514586
+      }
+    }
+  },
+  "candidate_id": "c41",
+  "created_at": "2026-07-11T23:54:13.947495+00:00",
+  "delayed_B_features_labels_scores_opened": false,
+  "dev_test_opened": false,
+  "execution_lock_sha256": "4e7c4680aab34f739e3208e94fba322520bdebcc3fb23cd7c773d1683a0d314b",
+  "internal_A_labels_opened": true,
+  "internal_A_scores_opened": true,
+  "proposal_lock_sha256": "dbc389b39715002a547bd5f42df2754b9f80005e2e0a1b436844bb6f4337ecd1",
+  "seed_reports": {
+    "20262101": {
+      "c38_control_seed": 20261301,
+      "candidate_id": "c41",
+      "created_at": "2026-07-11T23:53:38.757544+00:00",
+      "delayed_B_features_labels_scores_opened": false,
+      "dev_test_qrels_read": false,
+      "elapsed_seconds": 181.7302348613739,
+      "execution_lock_sha256": "4e7c4680aab34f739e3208e94fba322520bdebcc3fb23cd7c773d1683a0d314b",
+      "functional_control_reports": {
+        "c38_unprojected": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "fixed_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "uniform_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        }
+      },
+      "internal_A_labels_opened": false,
+      "internal_A_scores_opened": true,
+      "mode_reports": {
+        "asymmetric_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_asymmetric_routing.pt",
+            "sha256": "0924e25224bef7b6810fd7cda436526fa6c6ab107233aa8ca770c3e295e9d76c"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "1a25809f5f7ddc9cb4576ee5142067e33e86717d3813563d290ad3632d849be2",
+          "initial_state_sha256": "7f8e09490dd71e82a95196630e8c65f5ecced03a658a845cb43f4c6623f625bb",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6879895071188609,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.542216698328654,
+            "loss_first_30": 5.253495502471924,
+            "loss_last_30": 5.230206187566122,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "coupled_content": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_coupled_content.pt",
+            "sha256": "7f64c8608bfb8d6a604e383a7bc61f198d382d6e68a862c156ccdb3201687702"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "a2114a270f7c176a5d95829c7728dfd59497200b9032fb278442018bc4de3bb2",
+          "initial_state_sha256": "7f8e09490dd71e82a95196630e8c65f5ecced03a658a845cb43f4c6623f625bb",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.51410491168499,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.2227005879084265,
+            "loss_first_30": 5.243462085723877,
+            "loss_last_30": 4.7368055502573645,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "semantic_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_semantic_routing.pt",
+            "sha256": "cc529191b5788c5f0e93470075a61a12d8ac3e53de70739e36b4e949834d424e"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "271824b9f28583b3e572ce6c11b844929a9717d1f0d18cdec3563847928813f5",
+          "initial_state_sha256": "7f8e09490dd71e82a95196630e8c65f5ecced03a658a845cb43f4c6623f625bb",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": {
+            "active_nonrepeat_requests": 1199,
+            "attention_min": 3.426868886435841e-07,
+            "attention_sum_max_abs_error": 2.384185791015625e-07,
+            "raw_profile_max_abs_error": 8.940696716308594e-08
+          },
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6878447612126668,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.541928942998251,
+            "loss_first_30": 5.253457641601562,
+            "loss_last_30": 5.229773807525635,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "single_wide_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_single_wide_routing.pt",
+            "sha256": "7745a5c8432f9832b3f3b932e7fe77fb5055971c0f38d5c6d62a1ed3c36b92a5"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "7f7bed2d9a7806df0bec5702481e9bbde66b278493a292fc27cde00ee9f79a28",
+          "initial_state_sha256": "7f8e09490dd71e82a95196630e8c65f5ecced03a658a845cb43f4c6623f625bb",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.686910617351532,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.540055306752523,
+            "loss_first_30": 5.249445533752441,
+            "loss_last_30": 5.2269659519195555,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        }
+      },
+      "paired_initialization": true,
+      "physical_gpu": 0,
+      "proposal_lock_sha256": "dbc389b39715002a547bd5f42df2754b9f80005e2e0a1b436844bb6f4337ecd1",
+      "score_artifact": {
+        "path": "artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262101_internal_A_scores.npz",
+        "sha256": "cd4c7d4cd645f217d49750edc91df1d33b8ca216ef72e33c5a2f563a025d77fd"
+      },
+      "seed": 20262101,
+      "seed_specific_initial_state_sha256": "7f8e09490dd71e82a95196630e8c65f5ecced03a658a845cb43f4c6623f625bb"
+    },
+    "20262102": {
+      "c38_control_seed": 20261302,
+      "candidate_id": "c41",
+      "created_at": "2026-07-11T23:53:29.316193+00:00",
+      "delayed_B_features_labels_scores_opened": false,
+      "dev_test_qrels_read": false,
+      "elapsed_seconds": 171.78587365150452,
+      "execution_lock_sha256": "4e7c4680aab34f739e3208e94fba322520bdebcc3fb23cd7c773d1683a0d314b",
+      "functional_control_reports": {
+        "c38_unprojected": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "fixed_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "uniform_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        }
+      },
+      "internal_A_labels_opened": false,
+      "internal_A_scores_opened": true,
+      "mode_reports": {
+        "asymmetric_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_asymmetric_routing.pt",
+            "sha256": "cbafab0818b9662f653ceb731148c80465b96070995ceafa67c6f6a8041cff48"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "9135ae7ee18101ce34e302e6eaec433349b38fd059c7634529fda3564ee21b58",
+          "initial_state_sha256": "35dc3a2c2a7eb722a32c4f8a8f0274d1a5d17dc0c99001ec6686394605bd3907",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6888421475887299,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.544670152664184,
+            "loss_first_30": 5.2530943870544435,
+            "loss_last_30": 5.233512274424235,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "coupled_content": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_coupled_content.pt",
+            "sha256": "3d89b712d81f47c1415874846c7c045e80de7d45b70ea27d18c02d7136a247c2"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "8717da1a0845394d683d5d8e19cda776dfee04db71fdd62e14aed41e886dfee4",
+          "initial_state_sha256": "35dc3a2c2a7eb722a32c4f8a8f0274d1a5d17dc0c99001ec6686394605bd3907",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.5148910919825236,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.237610141436259,
+            "loss_first_30": 5.2452115694681805,
+            "loss_last_30": 4.752501265207926,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "semantic_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_semantic_routing.pt",
+            "sha256": "cd1740258f57d1c930475c04b3d8631352e61d0925ca171053ed4cef87cfacff"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "741905d4cb2a61ac9f736c6d8efb6dfecb14bdaef5eebb77982c064e8b9f16aa",
+          "initial_state_sha256": "35dc3a2c2a7eb722a32c4f8a8f0274d1a5d17dc0c99001ec6686394605bd3907",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": {
+            "active_nonrepeat_requests": 1199,
+            "attention_min": 5.276668275655538e-07,
+            "attention_sum_max_abs_error": 2.384185791015625e-07,
+            "raw_profile_max_abs_error": 8.940696716308594e-08
+          },
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6888729810714722,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.544724480311076,
+            "loss_first_30": 5.253071276346843,
+            "loss_last_30": 5.233597405751547,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "single_wide_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_single_wide_routing.pt",
+            "sha256": "5557180e42e414f108a255fad98e446f21a90674ca0cd91e11f8d2e9efacdf1c"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "78bb090cc427fcd98c978cfcabee5e60a28ba95f0ac0694eaa857ee68a555d5c",
+          "initial_state_sha256": "35dc3a2c2a7eb722a32c4f8a8f0274d1a5d17dc0c99001ec6686394605bd3907",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6881058533986409,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.5432339350382485,
+            "loss_first_30": 5.248353942235311,
+            "loss_last_30": 5.231339804331461,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        }
+      },
+      "paired_initialization": true,
+      "physical_gpu": 1,
+      "proposal_lock_sha256": "dbc389b39715002a547bd5f42df2754b9f80005e2e0a1b436844bb6f4337ecd1",
+      "score_artifact": {
+        "path": "artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262102_internal_A_scores.npz",
+        "sha256": "c92154a3ef95fe5e48e71c1d43b623a0709353ecefe7d1868fcf141179d86491"
+      },
+      "seed": 20262102,
+      "seed_specific_initial_state_sha256": "35dc3a2c2a7eb722a32c4f8a8f0274d1a5d17dc0c99001ec6686394605bd3907"
+    },
+    "20262103": {
+      "c38_control_seed": 20261303,
+      "candidate_id": "c41",
+      "created_at": "2026-07-11T23:53:35.571064+00:00",
+      "delayed_B_features_labels_scores_opened": false,
+      "dev_test_qrels_read": false,
+      "elapsed_seconds": 178.08597207069397,
+      "execution_lock_sha256": "4e7c4680aab34f739e3208e94fba322520bdebcc3fb23cd7c773d1683a0d314b",
+      "functional_control_reports": {
+        "c38_unprojected": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "fixed_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        },
+        "uniform_semantic": {
+          "candidate_permutation_max_abs": 0.0,
+          "deterministic_max_abs": 0.0,
+          "nohistory_max_abs": 0.0,
+          "query_absent_wrapper_max_abs": 0.0,
+          "repeat_wrapper_max_abs": 0.0
+        }
+      },
+      "internal_A_labels_opened": false,
+      "internal_A_scores_opened": true,
+      "mode_reports": {
+        "asymmetric_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_asymmetric_routing.pt",
+            "sha256": "bd4334d8c660e03e4576a7e13c44d1d88378ada13d1a7e7e61a7b16917281b78"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "e32b6ab3b52db3f350b649160429de8b1c5e581e71648a8293ccae9bb2619864",
+          "initial_state_sha256": "a7eaf2bbbd51b379342454d333b7171e62b423e4e604bb09564fc4b33180fae9",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.688590673605601,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.538728046417236,
+            "loss_first_30": 5.254077657063802,
+            "loss_last_30": 5.227318668365479,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "coupled_content": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_coupled_content.pt",
+            "sha256": "e20b7008992bb115fe661c664f4f6509a09db8e10ff2300c8e4e8b8462bff6cf"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "ab71ceb11d34ebd99e1729e6464a43ab1d36f0ffcd58b51ad85aee1a5dad62f5",
+          "initial_state_sha256": "a7eaf2bbbd51b379342454d333b7171e62b423e4e604bb09564fc4b33180fae9",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.5200799574454625,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.231165289878845,
+            "loss_first_30": 5.244556681315104,
+            "loss_last_30": 4.75124519666036,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "semantic_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_semantic_routing.pt",
+            "sha256": "478aface0be23104468f30785ef5fe712ae0e71be953442a3b43e05d1d157379"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "8550c21d882c152038fa4452fd590ffd9b108ff6c022750644bf91df632432c3",
+          "initial_state_sha256": "a7eaf2bbbd51b379342454d333b7171e62b423e4e604bb09564fc4b33180fae9",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": {
+            "active_nonrepeat_requests": 1199,
+            "attention_min": 1.491093257754983e-07,
+            "attention_sum_max_abs_error": 2.384185791015625e-07,
+            "raw_profile_max_abs_error": 8.940696716308594e-08
+          },
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6886410355567932,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.538829898834228,
+            "loss_first_30": 5.254037650426229,
+            "loss_last_30": 5.227470906575521,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        },
+        "single_wide_routing": {
+          "candidate_permutation_max_abs": 0.0,
+          "checkpoint": {
+            "path": "models/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_single_wide_routing.pt",
+            "sha256": "1d9b31d0435a2c30768c4c618fdd7f513c705bcf750decc070e98eb4b14c0686"
+          },
+          "deterministic_max_abs": 0.0,
+          "final_state_sha256": "b62c9c845ddc429c5072ba05447716b1820febaeca6eccdc597da83a2d622746",
+          "initial_state_sha256": "a7eaf2bbbd51b379342454d333b7171e62b423e4e604bb09564fc4b33180fae9",
+          "nohistory_max_abs": 0.0,
+          "parameters": 49152,
+          "parameters_updated": true,
+          "query_absent_max_abs": 0.0,
+          "repeat_max_abs": 0.0,
+          "semantic_diagnostics": null,
+          "training": {
+            "active_nonrepeat_requests": 5966,
+            "all_candidates_used": true,
+            "direction_last_30": 0.6877152462800343,
+            "epochs": 1,
+            "finite": true,
+            "fit_requests": 6000,
+            "gradient_parameter_names": [
+              "down",
+              "up"
+            ],
+            "listwise_last_30": 4.537003469467163,
+            "loss_first_30": 5.24979551633199,
+            "loss_last_30": 5.2247186978658045,
+            "skipped_repeat_requests": 34,
+            "steps": 373
+          }
+        }
+      },
+      "paired_initialization": true,
+      "physical_gpu": 2,
+      "proposal_lock_sha256": "dbc389b39715002a547bd5f42df2754b9f80005e2e0a1b436844bb6f4337ecd1",
+      "score_artifact": {
+        "path": "artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/seed_20262103_internal_A_scores.npz",
+        "sha256": "43dece477186c4236284aa87845f00177ca580005d6ed4a202acc9c57cc6e1ea"
+      },
+      "seed": 20262103,
+      "seed_specific_initial_state_sha256": "a7eaf2bbbd51b379342454d333b7171e62b423e4e604bb09564fc4b33180fae9"
+    }
+  },
+  "status": "failed_A1_terminal"
+}

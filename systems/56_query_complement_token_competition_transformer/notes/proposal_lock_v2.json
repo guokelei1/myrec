@@ -1,0 +1,31 @@
+{
+  "candidate_id": "c56",
+  "created_at": "2026-07-12T13:09:04+08:00",
+  "gate_id": "c56_query_complement_token_competition_v2",
+  "locked_files": {
+    "systems/56_query_complement_token_competition_transformer/configs/signal_gate_v2.yaml": "5c2b78452f201f62ff37e24b1ad804caffe7d5e8b7062f618a76ddd003e34d0b",
+    "systems/56_query_complement_token_competition_transformer/notes/nearest_neighbors.md": "008223b1cf1a9271a9cdde774e2dae3018e252dfee0c28aa6b269f4adf90136d",
+    "systems/56_query_complement_token_competition_transformer/notes/pre_outcome_execution_abort.md": "c19aa2b4dba9c0481949d5c9fbf7046b7805d79fb585a3eec01be9541aa919f4",
+    "systems/56_query_complement_token_competition_transformer/notes/proposal.md": "1a197134d0d41b1c880e33dd8ede00094689fb3ddbb354d79fb6cdfec643b4f0"
+  },
+  "status": "v1_boolean_abort_superseded_before_any_contextual_or_model_outcome",
+  "unchanged_from_v1": [
+    "architecture",
+    "split_seed",
+    "role_counts",
+    "training_seeds",
+    "gpu_mapping",
+    "loss",
+    "thresholds",
+    "label_boundaries"
+  ],
+  "unopened": [
+    "c56_holdout_fit_labels",
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

@@ -1,0 +1,54 @@
+analysis_id: amazon_token_edge_attribution_v1
+status: post_outcome_mechanism_attribution
+date: "2026-07-12"
+
+paths:
+  protocol: doc/30_amazon_token_edge_attribution_protocol.md
+  module: src/myrec/analysis/token_edge_attribution.py
+  freeze_script: scripts/freeze_amazon_token_edge_attribution.py
+  run_script: scripts/run_amazon_token_edge_attribution.py
+  summarize_script: scripts/summarize_amazon_token_edge_attribution.py
+  upstream_config: configs/analysis/amazon_token_history_observability_v1.yaml
+  upstream_execution_lock: artifacts/analysis/amazon_token_history_observability_v1/execution_lock.json
+  upstream_report: reports/pps_amazon_token_history_observability_v1.json
+  token_root: artifacts/analysis/amazon_token_history_observability_v1
+  checkpoint_root: models/analysis/amazon_token_history_observability_v1
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-en-v1.5/snapshots/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
+  records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  artifact_root: artifacts/analysis/amazon_token_edge_attribution_v1
+  execution_lock: artifacts/analysis/amazon_token_edge_attribution_v1/execution_lock.json
+  report: reports/pps_amazon_token_edge_attribution_v1.json
+
+seeds: [20265601, 20265602, 20265603]
+
+modes:
+  - history_isolated
+  - no_query_history
+  - no_candidate_history
+  - no_query_reads_history
+  - no_candidate_reads_history
+  - no_history_reads_context
+
+evaluation:
+  encoded_candidates_per_batch: 128
+  deterministic_tolerance: 0.000002
+  candidate_permutation_tolerance: 0.000002
+  isolation_null_tolerance: 0.000002
+  retained_fraction: 0.80
+  destroyed_fraction: 0.20
+  bootstrap_samples: 10000
+  bootstrap_seed: 20265640
+
+resources:
+  seed_to_physical_gpu:
+    "20265601": 0
+    "20265602": 1
+    "20265603": 2
+
+authorization:
+  retraining: false
+  checkpoint_selection: false
+  post_outcome_reserve_labels: true
+  dev: false
+  test: false
+  qrels: false

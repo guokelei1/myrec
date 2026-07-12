@@ -1,0 +1,92 @@
+{
+  "audit_id": "c01_c80_terminal_completion_audit",
+  "created_at": "2026-07-13",
+  "decision": "terminal_instruction_satisfied_keep_historical_find_good_architecture_goal_unachieved",
+  "evidence": {
+    "c80_outcome": {
+      "path": "reports/pps_c80_amazon_real_gate.json",
+      "sha256": "7371946b9dbad36680c74d943ceaac862b681fcea717a08e351f8632d60fa4ef"
+    },
+    "c80_outcome_note": {
+      "path": "systems/80_permutation_invariant_triadic_token_transformer/notes/real_gate_outcome.md",
+      "sha256": "5405b44358e30b4c6e0ec87fb61a6d8fc85d6d77a467d17f19d9ef71bcc979ef"
+    },
+    "design_principles": {
+      "path": "doc/15_proposed_system_design_principles.md",
+      "sha256": "9ffe5bb3f4a814bf263fea2ed3fa06cc6347b19c6a2ad5ba27582eea49d3671c"
+    },
+    "retrospective": {
+      "path": "doc/dev_log/20260712_c01_c80_terminal_retrospective.md",
+      "sha256": "48c79802ddcbfbd55b0b1fd9d592c23cd564b26d407bffda88e57e69d8177774"
+    },
+    "systems_ledger": {
+      "path": "systems/README.md",
+      "sha256": "4a4e7d4b7ee5b30d17597edf30bb9439c890eb7dbad4d27a8df11d007277b515"
+    },
+    "terminal_budget": {
+      "path": "doc/dev_log/20260712_c76_c80_terminal_search_budget.md",
+      "sha256": "ad2a3860f1b6694d2d9d565a4e7b26896d1993484a1bea4d90ae3e716704461d"
+    }
+  },
+  "fresh_label_boundary": {
+    "dev_test_qrels_opened": false,
+    "fresh_label_artifact_exists": false,
+    "fresh_labels_opened": false,
+    "fresh_metrics_computed": false,
+    "per_request_metrics_artifact_exists": false,
+    "seed_report_fresh_label_flags_all_false": true
+  },
+  "goal_status_interpretation": {
+    "good_architecture_found": false,
+    "historical_active_goal_achieved": false,
+    "reason_goal_not_completed": "No candidate satisfied architecture, utility, specificity, safety, matched-control, and cross-domain requirements; C80 stopped before fresh labels.",
+    "terminal_user_instruction_satisfied": true
+  },
+  "numbering_boundary": {
+    "architecture_updates_after_c76": [
+      77,
+      78,
+      80
+    ],
+    "candidate_directory_count": 79,
+    "candidate_ids_above_c80": [],
+    "c79_exists": false,
+    "c80_exists": true,
+    "c81_authorized": false,
+    "maximum_candidate_id": 80
+  },
+  "raw_c80_evidence": {
+    "all_raw_report_hashes_match": true,
+    "all_score_surface_hashes_match": true,
+    "all_three_seed_reports_present": true,
+    "all_three_seed_reports_prelabel_failed": true,
+    "candidate_rows_per_seed": 36790,
+    "fresh_requests": 365,
+    "fresh_users": 365,
+    "primary_event_permutation_max_abs_by_seed": {
+      "20266001": 0.031868696212768555,
+      "20266002": 0.06841731071472168,
+      "20266003": 0.03937172889709473
+    }
+  },
+  "retrospective_requirement_coverage": {
+    "available_datasets_support_common_architecture_claim": true,
+    "design_principles_overconstraint_and_formal_nonreduction": true,
+    "early_pooling_or_data_interface_signal_loss": true,
+    "label_role_fragmentation_small_fresh_roles_and_test_locks": true,
+    "local_pivots_specification_and_benchmark_overfitting": true,
+    "motivation_constructiveness_and_generality": true,
+    "paper_retainable_robust_conclusions": true,
+    "synthetic_and_mechanical_gate_construct_validity": true
+  },
+  "status": "passed_terminal_completion_audit",
+  "terminal_checks": {
+    "architecture_search_ended_at_c80": true,
+    "c01_c80_retrospective_exists": true,
+    "c80_fresh_labels_remain_closed": true,
+    "mechanical_precision_or_threshold_rescue_absent": true,
+    "no_architecture_above_c80": true,
+    "no_c81": true,
+    "retrospective_allocates_causal_responsibility": true
+  }
+}

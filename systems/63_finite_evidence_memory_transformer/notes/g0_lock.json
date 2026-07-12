@@ -1,0 +1,22 @@
+{
+  "candidate_id": "c63",
+  "created_at": "2026-07-12T07:49:29.456409+00:00",
+  "decision": "authorize_exactly_three_registered_data_free_G0_seeds",
+  "outcome_boundary": {
+    "dev_test_qrels_opened": false,
+    "fit_labels_opened": false,
+    "fresh_features_scores_labels_opened": false,
+    "repository_data_opened": false
+  },
+  "proposal_lock_sha256": "b363421648cb33038364b4d9654ed71ee104776b2cb80876ae9747191a7085fe",
+  "source_sha256": {
+    "systems/63_finite_evidence_memory_transformer/configs/g0.yaml": "093aebdc556959f5f0da582037d6ca77546437f191ade0fc7fff357b37c825a9",
+    "systems/63_finite_evidence_memory_transformer/execution/__init__.py": "9cf1eecc4a2da293b6fb8e224bb87e9a5b4a9e750a969bfd51147e9b42d872c9",
+    "systems/63_finite_evidence_memory_transformer/execution/freeze_g0_lock.py": "8b1f55822698ff0f15da2dd31ee9592600ce782690c0241878f6fd2ea70a3cea",
+    "systems/63_finite_evidence_memory_transformer/execution/locking.py": "cc49ea694cd1ba839a11f20ff69422b372884f88a7b59d4c455a71f915042b87",
+    "systems/63_finite_evidence_memory_transformer/execution/run_g0.py": "85a37aff220e57ca447206390b7b9dbd243ae8905261f3e980bf199c0abdc8b7",
+    "systems/63_finite_evidence_memory_transformer/model/__init__.py": "0fcd6be46d20fdf0db7d24dac07f5f9c088d15f31279d9e825e55d8a357a47bc",
+    "systems/63_finite_evidence_memory_transformer/model/finite_evidence_memory.py": "51efa6e75f0b93f422b4a7c7fb992f2cd1b122379c941023fb3aa040f7fc4f21",
+    "systems/63_finite_evidence_memory_transformer/tests/test_model.py": "5bbc3fa3060618d15e73199dcff8106ba2c813810ec4b81456a5329eb7576837"
+  }
+}

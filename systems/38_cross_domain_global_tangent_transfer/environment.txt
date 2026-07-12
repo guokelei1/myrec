@@ -1,0 +1,11 @@
+Environment: /data/gkl/conda_envs/myrec-c38
+Source clone: /data/gkl/conda_envs/myrec-c37
+Physical GPUs: 0,1,2,3 (embedding shards); 0,1,2 (one registered seed per GPU)
+Program device: cuda:0
+Deterministic CUBLAS: :4096:8
+Python: 3.10.20
+PyTorch: 2.6.0+cu124
+CUDA runtime: 12.4
+Transformers: 5.12.1
+NumPy: 1.24.3
+PyYAML: 6.0.2

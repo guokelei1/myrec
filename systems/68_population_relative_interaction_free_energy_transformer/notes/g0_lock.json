@@ -1,0 +1,25 @@
+{
+  "candidate_id": "c68",
+  "created_at": "2026-07-12T09:53:53.737040+00:00",
+  "decision": "authorize_three_registered_data_free_G0_seeds",
+  "outcome_boundary": {
+    "dev_test_qrels_opened": false,
+    "labels_opened": false,
+    "repository_data_opened": false
+  },
+  "proposal_lock_sha256": "026d9e11efa9a9cdcf77834c4a5fd049849698fb190ff95a7e125b1eb481bf0d",
+  "source_sha256": {
+    "systems/68_population_relative_interaction_free_energy_transformer/configs/g0.yaml": "2bd24e443b98fdffc0f6f6bbdd5d94eccd51d98a96bfec92ff3bf9a3b60443d9",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/aggregate_g0.py": "53628e159020d3ef04271a044d9212920486a527c3378be0ee1ab57c9a271e1f",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/freeze_g0_lock.py": "62be3785bc9db4f8fe70a14309f5bd400804cce14e36f94807b6a4c56498dc4f",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/freeze_proposal_lock.py": "702e92383d2d97f8466a9952f80bdc9378da5c4cc420e6e70512faceee22321d",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/locking.py": "b866cc047b1369bad7faa85422428d37f99873cb7109a6273f78c0ab936453a6",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/run_g0.py": "8e46c5e4586f00f35a9f8798e8772a4182a6b62aad7ac8a134136d969db2f75e",
+    "systems/68_population_relative_interaction_free_energy_transformer/execution/synthetic.py": "a02bbd911fc5b523f5542a8e35c00f61bccc94fb2cbc71170ebdbdd9661b0acc",
+    "systems/68_population_relative_interaction_free_energy_transformer/model/__init__.py": "4d9b69c689423c07e7ed55f4588c8b5a11c3a7f84a9b06be2abc3f60d4998886",
+    "systems/68_population_relative_interaction_free_energy_transformer/model/population_relative_free_energy.py": "4011ce892a067e65a321408ea6603f59c178823fc57afd432ef8c5d1313169fe",
+    "systems/68_population_relative_interaction_free_energy_transformer/tests/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "systems/68_population_relative_interaction_free_energy_transformer/tests/test_model.py": "1f9f304ac56b273c9aa54ee44cb0bff53ddc4ddc73c7a6b9b674a8574622c955"
+  }
+}

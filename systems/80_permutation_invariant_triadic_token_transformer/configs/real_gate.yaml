@@ -1,0 +1,93 @@
+candidate_id: c80
+status: pre_outcome
+date: "2026-07-12"
+
+paths:
+  protocol: systems/80_permutation_invariant_triadic_token_transformer/notes/real_gate_protocol.md
+  proposal: systems/80_permutation_invariant_triadic_token_transformer/notes/proposal.md
+  module: systems/80_permutation_invariant_triadic_token_transformer/model/pitt.py
+  prepare_script: systems/80_permutation_invariant_triadic_token_transformer/probe/prepare_real_gate.py
+  freeze_script: systems/80_permutation_invariant_triadic_token_transformer/probe/freeze_lock.py
+  run_script: systems/80_permutation_invariant_triadic_token_transformer/probe/run_real_gate.py
+  summarize_script: systems/80_permutation_invariant_triadic_token_transformer/probe/summarize_real_gate.py
+  records_train_blind: data/standardized/amazon_c4/v0_history_bm25_100/records_train_blind.jsonl
+  records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  c38_selection: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/selection.json
+  fit_token_root: artifacts/analysis/amazon_token_history_observability_v1
+  fit_labels: artifacts/analysis/amazon_token_history_observability_v1/fit_labels.npz
+  base_checkpoint_root: models/analysis/amazon_token_history_observability_v1
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-en-v1.5/snapshots/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
+  fresh_root: artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1
+  checkpoint_root: models/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1
+  execution_lock: artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/execution_lock.json
+  report: reports/pps_c80_amazon_real_gate.json
+
+selection:
+  strict_nonrepeat: true
+  fit_user_disjoint: true
+  use_all_eligible_remaining: true
+  expected_requests: 365
+  history_length_bins: [1, 2, 3, 5, 10, 20, 50]
+  wrong_seed: 20266000
+
+tokens:
+  query_tokens: 32
+  candidate_tokens: 32
+  history_item_tokens: 20
+  max_history: 6
+  max_sequence_length: 192
+  candidate_token_budget: 8
+  history_token_budget_per_event: 4
+  tokenizer_batch_size: 4096
+
+model:
+  correction_bound: 3.0
+  score_head_bias: false
+  dropout_in_paired_path: 0.0
+
+modes:
+  - triadic_set
+  - query_filtered_set
+  - pairwise_set
+  - triadic_positional
+  - ungated_full
+
+training:
+  seeds: [20266001, 20266002, 20266003]
+  base_seed_map:
+    "20266001": 20265601
+    "20266002": 20265602
+    "20266003": 20265603
+  epochs: 2
+  requests_per_batch: 8
+  sampled_candidates: 8
+  backbone_learning_rate: 0.00001
+  head_learning_rate: 0.00005
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  checkpoint_selection: fixed_final_only
+  attempts: 1
+
+evaluation:
+  encoded_candidates_per_batch: 64
+  bootstrap_samples: 10000
+  bootstrap_seed: 20266020
+  practical_effect_min: 0.002
+  shuffle_abs_effect_max: 0.002
+  deterministic_tolerance: 0.000002
+  candidate_permutation_tolerance: 0.000002
+  event_permutation_tolerance: 0.000002
+
+resources:
+  seed_to_physical_gpu:
+    "20266001": 0
+    "20266002": 1
+    "20266003": 2
+
+authorization:
+  label_free_materialization: true
+  fit_labels_after_lock: true
+  fresh_labels_after_all_scores: true
+  dev: false
+  test: false
+  qrels: false

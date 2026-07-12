@@ -1,0 +1,29 @@
+{
+  "candidate_id": "C11",
+  "protocol_id": "c11_eventwise_predictive_write_synthetic_v1",
+  "prepared_at": "2026-07-11T11:54:03+08:00",
+  "review_status": "rejected_algebraic_reduction",
+  "outcome_observed": false,
+  "gpu_run_attempted": false,
+  "physical_gpu_proposed": 3,
+  "run_prefix": "20260711_kuaisearch_c11_",
+  "scope": "synthetic eventwise learned-mechanism falsifier only",
+  "activation_instruction": "DO NOT ACTIVATE. Independent review proved the primary reduces to the eventwise hidden control after candidate centering.",
+  "rejection": "For a tied linear decoder, log p_e(x)-log p_0(x)=E_x dot (h_e-h_0)-Delta logZ; candidate centering removes the candidate-common Delta logZ, leaving the eventwise-hidden operator up to a fixed scale.",
+  "sha256": {
+    "README.md": "86ac5d0adb4be2f9baf4b317e4b0ebbe178538dd654a1dfd19504716bd1b926e",
+    "architecture_fingerprint.json": "e00fdc0ee77c6082da895b0808b3d8a5a717ef52c2407e3d653ad0f305acd1cc",
+    "configs/synthetic_gpu_gate.yaml": "3a84ba9911a475a5fb0c24f4ca5174dba8ba2ab44cace349d7e5a610ca184035",
+    "model.py": "7ff137549a00e3e212c3bae7f766c0ea56ff6ed67a7757bd52c1dcdafa03d602",
+    "synthetic.py": "5f2e6cbbddd24c435302967e8fa89d841e953d25d1da7ff80cafe030fc55e91c",
+    "run_synthetic_gpu_gate.py": "fe399592c1bf5fcd2e5cc09452b7e83b5a10eafcf1346f662dd880b862658349",
+    "verify_prelock_manifest.py": "f7d0092d6984ea7f606e382235f51e91ab7ed9d935534100e631c93c8bd85e15",
+    "notes/proposal.md": "4d4da7eb5ba9321bdefa3c79296fe81eabd22a43695819999d885af34900b9f6",
+    "notes/reduction_and_control_audit.md": "6dd7a33d5282ff90fc0dc921401c760ec8dafc010eebae755b5b3332d90ca5fd",
+    "notes/construct_audit.md": "6448c743924b324f680a28a74a834133ffd2aeaf287b06c2fe301c68489a445b",
+    "notes/synthetic_gpu_gate_protocol.md": "d22b40d2e3b69a5a6c5dd43479bf6fc7008ec0ec33f5fba79e9ebb351ab9101b",
+    "tests/test_model.py": "1a6c24630caeaee6cad1eb1e217d8a48db54868e6159a4fabf6e0b31808b3863",
+    "tests/test_synthetic.py": "d47213cb42c03a1885e4db40897e0500bc16f357fe85fc4c6034538451d3d683",
+    "tests/test_runner_lock.py": "408fd5c0059d3b2d3cf710517289cfb5ed0125f04c6859cddb89150f4b3a9a20"
+  }
+}

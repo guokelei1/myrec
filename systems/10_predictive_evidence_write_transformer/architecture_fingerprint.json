@@ -1,0 +1,39 @@
+{
+  "candidate_id": "C10",
+  "name": "Predictive Evidence-Write Transformer",
+  "protocol_id": "c10_predictive_evidence_write_synthetic_v1",
+  "single_primitive": "late candidate-token conditional predictive-information hidden write",
+  "load_bearing_transformer": "one weight-shared Transformer encodes history-blind candidates and both q,H/q-only predictive contexts",
+  "components": [
+    "shared masked-context LM",
+    "bounded candidate-centred token evidence write",
+    "monotone exact-identity evidence coordinate in the shared ranking head"
+  ],
+  "primary_equation": "w_i=BoundedZeroSum_i(W mean_t[tanh(center_i(log p(x_it|q,H)-log p(x_it|q))) E(x_it)])",
+  "base_information_mask": "candidate path is [q,c_i] only and cannot attend to history or other candidates",
+  "history_information_mask": "history enters ranking only through w_i and the exact item-token identity coordinate",
+  "no_history_contract": "torch.where selects the untouched base_scores tensor bitwise",
+  "exact_identity_contract": "reserved coordinate log1p(count) is read by softplus(alpha), so the final-logit partial derivative is strictly positive",
+  "generic_interface": "undifferentiated token IDs and masks; no dataset, category, attribute, or query-type branch",
+  "registered_trainable_parameters": 21744,
+  "capacity_match": {
+    "predictive_gain": 21744,
+    "single_pass": 21744,
+    "dual_stream": 21744,
+    "centered_attention": 21744
+  },
+  "nearest_neighbors": [
+    "C04-like paired final-logit delta",
+    "single-pass conditional LM",
+    "ordinary centred cross-attention",
+    "capacity-matched generic dual-stream residual"
+  ],
+  "positive_claim_if_gate_passes": "conditional synthetic learnability only",
+  "forbidden_claims": [
+    "real-data improvement",
+    "semantic-transfer validation",
+    "dev or test performance",
+    "novelty from parameter count alone"
+  ],
+  "stop_policy": "any conjunctive frozen-gate failure closes C10 before real training"
+}

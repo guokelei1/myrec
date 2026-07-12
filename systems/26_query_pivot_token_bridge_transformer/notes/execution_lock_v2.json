@@ -1,0 +1,35 @@
+{
+  "candidate_id": "c26",
+  "created_at": "2026-07-11T11:38:45Z",
+  "declarations": {
+    "delayed_B_labels_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_reused_only_from_frozen_c25_compact": true,
+    "internal_A_labels_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false,
+    "v1_smoke_interface_abort_before_forward_output": true
+  },
+  "g0_output_sha256": {
+    "base_scores.npy": "49cbe58cf7972a31726d8b97bd4f700baf3641c8b653e3875885396275c659c7",
+    "feature_candidate_offsets.npy": "77c5b402eb92adfc90a215b8bd727e6a1f3c8f6e5aebb86ece494266ee1ceac3",
+    "feature_request_indices.npy": "4c475e1efae0ab451b4d2b9070531656bf4bfbcaaf97c654377d6a6b24177a63",
+    "fit_label_offsets.npy": "7f0fb2c16fe46b5498c1fc4415faf13103114e2cd1bf1b6ef59370c7b3a0d0dc",
+    "fit_labels.npy": "c8f73a82de98e9dd8bb3ed54ea566244035fae93945b3c5aaf944afa77051e62",
+    "fit_request_indices.npy": "7865707a2a517c385009f78fd094d3a2726e15dbac68593dc66d4e31d754e15e",
+    "item_attention_mask.npy": "5de429bc40dda38a014202e7f6ee53a157e2e597f28b8d0a68a0da152d0a9187",
+    "item_content_mask.npy": "7facc362b507c8684911af42c25dff6e570bfda000965aae4ff6f98ddf0ffc3a",
+    "item_embedding_indices.npy": "a78ad6b7b18f2ebb3f537aa3c50174883362881a5ef0f68756cefadc51c0ca0a",
+    "item_token_ids.npy": "55e851e0a370fb546d6c660799fe2bcb9fc3c57a7249a68f62b939a0d260bd4b",
+    "query_attention_mask.npy": "9367379f92b1db9b8f01a1b7ba1ce2bfbb49a04303d2e4118c18e673277941cd",
+    "query_content_mask.npy": "75739871ed97775f2e43cf93ffd43580349139eaf1e0b8c086ba20b6f056dca4",
+    "query_token_ids.npy": "034b8c558d52f37a608c6c38d1845161e17cb97204a8c50f766f49fff9720f55",
+    "word_embeddings.npy": "c2860492e8781880fb785b102f93391745e49dd75d41b98070027961490d8c6e"
+  },
+  "g0_report_path": "artifacts/c26_query_pivot_token_bridge_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "95f58f96925b48696038b4347fdf8f0f9324195a6961c113bf82104d6f7b7cdb",
+  "lock_id": "c26_query_pivot_token_bridge_execution_v2",
+  "proposal_lock_sha256": "5e8348672b9935b3600cdb39d4ec7695d2e761d67e761b5d4d425ddc8d231354",
+  "selection_sha256": "db5541aa096118833296f8ef0079ee648889b6f1ccdd0b61a527232f93e7d239",
+  "status": "locked_after_G0_before_training_or_internal_A_access"
+}

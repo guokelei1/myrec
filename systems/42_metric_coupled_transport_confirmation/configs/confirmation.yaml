@@ -1,0 +1,116 @@
+candidate_id: c42
+gate_id: c42_metric_coupled_weights_preserving_confirmation_v1
+status: proposal_ready_prelock
+environment: /data/gkl/conda_envs/myrec-c39
+program_device: cuda:0
+run_id: 20260712_amazon_c4_c42_metric_coupled_confirm_v1
+
+resources:
+  embedding_physical_gpus: [0, 1, 2, 3]
+  scoring_physical_gpus: [0, 1, 2]
+  seed_to_physical_gpu:
+    "20262101": 0
+    "20262102": 1
+    "20262103": 2
+
+paths:
+  proposal_lock: systems/42_metric_coupled_transport_confirmation/notes/proposal_lock.json
+  execution_lock: systems/42_metric_coupled_transport_confirmation/notes/execution_lock.json
+  standardized_manifest: data/standardized/amazon_c4/v0_history_bm25_100/manifest.json
+  records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  records_train_blind: data/standardized/amazon_c4/v0_history_bm25_100/records_train_blind.jsonl
+  candidate_manifest: data/standardized/amazon_c4/v0_history_bm25_100/candidate_manifest.json
+  c0_report: reports/pps_c0_amazon_c4_data_audit.json
+  c1_report: reports/pps_c1_amazon_c4_protocol.json
+  trigger_report: reports/pps_c41_coupled_control_diagnostic.json
+  trigger_report_sha256: 6deb67da8e6bbb439f7dba221725c86f6890d886d79d7a405c0d0c0161500cd4
+  c41_report: reports/pps_c41_train_gate.json
+  c38_report: reports/pps_c38_train_gate.json
+  c38_selection: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/selection.json
+  selection: artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1/selection.json
+  selection_sha256: e61c8f982e1223a5d92f99f0bd3e872a832a1b7d62ac9f1f58868baff4605329
+  feature_root: artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1/features
+  g0_report: artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1/g0_report.json
+  artifact_root: artifacts/c42_metric_coupled_transport_confirmation/confirmation_v1
+  c41_checkpoint_root: models/c41_semantic_carrier_routing_transformer/train_gate_v1
+  c38_checkpoint_root: models/c38_cross_domain_global_tangent_transfer/train_gate_v1
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-en-v1.5/snapshots/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
+  shared_metric_source: src/myrec/eval/metrics.py
+
+integrity:
+  records_train_sha256: e55a02d155266210ee0546c96e67be1db253eb3eccf68a695be4141afeeb64a4
+  records_train_blind_sha256: 298797a41ecc55377b27f8855edff669c2cfefb970eaa9ba59c075631bd175bd
+  c41_model_sha256: 07485034a9364668bc70c0ecaed22e547a85a8b89d567de485b98a3c4cf54210
+  c41_checkpoint_sha256:
+    "20262101":
+      semantic_routing: cc529191b5788c5f0e93470075a61a12d8ac3e53de70739e36b4e949834d424e
+      single_wide_routing: 7745a5c8432f9832b3f3b932e7fe77fb5055971c0f38d5c6d62a1ed3c36b92a5
+      asymmetric_routing: 0924e25224bef7b6810fd7cda436526fa6c6ab107233aa8ca770c3e295e9d76c
+      coupled_content: 7f64c8608bfb8d6a604e383a7bc61f198d382d6e68a862c156ccdb3201687702
+    "20262102":
+      semantic_routing: cd1740258f57d1c930475c04b3d8631352e61d0925ca171053ed4cef87cfacff
+      single_wide_routing: 5557180e42e414f108a255fad98e446f21a90674ca0cd91e11f8d2e9efacdf1c
+      asymmetric_routing: cbafab0818b9662f653ceb731148c80465b96070995ceafa67c6f6a8041cff48
+      coupled_content: 3d89b712d81f47c1415874846c7c045e80de7d45b70ea27d18c02d7136a247c2
+    "20262103":
+      semantic_routing: 478aface0be23104468f30785ef5fe712ae0e71be953442a3b43e05d1d157379
+      single_wide_routing: 1d9b31d0435a2c30768c4c618fdd7f513c705bcf750decc070e98eb4b14c0686
+      asymmetric_routing: bd4334d8c660e03e4576a7e13c44d1d88378ada13d1a7e7e61a7b16917281b78
+      coupled_content: e20b7008992bb115fe661c664f4f6509a09db8e10ff2300c8e4e8b8462bff6cf
+  c38_checkpoint_sha256:
+    "20261301": e6732ca38bcf3b224d516aaecfcf684201580b349632f080ae5d0313f5a34d97
+    "20261302": e580e134f37565b95cc47f42f4481533b63375604414a6d76ccd8e4afca13404
+    "20261303": 6c67e1996fde17e6c5a19c61cc3fa8747b37505fd41981f2c0a19c0bb82d8543
+
+model:
+  frozen_backbone: BAAI/bge-small-en-v1.5
+  embedding_dim: 384
+  heads: 4
+  rank: 16
+  history_temperature: 0.1
+  profile_scale: 1.0
+  correction_scale: 2.0
+  init_std: 0.01
+  primary: coupled_content
+  matched_controls: [semantic_routing, single_wide_routing, asymmetric_routing]
+  functional_controls: [fixed_semantic, uniform_semantic, c38_unprojected]
+
+checkpoints:
+  c41_seeds: [20262101, 20262102, 20262103]
+  c38_seeds: [20261301, 20261302, 20261303]
+  optimizer_steps: 0
+
+base:
+  repeat_boost: 3.0
+
+encoding:
+  num_shards: 4
+  item_batch_size: 256
+  query_batch_size: 128
+  item_max_length: 128
+  query_max_length: 256
+  query_prefix: "Represent this sentence for searching relevant passages: "
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20262501
+  hash_folds: 3
+
+gate:
+  primary_minus_base_min: 0.002
+  primary_minus_c38_min: 0.001
+  primary_minus_matched_min: 0.0005
+  primary_vs_control_order_fraction_min: 0.02
+  primary_vs_control_top10_fraction_min: 0.005
+  true_vs_wrong_order_fraction_min: 0.02
+  true_vs_wrong_top10_fraction_min: 0.005
+  deterministic_max_abs: 0.0
+  candidate_permutation_max_abs: 0.000001
+
+authorization:
+  training: false
+  label_free_selection: true
+  label_free_encoding_after_proposal_lock: true
+  internal_A_label_open_after_A0: true
+  dev: false
+  test: false

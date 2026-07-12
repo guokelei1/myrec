@@ -1,0 +1,10 @@
+Candidate: C06 Candidate-Local Hodge-Trusted Flow Transformer
+Current phase: pre-A numeric repair; execution awaits review1 source lock
+Python: repository default test environment
+Required packages: torch, pytest, numpy, pyyaml (configuration parsing only)
+GPU environment: myrec-repo-default-py313-torch2.12.1-cu130
+Frozen future mapping: G0/local/audit=GPU0, untrusted=GPU1, direct=GPU2, centered=GPU3
+Run prefix: 20260711_kuaisearch_c06_
+Train-internal outcomes: authorized only after the reviewed pre-outcome execution lock
+Dev evaluator calls: 0
+Test access: forbidden

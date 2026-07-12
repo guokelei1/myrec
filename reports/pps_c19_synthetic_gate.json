@@ -1,0 +1,60 @@
+{
+  "candidate_id": "c19",
+  "gate_id": "g1_oriented_lag_synthetic_v1",
+  "status": "failed_stop",
+  "passed": false,
+  "decision": "close C19 before repository data, dev, or test",
+  "integrity": {
+    "proposal_aggregate_sha256": "5453db5423e896f1a2487a3abe948a7f7813caacf93152920c1bb1f2ab0ded49",
+    "proposal_lock_sha256": "b1f619879400466f9f05d9c2e94e535571bfbd14612d6efffb71acbbc9e9f87a",
+    "raw_artifact_sha256": "7cf2c3d9de6841cf08ed12d69bb1daaf56d7a11bc10cfd9e329b6c9f63644487",
+    "physical_gpu": 3,
+    "gpu_name": "NVIDIA A40",
+    "elapsed_seconds": 188.58305764198303,
+    "parameter_count_each_mode": 28388,
+    "matched_initialization": true,
+    "repository_data_read": false,
+    "standardized_records_read": false,
+    "dev_evaluator_calls": 0,
+    "test_access": false
+  },
+  "seed_results": [
+    {
+      "seed": 20260721,
+      "repeat_accuracy": 1.0,
+      "supported_accuracy": 0.9982638888888888,
+      "base_supported_accuracy": 0.8732638888888888,
+      "best_structured_supported_accuracy": 0.9375,
+      "free_signed_supported_accuracy": 0.9427083333333334,
+      "max_primary_corruption_retention": 0.0000031457254217136854,
+      "reverse_correlation": -0.9999999999999741,
+      "candidate_permutation_max_abs_error": 0.00003814697265625,
+      "failed_conditions": ["supported_gain_over_base", "candidate_permutation"]
+    },
+    {
+      "seed": 20260722,
+      "repeat_accuracy": 0.9982638888888888,
+      "supported_accuracy": 0.9774305555555556,
+      "base_supported_accuracy": 0.9305555555555556,
+      "best_structured_supported_accuracy": 0.9878472222222222,
+      "free_signed_supported_accuracy": 0.9375,
+      "max_primary_corruption_retention": 0.1940119768140344,
+      "reverse_correlation": -0.9999999999999886,
+      "candidate_permutation_max_abs_error": 0.00006103515625,
+      "failed_conditions": ["supported_gain_over_base", "structured_control_advantage", "worst_subset_advantage", "margin_advantage_over_forward", "candidate_permutation"]
+    },
+    {
+      "seed": 20260723,
+      "repeat_accuracy": 1.0,
+      "supported_accuracy": 0.9097222222222222,
+      "base_supported_accuracy": 0.0,
+      "best_structured_supported_accuracy": 0.9288194444444444,
+      "free_signed_supported_accuracy": 0.9201388888888888,
+      "max_primary_corruption_retention": 1.0004665782796545,
+      "reverse_correlation": -0.9999999999999565,
+      "candidate_permutation_max_abs_error": 0.0001049041748046875,
+      "failed_conditions": ["structured_control_advantage", "worst_subset_advantage", "free_signed_noninferiority", "primary_corruption_retention", "reverse_retention", "candidate_permutation"]
+    }
+  ],
+  "scientific_conclusion": "The oriented hidden-state write is learnable and algebraically reversible, but it is not a stable improvement over forward/symmetric controls, its counterfactual suppression fails in one seed, and the frozen synthetic task contains a candidate-quality shortcut. C19 is not eligible for real-data evaluation."
+}

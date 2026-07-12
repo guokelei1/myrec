@@ -1,0 +1,40 @@
+schema_version: 1
+research_phase: R0-BASE
+failure_id: null
+hypothesis_id: null
+method_id: replace_me
+dataset_id: replace_me
+dataset_version: replace_me
+candidate_manifest_sha256: replace_me
+budget:
+  dev_evaluator_calls: 16
+  gpu_hours: null
+  seeds: [20260708]
+search_space:
+  learning_rate: []
+  epochs: []
+  capacity: []
+  history_length: []
+  token_budget: []
+  dropout: []
+  objective: []
+trials: []
+# Each live entry must provide:
+# - trial_id: H01-T001
+#   implementation_id: H01-I01
+#   change_class: optimization
+#   expected_observation: replace_me
+#   allowed_diagnostics: []
+#   dev_call_index: 1
+#   run_id: replace_me
+#   outcome_state: pending
+#   result_path: null
+mechanical_retries: []
+# A retry belongs here only when it does not call the evaluator and does not
+# change model mathematics, data, training, checkpoint selection, or scores.
+remaining_dev_evaluator_calls: 16
+stop_conditions:
+  - budget_exhausted
+  - no_utility
+  - utility_no_rent
+  - promoted_to_confirmation

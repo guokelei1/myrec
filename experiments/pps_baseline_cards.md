@@ -3,6 +3,11 @@
 状态：占位清单。每个 baseline 完成接入前，先在这里登记边界；进入论文主表前，
 补齐 tuning budget、run ID 和验收结论。
 
+当前阶段：C01--C80 已关闭，没有 validated architecture 或 C81。ordinary
+full-token joint Transformer 必须作为 trainable strong baseline 正常调优；future Hxx
+只有在 `doc/31` Failure Card 通过后才能登记 architecture trial budget。`doc/24` 和
+四份 design prompt 仅是历史记录。
+
 | ID | Batch | Method | Role | Channels | Source | Impl type | Status |
 |---|---|---|---|---|---|---|---|
 | Random | 0 | Random scorer | sanity check | none | self | self-implemented | first |
@@ -406,7 +411,7 @@ Determinism check: 575,609 candidate rows reproduce public and actual upstream B
 Run IDs: 20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260708/09/10; 20260710_kuaisearch_c5r3_d2s_category_only_dev_s20260708/09/10
 Known limitations: exact repeat-item signal is a narrow benchmark mechanism; it does not establish semantic transfer, user-identity causality, or a proposed architecture
 Current status: implementation/integrity passed; primary and sole fallback failed; `TERMINAL_FAIL` scoped to the doc/23 item/category recovery ladder
-Acceptance notes: item-only mean NDCG@10=0.3453755 and beats D2p on history-present requests in 3/3 seeds (+0.03204/+0.03214/+0.03263, all CIs positive). Category-only has 0/3 significant seeds and 0.1148% mean relative gain. Full D2s is significantly worse than item-only in all seeds. Both component controls exactly match D2p rankings and metrics on 4,110 no-history requests. These outcomes validate neither candidate primitive in doc/23; they show that exact recurrence is reliable in the tested bundle while uncalibrated cross-item/category transfer is not. Motivation is complete and architecture/protocol formulation is authorized, but implementation/training requires a new design-specific pre-outcome falsifier.
+Acceptance notes: item-only mean NDCG@10=0.3453755 and beats D2p on history-present requests in 3/3 seeds (+0.03204/+0.03214/+0.03263, all CIs positive). Category-only has 0/3 significant seeds and 0.1148% mean relative gain. Full D2s is significantly worse than item-only in all seeds. Both component controls exactly match D2p rankings and metrics on 4,110 no-history requests. These outcomes validate neither candidate primitive in doc/23; they show that exact recurrence is reliable in the tested bundle while uncalibrated cross-item/category transfer is not. C01--C80 later closed without a validated architecture; current use is as a static control in doc/31 R0 failure discovery.
 ```
 
 ## Card Template

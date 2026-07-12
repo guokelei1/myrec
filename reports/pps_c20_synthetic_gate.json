@@ -1,0 +1,67 @@
+{
+  "candidate_id": "c20",
+  "gate_id": "g1_transition_cone_synthetic_v1",
+  "status": "failed_stop",
+  "passed": false,
+  "decision": "close C20 before repository data, dev, or test",
+  "integrity": {
+    "proposal_aggregate_sha256": "3655ab38b2b16402e6c1625d8044c1d6c7346b5326c34a7fe5f747b1146a364f",
+    "proposal_lock_sha256": "37411d703c00913d9406f6c24e9d162b6dbbbbac495320d12cac49c3d217c3d5",
+    "attempt_marker_sha256": "eceb7093eef2470186c0e10374ddbad943b0cc32e3783f35bd06a36471e10d8e",
+    "raw_artifact_sha256": "dafc29032586d282b85c8892d349f976b3ccb6159821b4275d7af8b4f05617f8",
+    "physical_gpu": 0,
+    "gpu_name": "NVIDIA A40",
+    "elapsed_seconds": 912.198370218277,
+    "parameter_count_each_mode": 26683,
+    "matched_initialization": true,
+    "repository_data_read": false,
+    "standardized_records_read": false,
+    "dev_evaluator_calls": 0,
+    "test_access": false
+  },
+  "seed_results": [
+    {
+      "seed": 20260724,
+      "no_history_accuracy": 0.9765625,
+      "repeat_accuracy": 0.9913194444444444,
+      "supported_accuracy": 0.3263888888888889,
+      "base_supported_accuracy": 0.13194444444444445,
+      "best_control": "pooled_mlp",
+      "best_control_supported_accuracy": 0.6076388888888888,
+      "clean_target_vs_reverse_margin": 2.509028911590576,
+      "multi_transition_reconstruction_fraction": 0.9965277777777778,
+      "max_primary_corruption_retention": 0.6783833505477924,
+      "candidate_permutation_max_abs_error": 0.00000667572021484375,
+      "failed_conditions": ["supported_accuracy", "supported_gain_over_base", "control_advantage", "worst_subset_advantage", "primary_corruption_retention"]
+    },
+    {
+      "seed": 20260725,
+      "no_history_accuracy": 0.9791666666666666,
+      "repeat_accuracy": 0.9913194444444444,
+      "supported_accuracy": 0.22569444444444445,
+      "base_supported_accuracy": 0.13194444444444445,
+      "best_control": "pooled_mlp",
+      "best_control_supported_accuracy": 0.5625,
+      "clean_target_vs_reverse_margin": 1.3446606397628784,
+      "multi_transition_reconstruction_fraction": 0.9704861111111112,
+      "max_primary_corruption_retention": 0.8380050793799103,
+      "candidate_permutation_max_abs_error": 0.00000667572021484375,
+      "failed_conditions": ["supported_accuracy", "supported_gain_over_base", "control_advantage", "worst_subset_advantage", "primary_corruption_retention", "reverse_retention"]
+    },
+    {
+      "seed": 20260726,
+      "no_history_accuracy": 0.984375,
+      "repeat_accuracy": 0.9895833333333334,
+      "supported_accuracy": 0.3576388888888889,
+      "base_supported_accuracy": 0.11805555555555555,
+      "best_control": "span",
+      "best_control_supported_accuracy": 0.609375,
+      "clean_target_vs_reverse_margin": 1.9814614057540894,
+      "multi_transition_reconstruction_fraction": 0.9895833333333334,
+      "max_primary_corruption_retention": 0.6299474554957935,
+      "candidate_permutation_max_abs_error": 0.00001239776611328125,
+      "failed_conditions": ["supported_accuracy", "supported_gain_over_base", "control_advantage", "worst_subset_advantage", "primary_corruption_retention"]
+    }
+  ],
+  "scientific_conclusion": "The nonnegative transition cone is active, preserves fallback/repeat, and separates forward from reverse, but it loses chronology, confuses other partially reconstructible candidates, and is substantially worse than simpler pooled/span controls. C20 is not eligible for real-data evaluation."
+}

@@ -1,0 +1,36 @@
+{
+  "candidate_id": "c33",
+  "created_at": "2026-07-11T18:32:00.569308+00:00",
+  "declarations": {
+    "delayed_B_features_labels_scores_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "auth_profile_sizes.npy": "6f254b0ed63c0a7220c23c6d0229e832c12d44ba9b931eda84ffa8f8a1079236",
+    "auth_true_items.npy": "997838a3d1142c2f4da1ef778e525046315c9dc5800b05a5e51c77e71cf01a94",
+    "auth_true_offsets.npy": "488c88cd0f036c3db431570d933eebda13a8c57802765eb23307bd6f51cfb097",
+    "auth_true_source_counts.npy": "d063a8eb441333773f64ce427d507a16e9ca275e29b557b8c327ed9fb5c75308",
+    "auth_wrong_items.npy": "5acec928e48f38d233abb7a162ac3660c41d1d04312bf732d628b01491387266",
+    "auth_wrong_offsets.npy": "e84a5622c518ff5f573c43afeaa17d0ea51f903f5e178d45b5d11c1933583717",
+    "auth_wrong_source_counts.npy": "9b491b14be91390e7f7b9d0a68033e19aabd8c34934c888e9bdb54d34c57f94e",
+    "authentication_request_indices.npy": "9e00b18bab8f1497db332125247a06fc61f26414399c0e5cd0721af0bf223ba0",
+    "base_scores.npy": "f9cb343bd2f9fc4e7452e2cb4103ad72d8045c1e1c1462f82dd8944eec3dde86",
+    "feature_candidate_offsets.npy": "01381a5e30ac99dd654b595c31dc6cc613d166bbe446d168383c5a6e86203a07",
+    "feature_request_indices.npy": "9e00b18bab8f1497db332125247a06fc61f26414399c0e5cd0721af0bf223ba0",
+    "fit_label_offsets.npy": "f0e2e999b0694cd3ee279a21153bcfe424209afd8b3604f53865c838ccc8cba4",
+    "fit_labels.npy": "0ac63ae0a0886661d5a48d7221ecccbad3c7b144b8221cd8754d440895b0dbc2",
+    "fit_request_indices.npy": "dc0b05bfa88fa03fab9f31b87a8fb8738968b4f5e37a017907ad3c5b0e48b315",
+    "query_embeddings.npy": "907a1b028176d6b75f3eabc6f8a196a747b291a7c3032f252c73957c5c55cc37"
+  },
+  "g0_report_path": "artifacts/c33_tangent_transport_confirmatory_comparison/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "c6ad70100bd6c66621c451e61d851f7bc3df653f121facaef13bd111c1abb277",
+  "lock_id": "c33_tangent_transport_confirmation_execution_v1",
+  "proposal_lock_sha256": "f656945d209ad83c76cf447a3f450255869d2f0b724547c958743739c20b1e6c",
+  "selection_sha256": "a4f5df884e24a07eb1e132fdf527e4a0cd23c322e1e2c185e09437b4b1b9ddc9",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

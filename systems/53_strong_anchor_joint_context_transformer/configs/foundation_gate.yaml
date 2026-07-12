@@ -1,0 +1,107 @@
+candidate_id: c53
+gate_id: c53_strong_anchor_joint_context_v1
+status: frozen_settings_pending_proposal_lock
+
+paths:
+  proposal_lock: systems/53_strong_anchor_joint_context_transformer/notes/proposal_lock.json
+  execution_lock: systems/53_strong_anchor_joint_context_transformer/notes/execution_lock.json
+  artifact_root: artifacts/c53_strong_anchor_joint_context_transformer/foundation_gate_v1
+  checkpoint_root: models/c53_strong_anchor_joint_context_transformer/foundation_gate_v1
+  promoted_report: reports/pps_c53_foundation_gate.json
+  c47_selection: artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/selection.json
+  c47_amazon_adapter_selection: artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_feature_selection.json
+  c47_amazon_feature_root: artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/amazon_features
+  c38_config: systems/38_cross_domain_global_tangent_transfer/configs/train_gate.yaml
+  c38_selection: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/selection.json
+  c38_feature_root: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/features
+  amazon_records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  kuai_packed_root: artifacts/analysis/supervised_motivation_diagnostics/data/train
+  kuai_query_tokens: artifacts/analysis/finetuned_nonpersonalized_control/tokens
+  kuai_item_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy
+  kuai_candidate_labels: artifacts/analysis/supervised_motivation_diagnostics/data/train/candidate_labels.npy
+  kuai_popularity: artifacts/analysis/supervised_motivation_diagnostics/data/item_log_click_full_train.npy
+  d2_config: configs/analysis/finetuned_nonpersonalized_control.yaml
+  d2_final_config: configs/analysis/finetuned_nonpersonalized_control_final.yaml
+  d2_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_final_s20260708/model.pt
+  materialization_report: artifacts/c53_strong_anchor_joint_context_transformer/foundation_gate_v1/materialization_report.json
+  shared_metric_source: src/myrec/eval/metrics.py
+
+integrity:
+  c47_selection_sha256: 547b3d7874307c08924e606914243976182a17779b970fc3b1ade3159bea1855
+  c47_amazon_adapter_selection_sha256: 0a2bd5286fd18176e2c7f0b283d29b7dec5da60e9995384c889b8e31fbb30569
+  c47_amazon_feature_manifest_sha256: 2d160460617bebc1a2a3abdb965359019e674021d936537bc81770e6ea45c54c
+  c47_amazon_embedding_manifest_sha256: 8206779ef3a375dc709f45706a1c8fcc637268d3e626b9727152f83ac0ebdfc3
+  c38_config_sha256: 278a1f3440a7679113110f2c254fce4d5d835b11c2a471b812e3a90deaaa4981
+  c38_selection_sha256: d8aa9ae89e20d1175806fcbde7ded1b6913a3bb9cffd6ec9120afd307fa8511a
+  c38_feature_manifest_sha256: 3e7c263e740facb3239c2074a0f35133cb291de5f45acd856a485e6ef16045a2
+  c38_embedding_manifest_sha256: 759f15a215841a63372a0ba8843c12ea9aaf5d0a24b2d5b48443966696f72943
+  amazon_records_train_sha256: e55a02d155266210ee0546c96e67be1db253eb3eccf68a695be4141afeeb64a4
+  d2_config_sha256: 89cd643133385d54a02454158b834d722488a2ba5b167d5172ead6e17bd03885
+  d2_final_config_sha256: fc05bdd490fee7167bb80aa2ca31f2f5cf17566b2ed73761dca806009f121204
+  d2_checkpoint_sha256: 72140cf2c2a9dd5dd293848598fcf69f09d3699af53c462707b6a882046ab705
+  kuai_popularity_sha256: e7f87c57283f1eb4867cadb7ef5636ea7bc412d89db115965cc4e483e102dc71
+  kuai_candidate_labels_sha256: 173e9a2b6f7613dd44801c1b011552a91809888137e0c14ab0f885ac8647032a
+  kuai_train_input_ids_sha256: d11d9dde82a94301e38da71a483768b6d732efacc1cd6cf45aab5f49276f259e
+  kuai_train_attention_mask_sha256: f7904274cbbfa3e7ecb992946365cf47786103987ad10d5b4ef41cbcbfd33463
+  kuai_item_embeddings_sha256: 392b318cacc431eddb5fbdce7103fb14d0415b993cfb56ed7c9a17c82d7d83ec
+  kuai_request_ids_sha256: 1e34ede37c78ad92d98a374fb7ef97db185871aa8dfb95f6e771aff60106627b
+  kuai_query_indices_sha256: 83ddeb8cb25399f20d9fe825251d945d993ea648e0db7804383cc8a6ff5df335
+  kuai_candidate_offsets_sha256: 548446f55914700d1747f0ed09504a2fec595d6052b05d5394acbceb47919430
+  kuai_candidate_indices_sha256: 030a30ebf49a3d3ad9e08b1536a7e1632e5d5ffd2b3636e44651ee35c2a8fe3c
+  kuai_candidate_item_ids_sha256: d378313c599245aa0bd2cc6e5d54fd65671f7f6e67403f86bd5fa06eb44a0944
+  kuai_history_offsets_sha256: fe9b24cae90b6dbe186cb72c31b8125be5b2e3e525b59300fe83d5c3e534e881
+  kuai_history_indices_sha256: 89c115aab70762f3428442b6ecace0fbce32cabc10c724a1e47d80aacee1414c
+  kuai_candidate_key_sha256: 26981687951c4e2ac70f84e2861b00e44523dbd5f876db528ed0049f43e85a43
+  amazon_candidate_key_sha256: 8e1cf261f2d1b330e650bd2909a84d50a382542262868cc232c0eae7a61ec082
+
+resources:
+  materialization_physical_gpu: 3
+  program_device: cuda:0
+  kuai_seed_to_physical_gpu:
+    "20263701": 0
+    "20263702": 1
+    "20263703": 2
+  amazon_seed_to_physical_gpu:
+    "20263711": 0
+    "20263712": 1
+    "20263713": 2
+
+model:
+  hidden_dim: 128
+  heads: 4
+  layers: 2
+  ffn_dim: 256
+  dropout: 0.0
+  max_history: 50
+
+training:
+  kuai_seeds: [20263701, 20263702, 20263703]
+  amazon_seeds: [20263711, 20263712, 20263713]
+  epochs: 2
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  max_requests_per_batch: 24
+  max_sequence_tokens_per_batch: 4096
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20263720
+  hash_folds: 3
+  primary_minus_base_min: 0.001
+  primary_minus_independent_min: 0.0005
+  true_minus_wrong_min: 0.001
+  cross_edge_order_change_min: 0.05
+  cross_edge_top10_change_min: 0.01
+  wrong_order_change_min: 0.05
+  wrong_top10_change_min: 0.01
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.00001
+
+authorization:
+  fit_labels_after_proposal_lock: true
+  exposed_c47_A_labels_after_A0_only: true
+  fresh_reserve: false
+  dev: false
+  test: false
+  qrels: false

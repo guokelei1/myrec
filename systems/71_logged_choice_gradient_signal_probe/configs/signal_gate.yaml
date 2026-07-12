@@ -1,0 +1,90 @@
+candidate_id: c71
+gate_id: c71_logged_choice_gradient_signal_v1
+status: pre_outcome_design
+
+paths:
+  proposal: systems/71_logged_choice_gradient_signal_probe/notes/proposal.md
+  nearest_neighbors: systems/71_logged_choice_gradient_signal_probe/notes/nearest_neighbors.md
+  preimplementation_review: systems/71_logged_choice_gradient_signal_probe/notes/preimplementation_review.md
+  proposal_lock: systems/71_logged_choice_gradient_signal_probe/notes/proposal_lock.json
+  execution_lock: systems/71_logged_choice_gradient_signal_probe/notes/execution_lock.json
+  records_train: data/standardized/kuaisearch/v0_lite/records_train.jsonl
+  standardized_manifest: data/standardized/kuaisearch/v0_lite/manifest.json
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  item_id_map: artifacts/batch2b/b5o_stageb_standardized/data/item_id2idx.json
+  item_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy
+  request_query_map: artifacts/batch2b/b5o_stageb_standardized/data/session_id2idx.json
+  query_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/query_emb.npy
+  packed_request_ids: artifacts/analysis/supervised_motivation_diagnostics/data/train/request_ids.jsonl
+  packed_manifest: artifacts/analysis/supervised_motivation_diagnostics/data/manifest.json
+  c70_coverage_report: reports/pps_c70_logged_choice_episode_coverage_gate.json
+  selection: artifacts/c71_logged_choice_gradient_signal_probe/signal_v1/selection.json
+  artifact_root: artifacts/c71_logged_choice_gradient_signal_probe/signal_v1
+  promoted_report: reports/pps_c71_logged_choice_gradient_signal_gate.json
+
+resources:
+  physical_gpu: 3
+
+integrity:
+  records_train_sha256: 2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8
+  standardized_manifest_sha256: 75757fc79828124c702b8da79a39f0ab17a8beaad9a2ad5925bc96b57721d56b
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  item_id_map_sha256: f7dc47479da68ee06b958144dcf2d6d58b00a9e519bf5861b01701b896ebde1b
+  item_embeddings_sha256: 392b318cacc431eddb5fbdce7103fb14d0415b993cfb56ed7c9a17c82d7d83ec
+  request_query_map_sha256: dbe657a280b0678b8e6b8a300135dddcf279606943e64c8cbb7984cdfb01e7b3
+  query_embeddings_sha256: 23bac28d46fb35c599367c7a5a2ee4d1b0bf769580f9320b6cfd51e1c3d1be2c
+  packed_request_ids_sha256: 1e34ede37c78ad92d98a374fb7ef97db185871aa8dfb95f6e771aff60106627b
+  packed_manifest_sha256: bb8e5984b8f41190193e9a84914aa369715bd3ab46261558836a6be11cb19d86
+  c70_coverage_report_sha256: 67092b56820f9a08876b2f068ef4410d90b2a395b6ec1e91e40fb282ba4e1d31
+
+selection:
+  seed: 20267100
+  target_requests: 600
+  donor_pool_requests: 5000
+  minimum_linked_episodes: 2
+  require_strict_nonrepeat: true
+  require_all_text_embeddings: true
+  exclude_entire_historical_packed_pool: true
+  target_hash_rule: "sha256('c71-target:' + seed + ':' + request_id)"
+  episode_count_bins: [2, 3, 5, 10, 20, 50]
+  candidate_count_bins: [5, 10, 20, 50, 100, 200]
+  donor_rule: maximum_query_cosine_within_exact_bins_different_user_and_no_target_candidate_overlap
+
+operator:
+  historical_query_slate_temperature: 0.1
+  current_query_episode_temperature: 0.1
+  normalization_epsilon: 0.000001
+  correction_scale: 1.0
+  source_candidate_order: stable_string_item_id
+  episode_order: [history_ts, selected_item_id, source_request_id]
+
+mechanical_gate:
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000001
+  nohistory_tolerance: 0.0
+  minimum_nonzero_episode_gradient_fraction: 0.95
+  minimum_primary_correction_rms: 0.01
+  minimum_true_wrong_correction_rms: 0.01
+  minimum_order_change_fraction_vs_base: 0.05
+  minimum_top10_change_fraction_vs_base: 0.01
+
+evaluation:
+  label_field: clicked
+  ndcg_k: 10
+  bootstrap_samples: 10000
+  bootstrap_seed: 20267120
+  hash_folds: 3
+  primary_minus_base_min: 0.002
+  primary_minus_positive_only_min: 0.0005
+  primary_minus_uniform_slate_min: 0.0005
+  primary_minus_semantic_history_min: 0.0005
+  true_minus_wrong_min: 0.002
+
+authorization:
+  train_structural_fields: true
+  target_labels_after_A0_only: true
+  source_episode_labels: false
+  dev: false
+  test: false
+  qrels: false
+  c70_architecture_implementation: false

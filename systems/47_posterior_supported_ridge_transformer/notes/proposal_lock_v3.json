@@ -1,0 +1,17 @@
+{
+  "candidate_id": "c47",
+  "checks": {
+    "labels_features_scores_opened": false,
+    "repair": "rename negative access facts to positive closed checks",
+    "scientific_settings_changed": false,
+    "v1_v2_selection_absent": true
+  },
+  "files": {
+    "systems/47_posterior_supported_ridge_transformer/notes/preselection_v2_execution_abort.md": "bde6623ee6c84291d3ea7a0f31e97c342f38a7cdc2b9af687d9b025bfb36db24",
+    "systems/47_posterior_supported_ridge_transformer/notes/proposal_lock.json": "994b975ef7c411cae4f4e7797de4a4ca1688e2c9e807143390d9bde6d10217b7",
+    "systems/47_posterior_supported_ridge_transformer/notes/proposal_lock_v2.json": "0f5154b0c9e1a74690cda52574601f693421161f75f81e77f8f0001a81d82e72",
+    "systems/47_posterior_supported_ridge_transformer/probe/locking_v3.py": "fb7d759dfd8ded958f0834007ebce33d437a72bf444eca707261d17fefba707f",
+    "systems/47_posterior_supported_ridge_transformer/probe/materialize_selection_v3.py": "c29f91e7f6598faaaa2f449c1b91e78d5a47369a12bd60a53dc675725d19b629"
+  },
+  "status": "locked_v3_boolean_polarity_only"
+}

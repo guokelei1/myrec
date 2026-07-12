@@ -2,9 +2,9 @@
 
 Date: 2026-07-10
 
-Status: **motivation complete; architecture/protocol formulation is authorized,
-while implementation and training remain gated by a new design-specific
-pre-outcome falsifier**.
+Status: **C01--C80 closed without a validated architecture. Full-token
+observability supports interface repair; architecture entry now requires a
+replicated Failure Card under doc/31.**
 
 ## Writing Goal
 
@@ -23,8 +23,12 @@ fixed candidate pools are already query-conditioned
      while uncalibrated cross-item/category transfer is not
   -> C5-R3 TERMINAL_FAIL closes only the doc/23 item/category recovery ladder
      and validates neither of its two candidate primitives
-  -> motivation closes with a bounded design problem and permits
-     architecture/protocol formulation, not implementation or training
+  -> pooled history hides most Amazon transferable signal
+  -> ordinary full-token joint contextualization recovers a strong specific signal
+  -> Q--H, C--H, and history-read-context paths are load-bearing
+  -> this establishes interface failure, not an ordinary Transformer defect
+  -> C01--C80 validates no proposed architecture
+  -> next: tune the standard full-token base and discover a replicated failure
 ```
 
 ## Global Guardrails
@@ -40,10 +44,12 @@ fixed candidate pools are already query-conditioned
   static baseline-to-beat.
 - Require exact D2p fallback when history is absent.
 - State that test is untouched and unavailable for motivation selection.
-- A bounded transition into architecture/protocol formulation is allowed, but
-  do not claim that C5-R3 validated either candidate primitive or a new system.
-- Require a new design-specific pre-outcome falsifier before implementation or
-  training begins.
+- C01--C80 is complete; do not claim that C5-R3, full-token observability, or
+  any candidate activity result validates a new system.
+- Require a normally tuned full-token baseline and passed Failure Card before
+  architecture formulation; keep dev discovery separate from confirmation.
+- Treat the LLM4Rec/Transformer family as a project design constraint, never as
+  an empirical conclusion of the motivation evidence.
 
 ## Paragraph 1: Task
 
@@ -112,11 +118,12 @@ fixed candidate pools are already query-conditioned
 3. State the scientific boundary: the C5-R3 primary and fallback failed, so
    neither candidate primitive in doc/23 is validated and that recovery ladder
    is closed.
-4. State the bounded design transition: formulate an architecture and protocol
-   that preserve reliable exact recurrence while calibrating or rejecting
-   unsupported cross-item/category transfer.
-5. State the execution boundary: a new design-specific pre-outcome falsifier
-   must be frozen and passed before implementation or training.
+4. State the representation result: ordinary full-token joint contextualization
+   exposes Amazon history signal that pooling largely removes.
+5. State the execution boundary: tune the strong standard model, reproduce a
+   concrete failure, rule out simple repairs, then formulate one Hxx primitive.
+6. If the execution choice is mentioned, say explicitly that LLM4Rec/Transformer
+   is a project constraint rather than a conclusion established by motivation.
 
 ## Forbidden Sentences
 
@@ -127,4 +134,6 @@ fixed candidate pools are already query-conditioned
 - "D2s is the strongest static baseline."
 - "C5-R3 proves that our proposed architecture works."
 - "Both C5-R3 candidate primitives are validated."
+- "The motivation experiments prove that an LLM/Transformer is required."
+- "A minimal design probe validates the proposed architecture."
 - "Test confirms the insight."

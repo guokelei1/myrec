@@ -1,0 +1,36 @@
+{
+  "candidate_id": "c37",
+  "created_at": "2026-07-11T20:03:46.568780+00:00",
+  "declarations": {
+    "delayed_B_features_labels_scores_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "auth_profile_sizes.npy": "74f2d2e2e830b9b640fec7c77c29c45fc1824855ce41429329da344b6aa659eb",
+    "auth_true_items.npy": "38c8569994dc2a947ae4424fa197349f064b344efc82d6a3a5271292bce0863a",
+    "auth_true_offsets.npy": "a0d4008f998c7b01a56003ab046540253c1b62805b7267b953a4c0cd11226031",
+    "auth_true_source_counts.npy": "59524b02fb0042eec99b5b85f9e388965216aef12fa4bf474c9fe187e467480c",
+    "auth_wrong_items.npy": "be5670f5d3554eeffa5bcbdfc09b970272e47e1007a410345ecf5714ce982f26",
+    "auth_wrong_offsets.npy": "7d5ba8232e893dfe995163e7de1f5b478f087f7e74925de4e7aca28200ac8bdb",
+    "auth_wrong_source_counts.npy": "abb475123b46dd51f4180b20b138d76c642ec43da70c600000f11978d1a2e956",
+    "authentication_request_indices.npy": "f73271eade405599879f503bee1b2ca2858c8a70b6ffbc4cd95f2f9a5b9403b5",
+    "base_scores.npy": "dc7ab4b658efe38b33f0e9db409ce2a0b06ac33d14653d33ec908c9e663d0c03",
+    "feature_candidate_offsets.npy": "e95d711c156c073d81c3ff38cf9e8e57da6ca7b4d4decc731243e41ade6d233a",
+    "feature_request_indices.npy": "f73271eade405599879f503bee1b2ca2858c8a70b6ffbc4cd95f2f9a5b9403b5",
+    "fit_label_offsets.npy": "34732c7bbfc3e13fba04b4051970f9f272e6c892cd72103421535aea8e16ec72",
+    "fit_labels.npy": "d5ec93475476f2a012321a77684ebc4bc2bef02f70bfc230ec5544e1a5353338",
+    "fit_request_indices.npy": "ee27a309285a2ce75db685e6a8f6165044878dcefc3fc3223342992aa8adaee6",
+    "query_embeddings.npy": "5dd643bd5bd09fd89c71e4add9fb5d50a2397652e34343892fac22dc98905b76"
+  },
+  "g0_report_path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "4eba1686b807b4bf2b234d21a7ef7cdf228280cbf437cd2810158040d0783710",
+  "lock_id": "c37_barycentric_residual_transport_execution_v1",
+  "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+  "selection_sha256": "9e80f235543ec821f98bc095a1957b12d3c858aa35ad9a6ea699bd0d3729cbf7",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

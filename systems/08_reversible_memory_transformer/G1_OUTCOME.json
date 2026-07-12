@@ -1,0 +1,115 @@
+{
+  "candidate_id": "c08",
+  "gate": "G1 learned conditional synthetic falsifier",
+  "status": "failed_stop",
+  "execution_lock_sha256": "973d7b1a08c8acfe88286474948f19629654d44af22f1ef0a15ebc55be3ea5ee",
+  "execution_aggregate_sha256": "51d7c0a0f8c940f85271313293b9d16ba77e158040369211d11e19da004bd924",
+  "raw_run": {
+    "path": "runs/g1_51d7c0a0f8c940f8",
+    "run_complete_sha256": "42f2e4c6f70b3e73e01ed3de8cac1af34d28e61034c8c1b813cd9449a484c309",
+    "seed_sha256": {
+      "20260711": "ff4848608326eaa95a81fe48541a6a1ffdf1add3c036a7d8705255ffc3f1d568",
+      "20260712": "987215b5a2d51aa085ff8c4fd7fd62eef25d80f615f87c6dcc5136624496f1b9",
+      "20260713": "47dfd1bb7abe284fe371cca8cd350a26212a5685bc152da58d4bd77fb4baa526"
+    }
+  },
+  "environment": {
+    "python": "3.13.12",
+    "torch": "2.12.1+cu130",
+    "cuda_visible_devices": "",
+    "torch_cuda_available": false,
+    "repository_data_access": false,
+    "dev_or_test_access": false
+  },
+  "matched_control_audit": {
+    "parameter_count_each": 5994,
+    "identical_initial_state_per_seed": true,
+    "optimizer_steps_each": 400,
+    "train_requests_each_seed": 4096,
+    "evaluation_requests_each_seed": 1024
+  },
+  "seed_results": [
+    {
+      "seed": 20260711,
+      "passed": false,
+      "rwpu_repeat_accuracy": 0.64453125,
+      "item_recurrence_accuracy": 1.0,
+      "rwpu_supported_accuracy": 0.5859375,
+      "ordinary_supported_accuracy": 0.5,
+      "attention_supported_accuracy": 0.5,
+      "pooled_ffn_supported_accuracy": 0.494140625,
+      "clean_supported_margin": 0.12835635244846344,
+      "corruption_retention_passed": true,
+      "empty_fallback_bitwise_equal": true,
+      "candidate_permutation_max_abs_error": 0.0000021457672119140625,
+      "failed_conditions": [
+        "repeat_noninferior",
+        "candidate_permutation"
+      ]
+    },
+    {
+      "seed": 20260712,
+      "passed": false,
+      "rwpu_repeat_accuracy": 0.54296875,
+      "item_recurrence_accuracy": 1.0,
+      "rwpu_supported_accuracy": 0.52734375,
+      "ordinary_supported_accuracy": 0.546875,
+      "attention_supported_accuracy": 0.55859375,
+      "pooled_ffn_supported_accuracy": 0.55078125,
+      "clean_supported_margin": 0.012113818898797035,
+      "corruption_margin_retention": {
+        "wrong_history": 0.4196324026990153,
+        "shuffled_event": 0.34616130065439576,
+        "query_mask": -194.97812166480588,
+        "disjoint": 0.15694557609013038
+      },
+      "empty_fallback_bitwise_equal": true,
+      "candidate_permutation_max_abs_error": 0.0000054836273193359375,
+      "failed_conditions": [
+        "repeat_noninferior",
+        "supported_beats_best_control",
+        "supported_beats_ordinary",
+        "all_corruption_retention_at_most_threshold",
+        "candidate_permutation"
+      ]
+    },
+    {
+      "seed": 20260713,
+      "passed": false,
+      "rwpu_repeat_accuracy": 0.541015625,
+      "item_recurrence_accuracy": 1.0,
+      "rwpu_supported_accuracy": 0.54296875,
+      "ordinary_supported_accuracy": 0.5546875,
+      "attention_supported_accuracy": 0.712890625,
+      "pooled_ffn_supported_accuracy": 0.544921875,
+      "clean_supported_margin": 0.005141269415616989,
+      "corruption_margin_retention": {
+        "wrong_history": 0.999932251237049,
+        "shuffled_event": 1.0020830027411076,
+        "query_mask": -1686.3940340511804,
+        "disjoint": 0.9989527925170586
+      },
+      "empty_fallback_bitwise_equal": true,
+      "candidate_permutation_max_abs_error": 0.0000019073486328125,
+      "failed_conditions": [
+        "repeat_noninferior",
+        "supported_beats_best_control",
+        "supported_beats_ordinary",
+        "all_corruption_retention_at_most_threshold",
+        "candidate_permutation"
+      ]
+    }
+  ],
+  "conditions_passing_all_seeds": [
+    "clean_margin_positive",
+    "exact_empty_fallback",
+    "finite_training_and_scores"
+  ],
+  "conditions_failing_all_seeds": [
+    "repeat_noninferior",
+    "candidate_permutation"
+  ],
+  "seeds_passing_full_gate": 0,
+  "seeds_required": 3,
+  "decision": "STOP C08. Do not run repository data, GPU training, dev evaluator, or test. Do not revise thresholds or reinterpret the structural witness as a learned mechanism win."
+}

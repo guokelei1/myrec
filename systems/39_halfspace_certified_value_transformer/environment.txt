@@ -1,0 +1,1 @@
+/data/gkl/conda_envs/myrec-c39

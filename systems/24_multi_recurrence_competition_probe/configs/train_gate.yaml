@@ -1,0 +1,122 @@
+candidate_id: c24
+gate_id: c24_multi_recurrence_competition_v1
+status: pre_outcome_selection
+selection_seed: 20260736
+environment: /data/gkl/conda_envs/myrec-c24
+program_device: cuda:0
+run_id: 20260711_kuaisearch_c24_multi_recurrence_competition_v1
+
+resources:
+  physical_gpu: 0
+
+paths:
+  candidate_source_root: systems/24_multi_recurrence_competition_probe
+  proposal_lock: systems/24_multi_recurrence_competition_probe/notes/proposal_lock_v2.json
+  execution_lock: systems/24_multi_recurrence_competition_probe/notes/execution_lock_v2.json
+  selection: artifacts/c24_multi_recurrence_competition_probe/train_gate_v1/selection.json
+  selection_sha256: f21b706508d4841718911d753ecc1d0b4f20d35304dbae5fb5e9aa977d431ba2
+  artifact_root: artifacts/c24_multi_recurrence_competition_probe/train_gate_v1
+  checkpoint_root: models/c24_multi_recurrence_competition_probe/train_gate_v1
+  c23_selection: artifacts/c23_recurrence_reset_survival_transformer/train_gate_v1/selection.json
+  c23_selection_sha256: aa4f4ad019f294a6c9d6c5f35290d44485ed31258e273d45c19ddd212c2672ad
+  c23_g0_report: artifacts/c23_recurrence_reset_survival_transformer/train_gate_v1/g0_report.json
+  c23_g0_report_sha256: f82ee89e965c30b4adcf9b05a6f00ef18644abd647e1f08b29c8a320704d812e
+  c23_artifact_root: artifacts/c23_recurrence_reset_survival_transformer/train_gate_v1
+  d2_config: configs/analysis/finetuned_nonpersonalized_control.yaml
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  packed_train_parent: artifacts/analysis/supervised_motivation_diagnostics/data
+  packed_train_root: artifacts/analysis/supervised_motivation_diagnostics/data/train
+  packed_manifest: artifacts/analysis/supervised_motivation_diagnostics/data/manifest.json
+  packed_manifest_sha256: bb8e5984b8f41190193e9a84914aa369715bd3ab46261558836a6be11cb19d86
+  query_tokens: artifacts/analysis/finetuned_nonpersonalized_control/tokens
+  query_token_manifest: artifacts/analysis/finetuned_nonpersonalized_control/tokens/manifest.json
+  query_token_manifest_sha256: 18e285a88388dabbad0c09273de086415250c0bcc6201f5cf34c35f45bf260f6
+  raw_item_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy
+  calibration_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_calibrate_s20260708/model.pt
+  internal_train_popularity: artifacts/analysis/supervised_motivation_diagnostics/data/item_log_click_internal_train.npy
+  train_candidate_labels: artifacts/analysis/supervised_motivation_diagnostics/data/train/candidate_labels.npy
+  shared_metric_source: src/myrec/eval/metrics.py
+
+integrity:
+  calibration_checkpoint_sha256: 247f27e2cbeef90e3fa5a5f5c2b8488db26e1542aa1617cec19e4b8316373572
+  internal_train_popularity_sha256: d8fd4b618454d8797408bec9d2d219c3bf3059b34283db0816cf059a46ae8e7b
+  packed_train_requests: 96939
+  full_candidate_sets_required: true
+  primary_dev_evaluator_calls_authorized: 0
+
+selection:
+  fit_multi_repeat_requests: 6000
+  internal_A_multi_repeat_requests: 600
+  escrow_multi_repeat_requests: 340
+  structural_single_repeat_requests: 512
+  structural_nohistory_requests: 512
+  structural_nonrepeat_requests: 512
+  hash_payload: "c24-multi-recurrence-v1\\0<seed>\\0<role>\\0<request_id>"
+  freeze_before_delayed_labels: true
+
+base:
+  d2p_alpha: 0.6
+  item_only_beta: 0.3
+  item_component_scale: 3.0
+  item_state_batch_size: 8192
+  max_requests_per_batch: 128
+
+model:
+  input_dim: 512
+  hidden_dim: 64
+  heads: 4
+  layers: 2
+  ffn_dim: 128
+  dropout: 0.0
+  max_history: 50
+  max_repeat_candidates: 64
+  score_delta_max: 0.75
+  modes:
+    - set_attention
+    - independent
+    - query_independent
+
+training:
+  seeds:
+    - 20260736
+    - 20260737
+    - 20260738
+  epochs: 2
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  max_requests_per_batch: 64
+  max_padded_candidates: 4096
+  checkpoint_selection: fixed_final_state_only
+  candidate_sampling: false
+  attempts: 1
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20260736
+  hash_folds: 3
+
+gate:
+  ndcg10_delta_over_item_only_min: 0.001
+  ndcg10_delta_over_each_control_min: 0.0005
+  correction_center_abs_max: 0.00001
+  order_change_fraction_min: 0.05
+  top10_change_fraction_min: 0.01
+  cross_edge_correction_change_fraction_min: 0.10
+  cross_edge_order_change_fraction_min: 0.05
+  deterministic_max_abs_difference: 0.0
+  candidate_permutation_max_abs_difference: 0.000001
+  corruption_retention_max: 0.25
+  corruption_retention_ci_high_max: 0.50
+
+authorization:
+  label_free_selection: true
+  unit_and_smoke: true
+  cohort_materialization: true
+  fit_training_after_lock: true
+  internal_A_open_after_A0: true
+  escrow: false
+  dev: false
+  test: false
+  full_training: false

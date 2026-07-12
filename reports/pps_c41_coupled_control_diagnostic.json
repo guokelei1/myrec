@@ -1,0 +1,167 @@
+{
+  "c42_cohort_read": false,
+  "candidate_id": "c42_trigger",
+  "checks": {
+    "c42_cohort_unread": true,
+    "coupled_clicked_direction_ci": true,
+    "coupled_minus_c38_all_folds": true,
+    "coupled_minus_c38_all_seeds": true,
+    "coupled_minus_c38_ci": true,
+    "coupled_minus_c38_effect": true,
+    "coupled_true_over_wrong_all_folds": true,
+    "coupled_true_over_wrong_all_seeds": true,
+    "coupled_true_over_wrong_ci": true,
+    "dev_test_unread": true
+  },
+  "clicked_direction": {
+    "mean": 0.6050155466763923,
+    "percentile_95_ci": [
+      0.5641409444949435,
+      0.6454486743949043
+    ],
+    "requests": 1200,
+    "samples": 10000,
+    "seed": 20262401
+  },
+  "comparisons": {
+    "base": {
+      "hash_folds": [
+        {
+          "fold": 0,
+          "mean_difference": 0.13139623845213705,
+          "requests": 408
+        },
+        {
+          "fold": 1,
+          "mean_difference": 0.15354786396283826,
+          "requests": 411
+        },
+        {
+          "fold": 2,
+          "mean_difference": 0.11710837814080441,
+          "requests": 381
+        }
+      ],
+      "mean": 0.1344467745407041,
+      "percentile_95_ci": [
+        0.1098891050490633,
+        0.1589565443321892
+      ],
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20262303
+    },
+    "c38_unprojected": {
+      "hash_folds": [
+        {
+          "fold": 0,
+          "mean_difference": 0.007724999793963153,
+          "requests": 408
+        },
+        {
+          "fold": 1,
+          "mean_difference": 0.0041144831277715194,
+          "requests": 411
+        },
+        {
+          "fold": 2,
+          "mean_difference": 0.006191490649865648,
+          "requests": 381
+        }
+      ],
+      "mean": 0.00600150868254156,
+      "percentile_95_ci": [
+        0.001014357741570545,
+        0.011101882751159756
+      ],
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20262301
+    },
+    "semantic_routing": {
+      "hash_folds": [
+        {
+          "fold": 0,
+          "mean_difference": 0.04862165872440444,
+          "requests": 408
+        },
+        {
+          "fold": 1,
+          "mean_difference": 0.07157583204737508,
+          "requests": 411
+        },
+        {
+          "fold": 2,
+          "mean_difference": 0.030846672075579187,
+          "requests": 381
+        }
+      ],
+      "mean": 0.050839904826519865,
+      "percentile_95_ci": [
+        0.02709249999782064,
+        0.0742527103740408
+      ],
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20262302
+    },
+    "wrong_history": {
+      "hash_folds": [
+        {
+          "fold": 0,
+          "mean_difference": 0.03201586627706453,
+          "requests": 408
+        },
+        {
+          "fold": 1,
+          "mean_difference": 0.03723434288770767,
+          "requests": 411
+        },
+        {
+          "fold": 2,
+          "mean_difference": 0.019832659687242998,
+          "requests": 381
+        }
+      ],
+      "mean": 0.02993502642394147,
+      "percentile_95_ci": [
+        0.0187653962651441,
+        0.04124177052871021
+      ],
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20262304
+    }
+  },
+  "created_at": "2026-07-12T00:00:38.691826+00:00",
+  "dev_test_read": false,
+  "per_seed": {
+    "20262101": {
+      "coupled_minus_c38": 0.0034969091334614124,
+      "coupled_true_minus_wrong": 0.03056892040432395
+    },
+    "20262102": {
+      "coupled_minus_c38": 0.006500867402341643,
+      "coupled_true_minus_wrong": 0.03045677442212675
+    },
+    "20262103": {
+      "coupled_minus_c38": 0.00800674951182163,
+      "coupled_true_minus_wrong": 0.02877938444537372
+    }
+  },
+  "seed_averaged_ndcg10": {
+    "base": 0.2220100755726144,
+    "c38_unprojected_true": 0.350455341430777,
+    "coupled_content_true": 0.35645685011331857,
+    "coupled_content_wrong": 0.32652182368937704,
+    "semantic_routing_true": 0.30561694528679867
+  },
+  "source_report": "artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/train_gate_report.json",
+  "source_report_sha256": "4b49da43dacc91c63a05a1bc743acf57d197426d71a9d0148701d4b19f24e20c",
+  "source_score_sha256": {
+    "20262101": "cd4c7d4cd645f217d49750edc91df1d33b8ca216ef72e33c5a2f563a025d77fd",
+    "20262102": "c92154a3ef95fe5e48e71c1d43b623a0709353ecefe7d1868fcf141179d86491",
+    "20262103": "43dece477186c4236284aa87845f00177ca580005d6ed4a202acc9c57cc6e1ea"
+  },
+  "status": "passed_c42_trigger"
+}

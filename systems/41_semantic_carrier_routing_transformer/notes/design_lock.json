@@ -1,0 +1,25 @@
+{
+  "candidate_id": "c41",
+  "content_sha256": "6cff8dacd162ac88e9218bc89db3f21cf88fae2be75b77116521f0c0dc3de894",
+  "created_at": "2026-07-11T23:33:06.868912+00:00",
+  "dev_test_authorized": false,
+  "external_files": {
+    "reports/pps_c40_design_gate.json": "ac845ea629adaf9f142c5a18d19fdf15410da1399895309fc1a9d066acda9406",
+    "systems/40_metric_coupled_transport_transformer/model/metric_coupled.py": "93ad470eb165e175c6999499dd160758ef6c9775bb45210e5ecf2cf54a5e6d2d",
+    "systems/40_metric_coupled_transport_transformer/notes/design_lock.json": "c5fd328aef77457ba44967bd64339fb724b927731226d7b9497f71a025fca900"
+  },
+  "locked_files": {
+    "README.md": "c1e826c45c3c473443d1b71e2f881c5b0ebaea216b465d450601a5d664456a86",
+    "configs/design_gate.yaml": "d80c5e31e923470fa3bdf6c1dbeb685c833c08474971c02765555c8d901240c1",
+    "environment.txt": "d0a86770c22cd516d80cf83b6254474bd5cd038acd26f6e116a68568845965d6",
+    "model/__init__.py": "00ac383da245f0c5ae9e36a433f86867a140041ec7390658d7ec3e57ea7e6b8f",
+    "model/semantic_routing.py": "07485034a9364668bc70c0ecaed22e547a85a8b89d567de485b98a3c4cf54210",
+    "notes/design_gate_protocol.md": "40ee7e537beb787449df2b164c6abd43f814903f8f5a5ad9c434d7e51e2d070f",
+    "notes/mechanism_fingerprint.md": "7f497a696a02249e41df4fcbb7202b9ef770fd4394ea5384fbf22e61d53c670b",
+    "notes/nearest_neighbors.md": "24215a73d418300f78782282944442d36a61cb7215ba5433af72a0a726a9f206",
+    "notes/proposal.md": "21f5cda81817f0fdeeb2322f17cf049b2d4ff62a55e7d9d99afe995226ea016b",
+    "probe/run_design_gate.py": "d38470770bbec81ef1cbc0c818ff5899afe4bb8844d9112885b4f5e319bf2892",
+    "tests/test_model.py": "47291ec4f74d5fd06536c9d6f90ef12c4869b80991f28b4cd49b6e95fac04535"
+  },
+  "repository_data_authorized": false
+}

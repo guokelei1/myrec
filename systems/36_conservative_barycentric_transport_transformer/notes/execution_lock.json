@@ -1,0 +1,36 @@
+{
+  "candidate_id": "c36",
+  "created_at": "2026-07-11T19:45:41.986016+00:00",
+  "declarations": {
+    "delayed_B_features_labels_scores_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "auth_profile_sizes.npy": "11e6e988e20d72ea1612caad940d490045bae71ffb1feb5bc0ce831fc826c7f2",
+    "auth_true_items.npy": "c2a8282089bddb053071b9a418b5728088ef8bfe108e84079363a0642a23791d",
+    "auth_true_offsets.npy": "b4a2c35e9131aa5a11d1fbbcb9d005ad36e78180ea6a244f816a04fd47c4b76d",
+    "auth_true_source_counts.npy": "99f66bf0eef7145cdf43575d7c2c0fdd072c8b3ec19729cf9221c61febe1ff53",
+    "auth_wrong_items.npy": "17f98d4a3ba21245fefd7cbe6f8aaea2683b298ffbf17e0202605766c8b32dd8",
+    "auth_wrong_offsets.npy": "2900a30f3f85b7edf6e6a09a9d1b2eb49f33ef1aa1305c486444cbbb0097589e",
+    "auth_wrong_source_counts.npy": "2d58fd86c26796812aa6324a6b152fb38cebd6c174079d62cf40bd272aac4b59",
+    "authentication_request_indices.npy": "3ca17b5b3f08f7f5ce5a2937f0b88c12470d6ddf59a82c4eff4fd620601213d2",
+    "base_scores.npy": "c97919cdaf2b42607dc68d9c69003a9df4495df752fd11553cbc5b59ebc2c88d",
+    "feature_candidate_offsets.npy": "c7c14f43c85f3a741e394e5c17f43b65c549694cccc37427eabeb2f7bdeb9f9c",
+    "feature_request_indices.npy": "3ca17b5b3f08f7f5ce5a2937f0b88c12470d6ddf59a82c4eff4fd620601213d2",
+    "fit_label_offsets.npy": "34732c7bbfc3e13fba04b4051970f9f272e6c892cd72103421535aea8e16ec72",
+    "fit_labels.npy": "d5ec93475476f2a012321a77684ebc4bc2bef02f70bfc230ec5544e1a5353338",
+    "fit_request_indices.npy": "ee27a309285a2ce75db685e6a8f6165044878dcefc3fc3223342992aa8adaee6",
+    "query_embeddings.npy": "2b24dc79f6d672b587d105946fd1d9debe199c1c7aa87311601d557669c18193"
+  },
+  "g0_report_path": "artifacts/c36_conservative_barycentric_transport_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "a51e8de5319f167f053f295d0bb53abc38c863503a0405f395cbfabb3fd4b240",
+  "lock_id": "c36_conservative_barycentric_transport_execution_v1",
+  "proposal_lock_sha256": "54783af00a0772c3abec659da4537d6348f528e3eb03184d93285bf63f76a0e6",
+  "selection_sha256": "ad7aab244a21d6eae9b4d5d310cacb8b9b31b27160323733069d76fb81f7a146",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

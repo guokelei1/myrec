@@ -1,0 +1,28 @@
+{
+  "candidate_id": "c76",
+  "created_at": "2026-07-12T14:24:00Z",
+  "decision": "authorize_data_free_g0_and_single_synthetic_design_gate",
+  "outcome_boundary": {
+    "repository_data": false,
+    "train_labels": false,
+    "dev": false,
+    "test": false,
+    "qrels": false,
+    "attempts": 1
+  },
+  "source_sha256": {
+    "README.md": "bdbf69c8b5390c11e26ec35c7a795fbcfa792abdd3e27aa2c515b9133db5f3e8",
+    "environment.txt": "fdcfb489855de58c9705cfd8012cfb0e1eb42f684295fec7370e6a8dce1bfd68",
+    "configs/design_gate.yaml": "ebe6c30dc0b46853fc19de5bca9d26a62c1a2ab38e84e9c3f4d8b687c324c338",
+    "notes/proposal.md": "26a7aad6fe6d871def50b842598be8516191b3431537c9fb5c1e8025d68f3d5a",
+    "notes/mechanism_fingerprint.md": "a0d80c9750d798a07bb8bfaa6964eb3cc5238a82b87bc39c17dbcc6326d9190e",
+    "notes/nearest_neighbors.md": "60131d5fdc8d6a555179ffc58a4b131ed8a4ccc487961bd6f696fdc6ac5be7a8",
+    "notes/preimplementation_review.md": "4ac65548a4f91931811d6813d8d8361083df07e8e317bb43dd75919f547fdc34",
+    "notes/design_gate_protocol.md": "8f7f78865974cc7a00d4f6590cc2e4a8020943634cc4e510db00d77ed67d10a7"
+  },
+  "evidence_sha256": {
+    "doc/15_proposed_system_design_principles.md": "131a2ff46e5adeb152e4357fc1acc0c272c7273d5a4b336abe13f71e2abbf807",
+    "reports/pps_amazon_token_history_observability_v1.json": "ac9dad1f346462495fa05e6b5ec5e32c87abfd2bddd4fad899e0cd5bf9eb0c66",
+    "reports/pps_amazon_token_edge_attribution_v1.json": "033bdf2a5f1fb255ee5b703cabec06b791469162b1b99b40643b9377c2601e14"
+  }
+}

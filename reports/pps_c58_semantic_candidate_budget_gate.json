@@ -1,0 +1,96 @@
+{
+  "C26_A_B_escrow_dev_test_qrels_opened": false,
+  "candidate_id": "c58",
+  "changes": {
+    "primary_vs_base": {
+      "any_count": 1193,
+      "any_fraction": 0.9941666666666666,
+      "requests": 1200,
+      "top10_count": 857,
+      "top10_fraction": 0.7141666666666666
+    },
+    "primary_vs_history_axis": {
+      "any_count": 577,
+      "any_fraction": 0.48083333333333333,
+      "requests": 1200,
+      "top10_count": 99,
+      "top10_fraction": 0.0825
+    },
+    "primary_vs_wrong": {
+      "any_count": 1187,
+      "any_fraction": 0.9891666666666666,
+      "requests": 1200,
+      "top10_count": 863,
+      "top10_fraction": 0.7191666666666666
+    }
+  },
+  "checks": {
+    "C26_A_B_escrow_dev_test_qrels_closed": true,
+    "all_shard_execution_checks": false,
+    "base_activity": true,
+    "candidate_axis_load_bearing": true,
+    "candidate_hash_asserted": true,
+    "complete_disjoint_shard_coverage": true,
+    "exact_nohistory_base": true,
+    "exact_repeat_item_only": true,
+    "fit_train_and_holdout_labels_closed": true,
+    "wrong_history_load_bearing": true
+  },
+  "claims": {
+    "architecture_signal": false,
+    "fresh_result": false,
+    "novelty": false
+  },
+  "created_at": "2026-07-12T06:07:59.828926+00:00",
+  "decision": "close_fixed_semantic_candidate_budget_on_mechanics",
+  "execution_lock_sha256": "843d89314d0504ef7847a2ee5ca860a5fb23ec91f3577da11ee93fec6b66e9a0",
+  "fallback": {
+    "nohistory_max_abs_vs_base": 0.0,
+    "repeat_max_abs_vs_item_only": 0.0
+  },
+  "fit_holdout_labels_read": false,
+  "fit_train_labels_read": false,
+  "gate": "A0",
+  "gate_id": "c58_semantic_candidate_budget_v1",
+  "holdout_candidate_key_sha256": "d5fa7a814b2c9c46262d87c3e8188f5af718fe172c11e71accb7e6fe2c9243c0",
+  "holdout_requests": 1200,
+  "shard_diagnostics": {
+    "0": {
+      "candidate_permutation_max_abs_difference": 3.075599670410156e-05,
+      "deterministic_max_abs_difference": 0.0,
+      "primary_correction_std": {
+        "max": 1.0000056956293393,
+        "mean": 1.0000000803842688,
+        "min": 0.9999914987192972
+      }
+    },
+    "1": {
+      "candidate_permutation_max_abs_difference": 2.384185791015625e-06,
+      "deterministic_max_abs_difference": 0.0,
+      "primary_correction_std": {
+        "max": 1.0000061263185545,
+        "mean": 1.000000025242642,
+        "min": 0.9999884419481817
+      }
+    },
+    "2": {
+      "candidate_permutation_max_abs_difference": 4.76837158203125e-07,
+      "deterministic_max_abs_difference": 0.0,
+      "primary_correction_std": {
+        "max": 1.000009125975351,
+        "mean": 1.0000000207515631,
+        "min": 0.9999933015183796
+      }
+    },
+    "3": {
+      "candidate_permutation_max_abs_difference": 0.0,
+      "deterministic_max_abs_difference": 0.0,
+      "primary_correction_std": {
+        "max": 1.0000087788493646,
+        "mean": 1.000000035342364,
+        "min": 0.9999920812910634
+      }
+    }
+  },
+  "status": "failed_label_free_mechanics_terminal"
+}

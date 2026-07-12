@@ -1,0 +1,111 @@
+{
+  "candidate_id": "c67",
+  "created_at": "2026-07-12T09:12:43.784540+00:00",
+  "decision": "close_c67_before_repository_data",
+  "freshness": {
+    "dev_test_qrels_opened": false,
+    "labels_opened": false,
+    "repository_data_opened": false
+  },
+  "g0_lock_sha256": "59ee5da29eadb336c958602c9dc5df5b017908544c9da04d81e0b12404dc06ac",
+  "gate": "data_free_cross_validated_fast_weight_G0",
+  "result": "failed_terminal",
+  "seeds": {
+    "20264701": {
+      "control_noisy_accuracy": {
+        "gradient_agreement_write": 0.9635416865348816,
+        "self_validated_write": 0.9713541865348816,
+        "standard_ttt_write": 0.9635416865348816
+      },
+      "failed_checks": [
+        "nuisance_rejected",
+        "primary_beats_gradient_agreement",
+        "primary_beats_self_validated",
+        "primary_beats_standard_ttt",
+        "unsupported_abstention",
+        "wrong_history_accuracy_drop"
+      ],
+      "primary": {
+        "clean_accuracy": 0.9674479365348816,
+        "noisy_accuracy": 0.9674479365348816,
+        "nuisance_event_weight_mean": 0.12360432744026184,
+        "nuisance_minus_useful_weight": -0.002233073115348816,
+        "unsupported_correction_rms": 1.7430952787399292,
+        "useful_event_weight_mean": 0.12583740055561066,
+        "wrong_history_accuracy": 0.9596354365348816,
+        "wrong_history_accuracy_drop": 0.0078125
+      },
+      "status": "failed_seed"
+    },
+    "20264702": {
+      "control_noisy_accuracy": {
+        "gradient_agreement_write": 0.9583333730697632,
+        "self_validated_write": 0.9583333730697632,
+        "standard_ttt_write": 0.9583333730697632
+      },
+      "failed_checks": [
+        "nuisance_rejected",
+        "primary_beats_gradient_agreement",
+        "primary_beats_self_validated",
+        "primary_beats_standard_ttt",
+        "unsupported_abstention",
+        "wrong_history_accuracy_drop"
+      ],
+      "primary": {
+        "clean_accuracy": 0.9557291865348816,
+        "noisy_accuracy": 0.9583333730697632,
+        "nuisance_event_weight_mean": 0.12741237878799438,
+        "nuisance_minus_useful_weight": 0.00385979562997818,
+        "unsupported_correction_rms": 1.7058249711990356,
+        "useful_event_weight_mean": 0.1235525831580162,
+        "wrong_history_accuracy": 0.9505208730697632,
+        "wrong_history_accuracy_drop": 0.0078125
+      },
+      "status": "failed_seed"
+    },
+    "20264703": {
+      "control_noisy_accuracy": {
+        "gradient_agreement_write": 0.9596354365348816,
+        "self_validated_write": 0.9596354365348816,
+        "standard_ttt_write": 0.9674479365348816
+      },
+      "failed_checks": [
+        "nuisance_rejected",
+        "primary_beats_gradient_agreement",
+        "primary_beats_self_validated",
+        "primary_beats_standard_ttt",
+        "unsupported_abstention",
+        "wrong_history_accuracy_drop"
+      ],
+      "primary": {
+        "clean_accuracy": 0.9557291865348816,
+        "noisy_accuracy": 0.9635416865348816,
+        "nuisance_event_weight_mean": 0.12449858337640762,
+        "nuisance_minus_useful_weight": -0.0008022710680961609,
+        "unsupported_correction_rms": 1.689669132232666,
+        "useful_event_weight_mean": 0.12530085444450378,
+        "wrong_history_accuracy": 0.96484375,
+        "wrong_history_accuracy_drop": -0.0013020634651184082
+      },
+      "status": "failed_seed"
+    }
+  },
+  "source_seed_reports": {
+    "20264701": {
+      "path": "artifacts/c67_cross_validated_fast_weight_transformer/g0_v1/seed_20264701_report.json",
+      "sha256": "a768a7c093a1573e6d09617592f2b4f5483f5cab135fbbb949a409cd2e0f9c10"
+    },
+    "20264702": {
+      "path": "artifacts/c67_cross_validated_fast_weight_transformer/g0_v1/seed_20264702_report.json",
+      "sha256": "85c659a713d9380e7355b27b532017fa62712c5d3b84e85ddccedb6c3cebdbea"
+    },
+    "20264703": {
+      "path": "artifacts/c67_cross_validated_fast_weight_transformer/g0_v1/seed_20264703_report.json",
+      "sha256": "769bf0c71e391c0db3d2bcdcb62b5debb7221e12d6cf02be57a235a824abb196"
+    }
+  },
+  "stop_rule": {
+    "real_data_authorized": false,
+    "rerun_or_generator_rescue": false
+  }
+}

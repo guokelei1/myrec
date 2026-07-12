@@ -1,0 +1,91 @@
+candidate_id: c01
+method_id: c01_cect
+status: locked_before_any_c01_outcome
+seed: 20260708
+environment: myrec-c01
+physical_gpu: 0
+run_prefix: 20260710_kuaisearch_c01_
+run_id: 20260710_kuaisearch_c01_cect_screen_s20260708
+
+paths:
+  standardized_dir: data/standardized/kuaisearch/v0_lite
+  train_records: data/standardized/kuaisearch/v0_lite/records_train.jsonl
+  dev_records: data/standardized/kuaisearch/v0_lite/records_dev.jsonl
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  packed_data: artifacts/analysis/supervised_motivation_diagnostics/data
+  query_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/query_emb.npy
+  item_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy
+  item_popularity: artifacts/analysis/supervised_motivation_diagnostics/data/item_log_click_full_train.npy
+  d2p_dev_scores: runs/20260710_kuaisearch_d2p_text_pop_dev_s20260708/scores.jsonl
+  item_only_dev_scores: runs/20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260708/scores.jsonl
+  c01_artifacts: artifacts/c01_cect_probe
+  c01_model: models/c01_cect_probe/model.pt
+  c01_plain_model: models/c01_cect_probe/plain_model.pt
+  c01_run_dir: runs/20260710_kuaisearch_c01_cect_screen_s20260708
+
+data:
+  retained_train_requests: 96939
+  fit_start: 0
+  fit_end: 77551
+  calibration_start: 77551
+  calibration_end: 87245
+  internal_start: 87245
+  internal_end: 96939
+  max_history: 20
+  max_negatives_per_request: 15
+  category_buckets: 4096
+
+model:
+  frozen_text_dim: 512
+  d_model: 96
+  num_layers: 2
+  num_heads: 4
+  dim_feedforward: 192
+  dropout: 0.10
+  max_history: 20
+  beta: 0.30
+  gate_temperature: 0.10
+  lse_temperature: 0.20
+  cf_margin: 0.20
+  cf_loss_weight: 0.50
+  alpha_cf: 0.10
+
+training:
+  stage1_epochs: 2
+  stage2_epochs: 1
+  requests_per_batch: 48
+  learning_rate_stage1: 0.0003
+  learning_rate_stage2: 0.0005
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  amp_dtype: bfloat16
+  max_attempts: 2
+  max_gpu_hours: 8.0
+
+internal_gate:
+  bootstrap_samples: 2000
+  repeat_delta_min: -0.0020
+  repeat_ci_lower_min: -0.0040
+  nonrepeat_delta_min: 0.0020
+  corruption_max_recovery: 0.25
+  corruption_min_admission_drop_relative: 0.30
+  admission_rate_min: 0.02
+  admission_rate_max: 0.50
+  certificate_std_min: 0.05
+  true_twin_energy_gap_min: 0.05
+  shuffle_mass_drop_relative_min: 0.20
+  plain_delta_min: 0.0020
+
+screening:
+  authorized_dev_evaluator_calls: 1
+  expected_requests: 12229
+  expected_score_rows: 575609
+  expected_no_history_requests: 4110
+  item_only_seed_ndcg10: 0.345087358948813
+  item_only_screening_tolerance: 0.0020
+  ndcg10_stop_loss: 0.343087358948813
+  d2p_seed_ndcg10: 0.32381583673978764
+  d2p_min_relative_gain: 0.02
+  deterministic_requests: 1000
+  test_read: false

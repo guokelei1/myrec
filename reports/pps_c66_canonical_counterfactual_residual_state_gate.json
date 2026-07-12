@@ -1,0 +1,76 @@
+{
+  "candidate_id": "c66",
+  "decision": "close_c66_before_validation_labels",
+  "freshness": {
+    "fit_train_labels_opened": true,
+    "validation_labels_opened": false,
+    "fresh_features_scores_labels_opened": false,
+    "dev_test_qrels_opened": false
+  },
+  "g0": {
+    "candidate_permutation_max_abs": 0.0,
+    "candidate_permutation_bit_exact": true,
+    "deterministic_max_abs": 0.0,
+    "nohistory_max_abs": 0.0,
+    "repeat_max_abs": 0.0,
+    "status": "passed"
+  },
+  "g0_lock_sha256": "8340410ae59a2d4a8b8451a9f69bfa6d38b866d4233b9a19c30c49a313a97075",
+  "execution_lock_sha256": "d54b1390fe81295cac067a78b0298f613411aa9e237038d78673df0527541e85",
+  "label_free_A0": {
+    "primary_vs_base": {
+      "order_change_fraction_by_seed": [
+        0.27,
+        0.20666666666666667,
+        0.3025
+      ],
+      "top10_change_fraction_by_seed": [
+        0.015,
+        0.02,
+        0.015833333333333335
+      ],
+      "passed_each_seed_activity": true
+    },
+    "true_vs_wrong_history": {
+      "order_change_fraction_by_seed": [
+        0.15666666666666668,
+        0.1425,
+        0.20666666666666667
+      ],
+      "top10_change_count_by_seed": [
+        1,
+        10,
+        7
+      ],
+      "top10_change_fraction_by_seed": [
+        0.0008333333333333334,
+        0.008333333333333333,
+        0.005833333333333334
+      ],
+      "required_fraction_each_seed": 0.01,
+      "passed_each_seed_activity": false
+    },
+    "all_training_finite": true,
+    "all_gradient_groups_active": true,
+    "all_modes_loss_decreased_each_seed": false,
+    "all_post_training_permutation_errors": 0.0,
+    "status": "failed_terminal"
+  },
+  "result": "failed_terminal",
+  "source_artifacts": {
+    "g0": {
+      "path": "artifacts/c66_canonical_counterfactual_residual_state_transformer/train_gate_v1/g0_report.json",
+      "sha256": "36936fc54b19e85b85652826346e3d990e50999956909f7fe5350299c5764748"
+    },
+    "a0": {
+      "path": "artifacts/c66_canonical_counterfactual_residual_state_transformer/train_gate_v1/a0_report.json",
+      "sha256": "aa3b2c44a48d15af84ca06ad6c1a550e67e2520433a97463e04cf6ae458f13fd"
+    }
+  },
+  "stop_rule": {
+    "validation_A1_forbidden": true,
+    "fresh_data_dev_test_forbidden": true,
+    "no_loss_weight_depth_epoch_seed_precision_or_threshold_rescue": true
+  },
+  "summary": "Canonical serialization exactly repaired C65's numerical defect, but the hidden factual-minus-NULL residual remained mostly insensitive to matched wrong history at Top-10 and did not train stably across modes and seeds. The architecture changes rankings without making personalized history load-bearing."
+}

@@ -1,0 +1,165 @@
+{
+  "D0": {
+    "active_gradient_names": [
+      "ffn_down.weight",
+      "ffn_norm.bias",
+      "ffn_norm.weight",
+      "ffn_up.weight",
+      "k_proj.weight",
+      "out_proj.weight",
+      "q_proj.weight",
+      "v_proj.weight"
+    ],
+    "candidate_permutation_max_error": 0.0,
+    "checks": {
+      "candidate_permutation": true,
+      "capacity_matched": true,
+      "exact_fallbacks": true,
+      "feasible_identity": true,
+      "gradients_finite": true,
+      "gradients_reach_all_components": true,
+      "hand_projection": true,
+      "initialization_paired": true,
+      "modes_operator_distinct": true,
+      "projection_feasible": true,
+      "same_aggregate_witness": true,
+      "unsupported_edges_zero": true
+    },
+    "distinct_mode_pairs": {
+      "eventwise_halfspace__eventwise_raw": true,
+      "eventwise_halfspace__global_only": true,
+      "eventwise_halfspace__postpool_halfspace": true,
+      "eventwise_halfspace__ray_only": true,
+      "eventwise_raw__global_only": true,
+      "eventwise_raw__postpool_halfspace": true,
+      "eventwise_raw__ray_only": true,
+      "postpool_halfspace__global_only": true,
+      "postpool_halfspace__ray_only": true,
+      "ray_only__global_only": true
+    },
+    "fallback_max_errors": {
+      "nohistory": 0.0,
+      "query_mask": 0.0,
+      "repeat": 0.0
+    },
+    "feasible_identity_max_error": 0.0,
+    "hand_error": 0.0,
+    "initial_state_sha256": {
+      "eventwise_halfspace": "f73d25cea3e3b7ff5c06e75dffbf28862e6769b8eb43d3029e81ee110d6512df",
+      "eventwise_raw": "f73d25cea3e3b7ff5c06e75dffbf28862e6769b8eb43d3029e81ee110d6512df",
+      "global_only": "f73d25cea3e3b7ff5c06e75dffbf28862e6769b8eb43d3029e81ee110d6512df",
+      "postpool_halfspace": "f73d25cea3e3b7ff5c06e75dffbf28862e6769b8eb43d3029e81ee110d6512df",
+      "ray_only": "f73d25cea3e3b7ff5c06e75dffbf28862e6769b8eb43d3029e81ee110d6512df"
+    },
+    "ordinary_witness_error": 0.0,
+    "parameter_counts": {
+      "eventwise_halfspace": 3648,
+      "eventwise_raw": 3648,
+      "global_only": 3648,
+      "postpool_halfspace": 3648,
+      "ray_only": 3648
+    },
+    "projected_witness_difference": 1.0,
+    "projection_max_violation": 1.899024937301874e-08,
+    "status": "passed",
+    "unsupported_edge_max_abs": 0.0
+  },
+  "D1": {
+    "checks": {
+      "nohistory_exact_base": true,
+      "primary_over_base_each_seed": true,
+      "primary_over_global_each_seed": true,
+      "primary_over_postpool_each_seed": true,
+      "projection_changes_negative_each_seed": true,
+      "rejected_edges_each_seed": true,
+      "repeat_exact_base": true,
+      "true_over_wrong_each_seed": true
+    },
+    "scope": "Constructed equal-pooled-value operator witness only; not real-data signal, utility, transfer, or novelty evidence.",
+    "seeds": [
+      {
+        "differences": {
+          "primary_over_base": 0.2941028526227446,
+          "primary_over_global": 0.2941028526227446,
+          "primary_over_postpool": 0.2941028526227446,
+          "true_over_wrong": 0.2941028526227446
+        },
+        "ndcg10": {
+          "base": 0.7058971473772554,
+          "eventwise_halfspace": 1.0,
+          "eventwise_raw": 0.7058971473772554,
+          "global_only": 0.7058971473772554,
+          "postpool_halfspace": 0.7058971473772554,
+          "primary_wrong": 0.7058971473772554,
+          "ray_only": 0.7058971473772554
+        },
+        "nohistory_correction_max_abs": 0.0,
+        "optimization_steps": 0,
+        "projection_changed_negative_fraction": 1.0,
+        "rejected_edge_fraction": 0.8333333333333334,
+        "repeat_correction_max_abs": 0.0,
+        "seed": 20261501
+      },
+      {
+        "differences": {
+          "primary_over_base": 0.2941028526227446,
+          "primary_over_global": 0.2941028526227446,
+          "primary_over_postpool": 0.2941028526227446,
+          "true_over_wrong": 0.2941028526227446
+        },
+        "ndcg10": {
+          "base": 0.7058971473772554,
+          "eventwise_halfspace": 1.0,
+          "eventwise_raw": 0.7058971473772554,
+          "global_only": 0.7058971473772554,
+          "postpool_halfspace": 0.7058971473772554,
+          "primary_wrong": 0.7058971473772554,
+          "ray_only": 0.7058971473772554
+        },
+        "nohistory_correction_max_abs": 0.0,
+        "optimization_steps": 0,
+        "projection_changed_negative_fraction": 1.0,
+        "rejected_edge_fraction": 0.8333333333333334,
+        "repeat_correction_max_abs": 0.0,
+        "seed": 20261502
+      },
+      {
+        "differences": {
+          "primary_over_base": 0.2941028526227446,
+          "primary_over_global": 0.2941028526227446,
+          "primary_over_postpool": 0.2941028526227446,
+          "true_over_wrong": 0.2941028526227446
+        },
+        "ndcg10": {
+          "base": 0.7058971473772554,
+          "eventwise_halfspace": 1.0,
+          "eventwise_raw": 0.7058971473772554,
+          "global_only": 0.7058971473772554,
+          "postpool_halfspace": 0.7058971473772554,
+          "primary_wrong": 0.7058971473772554,
+          "ray_only": 0.7058971473772554
+        },
+        "nohistory_correction_max_abs": 0.0,
+        "optimization_steps": 0,
+        "projection_changed_negative_fraction": 1.0,
+        "rejected_edge_fraction": 0.8333333333333334,
+        "repeat_correction_max_abs": 0.0,
+        "seed": 20261503
+      }
+    ],
+    "status": "passed"
+  },
+  "authorization_if_passed": "Amazon-C4 train-internal proposal formulation/implementation only; no dev/test or proposed-system claim.",
+  "candidate_id": "c39",
+  "candidate_source_root": "systems/39_halfspace_certified_value_transformer",
+  "config_path": "systems/39_halfspace_certified_value_transformer/configs/design_gate.yaml",
+  "config_sha256": "4cdaa033a52f7f73d02384212724e485aabd7f111fe6d786687b04008aa3e2d7",
+  "created_at": "2026-07-11T22:23:52.727267+00:00",
+  "dev_test_opened": false,
+  "gate_id": "c39_halfspace_certified_value_design_gate_v1",
+  "physical_gpu": 3,
+  "real_labels_scores_qrels_opened": false,
+  "real_repository_data_opened": false,
+  "status": "passed",
+  "visible_devices": "3"
+}

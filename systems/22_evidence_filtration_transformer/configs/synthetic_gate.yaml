@@ -1,0 +1,61 @@
+candidate_id: c22
+gate_id: c22_evidence_filtration_synthetic_v1
+status: authorized_for_one_locked_synthetic_attempt
+environment: /data/gkl/conda_envs/myrec-c22
+program_device: cuda:0
+physical_gpu: 2
+
+data:
+  input_dim: 24
+  candidates: 8
+  history_slots: 6
+  train_requests: 8192
+  eval_requests: 3072
+  strata_weights: [0.20, 0.40, 0.40]
+
+model:
+  anchor_dim: 16
+  recurrence_dim: 8
+  transfer_dim: 24
+  layers: 2
+  heads_per_block: 2
+  ffn_multiplier: 2
+  dropout: 0.0
+  transfer_delta_max: 1.0
+  recurrence_scale_min: 2.5
+
+training:
+  modes: [filtration, dense, parallel, final_projection]
+  seeds: [20260730, 20260731, 20260732]
+  steps: 900
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  attempts: 1
+
+gate:
+  nohistory_accuracy_min: 0.98
+  repeat_accuracy_min: 0.98
+  supported_accuracy_min: 0.85
+  supported_gain_over_base_min: 0.60
+  base_supported_accuracy_max: 0.20
+  each_stratum_control_margin_min: 0.03
+  minimum_stratum_control_margin_min: 0.05
+  corruption_retention_max: 0.25
+  identity_repeat_margin_drop_min: 0.50
+  identity_supported_margin_change_max: 0.05
+  protected_jacobian_max: 0.0000001
+  order_change_fraction_min: 0.05
+  permutation_max_abs_error: 0.00002
+  deterministic_max_abs_difference: 0.0
+
+authorization:
+  design: true
+  synthetic_implementation: true
+  synthetic_gpu: true
+  repository_data: false
+  real_train: false
+  dev: false
+  test: false
+  full_training: false

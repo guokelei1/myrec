@@ -1,0 +1,30 @@
+{
+  "lock_name": "c08_g1_pre_outcome_lock",
+  "locked_at": "2026-07-11T00:00:00+08:00",
+  "learned_g1_outcome_seen": false,
+  "scope": "Original C08 proposal, reducibility audit, structural implementation, and frozen G1 thresholds before the executable amendment",
+  "files_sha256": {
+    "FINGERPRINT.json": "fa0f44287f0483afced805b91180ca0ff290f2a631cea7a48a1b3e9b34656ede",
+    "GATE.md": "a83acc3c1b474672da058fca8b9158fa17054d8cee641a6db49c7bfe94db53da",
+    "NEAREST_NEIGHBOR_AUDIT.md": "76d25a764cfb7418b92846c6419991ca3c5c9eb758b75b891203dcd1dccebf44",
+    "PROPOSAL.md": "536648c4df5db2b04907c8caae394d9769315a11033c94de73d1acf9ac7230f6",
+    "SYNTHETIC_REPORT.md": "cb4607868785e1af1a6f1855fc79a06840ca9918943261bcd0ca42c17a8c4d03",
+    "reversible_memory.py": "e66fc0cacab72e4a324ced25cf9198a75b6f10ed30d82732699c58116511c248",
+    "test_reversible_memory.py": "b528eb077a5a6d709e4991f7cbc1d170339ba26e0fb2a53ebfd9cfbeb799824a"
+  },
+  "frozen_g1_seeds": [20260711, 20260712, 20260713],
+  "frozen_g1_shape": {
+    "candidate_count": 8,
+    "history_length": 8,
+    "evidence_width": 16,
+    "train_requests": 4096,
+    "evaluation_requests": 1024,
+    "maximum_optimizer_steps": 400
+  },
+  "frozen_decision": "G1 learned synthetic only; no repository data, GPU, dev, or test access",
+  "required_absent_before_execution": [
+    "G1_OUTCOME.json",
+    "G1_OUTCOME.md",
+    "runs/g1_*/RUN_COMPLETE.json"
+  ]
+}

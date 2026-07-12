@@ -1,102 +1,119 @@
 # myrec
 
-This repository is the compact working home for the
-**Query-conditioned Personalized Product Ranking (PPS)** paper. It
-supports the full local workflow for dataset download, baseline
-evaluation, motivation experiments, proposed-system development, and
-paper writing, while Git only stores the reproducible core.
+Compact working repository for the **Query-conditioned Personalized Product
+Ranking (PPS)** paper. It supports dataset preparation, baseline evaluation,
+problem discovery, proposed-system development, confirmation, and paper
+writing while Git stores only the reproducible core.
 
-The research scope is documented in [doc/](doc/).
+## Current Stage
 
-## Scenario (Frozen)
+C01--C80 architecture search is terminally closed. C80 failed a pre-label
+event-permutation contract, so its 365 fresh labels remain unopened and its
+ranking utility is unknown. There is no C81 or C80 rescue.
+
+The active workflow is a research reset:
+
+1. audit the information objects and confirmation data across datasets;
+2. reproduce full-token history observability on KuaiSearch and Amazon;
+3. normally tune an ordinary full-token joint Transformer as the strong base;
+4. discover and replicate a ranking-relevant failure of that strong base;
+5. only then derive an architecture hypothesis, train it on dev, and freeze an
+   independent confirmation.
+
+The authoritative process is
+[doc/31](doc/31_problem_discovery_and_architecture_iteration_protocol.md).
+[doc/15](doc/15_proposed_system_design_principles.md) defines architecture
+entry and eligibility. [doc/24](doc/24_parallel_llm4rec_design_protocol.md) is
+historical and does not authorize current work. Test remains locked.
+
+The C01--C80 causal record is
+[the terminal retrospective](doc/dev_log/20260712_c01_c80_terminal_retrospective.md),
+and the candidate ledger remains under [systems/](systems/).
+
+## Scenario
 
 ```text
-User issues a real product search query. Given the user's behavioral
-history (click/purchase sequence with item plaintext text), candidate
-item text/attributes, and the fixed exposed candidate set, produce a
-personalized ranking of the candidate pool.
+User issues a real product search query. Given the user's strictly prior
+behavioral history, candidate text/attributes, and a fixed exposed candidate
+set, rank the candidates for that request.
 ```
 
-See [doc/10_direction_decision.md](doc/10_direction_decision.md) for the
-full direction decision and [doc/11_experiment_and_dataset_plan.md](doc/11_experiment_and_dataset_plan.md)
-for the 6-phase experiment plan with checkpoints C0–C5.
+KuaiSearch remains the nominal main track and Amazon-C4 the text-rich secondary
+track. JDsearch is a conditional robustness anchor only for claims supported by
+its no-plaintext information object; it is not automatically a gate for a
+token-semantic mechanism.
 
 ## Repository Contract
 
-Commit these:
+Track:
 
-- source code, tests, scripts, and reusable configuration;
-- proposed-system source under `systems/`;
-- tracked baseline source trees, local patches, adapters, and notes under
-  `baselines/`;
-- research notes, protocol documents, and concise development logs;
-- paper source, small curated tables, and final hand-selected figures.
+- source under `src/myrec/`;
+- historical and future hypothesis-local system source under `systems/`;
+- runnable scripts under `scripts/` and reusable configs under `configs/`;
+- tests and tiny fixtures under `tests/`;
+- upstream baseline code, adapters, and notes under `baselines/`;
+- protocols and concise reasoning under `doc/`;
+- experiment manifests under `experiments/`;
+- curated results under `reports/` and manuscript files under `paper/`.
 
-Do not commit these:
+Do not track:
 
-- downloaded datasets or processed dataset records;
-- model weights, checkpoints, embeddings, indexes, or caches;
-- raw experiment logs, score dumps, tensorboard/wandb/mlflow output, or
-  scratch files;
-- credentials, API keys, tokens, private paths, or machine-specific
-  settings.
+- downloaded, standardized, or processed datasets;
+- checkpoints, model weights, embeddings, indexes, or caches;
+- raw logs, score dumps, sweeps, or scratch state;
+- credentials, tokens, private paths, or machine-local settings.
 
 ## Directory Layout
 
 | Path | Git policy | Purpose |
 |---|---|---|
-| `doc/` | tracked | research objective, direction decision, experiment plan, lessons, concise dev logs |
-| `src/myrec/` | tracked | shared project implementation: data interfaces, evaluators, self-implemented baselines, model code, utils |
-| `systems/` | tracked | proposed-system source (query-conditioned evidence routing) |
-| `scripts/` | tracked | command-line entry points for download, preprocessing, training, scoring, evaluation |
-| `configs/` | tracked | reproducible dataset, baseline, method, and experiment configs |
-| `tests/` | tracked | unit/integration tests and tiny fixtures only |
-| `baselines/` | tracked | upstream baseline code trees (KuaiSearch official, RecBole, PPS classic), local patches, adapters, and notes |
-| `experiments/` | tracked | experiment plans, config templates, and short run manifests |
-| `reports/` | tracked selectively | curated metrics tables, checkpoint audit JSONs, paper-ready summaries |
-| `paper/` | tracked | manuscript source, bibliography, and small manually selected assets |
-| `data/` | ignored except README | raw, intermediate, processed, and standardized dataset files |
-| `models/` | ignored except README | downloaded weights, trained checkpoints, embeddings, and model caches |
-| `runs/` | ignored except README | raw outputs from training, scoring, evaluation, sweeps, and logs |
-| `artifacts/` | ignored except README | generated plots, temporary tables, exported predictions, packaged outputs |
-| `tmp/` | ignored except README | disposable scratch space |
+| `doc/` | tracked | constraints, protocols, decisions, and concise dev logs |
+| `src/myrec/` | tracked | reviewed shared data, evaluation, baseline, and analysis code |
+| `systems/` | tracked | C01--C80 history and future hypothesis-local source after doc/31 authorization |
+| `scripts/` | tracked | runnable download, preparation, training, scoring, and audit commands |
+| `configs/` | tracked | reusable dataset, baseline, analysis, and experiment configs |
+| `tests/` | tracked | unit/integration tests and tiny fixtures |
+| `baselines/` | tracked | upstream baseline trees, adapters, manifests, and patches |
+| `experiments/` | tracked | plans, Failure Cards, proposals, and short run manifests |
+| `reports/` | selective | audit JSON, curated metrics, and paper-ready summaries |
+| `paper/` | tracked | manuscript source and small selected assets |
+| `data/` | ignored | raw, interim, processed, and standardized data |
+| `models/` | ignored | downloaded and trained model state |
+| `runs/` | ignored | raw training, scoring, evaluation, sweep, and log output |
+| `artifacts/` | ignored | generated analysis and exported predictions |
+| `tmp/` | ignored | disposable scratch state and evaluator locks |
 
 ## Local Workflow
 
 1. Put real datasets under `data/raw/<dataset>/`.
-2. Write dataset converters in `src/myrec/data/` and runnable commands in
-   `scripts/`.
-3. Export standardized records under `data/standardized/<dataset>/<version>/`.
-4. Put upstream baseline working copies under `baselines/<name>/` and
-   track local patches there.
-5. Develop the proposed system under `systems/`.
-6. Put trained checkpoints and downloaded model weights under `models/`.
-7. Write raw run outputs under `runs/<run_id>/`.
-8. Promote only concise, paper-relevant summaries to `reports/`, `doc/`,
-   or `paper/`.
+2. Convert them through `src/myrec/data/` and `scripts/` into the unified,
+   label-isolated interface under `data/standardized/<dataset>/<version>/`.
+3. Run the common audits, candidate-hash checks, and metric tests.
+4. Train/evaluate baselines through the shared evaluator and log every dev call.
+5. Execute doc/31 R0 observability, strong-baseline, and failure-discovery work.
+6. Create `systems/<hypothesis>/` only after a Failure Card passes. Keep
+   hypothesis, implementation, dev-trial, and confirmation IDs separate.
+7. Keep checkpoints in `models/`, run state in `runs/`, and generated analysis
+   in `artifacts/`.
+8. Promote only concise, reproducible summaries to tracked files.
 
-## Experiment Naming
-
-Use stable run identifiers so local files stay searchable:
+## Run Naming
 
 ```text
 YYYYMMDD_<dataset_id>_<method_id>_<short_purpose>
 ```
 
-Example:
+Each important run records its command, config, code state, dataset/manifest
+hash, checkpoint reference, random seed, environment, metric summary, and
+remaining development budget.
 
-```text
-20260708_kuaisearch_bm25_motivation_m1
-```
+## Evidence Boundary
 
-For every run that matters, keep the exact command, config path, git
-commit, dataset version, checkpoint reference, and metric summary in
-either `experiments/` or `doc/dev_log/`.
-
-## Data Interface
-
-The main standardized record contract is in
-[doc/11_experiment_and_dataset_plan.md](doc/11_experiment_and_dataset_plan.md)
-(Phase 1, §1.2). Generated `records_train.jsonl`, `records_dev.jsonl`,
-`records_test.jsonl`, `item_catalog.jsonl`, and `manifest.json` files
-belong under `data/` and are not tracked by Git.
+- Training/scoring code never reads `qrels_dev.jsonl` or `qrels_test.jsonl`.
+- All methods export `scores.jsonl` and use the same evaluator.
+- Candidate-set hashes are asserted before every evaluation.
+- Every dev evaluation is appended to `reports/dev_eval_log.jsonl`.
+- Mechanics, learnability, utility, specificity, attribution, numerical safety,
+  and novelty are separate conclusions.
+- Confirmation is frozen before outcome access; test is run once only after the
+  complete method/config is frozen.

@@ -1,0 +1,19 @@
+{
+  "candidate_id": "c56",
+  "created_at": "2026-07-12T12:54:10+08:00",
+  "gate_id": "c56_query_complement_token_competition_v1",
+  "locked_files": {
+    "systems/56_query_complement_token_competition_transformer/configs/signal_gate.yaml": "7f1e58b3dc94ec8e4038d95633bce373b148fb710f7bdd996c054d1c71690f5a",
+    "systems/56_query_complement_token_competition_transformer/notes/nearest_neighbors.md": "008223b1cf1a9271a9cdde774e2dae3018e252dfee0c28aa6b269f4adf90136d",
+    "systems/56_query_complement_token_competition_transformer/notes/proposal.md": "1a197134d0d41b1c880e33dd8ede00094689fb3ddbb354d79fb6cdfec643b4f0"
+  },
+  "status": "frozen_before_selection_materialization_or_c56_outcome",
+  "unopened": [
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

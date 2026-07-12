@@ -1,0 +1,69 @@
+{
+  "candidate_id": "c28",
+  "candidate_name": "margin_local_evidence_contest_transformer",
+  "status": "failed_A1_terminal",
+  "decision": "close_free_odd_comparator_after_structural_pass_and_utility_failure",
+  "selection_sha256": "939a7c2529da0b3fbcb816ec698415183660f2a7911694051bcaf7af8f0bf831",
+  "proposal_lock_sha256": "a29f47f1b66803a8ae1a02adc3bf4385a482b805c3dd158199193cb261625bdc",
+  "execution_lock_sha256": "f798f72b989fad89861b1d026a5544c324ff944fea25c9858e0c2972149a7359",
+  "raw_report_sha256": "d0f854f5ab6200f54e00a89012bb66e738b11d2e0cb226db91ff4f99f721d9e2",
+  "run": {
+    "physical_gpu": 0,
+    "seeds": [20260775, 20260776, 20260777],
+    "modes": ["local_evidence_contest", "uniform_evidence_contest", "local_generic_contest", "local_candidate_contest", "additive_node"],
+    "trainable_parameters_per_mode": 139648,
+    "epochs": 2,
+    "elapsed_seconds": 781.6812097458169
+  },
+  "A0": {
+    "passed_checks": 18,
+    "total_checks": 18,
+    "order_change_vs_d2p": {"count": 420, "requests": 600, "fraction": 0.7},
+    "top10_change_vs_d2p": {"count": 75, "requests": 600, "fraction": 0.125},
+    "wrong_history_order_change_count_by_seed": {"20260775": 185, "20260776": 218, "20260777": 131},
+    "wrong_history_top10_change_count_by_seed": {"20260775": 8, "20260776": 8, "20260777": 4},
+    "pair_complement_max_abs_difference": 0.00000011920928955078125,
+    "candidate_permutation_max_abs_difference": 0.0000008344650268554688,
+    "failed_checks": []
+  },
+  "A1": {
+    "passed_checks": 0,
+    "total_checks": 11,
+    "ndcg10": {
+      "d2p": 0.5833688419121591,
+      "local_evidence_contest": 0.5833170384176748,
+      "uniform_evidence_contest": 0.5829834801423863,
+      "local_generic_contest": 0.5834480993407106,
+      "local_candidate_contest": 0.5831001281989782,
+      "additive_node": 0.5835254412222921,
+      "wrong_history": 0.5834383013092497
+    },
+    "primary_minus_d2p": {
+      "mean": -0.00005180349448429359,
+      "percentile_95_ci": [-0.001993076578821912, 0.0018341431108268344]
+    },
+    "true_minus_wrong": {
+      "mean": -0.0001212628915748871,
+      "percentile_95_ci": [-0.0007236061645368591, 0.0004685633841880273]
+    },
+    "clicked_minus_unclicked_correction": {
+      "mean": -0.00150917140985257,
+      "percentile_95_ci": [-0.004591878075869924, 0.0016104468503405462]
+    }
+  },
+  "post_terminal_diagnostic": {
+    "correction_seed_correlations": [0.010927547124492629, -0.004694227943698759, 0.012347293602734977],
+    "median_correction_range_by_seed": [0.06383435428142548, 0.4496349096298218, 0.0003431551158428192],
+    "global_sign_inversion_supported": false
+  },
+  "label_barrier": {
+    "fit_labels_opened": true,
+    "internal_A_labels_opened": true,
+    "delayed_B_labels_opened": false,
+    "escrow_opened": false,
+    "dev_opened": false,
+    "test_opened": false
+  },
+  "conclusion": "Margin locality solved rank activity and wrong-history top-set sensitivity, but the free odd comparator learned seed-unstable, non-generalizing direction and scale.",
+  "next_action": "Use a new outcome-isolated role to test a Transformer-internal evidence law that removes comparator direction/scale gauge; do not tune or rescue C28."
+}

@@ -1,0 +1,39 @@
+{
+  "candidate_id": "c56",
+  "created_at": "2026-07-12T13:12:00+08:00",
+  "gate_id": "c56_query_complement_token_competition_v3",
+  "locked_files": {
+    "systems/56_query_complement_token_competition_transformer/configs/signal_gate_v3.yaml": "fe1fecfd74256145ae644cde2d27162d6f34b7a1212a7f80b8eb8a0e2477e6b1",
+    "systems/56_query_complement_token_competition_transformer/notes/nearest_neighbors.md": "008223b1cf1a9271a9cdde774e2dae3018e252dfee0c28aa6b269f4adf90136d",
+    "systems/56_query_complement_token_competition_transformer/notes/pre_outcome_contextual_aggregate_abort.md": "d23e2396b15fc56515c6d544dcdbc90b07d79791df76685c7b12c4a78bd82c68",
+    "systems/56_query_complement_token_competition_transformer/notes/pre_outcome_execution_abort.md": "c19aa2b4dba9c0481949d5c9fbf7046b7805d79fb585a3eec01be9541aa919f4",
+    "systems/56_query_complement_token_competition_transformer/notes/proposal.md": "1a197134d0d41b1c880e33dd8ede00094689fb3ddbb354d79fb6cdfec643b4f0"
+  },
+  "status": "v1_v2_boolean_aborts_superseded_before_any_model_or_ranking_outcome",
+  "reused_frozen_sources": {
+    "v2_contextual_shards": true,
+    "v2_selection_sha256": "e643e031fc67de2d9388771373e2bc41305bf3129e6e377f793a6e049dd9f548"
+  },
+  "unchanged_from_v1": [
+    "architecture",
+    "data_rows",
+    "contextual_token_values",
+    "split_seed",
+    "role_counts",
+    "training_seeds",
+    "gpu_mapping",
+    "loss",
+    "thresholds",
+    "label_boundaries"
+  ],
+  "unopened": [
+    "c56_train_fit_labels",
+    "c56_holdout_fit_labels",
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

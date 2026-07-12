@@ -1,0 +1,19 @@
+{
+  "candidate_id": "c47",
+  "date": "2026-07-12",
+  "scope": "KuaiSearch packed train candidate labels",
+  "status": "contained_before_proposal_lock",
+  "access": {
+    "candidate_label_array_opened": true,
+    "request_level_labels_printed": false,
+    "scores_or_metrics_computed": false,
+    "dev_test_qrels_opened": false
+  },
+  "affected_request_count": 2370,
+  "affected_sorted_indices_sha256": "7f2d3c8c8456f8ced06575303356c6cd1eb8b00a2af22c0c6c014fff72ce83aa",
+  "containment": {
+    "eligible_for_c47_fit": true,
+    "eligible_for_c47_outcome_roles": false,
+    "replacement_pool": "label-closed C34 internal-A plus C36 internal-A, excluding opened outcomes and incident indices"
+  }
+}

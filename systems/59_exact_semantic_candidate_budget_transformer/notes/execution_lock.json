@@ -1,0 +1,35 @@
+{
+  "candidate_id": "c59",
+  "created_at": "2026-07-12T14:12:35+08:00",
+  "gate_id": "c59_exact_semantic_candidate_budget_v1",
+  "locked_files": {
+    "systems/59_exact_semantic_candidate_budget_transformer/README.md": "995979df05b4a7947b62f375413474f44eb6b43010f56ed072c386798dc4d3ff",
+    "systems/59_exact_semantic_candidate_budget_transformer/configs/formulation_gate.yaml": "d60bcd7e7bd9858e0caf807bc38f3f630e496ad0ec45f529585ce9dde3317bb8",
+    "systems/59_exact_semantic_candidate_budget_transformer/environment.txt": "df877cc525e59ec9607011e808aff3d240c09ed8dc81e70c08c3edf9357ecee6",
+    "systems/59_exact_semantic_candidate_budget_transformer/execution/__init__.py": "75faad93e66559793bb9ffb0db9c9b91925898b693f69967fd9734c05a54e6f3",
+    "systems/59_exact_semantic_candidate_budget_transformer/execution/locking.py": "7d795832ff383bab67be68a6aeb6b587bd84ba182c6bff1c4741ada2f8f595f2",
+    "systems/59_exact_semantic_candidate_budget_transformer/execution/run_gate.py": "74b844aeb8ae81a1bac02757960ba02d620d4b17a67ee2ebf23c8bded5b6c005",
+    "systems/59_exact_semantic_candidate_budget_transformer/model/__init__.py": "eb1952528659a2d79d53be742cdc532e3e6a6c3f1d588496fb94b42546bbe8d4",
+    "systems/59_exact_semantic_candidate_budget_transformer/model/semantic_budget.py": "6485dff60128056e5cbadaceb57ba14ba60292f138df28acc01a4b83fbbce866",
+    "systems/59_exact_semantic_candidate_budget_transformer/notes/nearest_neighbors.md": "3a7876823fabcabfe0c6d8a561d4ccc0ce6971e17a475ef3c3a4a56989aa8733",
+    "systems/59_exact_semantic_candidate_budget_transformer/notes/proposal.md": "645f37f1a154dec2b34f837d9db9dd678e96f9b02b8412b2a073591dea53385b",
+    "systems/59_exact_semantic_candidate_budget_transformer/notes/proposal_lock.json": "7f6fb9fb510860702cc908bbfad3c2bd54beecfb8acddb2b8b87a31bd9a2b9a7",
+    "systems/59_exact_semantic_candidate_budget_transformer/tests/test_locking.py": "c32b56cdbfce281fe147045640a6eeb79348fe496e7b2662794129b2d23bfeba",
+    "systems/59_exact_semantic_candidate_budget_transformer/tests/test_model.py": "a1d77142112e366af47099bf3cff6404be6bfd88e0c5ba4c1f96c85519025168"
+  },
+  "status": "frozen_before_c59_label_read_or_real_ranking_outcome",
+  "unit_tests": {
+    "command": "/data/gkl/conda_envs/myrec-c38/bin/python -m pytest -q systems/59_exact_semantic_candidate_budget_transformer/tests",
+    "passed": 8
+  },
+  "unopened": [
+    "c59_fit_train_labels",
+    "c59_fit_holdout_labels",
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

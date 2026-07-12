@@ -1,0 +1,57 @@
+{
+  "candidate_id": "c27",
+  "candidate_name": "evidence_contest_margin_transformer",
+  "status": "failed_A0_terminal",
+  "decision": "close_uniform_all_pair_contest_without_internal_A_access",
+  "selection_sha256": "7ef3bf2276db37d39bff0a15c2802334b7d64b04d87f4e8d19e2330516723350",
+  "proposal_lock_sha256": "bd538df6081d65937342e303a1a29303599471f64f88044bae31dac4af09d6cb",
+  "execution_lock_sha256": "5add229dcf8034492876cd2376fc0edf4a354bca30311a2b562ebc68e4ceecae",
+  "raw_report_sha256": "51b67b8245bac6018e2c36760ea77d8163d60c81cabf641d9ebefc7d0dd51492",
+  "run": {
+    "physical_gpu": 3,
+    "seeds": [20260765, 20260766, 20260767],
+    "modes": ["evidence_contest", "generic_contest", "candidate_contest", "additive_node"],
+    "trainable_parameters_per_mode": 139648,
+    "total_parameters_including_frozen_embeddings": 10957184,
+    "epochs": 2,
+    "elapsed_seconds": 611.3278825590387
+  },
+  "A0": {
+    "passed_checks": 17,
+    "total_checks": 18,
+    "order_change_vs_d2p": {"count": 253, "requests": 600, "fraction": 0.4216666666666667},
+    "top10_change_vs_d2p": {"count": 33, "requests": 600, "fraction": 0.055},
+    "wrong_history_order_change_fraction_by_seed": {
+      "20260765": 0.12333333333333334,
+      "20260766": 0.14333333333333334,
+      "20260767": 0.22166666666666668
+    },
+    "wrong_history_top10_change_fraction_by_seed": {
+      "20260765": 0.0033333333333333335,
+      "20260766": 0.0016666666666666668,
+      "20260767": 0.011666666666666667
+    },
+    "wrong_history_correction_change_fraction_by_seed": {
+      "20260765": 1.0,
+      "20260766": 1.0,
+      "20260767": 1.0
+    },
+    "pair_complement_max_abs_difference": 0.00000011920928955078125,
+    "pair_diagonal_max_abs_difference": 0.0,
+    "candidate_permutation_max_abs_difference": 0.0000008344650268554688,
+    "deterministic_max_abs_difference": 0.0,
+    "neutral_order_change_count": 0,
+    "failed_checks": ["wrong_changes_top10"]
+  },
+  "label_barrier": {
+    "fit_labels_opened": true,
+    "internal_A_labels_opened": false,
+    "delayed_B_labels_opened": false,
+    "escrow_opened": false,
+    "dev_opened": false,
+    "test_opened": false,
+    "utility_metric_computed": false
+  },
+  "conclusion": "Antisymmetric pairwise contest readout solved whole-order and aggregate top-10 activity, but uniform all-pair aggregation did not make wrong-history top-10 changes stable in every seed.",
+  "next_action": "Do not rerun or relax the near-miss threshold. Test a new margin-local contest primitive on an outcome-untouched role, with uniform C27 aggregation as a matched control and no hard-coded top-k boundary."
+}

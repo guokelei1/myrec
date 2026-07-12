@@ -1,0 +1,32 @@
+{
+  "authority_sha256": {
+    "reports/pps_c74_pretrained_lm_probe_a0.json": "0a7a526471138d0bddab5dca2f092a57e131efd152f5e11677d7b9d49f8f455d",
+    "reports/pps_c74_semantic_conservative_query_relay_design_gate.json": "2ff70fcdd8b4ae7db0051938cbc1af721d62615e170dd2379851334852448774",
+    "systems/74_semantic_conservative_query_relay_transformer/model/adaptive_semantic_relay.py": "70ea5d1b011944fc2d99c664d88d03063c536c8ded201348370300a45002845d",
+    "systems/74_semantic_conservative_query_relay_transformer/train/data_bridge.py": "e56d30bd17b15f4ffbf43574b5d2639eebad9dfb11b2d6a2c32c271bc941b9ee"
+  },
+  "candidate_id": "c75",
+  "created_at": "2026-07-12T12:22:49.027055+00:00",
+  "decision": "authorize_one_label_free_G0",
+  "outcome_boundary": {
+    "fit_labels_opened": false,
+    "fresh_dev_test_qrels_opened": false,
+    "validation_labels_opened": false
+  },
+  "source_sha256": {
+    "systems/75_frozen_semantic_query_relay_transformer/README.md": "aae30b1ccaf1772ec769b335acf397e29fd8f786437b5e45837021e154e84af8",
+    "systems/75_frozen_semantic_query_relay_transformer/configs/kuai_probe.yaml": "06d0f2fa7eea272e8216b47ac053cc47c02987116b156b0ef2691534870c030a",
+    "systems/75_frozen_semantic_query_relay_transformer/execution/freeze_g0_lock.py": "b93000d805d0afa79d01209cb6b29eb1c95eac4ba0bfe0c70b72db9bdb750125",
+    "systems/75_frozen_semantic_query_relay_transformer/execution/locking.py": "e817af41da1bd9a111edf3481bdc49ad00d5c4c34a7d738db7dfa661485a86ca",
+    "systems/75_frozen_semantic_query_relay_transformer/execution/run_g0.py": "941f82e172876d50f093bcdab3a36de728daf2d97daaca1bee2ac7dcde5b49e3",
+    "systems/75_frozen_semantic_query_relay_transformer/model/frozen_semantic_relay.py": "fe0f2abd2b6d238634c6855fa7c182b53db50e86ef96675cbf80a5b35873acbc",
+    "systems/75_frozen_semantic_query_relay_transformer/notes/mechanism_fingerprint.md": "aa27f81cf1c417110f58ba5351eaf5863f387eb6f05dcbd91c781a82a56b6de0",
+    "systems/75_frozen_semantic_query_relay_transformer/notes/nearest_neighbors.md": "4f1642c2b1d2f08f5ad6400cb066de9b1d0c20b9d3b521ae4d7e9c20c8fa23b8",
+    "systems/75_frozen_semantic_query_relay_transformer/notes/preimplementation_review.md": "8e4f83e23df1c3ddd2704b6cf6a3a23318ddd6a2671998711493400ffb63bffe",
+    "systems/75_frozen_semantic_query_relay_transformer/notes/proposal.md": "fddb78d6a8c644ffa18ad1fd37d4843ff34e6620066e89af13861a44b156f05d",
+    "systems/75_frozen_semantic_query_relay_transformer/notes/train_gate_protocol.md": "0af7f28c8dfc30e4ae5ec40be2c2e12bb9cd7577247be8cf69c18e7ca025ab7f",
+    "systems/75_frozen_semantic_query_relay_transformer/tests/test_model.py": "efde7557dad10296f0bbd7ed7b60353a77f29adda8b95f450ba2df6d3a35761e",
+    "systems/75_frozen_semantic_query_relay_transformer/tests/test_protocol.py": "596f6682274035bf13c99990871fb5c9afe2d1c5bb4d1563f1f1c9b5cd2482a6",
+    "systems/75_frozen_semantic_query_relay_transformer/train/data_bridge.py": "a3e76f03d19e5dac1dfd8fdd0ffede3bae7261606fc85a41071f52d2bca7e5d4"
+  }
+}

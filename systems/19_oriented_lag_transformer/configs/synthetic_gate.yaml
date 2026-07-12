@@ -1,0 +1,53 @@
+candidate_id: c19
+gate_id: g1_oriented_lag_synthetic_v1
+physical_gpu: 3
+device: cuda:0
+seeds: [20260721, 20260722, 20260723]
+data:
+  train_requests: 4096
+  eval_requests: 1536
+  candidates: 8
+  history_slots: 8
+  input_dim: 16
+  semantic_items: 8
+  strata_weights: [0.25, 0.375, 0.375]
+model:
+  d_model: 32
+  nhead: 4
+  layers: 2
+  ffn_dim: 64
+  dropout: 0.0
+  affinity_dim: 16
+  temperature: 0.35
+  identity_bias: 3.0
+  evidence_scale: 2.0
+  lag_scale_max: 1.0
+training:
+  steps: 500
+  batch_size: 128
+  learning_rate: 0.003
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+thresholds:
+  repeat_accuracy_min: 0.98
+  supported_accuracy_min: 0.85
+  supported_gain_over_base_min: 0.30
+  structured_control_advantage_min: 0.03
+  worst_subset_advantage_min: 0.03
+  free_signed_noninferiority: 0.01
+  margin_advantage_over_forward_min: 0.15
+  corruption_retention_max: 0.25
+  reverse_correlation_max: -0.80
+  reverse_retention_max: 0.10
+  load_bearing_fraction_min: 0.30
+  load_bearing_delta_range: 0.05
+  candidate_permutation_error_max: 0.00001
+attempts:
+  learned_runs: 1
+  post_lock_repairs: 0
+access:
+  repository_data: false
+  standardized_records: false
+  labels: synthetic_only
+  dev_evaluator_calls: 0
+  test_access: false

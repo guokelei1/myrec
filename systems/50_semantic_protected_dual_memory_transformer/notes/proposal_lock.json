@@ -1,0 +1,52 @@
+{
+  "c49_proposal_lock_sha256": "5cb6210adafc1cb512ec82f0c04717cd2899ed2dd91234d58f6adbbf5b67f9b8",
+  "candidate_id": "c50",
+  "created_at": "2026-07-12T03:08:13.418986+00:00",
+  "declarations": {
+    "C47_A_already_exposed": true,
+    "C50_scores_opened": false,
+    "dev_test_qrels_opened": false,
+    "fresh_reserve_opened": false,
+    "optimizer_steps_authorized": 0
+  },
+  "external_inputs_sha256": {
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/a0_report.json": "b8e44a0b289f6a6ff748254865c9c38e796b5a38aad48563576ac49bf557bd31",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263311_report.json": "d6e3a68c284e2098267fbc987deba644033cf1afd0aabaf6c5da046ab986266d",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263311_scores.npz": "ba953d77bfa8cbd527311eb148963c7955af25f94b0bd1de8f4149b64ea31929",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263312_report.json": "ffb3f1433e54b961f4e2d52fe12e64c57b5a753e7357c5f544d8a401fb41b19e",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263312_scores.npz": "4b1dbba87cd74ec57a3bb5d4e52b1bb8df71e2da22ed3b0a9b3e4fed59e7eb52",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263313_report.json": "27c7dc4abbf9422cc74e0eeed7e44a88034b4cda22fc0dc26dc1304f52509896",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263313_scores.npz": "fa1486454667c9a624fe874830712764b5bc2c50ab8a8b8fd57fc4f56c888952",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263301_report.json": "0d93510a49510a3e7f9300327c73fee254d3b2f8d73df2e76815aab79a105f39",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263301_scores.npz": "ad48247e248d7c536160f32a0a72141d2c1ecea1604c6b6726e1f86827dc309e",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263302_report.json": "95ec0fedf7259716267e5b432fa7f739af9ad3e24ee261b92b2d566f6850dba2",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263302_scores.npz": "da638a54b2decc8d355e5325cf2459aa4dc4a6d268eb9c75f4b2498d1ea7a15a",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263303_report.json": "aad1beb98c0321c2bc41c82d5811b75afe4b0df3b4547ed0f23dbe487e70ce4a",
+    "artifacts/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263303_scores.npz": "9705ae8ec79cea54209059d48a4fa18db7814421a4daf1cac0cc84bb1dc88297",
+    "models/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263311.pt": "c95c36201ecadde3d859d35e6ed1907d0e221add8242a34bccae518edc822bc3",
+    "models/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263312.pt": "7557c7b4de810812dfe835983a77001c6c661117f8504d7de0464bca7938c651",
+    "models/c49_prequential_innovation_memory_transformer/learnability_v1/amazon_seed_20263313.pt": "ec92feb76cca2c4e72e3871e5ac9b624d4e237f391547ba1227a81b98f7ba4fc",
+    "models/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263301.pt": "22aa65ed85033a87565ff7956c2c505eef3da6e528782d8f745b07e66b66ec9a",
+    "models/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263302.pt": "348928efed303ec0a879c23e2a3e0241ed70c423b2ee82b425a6b722afb8839c",
+    "models/c49_prequential_innovation_memory_transformer/learnability_v1/kuai_seed_20263303.pt": "0a56b8efe9ff13dba350d4f3027bdc856d0fc1b18a5680653a62b7f65d04dab9",
+    "reports/pps_c49_learnability_gate.json": "202a3d8f490628d5edbba98f14f11cbf1d933b5dfd84ac47b2bd1f5ace0b4f1e",
+    "systems/49_prequential_innovation_memory_transformer/configs/learnability_gate.yaml": "700c51d0ddd9ef3bb4d8935ed5fd6a5f5fa72e9366859a1fbe2d0a388267d74b",
+    "systems/49_prequential_innovation_memory_transformer/notes/proposal_lock.json": "5cb6210adafc1cb512ec82f0c04717cd2899ed2dd91234d58f6adbbf5b67f9b8"
+  },
+  "local_files_sha256": {
+    "systems/50_semantic_protected_dual_memory_transformer/README.md": "df0e0b1b9a0f77b20cac427c773968418b3ffa5634f532947c592474281ab307",
+    "systems/50_semantic_protected_dual_memory_transformer/configs/formulation_gate.yaml": "986074b97dbf33f1efd91e44960498785644f2f1bdbc2e79e16c5e1b1c2dabd6",
+    "systems/50_semantic_protected_dual_memory_transformer/model/__init__.py": "fa1e3be513703574930ac14a3a744eb01529803c015d78d664abc678571689d1",
+    "systems/50_semantic_protected_dual_memory_transformer/model/dual_memory.py": "bebda4346bd4b84c187afe989fa5a38353feaaa0c0f7e4e380612e9f4b65d80c",
+    "systems/50_semantic_protected_dual_memory_transformer/notes/nearest_neighbors.md": "0ea15eabcd2d6fb9bdfa067f1ecfc6707fa5140c10f99bdcf542995731528f69",
+    "systems/50_semantic_protected_dual_memory_transformer/notes/proposal.md": "164fc5005735ef786518e3512712f4cf65fff82a3f6b2dc4f2aa6405459620fc",
+    "systems/50_semantic_protected_dual_memory_transformer/notes/reduction_audit.md": "963d3689316b23198197f49363493371acbe05da3c08f1c5109fdc31be124cc0",
+    "systems/50_semantic_protected_dual_memory_transformer/probe/__init__.py": "8cf7c19158aa499afd09bfe02cae898f82e3d01f55c330fac1334560094a6942",
+    "systems/50_semantic_protected_dual_memory_transformer/probe/freeze_protocol.py": "6d7ff308da1700bb749599a17beb85747fbf189024bbdce0041d55e75f5c81f4",
+    "systems/50_semantic_protected_dual_memory_transformer/probe/run_formulation_gate.py": "a05c2b43c95fe30498c171d798fc08741af3c03861149c34168ef32b5a6391e0",
+    "systems/50_semantic_protected_dual_memory_transformer/tests/test_dual_memory.py": "91466fa88e78d02648a2cf4cea6d8fa5923fe89a386feb9449700529ae6f2bc5",
+    "systems/50_semantic_protected_dual_memory_transformer/tests/test_runner.py": "d4a572af24c82dfbd84a13ffb03f429780f0476dc96bc6c9243ecbf3fc403f4f"
+  },
+  "status": "locked_before_C50_dual_memory_scores",
+  "test_stdout": ".....                                                                    [100%]\n=============================== warnings summary ===============================\n<frozen importlib._bootstrap>:241\n  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\n\n<frozen importlib._bootstrap>:241\n  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n5 passed, 2 warnings in 4.14s"
+}

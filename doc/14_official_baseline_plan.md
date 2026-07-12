@@ -6,19 +6,19 @@ doc 13（baseline 实现计划）、`reports/pps_batch2_decision_summary.md`。
 2026-07-10 审计注：本计划的官方 baseline 身份、预算和结果仍有效；其中所有
 "M3 +28% headroom" motivation 条款已被
 `reports/pps_m3_m4_random_canary_audit.json` 暂停，不再是可辩护结论。
-当前设计动机改由 C3-R/C5-R 的 aggregate complementarity 与 matched-history
-identity control 提供；本计划中的 baseline 结果继续作为静态 waterline 对照。
+该阶段曾以 C3-R/C5-R aggregate complementarity 与 matched-history identity
+control 替代 oracle；identity 解释后来被 C5-R2/C5-R3 收窄。当前 motivation
+只依赖下述 exact-recurrence 与不可靠 transfer 的有限对照；本计划中的 baseline
+结果继续作为静态 waterline 对照。
 后续 `doc/18`--`doc/21` 将完整静态水线强化为 D2s 0.3416；D2h 0.3352
 是遗漏 popularity 的有效中间对照。下文 B7=0.3305 与 M3 headroom 仅保留
 预注册/历史语义，不是当前系统门槛。
 
-2026-07-10 C5-R3 终局更新：`doc/23` 的固定 component ablation 又将当前
-静态水线更新为 item-only D2s mean 0.3453755。category-only 0/3 显著，full
-D2s 3/3 显著弱于 item-only，primary/fallback 均失败。官方 baseline 数字继续
-有效；它们不能验证 C5-R3 已失败的两个 primitive，却与 component audit 一起
-暴露“代表性系统未可靠利用超出 exact recurrence 的历史证据”这一有限缺口。
-该缺口允许 architecture/protocol formulation，正式实现/训练仍须通过新的
-design-specific gate。下文所有 B7/D2s “binding”措辞均为历史水线。
+Current supersession（2026-07-13）：官方 baseline 身份、预算、结果和 item-only
+0.3453755 静态水线继续有效。C01--C80 已关闭，没有 validated proposed
+architecture；`doc/24` 的四路规则不再授权执行。当前应把 ordinary full-token joint
+Transformer 作为正常调优的 strong baseline，并按 `doc/31` 先形成 Failure Card。
+本计划只提供 baseline/control 和 nearest-neighbor context，不直接授权 architecture。
 
 ## 0. 为什么有这个批次
 
@@ -60,7 +60,8 @@ doc 13 §2.5 预算在 Batch 2 开跑前已冻结，因此 Batch 2b 需要一次
    - 外部验证 run（§3–§5 中在 RecBole 自带数据集、官方 KuaiSearch 格式数据、
      Amazon PPS 基准上跑的对齐性检查）**不读本项目 dev split，不计入
      dev 评测预算**，但每次都要在对应 baseline card 登记；
-   - 提议系统未来仍执行同等 16 次预算（07 §9 对称性不变）。
+   - ordinary full-token strong baseline 使用同等 16 次预算；future Hxx 只有通过
+     doc/31 Failure Card 后才可登记同等预算（07 §9 对称性不变）。
 2. 修订文档 commit 后，才允许产生第一次 Batch 2b dev 评测。
 3. `experiments/pps_baseline_cards.md` 新增 B4o/B5o/B6o 三张 card
    （状态 = in progress），沿用 doc 13 §5 模板。

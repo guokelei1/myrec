@@ -1,0 +1,36 @@
+{
+  "candidate_id": "c62",
+  "created_at": "2026-07-12T15:28:24+08:00",
+  "decision": "authorize_synthetic_G0_only",
+  "design_sha256": {
+    "architecture_coverage_audit": "922c42a2175b2ca56908f48f34ce201fd816ca35521278aaff8d1b8595fcf60e",
+    "config": "5872ae8fd143447abaa8e59970c8fd9265fc72ceda2058689450d1162ec9b2f3",
+    "nearest_neighbors": "3fa537eef68b3d18ecae7bafce5d8074f10eb965482c7276568f1672e67a01f3",
+    "preimplementation_review": "581793189eaa90b658e3c470315711b149b16a6032589417815e1e860287360a",
+    "proposal": "c06f753901176f841fc8b1ce9a6a38fbf34d62a179b3719990c1dc26543a97ca",
+    "readme": "05b41a711ccdf78ce436e7accd57be27b51808587891536c12844f68bb0cad1f"
+  },
+  "predecessor_sha256": {
+    "c60_report": "45e85db975610555c8247f9c1f2fe0790e9ef57f3c3ea2c037adec3a0cad6c7d",
+    "c61_report": "fb1db9964f0118bb498b8d0dd75ce1f661afc1cc18458805ada069c904fb49f6"
+  },
+  "selection_sha256": {
+    "c26": "db5541aa096118833296f8ef0079ee648889b6f1ccdd0b61a527232f93e7d239",
+    "c38": "d8aa9ae89e20d1175806fcbde7ded1b6913a3bb9cffd6ec9120afd307fa8511a",
+    "c39": "6b78e14eafe17752fdd16d4216dd138377e0ca8a221a304d0dc1b5f35bf85d4c"
+  },
+  "mechanism_fingerprint": {
+    "candidate_state": "history_only_multi_slot_memory",
+    "intervention_position": "two_phase_transformer_state_lifecycle",
+    "read_graph": "immutable_memory_to_query_candidate_tokens",
+    "ranking_core": "candidate_set_transformer",
+    "write_graph": "history_tokens_to_latent_slots_without_query_or_candidates"
+  },
+  "outcome_boundary": {
+    "amazon_c39_reserve_features_scores_labels_opened": false,
+    "c26_internal_A_labels_opened": false,
+    "dev_test_qrels_opened": false,
+    "exposed_fit_labels_authorized_before_G0": false,
+    "fresh_labels_authorized_before_label_free_A0": false
+  }
+}

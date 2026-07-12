@@ -1,0 +1,543 @@
+{
+  "candidate_id": "c51",
+  "claims": {
+    "dev_test_result": false,
+    "exposed_formulation_only": true,
+    "fresh_result": false,
+    "trained_result": false
+  },
+  "created_at": "2026-07-12T03:16:08.814062+00:00",
+  "decision": "close_C51_before_training_or_fresh_reserve",
+  "domains": {
+    "amazon": {
+      "checks": {
+        "base_all_folds_positive": false,
+        "base_ci": false,
+        "base_effect": false,
+        "candidate_hash": true,
+        "candidate_permutation": true,
+        "clicked_direction_ci": true,
+        "clicked_specificity_ci": true,
+        "deterministic": true,
+        "finite": true,
+        "history_permutation": true,
+        "nohistory_covariance_zero": true,
+        "pearson_all_folds_positive": false,
+        "pearson_ci": false,
+        "pearson_effect": true,
+        "plain_krr_all_folds_positive": false,
+        "plain_krr_ci": false,
+        "plain_krr_effect": false,
+        "posterior_all_folds_positive": false,
+        "posterior_ci": false,
+        "posterior_effect": false,
+        "softmax_all_folds_positive": false,
+        "softmax_ci": false,
+        "softmax_effect": false,
+        "uncentered_all_folds_positive": false,
+        "uncentered_ci": false,
+        "uncentered_effect": false,
+        "usable_surface": true,
+        "wrong_all_folds_positive": true,
+        "wrong_ci": false,
+        "wrong_effect": true
+      },
+      "clicked_direction": {
+        "mean": 0.0010079001966126573,
+        "percentile_95_ci": [
+          0.0008380672394062761,
+          0.0011950955757371654
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263540
+      },
+      "clicked_true_minus_wrong": {
+        "mean": 0.0006278719422941018,
+        "percentile_95_ci": [
+          0.0004541531338497104,
+          0.0008124376674683541
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263541
+      },
+      "comparisons": {
+        "base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.002317815435580449,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.0022466084231800468,
+              "requests": 106
+            }
+          ],
+          "mean": 0.0015509546851465632,
+          "percentile_95_ci": [
+            -0.0013911658536419754,
+            0.005403488721835664
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263520
+        },
+        "pearson": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.06780715783509651,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.014494463994055067,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.000182546037221613,
+              "requests": 106
+            }
+          ],
+          "mean": 0.016898932669354598,
+          "percentile_95_ci": [
+            -0.008333283420394895,
+            0.04330305183921667
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263522
+        },
+        "plain_krr": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.012717909175436942,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.016841513822084448,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.012963227211398651,
+              "requests": 106
+            }
+          ],
+          "mean": -0.014151632399381598,
+          "percentile_95_ci": [
+            -0.03145756858676411,
+            0.002532609156183843
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263523
+        },
+        "posterior": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.023939917920062493,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.028256220020374027,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.01516061258445441,
+              "requests": 106
+            }
+          ],
+          "mean": -0.022247888720916074,
+          "percentile_95_ci": [
+            -0.044656623809041306,
+            -0.0006349712634407147
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263524
+        },
+        "softmax": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.02327087736966785,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.024233791930973667,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.019164718074665642,
+              "requests": 106
+            }
+          ],
+          "mean": -0.02213458650879364,
+          "percentile_95_ci": [
+            -0.0434755081815269,
+            -0.002259616768042666
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263525
+        },
+        "uncentered": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.007173997349176962,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.014523900607893846,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.006218498686710065,
+              "requests": 106
+            }
+          ],
+          "mean": 0.0002515921775378077,
+          "percentile_95_ci": [
+            -0.012245837280549253,
+            0.012744462015396897
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263521
+        },
+        "wrong": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0001372721949201248,
+              "requests": 96
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.00173571675604616,
+              "requests": 98
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.004996934254251199,
+              "requests": 106
+            }
+          ],
+          "mean": 0.002376511345851609,
+          "percentile_95_ci": [
+            -0.0010021231571186342,
+            0.006621279750196706
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263526
+        }
+      },
+      "diagnostics": {
+        "candidate_permutation_max_abs": 1.862645149230957e-09,
+        "deterministic_max_abs": 0.0,
+        "history_permutation_max_abs": 4.6566128730773926e-09
+      },
+      "mean_ndcg10": {
+        "base": 0.2532023496589781,
+        "pearson": 0.23785437167477005,
+        "plain_krr": 0.2689049367435063,
+        "posterior": 0.27700119306504073,
+        "primary": 0.25475330434412463,
+        "softmax": 0.2768878908529183,
+        "uncentered": 0.25450171216658685,
+        "wrong": 0.25237679299827304
+      },
+      "requests": 300,
+      "status": "failed",
+      "usable_requests": 299
+    },
+    "kuai": {
+      "checks": {
+        "base_all_folds_positive": true,
+        "base_ci": true,
+        "base_effect": true,
+        "candidate_hash": true,
+        "candidate_permutation": true,
+        "clicked_direction_ci": false,
+        "clicked_specificity_ci": false,
+        "deterministic": true,
+        "finite": true,
+        "history_permutation": true,
+        "nohistory_covariance_zero": true,
+        "pearson_all_folds_positive": false,
+        "pearson_ci": false,
+        "pearson_effect": true,
+        "plain_krr_all_folds_positive": false,
+        "plain_krr_ci": false,
+        "plain_krr_effect": false,
+        "posterior_all_folds_positive": false,
+        "posterior_ci": false,
+        "posterior_effect": false,
+        "softmax_all_folds_positive": false,
+        "softmax_ci": false,
+        "softmax_effect": false,
+        "uncentered_all_folds_positive": false,
+        "uncentered_ci": false,
+        "uncentered_effect": false,
+        "usable_surface": true,
+        "wrong_all_folds_positive": true,
+        "wrong_ci": true,
+        "wrong_effect": false
+      },
+      "clicked_direction": {
+        "mean": 0.00016070629220924578,
+        "percentile_95_ci": [
+          -2.7191140400153317e-05,
+          0.0003576774400037266
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263540
+      },
+      "clicked_true_minus_wrong": {
+        "mean": 0.000161914736203528,
+        "percentile_95_ci": [
+          -3.988728554521968e-05,
+          0.0003649981830285824
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263541
+      },
+      "comparisons": {
+        "base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.002133396688377356,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.005168394962655007,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.0003457680445551627,
+              "requests": 173
+            }
+          ],
+          "mean": 0.0026751548282820054,
+          "percentile_95_ci": [
+            0.000908179899102279,
+            0.004887776595603717
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263520
+        },
+        "pearson": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.010660567960802446,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.001892598047225007,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.020587335881598525,
+              "requests": 173
+            }
+          ],
+          "mean": 0.0027219304732193964,
+          "percentile_95_ci": [
+            -0.008784972484002968,
+            0.01416307623154483
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263522
+        },
+        "plain_krr": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.007246362442753102,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.009556454238027015,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.0022712078443876587,
+              "requests": 173
+            }
+          ],
+          "mean": -0.006616541508911478,
+          "percentile_95_ci": [
+            -0.014600471456015856,
+            0.0012848924348062025
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263523
+        },
+        "posterior": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.007280515728889561,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.002960821181172621,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.00023967357088480696,
+              "requests": 173
+            }
+          ],
+          "mean": -0.0037457126392101236,
+          "percentile_95_ci": [
+            -0.011070033180678793,
+            0.0035355313216547815
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263524
+        },
+        "softmax": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.016104128935955028,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.004126108823520967,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.013410508575169493,
+              "requests": 173
+            }
+          ],
+          "mean": -0.0034217314477495925,
+          "percentile_95_ci": [
+            -0.016790138402644844,
+            0.00936819625890546
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263525
+        },
+        "uncentered": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.006246640317850783,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.004051120864231727,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.00038829191247264527,
+              "requests": 173
+            }
+          ],
+          "mean": -0.003792710584622782,
+          "percentile_95_ci": [
+            -0.01201108064167944,
+            0.0044808617149705585
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263521
+        },
+        "wrong": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0006843019759359402,
+              "requests": 218
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.003373907482950629,
+              "requests": 209
+            },
+            {
+              "fold": 2,
+              "mean_difference": 7.132078476300839e-05,
+              "requests": 173
+            }
+          ],
+          "mean": 0.0014444383174245282,
+          "percentile_95_ci": [
+            1.2763146414897435e-05,
+            0.0030831576505119017
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263526
+        }
+      },
+      "diagnostics": {
+        "candidate_permutation_max_abs": 7.450580596923828e-09,
+        "deterministic_max_abs": 0.0,
+        "history_permutation_max_abs": 1.4901161193847656e-08
+      },
+      "mean_ndcg10": {
+        "base": 0.30087024014165054,
+        "pearson": 0.3008234644967132,
+        "plain_krr": 0.31016193647884405,
+        "posterior": 0.3072911076091427,
+        "primary": 0.30354539496993255,
+        "softmax": 0.30696712641768215,
+        "uncentered": 0.3073381055545553,
+        "wrong": 0.302100956652508
+      },
+      "requests": 600,
+      "status": "failed",
+      "usable_requests": 463
+    }
+  },
+  "fresh_reserve_dev_test_qrels_opened": false,
+  "gate_id": "c51_affinity_covariance_formulation_v1",
+  "proposal_lock_sha256": "c7a8c9cec85df58dc6288cfbababb82bf35da0e7a0d8c3ff3023bdb183c3ee0c",
+  "status": "failed_formulation_terminal"
+}

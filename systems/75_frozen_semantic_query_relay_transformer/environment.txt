@@ -1,0 +1,6 @@
+python=/usr/local/bin/python
+torch=2.12.1+cu130
+cuda=13.0
+gpu=NVIDIA A40
+transformers=5.13.0
+execution=local-offline

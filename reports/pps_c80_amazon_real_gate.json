@@ -1,0 +1,85 @@
+{
+  "candidate_id": "c80",
+  "created_at": "2026-07-12T16:11:07Z",
+  "decision": "close_c80_before_fresh_labels_and_end_architecture_search",
+  "execution_lock_sha256": "f9ee4e819207ec751b1e39441b34a2dcc16893db73139d1a4b8fe95902a566b7",
+  "fresh_candidate_rows": 36790,
+  "fresh_requests": 365,
+  "fresh_users": 365,
+  "gate": {
+    "all_backbone_and_head_gradients": true,
+    "all_candidate_permutation_checks": true,
+    "all_deterministic_checks": true,
+    "all_five_mode_loss_trends_decreased": true,
+    "all_frozen_anchor_checks": true,
+    "all_nohistory_exact_checks": true,
+    "all_seed_score_surfaces_complete": true,
+    "equal_trainable_parameters": true,
+    "fresh_labels_remained_closed": true,
+    "primary_event_permutation_within_2e_6": false,
+    "three_registered_seeds_complete": true
+  },
+  "label_boundary": {
+    "dev_test_qrels_opened": false,
+    "fit_labels_reused_after_execution_lock": true,
+    "fresh_labels_opened": false,
+    "fresh_metrics_computed": false
+  },
+  "mechanical_outcome": {
+    "event_permutation_tolerance": 2e-06,
+    "primary_event_permutation_max_abs_by_seed": {
+      "20266001": 0.031868696212768555,
+      "20266002": 0.06841731071472168,
+      "20266003": 0.03937172889709473
+    },
+    "registered_bfloat16_all_seeds_failed": true,
+    "unregistered_post_terminal_numeric_diagnostic": {
+      "candidate_id": "c80",
+      "classification": "diagnostic_only_not_a_rescue",
+      "first_request_candidate_token_multiset_mismatches": 0,
+      "first_request_candidates": 101,
+      "first_request_max_length_rows": 0,
+      "float32_max_abs_seed_20266001": 3.337860107421875e-06,
+      "float32_mean_abs_seed_20266001": 6.586018344023614e-07,
+      "interpretation": "The event-set construction is algebraically equivariant on the checked input, but finite-precision Transformer reductions do not satisfy the preregistered numerical contract. Float32 remains above the frozen tolerance and cannot authorize label opening."
+    }
+  },
+  "passed": false,
+  "raw_seed_reports": {
+    "20266001": {
+      "path": "artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/seed_20266001_report.json",
+      "sha256": "1bd91e1c07fad035c7bdd8f4eb4203d5429b8e07775af68fdafcceebc467dc08"
+    },
+    "20266002": {
+      "path": "artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/seed_20266002_report.json",
+      "sha256": "e428dc13da473f226860ec5c0349dd1c41619594f689855aa2722654851a56af"
+    },
+    "20266003": {
+      "path": "artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/seed_20266003_report.json",
+      "sha256": "e9f90eea14528eb6a32ed57ad7330a137fcf51347b059c1b790fbe52aa3a617c"
+    }
+  },
+  "score_surfaces": {
+    "20266001": {
+      "path": "artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/seed_20266001_scores.npz",
+      "sha256": "4ff511afba629cfaf64e2cee68d786cbd650bf2e7e7f2157806689a23c0521ed"
+    },
+    "20266002": {
+      "path": "artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/seed_20266002_scores.npz",
+      "sha256": "eee2387913df427974922afd73a51d1e83040c305a3b52efbbe3799e743f8095"
+    },
+    "20266003": {
+      "path": "artifacts/c80_permutation_invariant_triadic_token_transformer/amazon_fresh_v1/seed_20266003_scores.npz",
+      "sha256": "26427799e3ffb4f6688d701df7f08ede9c8ad13ac0b4ef3c4eb287db3b3f5e9d"
+    }
+  },
+  "stage": "terminal_prelabel_mechanical_gate",
+  "terminal_search_boundary": {
+    "architecture_search_ended": true,
+    "c01_c80_retrospective_required": true,
+    "c80_is_final_architecture": true,
+    "c81_authorized": false,
+    "mechanical_or_precision_rescue_authorized": false
+  },
+  "trainable_parameters_per_mode": 33360384
+}

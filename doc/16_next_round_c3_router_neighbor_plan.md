@@ -1,20 +1,28 @@
-# 16 - 下一轮执行计划：C3 补完 + 廉价 Router + 最近邻 Query-Conditioned Baseline
+# 16 - Historical C3/Router/Neighbor Execution Plan
 
-> **Current supersession / 当前解释（2026-07-10）.** 下文的
+> **Current supersession (2026-07-13).** 本文是历史计划，不能作为 next-round
+> 指令。C01--C80 已关闭；当前只执行
+> [`doc/31`](31_problem_discovery_and_architecture_iteration_protocol.md) 的 R0
+> strong-baseline 与 Failure Card discovery。
+
+> **Terminal supersession / 当前解释（2026-07-11）.** 下文的
 > benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
 > [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
 > 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
-> 为准：motivation complete，design formulation ready；implementation/training
-> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+>、[`terminal closure`](dev_log/20260711_architecture_exploration_terminal_closure.md)
+> 为准：motivation complete；后续 C01--C16 已关闭，未得到经过验证的架构
+> primitive，也未授权 proposed-system dev/full/test evaluation。C5-R3 FAIL
+> 及全部数字不变。本文其余
+> “当前”“终局”“开工”措辞均是 2026-07-09/早期 2026-07-10 的历史执行记录。
 
 状态：历史执行计划。Step 1–4 已执行；其 readiness 结论后来被
 `reports/pps_m3_m4_random_canary_audit.json` 暂停，不再是系统实现的开工授权。
 后续 `doc/17` 的 C3-R/C5-R matched-history 修复曾记录为通过，但其时间不对称
-解释已被 `doc/22` 的 C5-R2 supersede；C5-R2 未过 same-query gate，当前没有
-重新授权设计。这也不恢复本文的 M4/router 逻辑。
+解释已被 `doc/22` 的 C5-R2 supersede；C5-R2 未过 same-query gate，在该阶段
+没有重新授权设计。这也不恢复本文的 M4/router 逻辑。
 最终 `doc/23` C5-R3 又完成了 item/category component gate：item-only 成为
-0.3453755 静态水线，category-only 0/3 显著，primary/fallback 均失败。当前
-终局是 benchmark/analysis-only；本文不再提供任何下一步开工授权。
+0.3453755 静态水线，category-only 0/3 显著，primary/fallback 均失败。当时的
+gate-local 终局被记为 benchmark/analysis-only；本文本身不提供现阶段开工授权。
 日期：2026-07-09。
 
 后续强化说明（2026-07-10）：`doc/18`--`doc/21` 已完成 supervised

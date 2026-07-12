@@ -1,0 +1,137 @@
+candidate_id: c35
+gate_id: c35_candidate_relative_surplus_gate_v1
+status: pre_outcome_selection
+environment: /data/gkl/conda_envs/myrec-c35
+program_device: cuda:0
+run_id: 20260712_kuaisearch_c35_candidate_relative_surplus_gate_v1
+
+resources:
+  physical_gpus: [0, 1, 2]
+  g0_physical_gpu: 0
+
+paths:
+  candidate_source_root: systems/35_candidate_relative_tangent_surplus_transformer
+  proposal_lock: systems/35_candidate_relative_tangent_surplus_transformer/notes/proposal_lock.json
+  execution_lock: systems/35_candidate_relative_tangent_surplus_transformer/notes/execution_lock.json
+  selection: artifacts/c35_candidate_relative_tangent_surplus_transformer/train_gate_v1/selection.json
+  selection_sha256: 91a6a269f8f2f5026a2194d4b307d18f2282be7d0d323b7de4c34be2d13b527b
+  artifact_root: artifacts/c35_candidate_relative_tangent_surplus_transformer/train_gate_v1
+  checkpoint_root: models/c35_candidate_relative_tangent_surplus_transformer/train_gate_v1
+  c34_selection: artifacts/c34_candidate_tangent_cone_transformer/train_gate_v1/selection.json
+  c34_selection_sha256: d02d8f4ea48208d38eaf8d5ade5ca30b7263ba5598962288b6ebddc74a1d917e
+  c34_g0_report: artifacts/c34_candidate_tangent_cone_transformer/train_gate_v1/g0_report.json
+  c34_g0_report_sha256: da7c32d4d947c064de6180f465d51a19ad1767df51f002c4df17f29d9a19445e
+  c34_train_report: artifacts/c34_candidate_tangent_cone_transformer/train_gate_v1/train_gate_report.json
+  c34_train_report_sha256: bcd8068412c511977bc67044dba0c5c4eaf29ef307834db058f8d28eca73d96d
+  c33_selection: artifacts/c33_tangent_transport_confirmatory_comparison/train_gate_v1/selection.json
+  c33_selection_sha256: a4f5df884e24a07eb1e132fdf527e4a0cd23c322e1e2c185e09437b4b1b9ddc9
+  c32_selection: artifacts/c32_authenticated_tangent_query_transport_transformer/train_gate_v1/selection.json
+  c32_selection_sha256: db30d2ff22c8b2451c4c3920cb4b77cc2c2ef949cebe4011ea8347b1fec33b25
+  packed_train_root: artifacts/analysis/supervised_motivation_diagnostics/data/train
+  packed_train_parent: artifacts/analysis/supervised_motivation_diagnostics/data
+  packed_manifest: artifacts/analysis/supervised_motivation_diagnostics/data/manifest.json
+  packed_manifest_sha256: bb8e5984b8f41190193e9a84914aa369715bd3ab46261558836a6be11cb19d86
+  label_free_request_metadata: data/interim/kuaisearch/v0_lite/time_window_seed20260708/requests.jsonl
+  label_free_request_metadata_sha256: 1bc75b89e3050e7881351fc2784d626ad5f2711ec47519c0f5db42a7f8925cd0
+  label_free_request_manifest: data/interim/kuaisearch/v0_lite/time_window_seed20260708/manifest.json
+  label_free_request_manifest_sha256: 26316af08890a12cd597d3eab1fddac74cf106d8e89fdb04cb093b2d07927bdb
+  schema_incident_report: reports/pps_qrels_schema_inspection_incident.json
+  schema_incident_report_sha256: 9f0e6a4c9e51cbafd79b3f15ea468948e958b1916e88c18446bc404374cd968e
+  d2_config: configs/analysis/finetuned_nonpersonalized_control.yaml
+  query_tokens: artifacts/analysis/finetuned_nonpersonalized_control/tokens
+  query_token_manifest: artifacts/analysis/finetuned_nonpersonalized_control/tokens/manifest.json
+  query_token_manifest_sha256: 18e285a88388dabbad0c09273de086415250c0bcc6201f5cf34c35f45bf260f6
+  raw_item_embeddings: artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-zh-v1.5/snapshots/7999e1d3359715c523056ef9478215996d62a620
+  calibration_checkpoint: models/diagnostics/20260710_kuaisearch_d2t_calibrate_s20260708/model.pt
+  internal_train_popularity: artifacts/analysis/supervised_motivation_diagnostics/data/item_log_click_internal_train.npy
+  train_candidate_labels: artifacts/analysis/supervised_motivation_diagnostics/data/train/candidate_labels.npy
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  shared_metric_source: src/myrec/eval/metrics.py
+
+integrity:
+  calibration_checkpoint_sha256: 247f27e2cbeef90e3fa5a5f5c2b8488db26e1542aa1617cec19e4b8316373572
+  internal_train_popularity_sha256: d8fd4b618454d8797408bec9d2d219c3bf3059b34283db0816cf059a46ae8e7b
+  primary_dev_evaluator_calls_authorized: 0
+
+selection:
+  seed: 20260980
+  fit_requests: 10000
+  internal_A_requests: 600
+  delayed_B_requests: 600
+  escrow_requests: 600
+  structural_repeat_requests: 256
+  structural_nohistory_requests: 256
+  donor_length_bins: [1, 2, 3, 5, 10, 20, 50]
+  donor_time_quantiles: 10
+
+base:
+  d2p_alpha: 0.6
+  item_only_beta: 0.3
+  item_state_batch_size: 8192
+  max_requests_per_batch: 128
+
+model:
+  frozen_backbone: BAAI/bge-small-zh-v1.5
+  embedding_dim: 512
+  adapter_rank: 16
+  history_temperature: 0.1
+  max_authenticated_history: 8
+  profile_scale: 1.0
+  correction_scale: 2.0
+  modes:
+    - candidate_relative_surplus
+    - absolute_tangent_cone
+    - candidate_axis_softmax
+    - global_tangent_transport
+
+training:
+  seeds: [20260981, 20260982, 20260983]
+  epochs: 1
+  max_requests_per_batch: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  listwise_loss_weight: 1.0
+  direction_loss_weight: 1.0
+  candidate_sampling: false
+  attempts: 1
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20260981
+  hash_folds: 3
+
+gate:
+  ndcg10_delta_over_d2p_min: 0.001
+  ndcg10_delta_over_each_control_min: 0.0005
+  order_change_fraction_min: 0.05
+  top10_change_fraction_min: 0.01
+  wrong_order_change_fraction_min: 0.05
+  wrong_top10_change_fraction_min: 0.005
+  deterministic_max_abs_difference: 0.0
+  candidate_permutation_max_abs_difference: 0.000001
+  g0_internal_A_true_auth_nonempty_fraction_min: 0.50
+  g0_internal_A_true_minus_wrong_authenticity_min: 0.25
+  g0_internal_A_true_greater_wrong_fraction_min: 0.50
+  g0_internal_A_wrong_authenticity_mean_max: 0.05
+  surplus_minus_each_control_ndcg10_min: 0.0005
+  surplus_vs_each_control_order_change_fraction_min: 0.02
+  surplus_vs_each_control_top10_change_fraction_min: 0.005
+  relative_zero_support_candidate_fraction_min: 0.10
+  relative_mixed_request_fraction_min: 0.50
+
+authorization:
+  label_free_selection: true
+  unit_and_synthetic_resource_smoke: true
+  cohort_materialization_after_lock: true
+  fit_label_open_after_lock: true
+  primary_training_after_execution_lock: true
+  matched_control_training_after_execution_lock: true
+  internal_A_label_open_after_A0: true
+  delayed_B_only_after_A1: true
+  escrow: false
+  dev: false
+  test: false
+  full_training: false

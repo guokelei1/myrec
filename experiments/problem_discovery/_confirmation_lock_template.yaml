@@ -1,0 +1,44 @@
+schema_version: 1
+confirmation_id: H01-CONF01
+failure_id: F01
+hypothesis_id: H01
+status: draft
+lock_created_at: replace_me
+code:
+  git_commit: replace_me
+  git_dirty: false
+  source_sha256: replace_me
+data:
+  dataset_id: replace_me
+  dataset_version: replace_me
+  split_id: replace_me
+  candidate_manifest_sha256: replace_me
+  requests: null
+  users: null
+  power_analysis_path: replace_me
+model:
+  config_path: replace_me
+  config_sha256: replace_me
+  checkpoint_selection_rule: replace_me
+  seeds: []
+claims:
+  primary: replace_me
+  minimum_claimable_effect: null
+  controls: []
+statistics:
+  primary_metric: "ndcg@10"
+  unit: user_cluster
+  method: paired_bootstrap
+  samples: 10000
+numerics:
+  reference_dtype: float32
+  execution_dtype: replace_me
+  atol: null
+  rtol: null
+  rank_contract: replace_me
+label_boundary:
+  scoring_and_training_may_read_qrels: false
+  confirmation_labels_open_after_mechanics: true
+  test_opened: false
+stop_rule: replace_me
+post_outcome_changes_allowed: false

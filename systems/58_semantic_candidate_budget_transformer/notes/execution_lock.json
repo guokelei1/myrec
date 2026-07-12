@@ -1,0 +1,35 @@
+{
+  "candidate_id": "c58",
+  "created_at": "2026-07-12T14:06:39+08:00",
+  "gate_id": "c58_semantic_candidate_budget_v1",
+  "locked_files": {
+    "systems/58_semantic_candidate_budget_transformer/README.md": "c2cb1e7fdbef7776c47020e087aacedef502730ee79b5f5b27eb864df13b992e",
+    "systems/58_semantic_candidate_budget_transformer/configs/formulation_gate.yaml": "5c4196b04461b5d4b9848d386909110ceffb770932660393c21e4c99e6ceb90c",
+    "systems/58_semantic_candidate_budget_transformer/environment.txt": "a2dbd45ddaddc5d2c2e0bcab2128114f411a942d4ceb5d526ef0fb7cde47ee8b",
+    "systems/58_semantic_candidate_budget_transformer/execution/__init__.py": "4c1711e84e5e1c92f0bf0150999acccd06c09d698fc0d7b0cb82de6faaa16fbc",
+    "systems/58_semantic_candidate_budget_transformer/execution/locking.py": "ca8545879a6d1e8e4f6fce83d0b78cbf042418188163cada583348b5a81fa05e",
+    "systems/58_semantic_candidate_budget_transformer/execution/run_gate.py": "e6a3bc5e0fd2e5eef587165faad0b20d6261176283fcce374e56cf805f742174",
+    "systems/58_semantic_candidate_budget_transformer/model/__init__.py": "2c059590d5ce5bedc5c1f2f1e80cbe027e0f1e1beef1d07fc54a3fc3212ccf77",
+    "systems/58_semantic_candidate_budget_transformer/model/semantic_budget.py": "339c22b10a5595d1e9253ce11b4fb775498de758a0bb99c3a5304d777fa85069",
+    "systems/58_semantic_candidate_budget_transformer/notes/nearest_neighbors.md": "6abf3475f40cece1b7e3a32bca9cbbd897855d2fd04263b7b1ae958832c442c6",
+    "systems/58_semantic_candidate_budget_transformer/notes/proposal.md": "f36f228535be71349cef440eb694e17e61a2be82ae05a26790bf0d922402ca90",
+    "systems/58_semantic_candidate_budget_transformer/notes/proposal_lock.json": "c6ac7f6c73619b665d579a96d684164f26991d890bf019c08f4dcd6bce6ffd3e",
+    "systems/58_semantic_candidate_budget_transformer/tests/test_locking.py": "382a0089378642634d7ec877ab18b1041dd908ba94ff170451e7dee444e2e34b",
+    "systems/58_semantic_candidate_budget_transformer/tests/test_model.py": "d53017fbd944de22c0c7528f7467074cb7831c14b248606afe3c40c4e68d9233"
+  },
+  "status": "frozen_before_c58_label_read_or_real_ranking_outcome",
+  "unit_tests": {
+    "command": "/data/gkl/conda_envs/myrec-c38/bin/python -m pytest -q systems/58_semantic_candidate_budget_transformer/tests",
+    "passed": 7
+  },
+  "unopened": [
+    "c58_fit_train_labels",
+    "c58_fit_holdout_labels",
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

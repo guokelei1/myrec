@@ -1,11 +1,19 @@
 # Intro-to-Motivation Repository Audit
 
-> **Current supersession / 当前解释（2026-07-10）.** 下文的
+> **Current supersession (2026-07-13).** This is a historical audit. C01--C80
+> later closed without a validated architecture. Current work is R0 problem
+> discovery under [`doc/31`](../doc/31_problem_discovery_and_architecture_iteration_protocol.md);
+> no C81 or architecture training is authorized before a passed Failure Card.
+
+> **Terminal supersession / 当前解释（2026-07-11）.** 下文的
 > benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
 > [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
 > 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
-> 为准：motivation complete，design formulation ready；implementation/training
-> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+>、[`terminal closure`](../doc/dev_log/20260711_architecture_exploration_terminal_closure.md)
+> 为准：motivation complete；后续 C01--C16 已关闭，未得到经过验证的架构
+> primitive，也未授权 proposed-system dev/full/test evaluation。C5-R3 FAIL
+> 及全部数字不变。下文所有
+> `current` / `final` / Go-No-Go 标签均为该审计时点的历史快照。
 
 Date: 2026-07-10
 
@@ -13,7 +21,8 @@ Scope: review the KuaiSearch data/protocol, baseline evidence, motivation
 experiments, paper draft, and proposed-system design boundary. No large model was
 trained, no shared dev evaluator was invoked, and no test metric was computed.
 
-Final resolution addendum (C5-R3, current authority): `doc/23` froze an exact
+Historical resolution addendum (C5-R3 gate-local authority at that time):
+`doc/23` froze an exact
 B0b item/category decomposition and a finite primary/fallback ladder before
 component outcomes. Item-only beats D2p in all three seeds and reaches mean
 NDCG@10 0.3453755; category-only is nonsignificant in all seeds; full D2s is
@@ -32,11 +41,11 @@ positive motivation for a **query-anchored personalized residual**. See
 invalid. The Go/No-Go section below is the decision at audit time and is
 superseded by this addendum.
 
-Third resolution addendum (C5-R2): the preceding C3-R/C5-R authorization is
+Historical third resolution addendum (C5-R2 stage): the preceding C3-R/C5-R authorization is
 itself superseded. Its wrong histories were train-frozen while true histories
 rolled through dev. The frozen `doc/22` temporal repair passed integrity and
 aggregate comparisons but failed the same-query rule (1/3 significant seeds;
-2/3 required). Current status is no formal system authorization; see
+2/3 required). At that stage there was no formal system authorization; see
 `reports/pps_c5r2_temporal_symmetric_identity.json`.
 
 Second resolution addendum (later on 2026-07-10): the authorized D1/D2/D2h
@@ -58,7 +67,7 @@ significantly exceeds D2h by +0.0064, CI [+0.0037, +0.0090]. D2s was the binding
 baseline at that intermediate point; see `reports/pps_d2s_summary.json`. The D2h addendum above is
 retained as the chronological intermediate decision.
 
-## Executive Decision
+## Historical Executive Decision (at audit time)
 
 **The baseline data and registered model metrics are correct and usable. The
 current adaptive-personalization motivation is not yet usable.**
@@ -271,7 +280,7 @@ remain correctly ignored.
 - Updated repository README indexes and marked historical summaries as
   superseded where needed.
 
-## Current Go/No-Go
+## Historical Go/No-Go (at audit time)
 
 **Go** for baseline/data reporting and architecture brainstorming.
 

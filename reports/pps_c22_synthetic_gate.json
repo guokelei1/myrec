@@ -1,0 +1,84 @@
+{
+  "candidate_id": "c22",
+  "gate": "evidence_filtration_synthetic_v1",
+  "status": "failed_terminal",
+  "decision": "close_without_repository_data_or_real_gate",
+  "execution": {
+    "physical_gpu": 2,
+    "seeds": [20260730, 20260731, 20260732],
+    "modes": ["filtration", "dense", "parallel", "final_projection"],
+    "steps_per_mode": 900,
+    "elapsed_seconds": 327.45851529575884,
+    "all_training_finite": true,
+    "learned_attempts": 1
+  },
+  "metrics": {
+    "20260730": {
+      "filtration": {"nohistory": 1.0, "repeat": 1.0, "supported": 0.9569721115537848},
+      "dense_supported": 0.9729083665338646,
+      "parallel_supported": 0.9808764940239044,
+      "final_projection_supported": 0.9625498007968127,
+      "base_supported": 0.12749003984063745,
+      "supported_margin_gain": 1.751612663269043
+    },
+    "20260731": {
+      "filtration": {"nohistory": 1.0, "repeat": 1.0, "supported": 0.9638455217748562},
+      "dense_supported": 0.9860312243221035,
+      "parallel_supported": 0.9663105998356615,
+      "final_projection_supported": 0.9564502875924404,
+      "base_supported": 0.11832374691865243,
+      "supported_margin_gain": 1.8179168701171875
+    },
+    "20260732": {
+      "filtration": {"nohistory": 1.0, "repeat": 1.0, "supported": 0.9551752241238793},
+      "dense_supported": 0.9453952730236349,
+      "parallel_supported": 0.8973105134474327,
+      "final_projection_supported": 0.9323553382233088,
+      "base_supported": 0.13691931540342298,
+      "supported_margin_gain": 1.788418173789978
+    }
+  },
+  "primary_supported_control_margins": {
+    "dense": [-0.015936254980079778, -0.022185702547247388, 0.009779951100244433],
+    "parallel": [-0.02390438247011961, -0.0024650780608053147, 0.05786471067644661],
+    "final_projection": [-0.005577689243027928, 0.007395234182415722, 0.02281988590057049],
+    "repeat_margin_against_every_control_all_seeds": 0.0
+  },
+  "mechanism_contract": {
+    "protected_jacobians_exact_zero_all_seeds": true,
+    "recurrence_to_transfer_jacobian_norms": [2.289546251296997, 1.4939967393875122, 3.494579792022705],
+    "dense_anchor_from_transfer_jacobian_norms": [2.8777053356170654, 2.474170207977295, 2.7565672397613525],
+    "identity_repeat_margin_drops": [5.540163516998291, 5.586128234863281, 5.5567097663879395],
+    "identity_supported_margin_absolute_change": [0.0, 0.0, 0.0],
+    "corruption_retention_passed_all_seeds": true,
+    "nohistory_bitwise_base_all_seeds": true,
+    "deterministic_rescore_all_seeds": true,
+    "candidate_permutation_max_abs_error": 4.76837158203125e-7,
+    "matched_parameters": 29921,
+    "matched_initialization": true
+  },
+  "gate_checks": {
+    "passed": 18,
+    "failed": 3,
+    "total_excluding_summary": 21,
+    "failed_names": ["control_repeat_margins", "control_supported_margins", "control_minimum_margins"]
+  },
+  "artifacts": {
+    "raw_report": "artifacts/c22_evidence_filtration_transformer/synthetic_gate_v1.json",
+    "raw_report_sha256": "63cf89f84d3ee1c636b1175af5c369dcffad92ab3cb5ab3d21ff1ac4227391fe",
+    "formal_attempt_sha256": "6c6bbe4069de2293f9d6ef5efd47e2869dee7f805368a89c28112d22e9dcdaac",
+    "proposal_lock": "systems/22_evidence_filtration_transformer/notes/proposal_lock.json",
+    "proposal_lock_sha256": "c4dd6ca1fecd92c6cb22d2d474f49cc49d1aea4acba9c29cd8da9a5e7822473c",
+    "proposal_lock_aggregate_sha256": "217baa2da9bdc7aa9db15d93fd49551a3c708c5b324095745717e6f23cfc92cb"
+  },
+  "boundaries": {
+    "repository_data_read": false,
+    "standardized_records_read": false,
+    "qrels_read": false,
+    "dev_evaluator_calls": 0,
+    "test_access": false,
+    "real_training_authorized": false,
+    "dev_eval_log_sha256_unchanged": "54b3760a211b1e8047a2615de39398873d27b7f64531f4860747ea7e0cb2bb44"
+  },
+  "conclusion": "The filtration invariant is implemented and useful in absolute terms, but it does not outperform dense, parallel, or final-projection controls. It pays no architecture rent and is closed."
+}

@@ -1,0 +1,30 @@
+analysis_id: amazon_token_history_observability_r1
+status: pre_outcome
+date: "2026-07-12"
+
+paths:
+  protocol: doc/29_amazon_token_hso_mechanical_recovery.md
+  script: scripts/summarize_amazon_token_history_observability_r1.py
+  base_summarizer: scripts/summarize_amazon_token_history_observability.py
+  source_config: configs/analysis/amazon_token_history_observability_v1.yaml
+  source_execution_lock: artifacts/analysis/amazon_token_history_observability_v1/execution_lock.json
+  artifact_root: artifacts/analysis/amazon_token_history_observability_v1
+  records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  recovery_lock: artifacts/analysis/amazon_token_history_observability_v1/recovery_lock_r1.json
+  report: reports/pps_amazon_token_history_observability_v1.json
+
+evaluation:
+  seeds: [20265601, 20265602, 20265603]
+  bootstrap_samples: 10000
+  bootstrap_seed: 20265620
+  observable_min_ndcg: 0.002
+
+authorization:
+  existing_scores_only: true
+  training: false
+  rescoring: false
+  checkpoint_selection: false
+  reserve_labels_after_recovery_lock: true
+  dev: false
+  test: false
+  qrels: false

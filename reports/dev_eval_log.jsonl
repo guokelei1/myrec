@@ -134,3 +134,4 @@
 {"method_id": "c5r3_d2s_category_only", "ndcg@10": 0.32451836736394696, "run_id": "20260710_kuaisearch_c5r3_d2s_category_only_dev_s20260709", "split": "dev", "timestamp": "2026-07-10T13:36:15.125507+00:00"}
 {"method_id": "c5r3_d2s_item_only", "ndcg@10": 0.3455359945344212, "run_id": "20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260710", "split": "dev", "timestamp": "2026-07-10T13:36:19.251068+00:00"}
 {"method_id": "c5r3_d2s_category_only", "ndcg@10": 0.3238505664654137, "run_id": "20260710_kuaisearch_c5r3_d2s_category_only_dev_s20260710", "split": "dev", "timestamp": "2026-07-10T13:36:23.126765+00:00"}
+{"method_id": "c04_prefix_delta_lm", "ndcg@10": 0.30881835019986664, "run_id": "20260710_kuaisearch_c04_prefix_delta_screen_s20260708", "split": "dev", "timestamp": "2026-07-10T16:57:46.128376+00:00"}

@@ -1,0 +1,27 @@
+{
+  "candidate_id": "c61",
+  "created_at": "2026-07-12T14:34:20+08:00",
+  "gate_id": "c61_contextual_materialization_v1",
+  "locked_files": {
+    "systems/61_counterfactual_edge_likelihood_transformer/configs/train_gate.yaml": "2434ff5ce2e334bfbecb2aae9c3c90e3e844d3daa8e23c3c1e215213f95fbd6f",
+    "systems/61_counterfactual_edge_likelihood_transformer/execution/locking.py": "62236373f772e786284f8560ed19dab12d061cad120909bbf37ed95857de5ec6",
+    "systems/61_counterfactual_edge_likelihood_transformer/notes/proposal_lock.json": "384ed47f2c96432c70c38d1159ac27409fb5b1e8c6c1e957fe0f672965ff40d6",
+    "systems/61_counterfactual_edge_likelihood_transformer/probe/__init__.py": "4615978a3a7b7841b7fad11046336426823dafa3c568181c0772f075de17d06a",
+    "systems/61_counterfactual_edge_likelihood_transformer/probe/materialize_contextual.py": "fd314186d041b607c0fc4288dd50f9220b4671365ebb50e392a5df953b769f83",
+    "systems/61_counterfactual_edge_likelihood_transformer/tests/test_materialization.py": "eb5fb691e9927ca81abdd3395a2ca4ae9afef80b1869b8bc7dc86ccd2c96f315"
+  },
+  "status": "frozen_before_c61_contextual_materialization",
+  "unit_tests": {
+    "command": "/data/gkl/conda_envs/myrec-c38/bin/python -m pytest -q systems/61_counterfactual_edge_likelihood_transformer/tests/test_materialization.py",
+    "passed": 1
+  },
+  "unopened": [
+    "fit_label_values_during_materialization",
+    "internal_A_labels",
+    "delayed_B_labels",
+    "escrow_labels",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

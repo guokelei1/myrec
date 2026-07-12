@@ -25,3 +25,9 @@ structural change / zero-shot) in `experiments/pps_baseline_cards.md`.
 numbers are registered. Numbers must be copied verbatim from evaluator
 `metrics.json`; significance columns come from the shared compare script
 (doc 11 §1.4). Test rows are filled once, after configs are frozen.
+
+## Problem discovery
+
+`experiments/problem_discovery/` contains the doc/31 Failure Card, dev-trial
+budget, and confirmation-lock templates. Use those artifacts for R0/Fxx/Hxx
+work; do not create a new architecture manifest before a Failure Card passes.

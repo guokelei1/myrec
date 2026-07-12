@@ -1,0 +1,19 @@
+{
+  "candidate_id": "C13",
+  "name": "Set-Relative RMS/Whitened Hidden Write",
+  "status": "rejected_preimplementation_novelty_and_noise_risk",
+  "single_primitive": "candidate-center the late history residual, normalize its request-level candidate-set spectrum, globally bound it, then write it through the same residual layer",
+  "scalar_rms_reduction": "exact request-adaptive positive scalar rescaling of ordinary centered attention",
+  "whitening_nonreduction": "rank>=2 whitening changes singular-mode ratios and can change the projected candidate order",
+  "binding_dilemma": "large epsilon approaches fixed scalar rescale; small epsilon preferentially amplifies weak/noisy modes, including wrong-user residuals",
+  "base_contract": "history-blind Transformer candidate path",
+  "no_history_contract": "bitwise selection of untouched base score tensor",
+  "common_mode_contract": "candidate projection P_C makes any candidate-common residual exactly zero",
+  "write_bound": "one request-global Frobenius contraction after normalization",
+  "exact_contract": "canonical exact item recurrence is one internal coordinate read by the same softplus-monotone head",
+  "forbidden_inputs": ["base score", "dataset id", "query type", "independent reliability gate"],
+  "model_implemented": false,
+  "runner_implemented": false,
+  "gpu_executed": false,
+  "real_dev_test_qrels_accessed": false
+}

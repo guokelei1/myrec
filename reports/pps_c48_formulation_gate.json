@@ -1,0 +1,463 @@
+{
+  "c47_signal_execution_lock_sha256": "18ab517585f26542b5a8fdbf27ddd9b8d8276b4d2b248bce08f640dd9bdf1e76",
+  "candidate_id": "c48",
+  "claims": {
+    "dev_test_result": false,
+    "exposed_train_internal_formulation_only": true,
+    "fresh_result": false,
+    "trained_architecture_result": false
+  },
+  "created_at": "2026-07-12T02:48:31.521756+00:00",
+  "decision": "close_signed_influence_consensus_before_fresh_data",
+  "dev_test_records_labels_qrels_opened": false,
+  "domains": {
+    "amazon": {
+      "checks": {
+        "base_ci": true,
+        "base_effect": true,
+        "candidate_hash": true,
+        "candidate_permutation": true,
+        "clicked_direction_ci": true,
+        "clicked_specificity_ci": true,
+        "coherence_bounds": true,
+        "deterministic": true,
+        "finite": true,
+        "history_permutation": true,
+        "nohistory_zero": true,
+        "plain_all_folds": true,
+        "plain_ci": false,
+        "signed_l1_mean": true,
+        "softmax_mean": false,
+        "true_wrong_ci": true,
+        "true_wrong_effect": true
+      },
+      "clicked_direction": {
+        "mean": 0.024618438283602398,
+        "percentile_95_ci": [
+          0.021443667887399594,
+          0.027852630565563835
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263240
+      },
+      "clicked_true_minus_wrong": {
+        "mean": 0.01782765731215477,
+        "percentile_95_ci": [
+          0.014624810459713141,
+          0.02117247613395254
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263241
+      },
+      "comparisons": {
+        "base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.015270098292474206,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.019853474348644314,
+              "requests": 114
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.018126329332001635,
+              "requests": 84
+            }
+          ],
+          "mean": 0.017811525884886527,
+          "percentile_95_ci": [
+            0.0024302378344706233,
+            0.03381203878552854
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263220
+        },
+        "plain_ridge": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0007535737706384439,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.0030228122763653912,
+              "requests": 114
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.002514482333294455,
+              "requests": 84
+            }
+          ],
+          "mean": 0.002108938800358368,
+          "percentile_95_ci": [
+            -0.003990696865815643,
+            0.008408572395891094
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263221
+        },
+        "posterior_supported": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.00908038020156843,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.0023393579481362234,
+              "requests": 114
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.013531943831909313,
+              "requests": 84
+            }
+          ],
+          "mean": -0.005987317521176111,
+          "percentile_95_ci": [
+            -0.018403832062751257,
+            0.006222583974910907
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263222
+        },
+        "signed_l1": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.014590757654690428,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.01734382785983437,
+              "requests": 114
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.006368067030212241,
+              "requests": 84
+            }
+          ],
+          "mean": 0.01333457095779123,
+          "percentile_95_ci": [
+            -0.002383979971956172,
+            0.030152136720437275
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263224
+        },
+        "softmax_attention": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.006955355053117276,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.009028416682938068,
+              "requests": 114
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.0002799866124190552,
+              "requests": 84
+            }
+          ],
+          "mean": -0.005874015309053675,
+          "percentile_95_ci": [
+            -0.018376556526364277,
+            0.006308953083752413
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263223
+        },
+        "wrong_primary": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.018169050475944165,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.01425630846356177,
+              "requests": 114
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.025631131210255082,
+              "requests": 84
+            }
+          ],
+          "mean": 0.018771591116845912,
+          "percentile_95_ci": [
+            0.005860965125793286,
+            0.03201340044527978
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263225
+        }
+      },
+      "diagnostics": {
+        "candidate_permutation_max_abs": 1.7881393432617188e-07,
+        "coherence_mean": 0.8848665356636047,
+        "deterministic_max_abs": 0.0,
+        "history_permutation_max_abs": 3.2782554626464844e-07
+      },
+      "mean_ndcg10": {
+        "base": 0.2532023496589781,
+        "plain_ridge": 0.2689049367435063,
+        "posterior_supported": 0.27700119306504073,
+        "primary": 0.27101387554386464,
+        "signed_l1": 0.2576793045860734,
+        "softmax_attention": 0.2768878908529183,
+        "wrong_primary": 0.25224228442701874
+      },
+      "requests": 300,
+      "status": "failed"
+    },
+    "kuai": {
+      "checks": {
+        "base_ci": true,
+        "base_effect": true,
+        "candidate_hash": true,
+        "candidate_permutation": true,
+        "clicked_direction_ci": true,
+        "clicked_specificity_ci": true,
+        "coherence_bounds": true,
+        "deterministic": true,
+        "finite": true,
+        "history_permutation": true,
+        "nohistory_zero": true,
+        "plain_all_folds": false,
+        "plain_ci": false,
+        "signed_l1_mean": true,
+        "softmax_mean": true,
+        "true_wrong_ci": false,
+        "true_wrong_effect": true
+      },
+      "clicked_direction": {
+        "mean": 0.001481141811236739,
+        "percentile_95_ci": [
+          0.00013902383359769982,
+          0.002836553734960034
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263240
+      },
+      "clicked_true_minus_wrong": {
+        "mean": 0.0016565920474628608,
+        "percentile_95_ci": [
+          0.00024859755222375195,
+          0.0030891122706234453
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263241
+      },
+      "comparisons": {
+        "base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.008129847371050807,
+              "requests": 181
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.010710877243797247,
+              "requests": 187
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.010297399356473686,
+              "requests": 232
+            }
+          ],
+          "mean": 0.00977238844908696,
+          "percentile_95_ci": [
+            0.0016120226424447047,
+            0.01793820671645125
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263220
+        },
+        "plain_ridge": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.00258070930913866,
+              "requests": 181
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.001000788872627804,
+              "requests": 187
+            },
+            {
+              "fold": 2,
+              "mean_difference": 3.644138518701503e-05,
+              "requests": 232
+            }
+          ],
+          "mean": 0.00048069211189347594,
+          "percentile_95_ci": [
+            -0.0007474436749135396,
+            0.0018107224861140731
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263221
+        },
+        "posterior_supported": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0019512274942515004,
+              "requests": 181
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.001888451953535668,
+              "requests": 187
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.005623275418906067,
+              "requests": 232
+            }
+          ],
+          "mean": 0.0033515209815948325,
+          "percentile_95_ci": [
+            -0.001694569473655398,
+            0.008551874738497918
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263222
+        },
+        "signed_l1": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.00884578025038617,
+              "requests": 181
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.00614173175325243,
+              "requests": 187
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.008209357464869012,
+              "requests": 232
+            }
+          ],
+          "mean": 0.007756934991712853,
+          "percentile_95_ci": [
+            -0.00012971370993169549,
+            0.015834298793356103
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263224
+        },
+        "softmax_attention": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.015238130498426143,
+              "requests": 181
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.015780198191895918,
+              "requests": 187
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.01033662390302854,
+              "requests": 232
+            }
+          ],
+          "mean": 0.0036755021730553628,
+          "percentile_95_ci": [
+            -0.006366350261455833,
+            0.013923114480590647
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263223
+        },
+        "wrong_primary": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0009993280438148346,
+              "requests": 181
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.013718272951848047,
+              "requests": 187
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.007680944271776599,
+              "requests": 232
+            }
+          ],
+          "mean": 0.0075469574816304005,
+          "percentile_95_ci": [
+            -0.0013031237665861505,
+            0.016154594642950097
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263225
+        }
+      },
+      "diagnostics": {
+        "candidate_permutation_max_abs": 1.7881393432617188e-07,
+        "coherence_mean": 0.9815071225166321,
+        "deterministic_max_abs": 0.0,
+        "history_permutation_max_abs": 2.980232238769531e-07
+      },
+      "mean_ndcg10": {
+        "base": 0.30087024014165054,
+        "plain_ridge": 0.31016193647884405,
+        "posterior_supported": 0.3072911076091427,
+        "primary": 0.3106426285907375,
+        "signed_l1": 0.3028856935990246,
+        "softmax_attention": 0.30696712641768215,
+        "wrong_primary": 0.30309567110910707
+      },
+      "requests": 600,
+      "status": "failed"
+    }
+  },
+  "formulation_lock_sha256": "205d2dce6bedb85d000bf3fb36bd9528f378da7988e33555636e484c5065ef88",
+  "fresh_reserve_opened": false,
+  "gate_id": "c48_signed_influence_consensus_formulation_v1",
+  "status": "failed_formulation_terminal"
+}

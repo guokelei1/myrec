@@ -1,0 +1,36 @@
+{
+  "candidate_id": "c35",
+  "created_at": "2026-07-11T19:20:34.918022+00:00",
+  "declarations": {
+    "delayed_B_features_labels_scores_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "auth_profile_sizes.npy": "f52f0305a0fedc58c5d6b473d3f062b997448d8df97f679eb72d7764623198c0",
+    "auth_true_items.npy": "ba2fcce8aa870e961f9a2d02906f8aad1cc11a810cdf19b39ac57bf3b9344184",
+    "auth_true_offsets.npy": "4dc690db617d6719af9b4e3975418c1489fc9219093cb49b9f7c7e1978a2c1e3",
+    "auth_true_source_counts.npy": "f4a942ed9707cec6bc2988e090a645b1f46597292a19ce1934221ee3e8595541",
+    "auth_wrong_items.npy": "90c42c82a97c834a2fd084327d07f6ecb1a8dd65db0e635a613e290b14e9feb7",
+    "auth_wrong_offsets.npy": "1acf62fc2377256cd34bb79e6ceccee53e5160b4821d1a1a66ededc2e2a51288",
+    "auth_wrong_source_counts.npy": "262df871abf5f5cc5484c938a95871a02a78aa727e73e8c2c129ba1946e653d2",
+    "authentication_request_indices.npy": "4ee0cc87a9c769529ee866a6162b74c2a64c2e69a36e0072f553a764892264ea",
+    "base_scores.npy": "63e6a4ed8efb80695413974c9033001d0cf017bd1391b098ab4782f79fe0185b",
+    "feature_candidate_offsets.npy": "8d17d928bf2c3d3752a79dfd52225c718e665406fd9b60eb86d8f1e88002c493",
+    "feature_request_indices.npy": "4ee0cc87a9c769529ee866a6162b74c2a64c2e69a36e0072f553a764892264ea",
+    "fit_label_offsets.npy": "34732c7bbfc3e13fba04b4051970f9f272e6c892cd72103421535aea8e16ec72",
+    "fit_labels.npy": "d5ec93475476f2a012321a77684ebc4bc2bef02f70bfc230ec5544e1a5353338",
+    "fit_request_indices.npy": "ee27a309285a2ce75db685e6a8f6165044878dcefc3fc3223342992aa8adaee6",
+    "query_embeddings.npy": "eb9c78e63b78fbfbd5655296c6cb6ba51df4b2874fc1f25185dcdf5828e50c90"
+  },
+  "g0_report_path": "artifacts/c35_candidate_relative_tangent_surplus_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "8e2ce6d151906a5f607249c6830b30e13ace6ac21def81e80f70d22952c08ab8",
+  "lock_id": "c35_candidate_relative_surplus_execution_v1",
+  "proposal_lock_sha256": "54e801298eb58cd437d51dc60fa1e62805cf644dca7ece661f1b470699854630",
+  "selection_sha256": "91a6a269f8f2f5026a2194d4b307d18f2282be7d0d323b7de4c34be2d13b527b",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

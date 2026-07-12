@@ -1,0 +1,54 @@
+candidate_id: c18
+gate_id: g1_synthetic_v1
+physical_gpu: 2
+device: cuda:0
+seeds: [20260718, 20260719, 20260720]
+data:
+  train_requests: 8192
+  eval_requests: 2048
+  candidates: 8
+  history_slots: 8
+  input_dim: 16
+  topics: 4
+  strata_weights: [0.25, 0.375, 0.375]
+model:
+  d_model: 32
+  nhead: 4
+  layers: 2
+  ffn_dim: 64
+  dropout: 0.0
+  proposal_radius: 1.25
+  repeat_bonus: 0.60
+  projection_bisection_steps: 48
+training:
+  steps: 800
+  batch_size: 128
+  learning_rate: 0.003
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  soft_penalty_weight: 2.0
+thresholds:
+  repeat_accuracy_min: 0.98
+  repeat_anchor_noninferiority: 0.01
+  supported_accuracy_min: 0.75
+  supported_gain_over_base_min: 0.20
+  supported_control_noninferiority: 0.01
+  worst_subset_advantage_min: 0.03
+  repeat_advantage_over_direct_min: 0.05
+  supported_loss_vs_direct_max: 0.01
+  corruption_retention_max: 0.35
+  projection_active_fraction_min: 0.10
+  load_bearing_fraction_min: 0.20
+  load_bearing_delta_range: 0.05
+  max_margin_violation: 0.00001
+  max_candidate_permutation_error: 0.00001
+attempts:
+  learned_runs: 1
+  implementation_repairs_before_lock: unlimited_structural_only
+  implementation_repairs_after_lock: 0
+access:
+  repository_data: false
+  standardized_records: false
+  labels: synthetic_only
+  dev_evaluator_calls: 0
+  test_access: false

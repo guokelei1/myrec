@@ -1,0 +1,29 @@
+{
+  "candidate_id": "c61",
+  "contextual_manifest_sha256": "369db9dd9d63323b82936fffe4a611d3f3f3a0168d4ee36d35e8824f967b9dd6",
+  "created_at": "2026-07-12T14:42:47+08:00",
+  "gate_id": "c61_structural_G0_v1",
+  "locked_files": {
+    "systems/61_counterfactual_edge_likelihood_transformer/execution/g0_locking.py": "7263b7b1fc1d1cb45722b0398093f9f8607423ff78ad2535c2aaf571ef1426cd",
+    "systems/61_counterfactual_edge_likelihood_transformer/execution/run_g0.py": "da268fb7de646586794c8c75919f709e3cb21d5c84020a976e792dc074432804",
+    "systems/61_counterfactual_edge_likelihood_transformer/model/__init__.py": "5f953fe6cff81b6aed3ed12df65b2cec6bf792c702cdbbc7313eb81a9d166489",
+    "systems/61_counterfactual_edge_likelihood_transformer/model/counterfactual_edge.py": "7baa8ea8d1df895be74cef64ee699dc0656b935b901b92bf5f6a3ad5461e166a",
+    "systems/61_counterfactual_edge_likelihood_transformer/train/__init__.py": "8e6dafb5452442cc7428fb9c23bfed0416dfb4afaee1681d8e38f2e03582c49c",
+    "systems/61_counterfactual_edge_likelihood_transformer/train/data.py": "c4ffea926c61e22047db8d6df03665f1aebbcc5e0a02681b848b03cc0449918c",
+    "systems/61_counterfactual_edge_likelihood_transformer/tests/test_model.py": "e73a71a2a84741bb6730fb71ab16ea7b654bc7995a70b05087c140f247c9511f"
+  },
+  "status": "frozen_before_c61_G0",
+  "unit_tests": {
+    "command": "/data/gkl/conda_envs/myrec-c38/bin/python -m pytest -q systems/61_counterfactual_edge_likelihood_transformer/tests",
+    "passed": 6
+  },
+  "unopened": [
+    "fit_label_values_in_G0",
+    "internal_A_labels",
+    "delayed_B_labels",
+    "escrow_labels",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

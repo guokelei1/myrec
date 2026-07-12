@@ -1,0 +1,38 @@
+{
+  "candidate_id": "c74",
+  "created_at": "2026-07-12T11:56:39.603449+00:00",
+  "declarations": {
+    "dev_test_qrels_read": false,
+    "formal_generator_seed_previously_used": false,
+    "repository_data_read": false,
+    "repository_labels_read": false,
+    "shared_evaluator_calls": 0,
+    "trained_c74_model_outcome_observed": false
+  },
+  "external_files": {
+    "systems/73_counterfactual_query_relay_transformer/notes/proposal_lock.json": "275176a2531bd1b5d323b4306462d2ce9d65c086bb91c505a6f5990b4ee13b39",
+    "systems/73_counterfactual_query_relay_transformer/probe/synthetic.py": "d64580ea60316a232b7f105e4687e73a2c3eb5824f124e9452247029e5645d00"
+  },
+  "files": {
+    "README.md": "0ce43cddb853d7deff32d0be3c4c4a2a9955ed360a61a5a9a5d5243e7498eb2f",
+    "configs/design_gate.yaml": "630465d4541ef915d78f651eb39032ad8c69e5e88959eb14520e86efdfeffbb2",
+    "environment.txt": "1d63f41709c6b8c87391ed43d66344f1e94376b17346f2f29e0b04e017dc7b21",
+    "model/__init__.py": "5bca376c6c2e77241857bbea331111a8bca451ea72518c9fd6830cb109b9a352",
+    "model/semantic_relay.py": "a4ad8395a5ac327938a9d7bdf1f14e8fa6c855d52d8c4423e6ebfe1591cc73c9",
+    "notes/design_gate_protocol.md": "d90a59db3a94e2a43859767f98072eacf75c9e1de96da2cd90f95fa94da04f6a",
+    "notes/mechanism_fingerprint.md": "7c43d26d0e5be5982b84ad24d80fd4e4f2d62631f5559b789c23d3424a4e9663",
+    "notes/nearest_neighbors.md": "c85d73d96748b7f077f70eefaeae39b72ba9b5c9216b1db28d3775214b20371b",
+    "notes/preimplementation_review.md": "80fb2abcdf5a004581d79489db11f5da9269a2e328e75663e319347236f52ba2",
+    "notes/proposal.md": "49fc71d87930c0d82c2db825aa459d32d9ea00c67c621e7f1a8caca92ea135c6",
+    "probe/__init__.py": "71262d24e862f8fbfd731fa0553025c9c1789424a260c4fc352dccdb7dcf8974",
+    "probe/freeze_lock.py": "9e7a6efd21ace0ccd4b83e78fd572c6df5a5cc2811b098e0fb2a009b5c1bdff6",
+    "probe/locking.py": "1c565029fa2f7561c8ff30d6736393eb642ad00910d9408b06c8ff46ff64fac1",
+    "probe/run_design_gate.py": "187a794b77918a66d458499cd70733777a4ffdc576c3946065ce222eada12f87",
+    "probe/synthetic.py": "6cd66a1c0753a3378192bf5ad4e151615065561cbff7acb5f07f10a0d7e9860f",
+    "tests/test_model.py": "a5564155f16370cceab357be69af9f344b771e018c7a88354aae73df629d316d",
+    "tests/test_protocol.py": "f7f67eb07373e3ab582200d16edf183384b15c098973b91339f51e4ab9679276"
+  },
+  "git_commit": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+  "git_dirty": true,
+  "status": "locked_before_any_c74_trained_model_outcome"
+}

@@ -1,0 +1,17 @@
+{
+  "candidate_id": "c68",
+  "created_at": "2026-07-12T09:53:53.665688+00:00",
+  "decision": "freeze_population_relative_interaction_free_energy_G0",
+  "design_sha256": {
+    "config": "2bd24e443b98fdffc0f6f6bbdd5d94eccd51d98a96bfec92ff3bf9a3b60443d9",
+    "nearest_neighbors": "a3c8f11fb4761548bdb5fbee6a4b74448b8f6a19339c3365da55226ded4db91b",
+    "preimplementation_review": "11edea8199157f200f9eb3ca403ae91405228f50e0890bd6a79940d3b2d7e9ce",
+    "proposal": "e66abf63220f1b3c5baef4f52a84c201788b47b679e0e1361de358a35c9da8fc",
+    "readme": "69b4322b87b4ccc597c75221e71ab179c8fca26372c282402c5462f3b2a7bfaf"
+  },
+  "outcome_boundary": {
+    "dev_test_qrels_authorized": false,
+    "labels_authorized": false,
+    "repository_data_authorized": false
+  }
+}

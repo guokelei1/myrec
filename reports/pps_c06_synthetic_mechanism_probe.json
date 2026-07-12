@@ -1,0 +1,79 @@
+{
+  "candidate_id": "c06",
+  "probe_id": "c06_local_hodge_bidirectional_synthetic_v1",
+  "date": "2026-07-11",
+  "status": "PASS_SYNTHETIC_CONDITIONAL_MECHANISM_CONTRACT_ONLY",
+  "scope": "CPU FP64, no training, no repository data, qrels, dev, test, checkpoint, or prior score input",
+  "locked_inputs": {
+    "combined_sha256": "57e466ebe805c9af16b4676649fae496eca8985e36b64940532861d3d86c5df5",
+    "lock_sha256": "7529a20d5f4beccca9067309789bab62f631c8633e9da58cec14ad087f6f360b",
+    "raw_report_sha256": "89795064cb7065c14546ba16d98d1aea191035000b681edbcb5918937f643b53",
+    "manifest_recomputed_after_outcome": false
+  },
+  "execution": {
+    "seeds": [20260711, 20260712, 20260713],
+    "requests_per_seed_per_world": 4096,
+    "total_requests_per_world": 12288,
+    "candidates": 16,
+    "history_events": 6,
+    "paired_bootstrap_samples": 10000
+  },
+  "integrity": {
+    "passed": true,
+    "skew_max_abs": 0.0,
+    "divergence_max_abs": 1.509903313490213e-14,
+    "hodge_recovery_max_abs": 1.7763568394002505e-15,
+    "variance_multiset_max_abs": 0.0,
+    "aligned_mean_spearman": 1.0,
+    "decoupled_mean_spearman": 0.0006842836934374437,
+    "adversarial_mean_spearman": -1.0
+  },
+  "binding_pairwise_deltas": {
+    "aligned_local_minus_t_one": {
+      "mean": 0.013408745659722223,
+      "ci95": [0.012739393446180643, 0.014074028862847318],
+      "per_seed": [0.014548746744791667, 0.012862141927083334, 0.012815348307291669],
+      "ndcg10_mean_delta": 0.017234994022757123
+    },
+    "aligned_local_minus_global_event": {
+      "mean": 0.013483344184027779,
+      "ci95": [0.012934010823567918, 0.014031982421875184],
+      "per_seed": [0.014632161458333334, 0.012904866536458334, 0.012913004557291666],
+      "ndcg10_mean_delta": 0.016767624328887634
+    },
+    "decoupled_local_minus_t_one": {
+      "mean": -0.02771335177951389,
+      "ci95": [-0.02839762369791721, -0.027026282416449943],
+      "per_seed": [-0.026999918619791667, -0.02832234700520833, -0.027817789713541666],
+      "ndcg10_mean_delta": -0.034861198633279335
+    },
+    "adversarial_local_minus_t_one": {
+      "mean": -0.05577392578124999,
+      "ci95": [-0.05650906032985997, -0.05505371093749899],
+      "per_seed": [-0.055283610026041666, -0.05609334309895833, -0.055944824218749994],
+      "ndcg10_mean_delta": -0.07275139861818315
+    },
+    "adversarial_oracle_minus_local": {
+      "mean": 0.08101874457465277,
+      "ci95": [0.079768863254123, 0.08224555121527788],
+      "per_seed": [0.08094482421874999, 0.08077189127604166, 0.08133951822916667],
+      "ndcg10_mean_delta": 0.10486400648419236
+    }
+  },
+  "all_frozen_checks_passed": true,
+  "independent_post_outcome_audit": {
+    "status": "PASS",
+    "arithmetic_mismatches": 0,
+    "maximum_recomputed_float_difference": 2.22e-16,
+    "claim_boundary_confirmed": true
+  },
+  "claim_boundary": "The operator can exploit a planted local cycle-error coupling and loses or reverses that advantage when the coupling is removed or reversed. This does not establish that the coupling exists in recommendation data, that C06 is novel, or that it improves real ranking.",
+  "authorization_after_result": {
+    "design_next_stage_controls": true,
+    "cohort_materialization": false,
+    "gpu": false,
+    "train_internal": false,
+    "dev": false,
+    "test": false
+  }
+}

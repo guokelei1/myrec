@@ -1,0 +1,82 @@
+candidate:
+  id: c03
+  method_id: c03_tctt
+  run_id: 20260710_kuaisearch_c03_tctt_screen_s20260708
+  seed: 20260708
+  environment: myrec-c03
+  physical_gpu: 2
+  visible_device: cuda:0
+
+paths:
+  standardized_dir: data/standardized/kuaisearch/v0_lite
+  records_train: data/standardized/kuaisearch/v0_lite/records_train.jsonl
+  records_dev: data/standardized/kuaisearch/v0_lite/records_dev.jsonl
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  d2p_dev_scores: runs/20260710_kuaisearch_d2p_text_pop_dev_s20260708/scores.jsonl
+  d2p_dev_per_request: runs/20260710_kuaisearch_d2p_text_pop_dev_s20260708/per_request_metrics.jsonl
+  item_dev_per_request: runs/20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260708/per_request_metrics.jsonl
+  output_dir: systems/03_triadic_transport_transformer/outputs/c03_screening
+  checkpoint: systems/03_triadic_transport_transformer/checkpoints/c03_screening/model.pt
+  run_dir: runs/20260710_kuaisearch_c03_tctt_screen_s20260708
+  local_model: BAAI/bge-small-zh-v1.5
+
+integrity:
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  reject_path_tokens: [qrels, test]
+  allowed_run_prefix: 20260710_kuaisearch_c03_
+
+data:
+  max_history: 20
+  max_candidates_per_train_request: 8
+  train_requests: 12000
+  internal_validation_fraction: 0.1
+  embedding_batch_size: 512
+  embedding_dtype: float16
+  dev_diagnostic_requests: 1000
+  deterministic_requests: 1000
+
+model:
+  input_dim: 512
+  hidden_dim: 96
+  num_heads: 4
+  num_layers: 1
+  ff_dim: 192
+  dropout: 0.0
+  transport_dim: 48
+  sinkhorn_iterations: 12
+  sinkhorn_temperature: 0.20
+  cycle_lambda: 2.0
+  identity_bonus_floor: 4.0
+  final_residual_scale: 2.3333333333333335
+
+training:
+  epochs: 4
+  batch_size: 256
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  ranking_weight: 1.0
+  corruption_score_weight: 0.5
+  corruption_null_weight: 0.25
+  exact_mass_weight: 0.25
+  corruption_margin: 0.10
+  null_margin: 0.02
+  exact_mass_floor: 0.50
+  gradient_clip_norm: 1.0
+  num_workers: 0
+
+gate:
+  float32_mass_tolerance: 0.00001
+  null_increase_required: 0.02
+  corruptions_required: 3
+  control_advantage_required: 0.01
+  no_history_tolerance: 0.0
+  item_seed08_overall_ndcg: 0.345087358948813
+  repeat_delta_min: 0.0
+  nonrepeat_delta_min: 0.002
+  bootstrap_samples: 10000
+  bootstrap_seed: 20260708
+
+budget:
+  max_implementation_attempts: 2
+  max_a40_gpu_hours: 8.0
+  max_primary_dev_evaluator_calls: 1

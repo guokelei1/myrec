@@ -1,0 +1,360 @@
+{
+  "A0_passed": true,
+  "A_labels_opened_after_A0": true,
+  "candidate_id": "c69",
+  "created_at": "2026-07-12T10:30:44.729930+00:00",
+  "decision": "failed_signal_terminal",
+  "domains": {
+    "amazon": {
+      "checks": {
+        "all_seed_signs": false,
+        "clicked_direction": false,
+        "primary_beats_random": false,
+        "primary_beats_semantic": false,
+        "true_beats_wrong": false
+      },
+      "clicked_direction": {
+        "mean": -0.12888636980205775,
+        "percentile_95_ci": [
+          -0.164956791975225,
+          -0.09239666215547672
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20264950
+      },
+      "comparisons": {
+        "primary_wrong": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0019008867493879645,
+              "requests": 85
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.00022758664196414555,
+              "requests": 116
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.001970780469285864,
+              "requests": 99
+            }
+          ],
+          "mean": 0.001276942302083728,
+          "percentile_95_ci": [
+            -0.0019208359670050267,
+            0.004644288876537808
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20264922
+        },
+        "random_true": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.06669155075094328,
+              "requests": 85
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.1516158448593839,
+              "requests": 116
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.09352970155564208,
+              "requests": 99
+            }
+          ],
+          "mean": -0.10838553423842427,
+          "percentile_95_ci": [
+            -0.1408377899664977,
+            -0.07751012709868775
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20264921
+        },
+        "semantic_true": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.13094001901192212,
+              "requests": 85
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.19006415064599,
+              "requests": 116
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.1849330520069592,
+              "requests": 99
+            }
+          ],
+          "mean": -0.1716190507987906,
+          "percentile_95_ci": [
+            -0.2090394573740836,
+            -0.13581609634746902
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20264920
+        }
+      },
+      "domain": "amazon",
+      "ensemble_ndcg@10": {
+        "primary_true": 0.020830749005976226,
+        "primary_wrong": 0.019553806703892496,
+        "random_true": 0.1292162832444005,
+        "semantic_true": 0.19244979980476684,
+        "semantic_wrong": 0.06532249300822406
+      },
+      "passed": false,
+      "per_seed": [
+        {
+          "deltas": {
+            "primary_wrong": -0.0014056394345177458,
+            "random_true": -0.1062826530961091,
+            "semantic_true": -0.17432418474000666
+          },
+          "ndcg@10": {
+            "primary_true": 0.018125615064760164,
+            "primary_wrong": 0.01953125449927791,
+            "random_true": 0.12440826816086925,
+            "semantic_true": 0.19244979980476684,
+            "semantic_wrong": 0.06532249300822406
+          },
+          "seed": 20264911
+        },
+        {
+          "deltas": {
+            "primary_wrong": -3.7844802017298526e-05,
+            "random_true": -0.08478503740198898,
+            "semantic_true": -0.1696006642713729
+          },
+          "ndcg@10": {
+            "primary_true": 0.022849135533393915,
+            "primary_wrong": 0.022886980335411217,
+            "random_true": 0.10763417293538291,
+            "semantic_true": 0.19244979980476684,
+            "semantic_wrong": 0.06532249300822406
+          },
+          "seed": 20264912
+        },
+        {
+          "deltas": {
+            "primary_wrong": 0.005572967046085991,
+            "random_true": -0.08820809459978744,
+            "semantic_true": -0.16714048228098796
+          },
+          "ndcg@10": {
+            "primary_true": 0.025309317523778848,
+            "primary_wrong": 0.019736350477692857,
+            "random_true": 0.1135174121235663,
+            "semantic_true": 0.19244979980476684,
+            "semantic_wrong": 0.06532249300822406
+          },
+          "seed": 20264913
+        }
+      ],
+      "requests": 300
+    },
+    "kuai": {
+      "checks": {
+        "all_seed_signs": false,
+        "clicked_direction": false,
+        "primary_beats_random": false,
+        "primary_beats_semantic": false,
+        "true_beats_wrong": false
+      },
+      "clicked_direction": {
+        "mean": 0.03419910301764806,
+        "percentile_95_ci": [
+          -0.0004925584668914456,
+          0.06818216510202424
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20264950
+      },
+      "comparisons": {
+        "primary_wrong": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.008121890326847863,
+              "requests": 179
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.029599298422053995,
+              "requests": 196
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.007969070167364794,
+              "requests": 225
+            }
+          ],
+          "mean": 0.015080536078142383,
+          "percentile_95_ci": [
+            -0.003755065991091421,
+            0.0350736224908644
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20264922
+        },
+        "random_true": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.006242841996074427,
+              "requests": 179
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.005661425119807891,
+              "requests": 196
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.004499981842896924,
+              "requests": 225
+            }
+          ],
+          "mean": 0.0017005421807779722,
+          "percentile_95_ci": [
+            -0.01854047249052282,
+            0.021991423193680942
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20264921
+        },
+        "semantic_true": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.015931632899195292,
+              "requests": 179
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.002659691048694882,
+              "requests": 196
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.0019016477021506736,
+              "requests": 225
+            }
+          ],
+          "mean": -0.003170986850713097,
+          "percentile_95_ci": [
+            -0.024960621039092985,
+            0.01816234410788271
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20264920
+        }
+      },
+      "domain": "kuai",
+      "ensemble_ndcg@10": {
+        "primary_true": 0.3044548928904429,
+        "primary_wrong": 0.2893743568123005,
+        "random_true": 0.30275435070966494,
+        "semantic_true": 0.307625879741156,
+        "semantic_wrong": 0.2827628457982947
+      },
+      "passed": false,
+      "per_seed": [
+        {
+          "deltas": {
+            "primary_wrong": -0.0010268117260442008,
+            "random_true": -0.012129601419686224,
+            "semantic_true": -0.016405010348312
+          },
+          "ndcg@10": {
+            "primary_true": 0.291105242920155,
+            "primary_wrong": 0.2921320546461991,
+            "random_true": 0.3032348443398412,
+            "semantic_true": 0.307510253268467,
+            "semantic_wrong": 0.2827628457982947
+          },
+          "seed": 20264901
+        },
+        {
+          "deltas": {
+            "primary_wrong": 0.029457015843408065,
+            "random_true": 0.015553623470163416,
+            "semantic_true": 0.0070612388682604965
+          },
+          "ndcg@10": {
+            "primary_true": 0.31457149213672747,
+            "primary_wrong": 0.2851144762933194,
+            "random_true": 0.29901786866656405,
+            "semantic_true": 0.307510253268467,
+            "semantic_wrong": 0.2827628457982947
+          },
+          "seed": 20264902
+        },
+        {
+          "deltas": {
+            "primary_wrong": 0.00957109101076813,
+            "random_true": -0.006437951130633452,
+            "semantic_true": -0.010881353823297918
+          },
+          "ndcg@10": {
+            "primary_true": 0.29662889944516907,
+            "primary_wrong": 0.2870578084344009,
+            "random_true": 0.30306685057580246,
+            "semantic_true": 0.307510253268467,
+            "semantic_wrong": 0.2827628457982947
+          },
+          "seed": 20264903
+        }
+      ],
+      "requests": 600
+    }
+  },
+  "execution_lock_sha256": "ed5f622d4bddc20efa2c7f33ad1a6d8ef48180a96a709ad1cf0f875353cf7bc1",
+  "isolation": {
+    "dev_test_qrels_opened": false,
+    "fresh_reserve_opened": false
+  },
+  "passed": false,
+  "schema": "myrec.c69.gate.v1",
+  "source_reports": [
+    {
+      "path": "artifacts/c69_semantic_null_behavior_relation_probe/signal_v1/kuai_seed_20264901_report.json",
+      "sha256": "7784de39bc10eafeb97ff4571dce9330287b4206edc9db07e9a881d5e0a36eb8"
+    },
+    {
+      "path": "artifacts/c69_semantic_null_behavior_relation_probe/signal_v1/kuai_seed_20264902_report.json",
+      "sha256": "60b0174cd31d91648c83192a0ce719e9fffacfb19db05472ef4d8c87444eb17c"
+    },
+    {
+      "path": "artifacts/c69_semantic_null_behavior_relation_probe/signal_v1/kuai_seed_20264903_report.json",
+      "sha256": "3f83e77bd2e5f3ed93709aec1deb3a3bf84a405d7f5527e8139649b3f329786f"
+    },
+    {
+      "path": "artifacts/c69_semantic_null_behavior_relation_probe/signal_v1/amazon_seed_20264911_report.json",
+      "sha256": "42d9754cabc6d532c23543c68506d64ab130b45a59b2656c223cec2062faf7fd"
+    },
+    {
+      "path": "artifacts/c69_semantic_null_behavior_relation_probe/signal_v1/amazon_seed_20264912_report.json",
+      "sha256": "fec987aab351fd353f2e7f66a603b36c5588fd74b6a6b42be5e4800eb0a86226"
+    },
+    {
+      "path": "artifacts/c69_semantic_null_behavior_relation_probe/signal_v1/amazon_seed_20264913_report.json",
+      "sha256": "efce73555d055e0235af905a795947f04634f3bf692c98041c05d501451e51b0"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "candidate_id": "c72",
+  "claim_boundary": {
+    "attempts": 1,
+    "dev_test_qrels": false,
+    "formulation_only": true,
+    "fresh": false
+  },
+  "created_at": "2026-07-12T11:22:24.883219+00:00",
+  "decision": "authorize_one_exposed_fit_diagnostic",
+  "proposal_lock_sha256": "83bb2e22117ad6a1410f1b115859565fdd95f2cf70e147d819b59db8e2de9827",
+  "selection_sha256": "b4066bb59485fdfa3da2ff7b0e892cd827212f797e9208b81c8f5d35c15936e5",
+  "source_sha256": {
+    "artifacts/batch2b/b5o_stageb_standardized/data/item_id2idx.json": "f7dc47479da68ee06b958144dcf2d6d58b00a9e519bf5861b01701b896ebde1b",
+    "artifacts/batch2b/b5o_stageb_standardized/data/item_title_emb.npy": "392b318cacc431eddb5fbdce7103fb14d0415b993cfb56ed7c9a17c82d7d83ec",
+    "artifacts/batch2b/b5o_stageb_standardized/data/query_emb.npy": "23bac28d46fb35c599367c7a5a2ee4d1b0bf769580f9320b6cfd51e1c3d1be2c",
+    "artifacts/batch2b/b5o_stageb_standardized/data/session_id2idx.json": "dbe657a280b0678b8e6b8a300135dddcf279606943e64c8cbb7984cdfb01e7b3",
+    "artifacts/c72_exposed_logged_choice_gradient_diagnostic/diagnostic_v1/selection.json": "b4066bb59485fdfa3da2ff7b0e892cd827212f797e9208b81c8f5d35c15936e5",
+    "data/standardized/kuaisearch/v0_lite/records_train.jsonl": "2c4823c3117cb11e89052b6563ed8fb40c7113400be933f01ce9db51aea9bcd8",
+    "src/myrec/eval/metrics.py": "53f6800e893a34d240f6a7c9971f60ae86fb984f8fe99669f0df579bf7b45f18",
+    "systems/38_cross_domain_global_tangent_transfer/train/gate_metrics.py": "9afbb7b730e4ae27d06fde4b73b5e12eb20aedbc8f4724d4b645ae2f51c93245",
+    "systems/71_logged_choice_gradient_signal_probe/execution/score_gate.py": "1841ee6f24c305fb7051f2a0c918ad4a834e20f602682bf4de5ce4891bc30e86",
+    "systems/71_logged_choice_gradient_signal_probe/model/choice_gradient.py": "5654d84511df06d55b5cd6ccf8847e5769b77013374529724f037bc8ea07df1c",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/configs/diagnostic.yaml": "a11e90daa7cde94826a0ee3b6944638d74b43570d7d9f9ab2920e6bb2cc49d8d",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/aggregate.py": "acfed1dfdacef112d48b45515e60d38eed06248df45528ba3cebba2a83718308",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/c71_helpers.py": "7523d1869a16344022d0b6f9c6d40f90cd0dd7c87b68e5958a5d1aa950072552",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/freeze_execution_lock.py": "c5fd1c58991139fff95d5e84421ef4a53d7a37f695cd6ad363829674e85d7246",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/freeze_proposal_lock.py": "9590e8f258e2259da9c470aa0c6d100be139af1cf48f5698f397981101ce5987",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/locking.py": "bdd145098210a9c4e47aa950be0276386c23072a510814d18356f3628791aed7",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/materialize_selection.py": "c4d13fedabdd2d3753d08a8f70a2dd7d01721afd058844aa91babd6f34d6fc0f",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/score_a0.py": "69788b79778260669b2278f2bd431dc7d8eeba988f4331b09e5aba2d8b5b5c1c",
+    "systems/72_exposed_logged_choice_gradient_diagnostic/execution/selection.py": "4d3cce4e41e4dfbd3ecf1a488881af5eda933997e9ea740d193672f195e3809f"
+  }
+}

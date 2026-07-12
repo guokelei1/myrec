@@ -1,0 +1,98 @@
+{
+  "lock_id": "c05_review1_g0_g2a_preoutcome",
+  "candidate_id": "c05",
+  "status": "locked_before_any_c05_data_fit_outcome",
+  "locked_at": "2026-07-11T09:18:55+08:00",
+  "outcomes_observed_before_lock": false,
+  "seed": 20260708,
+  "candidate_hash": "5eb7d557004aefdf5d0f5eb3900b408a0f02dd6b7352ed4c5e5c1b83973e047c",
+  "candidate_hash_definition": "sha256 of ordered '<file_sha256>  <candidate-relative-path>\\n' lines for every entry in files, in JSON insertion order",
+  "authorization": {
+    "g0_materialization": true,
+    "g1_real_smoke": true,
+    "g2a_train_internal": true,
+    "physical_gpu": 0,
+    "environment": "myrec-c05",
+    "cumulative_a40_gpu_hours_max": 2.0,
+    "implementation_attempts_max": 2,
+    "primary_dev_evaluator_calls": 0,
+    "g2b": false,
+    "cceb_training": false,
+    "full_training": false,
+    "test_access": false
+  },
+  "declarations": {
+    "c05_train_internal_fit_or_metric_observed": false,
+    "c05_dev_score_or_metric_observed": false,
+    "qrels_dev_or_test_read_by_c05": false,
+    "test_records_or_metrics_read_by_c05": false,
+    "shared_evaluator_modified": false,
+    "text": "Independent review outcomes and structural/data-path audits were observed, but no C05 optimizer fit, train-internal ranking outcome, dev evaluation, or test outcome existed before this review-amended lock."
+  },
+  "frozen_question": "whether a two-epoch ordinary target-attention residual can learn non-repeat history ranking value over an exact calibration-D2p coordinate",
+  "frozen_stop_rule": {
+    "mean_internal_ndcg10_delta_min": 0.001,
+    "paired_bootstrap_95_ci_low_strictly_positive": true,
+    "all_three_request_hash_folds_positive": true,
+    "deterministic_rescore_bitwise_equal": true,
+    "failure_action": "stop without G2b, CCEB, dev, or full-system training"
+  },
+  "registered_inputs": {
+    "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+    "packed_manifest_sha256": "bb8e5984b8f41190193e9a84914aa369715bd3ab46261558836a6be11cb19d86",
+    "query_token_manifest_sha256": "18e285a88388dabbad0c09273de086415250c0bcc6201f5cf34c35f45bf260f6",
+    "calibration_checkpoint_sha256": "247f27e2cbeef90e3fa5a5f5c2b8488db26e1542aa1617cec19e4b8316373572",
+    "internal_train_popularity_sha256": "d8fd4b618454d8797408bec9d2d219c3bf3059b34283db0816cf059a46ae8e7b"
+  },
+  "files": {
+    "README.md": "6af4bb173bc65b2bd3af54fa7cbf4079c90b3abd7ed255a859022d4bce962d5d",
+    "environment.txt": "77b75504be25a12f04ec0d292c86ed2e4999b4a1256726217eed04d05a78e256",
+    "configs/c05_signal_probe.yaml": "9b822443e07c8c41c27f7a1d29b59b73e9d476b7a974c86fa3d687c0e8aaaa6b",
+    "model/__init__.py": "cc4c5ef6b868b92ab05b2861fcdca772fd01c38b562f2311a22da3a4a2662bfc",
+    "model/cceb.py": "89684263bee0fd52a43a541eff91c7b5c87500b4e44f4f98ba3735283559f9ff",
+    "model/signal_probe.py": "28a7518cfdd02d54cd09270e61ed8447568644efee3a779aa4ddea935ef7f26c",
+    "notes/gate_protocol.md": "1700aa61e059899b19611654ade371a358d94bd01f75683cde39df5f0253a379",
+    "notes/mechanism_fingerprint.md": "c33b35d7b79baac6117fdc8a92580ae8e9f577f0db2943117f07409e973a5a83",
+    "notes/nearest_neighbors.md": "8b8632fa3ac44379ff89a30d7153961e13b09b1d99e79c51eeb6a46e1c298830",
+    "notes/pre_run_review.md": "55c8ba57f98fe92ab4b40a76bc98650f3c35bd79b19247953d4df5e4ba96f700",
+    "notes/proposal.md": "f57b800974e45908f73d0a7d2255422746449a924587de8d6b39ff5a2b6618bb",
+    "tests/__init__.py": "a37d4261b88c6c0e7c8d764600efc2fe0f1f5dfb1d6b487ffcdd77e294d0a803",
+    "tests/test_cceb.py": "3b5f28e39f7c02c46b77284ebf481c53068660379fa962025810a4e546675444",
+    "tests/test_data.py": "8cc94b98b91c367422f9c1de7abf1f0f675a4bc525735de3ace98d8c57be1698",
+    "tests/test_losses.py": "2d4f6a5250670dd305fa695c70b367239d5395b650935b6b7120bff201461bab",
+    "tests/test_signal_probe.py": "faae5621082461d2be7ff698fcbff7930fb96451a0b194bd5ad7e0f895589fea",
+    "train/__init__.py": "fd3a6c0d97840f919400da99dbb8499ea16688faf1fcde05e33855249257a26a",
+    "train/data.py": "63a320cc289da6427aabfd260d2e36baa816dee19a5b747334ab1fc82f4c16c2",
+    "train/losses.py": "1cb9e1febfe38a821630edeea24cd3571064c9ff3802f20f2cf6cb9fce87b12b",
+    "train/materialize_g0.py": "9b2557457f4a0dff7e9f982aa70c5a1b01b5a4f9f2896ee3caa33378f9697fc0",
+    "train/run_g2a.py": "33bc22b46e634290e4b40f04919cb663b2c1b0b36128fbbf1fa83f4b91c9fcdd"
+  },
+  "repo_files": {
+    "configs/analysis/finetuned_nonpersonalized_control.yaml": "89cd643133385d54a02454158b834d722488a2ba5b167d5172ead6e17bd03885",
+    "src/myrec/analysis/finetuned_query_tower.py": "57a065c9daf93d64bad51ca68734cfe48a056f548f2f7b22be584771b7891832",
+    "src/myrec/analysis/supervised_diagnostics.py": "e4a3f6d2f8d5d2863d215d1a4821db0e4a5b83ae430a4de76902cab2f166c170",
+    "src/myrec/eval/metrics.py": "53f6800e893a34d240f6a7c9971f60ae86fb984f8fe99669f0df579bf7b45f18",
+    "src/myrec/utils/jsonl.py": "019dfa2a3b149814b4524f4e44cdef5f6a3a92d640900f2ec14c83404ee15ea1"
+  },
+  "environment": {
+    "prefix": "/data/gkl/conda_envs/myrec-c05",
+    "python": "3.10.20",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.12.1",
+    "numpy": "1.24.3",
+    "gpu": "NVIDIA A40",
+    "physical_gpu": 0,
+    "binding": "CUDA_VISIBLE_DEVICES=0; program cuda:0"
+  },
+  "git": {
+    "commit": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+    "dirty": true,
+    "note": "Pre-existing user changes are preserved; the worktree was not cleaned or committed."
+  },
+  "unit_contract": {
+    "command": "python -m pytest -q systems/05_candidate_contrastive_evidence/tests",
+    "passed": 26,
+    "failed": 0,
+    "scope": "synthetic algebra, exact initialization, masks, two-step gradients, candidate permutation, empty losses, label-free selection, and path firewall"
+  }
+}

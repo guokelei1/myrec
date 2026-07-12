@@ -1,0 +1,4 @@
+Environment: /data/gkl/conda_envs/myrec-c26
+Physical GPU: 2
+Program device: cuda:0 with CUDA_VISIBLE_DEVICES=2
+Base environment: /data/gkl/conda_envs/myrec-c25

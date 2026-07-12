@@ -1,0 +1,17 @@
+{
+  "candidate_id": "C15",
+  "name": "Candidate-Conditioned Event Value Write",
+  "status": "rejected_factorization_or_edge_conditioned_prior_art",
+  "single_primitive": "replace candidate-independent attention values with low-rank Phi(q,c_i,h_j) before ordinary event allocation",
+  "bilinear_reduction": "every vector-valued bilinear Phi(z,h)=M(z)h pulls through the event sum and becomes a candidate-conditioned map of the ordinary pooled value",
+  "nonlinear_boundary": "joint nonlinear Phi can avoid factorization but is exactly an edge-conditioned/dynamic-filter message function",
+  "base_contract": "history-blind Transformer candidate path",
+  "no_history_contract": "zero-valued NULL plus bitwise untouched base selection",
+  "post_write_contract": "candidate-centred globally bounded hidden residual with small nonzero LayerScale",
+  "exact_contract": "canonical exact recurrence is one coordinate inside the same softplus-monotone head",
+  "forbidden": ["unrestricted pair MLP as novelty", "base-score router", "dataset branch", "independent reliability gate"],
+  "model_implemented": false,
+  "runner_implemented": false,
+  "gpu_executed": false,
+  "real_dev_test_qrels_accessed": false
+}

@@ -1,26 +1,34 @@
 # External Audit: Introduction and Motivation Stage
 
-> **Current supersession / 当前解释（2026-07-10）.** 下文的
+> **Current supersession (2026-07-13).** This audit predates the full-token
+> positive control and C80 closure. Current architecture entry requires R0 and a
+> passed Failure Card under
+> [`doc/31`](../doc/31_problem_discovery_and_architecture_iteration_protocol.md).
+
+> **Terminal supersession / 当前解释（2026-07-11）.** 下文的
 > benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
 > [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
 > 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
-> 为准：motivation complete，design formulation ready；implementation/training
-> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+>、[`terminal closure`](../doc/dev_log/20260711_architecture_exploration_terminal_closure.md)
+> 为准：motivation complete；后续 C01--C16 已关闭，未得到经过验证的架构
+> primitive，也未授权 proposed-system dev/full/test evaluation。C5-R3 FAIL
+> 及全部数字不变。下文所有
+> `current` / `final` / GO 标签均只表示该审计发生时的历史判断。
 
-> **Final C5-R3 supersession.** After this historical audit and the later C5-R2
+> **Historical C5-R3 supersession (gate-local decision at that time).** After this historical audit and the later C5-R2
 > repair, `doc/23` froze and executed the finite item/category component gate.
 > Item-only is significant over D2p in 3/3 seeds and reaches mean NDCG@10
 > 0.3453755; category-only is significant in 0/3; full D2s is significantly
 > worse than item-only in 3/3. The primary and sole fallback both fail, with
-> integrity passed. Current authority is
+> integrity passed. At that stage, gate authority was
 > `reports/pps_c5r3_candidate_history_alignment.{json,md}`. The scientific
-> terminal is benchmark/analysis-only and there is no design authorization.
+> terminal was interpreted as benchmark/analysis-only with no design authorization.
 > Everything below remains the historical external review at its audit time.
 
 > **Superseded by executed C5-R2 repair.** This report's CONDITIONAL GO treated
 > the temporal-staleness confound as a wording caveat. The subsequently frozen
 > and executed `doc/22` control failed its same-query significance rule (1/3
-> significant seeds; 2/3 required). Current authority is
+> significant seeds; 2/3 required). At that stage, authority was
 > `reports/pps_c5r2_temporal_symmetric_identity.{json,md}` and formal
 > proposed-system authorization is paused. The audit below is preserved as a
 > historical independent review.

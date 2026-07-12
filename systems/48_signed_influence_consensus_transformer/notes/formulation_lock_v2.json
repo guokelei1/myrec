@@ -1,0 +1,21 @@
+{
+  "candidate_id": "c48",
+  "created_at": "2026-07-12T02:46:41.965990+00:00",
+  "declarations": {
+    "dev_test_qrels_opened": false,
+    "fresh_reserve_opened": false,
+    "labels_metrics_outputs_opened_before_v2": false,
+    "regression_tests_passed": 1,
+    "repair": "copy negative-stride NumPy views to contiguous arrays at Torch boundary",
+    "scientific_settings_changed": false
+  },
+  "files_sha256": {
+    "systems/48_signed_influence_consensus_transformer/notes/formulation_execution_abort.md": "7e25c865dd1bf47c3e16226ce4db069ae1b1ed8218ba073972fd688b8044c7cc",
+    "systems/48_signed_influence_consensus_transformer/notes/formulation_lock.json": "205d2dce6bedb85d000bf3fb36bd9528f378da7988e33555636e484c5065ef88",
+    "systems/48_signed_influence_consensus_transformer/probe/freeze_formulation_lock_v2.py": "a25b8f20a7a38649161cbe131e1c2efe9e3c11d406814753fd75386d592b7f8e",
+    "systems/48_signed_influence_consensus_transformer/probe/run_formulation_gate_v2.py": "a6af7451282dfd1c4aacfd57da1cdfbf20a518e82e5e0660c00f7e405eca9b2e",
+    "systems/48_signed_influence_consensus_transformer/tests/test_runtime_stride.py": "b38aa7ef2ec2ef3736d11ec8e09d31510faa370f0c67e5294a921755ff0290ad"
+  },
+  "formulation_lock_sha256": "205d2dce6bedb85d000bf3fb36bd9528f378da7988e33555636e484c5065ef88",
+  "status": "locked_v2_contiguous_array_boundary_only"
+}

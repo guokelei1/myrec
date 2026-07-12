@@ -1,0 +1,82 @@
+{
+  "candidate_id": "c18",
+  "gate_id": "g1_synthetic_v1",
+  "status": "failed_stop",
+  "passed_seeds": 0,
+  "required_seeds": 3,
+  "decision": "close C18 before repository data, dev, or test",
+  "execution": {
+    "physical_gpu": 2,
+    "gpu_name": "NVIDIA A40",
+    "elapsed_seconds": 219.75258350372314,
+    "python": "3.10.20",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "steps_per_mode_per_seed": 800,
+    "trainable_modes": ["projection", "direct", "soft_penalty"]
+  },
+  "seed_results": [
+    {
+      "seed": 20260718,
+      "repeat_accuracy": 1.0,
+      "supported_nonrepeat_accuracy": 0.5052083333333334,
+      "base_supported_accuracy": 0.5052083333333334,
+      "clean_target_margin_gain_over_base": -3.442012896925917e-08,
+      "maximum_protected_margin_violation": 5.364418029785156e-07,
+      "projection_active_repeat_fraction": 1.0,
+      "passed": false
+    },
+    {
+      "seed": 20260719,
+      "repeat_accuracy": 1.0,
+      "supported_nonrepeat_accuracy": 0.515625,
+      "base_supported_accuracy": 0.515625,
+      "clean_target_margin_gain_over_base": -7.404014468193054e-08,
+      "maximum_protected_margin_violation": 4.76837158203125e-07,
+      "projection_active_repeat_fraction": 1.0,
+      "passed": false
+    },
+    {
+      "seed": 20260720,
+      "repeat_accuracy": 1.0,
+      "supported_nonrepeat_accuracy": 0.50390625,
+      "base_supported_accuracy": 0.50390625,
+      "clean_target_margin_gain_over_base": -9.623666308300471e-09,
+      "maximum_protected_margin_violation": 5.960464477539062e-07,
+      "projection_active_repeat_fraction": 1.0,
+      "passed": false
+    }
+  ],
+  "structural_contracts": {
+    "repeat_accuracy_passed_all_seeds": true,
+    "protected_margin_passed_all_seeds": true,
+    "projection_active_passed_all_seeds": true,
+    "load_bearing_magnitude_passed_all_seeds": true,
+    "no_history_bitwise_passed_all_seeds": true,
+    "candidate_permutation_passed_all_seeds": true,
+    "deterministic_rescore_passed_all_seeds": true,
+    "matched_capacity_and_initialization_passed_all_seeds": true
+  },
+  "scientific_failures": {
+    "supported_accuracy_failed_all_seeds": true,
+    "supported_gain_over_base_failed_all_seeds": true,
+    "worst_subset_advantage_failed_all_seeds": true,
+    "clean_margin_gain_positive_failed_all_seeds": true,
+    "corruption_retention_failed_all_seeds": true
+  },
+  "access": {
+    "repository_data_read": false,
+    "standardized_records_read": false,
+    "repository_labels_read": false,
+    "dev_evaluator_calls": 0,
+    "test_access": false,
+    "dev_eval_log_sha256_before_and_after": "54b3760a211b1e8047a2615de39398873d27b7f64531f4860747ea7e0cb2bb44"
+  },
+  "artifacts": {
+    "proposal_lock_sha256": "df872a7167b0b561a100eccd8febee5b71ef4b31c50ace6917b19a76cc2fceeb",
+    "proposal_lock_aggregate_sha256": "ff3d31855113ba63f42a1e8d5ec8d607cfbb1ef391334d3835097fd2f2ed37bb",
+    "raw_report_path": "artifacts/c18_evidence_constrained_order_transformer/synthetic_gate_v1.json",
+    "raw_report_sha256": "9efd7f0b223295720928e132aa8b211f43300126e2c5341495740a65fb73ecaf"
+  },
+  "interpretation": "The recurrence-anchored order projection is structurally valid and load-bearing, but the semantic transfer proposal carries no candidate-aligned non-repeat utility. Safety without a transfer law is insufficient."
+}

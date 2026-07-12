@@ -1,0 +1,23 @@
+{
+  "boundary": {
+    "attempts": 1,
+    "dev_test_qrels": false,
+    "labels": false,
+    "repository_data": false
+  },
+  "candidate_id": "c76",
+  "created_at": "2026-07-12T14:39:39.250019+00:00",
+  "decision": "authorize_three_seed_data_free_design_gate",
+  "proposal_lock_sha256": "4bfc773e457d7e6c4946f2a2192bc4d75e7ee3b2c28a77f4def292af86afdf45",
+  "source_sha256": {
+    "configs/design_gate.yaml": "ebe6c30dc0b46853fc19de5bca9d26a62c1a2ab38e84e9c3f4d8b687c324c338",
+    "model/__init__.py": "d44c1311f25d30d1fcd35fcf779ac3113120deb0a9e1cf86aece20fdd5d24a08",
+    "model/cltt.py": "6377fcc9601616af34b6fef51ae398999054813ceb410fe6d5aad40abad4bdb1",
+    "probe/freeze_lock.py": "5c9f3b3f998011edb85de3600fac5f28b8884020930dc5ecdbe3b83589d5000e",
+    "probe/run_design_gate.py": "5f8d7a99cd8f2313b170f61649c08a20102d1c28a2710b3996794c300a3cf257",
+    "probe/summarize_design_gate.py": "ba61f6f1924752308b723c7727158e7dbe0063e8341694f791ea11b997761cc0",
+    "probe/synthetic.py": "b0dd22ee840920f5b0bf0feca34d75857936c9c8315c8402ed9f8aa1723f8683",
+    "tests/test_model.py": "a1071690d9c2c1b9eb58d384dbf15caad518d0f30835661682eed84b08c02ca8",
+    "tests/test_synthetic.py": "7d5719c5cbc20cd05a13002ad8477ac2abd23f8e778f3c075a8202b9fec3ae19"
+  }
+}

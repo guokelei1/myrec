@@ -24,6 +24,13 @@ The research scope is documented in [doc/](doc/). Key documents:
 - `doc/13_baseline_implementation_plan.md` — per-baseline implementation,
   the fairness input matrix (§2.4), quantified tuning budgets (§2.5),
   per-baseline deliverables (§2.6), and the developer runbook (§7).
+- `doc/15_proposed_system_design_principles.md` — current architecture-entry
+  rules after the C80 terminal retrospective.
+- `doc/31_problem_discovery_and_architecture_iteration_protocol.md` — current
+  authoritative pipeline for source observability, strong-baseline development,
+  failure discovery, architecture formulation, dev iteration, and confirmation.
+- `doc/24_parallel_llm4rec_design_protocol.md` — historical C01--C04 isolation
+  protocol; it does not authorize current work.
 
 Before adding a file, decide whether it is source/protocol evidence or
 local experiment state.
@@ -98,9 +105,34 @@ change / zero-shot) in `experiments/pps_baseline_cards.md`.
 
 ## Proposed-System Policy
 
-The proposed system (query-conditioned evidence routing) is developed
-under `systems/`. This is the tracked source tree for the method that
-passes the C3/C5 motivation gates.
+Architecture search ended at C80. There is no C81 and no C80 precision,
+canonicalization, threshold, label-opening, dev, or test rescue. The C01--C80
+trees under `systems/` are historical evidence, not active templates.
+
+Current work follows `doc/31_problem_discovery_and_architecture_iteration_protocol.md`:
+
+1. audit the cross-dataset information objects and confirmation data;
+2. establish full-token observability on the main track and a comparable
+   secondary track;
+3. normally tune an ordinary full-token joint Transformer as the strong base;
+4. produce a replicated Failure Card that localizes a ranking-relevant failure;
+5. only then formulate one architecture hypothesis derived from that failure;
+6. separate implementation revisions, dev trials, and frozen confirmation.
+
+No new architecture source tree or architecture GPU training is authorized
+until a Failure Card passes doc 31. A future proposed model must still be an
+LLM4Rec-style Transformer/LM ranker in which the LM/Transformer is the
+end-to-end ranking core. Prompt-only scoring, offline LLM features fed to an
+MLP, fixed-score routing, and renamed existing attention modules are not
+eligible architecture contributions.
+
+Mechanics, learnability, utility, specificity, attribution, numerical safety,
+and novelty are separate states. A mechanical failure is not negative utility;
+normal dev tuning is allowed inside a frozen budget; paper-level joint gates
+apply only to a frozen confirmation survivor. Controls are claim-specific:
+event permutation is binding only for an order/set-invariance claim, wrong-user
+history only for provenance, and no-history exactness only for a base-preserving
+claim.
 
 Track source code, configs, and design notes. Do not track
 checkpoints, runs, logs, or caches — the `.gitignore` catches those under
@@ -123,7 +155,7 @@ Dataset tracks:
 |---|---|---|
 | Main | KuaiSearch | Primary evaluation: real NL query + history + candidates + dual labels |
 | Secondary | Amazon-C4 + Amazon-Reviews-2023 | English validation, comparison with MemRerank |
-| Anchor | JDsearch | Robustness: mechanism gains without plaintext text |
+| Conditional anchor | JDsearch | Robustness only for claims supported by its no-plaintext information object |
 
 The standardized record interface is defined in
 [doc/11_experiment_and_dataset_plan.md](doc/11_experiment_and_dataset_plan.md)
@@ -179,8 +211,10 @@ reports/pps_c3_motivation.json
 ...
 ```
 
-These are tracked (small JSON). The gate must pass before advancing to
-the next phase — see `doc/11_experiment_and_dataset_plan.md`.
+These are tracked (small JSON). A positive claim may advance only after its
+gate passes. A failed gate must close that claim; a newly scoped hypothesis
+requires a separately frozen pre-outcome protocol before implementation — see
+`doc/11_experiment_and_dataset_plan.md`.
 
 ## Engineering Rules
 

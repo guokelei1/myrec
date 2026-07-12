@@ -1,0 +1,16 @@
+{
+  "candidate_id": "c47",
+  "checks": {
+    "labels_features_scores_opened": false,
+    "repair": "read physical JSONL lines instead of str.splitlines",
+    "scientific_settings_changed": false,
+    "v1_selection_absent": true
+  },
+  "files": {
+    "systems/47_posterior_supported_ridge_transformer/notes/preselection_execution_abort.md": "8f5e8ecc5db10a708842ba3512b1c5892536eeb538427431ee766982f00169d8",
+    "systems/47_posterior_supported_ridge_transformer/notes/proposal_lock.json": "994b975ef7c411cae4f4e7797de4a4ca1688e2c9e807143390d9bde6d10217b7",
+    "systems/47_posterior_supported_ridge_transformer/probe/locking_v2.py": "69efb457d1d0ead40ad630f8746c5a441225675798886049a734fee5ba84a4ad",
+    "systems/47_posterior_supported_ridge_transformer/probe/materialize_selection_v2.py": "1af271db95903e2e5b3dba1908784425f86fee68ffb75c8d14c8152949422e7a"
+  },
+  "status": "locked_v2_physical_line_reader_only"
+}

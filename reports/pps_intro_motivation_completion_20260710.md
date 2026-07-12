@@ -1,16 +1,22 @@
 # Intro and Motivation Completion Report
 
-> **Current supersession / 当前解释（2026-07-10）.** 下文的
-> benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
+> **Current supersession (2026-07-13).** “Motivation complete” below describes
+> the C5-R3 evidence state, not current architecture readiness. C01--C80 later
+> closed; current work is R0 problem discovery under
+> [`doc/31`](../doc/31_problem_discovery_and_architecture_iteration_protocol.md).
+
+> **Terminal supersession / 当前解释（2026-07-11）.** 当前以
 > [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
-> 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
-> 为准：motivation complete，design formulation ready；implementation/training
-> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+>、[`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
+> 和 [`terminal closure`](../doc/dev_log/20260711_architecture_exploration_terminal_closure.md)
+> 为准：motivation complete；后续 C01--C16 已全部关闭，未得到经过验证的
+> architecture primitive，也未授权 proposed-system dev/full/test evaluation。
+> C5-R3 FAIL 及全部数字不变。
 
 Date: 2026-07-10
 
-Status: **complete and internally consistent; terminal outcome is
-benchmark/analysis-only, with no proposed-system architecture authorization**.
+Status: **historical motivation completion; the later C01--C16 architecture
+portfolio is terminally closed without a validated primitive**.
 
 ## Final Motivation Conclusion
 
@@ -38,7 +44,10 @@ fixed candidate pool is already query-conditioned
   -> category-only adds approximately zero in all three seeds
   -> full D2s is significantly worse than item-only in all three seeds
   -> apparent static history value is therefore dominated by exact-item recurrence
-  -> motivation closes as benchmark/analysis evidence; design remains unstarted
+  -> history evidence has unequal empirical fidelity
+  -> four independent LLM4Rec/Transformer formulations may test distinct mechanisms
+  -> a candidate surviving its minimal probe may enter the full design gate
+  -> only a candidate passing that full gate may enter full training
 ```
 
 ## C5-R3 Results
@@ -57,7 +66,8 @@ The multi-granular primary fails because category-only is not independently
 useful and full D2s does not beat item-only. The sole predeclared fallback fails
 because category-only has zero significant seeds and only **0.1148%** mean
 relative gain, far below its frozen 2% threshold. The formal outcome is
-`TERMINAL_FAIL`, meaning benchmark/analysis-only—not a broken run.
+`TERMINAL_FAIL` for that preregistered multi-granular/coarse-category recovery
+ladder—not a broken run and not a prohibition on a newly scoped design hypothesis.
 
 ## Current Static Waterline
 
@@ -68,10 +78,10 @@ relative gain, far below its frozen 2% threshold. The formal outcome is
 | **C5-R3 item-only D2s** | **0.3453755** | current strongest static benchmark |
 | C5-R3 category-only D2s | 0.3241931 | no significant history-present gain |
 
-The future 2% reference, if a later protocol retains that rule, is approximately
-0.3522831. This number is not a current design target because no architecture is
-authorized; it only prevents future work from comparing against the weaker
-0.3416 waterline.
+The 2% reference over this static waterline is approximately 0.3522831. It is a
+performance reference for later full-system evaluation, not evidence that any
+current candidate has passed its design gate; current minimal probes and their
+authorization rules are frozen separately in `doc/15` and `doc/24`.
 
 ## Integrity
 
@@ -113,16 +123,23 @@ Not supported:
 - an oracle-shaped router or any untrained proposed architecture;
 - using test to confirm, rescue, or select the motivation.
 
-## Terminal Decision
+## Current Stage Decision
 
-Motivation work requested by the current goal is complete. The truthful paper
-position is a benchmark/analysis result about repeat-item concentration and the
-failure of coarse semantic history alignment. Proposed-system design and
-training have not begun. If design is requested later, it must start from a new
-question and a new pre-outcome protocol rather than reinterpret C5-R3.
+Motivation work is complete. The truthful paper position remains a bounded
+result about repeat-item concentration, unequal history-evidence fidelity, and
+the failure of the tested coarse semantic alignment. That result now motivates
+four deliberately different LLM4Rec/Transformer candidate formulations under
+`doc/24`; each may build only the minimal prototype needed for its frozen
+dev-only falsifier. Full implementation, tuning, and training are authorized
+separately for a candidate only after that candidate passes the common contract
+and its design-specific gate in `doc/15`/`doc/24`. This transition does not
+reinterpret C5-R3, does not revive its failed category claim, and does not
+unlock test.
 
 Primary artifacts:
 
+- `doc/15_proposed_system_design_principles.md`
+- `doc/24_parallel_llm4rec_design_protocol.md`
 - `doc/23_c5r3_candidate_history_alignment_protocol.md`
 - `configs/analysis/c5r3_candidate_history_alignment.yaml`
 - `reports/pps_c5r3_candidate_history_alignment.{json,md}`

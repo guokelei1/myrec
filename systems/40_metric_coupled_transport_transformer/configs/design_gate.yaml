@@ -1,0 +1,31 @@
+candidate_id: c40
+gate_id: c40_metric_coupled_design_v1
+device: cuda:0
+model:
+  dim: 32
+  heads: 4
+  rank: 4
+  temperature: 0.2
+  profile_scale: 1.0
+  correction_scale: 2.0
+  init_std: 0.01
+data:
+  train_requests: 640
+  test_requests: 320
+  history_length: 8
+  candidates: 12
+  teacher_seed: 20261900
+  teacher_init_std: 0.15
+training:
+  seeds: [20261901, 20261902, 20261903]
+  epochs: 12
+  batch_size: 32
+  learning_rate: 0.003
+  weight_decay: 0.0001
+evaluation:
+  primary_minus_base_min: 0.10
+  primary_minus_single_wide_min: 0.01
+  primary_minus_shifted_min: 0.01
+  clean_minus_wrong_min: 0.05
+  wrong_gain_retention_max: 0.50
+  permutation_error_max: 0.000001

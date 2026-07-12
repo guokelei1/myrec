@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    -0.023039964085538277,
+    -0.007604515083889837
+  ],
+  "delta": -0.015394627901422597,
+  "metric": "ndcg@10",
+  "num_requests": 4677,
+  "request_ids_path": "systems/04_prefix_delta_lm/protocol/nonrepeat_history_present_request_ids.txt",
+  "samples": 10000,
+  "seed": 20260708,
+  "significant_a_gt_b": false
+}

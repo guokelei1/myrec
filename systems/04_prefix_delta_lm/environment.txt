@@ -1,0 +1,26 @@
+# C04 environment manifest (proposal-lock state)
+
+create_command:
+  CONDA_ENVS_PATH=/data/gkl/conda_envs conda create -n myrec-c04 --clone pps-kuaisearch -y
+
+name: myrec-c04
+prefix: /data/gkl/conda_envs/myrec-c04
+base_clone: /home/gkl/miniconda3/envs/pps-kuaisearch
+python: 3.10.20
+torch: 2.6.0+cu124
+torch_cuda_build: 12.4
+transformers: 5.12.1
+numpy: 1.24.3
+pyyaml: 6.0.2
+pytest: 9.1.1
+assigned_physical_gpu: 3
+required_binding: CUDA_VISIBLE_DEVICES=3
+code_device: cuda:0
+online_llm_calls: 0
+
+candidate_local_addition:
+  /data/gkl/conda_envs/myrec-c04/bin/python -m pip install pytest
+
+Only the test dependency above was added after cloning, inside C04's isolated
+environment. The real environment prefix, model cache, checkpoints, and run
+outputs are local state and are not tracked.

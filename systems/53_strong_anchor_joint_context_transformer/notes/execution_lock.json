@@ -1,0 +1,30 @@
+{
+  "aggregate_sha256": "4c251e7ad3ab4156a61b5751ea8e01f5b4fa9f157839a99cadd20f95e9f42691",
+  "candidate_id": "c53",
+  "created_at": "2026-07-12T04:05:18.655512+00:00",
+  "declarations": {
+    "A_labels_used": false,
+    "fit_labels_materialized": true,
+    "fresh_reserve_dev_test_qrels_closed": true
+  },
+  "lock_id": "c53_execution_v1",
+  "materialization_report": {
+    "path": "artifacts/c53_strong_anchor_joint_context_transformer/foundation_gate_v1/materialization_report.json",
+    "sha256": "46d4fc22bbbaed1c09840c7e639d4a3e3ebef8a623ae02bd2a1e8c59f70c35ca"
+  },
+  "materialized_outputs_sha256": {
+    "amazon_fit_indices": "441dfc1a8de3b4e945be0fb66f629c4112870df165904fc10f34c720d96cce73",
+    "amazon_fit_label_offsets": "82fa17b3ecf5487f70dcd6df6cd39a26a0b78b4ba4713711ea5d5f93e2d9ec84",
+    "amazon_fit_labels": "4e5336088bed38e3b4cf0492a0cf37b8e555a129beb0dddb36998e927cb973d9",
+    "kuai_base_offsets": "4f7b0aa9bfb95d9fe62411e81b17b855fcd89e9e8924758e37bcf309b3160012",
+    "kuai_base_scores": "1e1fd8add7b1ecd6d4565f49fc1e525bbf704910a49879819130db3a48bbad88",
+    "kuai_feature_indices": "80b8ea22770c97ae0b47307ebb0fceb15fe103067893c3b864b25710445e351b",
+    "kuai_fit_indices": "9bdb2bbb4d9638a3bcb601d12e03d86be81def52d1664df6e1e926d764dbb6ee",
+    "kuai_fit_label_offsets": "88ab3b5f8463a18f548709a5dc6b6ec2ba9f9afd241195a6c2c7b2633760e38e",
+    "kuai_fit_labels": "a42f7799a24644d737f0d1c80fcd5ca3549d64c498f246978fa3afb3a0a4e10b",
+    "kuai_item_states": "c2b8b2fb70fb30a68341464deaaecfbeb9e06ef2e8ea010a2adb5bf1c1475863",
+    "kuai_query_states": "5a91bc7f5b5a0864aa07e3e508023f71d288628f94c09f655d995ee763a976d4"
+  },
+  "proposal_lock_sha256": "ec5ea6541a0ac24faa89a121966e8dda00e59ad09e10d47787fd241a8bbcb48e",
+  "status": "locked_before_c53_training_or_A_score"
+}

@@ -1,0 +1,49 @@
+{
+  "candidate_id": "c08",
+  "name": "reversible_write_probe_undo_transformer",
+  "proposal_locked_at": "2026-07-11T00:00:00+08:00",
+  "status": "structural_gate_passed_synthetic_learning_not_run",
+  "single_primitive": "nonlinear volume-preserving history write, candidate probe, reverse history undo, reverse probe undo; inject only the candidate-centered closed-loop displacement",
+  "equation": "r_c=(P_qc^-1 W_H^-1 P_qc W_H-I)z0",
+  "architecture_locus": "candidate-token FFN state between lower and upper Transformer blocks",
+  "state": {
+    "type": "two-stream reversible additive coupling",
+    "width": "2*d_evidence",
+    "conservation": "unit Jacobian determinant per coupling",
+    "history_order": "chronological write and reverse-chronological undo"
+  },
+  "evidence_paths": {
+    "exact_recurrence": "shared history/candidate item-ID embedding into shared coupling axes",
+    "cross_item": "learned query-history-candidate axis overlap",
+    "no_history": "identity write composition and exact zero overwrite under history mask"
+  },
+  "ranking_invariants": [
+    "candidate permutation equivariance",
+    "candidate-common residual cancellation",
+    "bitwise own-backbone query-only fallback"
+  ],
+  "load_bearing_nonreduction": "a history map may fix the ordinary endpoint z0 but change a probe-perturbed state, yielding a nonzero loop residual",
+  "matched_control": "same-parameter ordinary terminal-vector memory using W_H z0 and the same candidate axes/readout",
+  "strongest_neighbors": [
+    "reversible RNN and Reformer",
+    "R3Mem reversible context compression/reconstruction",
+    "Mamba selective recurrent state",
+    "fast-weight linear Transformer and DeltaNet",
+    "DeltaProduct Householder transition products",
+    "generic history cross-attention"
+  ],
+  "absolute_irreducibility_claim": false,
+  "stop_if": [
+    "learned loop does not beat the matched ordinary endpoint memory",
+    "same-backbone generic history attention matches the loop",
+    "wrong, shuffled, query-masked, or disjoint evidence reproduces the true effect",
+    "no-history output differs from the frozen query-only anchor"
+  ],
+  "forbidden_mechanisms_absent": [
+    "graph decomposition",
+    "externally generated adapters",
+    "prompt or prefix score deltas",
+    "score-level expert routing",
+    "dataset or category rules"
+  ]
+}

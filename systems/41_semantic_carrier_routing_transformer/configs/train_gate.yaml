@@ -1,0 +1,130 @@
+candidate_id: c41
+gate_id: c41_semantic_carrier_train_gate_v1
+status: proposal_ready_prelock
+environment: /data/gkl/conda_envs/myrec-c39
+program_device: cuda:0
+run_id: 20260712_amazon_c4_c41_semantic_carrier_v1
+
+resources:
+  embedding_physical_gpus: [0, 1, 2, 3]
+  training_physical_gpus: [0, 1, 2]
+  seed_to_physical_gpu:
+    "20262101": 0
+    "20262102": 1
+    "20262103": 2
+
+paths:
+  candidate_source_root: systems/41_semantic_carrier_routing_transformer
+  proposal_lock: systems/41_semantic_carrier_routing_transformer/notes/proposal_lock.json
+  execution_lock: systems/41_semantic_carrier_routing_transformer/notes/execution_lock.json
+  standardized_root: data/standardized/amazon_c4/v0_history_bm25_100
+  standardized_manifest: data/standardized/amazon_c4/v0_history_bm25_100/manifest.json
+  records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  records_train_blind: data/standardized/amazon_c4/v0_history_bm25_100/records_train_blind.jsonl
+  candidate_manifest: data/standardized/amazon_c4/v0_history_bm25_100/candidate_manifest.json
+  c0_report: reports/pps_c0_amazon_c4_data_audit.json
+  c1_report: reports/pps_c1_amazon_c4_protocol.json
+  design_gate_report: reports/pps_c41_design_gate.json
+  design_gate_report_sha256: 1d0dd03c1aa720dd6ed3e9c0223a881168f7e74a93d923ec2ba8ebdbf08a2628
+  c40_report: reports/pps_c40_design_gate.json
+  c38_report: reports/pps_c38_train_gate.json
+  c38_selection: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/selection.json
+  c39_selection: artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/selection.json
+  selection: artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/selection.json
+  selection_sha256: 5ed34cab3c7f36a0d1418b799aaf73af3f0e55c2cd3727cfa2df90abd1ce9289
+  feature_root: artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/features
+  fit_labels: artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/fit_labels.npz
+  g0_report: artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1/g0_report.json
+  artifact_root: artifacts/c41_semantic_carrier_routing_transformer/train_gate_v1
+  checkpoint_root: models/c41_semantic_carrier_routing_transformer/train_gate_v1
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-en-v1.5/snapshots/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
+  c38_checkpoint_root: models/c38_cross_domain_global_tangent_transfer/train_gate_v1
+  shared_metric_source: src/myrec/eval/metrics.py
+
+integrity:
+  records_train_sha256: e55a02d155266210ee0546c96e67be1db253eb3eccf68a695be4141afeeb64a4
+  records_train_blind_sha256: 298797a41ecc55377b27f8855edff669c2cfefb970eaa9ba59c075631bd175bd
+  c38_checkpoint_sha256:
+    "20261301": e6732ca38bcf3b224d516aaecfcf684201580b349632f080ae5d0313f5a34d97
+    "20261302": e580e134f37565b95cc47f42f4481533b63375604414a6d76ccd8e4afca13404
+    "20261303": 6c67e1996fde17e6c5a19c61cc3fa8747b37505fd41981f2c0a19c0bb82d8543
+
+selection:
+  fit_requests: 6000
+  internal_A_requests: 1200
+  delayed_B_requests: 1200
+
+base:
+  repeat_boost: 3.0
+
+model:
+  frozen_backbone: BAAI/bge-small-en-v1.5
+  embedding_dim: 384
+  heads: 4
+  rank: 16
+  history_temperature: 0.1
+  profile_scale: 1.0
+  correction_scale: 2.0
+  init_std: 0.01
+  modes:
+    - semantic_routing
+    - single_wide_routing
+    - asymmetric_routing
+    - coupled_content
+  functional_controls:
+    - fixed_semantic
+    - uniform_semantic
+    - c38_unprojected
+
+encoding:
+  num_shards: 4
+  item_batch_size: 256
+  query_batch_size: 128
+  item_max_length: 128
+  query_max_length: 256
+  query_prefix: "Represent this sentence for searching relevant passages: "
+
+training:
+  seeds: [20262101, 20262102, 20262103]
+  c38_control_seeds: [20261301, 20261302, 20261303]
+  epochs: 1
+  max_requests_per_batch: 16
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  listwise_loss_weight: 1.0
+  direction_loss_weight: 1.0
+  candidate_sampling: false
+  attempts: 1
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20262101
+  hash_folds: 3
+
+gate:
+  primary_minus_base_min: 0.002
+  primary_minus_c38_min: 0.001
+  primary_minus_fixed_min: 0.001
+  primary_minus_matched_min: 0.0005
+  primary_vs_base_order_fraction_min: 0.05
+  primary_vs_base_top10_fraction_min: 0.01
+  primary_vs_control_order_fraction_min: 0.02
+  primary_vs_control_top10_fraction_min: 0.005
+  true_vs_wrong_order_fraction_min: 0.02
+  true_vs_wrong_top10_fraction_min: 0.005
+  raw_profile_max_abs: 0.000001
+  attention_sum_max_abs: 0.000001
+  deterministic_max_abs: 0.0
+  candidate_permutation_max_abs: 0.000001
+
+authorization:
+  design_gate_passed: true
+  label_free_selection: true
+  label_free_encoding_after_proposal_lock: true
+  fit_label_open_after_proposal_lock: true
+  training_after_execution_lock: true
+  internal_A_label_open_after_A0: true
+  delayed_B: false
+  dev: false
+  test: false

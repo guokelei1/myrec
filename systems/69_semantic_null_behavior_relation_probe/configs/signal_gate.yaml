@@ -1,0 +1,74 @@
+candidate_id: c69
+gate_id: c69_semantic_null_behavior_relation_v1
+status: pre_outcome_design
+
+paths:
+  proposal: systems/69_semantic_null_behavior_relation_probe/notes/proposal.md
+  nearest_neighbors: systems/69_semantic_null_behavior_relation_probe/notes/nearest_neighbors.md
+  preimplementation_review: systems/69_semantic_null_behavior_relation_probe/notes/preimplementation_review.md
+  proposal_lock: systems/69_semantic_null_behavior_relation_probe/notes/proposal_lock.json
+  execution_lock: systems/69_semantic_null_behavior_relation_probe/notes/execution_lock.json
+  artifact_root: artifacts/c69_semantic_null_behavior_relation_probe/signal_v1
+  checkpoint_root: models/c69_semantic_null_behavior_relation_probe/signal_v1
+  promoted_report: reports/pps_c69_semantic_null_behavior_relation_gate.json
+  c68_report: reports/pps_c68_population_relative_interaction_free_energy_gate.json
+  c47_config: systems/47_posterior_supported_ridge_transformer/configs/signal_gate_v1.yaml
+  c47_selection: artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/selection.json
+  c47_report: reports/pps_c47_signal_gate.json
+  c38_config: systems/38_cross_domain_global_tangent_transfer/configs/train_gate.yaml
+  diagnostic_audit: doc/dev_log/20260712_c42_c43_function_alignment_and_catalog_coverage_audit.md
+
+resources:
+  seed_to_physical_gpu:
+    "20264901": 0
+    "20264902": 1
+    "20264903": 2
+    "20264911": 0
+    "20264912": 1
+    "20264913": 2
+
+model:
+  width: 96
+  heads: 4
+  layers: 2
+  ffn_dim: 192
+  dropout: 0.0
+  score_bound: 4.0
+
+training:
+  modes: [semantic_matched_negative, random_negative]
+  steps: 500
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  target_similarity_weight: 0.25
+  seeds:
+    kuai: [20264901, 20264902, 20264903]
+    amazon: [20264911, 20264912, 20264913]
+  checkpoint_selection: fixed_final_state_only
+  attempts: 1
+
+scoring:
+  query_history_temperature: 0.1
+  pair_batch_size: 8192
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000002
+  exact_zero_tolerance: 0.000002
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20264920
+  hash_folds: 3
+  primary_minus_semantic_min: 0.005
+  primary_minus_random_min: 0.005
+  true_minus_wrong_min: 0.005
+
+authorization:
+  c47_fit_histories: true
+  exposed_c47_A_features: true
+  exposed_c47_A_labels_after_A0: true
+  fresh_reserve: false
+  dev: false
+  test: false
+  qrels: false

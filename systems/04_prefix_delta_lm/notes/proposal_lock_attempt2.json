@@ -1,0 +1,37 @@
+{
+  "attempt": 2,
+  "candidate_id": "c04_prefix_delta_lm",
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "change_scope": "numerical bug fix only; architecture, data, losses, thresholds, seed, GPU, and budgets unchanged",
+  "changed_locked_files": {
+    "systems/04_prefix_delta_lm/configs/probe.yaml": {
+      "new_sha256": "fd64756f8ee1f9a25ef1faba82152b629f101aad3502e66234b9702395b27b5d",
+      "reason": "assign a non-overwriting r2 run ID to the failed single-pass control"
+    },
+    "systems/04_prefix_delta_lm/cpdlr/losses.py": {
+      "new_sha256": "eecfe1ed88b9e562f32e28ce5dec09ef4c3ff5a816a0665e22fbce71f8093441",
+      "reason": "construct the absent-corruption zero loss directly instead of multiplying a padded -max logit sum by zero"
+    }
+  },
+  "declarations": {
+    "c04_dev_evaluator_calls_before_attempt2": 0,
+    "c04_dev_outcome_not_read": true,
+    "other_candidate_designs_not_read_or_copied": true,
+    "qrels_not_read": true,
+    "test_not_read": true
+  },
+  "failed_attempt_1": {
+    "failure_class": "numerical_contract_bug",
+    "observed_failure": "consistency and total loss were NaN because padded final logits were summed before multiplication by zero",
+    "run_id": "20260710_kuaisearch_c04_single_pass_train_s20260708",
+    "scientific_interpretation_allowed": false,
+    "train_summary_sha256": "19b16c0216c32b3bf5ddc34542d8c3553d7876144cc3bb49d541394516fcaf0f"
+  },
+  "initial_proposal_lock": {
+    "path": "systems/04_prefix_delta_lm/notes/proposal_lock.json",
+    "sha256": "6bf5f14d86f44a61a461a1babe4f0c250c0d69238b6839a238dbfcd66042f920"
+  },
+  "locked_at": "2026-07-11T00:42:32+08:00",
+  "post_fix_cpu_tests": "13 passed",
+  "retry_rule": "This is the sole remaining implementation attempt. Any further numerical or scientific failure stops C04 before dev or is reported after the single authorized screening."
+}

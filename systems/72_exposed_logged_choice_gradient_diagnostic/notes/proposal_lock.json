@@ -1,0 +1,17 @@
+{
+  "candidate_id": "c72",
+  "claim_boundary": {
+    "dev_test_qrels": false,
+    "formulation_only": true,
+    "fresh": false
+  },
+  "created_at": "2026-07-12T11:18:07.248775+00:00",
+  "decision": "freeze_exposed_fit_same_formula_diagnostic",
+  "design_sha256": {
+    "c71_report": "ab5eab0665dc5ab50977ae08f34e5b1d9e135daf9b1e27404171cf2bb21fba26",
+    "config": "a11e90daa7cde94826a0ee3b6944638d74b43570d7d9f9ab2920e6bb2cc49d8d",
+    "preimplementation_review": "1e6c8a3b2bc2b737b26f5a170e3575d47287e22056b2778da4526daa803e2e31",
+    "proposal": "92bb96326d869ec3df4ad5cb4155ec1496266023052e055ca89e5d23e73cac17",
+    "readme": "96e5ae0ee3984da2d649adef9d0d09c39d65661e9426e95083a61f2d1e73715f"
+  }
+}

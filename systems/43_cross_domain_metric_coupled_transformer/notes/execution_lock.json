@@ -1,0 +1,32 @@
+{
+  "candidate_id": "c43",
+  "created_at": "2026-07-12T00:34:25.233784+00:00",
+  "declarations": {
+    "dev_test_qrels_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "base_scores.npy": "441777573d810b87fd67fbc37f50c7de35969d71356e102a6a13b623b6348d5b",
+    "feature_candidate_offsets.npy": "63bfb2693fca785f88b55c0498d1750038076492634c79370997a12d94ccacb1",
+    "feature_request_indices.npy": "35196ae85695798d97779042d6b0328e97f54e525f0f94e59b98b64822f63111",
+    "fit_label_offsets.npy": "892a16eab159da39b7ebaada41f201906cef0a9477462a255bfba5605f2a0e1b",
+    "fit_labels.npy": "ca86be594d1382c107d315b799cd0a12e9d788c552fb2f3dedcdb6855405efd3",
+    "fit_request_indices.npy": "a7ccf2bb44c44502e05f86f49034ddda88ad6ce83975cf79e194c0cc08abae5e",
+    "history_request_indices.npy": "35196ae85695798d97779042d6b0328e97f54e525f0f94e59b98b64822f63111",
+    "query_embeddings.npy": "12448cdff7bdec3b89d0d116a98ca77e4bd67deabb82eb8a1e5834c55de642f0",
+    "true_history_items.npy": "e3fcabc29d02dab802fa320a7fcd87b98adb10e6ab26bc2e98d2007a2bb1e6e4",
+    "true_history_offsets.npy": "cef96842b6a37aafd3a391d266b380201c35b8055cac2b1f2ff617ac834abf6a",
+    "wrong_history_items.npy": "c4646a270a5c3e51bdc58e016cce5634ba15825fd7f956e528c5b27aa6134f0e",
+    "wrong_history_offsets.npy": "40379f653105083fc1d5a947406c0cfdd64327916cb0f4a97af39c6e5dff73f6"
+  },
+  "g0_report_path": "artifacts/c43_cross_domain_metric_coupled_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "7bd844507169d40c7da7e97622a698ff3b43099cd135b85958850e665d33309c",
+  "lock_id": "c43_cross_domain_metric_coupled_execution_v1",
+  "proposal_lock_sha256": "f5bd086f4d453ddfbf6fa999df9237ea684a011d795f365f6be2957a4f268f7a",
+  "selection_sha256": "fdb537233cb03d984985628807d1af90dbd3e75442bdd87770a2495ecc11ee72",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

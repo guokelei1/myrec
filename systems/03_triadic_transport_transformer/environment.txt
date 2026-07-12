@@ -1,0 +1,17 @@
+# Candidate-local environment manifest (tracked, machine-independent summary)
+name: myrec-c03
+base_clone: pps-kuaisearch
+create_command: CONDA_ENVS_PATH=/data/gkl/conda_envs conda create -n myrec-c03 --clone pps-kuaisearch -y
+observed_prefix: local-only; intentionally not recorded
+python: 3.10.20
+torch: 2.6.0+cu124
+transformers: 5.12.1
+numpy: 1.24.3
+scipy: 1.13.1
+pyyaml: 6.0.2
+pytest: 8.3.5
+candidate_local_install: python -m pip install pytest==8.3.5
+cuda_binding: CUDA_VISIBLE_DEVICES=2
+program_device: cuda:0
+observed_gpu: NVIDIA A40
+online_llm_calls: 0

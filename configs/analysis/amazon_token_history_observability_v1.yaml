@@ -1,0 +1,81 @@
+analysis_id: amazon_token_history_observability_v1
+status: pre_outcome
+date: "2026-07-12"
+run_id_prefix: 20260712_amazon_c4_token_hso_v1_
+
+paths:
+  protocol: doc/28_amazon_token_history_observability_protocol.md
+  module: src/myrec/analysis/token_history_observability.py
+  prepare_script: scripts/prepare_amazon_token_history_observability.py
+  run_script: scripts/run_amazon_token_history_observability.py
+  summarize_script: scripts/summarize_amazon_token_history_observability.py
+  records_train_blind: data/standardized/amazon_c4/v0_history_bm25_100/records_train_blind.jsonl
+  records_train: data/standardized/amazon_c4/v0_history_bm25_100/records_train.jsonl
+  c38_selection: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/selection.json
+  c38_report: reports/pps_c38_train_gate.json
+  c41_report: reports/pps_c41_train_gate.json
+  c42_report: reports/pps_c42_confirmation.json
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-en-v1.5/snapshots/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a
+  artifact_root: artifacts/analysis/amazon_token_history_observability_v1
+  checkpoint_root: models/analysis/amazon_token_history_observability_v1
+  execution_lock: artifacts/analysis/amazon_token_history_observability_v1/execution_lock.json
+  report: reports/pps_amazon_token_history_observability_v1.json
+
+selection:
+  fit_role: fit
+  reserve_requests: 1200
+  strict_nonrepeat: true
+  exclude_fit_users_from_reserve: true
+  wrong_seed: 20265600
+  history_length_bins: [1, 2, 3, 5, 10, 20, 50]
+
+tokens:
+  query_tokens: 32
+  candidate_tokens: 32
+  history_item_tokens: 20
+  max_history: 6
+  max_sequence_length: 192
+  tokenizer_batch_size: 4096
+
+model:
+  pretrained_backbone: BAAI/bge-small-en-v1.5
+  train_all_layers: true
+  dropout_from_backbone: true
+  score_head_bias: false
+
+training:
+  seeds: [20265601, 20265602, 20265603]
+  epochs: 4
+  requests_per_batch: 16
+  sampled_candidates: 8
+  history_dropout: 0.15
+  backbone_learning_rate: 0.00002
+  head_learning_rate: 0.0001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  checkpoint_selection: fixed_final_only
+  attempts: 1
+
+evaluation:
+  encoded_candidates_per_batch: 192
+  bootstrap_samples: 10000
+  bootstrap_seed: 20265620
+  observable_min_ndcg: 0.002
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000002
+  require_each_seed_positive: true
+
+resources:
+  seed_to_physical_gpu:
+    "20265601": 0
+    "20265602": 1
+    "20265603": 2
+
+authorization:
+  blind_selection_and_tokenization: true
+  compact_fit_labels_after_lock: true
+  reserve_labels_after_all_scores: true
+  training: true
+  dev: false
+  test: false
+  qrels: false

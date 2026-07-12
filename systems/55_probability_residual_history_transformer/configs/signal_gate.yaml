@@ -1,0 +1,78 @@
+candidate_id: c55
+gate_id: c55_probability_residual_history_v1
+status: frozen_settings_pending_proposal_lock
+
+paths:
+  proposal_lock: systems/55_probability_residual_history_transformer/notes/proposal_lock.json
+  execution_lock: systems/55_probability_residual_history_transformer/notes/execution_lock.json
+  selection: artifacts/c55_probability_residual_history_transformer/signal_gate_v1/selection.json
+  artifact_root: artifacts/c55_probability_residual_history_transformer/signal_gate_v1
+  checkpoint_root: models/c55_probability_residual_history_transformer/signal_gate_v1
+  promoted_report: reports/pps_c55_residual_signal_gate.json
+  c54_config: systems/54_history_carrier_competition_transformer/configs/mechanism_gate.yaml
+  c54_proposal_lock: systems/54_history_carrier_competition_transformer/notes/proposal_lock.json
+  c54_execution_lock: systems/54_history_carrier_competition_transformer/notes/execution_lock.json
+  c54_model: systems/54_history_carrier_competition_transformer/model/history_carrier.py
+  c54_runner: systems/54_history_carrier_competition_transformer/execution/run_gate.py
+  c47_selection: artifacts/c47_posterior_supported_ridge_transformer/signal_gate_v1/selection.json
+  c34_selection: artifacts/c34_candidate_tangent_cone_transformer/train_gate_v1/selection.json
+  c38_config: systems/38_cross_domain_global_tangent_transfer/configs/train_gate.yaml
+  c38_selection: artifacts/c38_cross_domain_global_tangent_transfer/train_gate_v1/selection.json
+  kuai_request_ids: artifacts/analysis/supervised_motivation_diagnostics/data/train/request_ids.jsonl
+  kuai_candidate_offsets: artifacts/analysis/supervised_motivation_diagnostics/data/train/candidate_offsets.npy
+  kuai_candidate_item_ids: artifacts/analysis/supervised_motivation_diagnostics/data/train/candidate_item_ids.npy
+  c53_artifact_root: artifacts/c53_strong_anchor_joint_context_transformer/foundation_gate_v1
+
+integrity:
+  c54_config_sha256: 9db542b27a2643a063469b57ea3b63a5245a1d31da797e7f679e8936bb4aaf37
+  c54_proposal_lock_sha256: 75bd949dbc91401ab38eec4aa3c3634be325f55bf934e5ae7f005fda37a6359e
+  c54_execution_lock_sha256: 664ae0bee6eebb047613d78067171e553db7a7efb39252b57dd1d053a0280293
+  c54_model_sha256: eed3016dab7088d129098461dbd786ef75053cbd9e72fb8ea89af995927978e6
+  c54_runner_sha256: 203eb6759a447f1bc53dab195729af188c090ee09c87722ad8aff8559add552e
+  c47_selection_sha256: 547b3d7874307c08924e606914243976182a17779b970fc3b1ade3159bea1855
+  c34_selection_sha256: d02d8f4ea48208d38eaf8d5ade5ca30b7263ba5598962288b6ebddc74a1d917e
+  c38_config_sha256: 278a1f3440a7679113110f2c254fce4d5d835b11c2a471b812e3a90deaaa4981
+  c38_selection_sha256: d8aa9ae89e20d1175806fcbde7ded1b6913a3bb9cffd6ec9120afd307fa8511a
+
+selection:
+  seed: 20263900
+  holdout_requests_per_domain: 1200
+
+resources:
+  kuai_seed_to_physical_gpu:
+    "20263901": 0
+    "20263902": 1
+    "20263903": 2
+  amazon_seed_to_physical_gpu:
+    "20263911": 0
+    "20263912": 1
+    "20263913": 2
+
+training:
+  kuai_seeds: [20263901, 20263902, 20263903]
+  amazon_seeds: [20263911, 20263912, 20263913]
+  modes: [history_carrier, raw_candidate]
+  epochs: 3
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  max_requests_per_batch: 24
+  max_sequence_tokens_per_batch: 4096
+
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 20263920
+  residual_mse_relative_gain_over_zero_min: 0.01
+  residual_mse_relative_gain_over_raw_min: 0.005
+  residual_mse_relative_gain_over_wrong_min: 0.005
+  ndcg_primary_minus_base_min: 0.001
+  ndcg_primary_minus_raw_min: 0.0005
+  ndcg_primary_minus_wrong_min: 0.001
+
+authorization:
+  C53_fit_only: true
+  C53_A: false
+  fresh_reserve: false
+  dev: false
+  test: false
+  qrels: false

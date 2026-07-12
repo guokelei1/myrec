@@ -1,0 +1,125 @@
+{
+  "candidate_id": "c21",
+  "gate": "G1_train_only_path_signal_observability",
+  "status": "failed_terminal",
+  "decision": "close_contiguous_path_hypothesis_and_do_not_promote_to_transformer",
+  "cohort": {
+    "source": "c06_fit_only",
+    "train_fit_requests": 9000,
+    "internal_probe_requests": 3000,
+    "selection_sha256": "6903d0363d3e95357909c4a73d3ae703e62fd8276d91aac894da9307642384a8"
+  },
+  "execution": {
+    "physical_gpu": 1,
+    "seeds": [20260727, 20260728, 20260729],
+    "modes_per_seed": 5,
+    "epochs": 2,
+    "elapsed_seconds": 535.7523595606908,
+    "all_training_finite": true,
+    "learned_attempts": 1
+  },
+  "seed_averaged_ndcg10": {
+    "d2p": 0.6132530359417271,
+    "contiguous_path": 0.6131887369675519,
+    "one_step": 0.6138159365640781,
+    "unordered_pair": 0.6133499833485858,
+    "endpoint_only": 0.6133420555625521,
+    "pooled_history": 0.6139341900078135
+  },
+  "primary_comparisons": {
+    "d2p": {
+      "mean_difference": -0.00006429897417524924,
+      "percentile_95_ci": [-0.0007363330115945478, 0.0006017731445794357],
+      "per_seed_differences": [-0.0006025732667994532, 0.0005360362549238839, -0.00012635991065018055],
+      "positive_hash_folds": 1,
+      "total_hash_folds": 3
+    },
+    "one_step": {
+      "mean_difference": -0.0006271995965261954,
+      "percentile_95_ci": [-0.0012505580512989444, -0.00003062844694420212],
+      "per_seed_differences": [-0.000751633944735335, -0.0007505858328148807, -0.00037937901202837]
+    },
+    "unordered_pair": {
+      "mean_difference": -0.00016124638103394784,
+      "percentile_95_ci": [-0.0007649383738730565, 0.00039917052037964786]
+    },
+    "endpoint_only": {
+      "mean_difference": -0.00015331859500027157,
+      "percentile_95_ci": [-0.0007775730631149856, 0.0004751698011209855]
+    },
+    "pooled_history": {
+      "mean_difference": -0.0007454530402616276,
+      "percentile_95_ci": [-0.0018972320039167213, 0.0003766101912498537]
+    }
+  },
+  "post_outcome_control_diagnostics_vs_d2p": {
+    "status": "diagnostic_only_not_a_new_gate_or_positive_claim",
+    "one_step": {
+      "mean_difference": 0.0005629006223509462,
+      "percentile_95_ci": [-0.00006595402590539117, 0.0012014770177556932],
+      "all_seed_differences_positive": true
+    },
+    "pooled_history": {
+      "mean_difference": 0.0006811540660863785,
+      "percentile_95_ci": [-0.0005531489411234425, 0.001933359197053713],
+      "all_seed_differences_positive": true
+    },
+    "endpoint_only": {
+      "mean_difference": 0.0000890196208250223,
+      "percentile_95_ci": [-0.00011533520366033459, 0.00029276161231424103]
+    },
+    "unordered_pair": {
+      "mean_difference": 0.00009694740685869855,
+      "percentile_95_ci": [-0.00029725605108067954, 0.0005099191750105463]
+    }
+  },
+  "mechanism_activity": {
+    "requests_with_any_order_change_fraction": 0.4603333333333333,
+    "requests_with_top10_membership_change_fraction": 0.04666666666666667,
+    "maximum_abs_candidate_delta_sum": 9.5367431640625e-7,
+    "clicked_minus_unclicked_delta_mean": 0.000215258495732485,
+    "clicked_minus_unclicked_delta_95_ci": [-0.00009376045769926671, 0.0005211375344059602]
+  },
+  "corruptions": {
+    "retention_defined": false,
+    "reason": "clean_primary_gain_over_d2p_is_nonpositive",
+    "wrong_history_gain_over_d2p": 0.0001246522415099321,
+    "shuffled_event_gain_over_d2p": 0.0002111938368246751,
+    "wrong_history_check": false,
+    "shuffled_event_check": false
+  },
+  "contracts": {
+    "checks_passed": 10,
+    "checks_failed": 12,
+    "checks_total": 22,
+    "candidate_set_hashes_asserted": true,
+    "matched_parameter_count": true,
+    "matched_initialization_each_seed": true,
+    "deterministic_rescore_bitwise": true,
+    "candidate_centering": true,
+    "nohistory_bitwise_d2p_all_seeds": true,
+    "query_absent_bitwise_d2p_all_seeds": true
+  },
+  "artifacts": {
+    "raw_report": "artifacts/c21_contiguous_path_closure_transformer/train_signal_v1/gate_report.json",
+    "raw_report_sha256": "011a2c99428e7ef33a5e7e8677075f16f9133194bfe9fd2dcb3cc8058bb1ab58",
+    "formal_attempt_sha256": "7ea60c6961f8f382e4244c5e8392e44ac965dfdd27c2fdb60bcf1f947543bd48",
+    "proposal_lock": "systems/21_contiguous_path_closure_transformer/notes/train_signal_gate_lock.json",
+    "proposal_lock_sha256": "de0d203e78f6d3778d109fea2cfa8708a2cb87724c989f3a3c03b5d2c748188c",
+    "proposal_lock_aggregate_sha256": "4c1fdeffb09c6cb7b56e9a7b7a295f76976f2bf6bc56c136991902234a8b7710"
+  },
+  "boundaries": {
+    "compact_c06_fit_labels_opened_after_lock": true,
+    "original_train_label_array_opened": false,
+    "c06_internal_A_opened": false,
+    "c06_internal_B_opened": false,
+    "c06_escrow_opened": false,
+    "dev_records_or_qrels_opened": false,
+    "test_opened": false,
+    "shared_dev_evaluator_calls": 0,
+    "dev_eval_log_sha256_unchanged": "54b3760a211b1e8047a2615de39398873d27b7f64531f4860747ea7e0cb2bb44",
+    "paper_claim_authorized": false,
+    "full_transformer_authorized": false
+  },
+  "conclusion": "The active multi-step path write is not ranking-aligned or evidence-specific. It is base-equivalent on average, unstable across seeds, and significantly worse than the one-step control. C21 is closed without tuning or promotion."
+}

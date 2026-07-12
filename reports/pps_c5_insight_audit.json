@@ -1,12 +1,23 @@
 {
   "architecture_ready": false,
-  "architecture_ready_field_semantics": "Backward-compatible field: false means not ready for full implementation/training; it does not block design formulation.",
-  "design_formulation_ready": true,
+  "architecture_ready_field_semantics": "Current semantics: false blocks architecture formulation and training until a doc/31 Failure Card passes.",
+  "architecture_family": "LLM4Rec-style Transformer/LM ranker with load-bearing internal query-history-candidate interaction",
+  "candidate_count": 0,
+  "design_gate_prototyping_authorized": false,
+  "design_formulation_ready": false,
   "implementation_training_authorized": false,
   "implementation_training_ready": false,
-  "motivation_complete": true,
+  "motivation_complete": false,
+  "motivation_complete_field_semantics": "C5-R3 component motivation is historically complete, but motivation for a new architecture is incomplete because no ordinary full-token Transformer defect is established.",
+  "c5r3_component_motivation_complete_historical": true,
+  "parallel_design_round_authorized": false,
   "primitive_validated": false,
-  "authorized_next_stage": "Formulate the evidence-fidelity calibration architecture, nearest-neighbor mechanism table, controls, and a frozen pre-implementation design gate. Do not start full training until that gate passes.",
+  "authorized_next_stage": "Run doc/31 R0 information-object audit, full-token observability parity, ordinary full-token strong-baseline tuning, and Failure Card discovery. No architecture source tree or training is authorized.",
+  "current_authority": "doc/31_problem_discovery_and_architecture_iteration_protocol.md",
+  "superseded_by": [
+    "reports/pps_c80_amazon_real_gate.json",
+    "doc/dev_log/20260712_c01_c80_terminal_retrospective.md"
+  ],
   "claim_boundary": {
     "not_supported": [
       "randomized or causal user-identity effects",
@@ -34,18 +45,53 @@
     "future_two_percent_threshold": 0.3522830535191022
   },
   "date": "2026-07-10",
+  "current_supersession_date": "2026-07-13",
   "decision": {
     "architecture_ready": false,
-    "design_formulation_ready": true,
+    "architecture_family_locked": true,
+    "candidate_count": 0,
+    "design_formulation_ready": false,
+    "design_gate_prototyping_authorized": false,
     "fallback_passed": false,
     "gate_version": "C5-R3",
     "implementation_training_authorized": false,
     "implementation_training_ready": false,
     "outcome": "TERMINAL_FAIL",
+    "parallel_design_round_authorized": false,
     "primary_passed": false,
     "scientific_terminal": "c5r3_multigranular_and_coarse_semantic_paths_only",
-    "stage_interpretation": "C5-R3 kills its two preregistered claims. It does not prohibit formulating a new evidence-fidelity design hypothesis derived from the observed contrast."
+    "stage_interpretation": "C5-R3 kills its two preregistered claims. C01-C80 later showed that its broad evidence-fidelity contrast does not identify an architecture; current authorization returns to R0 problem discovery."
   },
+  "historical_parallel_candidates": [
+    {
+      "architecture_axis": "event-level counterfactual evidence contract inside a Transformer",
+      "environment": "myrec-c01",
+      "gpu": 0,
+      "id": "c01",
+      "system_dir": "systems/01_counterfactual_evidence_contract"
+    },
+    {
+      "architecture_axis": "query-candidate-history-conditioned low-rank modification of LM internals",
+      "environment": "myrec-c02",
+      "gpu": 1,
+      "id": "c02",
+      "system_dir": "systems/02_history_hyperadapter"
+    },
+    {
+      "architecture_axis": "triadic query-history-candidate transport with an explicit null sink",
+      "environment": "myrec-c03",
+      "gpu": 2,
+      "id": "c03",
+      "system_dir": "systems/03_triadic_transport_transformer"
+    },
+    {
+      "architecture_axis": "shared-LM paired history/no-history candidate-logit delta",
+      "environment": "myrec-c04",
+      "gpu": 3,
+      "id": "c04",
+      "system_dir": "systems/04_prefix_delta_lm"
+    }
+  ],
   "evidence": {
     "category_only_vs_d2p_history_present": {
       "deltas": [
@@ -95,7 +141,7 @@
     "D1": "Mean-history and query-attentive residuals did not stably beat their base.",
     "M3_M4": "Construct validity failed under the Random-channel null."
   },
-  "insight": {
+  "historical_insight": {
     "architecture_consequence": "Design one candidate-conditioned evidence-fidelity calibration primitive that preserves reliable recurrence and admits a transferable residual only when joint query/history/candidate evidence supports it. This is a design hypothesis, not an established outcome.",
     "design_falsification": "Before full implementation, freeze and pass a gate requiring no degradation versus item-only on repeat-present requests, stable positive value over D2p on the 4677 non-repeat history-present requests, failure of coarse-only/wrong-user/shuffled-event/query-masked controls to reproduce the value, and exact D2p fallback without history.",
     "falsification_result": "The multi-granular primary and sole coarse-semantic fallback both failed exactly as frozen.",
@@ -125,6 +171,7 @@
   "report": "pps_c5_insight_audit",
   "source_report": "reports/pps_c5r3_candidate_history_alignment.json",
   "source_report_sha256": "a09cd6d6724ee745a3d7f94f7ab6120f59649ee229e0f9c29f1e7e59877daf4b",
-  "status": "motivation_complete_design_formulation_ready_training_gated",
+  "status": "historical_c5r3_result_current_r0_problem_discovery_only",
+  "test_locked": true,
   "test_split_read": false
 }

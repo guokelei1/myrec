@@ -1,0 +1,80 @@
+{
+  "budget": {
+    "a40_gpu_hours_max": 8.0,
+    "full_gate_and_multi_seed_authorized": false,
+    "implementation_attempts_max": 2,
+    "primary_dev_evaluator_calls_max": 1,
+    "test_access_authorized": false
+  },
+  "candidate_id": "c04_prefix_delta_lm",
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "config_path": "/data/gkl/myrec/systems/04_prefix_delta_lm/configs/probe.yaml",
+  "config_sha256": "bacc243db1774af209b05b108631f83f05860b9b2039da50fc7ba94c579e91fd",
+  "declarations": {
+    "c04_dev_outcome_not_read": true,
+    "other_candidate_designs_not_read_or_copied": true,
+    "proposal_locked_before_any_c04_gpu_model_outcome": true,
+    "qrels_not_read": true,
+    "test_not_read": true
+  },
+  "dev_evaluator_calls_before_lock": 0,
+  "environment": {
+    "conda_env": "myrec-c04",
+    "conda_prefix": "/data/gkl/conda_envs/myrec-c04",
+    "cuda_build": "12.4",
+    "numpy": "1.24.3",
+    "platform": "Linux-6.8.0-31-generic-x86_64-with-glibc2.39",
+    "pytest": "9.1.1",
+    "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.12.1"
+  },
+  "git": {
+    "commit": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+    "dirty": true,
+    "status_sha256": "80d1ad5f7e924e703da1324c61c4efaf6a1a6cf33793f24f8547f0c300d80ccf"
+  },
+  "gpu": {
+    "code_device": "cuda:0",
+    "physical_gpu": 3,
+    "required_binding": "CUDA_VISIBLE_DEVICES=3"
+  },
+  "locked_at": "2026-07-11T00:40:25.935675+08:00",
+  "locked_files": {
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/README.md": "93eb0b16ec32db1c54cc253c211e5588d08ac58e087c46afe5138deffa570de8",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/configs/probe.yaml": "bacc243db1774af209b05b108631f83f05860b9b2039da50fc7ba94c579e91fd",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/__init__.py": "3deb68460ded36abbaa6e253a73d097e7a8ca8e924f7e4e3585b4cbbae1ea27d",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/audit.py": "92c783233fe18feee5ff43b5cd434c9eacd6cbc2f7a0d030d1b17120138eec43",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/data.py": "91b3e9eddfea4f650d725bc43d9e327e1f23897859bf941bffbd816501fc960b",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/freeze.py": "6e6eff0c0008dcd2e3d732c7d344df78c5611e802a62f10868ce1bec7fc5939d",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/io.py": "b7af632830a3e8ab74324a579aa9694a6290a271948fef149cb81ba614fabef5",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/losses.py": "8ee497e8131c402b0340fd3bed1c139d81b57220c856ca8da9451600b6b1337b",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/materialize.py": "2b78daadcca850158cef17404c58150f25f5705ee0eac69f7b5c84955bed8b0d",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/model.py": "e2ba862466edb8a65cd02b35d741d2d57876a5c0cd3458c61bc2f1283f496b08",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/protocol.py": "c1fe06b6ee9f2336d92b61d7f8989b51b08e8c8a2f5c6736f6dff7d5e9aa7bd9",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/score.py": "4255857d67d9e1d6f9265c4799e35b8b435cd5c657c939a460885d04c9045426",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/tokenization.py": "9458e933cfeb6e97170a2bba5203629a2ef9e54f2a969a53c760fbdbd36d96e0",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/cpdlr/train.py": "284abaead74e7814249bbad7e645fc029664c5c8d6cfaa60dc3add3da1956c0f",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/environment.txt": "aba89a07f946f63e47bb3a462341d39db996922a282cbe330bbc4f23ff5917b7",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/notes/gate_protocol.md": "6e4bceff582a3114fc278a08740bb3558a0ba11bbca3526771d31c3fd5f10178",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/notes/mechanism_fingerprint.md": "da2e07b0bf7119bbd74c7a4bb1fb90a50634f3d2e0b34fc8cfb193e6b185b99e",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/notes/nearest_neighbors.md": "13adbf94a354baa3880177a16d8c0e84e0bdea5b782d977f0bd87fe36b182233",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/notes/proposal.md": "a2b6c07f82fcaf4d4830b74e979395e77df5b327bb6e01d1925b0243f0e8ec86",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/no_history_request_ids.txt": "295798f83597db1420ab4a7294cb0478fbac004db3b693e512c1a0753ed07fc0",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/nonrepeat_history_present_request_ids.txt": "ab73db743c46f83b23f676e0aa0340199e53ee2010853e0afcc3aabc8ad43b95",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/repeat_present_request_ids.txt": "c0e57b661b9c922ee627a7ea5d1b41f6b168fe288d428516901f16cc623e01bf",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/structural_subsets.json": "e52241b22dbbbcca1c80b7f009b83ab34a37edf1560b4db8d2ae0e1f146ac8bf",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/scripts/audit_screening.py": "c84c00df29ca9bd9d5d1b5c0e00f12d439828046832c94bce88884cf9b0466f9",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/scripts/freeze_proposal.py": "beb900689cf666ce1b482a5c00b56dd4c4c419dd8c15bb178b6debceea111599",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/scripts/materialize_probe.py": "e1503a4204589536bc2b8cfaa4b2e05750c51470478b8345244d62bc7ddd7da1",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/scripts/materialize_protocol.py": "f5313f73b48e332b7e20eebc34c22f16001ac4a506aae508d859b7f579a8dd86",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/scripts/score_dev.py": "4384825d60c9c0e9db65ea14fd9ad54505a3ec65168a879d020405a0b90b9948",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/scripts/train_probe.py": "171c4b405ea6e77c7fc8cf81a13d4e0096a593a4276e34d1213ebfc440be383c",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/tests/test_io.py": "193bed254c3b2c4130c65e4545eae98e0d2bd16814177c9c8d47401a4a6d7e62",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/tests/test_losses.py": "8354fa238f988bfeeb8553a2abc782f81e72f9d8f4c223a162a9ae604a33875b",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/tests/test_model.py": "2444121d90908661b01fbc670448ced203415e7c157c7e93363d12b21bfee934",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/tests/test_operator.py": "6d761298c98d0692236778c8530c9256163a0a2bd12208b87f63ba5ce8fe04df",
+    "/data/gkl/myrec/systems/04_prefix_delta_lm/tests/test_tokenization.py": "4c3ab6c5661a40b626e686698d7b7166b8d456fc5670286acef6b3dd74c6e274"
+  },
+  "seed": 20260708
+}

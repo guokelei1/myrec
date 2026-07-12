@@ -1,0 +1,44 @@
+{
+  "candidate_id": "c02",
+  "continuation_id": "c02_chht_mechanical_continuation_1",
+  "status": "frozen_before_continuation_gpu_outcome",
+  "locked_at": "2026-07-11T13:00:51+08:00",
+  "authorization": {
+    "scope": "one empty-valid-mask mechanical continuation only",
+    "scientific_settings_changed": false,
+    "all_five_variants_restart": true,
+    "shared_dev_evaluator_calls_allowed_after_internal_pass": 1,
+    "multi_seed_full_training_test": false
+  },
+  "prior_outcome_boundary": {
+    "valid_train_internal_outcome": false,
+    "dev_score_file": false,
+    "dev_evaluator_calls": 0,
+    "test_access": false,
+    "previous_attempts": "mechanically invalid before checkpoint"
+  },
+  "execution": {
+    "environment": "myrec-c02",
+    "python": "3.10.20",
+    "torch": "2.6.0+cu124",
+    "cuda_runtime": "12.4",
+    "physical_gpu": 1,
+    "program_device": "cuda:0",
+    "seed": 20260708,
+    "cublas_workspace_config": ":4096:8",
+    "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+    "git_commit": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+    "candidate_tests_passed": 14,
+    "candidate_tests_total": 14
+  },
+  "locked_files": {
+    "systems/02_history_hyperadapter/train/train_screen.py": "eea9d9ac2045f08c61302579c176ff94b9ace7ea4ad10177c5da5891bbae54a0",
+    "systems/02_history_hyperadapter/train/run_mechanical_continuation.py": "b770be6a9487ac0ef693c126b318c22056b38879e9ae12acf35fa6b93c1f8daa",
+    "systems/02_history_hyperadapter/tests/test_chht.py": "cd1466c3c8b266728f06f0f312da3c6228775dfba2deb43ff3ef9c6dcaac0a08",
+    "systems/02_history_hyperadapter/notes/mechanical_continuation_request.md": "a4a58f66a288b922f179169c6ec15f7f83c07dcf12c41862ffeaede4c08f93b8",
+    "systems/02_history_hyperadapter/notes/mechanical_continuation_authorization.md": "e4c3d628795ad639da9eada8cfbaec79f00229feb0d87a7a36e61f623ca5c218",
+    "systems/02_history_hyperadapter/configs/screen.yaml": "20123a4a300ff6915e16139c957c65a042905b305f7d01affc72046efb024fae",
+    "systems/02_history_hyperadapter/notes/proposal_lock.json": "136b2bc4e565ccf8b3ded03d5e1abebd88b25d62f141e9c890c4ee8734f00d80"
+  },
+  "only_behavioral_change": "all-no-history corruption loss returns true_norm.sum() * 0.0 before corrupt forwards"
+}

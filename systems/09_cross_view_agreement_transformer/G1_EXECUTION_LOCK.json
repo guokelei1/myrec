@@ -1,0 +1,91 @@
+{
+  "schema": "myrec.c09.g1_execution_lock.v1",
+  "candidate_id": "C09",
+  "gate": "G1_minimal_CPU_synthetic_falsifier",
+  "lock_date": "2026-07-11",
+  "state": "locked_before_first_optimizer_execution",
+  "self_inclusion": false,
+  "self_inclusion_reason": "A lock file cannot contain its own stable cryptographic digest.",
+  "locked_file_count": 5,
+  "locked_files": [
+    {
+      "path": ".gitignore",
+      "role": "ignored_raw_artifact_boundary",
+      "bytes": 15,
+      "sha256": "b62cbaccdf12609890f766a37fa730e656834bc984ac785777e9b7f1b6809046"
+    },
+    {
+      "path": "PRE_OUTCOME_LOCK.json",
+      "role": "transitive_lock_for_original_design_code_and_tests",
+      "bytes": 3823,
+      "sha256": "b5498a368d267c34e793bec93bd336dfeac2f6fb9c7ba9c5de8456a283534b87"
+    },
+    {
+      "path": "g1_protocol_amendment.md",
+      "role": "complete_normative_executable_G1_protocol",
+      "bytes": 12430,
+      "sha256": "e80368bd2603f9893ff51b07f9ef6ea8ce101e5ebbd169e01567b3c8012db8cc"
+    },
+    {
+      "path": "g1_runner.py",
+      "role": "one_shot_G1_executable",
+      "bytes": 29738,
+      "sha256": "b7aab8155204241a0f6547b9fe958c0b215a17755594c1e410131f0d2e240914"
+    },
+    {
+      "path": "tests/test_g1_runner.py",
+      "role": "pre_execution_protocol_and_equation_tests",
+      "bytes": 9026,
+      "sha256": "725d5564b50f30a2d2f7b1a70b4fb58a46a9e2ff5f90d98307296e9b4e808802"
+    }
+  ],
+  "combined_manifest": {
+    "algorithm": "sha256",
+    "serialization": "Sort locked_files by path using bytewise C ordering; for each emit lowercase sha256, two ASCII spaces, path, and LF; hash concatenated UTF-8 bytes.",
+    "sha256": "4ba65b6e1a0a2def1feb651ecb872a58f5a825b648e395b4b25fbdca0f17a6a4"
+  },
+  "transitive_original_manifest_sha256": "b5ba9175fa560718fd8c5668ea0d1f417bdb743726113820124e8b6a60019bcc",
+  "runtime": {
+    "python": "3.13.12",
+    "torch": "2.12.1+cu130",
+    "device": "cpu",
+    "dtype": "float32",
+    "intraop_threads": 1,
+    "interop_threads": 1,
+    "deterministic_algorithms": true
+  },
+  "pre_execution_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES=\"\" python -m unittest discover -s systems/09_cross_view_agreement_transformer/tests -v",
+    "passed": 26,
+    "failed": 0,
+    "new_G1_protocol_tests_included": 12,
+    "optimizer_steps_executed_by_tests": 0
+  },
+  "execution_contract": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES=\"\" python systems/09_cross_view_agreement_transformer/g1_runner.py",
+    "seeds": [20260711, 20260712, 20260713],
+    "method_count_per_seed": 11,
+    "optimizer_steps_per_method": 200,
+    "expected_total_optimizer_steps": 6600,
+    "raw_artifact": "g1_artifacts/g1_raw.json",
+    "one_shot_marker": "g1_artifacts/STARTED.json",
+    "rerun_permitted": false
+  },
+  "pre_execution_declarations": {
+    "repository_dataset_or_cohort_observed": false,
+    "repository_labels_or_qrels_observed": false,
+    "gpu_used": false,
+    "trained_or_optimized_synthetic_outcome_observed": false,
+    "structural_non_optimizer_backward_checks_observed": true,
+    "dev_evaluator_used": false,
+    "test_split_used": false,
+    "raw_artifact_or_start_marker_exists": false
+  },
+  "post_execution_rule": {
+    "normative_locked_files_may_change": false,
+    "thresholds_or_controls_may_change": false,
+    "second_execution_permitted": false,
+    "failure_terminal_decision": "STOP_C09_G1_FAILED",
+    "pass_terminal_decision": "PASS_G1_REQUEST_D0_REVIEW"
+  }
+}

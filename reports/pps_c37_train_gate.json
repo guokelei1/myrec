@@ -1,0 +1,1524 @@
+{
+  "A0": {
+    "barycentric_vs_control_order_changes": {
+      "global_tangent_transport": {
+        "any_count": 219,
+        "any_fraction": 0.365,
+        "requests": 600,
+        "top10_count": 30,
+        "top10_fraction": 0.05
+      },
+      "relative_surplus_only": {
+        "any_count": 279,
+        "any_fraction": 0.465,
+        "requests": 600,
+        "top10_count": 84,
+        "top10_fraction": 0.14
+      },
+      "uncentered_additive_transport": {
+        "any_count": 206,
+        "any_fraction": 0.3433333333333333,
+        "requests": 600,
+        "top10_count": 26,
+        "top10_fraction": 0.043333333333333335
+      }
+    },
+    "checks": {
+      "authentication_G0": true,
+      "barycentric_changes_each_control_order": true,
+      "barycentric_changes_each_control_top10": true,
+      "barycentric_has_candidate_distinct_displacements": true,
+      "barycentric_has_exact_zero_support_candidates": true,
+      "barycentric_has_mixed_admission_requests": true,
+      "barycentric_preserves_global_mean": true,
+      "candidate_deviation_is_strictly_subordinate": true,
+      "candidate_deviation_never_reverses_global_write": true,
+      "candidate_permutation": true,
+      "capacity_matched_modes": true,
+      "deterministic": true,
+      "global_control_is_candidate_shared": true,
+      "gradients_active": true,
+      "inactive_candidates_keep_global_state": true,
+      "neutral_up_projection": true,
+      "no_candidate_scalar_head": true,
+      "noauth_exact_d2p": true,
+      "nohistory_exact_d2p": true,
+      "order_active": true,
+      "paired_initialization": true,
+      "parameter_count_identical": true,
+      "parameters_updated": true,
+      "primary_uses_barycentric_residual_transport": true,
+      "query_absent_exact_d2p": true,
+      "relative_only_control_removes_global_anchor": true,
+      "repeat_exact_item_only": true,
+      "seed_specific_initializations": true,
+      "selection_integrity": true,
+      "top10_active": true,
+      "training_finite": true,
+      "uncentered_control_removes_only_barycentric_law": true,
+      "wrong_changes_order": true,
+      "wrong_changes_top10": true
+    },
+    "order_changes_vs_d2p": {
+      "any_count": 297,
+      "any_fraction": 0.495,
+      "requests": 600,
+      "top10_count": 116,
+      "top10_fraction": 0.19333333333333333
+    },
+    "seed_barycentric_diagnostics": {
+      "20261041": {
+        "active_requests": 368,
+        "candidate_distinct_displacement_fraction": 0.9945652173913043,
+        "candidate_distinct_displacement_requests": 366,
+        "candidate_rows": 17780,
+        "common_mean_max_abs_error": 2.9802322387695312e-08,
+        "inactive_global_state_max_abs_error": 0.0,
+        "maximum_unbounded_residual_to_global_norm_ratio": 0.6012497544288635,
+        "mixed_zero_nonzero_support_fraction": 0.9130434782608695,
+        "mixed_zero_nonzero_support_requests": 336,
+        "nonpositive_alignment_fraction": 0.0,
+        "nonpositive_alignment_rows": 0,
+        "positive_support_pair_fraction": 0.48552852348993286,
+        "zero_support_candidate_fraction": 0.26186726659167603,
+        "zero_support_candidate_rows": 4656
+      },
+      "20261042": {
+        "active_requests": 368,
+        "candidate_distinct_displacement_fraction": 0.9945652173913043,
+        "candidate_distinct_displacement_requests": 366,
+        "candidate_rows": 17780,
+        "common_mean_max_abs_error": 2.9802322387695312e-08,
+        "inactive_global_state_max_abs_error": 0.0,
+        "maximum_unbounded_residual_to_global_norm_ratio": 0.5836232304573059,
+        "mixed_zero_nonzero_support_fraction": 0.9130434782608695,
+        "mixed_zero_nonzero_support_requests": 336,
+        "nonpositive_alignment_fraction": 0.0,
+        "nonpositive_alignment_rows": 0,
+        "positive_support_pair_fraction": 0.48587458053691274,
+        "zero_support_candidate_fraction": 0.26209223847019125,
+        "zero_support_candidate_rows": 4660
+      },
+      "20261043": {
+        "active_requests": 368,
+        "candidate_distinct_displacement_fraction": 0.9945652173913043,
+        "candidate_distinct_displacement_requests": 366,
+        "candidate_rows": 17780,
+        "common_mean_max_abs_error": 2.9802322387695312e-08,
+        "inactive_global_state_max_abs_error": 0.0,
+        "maximum_unbounded_residual_to_global_norm_ratio": 0.5841219425201416,
+        "mixed_zero_nonzero_support_fraction": 0.9157608695652174,
+        "mixed_zero_nonzero_support_requests": 337,
+        "nonpositive_alignment_fraction": 0.0,
+        "nonpositive_alignment_rows": 0,
+        "positive_support_pair_fraction": 0.4848154362416107,
+        "zero_support_candidate_fraction": 0.26068616422947133,
+        "zero_support_candidate_rows": 4635
+      }
+    },
+    "seed_candidate_permutation_max_abs_difference": {
+      "barycentric_residual_transport": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      },
+      "global_tangent_transport": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      },
+      "relative_surplus_only": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      },
+      "uncentered_additive_transport": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      }
+    },
+    "seed_deterministic_max_abs_difference": {
+      "barycentric_residual_transport": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      },
+      "global_tangent_transport": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      },
+      "relative_surplus_only": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      },
+      "uncentered_additive_transport": {
+        "20261041": 0.0,
+        "20261042": 0.0,
+        "20261043": 0.0
+      }
+    },
+    "seed_wrong_order_changes": {
+      "20261041": {
+        "any_count": 298,
+        "any_fraction": 0.49666666666666665,
+        "requests": 600,
+        "top10_count": 116,
+        "top10_fraction": 0.19333333333333333
+      },
+      "20261042": {
+        "any_count": 298,
+        "any_fraction": 0.49666666666666665,
+        "requests": 600,
+        "top10_count": 117,
+        "top10_fraction": 0.195
+      },
+      "20261043": {
+        "any_count": 295,
+        "any_fraction": 0.49166666666666664,
+        "requests": 600,
+        "top10_count": 116,
+        "top10_fraction": 0.19333333333333333
+      }
+    },
+    "status": "passed"
+  },
+  "A1": {
+    "checks": {
+      "over_d2p_all_folds": true,
+      "over_d2p_all_seeds": true,
+      "over_d2p_ci": false,
+      "over_d2p_effect": true,
+      "over_global_tangent_transport_all_folds": false,
+      "over_global_tangent_transport_all_seeds": false,
+      "over_global_tangent_transport_ci": false,
+      "over_global_tangent_transport_effect": false,
+      "over_relative_surplus_only_all_folds": false,
+      "over_relative_surplus_only_all_seeds": true,
+      "over_relative_surplus_only_ci": false,
+      "over_relative_surplus_only_effect": true,
+      "over_uncentered_additive_transport_all_folds": false,
+      "over_uncentered_additive_transport_all_seeds": false,
+      "over_uncentered_additive_transport_ci": false,
+      "over_uncentered_additive_transport_effect": false,
+      "true_over_wrong_ci": false
+    },
+    "clicked_minus_unclicked_correction_report_only": {
+      "mean": -0.0026743512140349895,
+      "percentile_95_ci": [
+        -0.008702619266273094,
+        0.003445461307812362
+      ],
+      "requests": 600,
+      "samples": 10000,
+      "seed": 20261242
+    },
+    "primary_minus_controls": {
+      "global_tangent_transport": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": 0.0007543261643663426,
+            "requests": 215
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.00015778760683734388,
+            "requests": 181
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.0009424653027883629,
+            "requests": 204
+          }
+        ],
+        "mean": -2.538732654171853e-06,
+        "percentile_95_ci": [
+          -0.0012419990619240504,
+          0.001251535114901067
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20261042
+      },
+      "relative_surplus_only": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": -0.0007120806939224076,
+            "requests": 215
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.002115894428239583,
+            "requests": 181
+          },
+          {
+            "fold": 2,
+            "mean_difference": 0.0019783831828357303,
+            "requests": 204
+          }
+        ],
+        "mean": 0.0010557828526942265,
+        "percentile_95_ci": [
+          -0.001961527332772206,
+          0.0040658509176349006
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20261044
+      },
+      "uncentered_additive_transport": {
+        "hash_folds": [
+          {
+            "fold": 0,
+            "mean_difference": -9.420218303134184e-05,
+            "requests": 215
+          },
+          {
+            "fold": 1,
+            "mean_difference": 0.0009742981933846106,
+            "requests": 181
+          },
+          {
+            "fold": 2,
+            "mean_difference": -0.0007854034818970816,
+            "requests": 204
+          }
+        ],
+        "mean": -6.8796777602144384e-06,
+        "percentile_95_ci": [
+          -0.001124661748484043,
+          0.0011268349291735113
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20261043
+      }
+    },
+    "primary_minus_d2p": {
+      "hash_folds": [
+        {
+          "fold": 0,
+          "mean_difference": 0.0004742996416995107,
+          "requests": 215
+        },
+        {
+          "fold": 1,
+          "mean_difference": 0.003956372173653309,
+          "requests": 181
+        },
+        {
+          "fold": 2,
+          "mean_difference": 0.0009096333011425617,
+          "requests": 204
+        }
+      ],
+      "mean": 0.0016727382997162106,
+      "percentile_95_ci": [
+        -0.0017330866657737185,
+        0.005158839676565144
+      ],
+      "requests": 600,
+      "samples": 10000,
+      "seed": 20261041
+    },
+    "seed_averaged_ndcg10": {
+      "d2p": 0.6055159534613511,
+      "global_tangent_transport": 0.6071912304937215,
+      "primary": 0.6071886917610674,
+      "relative_surplus_only": 0.6061329089083731,
+      "uncentered_additive_transport": 0.6071955714388276,
+      "wrong": 0.6055159534613511
+    },
+    "seed_primary_minus_controls": {
+      "global_tangent_transport": {
+        "20261041": 0.0007873248633610885,
+        "20261042": 5.469928644534374e-05,
+        "20261043": -0.0008496403477689465
+      },
+      "relative_surplus_only": {
+        "20261041": 0.0018454709101462363,
+        "20261042": 0.0009181720141913687,
+        "20261043": 0.0004037056337450746
+      },
+      "uncentered_additive_transport": {
+        "20261041": 0.0006377243973850967,
+        "20261042": -0.0008350039913286785,
+        "20261043": 0.00017664056066293862
+      }
+    },
+    "seed_primary_minus_d2p": {
+      "20261041": 0.002597599255300556,
+      "20261042": 0.0011475258883546476,
+      "20261043": 0.0012730897554934291
+    },
+    "status": "failed",
+    "true_minus_wrong": {
+      "mean": 0.0016727382997162106,
+      "percentile_95_ci": [
+        -0.0016503180056681435,
+        0.005154471286631463
+      ],
+      "requests": 600,
+      "samples": 10000,
+      "seed": 20261142
+    }
+  },
+  "c37_code_dev_test_qrels_metrics_read": false,
+  "candidate_hashes": {
+    "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+    "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+    "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+    "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+    "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+    "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+  },
+  "candidate_id": "c37",
+  "created_at": "2026-07-11T20:08:58.925032+00:00",
+  "delayed_B_features_labels_scores_opened": false,
+  "escrow_dev_test_opened": false,
+  "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+  "internal_A_labels_opened": true,
+  "internal_A_scores_opened": true,
+  "matched_control_trained": true,
+  "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+  "seed_reports": {
+    "barycentric_residual_transport": {
+      "20261041": {
+        "barycentric_diagnostics": {
+          "active_requests": 368,
+          "candidate_distinct_displacement_fraction": 0.9945652173913043,
+          "candidate_distinct_displacement_requests": 366,
+          "candidate_rows": 17780,
+          "common_mean_max_abs_error": 2.9802322387695312e-08,
+          "inactive_global_state_max_abs_error": 0.0,
+          "maximum_unbounded_residual_to_global_norm_ratio": 0.6012497544288635,
+          "mixed_zero_nonzero_support_fraction": 0.9130434782608695,
+          "mixed_zero_nonzero_support_requests": 336,
+          "nonpositive_alignment_fraction": 0.0,
+          "nonpositive_alignment_rows": 0,
+          "positive_support_pair_fraction": 0.48552852348993286,
+          "zero_support_candidate_fraction": 0.26186726659167603,
+          "zero_support_candidate_rows": 4656
+        },
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_barycentric_residual_transport.pt",
+          "sha256": "ea951814e56d129364de99c3c4c7df02bc6b061d7f60ae0bbe2542bba91d21f9",
+          "state_sha256": "4542ea64ac35706fe0d075beb8489854d5c98eff79ddf05be859bed777dc3c2e"
+        },
+        "created_at": "2026-07-11T20:05:04.814581+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 54.23343205451965,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "4542ea64ac35706fe0d075beb8489854d5c98eff79ddf05be859bed777dc3c2e",
+        "initial_state_sha256": "ff95c30d306ecf7ccef8a0cf14d26faf4a98087468f13e216a79bca82613dd77",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "barycentric_residual_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": true,
+          "architecture": "barycentric_residual_tangent_transport",
+          "barycentric_residual_transport": true,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "barycentric_residual_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 0,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_barycentric_residual_transport_internal_A_scores.npz",
+          "sha256": "93aca889c9d1e3db9be73a74edbb16c000cf29ba5bc73a224513a148abf466ea"
+        },
+        "seed": 20261041,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6970419049263,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.6646197477976483,
+          "loss_first_30_mean": 3.3633859395980834,
+          "loss_last_30_mean": 3.3616616328557334,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 298,
+          "any_fraction": 0.49666666666666665,
+          "requests": 600,
+          "top10_count": 116,
+          "top10_fraction": 0.19333333333333333
+        }
+      },
+      "20261042": {
+        "barycentric_diagnostics": {
+          "active_requests": 368,
+          "candidate_distinct_displacement_fraction": 0.9945652173913043,
+          "candidate_distinct_displacement_requests": 366,
+          "candidate_rows": 17780,
+          "common_mean_max_abs_error": 2.9802322387695312e-08,
+          "inactive_global_state_max_abs_error": 0.0,
+          "maximum_unbounded_residual_to_global_norm_ratio": 0.5836232304573059,
+          "mixed_zero_nonzero_support_fraction": 0.9130434782608695,
+          "mixed_zero_nonzero_support_requests": 336,
+          "nonpositive_alignment_fraction": 0.0,
+          "nonpositive_alignment_rows": 0,
+          "positive_support_pair_fraction": 0.48587458053691274,
+          "zero_support_candidate_fraction": 0.26209223847019125,
+          "zero_support_candidate_rows": 4660
+        },
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_barycentric_residual_transport.pt",
+          "sha256": "3277a109c17782ec692818a5cc8723fc3bd333aff1c8f85e4a6b9f9b068af6b5",
+          "state_sha256": "f021458b4c7fe6999d74a4e7f4f778610805e2216b1dd25d25f3acc36b95ea98"
+        },
+        "created_at": "2026-07-11T20:05:03.503774+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 52.51547384262085,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "f021458b4c7fe6999d74a4e7f4f778610805e2216b1dd25d25f3acc36b95ea98",
+        "initial_state_sha256": "468e6c3f22ab6c97e072e2bdd8372d32aaa434954c108c4418628efe9c3e7264",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "barycentric_residual_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": true,
+          "architecture": "barycentric_residual_tangent_transport",
+          "barycentric_residual_transport": true,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "barycentric_residual_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 1,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_barycentric_residual_transport_internal_A_scores.npz",
+          "sha256": "c6b723df1523c68338484901cd1d9c4e741f0ce50760a83e0b6b3b463a07b340"
+        },
+        "seed": 20261042,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6956426322460174,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.725913159052531,
+          "loss_first_30_mean": 3.3131311337153115,
+          "loss_last_30_mean": 3.421555741628011,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 298,
+          "any_fraction": 0.49666666666666665,
+          "requests": 600,
+          "top10_count": 117,
+          "top10_fraction": 0.195
+        }
+      },
+      "20261043": {
+        "barycentric_diagnostics": {
+          "active_requests": 368,
+          "candidate_distinct_displacement_fraction": 0.9945652173913043,
+          "candidate_distinct_displacement_requests": 366,
+          "candidate_rows": 17780,
+          "common_mean_max_abs_error": 2.9802322387695312e-08,
+          "inactive_global_state_max_abs_error": 0.0,
+          "maximum_unbounded_residual_to_global_norm_ratio": 0.5841219425201416,
+          "mixed_zero_nonzero_support_fraction": 0.9157608695652174,
+          "mixed_zero_nonzero_support_requests": 337,
+          "nonpositive_alignment_fraction": 0.0,
+          "nonpositive_alignment_rows": 0,
+          "positive_support_pair_fraction": 0.4848154362416107,
+          "zero_support_candidate_fraction": 0.26068616422947133,
+          "zero_support_candidate_rows": 4635
+        },
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_barycentric_residual_transport.pt",
+          "sha256": "d4dfc42bb05659315427474103f1d7113489098107769d3c5df06ff4546faa22",
+          "state_sha256": "cfc86b647343a7db66b6271234c11ce31e3fc2957ccb12212a13bd3a6a8cb07e"
+        },
+        "created_at": "2026-07-11T20:05:04.106398+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 53.65867614746094,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "cfc86b647343a7db66b6271234c11ce31e3fc2957ccb12212a13bd3a6a8cb07e",
+        "initial_state_sha256": "6dc9684e66567ffbafdc4b785c0066d043c5670cd313ac3eba8684cc306a4b2f",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "barycentric_residual_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": true,
+          "architecture": "barycentric_residual_tangent_transport",
+          "barycentric_residual_transport": true,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "barycentric_residual_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 2,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_barycentric_residual_transport_internal_A_scores.npz",
+          "sha256": "70e1d59bb6d8f6063856faa05f496f28dc9863e43bdbacc9cfbff0de191ce469"
+        },
+        "seed": 20261043,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6969122747580211,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.690563702583313,
+          "loss_first_30_mean": 3.3815662622451783,
+          "loss_last_30_mean": 3.3874759753545125,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 295,
+          "any_fraction": 0.49166666666666664,
+          "requests": 600,
+          "top10_count": 116,
+          "top10_fraction": 0.19333333333333333
+        }
+      }
+    },
+    "global_tangent_transport": {
+      "20261041": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_global_tangent_transport.pt",
+          "sha256": "16da32d301cc46f1edca105089d710c394b7b48ff2919469fb409fa13c8725db",
+          "state_sha256": "2d7aeec6597d87b49e8342c1f50c2ba76939d33671793c1c7840cfcd94f10211"
+        },
+        "created_at": "2026-07-11T20:05:54.654668+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 41.7408447265625,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "2d7aeec6597d87b49e8342c1f50c2ba76939d33671793c1c7840cfcd94f10211",
+        "initial_state_sha256": "ff95c30d306ecf7ccef8a0cf14d26faf4a98087468f13e216a79bca82613dd77",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "global_tangent_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "candidate_shared_global_tangent_transport",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": true,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": false,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "global_tangent_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 0,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_global_tangent_transport_internal_A_scores.npz",
+          "sha256": "6b8996b9e9e48b412aa281d9dda30f72c0c9ab54e21c6b9ae704dcba5b8bb573"
+        },
+        "seed": 20261041,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6973186433315277,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.6647565364837646,
+          "loss_first_30_mean": 3.3636240402857465,
+          "loss_last_30_mean": 3.362075169881185,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 297,
+          "any_fraction": 0.495,
+          "requests": 600,
+          "top10_count": 121,
+          "top10_fraction": 0.20166666666666666
+        }
+      },
+      "20261042": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_global_tangent_transport.pt",
+          "sha256": "6214b85ee389ac847edfd2cb74ab2d78698b2733fe1a0d6c5fa4e50635ae6c73",
+          "state_sha256": "98ced0cdcf6919372cfe0ae936c38dc1273c4af9402f7656fe4f3b84ab18d0dd"
+        },
+        "created_at": "2026-07-11T20:05:53.866047+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 41.86498665809631,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "98ced0cdcf6919372cfe0ae936c38dc1273c4af9402f7656fe4f3b84ab18d0dd",
+        "initial_state_sha256": "468e6c3f22ab6c97e072e2bdd8372d32aaa434954c108c4418628efe9c3e7264",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "global_tangent_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "candidate_shared_global_tangent_transport",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": true,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": false,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "global_tangent_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 1,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_global_tangent_transport_internal_A_scores.npz",
+          "sha256": "6270e75ecc7e6dfffe01a94379cde5a54edc67dad3da5cb3970ebf873c8434be"
+        },
+        "seed": 20261042,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6964473485946655,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.7267258485158283,
+          "loss_first_30_mean": 3.3138429800669353,
+          "loss_last_30_mean": 3.423173276583354,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 297,
+          "any_fraction": 0.495,
+          "requests": 600,
+          "top10_count": 126,
+          "top10_fraction": 0.21
+        }
+      },
+      "20261043": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_global_tangent_transport.pt",
+          "sha256": "58e5391aa0fff78f1beae5ac1ca2874495326d0abe3c7832347fc0aa5fb7d45d",
+          "state_sha256": "1d91627eba6fb80246218dd4607503a7b5bfd4a5749f372372a784ca126a853e"
+        },
+        "created_at": "2026-07-11T20:05:53.393951+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 41.284972190856934,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "1d91627eba6fb80246218dd4607503a7b5bfd4a5749f372372a784ca126a853e",
+        "initial_state_sha256": "6dc9684e66567ffbafdc4b785c0066d043c5670cd313ac3eba8684cc306a4b2f",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "global_tangent_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "candidate_shared_global_tangent_transport",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": true,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": false,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "global_tangent_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 2,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_global_tangent_transport_internal_A_scores.npz",
+          "sha256": "0796ac7ecc4ed4a38f48e54bf9096e10009c58bf90cd7c72bbdfe94a1297e1a7"
+        },
+        "seed": 20261043,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6966877321402232,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.6903973976771036,
+          "loss_first_30_mean": 3.3826228936513263,
+          "loss_last_30_mean": 3.387085135777791,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 299,
+          "any_fraction": 0.49833333333333335,
+          "requests": 600,
+          "top10_count": 123,
+          "top10_fraction": 0.205
+        }
+      }
+    },
+    "relative_surplus_only": {
+      "20261041": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_relative_surplus_only.pt",
+          "sha256": "bc2734ee405846ae4ef7f55ee9389c2a1d314aaf8379929b0345a0a387084ab7",
+          "state_sha256": "5019bc351fa1a8c7241ad16fe17250baaaa5ca2b8a7de8bf1eb5a2561832319c"
+        },
+        "created_at": "2026-07-11T20:07:50.239270+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 47.815191984176636,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "5019bc351fa1a8c7241ad16fe17250baaaa5ca2b8a7de8bf1eb5a2561832319c",
+        "initial_state_sha256": "ff95c30d306ecf7ccef8a0cf14d26faf4a98087468f13e216a79bca82613dd77",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "relative_surplus_only",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "candidate_relative_surplus_only",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": false,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "relative_surplus_only",
+          "parameters": 16384,
+          "relative_surplus_only": true,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 0,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_relative_surplus_only_internal_A_scores.npz",
+          "sha256": "747dec9bbc76cd185eb66f6c137f434329a1cc4e88b7c3ea483834f09230e2d2"
+        },
+        "seed": 20261041,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6933925747871399,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.6764758586883546,
+          "loss_first_30_mean": 3.3704803148905436,
+          "loss_last_30_mean": 3.3698684215545653,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 254,
+          "any_fraction": 0.42333333333333334,
+          "requests": 600,
+          "top10_count": 56,
+          "top10_fraction": 0.09333333333333334
+        }
+      },
+      "20261042": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_relative_surplus_only.pt",
+          "sha256": "b378f1c6a1f9a9fb4c4508a2a7a19b9cb315be55f8a452bbe1194d658aec6089",
+          "state_sha256": "2f65b8ec4e7523c2f6e18853392e14db1c54264f78ed3844fe43a5b5502af4f9"
+        },
+        "created_at": "2026-07-11T20:07:48.326784+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 47.63192582130432,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "2f65b8ec4e7523c2f6e18853392e14db1c54264f78ed3844fe43a5b5502af4f9",
+        "initial_state_sha256": "468e6c3f22ab6c97e072e2bdd8372d32aaa434954c108c4418628efe9c3e7264",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "relative_surplus_only",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "candidate_relative_surplus_only",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": false,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "relative_surplus_only",
+          "parameters": 16384,
+          "relative_surplus_only": true,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 1,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_relative_surplus_only_internal_A_scores.npz",
+          "sha256": "14679f95feeebbb7732e96605cbdc806702c6b2356a5fc9f41076b8ffd7403ab"
+        },
+        "seed": 20261042,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6928198456764221,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.738177935282389,
+          "loss_first_30_mean": 3.321558872858683,
+          "loss_last_30_mean": 3.4309977451960245,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 254,
+          "any_fraction": 0.42333333333333334,
+          "requests": 600,
+          "top10_count": 62,
+          "top10_fraction": 0.10333333333333333
+        }
+      },
+      "20261043": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_relative_surplus_only.pt",
+          "sha256": "9475dfcca7fa5f11a6082c16c0fff194761ac0a1aee54cc11744bae027b2b560",
+          "state_sha256": "31c2b540b6167c7d7ffe9642e2ec5a01d66e384d75cbd1758e3b6ad6bb0c6c5f"
+        },
+        "created_at": "2026-07-11T20:07:50.604003+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 47.6697051525116,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "31c2b540b6167c7d7ffe9642e2ec5a01d66e384d75cbd1758e3b6ad6bb0c6c5f",
+        "initial_state_sha256": "6dc9684e66567ffbafdc4b785c0066d043c5670cd313ac3eba8684cc306a4b2f",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "relative_surplus_only",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "candidate_relative_surplus_only",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": false,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "relative_surplus_only",
+          "parameters": 16384,
+          "relative_surplus_only": true,
+          "uncentered_additive_transport": false,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 2,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_relative_surplus_only_internal_A_scores.npz",
+          "sha256": "215f804a5d958e173d36024d370515d63eb43559693f8078790ae944856207d6"
+        },
+        "seed": 20261043,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6930779774983724,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.70361971060435,
+          "loss_first_30_mean": 3.3948628902435303,
+          "loss_last_30_mean": 3.396697688102722,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 254,
+          "any_fraction": 0.42333333333333334,
+          "requests": 600,
+          "top10_count": 58,
+          "top10_fraction": 0.09666666666666666
+        }
+      }
+    },
+    "uncentered_additive_transport": {
+      "20261041": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_uncentered_additive_transport.pt",
+          "sha256": "719fcd4a4bcaf04842f3f163957b4ab1791b0b96ad91555285fed0200486042b",
+          "state_sha256": "c417a5de21adc4921a76f7ead2d6f9f13ffa683b2861dc596d3e00f2deda6904"
+        },
+        "created_at": "2026-07-11T20:06:54.083121+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 51.35797691345215,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "c417a5de21adc4921a76f7ead2d6f9f13ffa683b2861dc596d3e00f2deda6904",
+        "initial_state_sha256": "ff95c30d306ecf7ccef8a0cf14d26faf4a98087468f13e216a79bca82613dd77",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "uncentered_additive_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "uncentered_additive_tangent_transport",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "uncentered_additive_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": true,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 0,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261041_uncentered_additive_transport_internal_A_scores.npz",
+          "sha256": "e11ae2836d86c600988d67fec65ab8e3b65b8a3eefcabf3d78b5d427a3f4a5a7"
+        },
+        "seed": 20261041,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6973438223203023,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.6635207096735636,
+          "loss_first_30_mean": 3.3625279029210406,
+          "loss_last_30_mean": 3.3608644882837932,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 297,
+          "any_fraction": 0.495,
+          "requests": 600,
+          "top10_count": 111,
+          "top10_fraction": 0.185
+        }
+      },
+      "20261042": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_uncentered_additive_transport.pt",
+          "sha256": "eb391f74e249f6e1dfb64fb5635958f08c1391040364a8507423e5803114a2ed",
+          "state_sha256": "63f1265df8bbce5b8f8c122a84742abfa31626fdf1688fc1ccf6cae1be903ff5"
+        },
+        "created_at": "2026-07-11T20:06:52.584770+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 50.56876087188721,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "63f1265df8bbce5b8f8c122a84742abfa31626fdf1688fc1ccf6cae1be903ff5",
+        "initial_state_sha256": "468e6c3f22ab6c97e072e2bdd8372d32aaa434954c108c4418628efe9c3e7264",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "uncentered_additive_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "uncentered_additive_tangent_transport",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "uncentered_additive_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": true,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 1,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261042_uncentered_additive_transport_internal_A_scores.npz",
+          "sha256": "322783c3f92cc6558e493fde27462897f91efc7abe8fb7a2158aa5804abf6c9f"
+        },
+        "seed": 20261042,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6966158310572307,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.725694489479065,
+          "loss_first_30_mean": 3.3124798854192097,
+          "loss_last_30_mean": 3.4223102649052937,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 293,
+          "any_fraction": 0.48833333333333334,
+          "requests": 600,
+          "top10_count": 110,
+          "top10_fraction": 0.18333333333333332
+        }
+      },
+      "20261043": {
+        "barycentric_diagnostics": null,
+        "c37_code_dev_test_qrels_metrics_read": false,
+        "candidate_hashes": {
+          "delayed_B": "5f3cda88d80dfcab82dbf86a0af778358358a5fefdae3818bfb9005ee0bc9a9a",
+          "escrow": "01fdfad3fcc2af9cdfbe38e0c32b4d9b478bac0516e66dc05b1c6e2569f3574c",
+          "fit": "2ef74cddad5a6f758b79c85e1648a4bef579352fac1a253fc307c0c201906e91",
+          "internal_A": "01ad8c895988cb72ea07dbbb9c9e81d68f3a58ec52780daa20130e47f0f68a73",
+          "structural_nohistory": "653936e351ad2f942d6dca1c509cea74f2629f3209f67acfaf0a446fe8c1ff8c",
+          "structural_repeat": "abbf014553e1e7b086044a41f442215110c4a4b006cb46287781de3584bd8879"
+        },
+        "candidate_id": "c37",
+        "candidate_permutation_max_abs_difference": 0.0,
+        "checkpoint": {
+          "path": "models/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_uncentered_additive_transport.pt",
+          "sha256": "24bc29e03483611f36d3b3217561901a1f004297ad8a49208e4881739835f6e8",
+          "state_sha256": "10137fdf557483c98314f5e3763dc34e0b58d6679bd11644b175837994c6d353"
+        },
+        "created_at": "2026-07-11T20:06:54.283742+00:00",
+        "delayed_B_features_labels_scores_opened": false,
+        "deterministic_max_abs_difference": 0.0,
+        "elapsed_seconds": 52.607006549835205,
+        "execution_lock_sha256": "cd1a90a97430c43de93aad4dc1dc6c049fce268265b825ee3f2a6c1541f385a8",
+        "final_state_sha256": "10137fdf557483c98314f5e3763dc34e0b58d6679bd11644b175837994c6d353",
+        "initial_state_sha256": "6dc9684e66567ffbafdc4b785c0066d043c5670cd313ac3eba8684cc306a4b2f",
+        "internal_A_active_requests": 368,
+        "internal_A_labels_opened": false,
+        "internal_A_scores_opened": true,
+        "mode": "uncentered_additive_transport",
+        "model_identity": {
+          "active_set_barycentric_centering": false,
+          "architecture": "uncentered_additive_tangent_transport",
+          "barycentric_residual_transport": false,
+          "cached_embedding_execution_exact": true,
+          "candidate_scalar_head_present": false,
+          "candidate_shared_transport": false,
+          "candidate_specific_parameters_present": false,
+          "candidate_specific_transport": true,
+          "common_global_anchor": true,
+          "expected_parameters": 16384,
+          "frozen_BGE_encoder_load_bearing": true,
+          "mode": "uncentered_additive_transport",
+          "parameters": 16384,
+          "relative_surplus_only": false,
+          "uncentered_additive_transport": true,
+          "up_projection_initialized_exact_zero": true
+        },
+        "noauth_exact_d2p": true,
+        "nohistory_exact_d2p": true,
+        "parameters_updated": true,
+        "physical_gpu": 2,
+        "proposal_lock_sha256": "729e219effe67c6c18b31348f33ac6e6383f7e6a2ed977985172152ccd593d58",
+        "query_absent_exact_d2p": true,
+        "repeat_exact_item_only": true,
+        "score_artifact": {
+          "path": "artifacts/c37_barycentric_residual_transport_transformer/train_gate_v1/seed_20261043_uncentered_additive_transport_internal_A_scores.npz",
+          "sha256": "3a4180614c16cfda12c60d2f858708b6c23c23fb20af20d9fe507d4b45560dea"
+        },
+        "seed": 20261043,
+        "training": {
+          "active_mixed_label_requests": 5914,
+          "all_candidates_used_per_active_request": true,
+          "candidate_sampling": false,
+          "direction_loss_last_30_mean": 0.6971274455388387,
+          "epochs": 1,
+          "finite": true,
+          "fit_requests": 10000,
+          "listwise_loss_last_30_mean": 2.6892794450124105,
+          "loss_first_30_mean": 3.3819642782211305,
+          "loss_last_30_mean": 3.386406898498535,
+          "nonzero_gradient_parameter_count": 2,
+          "nonzero_gradient_parameter_names": [
+            "down.weight",
+            "up.weight"
+          ],
+          "nonzero_gradient_parameter_names_sha256": "042678204848efd98717db50b06d01c5ebed3d4f3ab8746f81564a1876595dca",
+          "skipped_no_authenticated_history": 4086,
+          "skipped_no_negative": 0,
+          "skipped_no_positive": 0,
+          "steps": 185
+        },
+        "wrong_correction_change_fraction": 0.6133333333333333,
+        "wrong_order_changes": {
+          "any_count": 291,
+          "any_fraction": 0.485,
+          "requests": 600,
+          "top10_count": 111,
+          "top10_fraction": 0.185
+        }
+      }
+    }
+  },
+  "status": "failed_A1_terminal"
+}

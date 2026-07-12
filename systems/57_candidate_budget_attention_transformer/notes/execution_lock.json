@@ -1,0 +1,35 @@
+{
+  "candidate_id": "c57",
+  "created_at": "2026-07-12T13:58:00+08:00",
+  "gate_id": "c57_candidate_budget_attention_v1",
+  "locked_files": {
+    "systems/57_candidate_budget_attention_transformer/README.md": "ebfff0e7a724b5a804d054b250404c1a12113cbc97ca6c4d8ab3a554a8eb42ff",
+    "systems/57_candidate_budget_attention_transformer/configs/mechanism_gate.yaml": "cffa1a616d498467b49ada54e83042ee104258a620164758f21a622e192ee29f",
+    "systems/57_candidate_budget_attention_transformer/environment.txt": "ef0d8ac1eb39d15c0f0557345e2e12fe0b6371a9b7e6819638fe38285fa977eb",
+    "systems/57_candidate_budget_attention_transformer/execution/__init__.py": "e9a78bcdd39cdf8427a1d7569c9c33e6c6947685aa3a5aadf8f60f7df31fc0c8",
+    "systems/57_candidate_budget_attention_transformer/execution/locking.py": "a5c16bebb971f4c9821247d2e5807dee33cc3d9c6212dc2a3fa2588f9522cc7e",
+    "systems/57_candidate_budget_attention_transformer/execution/run_gate.py": "1cc192e96a56677a31d94929fc3199999706530084964d3c455bfb07a21df9cc",
+    "systems/57_candidate_budget_attention_transformer/model/__init__.py": "df1de1af01a2108d828e9d21e1c1024f72e2556ca35f777ae75eda9123052ab2",
+    "systems/57_candidate_budget_attention_transformer/model/candidate_budget.py": "fc255dfe7d87f93aa7aa563240755ee6d891d2b5ecc3cc714ffd83d45bbe5ed9",
+    "systems/57_candidate_budget_attention_transformer/notes/nearest_neighbors.md": "dd50128110a6975b7b2e2680a5982db8ad54313aeb092701cbfe1efc49f9bcb9",
+    "systems/57_candidate_budget_attention_transformer/notes/proposal.md": "677277c54458e60e42bee3009bf2acdf50be4406a4003ec08df8bfc839d0aaf3",
+    "systems/57_candidate_budget_attention_transformer/notes/proposal_lock.json": "1ee38dd4cf2adf0cd05b1c075fed4336998ba6619a0baebaf7d0f53e5f367732",
+    "systems/57_candidate_budget_attention_transformer/tests/test_model.py": "cca400da11ba51afe0188f7edab2ac1d450533ead05d2e6acc3ba7dc15e08819",
+    "systems/57_candidate_budget_attention_transformer/tests/test_objective.py": "35468bd3cbb800fe470fd02365c89f317a766d7ec45edaeaef568c33d51e1e35"
+  },
+  "status": "frozen_before_c57_train_label_read_model_initialization_or_ranking_outcome",
+  "unit_tests": {
+    "command": "/data/gkl/conda_envs/myrec-c38/bin/python -m pytest -q systems/57_candidate_budget_attention_transformer/tests",
+    "passed": 7
+  },
+  "unopened": [
+    "c57_fit_train_labels",
+    "c57_fit_holdout_labels",
+    "c26_internal_A",
+    "c26_delayed_B",
+    "c26_escrow",
+    "dev",
+    "test",
+    "qrels"
+  ]
+}

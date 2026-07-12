@@ -1,0 +1,32 @@
+{
+  "candidate_id": "c39",
+  "created_at": "2026-07-11T22:47:59.282583+00:00",
+  "declarations": {
+    "dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "reserve_features_labels_scores_opened": false,
+    "training_started": false
+  },
+  "external_inputs_sha256": {
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/base_scores.npy": "3e7a0a88dccaa1279be442038921aa3f2d9e69904d77780245bc84172a506d3a",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/candidate_item_positions.npy": "b99e6a4635c5bf759eb1d48203f15dce8061d521d068befb77306b81163e97dd",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/candidate_offsets.npy": "33bfe60f0f65907bb06cf07bc3eba0e8acc2e63ecf7600ef1ad1d26ea908cda9",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/embedding_manifest.json": "d9aef88ae32817f5abe7a3a65cd857fa8f12c6bf36fada5d1bc106aa7336516a",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/feature_manifest.json": "b722f2a42cac116efa86256e65c7f580727d39ca5cdb88e45a80e395862b460e",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/feature_request_indices.npy": "f6541a1b3959230686fb02d404433029020542ae9a111b12f0a59daa2cd9a6dc",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/item_embeddings.npy": "6a1c8e274869b32e9068c86fb447f872bc41b77261f8965340b178dc6b1e3bf6",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/query_embeddings.npy": "3991a87b150d70fddb0e1b76b9127583f1d7815e12aa6d1af19d109254e894ca",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/true_history_item_positions.npy": "592596a76f73c9013854e416db3bf62c0cd8591e9bcf842cf0e14fb3c831bb07",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/true_history_offsets.npy": "a41919eaab3a226b929640a8bc2dab6b5a8ee4a65249b903951d0166b3b48969",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/wrong_history_item_positions.npy": "68c7cebdc1b83192dea0f0cad40f30e4e29774b37b0870adfbfa8e9ec7b39ea6",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/features/wrong_history_offsets.npy": "51cfa6197794fc169e5d10c30281d0f12ccbc97627abb3caea82612d8f7185e7",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/fit_labels.npz": "acb28f6de7f223c700661fcedbd539c18087ee1074e0a530e261bac1905cb46f",
+    "artifacts/c39_halfspace_certified_value_transformer/train_gate_v1/g0_report.json": "8efc2f9a23b05bed23b02bbd0fd294e5c520c136b7c40d6632d10549fe60bb66"
+  },
+  "g0_report_sha256": "8efc2f9a23b05bed23b02bbd0fd294e5c520c136b7c40d6632d10549fe60bb66",
+  "lock_id": "c39_halfspace_certified_value_execution_v1",
+  "proposal_lock_sha256": "0f2c4273af77bc02a5767ff6e57f2aebd6a0e203952c8fde156f4f3bd38fbb99",
+  "status": "locked_after_G0_before_training_or_internal_A_scores"
+}

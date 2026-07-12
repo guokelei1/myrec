@@ -1,0 +1,25 @@
+{
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "counts": {
+    "no_history": 4110,
+    "nonrepeat_history_present": 4677,
+    "repeat_present": 3442
+  },
+  "files": {
+    "no_history": {
+      "path": "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/no_history_request_ids.txt",
+      "sha256": "295798f83597db1420ab4a7294cb0478fbac004db3b693e512c1a0753ed07fc0"
+    },
+    "nonrepeat_history_present": {
+      "path": "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/nonrepeat_history_present_request_ids.txt",
+      "sha256": "ab73db743c46f83b23f676e0aa0340199e53ee2010853e0afcc3aabc8ad43b95"
+    },
+    "repeat_present": {
+      "path": "/data/gkl/myrec/systems/04_prefix_delta_lm/protocol/repeat_present_request_ids.txt",
+      "sha256": "c0e57b661b9c922ee627a7ea5d1b41f6b168fe288d428516901f16cc623e01bf"
+    }
+  },
+  "qrels_read": false,
+  "records_dev_sha256": "caa376ccad79df7b96fe945d1f5f922570a2977f7edaa728d20046751b814533",
+  "test_read": false
+}

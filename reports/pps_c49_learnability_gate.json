@@ -1,0 +1,523 @@
+{
+  "A0_report_sha256": "b8e44a0b289f6a6ff748254865c9c38e796b5a38aad48563576ac49bf557bd31",
+  "A_labels_read_after_A0": true,
+  "candidate_id": "c49",
+  "claims": {
+    "dev_test_result": false,
+    "exposed_train_internal_only": true,
+    "fresh_result": false,
+    "trained_architecture_result": false
+  },
+  "created_at": "2026-07-12T03:02:05.137020+00:00",
+  "decision": "close_C49_before_fresh_reserve",
+  "domains": {
+    "amazon": {
+      "checks": {
+        "base_all_seed_fold_positive": false,
+        "base_ci": false,
+        "base_effect": false,
+        "clicked_direction_ci": true,
+        "clicked_specificity_ci": false,
+        "delta_net_all_seed_fold_positive": true,
+        "delta_net_ci": true,
+        "delta_net_effect": true,
+        "innovation_softmax_all_seed_fold_positive": true,
+        "innovation_softmax_ci": false,
+        "innovation_softmax_effect": true,
+        "raw_krr_all_seed_fold_positive": false,
+        "raw_krr_ci": false,
+        "raw_krr_effect": false,
+        "shuffled_innovation_all_seed_fold_positive": false,
+        "shuffled_innovation_ci": false,
+        "shuffled_innovation_effect": true,
+        "wrong_history_all_seed_fold_positive": false,
+        "wrong_history_ci": false,
+        "wrong_history_effect": false
+      },
+      "clicked_direction": {
+        "mean": 0.016091994717717172,
+        "percentile_95_ci": [
+          0.008293029132764787,
+          0.02347458233606691
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263340
+      },
+      "clicked_true_minus_wrong": {
+        "mean": -0.014301307251056035,
+        "percentile_95_ci": [
+          -0.021765097572933885,
+          -0.007067878227370482
+        ],
+        "requests": 300,
+        "samples": 10000,
+        "seed": 20263341
+      },
+      "comparisons": {
+        "base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.04040095819477685,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.02855391415432502,
+              "requests": 112
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.025054697287514326,
+              "requests": 86
+            }
+          ],
+          "mean": -0.031578800292926236,
+          "percentile_95_ci": [
+            -0.058405446645029876,
+            -0.0060635812528049655
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263320
+        },
+        "delta_net": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.059125127667464326,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.059029658975362706,
+              "requests": 112
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.025693264593001093,
+              "requests": 86
+            }
+          ],
+          "mean": 0.04950568527440025,
+          "percentile_95_ci": [
+            0.029352625177592767,
+            0.07123425919119028
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263323
+        },
+        "innovation_softmax": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.011195011445719008,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.02217950296774143,
+              "requests": 112
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.0061354594482871715,
+              "requests": 86
+            }
+          ],
+          "mean": 0.01384548337467692,
+          "percentile_95_ci": [
+            -0.0005452381928265979,
+            0.02931851278694757
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263322
+        },
+        "raw_krr": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.051571701600935764,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.04185490678045895,
+              "requests": 112
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.06952051095002691,
+              "requests": 86
+            }
+          ],
+          "mean": -0.05308942354803055,
+          "percentile_95_ci": [
+            -0.08079521707687193,
+            -0.025893873582347973
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263321
+        },
+        "shuffled_innovation": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.00367077363102826,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.01646155244179235,
+              "requests": 112
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.011404493347624604,
+              "requests": 86
+            }
+          ],
+          "mean": 0.008166871303371927,
+          "percentile_95_ci": [
+            -0.011624867477338806,
+            0.029041337505895486
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263324
+        },
+        "wrong_history": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.008574160913112135,
+              "requests": 102
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.030925737659244806,
+              "requests": 112
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.029172932376569125,
+              "requests": 86
+            }
+          ],
+          "mean": -0.022823730717859335,
+          "percentile_95_ci": [
+            -0.05036124110924028,
+            0.005084723869373838
+          ],
+          "requests": 300,
+          "samples": 10000,
+          "seed": 20263325
+        }
+      },
+      "mean_ndcg10": {
+        "base": 0.2532023496589781,
+        "delta_net": 0.17211786409165156,
+        "innovation_softmax": 0.2077780659913749,
+        "primary_reverse": 0.20419391668384318,
+        "primary_true": 0.22162354936605178,
+        "primary_wrong": 0.2444472800839112,
+        "raw_krr": 0.27471297291408237,
+        "shuffled_innovation": 0.21345667806267993
+      },
+      "requests": 300,
+      "seed_differences": {
+        "base": {
+          "20263311": -0.04311497213305655,
+          "20263312": -0.023473256386006416,
+          "20263313": -0.05123505441102618
+        },
+        "delta_net": {
+          "20263311": 0.060132229637576334,
+          "20263312": 0.047621495142723444,
+          "20263313": 0.037885551562739386
+        },
+        "innovation_softmax": {
+          "20263311": 0.009418913359484542,
+          "20263312": 0.0032498537298487505,
+          "20263313": 0.0129186316211381
+        },
+        "raw_krr": {
+          "20263311": -0.05331177821790125,
+          "20263312": -0.03488697189960493,
+          "20263313": -0.07403711556512091
+        },
+        "shuffled_innovation": {
+          "20263311": 0.007893487541737432,
+          "20263312": 0.018204460676755248,
+          "20263313": 0.0043354988847907954
+        },
+        "wrong_history": {
+          "20263311": -0.04093434958019184,
+          "20263312": -0.0007059016722992628,
+          "20263313": -0.03860311196077105
+        }
+      },
+      "status": "failed"
+    },
+    "kuai": {
+      "checks": {
+        "base_all_seed_fold_positive": true,
+        "base_ci": false,
+        "base_effect": true,
+        "clicked_direction_ci": false,
+        "clicked_specificity_ci": false,
+        "delta_net_all_seed_fold_positive": false,
+        "delta_net_ci": false,
+        "delta_net_effect": true,
+        "innovation_softmax_all_seed_fold_positive": false,
+        "innovation_softmax_ci": false,
+        "innovation_softmax_effect": true,
+        "raw_krr_all_seed_fold_positive": false,
+        "raw_krr_ci": false,
+        "raw_krr_effect": true,
+        "shuffled_innovation_all_seed_fold_positive": false,
+        "shuffled_innovation_ci": true,
+        "shuffled_innovation_effect": true,
+        "wrong_history_all_seed_fold_positive": false,
+        "wrong_history_ci": false,
+        "wrong_history_effect": true
+      },
+      "clicked_direction": {
+        "mean": 0.001108228905092498,
+        "percentile_95_ci": [
+          -0.000536943799796063,
+          0.0027483239276328577
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263340
+      },
+      "clicked_true_minus_wrong": {
+        "mean": -2.35920048604991e-05,
+        "percentile_95_ci": [
+          -0.0017089244720894685,
+          0.0017322578226073044
+        ],
+        "requests": 600,
+        "samples": 10000,
+        "seed": 20263341
+      },
+      "comparisons": {
+        "base": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.01228543685180553,
+              "requests": 186
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.00723501915709272,
+              "requests": 197
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.005550634960049806,
+              "requests": 217
+            }
+          ],
+          "mean": 0.008191463024523171,
+          "percentile_95_ci": [
+            -0.0005818586151475036,
+            0.017071251137329067
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263320
+        },
+        "delta_net": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.0027034367180771833,
+              "requests": 186
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.008873175222738608,
+              "requests": 197
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.004124121753435054,
+              "requests": 217
+            }
+          ],
+          "mean": 0.0005837364480362376,
+          "percentile_95_ci": [
+            -0.007298998559140555,
+            0.008368231100123759
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263323
+        },
+        "innovation_softmax": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": -0.007178098706527293,
+              "requests": 186
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.01261459524375829,
+              "requests": 197
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.014894016373493328,
+              "requests": 217
+            }
+          ],
+          "mean": 0.007303250761090599,
+          "percentile_95_ci": [
+            -0.00516166487050896,
+            0.01946330725865304
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263322
+        },
+        "raw_krr": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.00846645211039948,
+              "requests": 186
+            },
+            {
+              "fold": 1,
+              "mean_difference": -0.006858263587670829,
+              "requests": 197
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.0010549222856064964,
+              "requests": 217
+            }
+          ],
+          "mean": 0.0007543338362329334,
+          "percentile_95_ci": [
+            -0.007688092497496329,
+            0.008929089078832062
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263321
+        },
+        "shuffled_innovation": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.007730851890914153,
+              "requests": 186
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.011234293923532949,
+              "requests": 197
+            },
+            {
+              "fold": 2,
+              "mean_difference": 0.007840720008722619,
+              "requests": 217
+            }
+          ],
+          "mean": 0.00892088432756472,
+          "percentile_95_ci": [
+            0.0005698594307895156,
+            0.01740871149273199
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263324
+        },
+        "wrong_history": {
+          "hash_folds": [
+            {
+              "fold": 0,
+              "mean_difference": 0.0031252229245154867,
+              "requests": 186
+            },
+            {
+              "fold": 1,
+              "mean_difference": 0.015167707653238301,
+              "requests": 197
+            },
+            {
+              "fold": 2,
+              "mean_difference": -0.00256036337444248,
+              "requests": 217
+            }
+          ],
+          "mean": 0.005022885032323013,
+          "percentile_95_ci": [
+            -0.0035820615343519595,
+            0.013454453871806825
+          ],
+          "requests": 600,
+          "samples": 10000,
+          "seed": 20263325
+        }
+      },
+      "mean_ndcg10": {
+        "base": 0.30087024014165054,
+        "delta_net": 0.3084779667181375,
+        "innovation_softmax": 0.30175845240508314,
+        "primary_reverse": 0.308238266107471,
+        "primary_true": 0.3090617031661737,
+        "primary_wrong": 0.30403881813385075,
+        "raw_krr": 0.30830736932994074,
+        "shuffled_innovation": 0.300140818838609
+      },
+      "requests": 600,
+      "seed_differences": {
+        "base": {
+          "20263301": 0.003238374261642111,
+          "20263302": 0.007109687811613269,
+          "20263303": 0.004395232477362652
+        },
+        "delta_net": {
+          "20263301": -0.0017354418229431942,
+          "20263302": -0.004007913704801754,
+          "20263303": 0.0033420408680717956
+        },
+        "innovation_softmax": {
+          "20263301": 0.006337949110632943,
+          "20263302": 0.0060187041878913975,
+          "20263303": 0.0037988904344973956
+        },
+        "raw_krr": {
+          "20263301": -0.005405991382952544,
+          "20263302": -0.0006092624607505989,
+          "20263303": -0.006281789514490298
+        },
+        "shuffled_innovation": {
+          "20263301": 0.004525339835067689,
+          "20263302": 0.006308241264657361,
+          "20263303": -0.002313514117706733
+        },
+        "wrong_history": {
+          "20263301": -0.0028270056804229064,
+          "20263302": 0.003425468214298791,
+          "20263303": 0.0017770573901341818
+        }
+      },
+      "status": "failed"
+    }
+  },
+  "fresh_reserve_dev_test_qrels_opened": false,
+  "gate_id": "c49_prequential_innovation_memory_learnability_v1",
+  "proposal_lock_sha256": "5cb6210adafc1cb512ec82f0c04717cd2899ed2dd91234d58f6adbbf5b67f9b8",
+  "status": "failed_exposed_learnability_terminal"
+}

@@ -1,39 +1,58 @@
 # doc
 
-Research notes, design constraints, direction decisions, and experiment plans.
-Files here are intended to be tracked; the 2026-07-10 audit found recent doc/15,
-doc/16, and dev-log work still untracked and awaiting an explicit evidence
-commit.
+Tracked research constraints, protocols, decisions, and concise development
+logs for the PPS project.
 
-Current stage: motivation is complete. C5-R3 `TERMINAL_FAIL` closes only the
-preregistered doc/23 item/category recovery ladder and validates neither of its
-two candidate primitives. The observed contrast between reliable exact
-recurrence and unreliable uncalibrated cross-item/category transfer authorizes
-architecture/protocol formulation; implementation and training remain gated by
-a new design-specific pre-outcome falsifier.
+## Current Authority
+
+C01--C80 architecture search ended without a validated proposed architecture.
+C80 closed at a pre-label mechanical gate; its utility is unknown, its fresh
+labels remain unopened, and there is no C81.
+
+Current execution order:
+
+```text
+scope/data-object audit
+  -> full-token observability parity
+  -> normally tuned ordinary full-token baseline
+  -> replicated Failure Card
+  -> one architecture hypothesis
+  -> bounded dev iteration
+  -> frozen independent confirmation
+  -> one-shot test
+```
+
+`31_problem_discovery_and_architecture_iteration_protocol.md` is the current
+authority for this workflow. `24_parallel_llm4rec_design_protocol.md` and all
+C01--C80 candidate-local protocols are historical records only.
 
 ## Key Documents
 
 | File | Role |
 |---|---|
-| `07_paper_design_constraints.md` | Tier 1 rules governing all experiments |
-| `10_direction_decision.md` | Final direction: PPS on KuaiSearch (main), Amazon-C4 (secondary), JDsearch (anchor) |
-| `11_experiment_and_dataset_plan.md` | Full 6-phase experiment plan with checkpoints C0-C5 |
-| `12_experiment_execution_protocol.md` | Environment isolation, GPU scheduling, run metadata, and evaluation boundaries |
-| `13_baseline_implementation_plan.md` | Per-baseline implementation, scoring, and acceptance plan |
-| `14_official_baseline_plan.md` | Official-baseline alignment, budgets, and stop-loss rules |
-| `15_proposed_system_design_principles.md` | Current formulation principles and pre-implementation falsification boundary |
-| `16_next_round_c3_router_neighbor_plan.md` | Historical M4/R1/B9 execution protocol and outcome |
-| `17_intro_motivation_repair_protocol.md` | Historical train-frozen matched-history protocol |
-| `18_supervised_motivation_diagnostics_protocol.md` | D1 supervised base and history-residual diagnostics |
-| `19_finetuned_nonpersonalized_control_protocol.md` | D2 fine-tuned text and text/popularity control |
-| `20_d2h_static_history_waterline_protocol.md` | D2h corrected static waterline and matched-history reissue |
-| `21_d2s_static_full_waterline_protocol.md` | Post-result fairness repair combining complete D2p with causal history |
-| `22_c5r_temporal_symmetric_identity_protocol.md` | Historical prequential freshness-matched C5-R2 protocol and failed identity gate |
-| `23_c5r3_candidate_history_alignment_protocol.md` | Frozen item/category alignment gate; `TERMINAL_FAIL` scoped to its recovery ladder |
+| `07_paper_design_constraints.md` | Tier-1/Tier-2 evidence and paper-shape constraints |
+| `10_direction_decision.md` | PPS scenario and conditional dataset roles |
+| `11_experiment_and_dataset_plan.md` | Dataset, metric, split, checkpoint, and label-isolation plan |
+| `12_experiment_execution_protocol.md` | Environment, run, resource, metadata, evaluator, and dev-log rules |
+| `13_baseline_implementation_plan.md` | Baseline fairness matrix, tuning budgets, and developer runbook |
+| `14_official_baseline_plan.md` | Official-code alignment, budgets, and stop-loss rules |
+| `15_proposed_system_design_principles.md` | Current Failure-Card-to-architecture entry rules |
+| `24_parallel_llm4rec_design_protocol.md` | Historical C01--C04 isolation/GPU protocol; no current authorization |
+| `25_history_signal_observability_protocol.md` | Pooled history-source observability protocol |
+| `27_amazon_history_signal_observability_protocol.md` | Amazon pooled-history observability protocol |
+| `28_amazon_token_history_observability_protocol.md` | Ordinary full-token positive-control protocol |
+| `30_amazon_token_edge_attribution_protocol.md` | Full-token Q/H/C edge attribution protocol |
+| `31_problem_discovery_and_architecture_iteration_protocol.md` | Current discovery, training, feedback, and confirmation pipeline |
+| `dev_log/20260712_c01_c80_terminal_retrospective.md` | C01--C80 causal retrospective and terminal boundary |
+
+Documents 16--23 and candidate-specific documents remain useful historical
+protocol evidence, but their old launch/authorization wording is superseded by
+doc 31.
 
 ## Subdirectories
 
-- `dev_log/` - concise development logs and decisions (chronological).
-- `baseline_notes/` - per-baseline setup notes, gotchas, and reproductions.
-- `review_prompts/` - bounded prompts for independent repository audits.
+- `dev_log/` - chronological reasoning, incidents, outcomes, and decisions.
+- `baseline_notes/` - baseline setup notes, provenance, and reproduction details.
+- `review_prompts/` - bounded prompts for independent audits.
+- `design_prompts/` - historical independent-agent design prompts; not current
+  architecture authorization.

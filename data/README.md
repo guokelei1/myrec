@@ -17,6 +17,13 @@ data/standardized/<dataset_id>/<ver>/  unified JSONL interface records
 | Amazon-C4 + Amazon-Reviews-2023 | Secondary track: English validation, MemRerank comparison |
 | JDsearch | Anchor track: robustness without plaintext text |
 
+The Amazon-C4 secondary track uses the official sampled-1M candidate catalog
+and the MemRerank temporal-history release.  Historical item text is joined
+from Amazon Reviews 2023 category metadata.  The JDsearch GitHub repository
+contains only tiny schema samples; the full archive still requires the
+upstream JD Cloud interactive download and must not be replaced by those
+samples in experiments.
+
 Generated standardized files (`records_train.jsonl`,
 `records_dev.jsonl`, `records_test.jsonl`, `item_catalog.jsonl`,
 `manifest.json`) belong here and are not committed.

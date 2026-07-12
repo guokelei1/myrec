@@ -1,0 +1,79 @@
+{
+  "candidate_id": "c64",
+  "decision": "close_c64_before_validation_labels",
+  "execution_lock_sha256": "361dd6493971c07379078f6fbc009822cdb9b93052e757695b26f37a7621c9ac",
+  "freshness": {
+    "fit_train_labels_opened": true,
+    "fit_validation_labels_opened": false,
+    "fresh_features_scores_labels_opened": false,
+    "dev_test_qrels_opened": false
+  },
+  "g0": {
+    "candidate_permutation_max_abs": 2.980232238769531e-07,
+    "decision": "passed",
+    "history_candidate_state_max_abs": 0.5331242084503174,
+    "history_score_max_abs": 0.046330809593200684,
+    "nohistory_max_abs": 0.0,
+    "repeat_max_abs": 0.0,
+    "source_sha256": "3a71d7806339161bf15eb53920f29d9ded2afc0093d677533c43112801c95760"
+  },
+  "label_free_A0": {
+    "primary_vs_base_order_change_fraction_by_seed": [
+      0.4025,
+      0.5516666666666666,
+      0.4608333333333333
+    ],
+    "primary_vs_base_top10_change_fraction_by_seed": [
+      0.023333333333333334,
+      0.03833333333333333,
+      0.051666666666666666
+    ],
+    "scoring_candidate_permutation_max_abs_by_seed": [
+      0.00394439697265625,
+      0.003927469253540039,
+      0.003921091556549072
+    ],
+    "true_vs_wrong_order_change_fraction_by_seed": [
+      0.27416666666666667,
+      0.185,
+      0.375
+    ],
+    "true_vs_wrong_top10_change_count_by_seed": [
+      7,
+      5,
+      60
+    ],
+    "true_vs_wrong_top10_change_fraction_by_seed": [
+      0.005833333333333334,
+      0.004166666666666667,
+      0.05
+    ]
+  },
+  "mechanics": {
+    "adaptive_trainable_parameters": 6655360,
+    "all_gradient_groups_active": true,
+    "all_loss_decreased": true,
+    "all_training_finite": true,
+    "frozen_control_trainable_parameters": 350592,
+    "steps_per_mode_seed": 600,
+    "total_parameters_each_mode": 24304512
+  },
+  "result": "failed_terminal",
+  "source_A0": {
+    "path": "artifacts/c64_end_to_end_lm_representation_probe/kuai_v1/a0_report.json",
+    "sha256": "e7002db34cf94bd7c0b296dbdd47ae82fc9daac944b7f744ffea277205a82152"
+  },
+  "stop_rule": {
+    "forbid": [
+      "fp32_or_canonical_rescore_rescue",
+      "adaptation_depth_sweep",
+      "LoRA_or_full_finetune_rescue",
+      "history_length_or_candidate_sample_rescue",
+      "epoch_learning_rate_or_seed_rescue",
+      "validation_or_fresh_label_access",
+      "amazon_continuation"
+    ],
+    "reason": "Two seeds fail the binding wrong-history Top-10 activity gate independently of the numerical permutation failure."
+  },
+  "summary": "End-to-end late-layer BGE adaptation is strongly rank-active, but history replacement is not consistently Top-10-load-bearing and bf16 listwise scoring violates the frozen permutation tolerance. Validation labels remain closed."
+}

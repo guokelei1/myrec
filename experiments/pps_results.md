@@ -135,7 +135,7 @@ a different, matched-history construct.
 | C5-R3 category-only vs D2p | +0.00059/+0.00053/-0.00003; all CIs cross zero | no independent coarse-semantic gain |
 | C5-R3 full D2s vs item-only | -0.00538/-0.00521/-0.00634; all intervals negative | category component weakens item-only in all seeds |
 | C5-R3 primary / sole fallback | failed / failed; integrity passed | `TERMINAL_FAIL` for the doc/23 item/category recovery ladder; neither candidate primitive is validated |
-| Current stage | exact recurrence is reliable in the tested bundle; uncalibrated cross-item/category transfer is not | motivation complete; architecture/protocol formulation authorized; implementation/training requires a new design-specific pre-outcome falsifier |
+| Current stage | C01--C80 closed; no validated primitive | C80 failed pre-label mechanics, so its utility is unknown; current authorization is R0 full-token baseline and Failure Card discovery, not C81 |
 
 Sources: historical `doc/17_intro_motivation_repair_protocol.md` and
 `reports/pps_c3r_history_identity_control.json`; `doc/22` and
@@ -157,9 +157,19 @@ Sources: historical `doc/17_intro_motivation_repair_protocol.md` and
 | D2s no-history boundary | D2s and seed-matched D2p have exact NDCG/MRR/Recall equality on 4,110 requests | passed all seeds |
 | Current static waterline | C5-R3 item-only 0.3454+/-0.0003; history-present vs D2p significant in 3/3 | exact-repeat control replaces D2s as baseline-to-beat |
 | Category component | category-only 0.3242+/-0.0003; 0/3 significant vs D2p; full is worse than item-only in 3/3 | semantic category alignment not established; finite C5-R3 gate terminated |
-| Design interpretation | exact recurrence survives while the uncalibrated category transfer dilutes it | formulate an evidence-fidelity-aware architecture/protocol; no new mechanism is yet validated, and implementation/training remains gated |
+| Full-token observability | Amazon ordinary joint Transformer true-null +0.025298; true-wrong +0.035944; both user-cluster CIs positive | token-level joint contextualization exposes signal hidden by pooling; this supports a strong standard baseline, not a new architecture primitive |
+| Design interpretation | representation interface failure is established; ordinary Transformer defect is not | next stage must normally tune the full-token base and produce a replicated Failure Card before architecture formulation |
 
 Sources: `doc/18_supervised_motivation_diagnostics_protocol.md`, `doc/19_finetuned_nonpersonalized_control_protocol.md`,
 `doc/20_d2h_static_history_waterline_protocol.md`, `doc/23_c5r3_candidate_history_alignment_protocol.md`,
 `reports/pps_supervised_diagnostics_summary.json`, `reports/pps_d2_d2h_summary.json`, and
-`reports/pps_c5r3_candidate_history_alignment.json`.
+`reports/pps_c5r3_candidate_history_alignment.json`, plus
+`reports/pps_amazon_token_history_observability_v1.json` and
+`reports/pps_amazon_token_edge_attribution_v1.json`.
+
+Design-stage status is not a new metric row. The historical C01--C80 portfolio
+is closed in
+`doc/dev_log/20260712_c01_c80_terminal_retrospective.md`; `doc/24` has no current
+authorization. Current work follows `doc/31`: R0 source/strong-baseline/failure
+discovery first, architecture only after a passed Failure Card, then frozen
+confirmation. Test stays locked.

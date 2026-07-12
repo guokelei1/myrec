@@ -1,0 +1,21 @@
+{
+  "candidate_id": "c40",
+  "content_sha256": "e1326ef450356324b939b43214e3d67e2fcb42b2815c2c8a7b7d90fcc6cd3cd9",
+  "created_at": "2026-07-11T23:17:09.835604+00:00",
+  "dev_test_authorized": false,
+  "gate_id": "c40_metric_coupled_design_v1",
+  "locked_files": {
+    "README.md": "24f2e356074d8998d76cfbe11b0435e099f156a5f21cd16e4027de6affbd25a6",
+    "configs/design_gate.yaml": "21549996099154b43e4801ecf1735abc5e88a7a34c81d2ef239e64ade11bde16",
+    "environment.txt": "d0a86770c22cd516d80cf83b6254474bd5cd038acd26f6e116a68568845965d6",
+    "model/__init__.py": "11b7953bced5515f196d4c4d670bf82d0fbf7721fbec07ccf0f41808f2af3eab",
+    "model/metric_coupled.py": "93ad470eb165e175c6999499dd160758ef6c9775bb45210e5ecf2cf54a5e6d2d",
+    "notes/design_gate_protocol.md": "94dd477c925ee99e6149cc7cd502a6fc771164d32dba61b0ecebc5cecb26cf28",
+    "notes/mechanism_fingerprint.md": "8f0224cde9000391e178aa5f86e3757a0d21424b393bf1b335ab2a4f8d797172",
+    "notes/nearest_neighbors.md": "bc2458d33279463b44e606b7c1cb7a005420da8d0633b3b68fa12a62ee0e10cf",
+    "notes/proposal.md": "f2dccb2bae33b0ef8ace56cf874b11f96edb9cce9d9ffcec28d6181ed1dfd418",
+    "probe/run_design_gate.py": "080edc9d25fb3585352256705f2c59e1d6a018cd91a69973e5cd1b71e49d9cd4",
+    "tests/test_model.py": "c1ed9eb6d2a54419e4ddde98e11f223f3ae9b0b45a9a3c047888f649e66fb999"
+  },
+  "repository_data_authorized": false
+}

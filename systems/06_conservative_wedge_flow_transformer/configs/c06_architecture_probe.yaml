@@ -1,0 +1,131 @@
+candidate_id: c06
+method_id: c06_candidate_local_hodge_trusted_flow
+status: architecture_preoutcome_no_data_fit
+seed: 20260708
+
+architecture:
+  family: end_to_end_transformer_lm_ranker
+  primitive: history_conditioned_candidate_local_hodge_trusted_projected_flow
+  input_dim: 512
+  flow_dim: 32
+  score_delta_max_in_normalized_probe_coordinate: 1.0
+  residual_scale_initial: 0.0
+  candidate_positional_encoding: none
+  query_to_candidates_or_history_attention: blocked
+  candidate_to_other_candidates_or_history_attention: blocked
+  history_to_candidates_attention: blocked
+  history_to_final_logit_path: candidate_local_hodge_trusted_flow_only
+  hodge_trust: per_candidate_per_event_gradient_over_gradient_plus_cycle_energy
+  trusted_edge: "(trust_i * trust_k / 2) * (potential_i - potential_k)"
+  cycle_direction_to_final_logit: forbidden
+  trust_auxiliary_loss: forbidden
+  hodge_energy_dtype: float64
+  conservation_statistics_dtype: float32
+  final_logit_addition_dtype: float32
+  history_order_encoding: learned_lm_action_and_time_tokens
+  history_prior_in_first_probe: uniform
+  history_prior_valid_range:
+    - exclusive_zero
+    - 1.0
+  dataset_specific_features: forbidden
+  category_features: forbidden
+  handcrafted_click_purchase_multiplier: forbidden
+  candidate_sampling: forbidden
+
+selection:
+  source: packed_train_structural_arrays_only_before_labels
+  d2_cut_request_index: 87245
+  packed_train_requests: 96939
+  c05_selection_path: artifacts/c05_candidate_contrastive_evidence/g2a_v1/selection.json
+  c05_selection_sha256: e7e48c03e0e84ed779494beb1365fdcd6945c09cabd772553b3e281af6666eef
+  hash_payload: "c06-relative-v1\\0<role>\\0<request_id>"
+  fit_nonrepeat_after_c05_exclusion: 12000
+  internal_a_nonrepeat_after_c05_exclusion: 1200
+  internal_b_delayed_nonrepeat_after_c05_exclusion: 600
+  internal_escrow_nonrepeat_never_open: 515
+  nohistory_label_free_contract: 512
+  freeze_before_any_label_shaped_array: true
+
+g0:
+  candidate_manifest_sha256: 94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e
+  full_candidate_sets: true
+  key_alignment:
+    - request_id
+    - candidate_item_id
+  require_zero_overlap_with_c05: true
+  internal_b_labels_materialized: false
+  escrow_materialized: false
+
+g1:
+  common_mode_ratio_max: 0.00001
+  score_bound_tolerance: 0.0000001
+  candidate_permutation_max_abs_error: 0.000001
+  candidate_permutation_rank_mismatches: 0
+  real_optimizer_steps: 2
+  exact_path_enabled: false
+  require_zero_history_gradient_to_base_head: true
+
+g2_training:
+  trained_variants:
+    - c06_candidate_local_hodge_trusted_flow
+    - matched_uncalibrated_flow_t_one
+    - matched_direct_learned_candidate_gate
+    - matched_centered_cross_attention
+    - matched_history_null_groupwise
+    - matched_pairwise_additive
+    - matched_potential_flow
+    - matched_mir_setrank_history_groupwise
+  same_checkpoint_counterfactuals:
+    - matched_global_hodge_event_gate
+  stages:
+    minimal_mechanism_gate:
+      - c06_candidate_local_hodge_trusted_flow
+      - matched_uncalibrated_flow_t_one
+      - matched_direct_learned_candidate_gate
+      - matched_centered_cross_attention
+    deferred_nearest_neighbor_gate:
+      - matched_history_null_groupwise
+      - matched_pairwise_additive
+      - matched_potential_flow
+      - matched_mir_setrank_history_groupwise
+  fit_requests: 12000
+  epochs: 2
+  checkpoint_selection: fixed_final_epoch_only
+  seeds:
+    - 20260708
+  corruption_training: false
+  parameter_difference_max_fraction: 0.02
+  flop_difference_max_fraction: 0.10
+  primary_dev_evaluator_calls: 0
+
+g2_label_free_order_gate:
+  requests: 1200
+  delta_range_fraction_of_bound_min: 0.001
+  requests_with_delta_range_fraction_min: 0.10
+  requests_with_any_order_change_fraction_min: 0.05
+  requests_with_top10_membership_change_fraction_min: 0.01
+  requests_changed_by_t_one_counterfactual_fraction_min: 0.05
+  requests_with_order_change_by_t_one_counterfactual_fraction_min: 0.01
+  requests_changed_by_global_trust_counterfactual_fraction_min: 0.05
+  deterministic_rescore_max_abs_difference: 0.0
+
+g2_ranking_gate:
+  ndcg10_delta_over_d2p_min: 0.001
+  ndcg10_delta_over_each_matched_control_min: 0.0005
+  paired_bootstrap_samples: 10000
+  paired_bootstrap_ci_low_strictly_positive: true
+  hash_folds: 3
+  all_hash_folds_positive: true
+  clicked_minus_unclicked_delta_ci_low_strictly_positive: true
+
+authorization:
+  design: true
+  cpu_synthetic_contracts: true
+  cohort_materialization: false
+  gpu_smoke: false
+  train_internal_a: false
+  train_internal_b: false
+  exact_recurrence_integration: false
+  dev: false
+  full_training: false
+  test: false

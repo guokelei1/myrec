@@ -1,0 +1,30 @@
+{
+  "candidate_id": "c66",
+  "created_at": "2026-07-12T16:30:27+08:00",
+  "decision": "authorize_single_mechanical_G0",
+  "design_sha256": {
+    "config": "8d3cf45c89b8bbfcb15d59f33251bfbd1a38cb87929451b2bc59584b9f5d33f4",
+    "nearest_neighbors": "b0fc83beb176523436539f891404d731335ea084e2de1b350396ed69aa614649",
+    "preimplementation_review": "df1a3f31b08f78616d700420c6c3508134a6c7dcabb4e7459b02a4fafead6d26",
+    "proposal": "3e248d920ec0ffd95ea71cf719b08ca1c8db9cf81515c89f1f2c0c51bb29900e",
+    "readme": "6e87b5f6649a391106b22bb3c9947d63f97aa2fbd9e71ae87d0c34fdfe0aeac9"
+  },
+  "predecessor_sha256": {
+    "c65_report": "818cc29e5b15b82adda36f26caba6aa4c6e847ae07e2c73778de0af2bf38c5b8"
+  },
+  "selection_sha256": {
+    "c26": "db5541aa096118833296f8ef0079ee648889b6f1ccdd0b61a527232f93e7d239",
+    "c64_split": "82965ca16a70e58612af475e0691c312184e900d76087df3ecc86a7c63d95fe7"
+  },
+  "mechanical_fingerprint": {
+    "added_parameters": 0,
+    "caller_restore": true,
+    "canonical_key": "sha256_item_id_int63",
+    "scientific_formula": "identical_to_c65"
+  },
+  "outcome_boundary": {
+    "train_labels_opened": false,
+    "validation_labels_opened": false,
+    "fresh_dev_test_qrels_opened": false
+  }
+}

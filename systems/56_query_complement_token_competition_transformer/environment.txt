@@ -1,0 +1,3 @@
+Reuse `/data/gkl/conda_envs/myrec-c38` (Python, PyTorch, Transformers, NumPy,
+PyYAML, and pytest).  GPU jobs expose exactly one registered physical A40 via
+`CUDA_VISIBLE_DEVICES`; deterministic CUBLAS is required.

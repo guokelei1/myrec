@@ -1,0 +1,53 @@
+{
+  "candidate_id": "c25",
+  "candidate_name": "anchored_mobius_interaction_transformer",
+  "status": "failed_A0_terminal",
+  "decision": "close_pooled_state_anchored_mobius_without_internal_A_access",
+  "selection_sha256": "91907bd45d87de72c718fbb943644d94bd4135efa0a7b373c0ab7bbe499fcc2a",
+  "proposal_lock_sha256": "38a8974622008bfbf115573dc86c25f4340ebe5054d4244675b7cf9e360427c4",
+  "execution_lock_sha256": "7effa5a38cb6f35f316d97511df5596d1bcd3010164d959a28b588c41754bb5c",
+  "raw_report_sha256": "c0af86f9663ff953bed04b09b6153f2e72edc65002fabfc636c045aff4028fb3",
+  "run": {
+    "physical_gpu": 1,
+    "seeds": [20260745, 20260746, 20260747],
+    "modes": ["mobius3", "joint_delta", "pairwise_ch", "trilinear"],
+    "parameters_per_mode": 182209,
+    "epochs": 2,
+    "elapsed_seconds": 591.4465532647446
+  },
+  "A0": {
+    "order_change_vs_d2p": {"count": 95, "requests": 1200, "fraction": 0.07916666666666666},
+    "top10_change_vs_d2p": {"count": 2, "requests": 1200, "fraction": 0.0016666666666666668},
+    "wrong_history_order_change_fraction_by_seed": {
+      "20260745": 0.018333333333333333,
+      "20260746": 0.015833333333333335,
+      "20260747": 0.0125
+    },
+    "wrong_history_top10_change_count_by_seed": {
+      "20260745": 0,
+      "20260746": 0,
+      "20260747": 0
+    },
+    "wrong_history_correction_change_fraction_by_seed": {
+      "20260745": 1.0,
+      "20260746": 1.0,
+      "20260747": 1.0
+    },
+    "anchored_null_max_abs_difference": 0.0000063478946685791016,
+    "maximum_abs_correction_sum": 0.00003540515899658203,
+    "candidate_permutation_max_abs_difference": 0.00000011920928955078125,
+    "deterministic_max_abs_difference": 0.0,
+    "failed_checks": ["anchored_null", "candidate_centered", "top10_active", "wrong_changes_order"]
+  },
+  "label_barrier": {
+    "fit_labels_opened": true,
+    "internal_A_labels_opened": false,
+    "delayed_B_labels_opened": false,
+    "escrow_opened": false,
+    "dev_opened": false,
+    "test_opened": false,
+    "utility_metric_computed": false
+  },
+  "conclusion": "Pure three-way pooled-state tokens were trainable but rarely load-bearing at top-10 and insufficiently sensitive in ranking space to matched wrong histories; numerical tolerance failures are secondary and cannot rescue the gate.",
+  "next_action": "Do not rerun or relax tolerances. Move the next falsifier to token-level representation formation rather than another operator over pooled D2 states."
+}

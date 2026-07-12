@@ -1,0 +1,36 @@
+{
+  "candidate_id": "c31",
+  "created_at": "2026-07-11T17:44:39.960825+00:00",
+  "declarations": {
+    "delayed_B_features_labels_scores_opened": false,
+    "escrow_dev_test_opened": false,
+    "fit_labels_opened_after_proposal_lock": true,
+    "internal_A_label_free_features_opened": true,
+    "internal_A_labels_scores_opened": false,
+    "ranking_outcome_observed": false,
+    "training_started": false
+  },
+  "g0_outputs_sha256": {
+    "auth_profile_sizes.npy": "bd1991f62f82d2fb70f48d68d9d15f0f14a87824645c325a0a942d65fccfcbc1",
+    "auth_true_items.npy": "f5e183ae1e5f69f04d2037b0aa93519c40a619df186366e9bac6fed9f498b103",
+    "auth_true_offsets.npy": "e59b8993b53c1d42afe2393200a4c9a62f76c1055738ab5f3618ab355eebef9a",
+    "auth_true_source_counts.npy": "42bcb138e0ec44780752e46c32cb329cfd6189a64564802895ad77f1133675e0",
+    "auth_wrong_items.npy": "5acec928e48f38d233abb7a162ac3660c41d1d04312bf732d628b01491387266",
+    "auth_wrong_offsets.npy": "e84a5622c518ff5f573c43afeaa17d0ea51f903f5e178d45b5d11c1933583717",
+    "auth_wrong_source_counts.npy": "f2f818f52bbc5b3cf45ceb7c8d6edbc46671ec4e79bca0b77df1a10c7c10e2fb",
+    "authentication_request_indices.npy": "25dde0bbf8f94784eb1beee0d2e7354da83508e6dd36f2341fe173f3615fbc44",
+    "base_scores.npy": "cc91e70474961ccb6890a9dba1c0b9485aa8281d2f109230ab9bbe280fb76a0d",
+    "feature_candidate_offsets.npy": "30ea4bbc6463d1c14043d7e0a2495d39d6fdf6049acf8da939ee371e8957e704",
+    "feature_request_indices.npy": "25dde0bbf8f94784eb1beee0d2e7354da83508e6dd36f2341fe173f3615fbc44",
+    "fit_label_offsets.npy": "f0e2e999b0694cd3ee279a21153bcfe424209afd8b3604f53865c838ccc8cba4",
+    "fit_labels.npy": "0ac63ae0a0886661d5a48d7221ecccbad3c7b144b8221cd8754d440895b0dbc2",
+    "fit_request_indices.npy": "dc0b05bfa88fa03fab9f31b87a8fb8738968b4f5e37a017907ad3c5b0e48b315",
+    "query_embeddings.npy": "54dd8d90ca24a967d7c539460af29cd12dbb3db26a75f1de98949bcc1be439c1"
+  },
+  "g0_report_path": "artifacts/c31_authenticated_collaborative_query_transport_transformer/train_gate_v1/g0_report.json",
+  "g0_report_sha256": "027d370322e25f6fbe824e48468e8054aad11e615f6bc0ef6f4fbcd0065b256e",
+  "lock_id": "c31_authenticated_collaborative_query_transport_execution_v1",
+  "proposal_lock_sha256": "2abdd4479f56a4d62db537eeb3b69b5596032fb74c797d2c2729c9c37ed9aa48",
+  "selection_sha256": "9774ec87dd0eea03d45760f1d2800a5940f10a4e63917b8de16d2ea6d8233d06",
+  "status": "locked_after_G0_before_training_or_A_score"
+}

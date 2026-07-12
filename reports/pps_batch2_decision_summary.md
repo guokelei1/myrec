@@ -1,11 +1,18 @@
 # PPS Batch 2 Decision Summary
 
-> **Current supersession / 当前解释（2026-07-10）.** 下文的
+> **Current supersession (2026-07-13).** Baseline evidence is retained; its old
+> architecture transition is not. C01--C80 is closed and current work follows
+> [`doc/31`](../doc/31_problem_discovery_and_architecture_iteration_protocol.md).
+
+> **Terminal supersession / 当前解释（2026-07-11）.** 下文的
 > benchmark-only/no-design 表述是当时或该特定 gate 的结论。当前以
 > [`doc/15_proposed_system_design_principles.md`](../doc/15_proposed_system_design_principles.md)
 > 和 [`reports/pps_architecture_readiness.md`](../reports/pps_architecture_readiness.md)
-> 为准：motivation complete，design formulation ready；implementation/training
-> 仍由新的、design-specific pre-outcome falsifier 把关。C5-R3 FAIL 及全部数字不变。
+>、[`terminal closure`](../doc/dev_log/20260711_architecture_exploration_terminal_closure.md)
+> 为准：motivation complete；后续 C01--C16 已关闭，未得到经过验证的架构
+> primitive，也未授权 proposed-system dev/full/test evaluation。C5-R3 FAIL
+> 及全部数字不变。正文中的
+> “current”与 design 边界只表示 2026-07-08 Batch 2 或随后 gate 的历史判断。
 
 Date: 2026-07-08
 
@@ -21,8 +28,10 @@ Later D1/D2/D2h/D2s strengthening then superseded B7 as the waterline:
 D2s mean 0.3416 significantly exceeds the interim D2h mean 0.3352. All
 "current baseline" wording below is the 2026-07-08 Batch 2 decision only.
 The final C5-R3 component audit further supersedes D2s as the numeric waterline:
-item-only mean is 0.3453755. C5-R3 terminates benchmark/analysis-only and does
-not authorize proposed-system design.
+item-only mean is 0.3453755. At that gate-local stage, C5-R3 was recorded as
+benchmark/analysis-only with no proposed-system design authorization; that
+stage label is historical; the later C01--C16 portfolio is now closed without
+a validated primitive or proposed-system evaluation authorization.
 
 ## Decision
 

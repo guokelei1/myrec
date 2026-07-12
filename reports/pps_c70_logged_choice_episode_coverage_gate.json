@@ -1,0 +1,44 @@
+{
+  "candidate_id": "c70",
+  "created_at": "2026-07-12T18:46:59+08:00",
+  "decision": "reject_current_execution_missing_cross_domain_choice_context",
+  "dev_test_qrels_opened": false,
+  "domains": {
+    "amazon_c4": {
+      "history_event_instances": 341213,
+      "history_present_requests": 11199,
+      "linked_event_instance_rate": 0.0,
+      "linked_event_instances": 0,
+      "linked_unique_choice_episodes": 0,
+      "request_link_rate": 0.0,
+      "requests": 11199,
+      "requests_with_any_linked_episode": 0,
+      "source": "data/standardized/amazon_c4/v0_history_bm25_100/records_train_blind.jsonl",
+      "unique_event_keys": 336325,
+      "unique_link_rate": 0.0
+    },
+    "jdsearch": {
+      "full_dataset_local": false,
+      "historical_candidate_slates_in_public_format": false,
+      "status": "structurally_unavailable"
+    },
+    "kuaisearch": {
+      "history_event_instances": 825138,
+      "history_present_requests": 96042,
+      "linked_event_instance_rate": 0.9698886731673975,
+      "linked_event_instances": 800292,
+      "linked_mean_alternatives": 81.76879922394905,
+      "linked_unique_choice_episodes": 147405,
+      "request_link_rate": 0.9726057349909415,
+      "requests": 163717,
+      "requests_with_any_linked_episode": 93411,
+      "source": "data/standardized/kuaisearch/v0_lite/records_train.jsonl",
+      "unique_event_keys": 152649,
+      "unique_link_rate": 0.9656466796376
+    }
+  },
+  "gpu_authorized": false,
+  "labels_used": false,
+  "passed": false,
+  "schema": "myrec.c70.coverage_gate.v1"
+}

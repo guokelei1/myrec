@@ -1,0 +1,11 @@
+candidate: c19_oriented_lag_transformer
+environment_path: /data/gkl/conda_envs/myrec-c19
+creation: conda create --prefix /data/gkl/conda_envs/myrec-c19 --clone /data/gkl/conda_envs/myrec-c04
+python: 3.10.20
+torch: 2.6.0+cu124
+cuda_build: 12.4
+pyyaml: 6.0.2
+pytest: 9.1.1
+physical_gpu: 3
+runtime_binding: CUDA_VISIBLE_DEVICES=3; model device cuda:0
+dependency_policy: no package installation or mutation after proposal lock

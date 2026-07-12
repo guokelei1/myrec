@@ -1,23 +1,32 @@
 # Paper
 
-Manuscript source, bibliography, and small manually selected assets.
+Manuscript source, bibliography, and small manually selected assets. Large
+generated figures and temporary export bundles stay under `artifacts/` until
+selected.
 
-Large generated figures or temporary export bundles should stay under
-`artifacts/` until they are selected for the paper.
+## Current Writing Boundary
+
+C01--C80 produced no validated proposed architecture. C80 utility is unknown
+because its fresh labels never opened. Do not write C80 as a negative ranking
+result and do not describe C01--C80 as 80 mature model comparisons.
+
+The strongest new evidence is representation-level:
+
+- pooled Amazon history exposes only a weak strict-non-repeat direction;
+- an ordinary full-token joint Transformer reaches true-null `+0.025298` and
+  true-wrong `+0.035944`;
+- Q--H, C--H, and history-read-context edges are load-bearing;
+- event order is not currently established as load-bearing.
+
+This supports an interface/measurement claim, not a new architecture claim. A
+future method section requires doc/31 R0 strong-baseline development, a passed
+Failure Card, bounded Hxx dev work, and independent confirmation.
 
 Current drafts:
 
-- `introduction_and_motivation.md` - prose through the design transition;
+- `introduction_and_motivation.md` - front-half prose and evidence boundary;
 - `introduction_motivation_sentence_plan.md` - sentence-level scaffold.
 
-Both now follow the C5-R3 component audit. M3/M4 and C5-R2 remain failed
-diagnostics; D1 query attention is negative; exact repeat-item memory is the
-supported narrow signal; and C5-R3 item-only (mean 0.3454) is the static
-baseline-to-beat. C5-R3 `TERMINAL_FAIL` closes only the preregistered doc/23
-item/category recovery ladder and validates neither of its candidate
-primitives. The motivation is complete: the evidence supports a bounded
-transition to architecture/protocol formulation around unequal history-evidence
-fidelity, while implementation and training remain gated by a new
-design-specific pre-outcome falsifier. The current boundary is documented in
-`reports/pps_c5_insight_audit.json` and
-`reports/pps_c5r3_candidate_history_alignment.json`.
+Paper numbers must be copied from `experiments/pps_results.md`. Historical
+candidate detail belongs in the C01--C80 retrospective and `systems/README.md`,
+not in the main introduction.

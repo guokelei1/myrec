@@ -1,0 +1,6 @@
+Environment: /data/gkl/conda_envs/myrec-c33
+Source clone: /data/gkl/conda_envs/myrec-c32
+Python: 3.10
+Physical GPUs: 0, 1, and 2
+Program-visible device: cuda:0
+Required: torch, transformers, numpy, PyYAML, pytest

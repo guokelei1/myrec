@@ -1,0 +1,94 @@
+{
+  "candidate_id": "C06",
+  "gate_id": "c06_real_mechanism_gate_v1",
+  "status": "failed_A0",
+  "decision": "stop before internal-A labels; close the C06 primitive",
+  "scope": "train-internal mechanism gate; not dev/test or paper ranking evidence",
+  "git_commit_at_execution": "fb2325384afa551c6c7236ee1a83531d93f2eb42",
+  "config": {
+    "path": "systems/06_conservative_wedge_flow_transformer/configs/c06_real_mechanism_gate.yaml",
+    "sha256": "7d85dc16e7e0678c999d3da1350fbaa3f797247b0bb5f14f73573f76090ef42f"
+  },
+  "review1_lock_sha256": "565d3133ed5b098e3b8722e6a031ca5d979365857dd74b2ce1aecdf37b178f14",
+  "g0_report_sha256": "7430dae9c56b257cb64a9c75e3e0cbf932856d9419e296b64fa1e9cc81a0af1e",
+  "commands": {
+    "variant_pattern": "CUBLAS_WORKSPACE_CONFIG=:4096:8 CUDA_VISIBLE_DEVICES=<0|1|2> python systems/06_conservative_wedge_flow_transformer/train/run_real_gate.py --config systems/06_conservative_wedge_flow_transformer/configs/c06_real_mechanism_gate.yaml --mode train-variant --variant <local_hodge|untrusted|direct_learned>",
+    "audit": "CUBLAS_WORKSPACE_CONFIG=:4096:8 CUDA_VISIBLE_DEVICES=0 python systems/06_conservative_wedge_flow_transformer/train/run_real_gate.py --config systems/06_conservative_wedge_flow_transformer/configs/c06_real_mechanism_gate.yaml --mode audit"
+  },
+  "training": {
+    "fit_requests": 12000,
+    "fixed_epochs": 2,
+    "seed": 20260708,
+    "candidate_cycle_energy_fallback_rows_total": {
+      "local_hodge": 214,
+      "untrusted": 537,
+      "direct_learned": 923,
+      "centered_cross_attention": 0
+    },
+    "checkpoint_sha256": {
+      "local_hodge": "8db9a667672c76dca94f7ab50ff56b79b931e43168c421906efa876fe100f489",
+      "untrusted": "230efa268c8007fab9cf4d52ba42b38b7aed34df1169b30b05fc62affbc61665",
+      "direct_learned": "ea8d256fed2969efd65e17accd7484834a74464010068d46f0485a8b320863fd",
+      "centered_cross_attention": "6226df4a49d82e051b65aa28beaa6e29bff1738139486adb870879ae42e36602"
+    }
+  },
+  "a0": {
+    "status": "failed",
+    "requests": 1200,
+    "base_to_local_requests_with_any_order_change": 0,
+    "base_to_local_order_change_fraction": 0.0,
+    "base_to_local_requests_with_top10_membership_change": 0,
+    "base_to_local_top10_change_fraction": 0.0,
+    "delta_range_fraction_of_bound": 0.0,
+    "maximum_abs_conservative_delta": 0.000018312828615307808,
+    "maximum_abs_candidate_sum_delta": 2.7284841053187847e-12,
+    "maximum_common_mode_ratio": 3.87183344938117e-08,
+    "local_to_t_one_different_delta_fraction": 0.9991666666666666,
+    "local_to_t_one_order_change_fraction": 0.0,
+    "local_to_global_different_delta_fraction": 0.9991666666666666,
+    "local_to_global_order_change_fraction": 0.0,
+    "local_trust_minimum": 0.0,
+    "local_trust_maximum": 1.0,
+    "failed_checks": [
+      "enough_nontrivial_delta_ranges",
+      "enough_order_changes",
+      "enough_top10_changes",
+      "t_one_changes_orders"
+    ],
+    "passed_structural_contracts": [
+      "deterministic_rescore_bitwise",
+      "nohistory_bitwise_base_for_all_six_variants",
+      "candidate_common_factors_exact_zero",
+      "conservative_delta_zero_sum_and_bounded",
+      "trust_finite_in_unit_interval",
+      "pool_interventions_finite_bounded_zero_sum"
+    ]
+  },
+  "raw_artifacts": {
+    "a0_label_free_audit": {
+      "path": "artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1/a0_label_free_audit.json",
+      "sha256": "b989bdcd5166b13dee45fb30a7c150fc20de7520a9586e2e3e489ee89145f9ff"
+    },
+    "terminal_report": {
+      "path": "artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1/real_gate_report.json",
+      "sha256": "4c9765c189df009c40cd91509b66ebd0bec81d08ff92b7b5ad400116054660a3"
+    },
+    "audit_ledger": {
+      "path": "artifacts/c06_conservative_wedge_flow_transformer/real_gate_v1/formal_attempt_audit.json",
+      "sha256": "06bc9f4cac8138b737fd013e4abc78a002b73c2af247a9684cce959736a7a83f"
+    }
+  },
+  "evidence_isolation": {
+    "internal_A_features_scored_label_free": true,
+    "internal_A_labels_opened": false,
+    "a1": null,
+    "internal_B_or_escrow_opened": false,
+    "dev_records_read": false,
+    "test_read": false,
+    "qrels_read": false,
+    "primary_dev_evaluator_calls": 0,
+    "dev_eval_log_sha256": "54b3760a211b1e8047a2615de39398873d27b7f64531f4860747ea7e0cb2bb44",
+    "dev_eval_log_changed_by_c06": false
+  },
+  "interpretation": "The operator is numerically valid and candidate-relative, but its learned residual is not load-bearing: it changes floating-point deltas without changing a single candidate order. C06 is closed; no threshold relaxation, A-label opening, delayed-B, escrow, dev, or test run is authorized."
+}

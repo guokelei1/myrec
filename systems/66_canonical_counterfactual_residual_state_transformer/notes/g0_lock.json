@@ -1,0 +1,26 @@
+{
+  "candidate_id": "c66",
+  "created_at": "2026-07-12T08:38:25.186364+00:00",
+  "decision": "authorize_one_canonical_G0",
+  "outcome_boundary": {
+    "fresh_dev_test_qrels_opened": false,
+    "train_labels_opened": false,
+    "validation_labels_opened": false
+  },
+  "proposal_lock_sha256": "69cceb492ec2529194951a2578ef01ce22b23c27410fb1028e7cc0ddbdc1927f",
+  "source_sha256": {
+    "systems/64_end_to_end_lm_representation_probe/model/adaptive_joint_ranker.py": "1af3540b6af84f16ecb23c119ff6cab59ee875d246eecca6b5831760a577373b",
+    "systems/64_end_to_end_lm_representation_probe/train/data.py": "8dcd95d53f5c48ef7ee9eafb726873094d4fa40cb0a4c93a34f26fd4c38fcb4e",
+    "systems/65_counterfactual_residual_state_transformer/model/counterfactual_residual.py": "0e7ef742e08fc5f68f28586a6069929973eb5b0bf82bd87d638e97ecb287e7f9",
+    "systems/66_canonical_counterfactual_residual_state_transformer/configs/train_gate.yaml": "8d3cf45c89b8bbfcb15d59f33251bfbd1a38cb87929451b2bc59584b9f5d33f4",
+    "systems/66_canonical_counterfactual_residual_state_transformer/execution/__init__.py": "77dc5c673d11f569650edd3fa6a9d2139ab870f2e0778a8133831dc22c6aaca4",
+    "systems/66_canonical_counterfactual_residual_state_transformer/execution/freeze_g0_lock.py": "c104d375cd2cf12292e0c0836d4498c57e846e4563b100fc47329c450c8d614d",
+    "systems/66_canonical_counterfactual_residual_state_transformer/execution/locking.py": "7307cc6507aa19c73fc46ffad67bd14f7eae0c87ce79ae2b8df9307b3ab0fd95",
+    "systems/66_canonical_counterfactual_residual_state_transformer/execution/run_g0.py": "2acf641fd2172911074c5a0f97562ccb984245b13106e7c5aeacc83787159ff6",
+    "systems/66_canonical_counterfactual_residual_state_transformer/model/__init__.py": "946fff39db9c0b7afecab05d41b4331847cb9ea8f99ffc1063dcc0aaf1c2a2e4",
+    "systems/66_canonical_counterfactual_residual_state_transformer/model/canonical_residual.py": "5222f8c1e8355b20515fd559d614136cd78b464457ef2db02bcc93849ef39642",
+    "systems/66_canonical_counterfactual_residual_state_transformer/tests/test_model.py": "4a1ef700cf410c6feb1f6573971c583b97487714f73ea3dbf5b190472b642fe5",
+    "systems/66_canonical_counterfactual_residual_state_transformer/train/__init__.py": "728066e8315d586448324750354b507601cccd580f6b3e6e514549fbd9eed45d",
+    "systems/66_canonical_counterfactual_residual_state_transformer/train/data_bridge.py": "6eff8efb8139b680af696494b46e7e882fd427efdbc885cec29b774a6659b29c"
+  }
+}

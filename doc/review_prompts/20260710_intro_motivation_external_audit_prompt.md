@@ -1,5 +1,22 @@
 # External Audit Prompt: Introduction and Motivation
 
+> **Current supersession (2026-07-13).** Do not reuse this prompt. Current
+> architecture-readiness audits must use
+> [`doc/31`](../31_problem_discovery_and_architecture_iteration_protocol.md) and
+> the C01--C80 terminal retrospective.
+
+> **DO NOT REUSE — HISTORICAL / SUPERSEDED PROMPT (2026-07-10).** This mandate
+> describes a pre-C5-R3 evidence state (including the then-current D2s comparator
+> and 127-entry log) and must not be used to audit or control later architecture
+> work. Current authority is
+> [`doc/15_proposed_system_design_principles.md`](../15_proposed_system_design_principles.md),
+> [`reports/pps_architecture_readiness.md`](../../reports/pps_architecture_readiness.md),
+> and the 2026-07-11
+> [`terminal closure`](../dev_log/20260711_architecture_exploration_terminal_closure.md):
+> motivation remains complete, but C01--C16 are now closed without a validated
+> architecture primitive or proposed-system dev/full/test authorization. The
+> body below is preserved verbatim as a historical reviewer mandate.
+
 Copy the prompt below into a fresh reviewer/agent session.
 
 ---

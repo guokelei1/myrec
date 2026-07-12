@@ -1,0 +1,64 @@
+{
+  "candidate_id": "c24",
+  "candidate_name": "multi_recurrence_competition_probe",
+  "status": "failed_A0_terminal",
+  "decision": "close_generic_multi_recurrence_set_attention_without_internal_A_or_dev_access",
+  "scope": "train-only label-free load-bearing gate",
+  "selection_sha256": "f21b706508d4841718911d753ecc1d0b4f20d35304dbae5fb5e9aa977d431ba2",
+  "proposal_lock_v2_sha256": "f161c40f60d3f7ccbe957dee5cfd88786883ea5873cb3725957b0dbd0a0f4244",
+  "execution_lock_v2_sha256": "1f214a0e1a7b17edfc1285178e434a72a74f1fa913690b219ee03a3380836058",
+  "raw_report_sha256": "efbcfd15c30a297a7339966b95481f203eadc466458e776a577dadc27a9795a5",
+  "run": {
+    "physical_gpu": 0,
+    "seeds": [20260736, 20260737, 20260738],
+    "modes": ["set_attention", "independent", "query_independent"],
+    "epochs": 2,
+    "parameters_per_mode": 170049,
+    "elapsed_seconds": 257.23249117378145
+  },
+  "cohorts": {
+    "fit_multi_repeat": 6000,
+    "internal_A_multi_repeat_unopened": 600,
+    "escrow_multi_repeat_unopened": 340,
+    "structural_single_repeat": 512,
+    "structural_nohistory": 512,
+    "structural_nonrepeat": 512
+  },
+  "A0": {
+    "checks_passed": 15,
+    "checks_total": 16,
+    "order_change_vs_item_only": {
+      "count": 228,
+      "requests": 600,
+      "fraction": 0.38
+    },
+    "top10_change_vs_item_only": {
+      "count": 93,
+      "requests": 600,
+      "fraction": 0.155
+    },
+    "cross_edge_correction_change_fraction_by_seed": {
+      "20260736": 1.0,
+      "20260737": 1.0,
+      "20260738": 1.0
+    },
+    "cross_edge_order_change_fraction_by_seed": {
+      "20260736": 0.0,
+      "20260737": 0.0,
+      "20260738": 0.0
+    },
+    "maximum_abs_correction_sum": 0.000003516674041748047,
+    "deterministic_max_abs_difference": 0.0,
+    "candidate_permutation_max_abs_difference": 0.00000011920928955078125,
+    "failed_check": "cross_edges_change_order"
+  },
+  "label_barrier": {
+    "internal_A_labels_opened": false,
+    "escrow_opened": false,
+    "dev_opened": false,
+    "test_opened": false,
+    "utility_metric_computed": false
+  },
+  "conclusion": "Candidate-set attention produced numerical cross-edge effects but no cross-edge-dependent ranking in any seed; the rank-active shortcut was independent recurrence calibration.",
+  "next_action": "Do not tune C24. Return to representation formation and require the next primitive to create a rank-relevant state unavailable to an independent recurrence path before any delayed label is opened."
+}
