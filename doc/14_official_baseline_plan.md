@@ -60,8 +60,9 @@ doc 13 §2.5 预算在 Batch 2 开跑前已冻结，因此 Batch 2b 需要一次
    - 外部验证 run（§3–§5 中在 RecBole 自带数据集、官方 KuaiSearch 格式数据、
      Amazon PPS 基准上跑的对齐性检查）**不读本项目 dev split，不计入
      dev 评测预算**，但每次都要在对应 baseline card 登记；
-   - ordinary full-token strong baseline 使用同等 16 次预算；future Hxx 只有通过
-     doc/31 Failure Card 后才可登记同等预算（07 §9 对称性不变）。
+   - ordinary full-token strong baseline 按 search dimensionality 与成本预先登记
+     ceiling（默认不超过 16 次）；future Hxx 只有通过 doc/31 Failure Card 后才可
+     登记与关键 control 对称的预算。
 2. 修订文档 commit 后，才允许产生第一次 Batch 2b dev 评测。
 3. `experiments/pps_baseline_cards.md` 新增 B4o/B5o/B6o 三张 card
    （状态 = in progress），沿用 doc 13 §5 模板。

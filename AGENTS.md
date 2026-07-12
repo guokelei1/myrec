@@ -29,6 +29,8 @@ The research scope is documented in [doc/](doc/). Key documents:
 - `doc/31_problem_discovery_and_architecture_iteration_protocol.md` — current
   authoritative pipeline for source observability, strong-baseline development,
   failure discovery, architecture formulation, dev iteration, and confirmation.
+- `doc/32_autonomous_pipeline_controller.md` — autonomous loop, persistent
+  state, feedback transitions, recovery, budgets, and whole-pipeline end states.
 - `doc/24_parallel_llm4rec_design_protocol.md` — historical C01--C04 isolation
   protocol; it does not authorize current work.
 
@@ -109,7 +111,8 @@ Architecture search ended at C80. There is no C81 and no C80 precision,
 canonicalization, threshold, label-opening, dev, or test rescue. The C01--C80
 trees under `systems/` are historical evidence, not active templates.
 
-Current work follows `doc/31_problem_discovery_and_architecture_iteration_protocol.md`:
+Current work follows `doc/31_problem_discovery_and_architecture_iteration_protocol.md`
+under the autonomous controller in `doc/32_autonomous_pipeline_controller.md`:
 
 1. audit the cross-dataset information objects and confirmation data;
 2. establish full-token observability on the main track and a comparable
@@ -125,6 +128,14 @@ LLM4Rec-style Transformer/LM ranker in which the LM/Transformer is the
 end-to-end ranking core. Prompt-only scoring, offline LLM features fed to an
 MLP, fixed-score routing, and renamed existing attention modules are not
 eligible architecture contributions.
+
+For AI execution, keep tracked work products concise and evidence-oriented.
+Each R0 iteration records hypothesis, single change, result, next action, and
+budget. Keep at most three active failure ideas and probe at most the top two;
+use the cheapest reversible discriminating probe first. A CPU/tiny-data
+disposable prototype is allowed under `tmp/r0_prototypes/` before a Failure
+Card, but it may not read evaluation labels, call the evaluator, enter
+`systems/`, or support a claim.
 
 Mechanics, learnability, utility, specificity, attribution, numerical safety,
 and novelty are separate states. A mechanical failure is not negative utility;

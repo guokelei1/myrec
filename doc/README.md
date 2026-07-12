@@ -23,8 +23,10 @@ scope/data-object audit
 ```
 
 `31_problem_discovery_and_architecture_iteration_protocol.md` is the current
-authority for this workflow. `24_parallel_llm4rec_design_protocol.md` and all
-C01--C80 candidate-local protocols are historical records only.
+scientific authority for this workflow;
+`32_autonomous_pipeline_controller.md` controls continuous execution, recovery,
+and termination. `24_parallel_llm4rec_design_protocol.md` and all C01--C80
+candidate-local protocols are historical records only.
 
 ## Key Documents
 
@@ -43,6 +45,7 @@ C01--C80 candidate-local protocols are historical records only.
 | `28_amazon_token_history_observability_protocol.md` | Ordinary full-token positive-control protocol |
 | `30_amazon_token_edge_attribution_protocol.md` | Full-token Q/H/C edge attribution protocol |
 | `31_problem_discovery_and_architecture_iteration_protocol.md` | Current discovery, training, feedback, and confirmation pipeline |
+| `32_autonomous_pipeline_controller.md` | Autonomous controller, persistent state, recovery, and three top-level end states |
 | `dev_log/20260712_c01_c80_terminal_retrospective.md` | C01--C80 causal retrospective and terminal boundary |
 
 Documents 16--23 and candidate-specific documents remain useful historical

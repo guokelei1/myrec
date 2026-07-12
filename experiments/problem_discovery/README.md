@@ -4,6 +4,10 @@ Tracked control plane for the active doc/31 pipeline. Raw runs, scores,
 checkpoints, and sweeps remain under ignored `runs/`, `models/`, and
 `artifacts/`.
 
+Continuous execution follows `doc/32_autonomous_pipeline_controller.md` and
+persists live state in `pipeline_state.yaml`, initialized from
+`_pipeline_state_template.yaml`.
+
 ## Required Order
 
 ```text
@@ -18,9 +22,15 @@ Do not create an Hxx proposal before its Fxx Failure Card passes review. Copy
 the templates in this directory to stable IDs; do not edit a template in place
 to represent a live experiment.
 
+R0 does not require a full Failure Card. Use one five-field iteration record,
+keep at most three active failure ideas, and probe at most the top two. Create
+additional tracked documents only for new evidence, locks, or decisions.
+
 ## Templates
 
-- `_failure_card_template.md` - architecture-entry evidence.
+- `_r0_iteration_template.yaml` - five-field discovery record.
+- `_pipeline_state_template.yaml` - resumable autonomous controller state.
+- `_failure_card_template.md` - full architecture-entry evidence for a survivor.
 - `_trial_budget_template.yaml` - development feedback and change ledger.
 - `_confirmation_lock_template.yaml` - no-feedback confirmation boundary.
 

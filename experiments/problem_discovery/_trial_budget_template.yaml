@@ -7,6 +7,8 @@ dataset_id: replace_me
 dataset_version: replace_me
 candidate_manifest_sha256: replace_me
 budget:
+  # Declare from search dimensionality and cost. Sixteen is a default ceiling,
+  # not a target; a small fixed recipe should normally use 4-8 calls.
   dev_evaluator_calls: 16
   gpu_hours: null
   seeds: [20260708]

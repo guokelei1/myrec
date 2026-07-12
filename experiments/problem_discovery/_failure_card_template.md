@@ -2,8 +2,10 @@
 
 Status: `draft | rejected | passed`
 
-This template follows `doc/31 §5`. Replace `Fxx` only when registering a real
-failure; do not create an Hxx source tree while status is `draft` or `rejected`.
+This template follows `doc/31 §5` and is only for an R0 survivor seeking
+architecture entry. Replace `Fxx` only when registering a real failure; do not
+create an Hxx source tree while status is `draft` or `rejected`. Use artifact
+links and concise facts; do not fill sections with speculative prose.
 
 ## Strong Baseline
 

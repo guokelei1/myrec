@@ -2,6 +2,9 @@
 
 状态：**当前权威 proposed-system 研发协议，2026-07-13 生效。**
 
+持续自动执行、恢复、预算总控与 whole-pipeline end states 由
+`32_autonomous_pipeline_controller.md` 规定。
+
 本文取代 `doc/15` 和 `doc/24` 中所有仍带执行含义的旧候选搜索、四路并行、
 单次联合 gate 与 GPU 分配规则。`doc/24`、`systems/01_*`--`systems/80_*`、对应
 reports 和 dev log 仅作为 C01--C80 历史证据保留，不授权 C81、C80 rescue 或
@@ -35,8 +38,9 @@ reports 和 dev log 仅作为 C01--C80 历史证据保留，不授权 C81、C80 
 - 任一 C01--C80 primitive 的强-base utility、unique rent 和跨域复现；
 - CCF-A 级 proposed architecture。
 
-因此下一阶段的第一产物不是 architecture proposal，而是一个经过正常调优后仍然
-成立的 **Failure Card**。没有 Failure Card，不得启动新架构实现。
+因此下一阶段的第一个晋级产物不是 architecture proposal，而是一个经过正常调优后
+仍然成立的 **Failure Card**。R0 日常迭代只写五字段轻量记录；没有通过的 Failure
+Card，不得启动正式架构实现。
 
 ---
 
@@ -55,6 +59,9 @@ development metrics 并在冻结预算内反馈调整。
 - 在同一固定 development surface 上重复使用标签反馈；
 - 修 mechanical bug、补 property test、增加只用于诊断的 instrumentation；
 - 根据结果关闭、收缩或重写尚未进入 confirmation 的 hypothesis。
+- 在 `tmp/r0_prototypes/<id>/` 做 CPU/tiny-data disposable prototype，帮助判断
+  failure 是否可构造；它不得读取 fresh/dev/test labels、调用 evaluator、进入
+  `systems/` 或产生 utility/novelty claim。
 
 必须：
 
@@ -76,6 +83,23 @@ development metrics 并在冻结预算内反馈调整。
 
 确认失败即关闭该 claim。失败形态可进入下一轮问题定义，但不得对同一 confirmation
 cohort 做局部 rescue。test 只在完整系统冻结后运行一次。
+
+### 2.3 AI 执行默认值
+
+本协议面向 AI 开发系统。系统保持自主判断和创新空间，tracked work product 聚焦
+可审计的事实、决定和下一步。
+
+- 优先执行当前最便宜、可逆、能区分结论的实验。
+- R0 每轮最多登记 3 个 active failure idea，只允许前 2 个进入 probe；其余只记一行
+  parking-lot，不展开设计。
+- R0 记录只包含 hypothesis、single change、result、next action、budget；额外文档
+  只在产生新 evidence、lock 或 decision 时创建。
+- 非常规想法不因机制形式被排除；只要能映射到 observed failure、给出 cheap
+  falsifier 并遵守预算，就可以进入 active idea 排序。
+- 遇到不影响证据有效性的歧义，采用最简单的合理假设并运行可逆 probe；只有数据边界、
+  label safety、破坏性操作或高成本资源不明确时才停下来询问。
+- 一个 cheap falsifier 已能关闭问题时按 stop rule 结束该分支；没有新证据时登记
+  `stop`、`park` 或明确 blocker。
 
 ---
 
@@ -146,16 +170,10 @@ primary confirmation。新的 architecture project 必须准备独立且经过 p
 
 ### R0-C. Strong-baseline development
 
-普通 full-token Transformer 必须获得与 trainable baseline 相同的正常调参权。
-默认沿用 `doc/13 §2.5` 的每方法 16 次 dev evaluator budget；若功效或算力要求不同，
-必须在看到新 outcome 前修订预算。
-
-推荐但不强制的 16-call successive-halving 分配：
-
-1. 8 个单 seed 低成本配置；
-2. top-2 完整预算复核；
-3. 冻结 best config 后运行 3 seeds；
-4. 剩余 3 calls 用于预注册的稳定性或 slice 诊断。
+普通 full-token Transformer 必须获得与 trainable baseline 相称的正常调参权。预算按
+搜索维度、单次成本和对照预算在 outcome 前声明：小型固定 recipe 通常 4--8 次 dev
+calls，多轴 trainable search 默认上限 16 次。16 是 ceiling，不是必须用完的目标；更高
+预算需要 pre-outcome amendment，并给关键 control 对称预算。
 
 mechanical retry 不消耗 evaluator call；任何改变分数语义、训练数据、优化、容量、
 tokenization 或 checkpoint selection 的修改都消耗 trial。
@@ -171,6 +189,10 @@ tokenization 或 checkpoint selection 的修改都消耗 trial。
 - candidate-independent scoring 是否缺失必要的 list context；
 - objective 是否稳定学习到 popularity、position 或 identity shortcut。
 
+每轮最多保留 3 个 active failure idea，并按 ranking impact、可构造性和 falsifier
+成本排序；只实现前 2 个 cheap probe。probe 前使用五字段 R0 iteration record，不写
+完整 Failure Card。一个 idea 失败后先关闭或 park，再补位，禁止并行扩展 failure tree。
+
 slice mining 只能用于提出 `Fxx`，不能直接成为论文 claim。`Fxx` 必须在另一个时间
 split、用户 split 或可比 dataset 上复现后才能进入 architecture formulation。
 
@@ -178,7 +200,8 @@ split、用户 split 或可比 dataset 上复现后才能进入 architecture for
 
 ## 5. Failure Card：架构准入门
 
-每个 `Fxx` 必须提交：
+只有准备申请 architecture entry 的 survivor `Fxx` 才提交完整 Failure Card。内容应
+以数字、artifact link 和短句为主，不为填满模板补写推测：
 
 ```text
 Failure ID:
@@ -206,6 +229,8 @@ Claim boundary if repaired:
 7. 能写出一个低成本、结果前冻结的 falsifier。
 
 Failure Card 不通过时，允许继续 baseline/measurement study，不允许发明 primitive。
+在 Failure Card 前允许 §2.1 的 disposable prototype；通过后必须在正式源码树中重新
+实现，不能直接把 `tmp/` 原型提升为系统。
 
 ---
 
@@ -342,7 +367,9 @@ mechanical contract。
 
 ## 10. Trial manifest and required artifacts
 
-每次 development trial 的 config/metadata 至少包含：
+R0 日常 probe 只使用
+`experiments/problem_discovery/_r0_iteration_template.yaml` 的五个字段。Hxx 获准后，
+每次 score-affecting development trial 的 config/metadata 至少包含：
 
 ```yaml
 research_phase: R0-BASE
@@ -380,9 +407,9 @@ Raw checkpoints、scores、logs 和 sweeps 仍只放在 `models/`、`runs/`、`a
 
 每个开发者按以下顺序工作：
 
-1. 读取当前 `Fxx`、strong baseline、剩余 trial budget 和允许的 change class；
+1. 读取当前 R0 iteration 或 `Fxx`、strong baseline、剩余 budget 和允许的 change class；
 2. 先完成 M0 property tests，不能用 evaluation labels 调 mechanics；
-3. 创建唯一 run ID 和 trial manifest；
+3. 如果下一步已经明确，直接创建 run ID/manifest 并执行，不再生成额外 plan；
 4. 训练并只导出统一 `scores.jsonl`；
 5. 持公共锁调用共享 evaluator；
 6. 将结果分类为 §9 的一个状态；
@@ -409,4 +436,5 @@ Raw checkpoints、scores、logs 和 sweeps 仍只放在 `models/`、`runs/`、`a
 5. 形成第一个合格 `Fxx`，或决定转为 measurement/negative-design paper。
 
 在上述步骤完成、Failure Card 通过并登记预算前，**不授权新的 architecture source
-tree、GPU architecture training 或 confirmation label opening**。
+tree、GPU architecture training 或 confirmation label opening**。仅允许 §2.1 定义的
+CPU/tiny-data disposable prototype。

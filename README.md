@@ -20,8 +20,10 @@ The active workflow is a research reset:
 5. only then derive an architecture hypothesis, train it on dev, and freeze an
    independent confirmation.
 
-The authoritative process is
-[doc/31](doc/31_problem_discovery_and_architecture_iteration_protocol.md).
+The scientific process is
+[doc/31](doc/31_problem_discovery_and_architecture_iteration_protocol.md); its
+continuous autonomous execution and end states are defined by
+[doc/32](doc/32_autonomous_pipeline_controller.md).
 [doc/15](doc/15_proposed_system_design_principles.md) defines architecture
 entry and eligibility. [doc/24](doc/24_parallel_llm4rec_design_protocol.md) is
 historical and does not authorize current work. Test remains locked.

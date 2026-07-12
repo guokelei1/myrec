@@ -1,0 +1,25 @@
+schema_version: 1
+pipeline_status: RUNNING
+reason_code: null
+current_r0_round: 1
+current_phase: R0-A
+active_failure_ideas: []
+selected_failure_id: null
+active_hypothesis_id: null
+implementation_revision: null
+active_trial_id: null
+active_confirmation_id: null
+last_feedback_classification: null
+last_evidence_artifact: null
+completed_runs: []
+closed_failure_ids: []
+closed_hypothesis_ids: []
+budget:
+  dev_evaluator_calls_used: 0
+  dev_evaluator_calls_cap: 64
+  gpu_hours_used: 0.0
+  gpu_hours_cap: 48.0
+stagnant_iterations: 0
+next_action: initialize_from_repository_state
+terminal_or_pause_reason: null
+

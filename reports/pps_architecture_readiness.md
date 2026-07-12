@@ -6,7 +6,9 @@ Status: **NOT READY FOR ARCHITECTURE FORMULATION OR TRAINING. R0 problem
 discovery is authorized.**
 
 Current authority:
-`doc/31_problem_discovery_and_architecture_iteration_protocol.md`.
+`doc/31_problem_discovery_and_architecture_iteration_protocol.md`; continuous
+execution and whole-pipeline end states follow
+`doc/32_autonomous_pipeline_controller.md`.
 
 ## Terminal Boundary
 
@@ -55,10 +57,12 @@ Authorized work:
 4. Failure atlas on that strong baseline.
 5. A replicated Failure Card that rules out simple repairs and localizes one
    ranking-relevant model failure.
+6. At most two CPU/tiny-data disposable probes selected from at most three
+   active failure ideas; prototypes remain under ignored `tmp/r0_prototypes/`.
 
 Not authorized:
 
-- a new `systems/<architecture>/` source tree;
+- a new tracked `systems/<architecture>/` source tree;
 - architecture GPU training;
 - C80 fresh-label opening or reuse as rescue;
 - a new confirmation run;
