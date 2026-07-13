@@ -1,0 +1,9 @@
+hypothesis: The point-selected ordinary full-token configuration has stable utility and history observability across fixed seeds without best-seed selection.
+single_change: Replicate the frozen T004 configuration at seeds 20267005 and 20267006; no configuration, data, evaluator, checkpoint-selection, or reporting rule changed.
+result: three-seed true NDCG@10 was 0.331028 +/- 0.001726; true-null was +0.020936 +/- 0.001919 and matched true-wrong +0.031812 +/- 0.003416, with the observability gate passing every seed. Strict-nonrepeat true-null was positive in every seed (mean +0.005388), while true-shuffle remained near zero. The stable ordinary Transformer remains below D2s 0.341629 and item-only 0.345376.
+next_action: close R0-C, enter R0-D, and run the pre-outcome frozen Failure Atlas with at most the top two ideas eligible for user-disjoint replication probes.
+budget:
+  dev_evaluator_calls_used: 24
+  dev_evaluator_calls_remaining: 40
+  cpu_or_gpu_hours_cap: 3.610254 cumulative A40-hours used; GPU resource cap removed by user authorization
+

@@ -1,0 +1,9 @@
+hypothesis: Stronger history dropout improves null robustness while retaining true-history value.
+single_change: Increase history dropout from 0.15 to 0.30 in the ordinary full-token Transformer, with token budget, optimization, capacity, and evaluator fixed.
+result: observability passed and true NDCG@10 reached the point best 0.331986, but null fell to 0.308869; true improved only +0.000907 versus T002 with CI [-0.002759,+0.004344], so the null-robustness mechanism was not established. True-null was +0.023117 and strict-nonrepeat true-null +0.008084, both with positive user-cluster intervals.
+next_action: freeze T004 as point-estimate selection, run two additional fixed seeds without further model selection, then build the Failure Atlas against strong static and ordinary-Transformer baselines.
+budget:
+  dev_evaluator_calls_used: 16
+  dev_evaluator_calls_remaining: 48
+  cpu_or_gpu_hours_cap: 2.488067 cumulative A40-hours used; GPU resource cap removed by user authorization
+

@@ -1,0 +1,9 @@
+hypothesis: The remaining wrong-history coverage loss comes from requiring a whole visible donor prefix in the target bin instead of taking an exactly length-matched tail from a longer valid prefix.
+single_change: Materialize request-time donor prefixes indexed by prefix bin and latest event, without tail truncation from longer compatible prefixes.
+result: MECHANICAL_FAIL; coverage improved to 0.977337 but remained below 0.98; no evaluator or GPU call occurred.
+next_action: search longer compatible prefixes and take their strictly-prior tail with exactly the target history length; stop and trigger stagnation recovery if the frozen 0.98 gate still fails.
+budget:
+  dev_evaluator_calls_used: 0
+  dev_evaluator_calls_remaining: 64
+  cpu_or_gpu_hours_cap: 0.25 CPU-hours
+

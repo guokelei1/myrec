@@ -1,0 +1,72 @@
+schema_version: 1
+locked_at: "2026-07-13T06:30:00+08:00"
+research_phase: R0-D
+decision: freeze_failure_atlas_surfaces_before_frozen_seed_outcomes
+input_run_families:
+  full_token:
+    - 20260713_kuaisearch_r0ft_t004_true_dev
+    - 20260713_kuaisearch_r0ft_s005_true_dev
+    - 20260713_kuaisearch_r0ft_s006_true_dev
+  item_only:
+    - 20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260708
+    - 20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260709
+    - 20260710_kuaisearch_c5r3_d2s_item_only_dev_s20260710
+  D2s:
+    - 20260710_kuaisearch_d2s_static_true_history_dev_s20260708
+    - 20260710_kuaisearch_d2s_static_true_history_dev_s20260709
+    - 20260710_kuaisearch_d2s_static_true_history_dev_s20260710
+  D2p:
+    - 20260710_kuaisearch_d2p_text_pop_dev_s20260708
+    - 20260710_kuaisearch_d2p_text_pop_dev_s20260709
+    - 20260710_kuaisearch_d2p_text_pop_dev_s20260710
+frozen_surfaces:
+  - all
+  - no_history
+  - history_present
+  - repeat_present
+  - strict_nonrepeat
+  - repeat_candidates_1
+  - repeat_candidates_2_plus
+  - repeat_query_aligned
+  - repeat_query_intermediate
+  - repeat_query_conflict
+  - nonrepeat_history_query_aligned
+  - nonrepeat_history_query_weak
+  - history_len_1
+  - history_len_2_3
+  - history_len_4_6
+  - history_len_7_plus
+exploratory_text_rule:
+  normalization: unique_lowercase_alphanumeric_and_CJK_characters
+  aligned_query_character_recall_min: 0.8
+  conflict_query_character_recall_max: 0.4
+  role: localization_only_not_paper_gate_or_architecture_threshold
+active_failure_ideas:
+  - id: R0-FIDEA-01
+    priority: 1
+    name: query_conditioned_recurrence_arbitration
+    falsifiable_signature: item-only is strong when repeat/query agree but personalization methods lose to D2p when repeat/query conflict, while ordinary full-token does not reliably resolve the conflict
+    cheapest_probe: frozen cohort comparison followed by an independent split or dataset replication
+    architecture_relevance_if_replicated: preserve Transformer contextual relevance while repairing calibrated recurrence retention
+  - id: R0-FIDEA-02
+    priority: 2
+    name: strict_nonrepeat_semantic_transfer_shortfall
+    falsifiable_signature: true-history effect is positive yet ordinary full-token remains below D2p or D2s on query-aligned strict-nonrepeat requests
+    cheapest_probe: frozen cohort comparison followed by an independent split or dataset replication
+    architecture_relevance_if_replicated: localize candidate-conditioned semantic history use inside the Transformer
+  - id: R0-FIDEA-03
+    priority: 3
+    name: long_history_truncation
+    state: parked_not_probed
+    reason: registered T002 context expansion did not significantly improve true ranking
+probe_limit: 2
+selection_rule: retain only ranking-relevant signatures with positive or negative user-cluster interval in the frozen direction; require independent replication before Failure Card
+replication_design:
+  amendment_at: "2026-07-13T06:32:00+08:00"
+  outcome_state_at_amendment: S005_and_S006_training_only_no_new_dev_outcomes
+  unit: user
+  assignment: sha256_utf8_user_id_integer_mod_2
+  discovery_fold: 0
+  replication_fold: 1
+  pass_rule: frozen signature has the same direction in both user-disjoint folds and the replication-fold user-cluster interval excludes zero; otherwise close or park the idea
+label_boundary: {records: label_free, evaluator_outputs: allowed, direct_qrels: forbidden, test: closed, c80_fresh_labels: closed}

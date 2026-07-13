@@ -1,0 +1,14 @@
+schema_version: 1
+authorized_at: 2026-07-13T04:50:00+08:00
+authorization_source: explicit_user_message
+gpu_hours_cap: unlimited
+scope: R0 discovery, strong-baseline development, authorized Hxx development, and frozen confirmation runs
+unchanged_scientific_limits:
+  max_total_dev_evaluator_calls: 64
+  r0_full_token_dev_evaluator_calls: 16
+  registered_r0_full_token_trials: [R0B-T001, R0C-T002, R0C-T003, R0C-T004]
+  one_primary_change_class_per_trial: true
+  failure_card_required_before_hxx: true
+  confirmation_and_test_locks: true
+interpretation: GPU availability is no longer a pause condition; scientific trial and feedback budgets remain binding unless separately amended before outcome.
+

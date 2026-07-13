@@ -106,3 +106,9 @@ def test_sampling_keeps_positive_and_loss_is_finite() -> None:
     scores = torch.tensor([[0.1, 0.2, 0.3]])
     target = torch.tensor([[0.0, 0.0, 1.0]])
     assert torch.isfinite(listwise_loss(scores, target))
+
+
+def test_sampling_keeps_multiple_positives() -> None:
+    labels = np.asarray([1, 0, 1, 0, 0, 0], dtype=np.float32)
+    selected = sample_positions(labels, 4, np.random.default_rng(7))
+    assert {0, 2}.issubset(set(selected.tolist()))

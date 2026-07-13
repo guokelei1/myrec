@@ -483,15 +483,19 @@ feedback 分类和 artifacts 见 `doc/31`。
 1. 审计 KuaiSearch、Amazon、JDsearch 的信息对象与 confirmation data/power；
 2. 在 KuaiSearch 与 Amazon 完成 ordinary full-token true/null/wrong observability
    parity，shuffle 默认只报告；
-3. 给 ordinary full-token joint Transformer 与 trainable baseline 对称的正常调参
-   预算；
-4. 在调好的 strong baseline 上建立 failure atlas；
-5. 用独立 split/dataset 复现一个 ranking-relevant failure，排除简单修复，形成
-   Failure Card。
+3. 先冻结一页 R0-M Motivation Brief，量化 problem prevalence、severity、shared
+   baseline blind spot、Transformer asset、recoverable payoff 和 cheapest kill test；
+4. 先做 model-family adequacy，再给存活的 ordinary full-token joint Transformer 与
+   trainable baseline 对称的局部调参预算；
+5. 只有 no-history/base preservation、ranking competitiveness 和 observability 都通过，
+   才在 strong baseline 上建立 failure atlas；
+6. 用独立 split/dataset 复现一个 ranking-relevant failure，排除简单修复和 nearest
+   prior method，形成 Failure Card。
 
-R0 每轮最多 3 个 active failure idea、只 probe 前 2 个；日常只写五字段 iteration
-record。Failure Card 前允许 `tmp/` 下 CPU/tiny-data disposable prototype，不允许
-architecture GPU training、evaluator call 或 utility claim。
+R0 每个 scientific round 最多 3 个 active failure idea、只 probe 前 2 个；日常只写
+五字段 iteration record。工程 repair 不增加 scientific round。Failure Card 前允许
+`tmp/` 下 CPU/tiny-data disposable prototype，不允许 architecture GPU training、
+evaluator call 或 utility claim。
 
 ### 5B. Architecture development（Failure Card 通过后才授权）
 
@@ -518,7 +522,7 @@ architecture GPU training、evaluator call 或 utility claim。
 Phase 0  下载+审计 ──C0──► Phase 1  协议冻结 ──C1──►
 Phase 2  动机实验 [C2 仪器校准 → M1–M6 → C3 生死判定] ──►
 Phase 3  数据定稿(三轨) ──C4──► Phase 4  insight 证伪 ──C5──►
-Phase 5A  R0 source+strong baseline+Failure Card ──►
+Phase 5A  R0 source+Motivation Brief+adequate strong baseline+Failure Card ──►
 Phase 5B  Hxx/Ixx/Txxx bounded development ──►
 Phase 5C  frozen confirmation+Tier-2+one-shot test
 

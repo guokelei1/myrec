@@ -183,9 +183,13 @@ def sample_positions(
         return np.arange(len(labels), dtype=np.int64)
     positive = np.flatnonzero(labels > 0)
     negative = np.flatnonzero(labels <= 0)
-    if len(positive) != 1:
-        raise ValueError("token HSO expects one positive")
-    chosen = rng.choice(negative, size=count - 1, replace=False)
+    if len(positive) == 0:
+        raise ValueError("full-token ranking request has no positive")
+    if len(positive) >= count:
+        output = rng.choice(positive, size=count, replace=False).astype(np.int64)
+        rng.shuffle(output)
+        return output
+    chosen = rng.choice(negative, size=count - len(positive), replace=False)
     output = np.concatenate((positive, chosen.astype(np.int64)))
     rng.shuffle(output)
     return output
@@ -205,10 +209,14 @@ def pack_training_batch(
     all_ids = []
     all_attention = []
     label_rows = []
+    batch_candidate_count = min(
+        int(sampled_candidates),
+        *(len(labels_by_request[int(index)]) for index in request_indices),
+    )
     for index_value in request_indices:
         index = int(index_value)
         labels = labels_by_request[index]
-        positions = sample_positions(labels, sampled_candidates, candidate_rng)
+        positions = sample_positions(labels, batch_candidate_count, candidate_rng)
         candidates = data.candidates(index)[positions]
         scenario = "null" if dropout_rng.random() < float(history_dropout) else "true"
         for candidate in candidates:

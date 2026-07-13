@@ -1,0 +1,9 @@
+hypothesis: Lower-rate longer training repairs under-optimization in the ordinary full-token joint Transformer.
+single_change: Compare the registered five-epoch 1e-5-backbone-learning-rate T003 against the provisional T002 point best; architecture, sampled objective, and evaluator remain fixed.
+result: mechanics and observability passed, but lower training loss did not improve dev ranking; T003 true NDCG@10 was 0.329956, -0.001123 versus T002 with paired CI [-0.004688,+0.002387], while true-null remained significant at +0.019709 and strict-nonrepeat true-null was +0.005450 with CI excluding zero.
+next_action: keep T002 as the provisional point-estimate best and run the final registered objective trial R0C-T004 with history dropout 0.30.
+budget:
+  dev_evaluator_calls_used: 12
+  dev_evaluator_calls_remaining: 52
+  cpu_or_gpu_hours_cap: 1.930672 cumulative A40-hours used; GPU resource cap removed by user authorization
+

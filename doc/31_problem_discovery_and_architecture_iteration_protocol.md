@@ -1,6 +1,7 @@
 # 31 - Problem Discovery and Architecture Iteration Protocol
 
-状态：**当前权威 proposed-system 研发协议，2026-07-13 生效。**
+状态：**当前权威 proposed-system 研发协议，2026-07-13 生效；已纳入 R0 Round 1
+流程复盘修订。**
 
 持续自动执行、恢复、预算总控与 whole-pipeline end states 由
 `32_autonomous_pipeline_controller.md` 规定。
@@ -29,6 +30,15 @@ reports 和 dev log 仅作为 C01--C80 历史证据保留，不授权 C81、C80 
    当前不是已建立的承重变量。
 4. C80 只在 pre-label event-permutation mechanical contract 失败；365 个 fresh
    labels 未打开，C80 utility 未知。
+5. R0 Round 1 在 KuaiSearch 上复现了 ordinary full-token history observability：
+   三 seed `true-null` 均值为 `+0.020936`，`true-wrong` 均值为 `+0.031812`，
+   strict-non-repeat `true-null` 均值为 `+0.005388`。
+6. 同一 Round 1 full-token family 还不是合格 strong base：true NDCG@10 三 seed
+   均值 `0.331028`，低于 item-only `0.345376`；no-history 相对同一静态 base 为
+   `-0.013066`，且 replication fold 95% CI 为 `[-0.025734,-0.006001]`。
+7. Round 1 的 repeat-query-conflict 与 query-aligned strict-non-repeat 两个 failure
+   idea 均被证伪；前者连 item-only 都能处理，后者 full-token 点估计已高于
+   D2p/D2s。因此二者不能形成 shared baseline blind spot 或 Failure Card。
 
 当前**未建立**：
 
@@ -41,6 +51,30 @@ reports 和 dev log 仅作为 C01--C80 历史证据保留，不授权 C81、C80 
 因此下一阶段的第一个晋级产物不是 architecture proposal，而是一个经过正常调优后
 仍然成立的 **Failure Card**。R0 日常迭代只写五字段轻量记录；没有通过的 Failure
 Card，不得启动正式架构实现。
+
+### 1.1 Round 1 的论文级判断
+
+Round 1 是有效的 **L1 observability/measurement progress**，不是 CCF-A 级方法贡献。
+它回答了“full-token Transformer 能否读到历史信号”，也排除了两个错误问题；但它
+没有回答“强模型共同解决不了什么”“普通 Transformer 为什么原生解决不好”以及
+“修复后能回收多少整体排序价值”。当前证据最多支持一段扎实的 motivation/negative
+analysis，不能单独支撑 proposed-architecture 论文；即使走 measurement paper，仍需
+更完整的强 baseline、跨 split/dataset 复现和一个可概括的行为规律。
+
+本协议用下列 contribution ladder 判断进展，而不再用运行数、文档数或候选数代替：
+
+| Level | 必须形成的证据 | 当前状态 |
+|---|---|---|
+| L0 | 数据、控制和 evaluator 可信 | 已通过 |
+| L1 | 有规模、有 ranking 后果的现象可复现 | full-token history observability 已通过 |
+| L2 | 至少两个强模型家族共享一个有实践影响的 blind spot | 未通过 |
+| L3 | ordinary Transformer 的 native shortfall 被定位，简单修复无效 | 未通过 |
+| L4 | 一个 primitive 有 utility、specificity 和 unique rent | 未通过 |
+| L5 | independent confirmation 通过，test 仍封存 | 未通过 |
+
+一个 R0 scientific round 必须使 ladder 前进一级，或以有力反证关闭一个原本达到
+L1/L2 价值门槛的 thesis。修 donor、YAML、dtype、锁或运行脚本是必要工程工作，但不
+计为 scientific round progress。
 
 ---
 
@@ -120,7 +154,10 @@ cohort 做局部 rescue。test 只在完整系统冻结后运行一次。
 
 ```text
 R0 source audit
-  -> strong full-token baseline
+  -> source observability
+  -> Motivation Brief
+  -> model-family adequacy
+  -> normally tuned strong full-token baseline
   -> Fxx failure reproduced
   -> Hxx architecture consequence
   -> Ixx mechanics pass
@@ -136,7 +173,7 @@ confirmation。
 
 ---
 
-## 4. R0：先建立强模型和可构造问题
+## 4. R0：先建立值得解决的问题和真正的强模型
 
 ### R0-A. Scope and data-object audit
 
@@ -168,15 +205,78 @@ primary confirmation。新的 architecture project 必须准备独立且经过 p
 
 该阶段只回答信号在哪里，不提出 architecture novelty。
 
+历史结果只有在信息对象、输入接口、模型角色、训练目标和报告 surface 足够可比时，
+才可替代本轮副轨运行；否则必须写 equivalence card 或明确标成 background evidence，
+不能用“以前有过一个正数”宣布 parity 完成。
+
+### R0-M. Motivation Brief and problem-value gate
+
+在继续大规模 baseline tuning 或 Failure Atlas 前，先写一页以内、允许被证伪的
+Motivation Brief。它描述问题，不命名新 primitive，至少包含：
+
+```text
+User/ranking problem: <现实请求中发生了什么错误>
+Prevalence and severity: <覆盖率、paired loss、CI 和对整体指标的贡献>
+Strong methods expected to fail: <至少两个不同模型家族及原因>
+Transformer asset to preserve: <已经由 matched control 证明的能力>
+Suspected native shortfall: <ordinary Transformer 可能失败的位置；尚属假设>
+Recoverable paper-level payoff: <若修复，整体或预先声明主 surface 能回收多少>
+Nearest prior/simple answer: <已有机制、更多容量或更好训练是否已能解释>
+Cheapest kill test: <最便宜的反证>
+```
+
+Motivation 不是修辞 gate。必须有定量的 prevalence × severity、至少一个真实请求级
+例子族以及相对最强相关 baseline 的差距。默认要求潜在整体收益达到 `doc/11 §1.4`
+的最小可主张效应；若只主张一个重要 surface，必须在 outcome 前说明该 surface 的
+实际意义、规模和为什么它可成为 primary claim，不能靠事后切片放大。
+
+若还不能填写，下一步应是 measurement/data analysis，而不是更多 Transformer
+微结构。若 cheapest kill test 失败，关闭这份 brief，换一个高层问题；不能把阈值、
+切片或模块改名后继续。
+
 ### R0-C. Strong-baseline development
 
 普通 full-token Transformer 必须获得与 trainable baseline 相称的正常调参权。预算按
-搜索维度、单次成本和对照预算在 outcome 前声明：小型固定 recipe 通常 4--8 次 dev
-calls，多轴 trainable search 默认上限 16 次。16 是 ceiling，不是必须用完的目标；更高
-预算需要 pre-outcome amendment，并给关键 control 对称预算。
+搜索维度、单次成本和对照预算在 outcome 前声明：小型固定 recipe 通常 4--8 个
+configuration trials，多轴 trainable search 默认上限 16 个。16 是 ceiling，不是必须
+用完的目标；另行登记每个 configuration 所需的 evaluator invocations。更高预算需要
+pre-outcome amendment，并给关键 control 对称预算。
 
 mechanical retry 不消耗 evaluator call；任何改变分数语义、训练数据、优化、容量、
 tokenization 或 checkpoint selection 的修改都消耗 trial。
+
+R0-C 分成两个顺序固定的粒度，禁止先在弱 model family 上反复微调：
+
+1. **R0-C0 model-family adequacy**：先比较 ranking-pretrained cross-encoder、当前
+   sentence-encoder-plus-random-head recipe、同 backbone query-candidate base，以及
+   最强 eligible static/upstream baseline。先回答 pretraining role、scoring interface、
+   supervision/objective 和 base preservation 是否正确。
+2. **R0-C1 within-family tuning**：只有一个 model family 通过 C0 后，才搜索 learning
+   rate、epoch、token budget、dropout、history length 等局部轴。
+
+“normally tuned”不自动等于“strong”。进入 Failure Atlas 还必须同时满足：
+
+- null/no-history 与同输入、同 backbone 的 query-candidate base 在预先冻结的
+  non-inferiority margin 内；
+- overall true-history 结果至少对最强 eligible baseline 有竞争力；若显著落后，必须
+  证明差距不是 backbone、ranking pretraining、objective、capacity 或 checkpoint
+  selection 造成；
+- history observability 在选定 family 上仍成立；
+- 至少包含一个为 ranking/cross-encoding 训练的强模型，不能只用通用 sentence
+  encoder 加随机线性头代表 ordinary Transformer 上界；
+- 若多个配置之差低于 MDE 或 CI 跨零，按 base preservation、简单性和成本选择，
+  不以最高点估计制造 winner。
+
+没有通过这些条件时登记 `BASELINE_INADEQUATE` 并停留在 R0-C；此时看到的
+no-history degradation、低分 slice 或弱 attention 只能指导 baseline repair，不能写成
+“Transformer 架构缺陷”。
+
+预算同时记录 **configuration trials** 与 **evaluator invocations**。一个配置的
+true/null/wrong/shuffle 四个 surface 不是“四次模型搜索”，也不能反过来让 16-call
+ceiling 实际只剩四个配置。调参期只打开做当前决策必需的 primary/base-preservation
+surface；wrong/shuffle 等 claim-specific 或 report-only control 在配置冻结后运行一次，
+除非它正是当前 Motivation Brief 的 binding outcome。多 seed 稳定性在 family 与
+motivation 都存活后执行，避免在错误 model family 上提前消耗 Tier-2 预算。
 
 ### R0-D. Failure atlas
 
@@ -190,8 +290,25 @@ tokenization 或 checkpoint selection 的修改都消耗 trial。
 - objective 是否稳定学习到 popularity、position 或 identity shortcut。
 
 每轮最多保留 3 个 active failure idea，并按 ranking impact、可构造性和 falsifier
-成本排序；只实现前 2 个 cheap probe。probe 前使用五字段 R0 iteration record，不写
-完整 Failure Card。一个 idea 失败后先关闭或 park，再补位，禁止并行扩展 failure tree。
+成本排序；只实现前 2 个 cheap probe。每个 idea 必须从同一份 R0-M Motivation Brief
+推出，并在 probe 前补齐以下 problem-value fields：
+
+- prevalence、paired severity 和可恢复的 overall contribution；
+- ordinary Transformer 与至少一个最强相关非 Transformer/static/upstream family 的
+  shared blind spot；
+- 已建立且必须保留的 Transformer asset；
+- 最强简单修复、nearest existing method 和 cheapest falsifier；
+- 若成功，论文 intro 中能写出的 one-sentence claim。
+
+优先探索高层行为失败（例如 evidence conflict、long-range dependency、
+candidate-conditioned preference、shortcut learning），再用 layer、edge、token 或
+objective probe 定位。char-overlap 阈值、很小 cohort、attention mass 或某个细小结构
+只能作为 localization，不得单独充当 paper motivation。没有 shared blind spot 或
+recoverable payoff 的 idea 不进入 top 3。
+
+probe 前使用五字段 R0 iteration record，不写完整 Failure Card。一个 idea 失败后先
+关闭或 park，再补位，禁止并行扩展 failure tree。若 atlas 暴露的是 base degradation，
+立即返回 R0-C0，不得将其升级为 Fxx。
 
 slice mining 只能用于提出 `Fxx`，不能直接成为论文 claim。`Fxx` 必须在另一个时间
 split、用户 split 或可比 dataset 上复现后才能进入 architecture formulation。
@@ -205,13 +322,18 @@ split、用户 split 或可比 dataset 上复现后才能进入 architecture for
 
 ```text
 Failure ID:
+Motivation Brief and one-sentence paper problem:
 Strong baseline and tuning budget:
 Affected request surface:
+Prevalence, severity, and recoverable overall contribution:
+Cross-family failure matrix:
+Transformer asset that must be preserved:
 Counterfactual/intervention:
 Observed paired effect and confidence interval:
 Replication split or dataset:
 Simpler repairs already tested:
 Localized representation/attention/objective locus:
+Nearest prior method and reviewer alternative:
 Minimum claimable effect and power:
 Cheapest falsifier:
 Claim boundary if repaired:
@@ -227,10 +349,23 @@ Claim boundary if repaired:
    等简单修复不能解释；
 6. intervention 将问题定位到一个具体 locus；
 7. 能写出一个低成本、结果前冻结的 falsifier。
+8. 同一 failure 至少覆盖 ordinary Transformer 与一个强相关替代 family；否则必须把
+   贡献明确降级为某个模型 family 的修复，而不能声称现有方法共同遗漏；
+9. 已量化 prevalence × severity 与可恢复 overall payoff，并达到 Motivation Brief
+   预先声明的论文价值门槛；
+10. 已完成轻量 nearest-work audit，说明贡献不是最近方法、更多容量或普通
+    ranking pretraining 的直接实例；
+11. repair 必须保留 R0-B 已建立的 Transformer asset，而不是用 repeat shortcut、
+    fixed-score fallback 或 slice router 换取局部增益。
 
 Failure Card 不通过时，允许继续 baseline/measurement study，不允许发明 primitive。
 在 Failure Card 前允许 §2.1 的 disposable prototype；通过后必须在正式源码树中重新
 实现，不能直接把 `tmp/` 原型提升为系统。
+
+Failure Card 评审前先做一次 reviewer-shaped pre-mortem，只回答四个问题：为什么该
+问题重要、为什么最强已有方法没解决、为什么 ordinary Transformer 已有资产仍不够、
+为什么预期修改能同时改善 targeted surface 与整体指标。任一答案只能靠“模型更复杂”
+或“Transformer 表达能力强”时，退回 R0-M/R0-C，不进入 Hxx。
 
 ---
 
@@ -347,7 +482,18 @@ mechanical contract。
 
 ## 9. Feedback classification
 
-每次 trial 结束必须且只能登记一个主状态：
+R0 probe 先使用以下状态；这些状态不能伪装成 Hxx utility verdict：
+
+| R0 状态 | 含义 | 后续动作 |
+|---|---|---|
+| `INSTRUMENTATION_FAIL` | 数据/control/运行机械不可信 | 修工程，不累计 scientific progress |
+| `MOTIVATION_WEAK` | prevalence、severity、shared blind spot 或 payoff 不足 | 关闭/重写 Motivation Brief，不做微结构 |
+| `BASELINE_INADEQUATE` | model family/base preservation/竞争力未过 | 返回 R0-C0/C1，不建 Failure Card |
+| `FAILURE_IDEA_FALSIFIED` | cheapest probe 否证一个合格 idea | 关闭 idea；只在同一 brief 尚有高价值预测时补位 |
+| `FAILURE_REPLICATED` | ranking failure 独立复现且简单修复未解释 | 提交 Failure Card review |
+| `ROUND_ADVANCE` | contribution ladder 前进一级 | 关闭本 round，登记下一 scientific question |
+
+Hxx 获准后，每次 trial 结束必须且只能登记一个主状态：
 
 | 状态 | 含义 | 后续动作 |
 |---|---|---|
@@ -391,6 +537,7 @@ stop_condition: null
 Tracked artifacts：
 
 ```text
+experiments/problem_discovery/<R0Mxx>_motivation_brief.md
 experiments/problem_discovery/<Fxx>_failure_card.md
 experiments/problem_discovery/<Hxx>_proposal.md
 experiments/problem_discovery/<Hxx>_trial_budget.yaml
@@ -425,15 +572,23 @@ Raw checkpoints、scores、logs 和 sweeps 仍只放在 `models/`、`runs/`、`a
 
 ---
 
-## 12. 第一轮执行顺序
+## 12. Round boundary and next execution order
 
-当前只授权以下工作：
+R0 Round 1 已结束并由用户暂停。它完成了 scope audit、KuaiSearch observability、一个
+有限 ordinary full-token family 的 tuning/stability 和 Failure Atlas；两个 idea 均被
+证伪，且暴露 `BASELINE_INADEQUATE`。这不授权自动进入 Round 2。
 
-1. `R0-A` 三轨信息对象和 holdout/power audit；
-2. `R0-B` KuaiSearch 与 Amazon full-token observability parity；
-3. `R0-C` ordinary full-token strong-baseline tuning；
-4. `R0-D` 基于调好 baseline 的 failure atlas；
-5. 形成第一个合格 `Fxx`，或决定转为 measurement/negative-design paper。
+用户显式恢复后，下一 scientific round 只能按修订后的顺序执行：
+
+1. 复核 `R0-A/B` 的跨轨 equivalence，不能把不可比历史结果当 parity；
+2. 建立 `R0-M` Motivation Brief，先冻结高层问题、实践影响、Transformer asset 和
+   kill test；
+3. 进入 `R0-C0`，优先修 model family 与 no-history base degradation；
+4. 通过 adequacy 后才进入 `R0-C1` 局部调参和必要稳定性；
+5. `R0-D` 只 probe 来自 Motivation Brief 且具有 shared blind spot/overall payoff 的
+   前两个 idea；
+6. 形成第一个合格 `Fxx`，或以 contribution ladder 判定转为 measurement/negative-
+   design paper、换题或停止。
 
 在上述步骤完成、Failure Card 通过并登记预算前，**不授权新的 architecture source
 tree、GPU architecture training 或 confirmation label opening**。仅允许 §2.1 定义的

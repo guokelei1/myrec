@@ -1,0 +1,9 @@
+hypothesis: Exact-bin coverage loss persists because whole donor histories are rejected when only their tail is later than the target, even though a request-time prefix is valid.
+single_change: Replace the backward scan with direct factor-four freshness-window bisection while still indexing each donor by its full-history latest event.
+result: MECHANICAL_FAIL; coverage remained 0.955783, proving the search window was not the remaining cause; no evaluator or GPU call occurred.
+next_action: index every strictly-prior donor-history prefix by prefix length bin and latest prefix event, then materialize only the prefix visible at target time.
+budget:
+  dev_evaluator_calls_used: 0
+  dev_evaluator_calls_remaining: 64
+  cpu_or_gpu_hours_cap: 0.25 CPU-hours
+

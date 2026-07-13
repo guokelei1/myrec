@@ -31,6 +31,7 @@ The authoritative terminal evidence is
 | KuaiSearch C5-R3 | exact item recurrence is strong; coarse category transfer is not independently established; bundled history dilutes item-only |
 | Amazon pooled HSO | pooled text exposes only a small strict-non-repeat direction (`+0.001661`) |
 | Amazon full-token HSO | ordinary joint Transformer exposes practical true-null (`+0.025298`) and true-wrong (`+0.035944`) value |
+| KuaiSearch R0 full-token | current family exposes three-seed true-null (`+0.020936`) and true-wrong (`+0.031812`) value, but is not an adequate strong base |
 | Frozen edge attribution | bidirectional Q--H, C--H, and history-read-context paths are load-bearing |
 | True vs shuffled history | current evidence does not establish event order as load-bearing |
 | C01--C80 portfolio | activity, safety, algebraic distinctness, or corruption sensitivity alone does not establish ranking utility or unique mechanism rent |
@@ -45,20 +46,39 @@ The previous candidate-conditioned evidence-fidelity formulation is too broad
 to select a mechanism. It remains background motivation, not an architecture
 authorization.
 
+## R0 Round 1 Review
+
+Round 1 established a real Transformer asset on KuaiSearch: three-seed
+`true-null +0.020936` and `true-wrong +0.031812`. It did not establish a
+strong ordinary Transformer base. The same family has true NDCG@10
+`0.331028` versus item-only `0.345376`, and no-history degradation
+`-0.013066` with a fully negative replication-fold interval. Both frozen
+Failure Atlas ideas were falsified.
+
+Accordingly the revised contribution level is L1 observability/measurement,
+not L2 shared blind spot or L3 native Transformer shortfall. The next gate is
+R0-M Motivation Brief plus R0-C0 model-family adequacy, not architecture.
+
 ## R0 Authorization
 
 Authorized work:
 
 1. KuaiSearch/Amazon/JDsearch information-object and holdout/power audit.
-2. KuaiSearch and Amazon ordinary full-token true/null/wrong observability
-   parity; shuffle is report-only unless an order claim is proposed.
-3. Normally tuned ordinary full-token joint Transformer strong baseline with
-   the same development budget as other trainable methods.
-4. Failure atlas on that strong baseline.
-5. A replicated Failure Card that rules out simple repairs and localizes one
-   ranking-relevant model failure.
-6. At most two CPU/tiny-data disposable probes selected from at most three
+2. KuaiSearch/Amazon full-token equivalence review; shuffle remains report-only
+   unless an order claim is proposed.
+3. A quantitative R0-M Motivation Brief with shared-blind-spot and paper-payoff
+   kill criteria.
+4. R0-C0 comparison of a ranking-pretrained cross-encoder, same-backbone
+   query-candidate base, current recipe, and strongest eligible baselines.
+5. Within-family tuning only after base adequacy, followed by a Motivation-
+   aligned Failure Atlas.
+6. A replicated Failure Card that rules out simple/nearest repairs and
+   localizes one ranking-relevant model failure.
+7. At most two CPU/tiny-data disposable probes selected from at most three
    active failure ideas; prototypes remain under ignored `tmp/r0_prototypes/`.
+
+The pipeline is currently user-paused; this scientific scope does not authorize
+execution until explicit resume.
 
 Not authorized:
 
@@ -72,7 +92,11 @@ Not authorized:
 
 A future architecture hypothesis becomes ready only when all items are true:
 
-- [ ] Ordinary full-token strong baseline received its declared dev tuning budget.
+- [x] The Round 1 sentence-encoder family received its declared dev tuning budget.
+- [ ] A ranking-appropriate model family passes no-history/base-preservation and
+      strongest-baseline adequacy.
+- [ ] A quantitative Motivation Brief establishes prevalence, severity, shared
+      blind spot, Transformer asset, and recoverable paper-level payoff.
 - [ ] The failure has a ranking-utility consequence, not only internal activity.
 - [ ] The failure replicated on two independent splits or a comparable second dataset.
 - [ ] The effect exceeds a precomputed MDE with adequate confirmation power.

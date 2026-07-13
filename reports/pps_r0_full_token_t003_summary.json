@@ -1,0 +1,517 @@
+{
+  "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+  "comparisons": {
+    "true_minus_null": {
+      "all": {
+        "mean": 0.019708785408453337,
+        "request_paired_95_ci": [
+          0.01669523048683739,
+          0.022732827353845065
+        ],
+        "requests": 12229,
+        "samples": 10000,
+        "seed": 20280562,
+        "user_cluster_95_ci": [
+          0.016395000493028583,
+          0.022973118537257357
+        ],
+        "users": 7028
+      },
+      "history_present": {
+        "mean": 0.02968576632097252,
+        "request_paired_95_ci": [
+          0.025229627722653303,
+          0.03430102067215478
+        ],
+        "requests": 8119,
+        "samples": 10000,
+        "seed": 20355920,
+        "user_cluster_95_ci": [
+          0.024852827794785187,
+          0.03469509429485897
+        ],
+        "users": 4198
+      },
+      "no_history": {
+        "mean": 0.0,
+        "request_paired_95_ci": [
+          0.0,
+          0.0
+        ],
+        "requests": 4110,
+        "samples": 10000,
+        "seed": 20348452,
+        "user_cluster_95_ci": [
+          0.0,
+          0.0
+        ],
+        "users": 4110
+      },
+      "repeat_present": {
+        "mean": 0.06261714557564037,
+        "request_paired_95_ci": [
+          0.05384277980947955,
+          0.07139601843261971
+        ],
+        "requests": 3442,
+        "samples": 10000,
+        "seed": 20301805,
+        "user_cluster_95_ci": [
+          0.053147701296758124,
+          0.07211288112910672
+        ],
+        "users": 2005
+      },
+      "strict_nonrepeat": {
+        "mean": 0.005450186377725414,
+        "request_paired_95_ci": [
+          0.0009259056474913303,
+          0.010011180403593955
+        ],
+        "requests": 4677,
+        "samples": 10000,
+        "seed": 20321823,
+        "user_cluster_95_ci": [
+          0.0009374836448995215,
+          0.009856172511252906
+        ],
+        "users": 3249
+      },
+      "wrong_matched": {
+        "mean": 0.029202377794256423,
+        "request_paired_95_ci": [
+          0.024670520522197956,
+          0.033755699223560365
+        ],
+        "requests": 7974,
+        "samples": 10000,
+        "seed": 20288431,
+        "user_cluster_95_ci": [
+          0.024320776603691665,
+          0.034296115163692346
+        ],
+        "users": 4192
+      }
+    },
+    "true_minus_shuffle": {
+      "all": {
+        "mean": -5.1464391705583815e-05,
+        "request_paired_95_ci": [
+          -0.0012239381241444863,
+          0.0011035112219024514
+        ],
+        "requests": 12229,
+        "samples": 10000,
+        "seed": 20294704,
+        "user_cluster_95_ci": [
+          -0.0012239464166166531,
+          0.0011098212755186996
+        ],
+        "users": 7028
+      },
+      "history_present": {
+        "mean": -7.751669493380768e-05,
+        "request_paired_95_ci": [
+          -0.0018521046579440808,
+          0.0017132176415198014
+        ],
+        "requests": 8119,
+        "samples": 10000,
+        "seed": 20322030,
+        "user_cluster_95_ci": [
+          -0.0018487769669910065,
+          0.001667840860982456
+        ],
+        "users": 4198
+      },
+      "no_history": {
+        "mean": 0.0,
+        "request_paired_95_ci": [
+          0.0,
+          0.0
+        ],
+        "requests": 4110,
+        "samples": 10000,
+        "seed": 20342253,
+        "user_cluster_95_ci": [
+          0.0,
+          0.0
+        ],
+        "users": 4110
+      },
+      "repeat_present": {
+        "mean": 0.00018877326113940794,
+        "request_paired_95_ci": [
+          -0.00307273454221194,
+          0.0033866216063496006
+        ],
+        "requests": 3442,
+        "samples": 10000,
+        "seed": 20344616,
+        "user_cluster_95_ci": [
+          -0.0029726644316211167,
+          0.003366147398480115
+        ],
+        "users": 2005
+      },
+      "strict_nonrepeat": {
+        "mean": -0.0002734906159951731,
+        "request_paired_95_ci": [
+          -0.0022609127154245203,
+          0.0016448343140401025
+        ],
+        "requests": 4677,
+        "samples": 10000,
+        "seed": 20362797,
+        "user_cluster_95_ci": [
+          -0.002225266459805494,
+          0.0016620383457041162
+        ],
+        "users": 3249
+      },
+      "wrong_matched": {
+        "mean": 9.624716218381482e-06,
+        "request_paired_95_ci": [
+          -0.0018154996741489113,
+          0.0017806281640777369
+        ],
+        "requests": 7974,
+        "samples": 10000,
+        "seed": 20296269,
+        "user_cluster_95_ci": [
+          -0.0017368313162037774,
+          0.001786763520005776
+        ],
+        "users": 4192
+      }
+    },
+    "true_minus_wrong": {
+      "all": {
+        "mean": 0.020887282148712695,
+        "request_paired_95_ci": [
+          0.017958132952234786,
+          0.02388981206686299
+        ],
+        "requests": 12229,
+        "samples": 10000,
+        "seed": 20302310,
+        "user_cluster_95_ci": [
+          0.017644988513421223,
+          0.024125611665609722
+        ],
+        "users": 7028
+      },
+      "history_present": {
+        "mean": 0.03146084165495844,
+        "request_paired_95_ci": [
+          0.026995952825742214,
+          0.03595698146939936
+        ],
+        "requests": 8119,
+        "samples": 10000,
+        "seed": 20366946,
+        "user_cluster_95_ci": [
+          0.026577363019460034,
+          0.036314878196995914
+        ],
+        "users": 4198
+      },
+      "no_history": {
+        "mean": 0.0,
+        "request_paired_95_ci": [
+          0.0,
+          0.0
+        ],
+        "requests": 4110,
+        "samples": 10000,
+        "seed": 20295026,
+        "user_cluster_95_ci": [
+          0.0,
+          0.0
+        ],
+        "users": 4110
+      },
+      "repeat_present": {
+        "mean": 0.06596840530484639,
+        "request_paired_95_ci": [
+          0.05700675459873157,
+          0.0747754898826173
+        ],
+        "requests": 3442,
+        "samples": 10000,
+        "seed": 20280832,
+        "user_cluster_95_ci": [
+          0.056302420147891455,
+          0.07543252400589263
+        ],
+        "users": 2005
+      },
+      "strict_nonrepeat": {
+        "mean": 0.0060652816628878016,
+        "request_paired_95_ci": [
+          0.0019727291073781124,
+          0.01016635390149548
+        ],
+        "requests": 4677,
+        "samples": 10000,
+        "seed": 20352994,
+        "user_cluster_95_ci": [
+          0.0019593760269997025,
+          0.010166144685125224
+        ],
+        "users": 3249
+      },
+      "wrong_matched": {
+        "mean": 0.031009731272640135,
+        "request_paired_95_ci": [
+          0.026558139777680144,
+          0.0354429189693573
+        ],
+        "requests": 7974,
+        "samples": 10000,
+        "seed": 20268393,
+        "user_cluster_95_ci": [
+          0.026306660479138017,
+          0.03576485000990022
+        ],
+        "users": 4192
+      }
+    },
+    "wrong_minus_null": {
+      "all": {
+        "mean": -0.0011784967402593556,
+        "request_paired_95_ci": [
+          -0.0031801882791893175,
+          0.0007955923633010493
+        ],
+        "requests": 12229,
+        "samples": 10000,
+        "seed": 20286903,
+        "user_cluster_95_ci": [
+          -0.003196385519567667,
+          0.000872083927556445
+        ],
+        "users": 7028
+      },
+      "history_present": {
+        "mean": -0.0017750753339859174,
+        "request_paired_95_ci": [
+          -0.004691080138777442,
+          0.0011528620773680206
+        ],
+        "requests": 8119,
+        "samples": 10000,
+        "seed": 20280831,
+        "user_cluster_95_ci": [
+          -0.004805381814977653,
+          0.0012611618154652418
+        ],
+        "users": 4198
+      },
+      "no_history": {
+        "mean": 0.0,
+        "request_paired_95_ci": [
+          0.0,
+          0.0
+        ],
+        "requests": 4110,
+        "samples": 10000,
+        "seed": 20307320,
+        "user_cluster_95_ci": [
+          0.0,
+          0.0
+        ],
+        "users": 4110
+      },
+      "repeat_present": {
+        "mean": -0.0033512597292060355,
+        "request_paired_95_ci": [
+          -0.007981749750008935,
+          0.0012158291098363612
+        ],
+        "requests": 3442,
+        "samples": 10000,
+        "seed": 20319297,
+        "user_cluster_95_ci": [
+          -0.008096124237507267,
+          0.0014239480856113817
+        ],
+        "users": 2005
+      },
+      "strict_nonrepeat": {
+        "mean": -0.000615095285162388,
+        "request_paired_95_ci": [
+          -0.004516964088383343,
+          0.0033186092795596364
+        ],
+        "requests": 4677,
+        "samples": 10000,
+        "seed": 20286734,
+        "user_cluster_95_ci": [
+          -0.004502459143363989,
+          0.003361297814508498
+        ],
+        "users": 3249
+      },
+      "wrong_matched": {
+        "mean": -0.0018073534783837047,
+        "request_paired_95_ci": [
+          -0.004870538615440841,
+          0.0012267284422482752
+        ],
+        "requests": 7974,
+        "samples": 10000,
+        "seed": 20324020,
+        "user_cluster_95_ci": [
+          -0.004986195328983342,
+          0.0012595468721371822
+        ],
+        "users": 4192
+      }
+    }
+  },
+  "created_at": "2026-07-12T21:41:47.435356+00:00",
+  "gpu_hours": 0.6651103769628227,
+  "label_boundary": {
+    "c80_fresh_labels_opened": false,
+    "shared_evaluator_dev_outputs_used": true,
+    "summary_read_qrels_directly": false,
+    "test_opened": false
+  },
+  "mechanics": {
+    "backbone_gradient": true,
+    "c80_fresh_labels_closed": true,
+    "candidate_hash": true,
+    "candidate_permutation": true,
+    "deterministic": true,
+    "dev_qrels_closed_during_scoring": true,
+    "finite_scores": true,
+    "finite_training": true,
+    "head_gradient": true,
+    "loss_decreased": true,
+    "test_closed": true,
+    "wrong_donor_coverage": true
+  },
+  "metrics": {
+    "null": 0.31024727388518913,
+    "shuffle": 0.330007523685348,
+    "true": 0.32995605929364247,
+    "wrong": 0.30906877714492975
+  },
+  "observability_gate": {
+    "minimum_effect": 0.002,
+    "passed": true,
+    "true_null_effect": 0.019708785408453337,
+    "true_null_user_ci_positive": true,
+    "true_wrong_matched_effect": 0.031009731272640135,
+    "true_wrong_matched_user_ci_positive": true
+  },
+  "parity_context": {
+    "historical_amazon_full_token_true_minus_null": {
+      "all_seeds_positive": true,
+      "mean": 0.02529815315265822,
+      "requests": 1200,
+      "samples": 10000,
+      "seed": 20274344,
+      "seed_means": {
+        "20265601": 0.02913967651317935,
+        "20265602": 0.029367479458485352,
+        "20265603": 0.030264675619251308
+      },
+      "user_cluster_95_ci": [
+        0.012437068235620055,
+        0.0381269986732777
+      ],
+      "users": 1195
+    },
+    "historical_kuai_pooled_true_minus_null": {
+      "all_folds_positive": false,
+      "fold_means": [
+        0.0003443886207920061,
+        -0.0007918446649892235,
+        0.000950407893117016
+      ],
+      "mean": 0.00017941536809431107,
+      "requests": 29277,
+      "samples": 10000,
+      "seed": 20309531,
+      "user_cluster_95_ci": [
+        -0.0005593594941400896,
+        0.000940932377591944
+      ],
+      "users": 14734
+    },
+    "target_attention_control": {
+      "boundary": "historical frozen-embedding target-attention residual, not same-checkpoint parity",
+      "source": "experiments/pps_results.md D1a",
+      "three_seed_mean_ndcg": 0.3148
+    }
+  },
+  "report_id": "pps_r0_full_token_t003_summary",
+  "research_phase": "R0-C",
+  "run_ids": {
+    "null": "20260713_kuaisearch_r0ft_t003_null_dev",
+    "shuffle": "20260713_kuaisearch_r0ft_t003_shuffle_dev",
+    "true": "20260713_kuaisearch_r0ft_t003_true_dev",
+    "wrong": "20260713_kuaisearch_r0ft_t003_wrong_dev"
+  },
+  "shared_evaluator_qrels_sha256": "518eab43850c6fbc841cfa5f047602a1e41761960bc80d244c93fb379b0029bc",
+  "strong_baseline_status": {
+    "current_static_item_only_waterline": 0.3454,
+    "current_true_ndcg": 0.32995605929364247,
+    "next_registered_trial": "R0C-T004",
+    "normally_tuned": false,
+    "reason": "full-token source is observable, but the current recipe remains below the static waterline and registered tuning classes remain"
+  },
+  "surface_metrics": {
+    "all": {
+      "null": 0.31024727388518913,
+      "requests": 12229,
+      "shuffle": 0.330007523685348,
+      "true": 0.3299560592936424,
+      "users": 7028,
+      "wrong": 0.30906877714492975
+    },
+    "history_present": {
+      "null": 0.30518521196543785,
+      "requests": 8119,
+      "shuffle": 0.3349484949813442,
+      "true": 0.3348709782864104,
+      "users": 4198,
+      "wrong": 0.30341013663145194
+    },
+    "no_history": {
+      "null": 0.3202470015558607,
+      "requests": 4110,
+      "shuffle": 0.3202470015558607,
+      "true": 0.3202470015558607,
+      "users": 4110,
+      "wrong": 0.3202470015558607
+    },
+    "repeat_present": {
+      "null": 0.2986790421657893,
+      "requests": 3442,
+      "shuffle": 0.36110741448029016,
+      "true": 0.36129618774142963,
+      "users": 2005,
+      "wrong": 0.29532778243658325
+    },
+    "strict_nonrepeat": {
+      "null": 0.3099733745590642,
+      "requests": 4677,
+      "shuffle": 0.3156970515527848,
+      "true": 0.3154235609367897,
+      "users": 3249,
+      "wrong": 0.30935827927390186
+    },
+    "wrong_matched": {
+      "null": 0.305688886127681,
+      "requests": 7974,
+      "shuffle": 0.3348816392057191,
+      "true": 0.33489126392193735,
+      "users": 4192,
+      "wrong": 0.3038815326492973
+    }
+  },
+  "trial_id": "R0C-T003"
+}

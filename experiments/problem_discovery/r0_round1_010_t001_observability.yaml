@@ -1,0 +1,9 @@
+hypothesis: An ordinary full-token joint Transformer exposes ranking-relevant KuaiSearch history value that pooled interfaces miss, while event order remains non-load-bearing.
+single_change: Evaluate the frozen R0B-T001 true/null/matched-wrong/report-only-shuffle surfaces and run paired request/user-cluster inference on all, repeat, strict-nonrepeat, and no-history slices.
+result: passed R0-B; true-null was +0.021606 with user-cluster CI [+0.018320,+0.025063], matched true-wrong was +0.034550 [+0.029505,+0.039684], repeat true-null was +0.070891, strict-nonrepeat +0.004321 with CI crossing zero, true-shuffle -0.000719 with CI crossing zero, and no-history was exactly equal.
+next_action: enter R0-C and run the registered longer token-budget trial R0C-T002 because source observability passed but true NDCG 0.329462 remains below the 0.3454 static item-only waterline.
+budget:
+  dev_evaluator_calls_used: 4
+  dev_evaluator_calls_remaining: 60
+  cpu_or_gpu_hours_cap: 0.562012 A40-hours used
+

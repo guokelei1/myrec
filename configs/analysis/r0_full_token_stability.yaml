@@ -1,0 +1,71 @@
+analysis_id: r0_full_token_baseline_v1_stability
+status: pre_outcome_frozen_seed_replication
+date: "2026-07-13"
+
+paths:
+  records_train: data/standardized/kuaisearch/v0_lite/records_train.jsonl
+  records_dev: data/standardized/kuaisearch/v0_lite/records_dev.jsonl
+  candidate_manifest: data/standardized/kuaisearch/v0_lite/candidate_manifest.json
+  bge_snapshot: models/huggingface/sentence_transformers/models--BAAI--bge-small-zh-v1.5/snapshots/7999e1d3359715c523056ef9478215996d62a620
+  artifact_root: artifacts/problem_discovery/r0_full_token_baseline_v1
+  checkpoint_root: models/problem_discovery/r0_full_token_baseline_v1_stability
+  execution_lock: artifacts/problem_discovery/r0_full_token_baseline_v1/stability_execution_lock.json
+
+tokens:
+  query_tokens: 32
+  candidate_tokens: 32
+  history_item_tokens: 20
+  max_history: 6
+  max_sequence_length: 192
+  tokenizer_batch_size: 4096
+
+model:
+  pretrained_backbone: BAAI/bge-small-zh-v1.5
+  train_all_layers: true
+  score_head_bias: false
+
+training:
+  epochs: 4
+  requests_per_batch: 16
+  sampled_candidates: 8
+  history_dropout: 0.30
+  backbone_learning_rate: 0.00002
+  head_learning_rate: 0.0001
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  checkpoint_selection: fixed_final_only
+
+evaluation:
+  scenarios: ["true", "null", "wrong", "shuffle"]
+  encoded_candidates_per_batch: 384
+  deterministic_tolerance: 0.0
+  candidate_permutation_tolerance: 0.000002
+  require_wrong_donor_coverage: 0.98
+
+trials:
+  R0C-S005:
+    seed: 20267005
+    physical_gpu: 0
+    change_class: frozen_stability_seed
+    expected_observation: estimate selected T004 configuration stability without further model selection
+    tokens: {}
+    training: {}
+    dev_call_indices: {"true": 17, "null": 18, "wrong": 19, "shuffle": 20}
+  R0C-S006:
+    seed: 20267006
+    physical_gpu: 1
+    change_class: frozen_stability_seed
+    expected_observation: estimate selected T004 configuration stability without further model selection
+    tokens: {}
+    training: {}
+    dev_call_indices: {"true": 21, "null": 22, "wrong": 23, "shuffle": 24}
+
+authorization:
+  train_labels: true
+  blind_dev_scoring: true
+  dev_qrels_shared_evaluator_only: true
+  model_selection_from_seed_outcomes: false
+  test: false
+  test_qrels: false
+  c80_fresh_labels: false
+

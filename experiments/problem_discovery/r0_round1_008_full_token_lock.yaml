@@ -1,0 +1,9 @@
+hypothesis: The repaired request-time donor control and quoted scenario registry are mechanically sufficient to freeze the ordinary full-token reference trial without opening outcomes.
+single_change: Hash and freeze the passed token arrays, candidate manifest, records, source modules, run script, config, and four-trial budget.
+result: passed; execution lock SHA256 is 82b6b76d3126a56d46ad72a24d6671d056d96247b418a411e1ce992477326f91 and all dev/test/C80 label locks remain intact.
+next_action: train and blind-score registered trial R0B-T001 on GPU 0, then run the four shared dev evaluator calls only if mechanics pass.
+budget:
+  dev_evaluator_calls_used: 0
+  dev_evaluator_calls_remaining: 64
+  cpu_or_gpu_hours_cap: 8.0 A40-hours
+

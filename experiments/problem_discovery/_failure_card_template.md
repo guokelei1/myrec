@@ -9,7 +9,10 @@ links and concise facts; do not fill sections with speculative prose.
 
 ## Strong Baseline
 
+- Motivation Brief:
+- One-sentence paper problem:
 - Method/config:
+- Model-family adequacy artifact/verdict:
 - Dataset/version/split:
 - Candidate manifest SHA256:
 - Dev evaluator calls used/budget:
@@ -20,6 +23,10 @@ links and concise facts; do not fill sections with speculative prose.
 ## Failure
 
 - Affected request surface:
+- Prevalence:
+- Severity and recoverable overall contribution:
+- Cross-family failure matrix:
+- Transformer asset that must be preserved:
 - Counterfactual/intervention:
 - Expected behavior:
 - Observed ranking failure:
@@ -54,6 +61,7 @@ links and concise facts; do not fill sections with speculative prose.
 
 - Cheapest falsifier:
 - Nearest simpler mechanism:
+- Nearest prior method and reviewer alternative:
 - Allowed claim if repaired:
 - Claims explicitly not supported:
 - Proposed Hxx ID, only after pass:
@@ -61,6 +69,10 @@ links and concise facts; do not fill sections with speculative prose.
 ## Review
 
 - Evidence-hygiene checks:
+- Paper-value gate:
+- Shared-blind-spot gate:
+- Native-Transformer-shortfall gate:
+- Asset-preservation gate:
 - Reviewer:
 - Decision timestamp:
 - Decision and reason:

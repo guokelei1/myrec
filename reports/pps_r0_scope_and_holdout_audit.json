@@ -1,0 +1,229 @@
+{
+  "cross_dataset_claim_boundary": {
+    "all_three_common": "anonymized item/query IDs, interaction types, temporal history, candidate slate",
+    "dataset_name_branch_allowed": false,
+    "jd_exclusion": "JDsearch cannot bind a plaintext token-semantic primitive",
+    "kuai_amazon_common": "plaintext full-token Q-H-C interaction"
+  },
+  "datasets": {
+    "amazon_c4": {
+      "candidate_manifest_sha256": "3489eefa0855fd356d49addb3deaafac063672bdd1e44ab4aa269cdc9d94c3b2",
+      "dataset_version": "v0_history_bm25_100",
+      "dev_surface": {
+        "candidate_count_mean": 100.80063965884861,
+        "candidate_count_median": 101.0,
+        "candidate_text_coverage": 1.0,
+        "history_count_mean": 30.326759061833688,
+        "history_count_median": 36.0,
+        "history_event_timestamp_rate": 1.0,
+        "history_event_type_rate": 1.0,
+        "history_present_rate": 1.0,
+        "history_text_coverage": 1.0,
+        "query_plaintext_rate": 1.0,
+        "repeat_present_rate": 0.0042643923240938165,
+        "request_timestamp_rate": 1.0,
+        "requests": 1876,
+        "strictly_prior_violations": 0,
+        "users": 1875
+      },
+      "information_objects": {
+        "candidates": "constructed_bm25_top100_plus_target_with_plaintext",
+        "history": "strictly_prior_purchase_item_text_id_timestamp",
+        "labels": "single_target_physically_separated_on_dev_test",
+        "query": "english_rewritten_plaintext"
+      },
+      "role": "comparable_secondary",
+      "supported_claims": [
+        "full_token_query_history_candidate_interaction",
+        "strict_nonrepeat_semantic_history_value"
+      ],
+      "train_dev_user_isolation": {
+        "dev_user_overlap_rate": 0.03573333333333333,
+        "dev_users": 1875,
+        "overlap_users": 67,
+        "train_users": 10988,
+        "user_disjoint": false
+      },
+      "train_surface": {
+        "candidate_count_mean": 100.79828556121082,
+        "candidate_count_median": 101,
+        "candidate_text_coverage": 1.0,
+        "history_count_mean": 30.468166800607197,
+        "history_count_median": 35,
+        "history_event_timestamp_rate": 1.0,
+        "history_event_type_rate": 1.0,
+        "history_present_rate": 1.0,
+        "history_text_coverage": 1.0,
+        "query_plaintext_rate": 1.0,
+        "repeat_present_rate": 0.005089740155371015,
+        "request_timestamp_rate": 1.0,
+        "requests": 11199,
+        "strictly_prior_violations": 0,
+        "users": 10988
+      },
+      "unsupported_without_new_evidence": [
+        "real_query_ecological_validity"
+      ]
+    },
+    "jdsearch": {
+      "candidates": [
+        "item_id",
+        "graded_label_in_raw_source"
+      ],
+      "catalog": [
+        "anonymized_name_terms",
+        "brand_id",
+        "category_ids",
+        "shop_id"
+      ],
+      "claim_role": "conditional_id_and_interaction_robustness_only",
+      "declared_full_scale": {
+        "interactions": 26667260,
+        "items": 12872636,
+        "test_queries": 171728,
+        "users": 173831
+      },
+      "full_data_blocker": "JD Cloud login/QR acquisition required; not binding for semantic R0 parity",
+      "historical_slate": true,
+      "history": [
+        "anonymized_query_term_ids",
+        "item_id",
+        "event_type",
+        "time_interval"
+      ],
+      "local_availability": "schema_samples_only",
+      "query": "anonymized_term_ids_not_plaintext",
+      "sample_behavior_rows": 3,
+      "sample_product_rows": 409,
+      "sample_sha256": {
+        "behavior": "e4db3bf978387355ea2abc7e9be4e790d00b8927b31570d42a46d30723e3cdc8",
+        "product": "c2b6296d604fd2af71df80652adfc2ab15bd51914dd000d37e702d511ba82eae"
+      },
+      "timestamp_semantics": "relative_interaction_intervals",
+      "token_semantic_claim_supported": false
+    },
+    "kuaisearch": {
+      "candidate_manifest_sha256": "94eb667000e0d0f389d0a2a4d4730683b71c129043edbfcf627590376e9c123e",
+      "dataset_version": "v0_lite",
+      "dev_surface": {
+        "candidate_count_mean": 47.069179818464306,
+        "candidate_count_median": 24,
+        "candidate_text_coverage": 1.0,
+        "history_count_mean": 7.7473219396516475,
+        "history_count_median": 2,
+        "history_event_timestamp_rate": 1.0,
+        "history_event_type_rate": 1.0,
+        "history_present_rate": 0.6639136478861722,
+        "history_text_coverage": 1.0,
+        "query_plaintext_rate": 1.0,
+        "repeat_present_rate": 0.28146209829094776,
+        "request_timestamp_rate": 1.0,
+        "requests": 12229,
+        "strictly_prior_violations": 0,
+        "users": 7028
+      },
+      "information_objects": {
+        "candidates": "logged_fixed_slate_with_plaintext_and_attributes",
+        "history": "strictly_prior_item_text_id_event_timestamp",
+        "labels": "click_primary_purchase_secondary_physically_separated_on_dev_test",
+        "query": "real_plaintext"
+      },
+      "role": "main",
+      "supported_claims": [
+        "full_token_query_history_candidate_interaction",
+        "exact_item_recurrence",
+        "real_query_personalized_ranking"
+      ],
+      "train_dev_user_isolation": {
+        "dev_user_overlap_rate": 0.442942515651679,
+        "dev_users": 7028,
+        "overlap_users": 3113,
+        "train_users": 48218,
+        "user_disjoint": false
+      },
+      "train_surface": {
+        "candidate_count_mean": 38.12282169841861,
+        "candidate_count_median": 18,
+        "candidate_text_coverage": 1.0,
+        "history_count_mean": 5.0400263869970745,
+        "history_count_median": 1,
+        "history_event_timestamp_rate": 1.0,
+        "history_event_type_rate": 1.0,
+        "history_present_rate": 0.5866342530097669,
+        "history_text_coverage": 1.0,
+        "query_plaintext_rate": 1.0,
+        "repeat_present_rate": 0.23440449067598357,
+        "request_timestamp_rate": 1.0,
+        "requests": 163717,
+        "strictly_prior_violations": 0,
+        "users": 48218
+      },
+      "unsupported_without_new_evidence": [
+        "coarse_semantic_history_transfer",
+        "ordinary_transformer_failure"
+      ]
+    }
+  },
+  "generated_at": "2026-07-12T19:06:41.968096+00:00",
+  "holdout_and_power": {
+    "amazon_c4": {
+      "dev_requests": 1876,
+      "dev_users": 1875,
+      "historical_full_token_reserve_requests": 1200,
+      "historical_full_token_reserve_users": 1195,
+      "historical_reserve_status": "opened_for_observability_not_independent_confirmation",
+      "independent_confirmation_status": "test_locked; no separate fresh local cohort registered",
+      "power_proxy": {
+        "claim_mde_absolute": 0.009180754176770457,
+        "mde_at_locked_test_users_approx": 0.014568825030141588,
+        "reference_ci95": [
+          0.012437068235620055,
+          0.0381269986732777
+        ],
+        "reference_users": 1195,
+        "required_users_approx": 4780,
+        "source": "historical full-token true-minus-null user-cluster CI"
+      },
+      "test_requests_locked": 1908,
+      "test_users_locked": 1898
+    },
+    "kuaisearch": {
+      "current_window_requests": 250000,
+      "dev_requests": 12229,
+      "dev_users": 7028,
+      "independent_confirmation_status": "feasible_from_unused_raw_but_not_materialized",
+      "power_proxy": {
+        "claim_mde_absolute": 0.006908,
+        "mde_at_3000_requests_approx": 0.008715374186863939,
+        "reference_ci95": [
+          0.028302221857679503,
+          0.03571480613213782
+        ],
+        "reference_requests": 8119,
+        "required_requests_approx": 4776,
+        "source": "C5-R3 item-only vs D2p paired request CI; surface proxy, not a Failure Card effect"
+      },
+      "raw_requests": 555553,
+      "test_requests_locked": 12224,
+      "test_role": "one_shot_final_only_not_controller_confirmation",
+      "test_users_locked": 7231,
+      "unused_raw_request_capacity": 305553
+    }
+  },
+  "label_boundary": {
+    "amazon_historical_reserve_is_fresh_confirmation": false,
+    "c80_fresh_labels_opened": false,
+    "dev_records_label_free": true,
+    "qrels_read_by_this_audit": false,
+    "test_opened": false,
+    "test_scores_or_metrics_computed": false
+  },
+  "r0_a_decision": {
+    "next_action": "establish KuaiSearch full-token observability parity and retain the existing comparable Amazon full-token result as source evidence",
+    "next_phase": "R0-B",
+    "reason": "KuaiSearch and Amazon support full-token parity; JD is a conditional non-plaintext anchor; a new Kuai confirmation cohort is locally feasible and must be frozen before CONF.",
+    "status": "passed"
+  },
+  "report_id": "pps_r0_scope_and_holdout_audit",
+  "research_phase": "R0-A"
+}
