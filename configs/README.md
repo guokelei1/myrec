@@ -1,23 +1,18 @@
 # Configs
 
-Reusable, reviewable experiment configuration. Keep files small.
+Small, reviewable configuration only:
 
 ```text
-configs/datasets/      per-dataset paths, splits, sampling seeds
-configs/baselines/     per-baseline hyperparameters
-configs/methods/       reviewed configs promoted from a selected system
-configs/experiments/   composite experiment configs (dataset + method + eval)
+configs/datasets/      reviewed dataset versions and sampling manifests
+configs/baselines/     reviewed baseline boundary and tuning settings
+configs/methods/       future reviewed survivor configs
+configs/experiments/   future composite run configs
+configs/env/           environment manifests
 ```
 
-Do not put credentials, private paths, or machine-specific settings here.
-Use a local ignored `.env` file or command-line arguments for those values.
-
-C01--C80 are closed. Current configs support doc/31 R0 information-object
-audits, full-token observability, strong-baseline tuning, and failure discovery.
-There is no active four-track architecture round.
-
-Before a Failure Card passes, do not create a new architecture config. Future
-Hxx exploratory configs stay under `systems/<hypothesis>/configs/`; only a
-reviewed survivor may be promoted to `configs/methods/` or
-`configs/experiments/`. Every score-affecting Txxx config records its change
-class and dev-call index.
+The old Lite/C0/B0–B9 configs are archived. The active dataset and baseline
+config directories are currently empty except for README markers: E0 must
+define the new Full track before any dataset or baseline config is frozen. No
+proposed-system config belongs here before a Failure Card; future
+hypothesis-local configs start under the authorized hypothesis tree and are
+promoted only after review.

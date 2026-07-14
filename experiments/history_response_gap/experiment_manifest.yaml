@@ -1,0 +1,75 @@
+schema_version: 1
+experiment_id: history_response_direction_gap
+status: e0_review
+active_phase: E0
+authorization:
+  data_source_audit: true
+  standardized_contract_development: true
+  metric_instrumentation_development: true
+  model_training: false
+  dev_label_evaluation: false
+  confirmation_label_evaluation: false
+  test_evaluation: false
+  proposed_architecture: false
+
+scientific_question: >-
+  Do adequate ordinary full-token rerankers produce candidate-relative
+  responses to true user history without reliably converting those responses
+  into the correct query-conditioned ranking direction?
+
+datasets:
+  kuaisearch_full:
+    role: binding_primary
+    admission_status: pending
+  kuaisar_full:
+    role: functional_replication
+    admission_status: pending
+  jdsearch:
+    role: preregistered_replication_fallback
+    admission_status: pending
+  amazon_c4:
+    role: nonbinding_semantic_stress_and_legacy_pilot
+    admission_status: nonbinding_only
+
+ordinary_model_families:
+  encoder:
+    qc_id: E-QC
+    full_id: E-FULL
+    initial_checkpoint: BAAI/bge-reranker-v2-m3
+    status: blocked_on_e0
+  decoder:
+    qc_id: D-QC
+    full_id: D-FULL
+    initial_checkpoint: Qwen/Qwen3-Reranker-0.6B
+    status: blocked_on_e0
+
+counterfactual_conditions:
+  binding: ["true", "null", "wrong"]
+  diagnostic_only: ["shuffle"]
+  invariant_fields:
+    - checkpoint_id
+    - dataset_id
+    - dataset_version
+    - split
+    - candidate_manifest_sha256
+    - request_manifest_sha256
+    - scoring_signature
+
+endpoints:
+  primary_utility:
+    name: null
+    status: not_frozen
+  primary_direction:
+    name: null
+    status: not_frozen
+  activity_epsilon:
+    value: null
+    status: not_frozen
+  utility_epsilon:
+    value: null
+    status: not_frozen
+
+next_decision:
+  phase: E0
+  required_artifact: dataset_admission_card
+  protocol: experiments/history_response_gap/e0_admission_protocol.md

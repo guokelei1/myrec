@@ -1,7 +1,0 @@
-checkpoints/
-runs/
-logs/
-outputs/
-.cache/
-__pycache__/
-*.pyc

@@ -1,9 +1,0 @@
-hypothesis: A longer ordinary full-token context can be trained and scored safely as the registered token-budget repair.
-single_change: Increase history coverage from 6 to 12 events and sequence budget from 192 to 256 tokens, with per-history-item tokens adjusted from 20 to 12, while keeping the ordinary joint Transformer and optimization fixed.
-result: mechanics passed; four-epoch loss decreased 1.710985 to 1.677879, all score surfaces covered 12229 requests, deterministic/candidate-permutation contracts passed, and cost was 0.703550 A40-hours.
-next_action: invoke shared dev evaluator calls 5-8 for T002 true/null/wrong/shuffle and compare against T001.
-budget:
-  dev_evaluator_calls_used: 4
-  dev_evaluator_calls_remaining: 60
-  cpu_or_gpu_hours_cap: 1.265562 cumulative A40-hours used
-

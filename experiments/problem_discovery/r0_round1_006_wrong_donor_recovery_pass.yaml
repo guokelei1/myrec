@@ -1,9 +1,0 @@
-hypothesis: An exactly length-matched tail from a longer, strictly-prior donor prefix will satisfy the frozen freshness/length wrong-history coverage gate.
-single_change: Search compatible longer donor prefixes and retain exactly the target history length from their strictly-prior tail.
-result: passed; coverage reached 0.982141 over 8119 history-present dev requests, with 0 same-user donors and maximum freshness ratio exactly 4.0; no evaluator or GPU call occurred.
-next_action: freeze materialized arrays, registered trials, source code, config, budget, and candidate manifest into the execution lock.
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: 64
-  cpu_or_gpu_hours_cap: 0.25 CPU-hours
-

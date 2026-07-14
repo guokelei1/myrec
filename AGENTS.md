@@ -14,11 +14,11 @@ The research scope is documented in [doc/](doc/). Key documents:
 
 - `doc/07_paper_design_constraints.md` — paper design constraints (Tier 1
   rules that govern all experiments).
-- `doc/10_direction_decision.md` — final direction decision: PPS on
-  KuaiSearch (main), Amazon-C4 (secondary), JDsearch (anchor).
-- `doc/11_experiment_and_dataset_plan.md` — full 6-phase experiment plan
-  with checkpoints C0–C5, frozen metric/tie-break/significance
-  definitions (§1.4), and dev/test label isolation (§1.2).
+- `doc/10_direction_decision.md` — current bounded direction and dataset
+  roles: KuaiSearch Full main, KuaiSAR functional replication, JDsearch
+  fallback, and Amazon-C4 non-binding stress test.
+- `doc/11_experiment_and_dataset_plan.md` — active unified-record, split,
+  label-isolation, E0–E8, and metric contract.
 - `doc/12_experiment_execution_protocol.md` — run boundaries, dev-eval
   logging, determinism checks.
 - `doc/13_baseline_implementation_plan.md` — per-baseline implementation,
@@ -31,6 +31,9 @@ The research scope is documented in [doc/](doc/). Key documents:
   failure discovery, architecture formulation, dev iteration, and confirmation.
 - `doc/32_autonomous_pipeline_controller.md` — autonomous loop, persistent
   state, feedback transitions, recovery, budgets, and whole-pipeline end states.
+- `doc/34_history_response_direction_gap_validation_plan.md` — active
+  scientific plan; it validates the direction gap before any Failure Card or
+  architecture work.
 - `doc/24_parallel_llm4rec_design_protocol.md` — historical C01--C04 isolation
   protocol; it does not authorize current work.
 
@@ -69,9 +72,12 @@ local experiment state.
 
 ## Baseline Policy
 
-The PPS baselines (B0a–B8, defined in
-[doc/11_experiment_and_dataset_plan.md](doc/11_experiment_and_dataset_plan.md))
-fall into two groups:
+The active method roles are defined in
+[doc/13_baseline_implementation_plan.md](doc/13_baseline_implementation_plan.md):
+strong query-candidate bases, ordinary full-token encoder/decoder families,
+simple/static controls, a traditional personalized control, and a train-only
+signal witness. Historical B0–B9 names remain only where an existing source
+adapter or provenance card still uses them.
 
 **Self-implemented baselines** (B0a Popularity, B0b Recent-behavior, B1
 BM25, B7 Static mixture) live as code under `src/myrec/baselines/`. They
@@ -111,7 +117,9 @@ Architecture search ended at C80. There is no C81 and no C80 precision,
 canonicalization, threshold, label-opening, dev, or test rescue. The C01--C80
 trees under `systems/` are historical evidence, not active templates.
 
-Current work follows `doc/31_problem_discovery_and_architecture_iteration_protocol.md`
+Current work first follows
+`doc/34_history_response_direction_gap_validation_plan.md`. A replicated
+Failure Card then enters `doc/31_problem_discovery_and_architecture_iteration_protocol.md`
 under the autonomous controller in `doc/32_autonomous_pipeline_controller.md`:
 
 1. audit the cross-dataset information objects and confirmation data;
@@ -164,9 +172,10 @@ Dataset tracks:
 
 | Track | Dataset | Role |
 |---|---|---|
-| Main | KuaiSearch | Primary evaluation: real NL query + history + candidates + dual labels |
-| Secondary | Amazon-C4 + Amazon-Reviews-2023 | English validation, comparison with MemRerank |
-| Conditional anchor | JDsearch | Robustness only for claims supported by its no-plaintext information object |
+| Main | KuaiSearch Full | Binding natural-query validation after E0 admission |
+| Replication | KuaiSAR Full | Functional behavioral replication; no plaintext-semantic claim |
+| Fallback | JDsearch | Pre-registered replacement if KuaiSAR cannot pass its source boundary |
+| Non-binding | Amazon-C4 + history companion | Semantic stress test and optional legacy pilot only |
 
 The standardized record interface is defined in
 [doc/11_experiment_and_dataset_plan.md](doc/11_experiment_and_dataset_plan.md)
@@ -211,21 +220,20 @@ For important runs, promote a concise tracked summary containing:
 Large logs remain in `runs/`. Development reasoning and decisions belong
 in `doc/dev_log/`.
 
-### Checkpoint Reports
+### Phase Reports
 
-Each phase gate (C0–C5) produces a JSON audit report under `reports/`:
+Each active phase (E0–E8) promotes only a small reviewed audit or decision
+report under `reports/`, for example:
 
 ```text
-reports/pps_c0_data_audit.json
-reports/pps_c1_protocol.json
-reports/pps_c3_motivation.json
-...
+reports/pps_history_response_e0_data_admission.json
+reports/pps_history_response_e3_activity.json
+reports/pps_history_response_e8_failure_card.json
 ```
 
 These are tracked (small JSON). A positive claim may advance only after its
-gate passes. A failed gate must close that claim; a newly scoped hypothesis
-requires a separately frozen pre-outcome protocol before implementation — see
-`doc/11_experiment_and_dataset_plan.md`.
+phase decision passes. A failed premise closes or narrows the claim; a later
+phase may not rescue it with a new slice.
 
 ## Engineering Rules
 

@@ -1,9 +1,0 @@
-hypothesis: Unquoted YAML scenario keys named true/null will not round-trip as strings in the JSON execution lock.
-single_change: Attempt to freeze the passed materialization with unquoted scenario keys in the registered trial map.
-result: MECHANICAL_FAIL; PyYAML parsed true/null as boolean/null keys and sorted JSON serialization rejected mixed key types; no execution lock, evaluator call, or GPU run was created.
-next_action: quote all scenario values and keys, revalidate the unchanged four-trial budget, and freeze again.
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: 64
-  cpu_or_gpu_hours_cap: 0.05 CPU-hours
-

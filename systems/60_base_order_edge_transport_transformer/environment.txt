@@ -1,2 +1,0 @@
-Reuse `/data/gkl/conda_envs/myrec-c38`.  The zero-parameter formulation runs
-on physical GPU 3 and consumes only hash-locked C59 score artifacts.

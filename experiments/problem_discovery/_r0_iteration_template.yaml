@@ -1,8 +1,0 @@
-hypothesis: replace_me
-single_change: replace_me
-result: pending
-next_action: run | close | park | promote_to_failure_card
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: null
-  cpu_or_gpu_hours_cap: null

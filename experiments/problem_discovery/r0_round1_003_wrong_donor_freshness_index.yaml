@@ -1,9 +1,0 @@
-hypothesis: Backward-count-limited donor search misses valid donors when target history age is larger than the most recent indexed events.
-single_change: Rerun materialization after switching availability from donor request time to latest donor history-event time, while still scanning only the last 4096 eligible-bin entries.
-result: MECHANICAL_FAIL; coverage improved from 0.878064 to 0.955783 but remained below 0.98; no evaluator or GPU call occurred.
-next_action: bisect directly into the preregistered factor-four freshness interval and deterministically probe that interval without changing the scientific matching contract.
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: 64
-  cpu_or_gpu_hours_cap: 0.25 CPU-hours
-

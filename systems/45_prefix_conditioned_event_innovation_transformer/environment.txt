@@ -1,5 +1,0 @@
-Environment: /data/gkl/conda_envs/myrec-c37
-Python: 3.10
-Framework: PyTorch with CUDA
-Formal synthetic seeds: physical GPU 0, 1, and 2 respectively
-Online LLM calls: zero

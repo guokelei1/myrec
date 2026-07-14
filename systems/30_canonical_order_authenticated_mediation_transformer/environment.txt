@@ -1,6 +1,0 @@
-Environment: /data/gkl/conda_envs/myrec-c30
-Source clone: /data/gkl/conda_envs/myrec-c29
-Python: 3.10
-Physical GPUs: 0, 1, and 2 (one frozen checkpoint per GPU)
-Program-visible device: cuda:0
-No optimizer or training is authorized.

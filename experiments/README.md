@@ -1,33 +1,8 @@
-# Experiments
+# Active experiment manifests
 
-Tracked experiment plans, config templates, and concise run manifests.
+The active workspace is `history_response_gap/`. It contains only the new
+direction's reviewed locks, data-admission cards, and short run manifests.
 
-Raw run directories belong under `runs/` and are ignored. Promote only
-the small information needed to reproduce or interpret an important run:
-
-- run ID;
-- command;
-- config path;
-- git commit;
-- dataset version or manifest hash;
-- checkpoint/model reference;
-- metric summary;
-- decision made from the run.
-
-## Baseline cards
-
-Register each baseline's boundary card (official code / adapter-only /
-structural change / zero-shot) in `experiments/pps_baseline_cards.md`.
-
-## Results registry
-
-`experiments/pps_results.md` is the single place where baseline/method
-numbers are registered. Numbers must be copied verbatim from evaluator
-`metrics.json`; significance columns come from the shared compare script
-(doc 11 §1.4). Test rows are filled once, after configs are frozen.
-
-## Problem discovery
-
-`experiments/problem_discovery/` contains the doc/31 Failure Card, dev-trial
-budget, and confirmation-lock templates. Use those artifacts for R0/Fxx/Hxx
-work; do not create a new architecture manifest before a Failure Card passes.
+Historical C01–C80 and R0/round1–5 manifests are in the dated legacy archive.
+Do not copy their budgets, thresholds, slices, or state machine into the new
+direction without a new pre-outcome review.

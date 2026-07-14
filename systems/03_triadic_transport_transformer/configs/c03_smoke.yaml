@@ -1,9 +1,0 @@
-# Structural smoke config. Scientific thresholds remain those in c03_screening.yaml.
-extends: c03_screening.yaml
-data:
-  train_requests: 64
-  dev_diagnostic_requests: 16
-  deterministic_requests: 16
-training:
-  epochs: 1
-  batch_size: 16

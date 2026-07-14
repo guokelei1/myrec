@@ -1,13 +1,9 @@
-# Development Log
+# Active development log
 
-Concise, chronological notes on development decisions, experiment
-outcomes, and course corrections.
+Keep only concise new-direction decisions here. One dated note should record
+the question, single change or audit, evidence, decision, and next action.
+Raw logs, score dumps and checkpoints remain under `runs/`, `artifacts/`, and
+`models/`.
 
-Naming convention:
-
-```text
-YYYYMMDD_short_topic.md
-```
-
-Keep entries short and decision-focused. Large logs belong in `runs/`;
-reasoning and "why" belong here.
+Do not restore historical C01--C80 or R0 notes into this directory; consult
+the dated archive when a specific provenance question arises.

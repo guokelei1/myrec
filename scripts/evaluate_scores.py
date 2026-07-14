@@ -17,10 +17,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--split", default="dev")
-    parser.add_argument(
-        "--candidate-manifest",
-        default="data/standardized/kuaisearch/v0_lite/candidate_manifest.json",
-    )
+    parser.add_argument("--candidate-manifest", required=True)
     parser.add_argument("--standardized-dir", default=None)
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--dev-eval-log", default="reports/dev_eval_log.jsonl")

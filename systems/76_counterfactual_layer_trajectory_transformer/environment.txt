@@ -1,6 +1,0 @@
-python=3.11
-torch>=2.6
-transformers>=4.45
-numpy
-pyyaml
-pytest

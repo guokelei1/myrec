@@ -1,5 +1,0 @@
-Environment: /data/gkl/conda_envs/myrec-c37
-Python: 3.10
-Framework: PyTorch with CUDA
-Frozen LM states: BAAI/bge-small-zh-v1.5 item-title embeddings, 512 dimensions
-Online LLM calls: zero

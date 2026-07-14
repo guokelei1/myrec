@@ -1,6 +1,0 @@
-Environment: /data/gkl/conda_envs/myrec-c28
-Source clone: /data/gkl/conda_envs/myrec-c27
-Physical GPU: 0
-Program device: cuda:0 with CUDA_VISIBLE_DEVICES=0
-Python: 3.10
-Determinism: CUBLAS_WORKSPACE_CONFIG=:4096:8 and torch deterministic algorithms

@@ -1,9 +1,0 @@
-hypothesis: Longer full-token context repairs truncation-limited ordinary-Transformer utility and/or history effect.
-single_change: Compare the registered 12-event/256-token T002 against the 6-event/192-token T001 reference with all other mechanism and optimization choices fixed.
-result: no significant repair; true improved +0.001617 with paired CI [-0.001923,+0.005148], null improved +0.001569 with CI crossing zero, true-null stayed +0.021653, wrong-null became +0.000766 with CI crossing zero, and true-shuffle stayed indistinguishable.
-next_action: retain T002 as provisional point-estimate best, close the stable-wrong-history-harm idea, and run registered optimization trial R0C-T003.
-budget:
-  dev_evaluator_calls_used: 8
-  dev_evaluator_calls_remaining: 56
-  cpu_or_gpu_hours_cap: 1.265562 cumulative A40-hours used
-

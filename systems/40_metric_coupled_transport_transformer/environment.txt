@@ -1,2 +1,0 @@
-Reuse: /data/gkl/conda_envs/myrec-c39
-Python 3.10; PyTorch with CUDA; PyYAML; pytest.

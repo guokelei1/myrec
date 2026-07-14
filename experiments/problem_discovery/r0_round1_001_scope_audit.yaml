@@ -1,9 +1,0 @@
-hypothesis: KuaiSearch and Amazon expose comparable plaintext full-token information objects, while JDsearch is only a conditional non-plaintext anchor, and a fresh KuaiSearch confirmation cohort is locally feasible.
-single_change: Run one label-safe repository audit over frozen records, manifests, historical confidence intervals, and JDsearch schema samples without reading qrels or scoring test.
-result: passed; KuaiSearch/Amazon have full-token Q-H-C objects, JDsearch lacks plaintext, C80 fresh labels remain closed, and 305553 raw KuaiSearch requests lie outside the current 250000-request window.
-next_action: enter R0-B and establish ordinary full-token true/null/wrong/shuffle observability parity on KuaiSearch, using Amazon full-token evidence as the comparable secondary reference.
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: 64
-  cpu_or_gpu_hours_cap: 0.25 CPU-hours
-

@@ -1,9 +1,0 @@
-hypothesis: A request-time wrong-user control indexed by donor request time will under-cover valid strictly-prior donor histories.
-single_change: Materialize the frozen R0 full-token data once with the initial donor-request-time eligibility index.
-result: MECHANICAL_FAIL; freshness/length-matched wrong-donor coverage was 0.878064, below the preregistered 0.98 integrity floor; no evaluator or GPU call occurred.
-next_action: index donor availability by its latest history-event timestamp, retain the same freshness/length and different-user constraints, and rerun materialization.
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: 64
-  cpu_or_gpu_hours_cap: 0.25 CPU-hours
-

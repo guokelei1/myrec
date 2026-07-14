@@ -1,2 +1,0 @@
-Reuse `/data/gkl/conda_envs/myrec-c38`.  Four A40 GPUs materialize frozen BGE
-tokens; three fixed training seeds use physical GPUs 0, 1, and 2.

@@ -6,6 +6,7 @@ Thumbs.db
 .swo
 .idea/
 .vscode/
+.claude/
 
 # Python bytecode and local tooling caches
 __pycache__/
@@ -65,6 +66,12 @@ ENV/
 /tmp/**
 !/tmp/
 !/tmp/README.md
+
+# Dated legacy source archive. The archive is preserved locally but is not part
+# of the reproducible active core.
+/archive/**
+!/archive/
+!/archive/README.md
 
 # ---------------------------------------------------------------------------
 # Common alternate names for local-only heavy outputs (catch accidental drops)

@@ -1,9 +1,0 @@
-hypothesis: The frozen ordinary full-token reference recipe is learnable and mechanically valid on KuaiSearch before dev labels are opened.
-single_change: Train R0B-T001 for four fixed epochs and blind-score true/null/wrong/shuffle from the same final checkpoint.
-result: mechanics passed; loss window decreased 1.723751 to 1.670816 over 24236 steps, all gradients/scores were finite, deterministic and candidate-permutation max error were 0, all four score files contain 575609 candidate rows, and cost was 0.562012 A40-hours.
-next_action: invoke the shared evaluator serially for true, null, wrong, and report-only shuffle, updating the ledger after each call.
-budget:
-  dev_evaluator_calls_used: 0
-  dev_evaluator_calls_remaining: 64
-  cpu_or_gpu_hours_cap: 0.562012 A40-hours used
-

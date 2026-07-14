@@ -1,24 +1,17 @@
-# Source Code
+# Shared source
 
-Shared project implementation lives under `src/myrec/`.
+`src/myrec/` contains reusable baseline adapters, evaluation, metrics, hashing,
+and JSONL utilities. The old Lite/C0 data materializers and analysis modules
+are archived; a new E0 data adapter will be added only after its source
+contract is reviewed.
 
-```text
-src/myrec/data/          dataset readers, converters, standardized record schema
-src/myrec/eval/          metrics, score dump readers, candidate-pool checks
-src/myrec/baselines/     self-implemented baselines (B0a, B0b, B1, B7)
-src/myrec/utils/         hashing, manifests, logging helpers
-```
+The new direction must use the standardized record interface and shared
+evaluator, and must not read dev/test qrels from training or scoring code.
 
-Upstream-code baselines (B4 RecBole, B5 KuaiSearch official, B6 PPS
-classic) live under `baselines/`, not here.
+`src/myrec/data/contracts.py` and `src/myrec/eval/history_response*.py` are the
+active foundations for E0 and counterfactual direction measurement. Historical
+analysis modules remain in `archive/` and are not import dependencies.
 
-C01--C80 are historical and no architecture candidate is active. Shared R0
-code for full-token baselines, observability, power analysis, and Failure Cards
-may live here when it is method-independent and reviewed.
-
-Future Hxx source belongs under `systems/<hypothesis>/` from its first line,
-but only after a doc/31 Failure Card passes. Components may be promoted here
-after review establishes that they are shared infrastructure and promotion does
-not erase hypothesis-specific ablation boundaries.
-
-Keep generated data, weights, checkpoints, and run outputs outside `src/`.
+Future shared data conversion belongs under `src/myrec/data/`. Hypothesis-
+specific model code belongs under `systems/<hypothesis>/` only after doc 31
+authorizes it.

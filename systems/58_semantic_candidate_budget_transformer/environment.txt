@@ -1,2 +1,0 @@
-Reuse `/data/gkl/conda_envs/myrec-c38`.  Frozen scoring is sharded over four
-registered A40 GPUs with no optimizer or model checkpoint.

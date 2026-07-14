@@ -1,9 +1,0 @@
-Environment: /data/gkl/conda_envs/myrec-c22
-Python: 3.10.20
-PyTorch: 2.6.0+cu124
-CUDA build: 12.4
-Physical GPU: 2, exposed as cuda:0
-Determinism: CUBLAS_WORKSPACE_CONFIG=:4096:8
-NumPy: 1.24.3
-PyYAML: 6.0.2
-pytest: 9.1.1
