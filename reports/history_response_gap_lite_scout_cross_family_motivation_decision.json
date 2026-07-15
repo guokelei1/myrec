@@ -1,0 +1,184 @@
+{
+  "claim": {
+    "supported": "On the KuaiSearch Lite strict-nonrepeat surface, ordinary history-conditioned Transformer rankers produce substantial candidate-relative responses but do not reliably convert those responses into query-conditioned correct ranking direction or stable ranking utility.",
+    "unsupported": [
+      "The failure is a universal or unavoidable limitation of Transformer architecture.",
+      "The label-oracle direction headroom is learnable from available train information.",
+      "The Lite result predicts KuaiSearch Full or another dataset.",
+      "History causes a significant absolute degradation on strict-nonrepeat rather than a failure to realize stable gain."
+    ]
+  },
+  "decision": "lite_scoped_motivation_supported_cross_family",
+  "evidence_matrix": [
+    {
+      "family": "BGE v2-m3 encoder reranker",
+      "objective": "pairwise logistic",
+      "repeat": {
+        "direction_accuracy": 0.5710805302840003,
+        "direction_accuracy_query_ci95": [
+          0.5348222415634439,
+          0.606867071332222
+        ],
+        "true_minus_null_ndcg_at_10": 0.04143026155129779,
+        "true_minus_null_query_ci95": [
+          0.01889058994675139,
+          0.06235057028990242
+        ]
+      },
+      "strict_nonrepeat": {
+        "active_response_rate": 0.9973021582733813,
+        "actual_minus_random_ndcg_at_10": 0.002127847195958051,
+        "actual_minus_random_query_ci95": [
+          -0.004628523308985344,
+          0.00936621635324104
+        ],
+        "direction_accuracy": 0.48526191488069015,
+        "direction_accuracy_query_ci95": [
+          0.45982308309651215,
+          0.511275112778047
+        ],
+        "label_aligned_minus_actual_ndcg_at_10": 0.20003212778479593,
+        "true_minus_null_ndcg_at_10": 0.0026744942455940884,
+        "true_minus_null_query_ci95": [
+          -0.0054848921182514415,
+          0.010912654715953044
+        ]
+      }
+    },
+    {
+      "family": "BGE v2-m3 encoder reranker",
+      "objective": "pointwise binary cross entropy",
+      "repeat": {
+        "direction_accuracy": 0.5836899060951126,
+        "direction_accuracy_query_ci95": [
+          0.5451511563262685,
+          0.6214597023196412
+        ],
+        "true_minus_null_ndcg_at_10": 0.046650467627641204,
+        "true_minus_null_query_ci95": [
+          0.022973822920442925,
+          0.06912814847259806
+        ]
+      },
+      "strict_nonrepeat": {
+        "active_response_rate": 0.9955035971223022,
+        "actual_minus_random_ndcg_at_10": 0.0029821584051236247,
+        "actual_minus_random_query_ci95": [
+          -0.004499986551995454,
+          0.010732004328922623
+        ],
+        "direction_accuracy": 0.4986042582024822,
+        "direction_accuracy_query_ci95": [
+          0.4722889146321504,
+          0.524581201858559
+        ],
+        "label_aligned_minus_actual_ndcg_at_10": 0.22836247556536046,
+        "true_minus_null_ndcg_at_10": 0.0011352989130866571,
+        "true_minus_null_query_ci95": [
+          -0.00808032280035997,
+          0.01076124126015455
+        ]
+      }
+    },
+    {
+      "family": "Qwen3 0.6B decoder-only causal-LM reranker",
+      "objective": "pointwise binary cross entropy",
+      "repeat": {
+        "direction_accuracy": 0.5822675259475703,
+        "direction_accuracy_query_ci95": [
+          0.5460059561186408,
+          0.6169723461317338
+        ],
+        "true_minus_null_ndcg_at_10": 0.04686061635105701,
+        "true_minus_null_query_ci95": [
+          0.02606715972870965,
+          0.06742002147221832
+        ]
+      },
+      "strict_nonrepeat": {
+        "active_response_rate": 0.9964028776978417,
+        "actual_minus_random_ndcg_at_10": 0.004122369819709841,
+        "actual_minus_random_query_ci95": [
+          -0.0032349514536391152,
+          0.011444154062635768
+        ],
+        "direction_accuracy": 0.5049835659089696,
+        "direction_accuracy_query_ci95": [
+          0.47539373941596247,
+          0.53383057259698
+        ],
+        "label_aligned_minus_actual_ndcg_at_10": 0.20586390101735894,
+        "true_minus_null_ndcg_at_10": 0.0007461370149703794,
+        "true_minus_null_query_ci95": [
+          -0.008349743526781408,
+          0.009620785683291768
+        ]
+      }
+    }
+  ],
+  "interpretation": {
+    "architecture_boundary": "The replicated empirical failure occurs inside two ordinary end-to-end Transformer ranking families, but the experiment does not distinguish an architectural limit from supervision, data, or optimization causes.",
+    "common_mode_boundary": "Common-mode response energy changes across objectives and families; it is not the defining mechanism.",
+    "performance_consequence": "On strict-nonrepeat, history fails to deliver stable improvement over null, wrong-user history, random attribution of the same delta budget, or an independently trained QC model. The large label-aligned diagnostic gap is missed ranking opportunity, not a deployable or proven-learnable gain.",
+    "positive_control": "All three supervised controls reliably convert history into direction and utility on exact-repeat requests, so strict-nonrepeat failure cannot be explained by inability to read history or optimize any history-dependent behavior.",
+    "primary_motivation": "Ordinary LLM4Rec Transformers can react to user history and exploit recurrence, yet remain unreliable at assigning nonrepeat history response to the query-conditioned candidate direction that improves ranking."
+  },
+  "qwen3_matched_control": {
+    "full_null_ndcg_at_10": 0.18953384065843518,
+    "full_true_minus_qc_all_ci95": [
+      0.00632405047046359,
+      0.024305883183051817
+    ],
+    "full_true_minus_qc_all_ndcg_at_10": 0.015446460275307574,
+    "full_true_minus_qc_repeat_ci95": [
+      0.019094613723108066,
+      0.06528176265427278
+    ],
+    "full_true_minus_qc_repeat_ndcg_at_10": 0.041730904906568785,
+    "full_true_minus_qc_strict_nonrepeat_ci95": [
+      -0.0026102039703411514,
+      0.017500639516212616
+    ],
+    "full_true_minus_qc_strict_nonrepeat_ndcg_at_10": 0.007157936629136873,
+    "full_true_ndcg_at_10": 0.20226706257802116,
+    "null_minus_qc_all_ci95": [
+      -0.005669516453575135,
+      0.011277603030917486
+    ],
+    "null_minus_qc_all_ndcg_at_10": 0.002713238355721601,
+    "qc_ndcg_at_10": 0.18682060230271358,
+    "qc_vs_zero_shot_delta_ci95": [
+      -0.011667131299169922,
+      0.005614865811883646
+    ],
+    "qc_vs_zero_shot_ndcg_at_10": -0.003072128912583648
+  },
+  "quality_checks": {
+    "candidate_rows_per_condition": 42856,
+    "dev_official_preprocess_overflow_pairs_at_history_budget_5": 0,
+    "full_and_qc_candidate_presentations_each": 32496,
+    "full_and_qc_optimizer_updates_each": 1016,
+    "full_checkpoint_nonfinite_parameter_tensors": 0,
+    "history_activity_epsilon": 0.01,
+    "minimum_nonzero_true_null_candidate_delta": 0.0625,
+    "no_history_candidate_rows": 8649,
+    "no_history_cross_condition_score_mismatches": 0,
+    "qrels_read_during_training_or_scoring": false,
+    "train_official_preprocess_overflow_pairs_at_history_budget_5": 0
+  },
+  "schema_version": 1,
+  "scope": {
+    "dataset": "KuaiSearch Lite scout",
+    "repeat_requests": 515,
+    "strict_nonrepeat_requests": 1112
+  },
+  "source_artifacts": [
+    "reports/history_response_gap_lite_scout_v2m3_pairwise_h6_surfaces.json",
+    "reports/history_response_gap_lite_scout_v2m3_pointwise_h6_surfaces.json",
+    "reports/history_response_gap_lite_scout_qwen3_pointwise_h5_surfaces.json",
+    "reports/history_response_gap_lite_scout_v2m3_h6_direction_intervention_surfaces.json",
+    "reports/history_response_gap_lite_scout_v2m3_pointwise_h6_direction_intervention_surfaces.json",
+    "reports/history_response_gap_lite_scout_qwen3_pointwise_h5_direction_intervention_surfaces.json"
+  ],
+  "status": "motivation_supported_on_lite_pending_independent_dataset"
+}

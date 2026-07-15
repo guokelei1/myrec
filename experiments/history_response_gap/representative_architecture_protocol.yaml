@@ -1,0 +1,165 @@
+schema_version: 1
+protocol_id: representative_architecture_motivation_v1
+frozen_at: "2026-07-15"
+evidence_mode: exploratory_pre_failure_card
+architecture_authorized: false
+confirmation_authorized: false
+test_authorized: false
+
+scientific_question: >-
+  Does the inability to jointly retain query-candidate base relevance and add
+  efficient candidate-relative history utility survive representative language,
+  rec-native, and published sequence-enhanced ranking architectures?
+
+core_architectures:
+  qwen:
+    role: ordinary_decoder_language_transformer
+    checkpoint: Qwen/Qwen3-Reranker-0.6B
+    variants: [QWEN-QC, QWEN-FULL]
+    status: lite_exploration_complete_full_replication_pending
+  hstu:
+    role: rec_native_sequential_transducer_boundary
+    paper: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations"
+    upstream: https://github.com/meta-recsys/generative-recommenders
+    commit: 6135bc30398f97e5786674192558d91f2ef2fa90
+    license: Apache-2.0
+    variants: [HSTU-QC, HSTU-FULL, SASREC-MATCHED]
+    adaptation: official_hstu_core_plus_pps_fixed_slate_adapter
+    status: lite_bundle_complete_supportive_pattern_but_qc_adequacy_not_passed
+  llm_srec:
+    role: published_sequence_enhanced_llm4rec_boundary
+    venue: KDD_2025
+    upstream: https://github.com/Sein-Kim/LLM-SRec
+    commit: b81019ca655fb759cee895924b8b6c7cc0f0cce9
+    upstream_license: absent_at_audit
+    source_policy: do_not_vendor_or_copy
+    language_backbone: Qwen/Qwen3-Reranker-0.6B
+    sequence_teacher: SASRec
+    trainable_scope: projection_alignment_and_scoring_modules_only
+    adaptation: paper_mechanism_faithful_query_conditioned_fixed_slate
+    status: lite_teacher_training_and_counterfactual_bundle_complete_amazon_adequacy_pending
+
+extra_anchor:
+  bge_v2_m3:
+    role: ordinary_encoder_full_token_anchor
+    checkpoint: BAAI/bge-reranker-v2-m3
+    variants: [E-QC, E-FULL]
+    status: cross_dataset_exploration_complete
+
+dataset_matrix:
+  kuaisearch_full:
+    role: primary_natural_query_product_search
+    architectures: [qwen, hstu, llm_srec, bge_v2_m3]
+  amazon_c4:
+    role: rich_text_positive_boundary_and_llm_srec_origin_compatible_source
+    architectures: [qwen, hstu, llm_srec, bge_v2_m3]
+  jdsearch:
+    role: anonymous_functional_composition_anchor
+    architectures: [hstu, bge_v2_m3]
+    forbidden_claim: pretrained_language_semantic_replication
+
+matched_conditions:
+  checkpoints:
+    qc: independently_trained_without_history
+    full: jointly_trained_with_history
+  full_inference_conditions: [true, null, wrong]
+  invariant_fields:
+    - dataset_version
+    - split
+    - request_manifest_sha256
+    - candidate_manifest_sha256
+    - candidate_ids_and_order
+    - scoring_signature
+  populations: [all, repeat, strict_nonrepeat]
+
+required_measurements:
+  - qc_ranking_adequacy
+  - full_null_base_retention
+  - full_true_history_utility
+  - full_true_net_value_over_qc
+  - full_true_vs_wrong_provenance
+  - candidate_relative_activity
+  - candidate_relative_direction
+  - direction_conversion_efficiency
+  - repeat_positive_control
+
+accounting_identity: >-
+  FULL_true - QC = (FULL_null - QC) + (FULL_true - FULL_null)
+
+adequacy_gate:
+  required:
+    - qc_beats_lexical_or_sanity_control
+    - no_training_or_numerical_failure
+    - repeat_history_observability_positive_control
+    - query_candidate_history_field_coverage_audited
+    - full_counterfactuals_share_checkpoint_and_candidate_hash
+    - bounded_normal_tuning_completed
+  replicated_negative_claim_requires:
+    - at_least_two_consistent_seeds
+    - at_least_two_core_architectures
+    - at_least_two_independent_data_sources
+
+predeclared_interpretations:
+  all_core_share_failure: cross_paradigm_controlled_composition_problem
+  qwen_bge_fail_hstu_llm_srec_improve: ordinary_full_token_fusion_specific
+  hstu_fails_llm_srec_improves: explicit_sequence_supervision_or_alignment_candidate
+  hstu_improves_llm_srec_fails: rec_native_transduction_candidate
+  simple_standard_repair_closes_gap: training_or_objective_contribution_not_architecture
+  all_core_jointly_succeed: current_motivation_falsified
+
+execution_order:
+  - vendor_and_smoke_test_hstu_official_pytorch_core
+  - implement_standardized_hstu_and_sasrec_adapter
+  - independently_implement_minimal_llm_srec_mechanism
+  - hstu_kuaisearch_full_scout
+  - llm_srec_amazon_c4_scout
+  - hstu_and_llm_srec_cross_dataset_exploration
+  - qwen_full_matched_replication_when_full_recipe_is_ready
+  - failure_card_decision
+
+adapter_audit:
+  status: passed_on_all_current_standardized_sources
+  qrels_read: false
+  findings:
+    - current_query_is_final_causal_token_including_null_history
+    - chronology_and_candidate_uniqueness_are_enforced
+    - high_dev_item_oov_makes_frozen_text_content_features_binding_for_hstu
+  reports:
+    - reports/representative_sequence_adapter_kuaisearch_lite.json
+    - reports/representative_sequence_adapter_kuaisearch_full_scout.json
+    - reports/representative_sequence_adapter_amazon_c4.json
+    - reports/representative_sequence_adapter_jdsearch.json
+
+mechanical_smoke:
+  scientific_evidence: false
+  hstu_official_core:
+    status: pass
+    report: reports/hstu_official_core_smoke.json
+    checks: [gpu_forward_backward, architecture_parameter_finite_difference]
+  hstu_pps_adapter:
+    status: pass
+    report: reports/hstu_pps_adapter_lite_smoke.json
+    features: deterministic_hash_mechanics_only
+  llm_srec_pps_adapter:
+    status: pass
+    report: reports/llm_srec_pps_adapter_lite_smoke.json
+    features: deterministic_hash_cf_mechanics_only
+    frozen_backbone_gradient_tensors: 0
+
+lite_exploratory_outcome:
+  decision: supportive_cross_paradigm_pattern_but_sequence_family_adequacy_not_passed
+  report: reports/history_response_gap_lite_representative_architecture_decision.json
+  hstu:
+    bundle_complete: true
+    strict_nonrepeat_direction_compatible_with_chance: true
+    qc_beats_bm25: false
+  sasrec_matched:
+    bundle_complete: true
+    strict_nonrepeat_direction_compatible_with_chance: true
+    qc_beats_bm25: false
+  llm_srec:
+    paper_mechanism_complete: true
+    full_lite_train_complete: true
+    counterfactual_bundle_complete: true
+    strict_nonrepeat_direction_compatible_with_chance: true
+    origin_compatible_amazon_run_complete: false

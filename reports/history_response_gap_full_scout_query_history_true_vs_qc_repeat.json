@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    0.011583161313968108,
+    0.05097132318929716
+  ],
+  "delta": 0.030921007375747104,
+  "metric": "ndcg@10",
+  "num_requests": 534,
+  "request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/repeat.txt",
+  "samples": 5000,
+  "seed": 20260714,
+  "significant_a_gt_b": true
+}

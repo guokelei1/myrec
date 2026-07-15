@@ -1,0 +1,46 @@
+{
+  "adapter_contract": "history_events_then_current_query_token_v1",
+  "dataset_id": "jdsearch",
+  "dataset_version": "hash_scout10k_v3",
+  "decision": "pass",
+  "history_budget": 8,
+  "manifest_sha256": "a24aa339d094f6ccd807de688b968763f6838c78123873a09109c4b757a7668c",
+  "qrels_read": false,
+  "schema_version": 1,
+  "splits": {
+    "dev": {
+      "candidate_count": 176481,
+      "candidate_oov_count": 141234,
+      "history_oov_count": 8946,
+      "null_history_request_count": 0,
+      "records_sha256": "cfb83a2ea09c8deb54f25d9195abf75a3e7db690232229a185f8104ad0ac5724",
+      "request_count": 2000,
+      "retained_history_event_count": 15455
+    },
+    "train": {
+      "candidate_count": 720068,
+      "candidate_oov_count": 0,
+      "history_oov_count": 0,
+      "null_history_request_count": 0,
+      "records_sha256": "d8b0e74ca2c544665d8f993064f2420416fbc693bfe53f61d47578ebfc919ac2",
+      "request_count": 8000,
+      "retained_history_event_count": 61672
+    }
+  },
+  "standardized_dir": "data/standardized/jdsearch/hash_scout10k_v3",
+  "vocabulary": {
+    "event_to_id": {
+      "cart": 3,
+      "click": 4,
+      "follow": 5,
+      "purchase": 6
+    },
+    "fit_split": "train",
+    "item_count": 764328,
+    "special_item_ids": {
+      "oov": 1,
+      "pad": 0,
+      "query": 2
+    }
+  }
+}

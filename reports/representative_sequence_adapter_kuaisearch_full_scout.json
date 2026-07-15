@@ -1,0 +1,44 @@
+{
+  "adapter_contract": "history_events_then_current_query_token_v1",
+  "dataset_id": "kuaisearch",
+  "dataset_version": "full_scout10k_query_history_v1",
+  "decision": "pass",
+  "history_budget": 8,
+  "manifest_sha256": "e5c605f73ec6cc80ff0d4a69c014a26e82efbc3e1c5d9f38b5bd50f575280e02",
+  "qrels_read": false,
+  "schema_version": 1,
+  "splits": {
+    "dev": {
+      "candidate_count": 41546,
+      "candidate_oov_count": 30237,
+      "history_oov_count": 7784,
+      "null_history_request_count": 183,
+      "records_sha256": "5c5196eea0d0780652fc69cb87ebfe05ac3fe6ede3c9063aceee53458bb27ec8",
+      "request_count": 2002,
+      "retained_history_event_count": 11835
+    },
+    "train": {
+      "candidate_count": 167630,
+      "candidate_oov_count": 0,
+      "history_oov_count": 0,
+      "null_history_request_count": 673,
+      "records_sha256": "de19771373ebd502d8bddd1a6764d000680f2155e830ce711047f3b66c8bf84f",
+      "request_count": 7998,
+      "retained_history_event_count": 47816
+    }
+  },
+  "standardized_dir": "data/standardized/kuaisearch/full_scout10k_query_history_v1",
+  "vocabulary": {
+    "event_to_id": {
+      "click": 3,
+      "purchase": 4
+    },
+    "fit_split": "train",
+    "item_count": 153506,
+    "special_item_ids": {
+      "oov": 1,
+      "pad": 0,
+      "query": 2
+    }
+  }
+}

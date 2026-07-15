@@ -1,0 +1,60 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "lite_scout10k_v1",
+  "decision": "provisional_v2m3_qc_for_one_matched_full_probe",
+  "evidence_mode": "exploratory",
+  "models": {
+    "bm25": {
+      "ndcg@10": 0.1964485743824624,
+      "role": "lexical_control"
+    },
+    "bge_base_pairwise_constant_empty_marker": {
+      "ndcg@10": 0.19060832434667105,
+      "role": "prior_query_only_information_control"
+    },
+    "v2m3_zero_shot_constant_empty_marker": {
+      "ndcg@10": 0.18625545741657024,
+      "role": "mis_scoped_for_clean_qc"
+    },
+    "v2m3_zero_shot_query_only": {
+      "ndcg@10": 0.18394308840941506,
+      "role": "clean_zero_shot_qc"
+    },
+    "v2m3_pairwise_lr1e5_query_only": {
+      "ndcg@10": 0.19342247397869497,
+      "purchase_ndcg@10": 0.46077197365664285,
+      "role": "selected_provisional_qc"
+    },
+    "v2m3_pairwise_lr2e5_query_only": {
+      "ndcg@10": 0.19033154893584228,
+      "purchase_ndcg@10": 0.4491253173575171,
+      "role": "ordinary_recipe_control"
+    }
+  },
+  "paired_comparisons": {
+    "v2m3_lr1e5_minus_bm25": {
+      "ci95": [-0.012414066158296311, 0.00656746779168159],
+      "delta_ndcg@10": -0.0030261004037674456
+    },
+    "v2m3_lr1e5_minus_bge_base_qc": {
+      "ci95": [-0.0051166088383455335, 0.010911992855573519],
+      "delta_ndcg@10": 0.002814149632023901
+    },
+    "v2m3_lr1e5_minus_lr2e5": {
+      "ci95": [-0.003434410907577928, 0.00978349143526331],
+      "delta_ndcg@10": 0.0030909250428526854
+    }
+  },
+  "status": {
+    "adequate_family_confirmed": false,
+    "matched_full_probe_authorized": true,
+    "superior_to_bm25": false
+  },
+  "limitations": [
+    "one seed",
+    "one pairwise objective",
+    "seeded uniform negative sampling",
+    "Lite latest-window scout",
+    "no frozen adequacy margin"
+  ]
+}

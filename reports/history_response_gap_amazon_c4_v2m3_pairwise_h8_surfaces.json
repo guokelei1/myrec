@@ -1,0 +1,486 @@
+{
+  "analysis_type": "history_response_surface_summary",
+  "bootstrap_samples": 2000,
+  "ci_metrics": [
+    "common_mode_ratio",
+    "mean_pairwise_directional_accuracy",
+    "mean_signed_delta_alignment",
+    "mean_true_minus_null_ndcg@10",
+    "mean_true_minus_wrong_ndcg@10"
+  ],
+  "empty_surfaces": [
+    "no_history",
+    "repeated_query",
+    "repeated_query_history_present",
+    "repeated_query_repeat",
+    "repeated_query_strict_nonrepeat"
+  ],
+  "per_request_path": "runs/20260714_amazon_c4_f_full_v2m3_pairwise_h8_l1024_history_response/per_request_history_response.jsonl",
+  "per_request_sha256": "6b6e66bbc49eefbc6c895f5af374fc89fdcdc9f8c816cc39773f691d49093e7f",
+  "records_path": "data/standardized/amazon_c4/history_bm25_100_v1/records_dev.jsonl",
+  "records_sha256": "ba4f6103332b92062e4f2046fa1311f9507033f4415efb89d193ce6c7db82a63",
+  "seed": 20260714,
+  "surfaces": {
+    "all": {
+      "active_response_harm_rate": 0.15618336886993603,
+      "active_response_precision": 0.38113006396588484,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.39229237963113256,
+            0.4307898807790659
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.796031507057033,
+            0.8186810353052101
+          ],
+          "mean_signed_delta_alignment": [
+            0.5916346298808985,
+            0.6369179535224311
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09878991744885061,
+            0.1280341015935996
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0240689517439852,
+            0.04447615912119046
+          ],
+          "num_clusters": 1876
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.3927706825251782,
+            0.4297236174868455
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7957905339064295,
+            0.8181804175248925
+          ],
+          "mean_signed_delta_alignment": [
+            0.5911807305464022,
+            0.6359054295621459
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0986322138490108,
+            0.12759917129029777
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024439243488497985,
+            0.04447485072770689
+          ],
+          "num_clusters": 1876
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.393198450174083,
+            0.4312096329358827
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7961687454833769,
+            0.8184901157367467
+          ],
+          "mean_signed_delta_alignment": [
+            0.591868579182012,
+            0.6365407138047139
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0984376578392626,
+            0.1285966731366048
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024427639786260814,
+            0.04448849807477496
+          ],
+          "num_clusters": 1875
+        }
+      },
+      "common_mode_ratio": 0.41206183135669666,
+      "direction_eligible_rate": 1.0,
+      "mean_active_pair_fraction": 0.9299745870109399,
+      "mean_direction_pair_coverage": 0.9983420021106588,
+      "mean_pairwise_directional_accuracy": 0.8070943664983061,
+      "mean_signed_delta_alignment": 0.6137236436863303,
+      "mean_true_minus_null_ndcg@10": 0.11320572720438364,
+      "mean_true_minus_wrong_ndcg@10": 0.034337631199317944,
+      "mean_true_ndcg@10": 0.6376128931685782,
+      "mean_true_over_wrong_signed_alignment": 0.05857293618487648,
+      "num_active_direction_requests": 1876,
+      "num_active_requests": 1876,
+      "num_direction_eligible_requests": 1876,
+      "num_requests": 1876,
+      "surface_request_ids_path": "data/interim/amazon_c4/history_bm25_100_v1/request_surfaces_dev/all.txt",
+      "surface_request_ids_sha256": "654feba97eb9c7ea39338368efd613ca581e24793871e2225f594d939da77fb8"
+    },
+    "history_present": {
+      "active_response_harm_rate": 0.15618336886993603,
+      "active_response_precision": 0.38113006396588484,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.3940578748947907,
+            0.4306328203203952
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7953508005047428,
+            0.8185450866349918
+          ],
+          "mean_signed_delta_alignment": [
+            0.5902604402231268,
+            0.6365405655704163
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09856358845969962,
+            0.12795713260686375
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024373236388063668,
+            0.044707849165915414
+          ],
+          "num_clusters": 1876
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.3931233284862205,
+            0.4305038096989077
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7957160581005285,
+            0.8186328207823829
+          ],
+          "mean_signed_delta_alignment": [
+            0.5910186082574143,
+            0.6367506084297129
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09884539977127753,
+            0.12814127056682523
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024205709654545656,
+            0.044539412430682004
+          ],
+          "num_clusters": 1876
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.3935078013259665,
+            0.4319693570303997
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7955500181798907,
+            0.8182987545400895
+          ],
+          "mean_signed_delta_alignment": [
+            0.5906017531390666,
+            0.6360838125390365
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09815524118842069,
+            0.12722972382494038
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024081017106751684,
+            0.044072796318084466
+          ],
+          "num_clusters": 1875
+        }
+      },
+      "common_mode_ratio": 0.41206183135669666,
+      "direction_eligible_rate": 1.0,
+      "mean_active_pair_fraction": 0.9299745870109399,
+      "mean_direction_pair_coverage": 0.9983420021106588,
+      "mean_pairwise_directional_accuracy": 0.8070943664983061,
+      "mean_signed_delta_alignment": 0.6137236436863303,
+      "mean_true_minus_null_ndcg@10": 0.11320572720438364,
+      "mean_true_minus_wrong_ndcg@10": 0.034337631199317944,
+      "mean_true_ndcg@10": 0.6376128931685782,
+      "mean_true_over_wrong_signed_alignment": 0.05857293618487648,
+      "num_active_direction_requests": 1876,
+      "num_active_requests": 1876,
+      "num_direction_eligible_requests": 1876,
+      "num_requests": 1876,
+      "surface_request_ids_path": "data/interim/amazon_c4/history_bm25_100_v1/request_surfaces_dev/history_present.txt",
+      "surface_request_ids_sha256": "654feba97eb9c7ea39338368efd613ca581e24793871e2225f594d939da77fb8"
+    },
+    "repeat": {
+      "active_response_harm_rate": 0.125,
+      "active_response_precision": 0.5,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.3134313684982844,
+            0.6746777932856649
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.6203030303030302,
+            0.9571212121212122
+          ],
+          "mean_signed_delta_alignment": [
+            0.2428409090909091,
+            0.9142424242424243
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.036318003356477516,
+            0.3109798526602525
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.06768769688647866,
+            0.028286798191364593
+          ],
+          "num_clusters": 8
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.3133359807187965,
+            0.6702357742850458
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.6224747474747475,
+            0.9587373737373738
+          ],
+          "mean_signed_delta_alignment": [
+            0.24684343434343436,
+            0.9174747474747474
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.045899309869207955,
+            0.3125
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.06768769688647866,
+            0.028286798191364593
+          ],
+          "num_clusters": 8
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.31820845294812233,
+            0.6742261207445328
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.6179292929292929,
+            0.9558585858585859
+          ],
+          "mean_signed_delta_alignment": [
+            0.23809343434343438,
+            0.9117171717171717
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.04723455714221391,
+            0.31231509993325846
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.06546487678572877,
+            0.028286798191364593
+          ],
+          "num_clusters": 8
+        }
+      },
+      "common_mode_ratio": 0.4999674888474055,
+      "direction_eligible_rate": 1.0,
+      "mean_active_pair_fraction": 0.9769889488948895,
+      "mean_direction_pair_coverage": 0.99875,
+      "mean_pairwise_directional_accuracy": 0.8135353535353536,
+      "mean_signed_delta_alignment": 0.6278156565656565,
+      "mean_true_minus_null_ndcg@10": 0.1318726477590193,
+      "mean_true_minus_wrong_ndcg@10": -0.018589039297182086,
+      "mean_true_ndcg@10": 0.4538662191964322,
+      "mean_true_over_wrong_signed_alignment": -0.053926767676767635,
+      "num_active_direction_requests": 8,
+      "num_active_requests": 8,
+      "num_direction_eligible_requests": 8,
+      "num_requests": 8,
+      "surface_request_ids_path": "data/interim/amazon_c4/history_bm25_100_v1/request_surfaces_dev/repeat.txt",
+      "surface_request_ids_sha256": "402238de6c5985e173c91017542109efb21abf18485a551b21b35529d648f260"
+    },
+    "singleton_query": {
+      "active_response_harm_rate": 0.15618336886993603,
+      "active_response_precision": 0.38113006396588484,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.3933994806961881,
+            0.43050380408165884
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7951510638763987,
+            0.8183650011707293
+          ],
+          "mean_signed_delta_alignment": [
+            0.5899444875191143,
+            0.6361353944562901
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09928034128960093,
+            0.1277673708558212
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.02444601530272536,
+            0.04489364497436832
+          ],
+          "num_clusters": 1876
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.3945146095248722,
+            0.4318281493895975
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7957144525451154,
+            0.8176902969079537
+          ],
+          "mean_signed_delta_alignment": [
+            0.5910218388576598,
+            0.6348923671684866
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09917335195445413,
+            0.12787140966522573
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024072772154931747,
+            0.04420899543204947
+          ],
+          "num_clusters": 1876
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.39374875616547267,
+            0.4307432213518434
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7956637203140101,
+            0.8180075468978452
+          ],
+          "mean_signed_delta_alignment": [
+            0.5908521481481481,
+            0.6355487676767677
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09868108546621306,
+            0.12750761961561236
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024464019844632614,
+            0.044562830030588724
+          ],
+          "num_clusters": 1875
+        }
+      },
+      "common_mode_ratio": 0.41206183135669666,
+      "direction_eligible_rate": 1.0,
+      "mean_active_pair_fraction": 0.9299745870109399,
+      "mean_direction_pair_coverage": 0.9983420021106588,
+      "mean_pairwise_directional_accuracy": 0.8070943664983061,
+      "mean_signed_delta_alignment": 0.6137236436863303,
+      "mean_true_minus_null_ndcg@10": 0.11320572720438364,
+      "mean_true_minus_wrong_ndcg@10": 0.034337631199317944,
+      "mean_true_ndcg@10": 0.6376128931685782,
+      "mean_true_over_wrong_signed_alignment": 0.05857293618487648,
+      "num_active_direction_requests": 1876,
+      "num_active_requests": 1876,
+      "num_direction_eligible_requests": 1876,
+      "num_requests": 1876,
+      "surface_request_ids_path": "data/interim/amazon_c4/history_bm25_100_v1/request_surfaces_dev/singleton_query.txt",
+      "surface_request_ids_sha256": "654feba97eb9c7ea39338368efd613ca581e24793871e2225f594d939da77fb8"
+    },
+    "strict_nonrepeat": {
+      "active_response_harm_rate": 0.15631691648822268,
+      "active_response_precision": 0.3806209850107066,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.39254846515731284,
+            0.43066580492136247
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7954857105494804,
+            0.8177939906403393
+          ],
+          "mean_signed_delta_alignment": [
+            0.5905067808708065,
+            0.635006164428006
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09898540924897671,
+            0.12868375277240066
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024884717161529978,
+            0.04495672421852024
+          ],
+          "num_clusters": 1868
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.39293565480323,
+            0.431193298271593
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7959367975421853,
+            0.8178791872881434
+          ],
+          "mean_signed_delta_alignment": [
+            0.5914518850171955,
+            0.6352116994354682
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09786233886055397,
+            0.1279237543349623
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.02444405443560203,
+            0.04523082523306284
+          ],
+          "num_clusters": 1868
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.39266302139120246,
+            0.4309691008946192
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.7953909768008349,
+            0.818276128901749
+          ],
+          "mean_signed_delta_alignment": [
+            0.5902746803871602,
+            0.6361323621655527
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.09830592566626609,
+            0.12799186689518383
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.024853723311427933,
+            0.045260536038485295
+          ],
+          "num_clusters": 1867
+        }
+      },
+      "common_mode_ratio": 0.4116586721269627,
+      "direction_eligible_rate": 1.0,
+      "mean_active_pair_fraction": 0.9297732407073683,
+      "mean_direction_pair_coverage": 0.9983402547963576,
+      "mean_pairwise_directional_accuracy": 0.8070667819713807,
+      "mean_signed_delta_alignment": 0.6136632924534423,
+      "mean_true_minus_null_ndcg@10": 0.11312578321913895,
+      "mean_true_minus_wrong_ndcg@10": 0.03456429788238646,
+      "mean_true_ndcg@10": 0.6383998168258463,
+      "mean_true_over_wrong_signed_alignment": 0.05905473363182143,
+      "num_active_direction_requests": 1868,
+      "num_active_requests": 1868,
+      "num_direction_eligible_requests": 1868,
+      "num_requests": 1868,
+      "surface_request_ids_path": "data/interim/amazon_c4/history_bm25_100_v1/request_surfaces_dev/strict_nonrepeat.txt",
+      "surface_request_ids_sha256": "09874ca9020813287df7815b007f8e0c92b1e8e47223460d408a34b8a3185387"
+    }
+  },
+  "utility_epsilon": 0.0
+}

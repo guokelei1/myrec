@@ -1,0 +1,159 @@
+{
+  "claim_revision": {
+    "cross_population_primary": "Ordinary LLM4Rec Transformers reliably react to history and exploit recurrence, but on nonrepeat personalization they convert only a small and population-unstable fraction of that response into query-conditioned correct candidate-relative ranking utility.",
+    "rejected_overstatement": "Strict-nonrepeat response attribution is always statistically indistinguishable from random reassignment.",
+    "supported_consequence": "On strict-nonrepeat, score motion is nearly universal while true history has no stable advantage over null, wrong-user history, or an independently trained query-candidate model; most label-oracle direction headroom remains unconverted.",
+    "unsupported_consequence": "History causes a significant absolute strict-nonrepeat degradation."
+  },
+  "decision": "full_source_population_replication_supports_low_unstable_conversion_but_rejects_random_equivalence",
+  "full_source_scout": {
+    "dataset_version": "full_scout10k_v1",
+    "dev_requests": 2002,
+    "eligible_source_requests": 2321406,
+    "repeat_requests": 534,
+    "selected_requests": 10000,
+    "strict_nonrepeat_requests": 1285,
+    "source_variant": "full",
+    "train_requests": 7998
+  },
+  "matched_model": {
+    "checkpoint_family": "BAAI/bge-reranker-v2-m3",
+    "full_and_qc_examples_each": 16029,
+    "full_and_qc_micro_steps_each": 8016,
+    "full_and_qc_optimizer_updates_each": 1002,
+    "history_budget": 6,
+    "objective": "pairwise_logistic_softplus",
+    "recipe_selection": "Copied unchanged from the Lite recipe before any Full dev evaluation."
+  },
+  "quality_checks": {
+    "candidate_keys_equal_across_true_null_wrong": true,
+    "candidate_rows_per_condition": 41546,
+    "dev_token_overflow_pairs": 0,
+    "minimum_nonzero_true_null_candidate_delta": 0.00048828125,
+    "no_history_candidate_rows": 3556,
+    "no_history_cross_condition_score_mismatches": 0,
+    "qrels_read_during_training_or_scoring": false,
+    "train_token_overflow_pairs": 0
+  },
+  "ranking_base": {
+    "bm25_ndcg_at_10": 0.1837379229496605,
+    "full_null_minus_qc_ci95": [
+      -0.010377584205608454,
+      0.004757570433575584
+    ],
+    "full_null_minus_qc_ndcg_at_10": -0.002708771135992026,
+    "full_true_minus_qc_all_ci95": [
+      0.00369454063259411,
+      0.020342981657647318
+    ],
+    "full_true_minus_qc_all_ndcg_at_10": 0.012003442091451324,
+    "full_true_minus_qc_repeat_ci95": [
+      0.018068040311279468,
+      0.0577122367351131
+    ],
+    "full_true_minus_qc_repeat_ndcg_at_10": 0.03738299605266083,
+    "full_true_minus_qc_strict_ci95": [
+      -0.0029982332550872464,
+      0.01409147646405927
+    ],
+    "full_true_minus_qc_strict_ndcg_at_10": 0.005563972687886356,
+    "qc_minus_bm25_ci95": [
+      -0.006272925085889416,
+      0.011108061069538301
+    ],
+    "qc_minus_bm25_ndcg_at_10": 0.002381050526138371,
+    "qc_ndcg_at_10": 0.18611897347579887
+  },
+  "repeat_positive_control": {
+    "active_response_rate": 1.0,
+    "actual_minus_random_ndcg_at_10": 0.04558148668994064,
+    "actual_minus_random_query_ci95": [
+      0.028990851402457933,
+      0.0634149200097728
+    ],
+    "direction_accuracy": 0.565276951125676,
+    "direction_accuracy_query_ci95": [
+      0.532491534484573,
+      0.5968946579542332
+    ],
+    "true_minus_null_ndcg_at_10": 0.043371653624491746,
+    "true_minus_null_query_ci95": [
+      0.02210695410182455,
+      0.06456271056583268
+    ],
+    "true_minus_wrong_ndcg_at_10": 0.03587981033688948,
+    "true_minus_wrong_query_ci95": [
+      0.01661733679197754,
+      0.05554565953579879
+    ]
+  },
+  "scope": {
+    "architecture_cause_established": false,
+    "confirmation": false,
+    "dataset": "KuaiSearch Full-source latest-window scout",
+    "independent_from_lite_source_files": true,
+    "learnable_oracle_headroom_established": false,
+    "whole_full_population": false
+  },
+  "strict_nonrepeat": {
+    "active_pair_fraction": 0.9771580778738909,
+    "active_response_rate": 0.9992217898832685,
+    "actual_minus_random_ndcg_at_10": 0.007943629225067677,
+    "actual_minus_random_query_ci95": [
+      0.0010272956279352638,
+      0.015249013463275925
+    ],
+    "direction_accuracy": 0.5229676404863489,
+    "direction_accuracy_query_ci95": [
+      0.4975025360568345,
+      0.5472167817934378
+    ],
+    "direction_conversion_efficiency": 0.0357920170932704,
+    "direction_conversion_efficiency_query_ci95": [
+      0.004569886822935843,
+      0.06747098217874517
+    ],
+    "label_aligned_minus_actual_ndcg_at_10": 0.21399494451799256,
+    "label_aligned_minus_actual_query_ci95": [
+      0.1953672280493418,
+      0.23271590036791726
+    ],
+    "true_minus_null_ndcg_at_10": 0.0044008206668323425,
+    "true_minus_null_query_ci95": [
+      -0.0037758514281630243,
+      0.012642772959629687
+    ],
+    "true_minus_wrong_ndcg_at_10": 0.0027300041627438343,
+    "true_minus_wrong_query_ci95": [
+      -0.003947863978098377,
+      0.009850191160097324
+    ]
+  },
+  "strict_same_query_wrong_user": {
+    "direction_accuracy": 0.5443282572071353,
+    "direction_accuracy_query_ci95": [
+      0.4818328871101769,
+      0.6098005956156909
+    ],
+    "requests": 201,
+    "true_minus_null_ndcg_at_10": -0.00320372216567479,
+    "true_minus_null_query_ci95": [
+      -0.02197613819456344,
+      0.01544538804180768
+    ],
+    "true_minus_wrong_ndcg_at_10": -0.0011757764211452648,
+    "true_minus_wrong_query_ci95": [
+      -0.016422669752794553,
+      0.014858683758111252
+    ]
+  },
+  "source_artifacts": [
+    "reports/history_response_gap_kuaisearch_full_bounded_source_audit.json",
+    "reports/history_response_gap_kuaisearch_full_scout10k.json",
+    "reports/history_response_gap_full_scout_v2m3_pairwise_h6_surfaces.json",
+    "reports/history_response_gap_full_scout_v2m3_pairwise_h6_direction_intervention_surfaces.json",
+    "reports/history_response_gap_full_scout_v2m3_pairwise_h6_donor_surfaces.json"
+  ],
+  "status": "scoped_motivation_strengthened_pending_cross_dataset_replication",
+  "schema_version": 1
+}

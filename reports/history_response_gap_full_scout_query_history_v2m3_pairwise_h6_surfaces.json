@@ -1,0 +1,922 @@
+{
+  "analysis_type": "history_response_surface_summary",
+  "bootstrap_samples": 2000,
+  "ci_metrics": [
+    "common_mode_ratio",
+    "mean_pairwise_directional_accuracy",
+    "mean_signed_delta_alignment",
+    "mean_true_minus_null_ndcg@10",
+    "mean_true_minus_wrong_ndcg@10"
+  ],
+  "empty_surfaces": [],
+  "per_request_path": "runs/20260714_kuaisearch_full_scout_query_history_v2m3_pairwise_history_response/per_request_history_response.jsonl",
+  "per_request_sha256": "ae20d1a500813089f10535876efc5163457ceb662bb29cadc51ddcb08bec2f22",
+  "records_path": "data/standardized/kuaisearch/full_scout10k_query_history_v1/records_dev.jsonl",
+  "records_sha256": "5c5196eea0d0780652fc69cb87ebfe05ac3fe6ede3c9063aceee53458bb27ec8",
+  "seed": 20260714,
+  "surfaces": {
+    "all": {
+      "active_response_harm_rate": 0.30057142857142854,
+      "active_response_precision": 0.3554285714285714,
+      "active_response_rate": 0.9065934065934066,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.7659050539055102,
+            0.8086153645288698
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5015237219609763,
+            0.5421075642371306
+          ],
+          "mean_signed_delta_alignment": [
+            0.0037864235152918987,
+            0.07332043620883005
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0038538874855763893,
+            0.01855996807306594
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.004069906012087738,
+            0.018527761500783793
+          ],
+          "num_clusters": 1679
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.7671958141439458,
+            0.8084272004780173
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5029329018691282,
+            0.541622028020792
+          ],
+          "mean_signed_delta_alignment": [
+            0.005959159389833662,
+            0.0724826474030283
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0036915402203834846,
+            0.01841652521693295
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0036891246388970067,
+            0.01791339782980592
+          ],
+          "num_clusters": 2002
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.760898732177879,
+            0.8119684693279633
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5020591316428614,
+            0.5430413965965193
+          ],
+          "mean_signed_delta_alignment": [
+            0.0039555987572304635,
+            0.07457998648519489
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0036185379629784845,
+            0.01893726478671199
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0034305362311902545,
+            0.018860188856131003
+          ],
+          "num_clusters": 854
+        }
+      },
+      "common_mode_ratio": 0.7879034190702581,
+      "direction_eligible_rate": 0.4945054945054945,
+      "mean_active_pair_fraction": 0.8803125804292018,
+      "mean_direction_pair_coverage": 0.8582726291272633,
+      "mean_pairwise_directional_accuracy": 0.5219296789511741,
+      "mean_signed_delta_alignment": 0.03838229688942413,
+      "mean_true_minus_null_ndcg@10": 0.011142680635770107,
+      "mean_true_minus_wrong_ndcg@10": 0.01098454840295502,
+      "mean_true_ndcg@10": 0.19915639993608272,
+      "mean_true_over_wrong_signed_alignment": 0.027953922443395826,
+      "num_active_direction_requests": 875,
+      "num_active_requests": 1815,
+      "num_direction_eligible_requests": 990,
+      "num_requests": 2002,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/all.txt",
+      "surface_request_ids_sha256": "dbd42d0507a06638fa43c1ef7c898aea23b61762f6717e9fe6a654c86972eb61"
+    },
+    "history_present": {
+      "active_response_harm_rate": 0.30057142857142854,
+      "active_response_precision": 0.3554285714285714,
+      "active_response_rate": 0.9978009895547004,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.7662415984633325,
+            0.8082340324439601
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5026127302821009,
+            0.5418531851387665
+          ],
+          "mean_signed_delta_alignment": [
+            0.005794765838115211,
+            0.08201626026282613
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.004033354389719961,
+            0.020525692944208265
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.004330032500177708,
+            0.01987710313545084
+          ],
+          "num_clusters": 1534
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.7667185038479775,
+            0.8091624125401967
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5031472243464703,
+            0.5417776119509005
+          ],
+          "mean_signed_delta_alignment": [
+            0.005996365740315271,
+            0.08178682600953067
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0043839025226908085,
+            0.020540097138300767
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.004579782707392256,
+            0.01964608265437702
+          ],
+          "num_clusters": 1819
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.7606501201513267,
+            0.811528176956146
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5019959481304848,
+            0.542577977632675
+          ],
+          "mean_signed_delta_alignment": [
+            0.004332831439825153,
+            0.08458586964748015
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.004198543721186002,
+            0.020845329371765604
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0038435230889994386,
+            0.020362591523783568
+          ],
+          "num_clusters": 785
+        }
+      },
+      "common_mode_ratio": 0.7879034190702581,
+      "direction_eligible_rate": 0.48158328752061574,
+      "mean_active_pair_fraction": 0.9688761880259824,
+      "mean_direction_pair_coverage": 0.9699656425068387,
+      "mean_pairwise_directional_accuracy": 0.5219296789511741,
+      "mean_signed_delta_alignment": 0.04337725333393823,
+      "mean_true_minus_null_ndcg@10": 0.012263686988901458,
+      "mean_true_minus_wrong_ndcg@10": 0.012089645905836145,
+      "mean_true_ndcg@10": 0.19531650242276508,
+      "mean_true_over_wrong_signed_alignment": 0.03159176166548158,
+      "num_active_direction_requests": 875,
+      "num_active_requests": 1815,
+      "num_direction_eligible_requests": 876,
+      "num_requests": 1819,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/history_present.txt",
+      "surface_request_ids_sha256": "78453cbcdb32c431484864a7e6128573cbcc2abda48334b7246d2af15bdb423c"
+    },
+    "no_history": {
+      "active_response_harm_rate": null,
+      "active_response_precision": null,
+      "active_response_rate": 0.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": null,
+          "mean_pairwise_directional_accuracy": null,
+          "mean_signed_delta_alignment": [
+            0.0,
+            0.0
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0,
+            0.0
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0,
+            0.0
+          ],
+          "num_clusters": 167
+        },
+        "request": {
+          "common_mode_ratio": null,
+          "mean_pairwise_directional_accuracy": null,
+          "mean_signed_delta_alignment": [
+            0.0,
+            0.0
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0,
+            0.0
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0,
+            0.0
+          ],
+          "num_clusters": 183
+        },
+        "user_cluster": {
+          "common_mode_ratio": null,
+          "mean_pairwise_directional_accuracy": null,
+          "mean_signed_delta_alignment": [
+            0.0,
+            0.0
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0,
+            0.0
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0,
+            0.0
+          ],
+          "num_clusters": 118
+        }
+      },
+      "common_mode_ratio": null,
+      "direction_eligible_rate": 0.6229508196721312,
+      "mean_active_pair_fraction": 0.0,
+      "mean_direction_pair_coverage": 0.0,
+      "mean_pairwise_directional_accuracy": null,
+      "mean_signed_delta_alignment": 0.0,
+      "mean_true_minus_null_ndcg@10": 0.0,
+      "mean_true_minus_wrong_ndcg@10": 0.0,
+      "mean_true_ndcg@10": 0.23732456155752962,
+      "mean_true_over_wrong_signed_alignment": 0.0,
+      "num_active_direction_requests": 0,
+      "num_active_requests": 0,
+      "num_direction_eligible_requests": 114,
+      "num_requests": 183,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/no_history.txt",
+      "surface_request_ids_sha256": "9addf098306d871f88c7103d5ddabf26bb0e4cb183abf10ae034cc8dde9a97d6"
+    },
+    "repeat": {
+      "active_response_harm_rate": 0.308411214953271,
+      "active_response_precision": 0.4174454828660436,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.8000276406775616,
+            0.8467487093719589
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5366207713063613,
+            0.6036434395688565
+          ],
+          "mean_signed_delta_alignment": [
+            0.07219437523158749,
+            0.20511001275415822
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009574620787108749,
+            0.049487069130011246
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.011229236281864289,
+            0.05265210696860604
+          ],
+          "num_clusters": 452
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.8017553080564405,
+            0.84656963319333
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5378119176807756,
+            0.6001224873021647
+          ],
+          "mean_signed_delta_alignment": [
+            0.07445751361544438,
+            0.1983182944524212
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009151962988800486,
+            0.048559870757383154
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.011814236690411907,
+            0.052415218032031266
+          ],
+          "num_clusters": 534
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.7963235585366545,
+            0.8500663948127524
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5319922558622612,
+            0.6026851779101697
+          ],
+          "mean_signed_delta_alignment": [
+            0.06206275103503861,
+            0.20175157593856996
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009078993701675284,
+            0.050362649472312254
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.010197962878944635,
+            0.05272360165062917
+          ],
+          "num_clusters": 296
+        }
+      },
+      "common_mode_ratio": 0.8249185567565357,
+      "direction_eligible_rate": 0.601123595505618,
+      "mean_active_pair_fraction": 0.9801970836119989,
+      "mean_direction_pair_coverage": 0.982765649642071,
+      "mean_pairwise_directional_accuracy": 0.5684799115611523,
+      "mean_signed_delta_alignment": 0.13474688780447458,
+      "mean_true_minus_null_ndcg@10": 0.029029782340431798,
+      "mean_true_minus_wrong_ndcg@10": 0.03153754679142173,
+      "mean_true_ndcg@10": 0.23561659094931603,
+      "mean_true_over_wrong_signed_alignment": 0.11161416028796467,
+      "num_active_direction_requests": 321,
+      "num_active_requests": 534,
+      "num_direction_eligible_requests": 321,
+      "num_requests": 534,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/repeat.txt",
+      "surface_request_ids_sha256": "3e25c442bd8f10eef8b483ca683f195d17084986552a38d7099a6c12005e1186"
+    },
+    "repeated_query": {
+      "active_response_harm_rate": 0.3105022831050228,
+      "active_response_precision": 0.4200913242009132,
+      "active_response_rate": 0.9109461966604824,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.8077393588152297,
+            0.8738712640914557
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5310882072360416,
+            0.607367022464647
+          ],
+          "mean_signed_delta_alignment": [
+            0.0568604208464422,
+            0.19483799164580215
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009049413674066325,
+            0.04080522548360773
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.007106438915900949,
+            0.037697455073622654
+          ],
+          "num_clusters": 216
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.8132004874928174,
+            0.8705786797783774
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5307798929251655,
+            0.610113548362108
+          ],
+          "mean_signed_delta_alignment": [
+            0.055228034001301295,
+            0.1989731646582961
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009623335721965833,
+            0.03953613349349559
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.006723653395959139,
+            0.03635021411569531
+          ],
+          "num_clusters": 539
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.8070188692841135,
+            0.8737566361543273
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5286836056479566,
+            0.610990244194094
+          ],
+          "mean_signed_delta_alignment": [
+            0.05270723882554203,
+            0.2003720514654741
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.0077036974583663395,
+            0.041608087733397865
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0060535027217612,
+            0.03793381518417952
+          ],
+          "num_clusters": 230
+        }
+      },
+      "common_mode_ratio": 0.8423608756937639,
+      "direction_eligible_rate": 0.4452690166975881,
+      "mean_active_pair_fraction": 0.8849857508721619,
+      "mean_direction_pair_coverage": 0.8880865018260811,
+      "mean_pairwise_directional_accuracy": 0.5697927201992806,
+      "mean_signed_delta_alignment": 0.12572781122652976,
+      "mean_true_minus_null_ndcg@10": 0.024211454651962595,
+      "mean_true_minus_wrong_ndcg@10": 0.02166798787810019,
+      "mean_true_ndcg@10": 0.19689789271110908,
+      "mean_true_over_wrong_signed_alignment": 0.12291834201367365,
+      "num_active_direction_requests": 219,
+      "num_active_requests": 491,
+      "num_direction_eligible_requests": 240,
+      "num_requests": 539,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/repeated_query.txt",
+      "surface_request_ids_sha256": "b96a33fad6c52bab80f50ca03a59aa3cccdd085b80b634d89f11e98f7859aa57"
+    },
+    "repeated_query_history_present": {
+      "active_response_harm_rate": 0.3105022831050228,
+      "active_response_precision": 0.4200913242009132,
+      "active_response_rate": 0.9939271255060729,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.8099670623112266,
+            0.8726001630245762
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.529055275033158,
+            0.6070159452929728
+          ],
+          "mean_signed_delta_alignment": [
+            0.05782147285239399,
+            0.21024741557541912
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.008364387875413576,
+            0.045231530749765506
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.006817947388204566,
+            0.041519124154261615
+          ],
+          "num_clusters": 209
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.8116785941592811,
+            0.8696626472441213
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5309956484721445,
+            0.6086219256513739
+          ],
+          "mean_signed_delta_alignment": [
+            0.06087431956552918,
+            0.21336427733447838
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.010091683218330144,
+            0.043044467097135684
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0075359931935375804,
+            0.039603070447069795
+          ],
+          "num_clusters": 494
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.8088652719440589,
+            0.8732798662783182
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5306990139198999,
+            0.6103707110444381
+          ],
+          "mean_signed_delta_alignment": [
+            0.06191729959306205,
+            0.2160508331974009
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.008747847779169862,
+            0.04608595252627251
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.006709407338611334,
+            0.04180615893400066
+          ],
+          "num_clusters": 214
+        }
+      },
+      "common_mode_ratio": 0.8423608756937639,
+      "direction_eligible_rate": 0.44534412955465585,
+      "mean_active_pair_fraction": 0.9656018617815694,
+      "mean_direction_pair_coverage": 0.9688216383557249,
+      "mean_pairwise_directional_accuracy": 0.5697927201992806,
+      "mean_signed_delta_alignment": 0.13715761224712336,
+      "mean_true_minus_null_ndcg@10": 0.026416951533214248,
+      "mean_true_minus_wrong_ndcg@10": 0.023641792441894738,
+      "mean_true_ndcg@10": 0.196553556784576,
+      "mean_true_over_wrong_signed_alignment": 0.13409273674218944,
+      "num_active_direction_requests": 219,
+      "num_active_requests": 491,
+      "num_direction_eligible_requests": 220,
+      "num_requests": 494,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/repeated_query_history_present.txt",
+      "surface_request_ids_sha256": "9ef58c7c56f1ff7c4d1601e94f0bc43b3dca093721fab30eda919924d7c38399"
+    },
+    "repeated_query_repeat": {
+      "active_response_harm_rate": 0.31932773109243695,
+      "active_response_precision": 0.44537815126050423,
+      "active_response_rate": 1.0,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.8217862215049563,
+            0.8874137443198589
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5386660534940877,
+            0.6443809968283721
+          ],
+          "mean_signed_delta_alignment": [
+            0.07235202116691307,
+            0.28141180826688367
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.010945548013514104,
+            0.07132106055804585
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.007945122831941938,
+            0.07252157138698956
+          ],
+          "num_clusters": 128
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.8265093886233296,
+            0.8871499799566644
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5363794726215171,
+            0.641806239821869
+          ],
+          "mean_signed_delta_alignment": [
+            0.06876188829838331,
+            0.27650725761744294
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009283564176989919,
+            0.07182904822317858
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.007951963379242779,
+            0.07281827265155649
+          ],
+          "num_clusters": 210
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.8217573028645474,
+            0.8870411553388984
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.5350404200899294,
+            0.6484559925463375
+          ],
+          "mean_signed_delta_alignment": [
+            0.0659786576503713,
+            0.28871625299402875
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            0.009571355553454444,
+            0.07145277116976968
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            0.0048562646038897185,
+            0.07351805815089231
+          ],
+          "num_clusters": 109
+        }
+      },
+      "common_mode_ratio": 0.8575948423280857,
+      "direction_eligible_rate": 0.5666666666666667,
+      "mean_active_pair_fraction": 0.9813777903320016,
+      "mean_direction_pair_coverage": 0.977882606645447,
+      "mean_pairwise_directional_accuracy": 0.5893302595457063,
+      "mean_signed_delta_alignment": 0.1730271472748673,
+      "mean_true_minus_null_ndcg@10": 0.039807239275523154,
+      "mean_true_minus_wrong_ndcg@10": 0.038780489017418866,
+      "mean_true_ndcg@10": 0.24747495429149569,
+      "mean_true_over_wrong_signed_alignment": 0.1733594259898142,
+      "num_active_direction_requests": 119,
+      "num_active_requests": 210,
+      "num_direction_eligible_requests": 119,
+      "num_requests": 210,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/repeated_query_repeat.txt",
+      "surface_request_ids_sha256": "eb6243e4d113a04cd11d227d1904bd7cede4099c6986744d35e12ed1a7789af6"
+    },
+    "repeated_query_strict_nonrepeat": {
+      "active_response_harm_rate": 0.3,
+      "active_response_precision": 0.39,
+      "active_response_rate": 0.9894366197183099,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.6759902643472875,
+            0.7881262743369286
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.4920095720476604,
+            0.6087882101591182
+          ],
+          "mean_signed_delta_alignment": [
+            -0.011914282861619887,
+            0.21140052805504536
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.0014904734801591255,
+            0.03501789476330159
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.002764591384435081,
+            0.028976653112924796
+          ],
+          "num_clusters": 166
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.6884913547950811,
+            0.7821521071745957
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.48440788789058176,
+            0.6065040235404837
+          ],
+          "mean_signed_delta_alignment": [
+            -0.023994048667600135,
+            0.20862805310068716
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            2.2162641792866175e-05,
+            0.03424881859229264
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.0012160230971252322,
+            0.027688755154780392
+          ],
+          "num_clusters": 284
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.6771571974855801,
+            0.78937836692109
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.48821570089246735,
+            0.6033714054894114
+          ],
+          "mean_signed_delta_alignment": [
+            -0.017945120503382032,
+            0.20698552351742125
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.0023605487532365414,
+            0.03362785297016627
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.0017810682102683735,
+            0.02879378410308626
+          ],
+          "num_clusters": 172
+        }
+      },
+      "common_mode_ratio": 0.740262001852305,
+      "direction_eligible_rate": 0.35563380281690143,
+      "mean_active_pair_fraction": 0.9539365625013203,
+      "mean_direction_pair_coverage": 0.958145844034171,
+      "mean_pairwise_directional_accuracy": 0.546543048377034,
+      "mean_signed_delta_alignment": 0.09489548681839541,
+      "mean_true_minus_null_ndcg@10": 0.01651568242798583,
+      "mean_true_minus_wrong_ndcg@10": 0.012447685819148025,
+      "mean_true_ndcg@10": 0.15890041074072692,
+      "mean_true_over_wrong_signed_alignment": 0.08782802366825528,
+      "num_active_direction_requests": 100,
+      "num_active_requests": 281,
+      "num_direction_eligible_requests": 101,
+      "num_requests": 284,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/repeated_query_strict_nonrepeat.txt",
+      "surface_request_ids_sha256": "9142c5def00c3f97b31b99c13c2ee3fb6d46ecf29bf2dfcafb1800d89bed058b"
+    },
+    "singleton_query": {
+      "active_response_harm_rate": 0.2972560975609756,
+      "active_response_precision": 0.33384146341463417,
+      "active_response_rate": 0.9049897470950102,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.7312579022591639,
+            0.7825557285179634
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.4835555536281839,
+            0.52815016279405
+          ],
+          "mean_signed_delta_alignment": [
+            -0.02883474166629686,
+            0.04835270746079509
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.002609396759989565,
+            0.014278454030651009
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.0005419112230325397,
+            0.014505432049759128
+          ],
+          "num_clusters": 1463
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.7307236203058693,
+            0.7811899588484226
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.484591769842322,
+            0.5298934384304831
+          ],
+          "mean_signed_delta_alignment": [
+            -0.025459206839667795,
+            0.05055588628716444
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.00205284811930996,
+            0.014604653435741109
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.0008666513818977044,
+            0.014826075101958894
+          ],
+          "num_clusters": 1463
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.7246084818504898,
+            0.7855598371442137
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.484861809596866,
+            0.5287175100589468
+          ],
+          "mean_signed_delta_alignment": [
+            -0.02598939891214779,
+            0.04913850269873086
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.0013907253898847974,
+            0.01386675329617431
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.0006473474180456413,
+            0.01508096787127261
+          ],
+          "num_clusters": 769
+        }
+      },
+      "common_mode_ratio": 0.7563227038911564,
+      "direction_eligible_rate": 0.5126452494873548,
+      "mean_active_pair_fraction": 0.8785908860554795,
+      "mean_direction_pair_coverage": 0.8487321898636416,
+      "mean_pairwise_directional_accuracy": 0.5059510112174314,
+      "mean_signed_delta_alignment": 0.010431732301550334,
+      "mean_true_minus_null_ndcg@10": 0.006327869156120243,
+      "mean_true_minus_wrong_ndcg@10": 0.007048544385796275,
+      "mean_true_ndcg@10": 0.1999884815452835,
+      "mean_true_over_wrong_signed_alignment": -0.002434691819093073,
+      "num_active_direction_requests": 656,
+      "num_active_requests": 1324,
+      "num_direction_eligible_requests": 750,
+      "num_requests": 1463,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/singleton_query.txt",
+      "surface_request_ids_sha256": "a98ef52e83c6291fa4b75f9eb776cffebc89ca441446ac9fc430232ab3ee780f"
+    },
+    "strict_nonrepeat": {
+      "active_response_harm_rate": 0.296028880866426,
+      "active_response_precision": 0.3194945848375451,
+      "active_response_rate": 0.9968871595330739,
+      "bootstrap_ci95": {
+        "query_cluster": {
+          "common_mode_ratio": [
+            0.6499437602217751,
+            0.7091874065924881
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.47092344600226965,
+            0.5184407160807865
+          ],
+          "mean_signed_delta_alignment": [
+            -0.055849396732670274,
+            0.03634814688398418
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.0026620220230322796,
+            0.013256640280820898
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.003021974399348402,
+            0.011339529327021704
+          ],
+          "num_clusters": 1167
+        },
+        "request": {
+          "common_mode_ratio": [
+            0.6511251366928973,
+            0.7071383291876792
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.47007084390934695,
+            0.5194329696273404
+          ],
+          "mean_signed_delta_alignment": [
+            -0.05686141936491717,
+            0.03729046706889491
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.00233860507287614,
+            0.01321806535335492
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.003067963341540409,
+            0.01104267022711655
+          ],
+          "num_clusters": 1285
+        },
+        "user_cluster": {
+          "common_mode_ratio": [
+            0.6476420027305823,
+            0.7103616054972769
+          ],
+          "mean_pairwise_directional_accuracy": [
+            0.469906760281695,
+            0.5197179036497387
+          ],
+          "mean_signed_delta_alignment": [
+            -0.05817286844671341,
+            0.03916363848111209
+          ],
+          "mean_true_minus_null_ndcg@10": [
+            -0.0029113983818479976,
+            0.013641051236882168
+          ],
+          "mean_true_minus_wrong_ndcg@10": [
+            -0.003342137802414703,
+            0.011789327912273082
+          ],
+          "num_clusters": 681
+        }
+      },
+      "common_mode_ratio": 0.6819843834788043,
+      "direction_eligible_rate": 0.43190661478599224,
+      "mean_active_pair_fraction": 0.9641716290820659,
+      "mean_direction_pair_coverage": 0.9625623951367313,
+      "mean_pairwise_directional_accuracy": 0.494957432258389,
+      "mean_signed_delta_alignment": -0.009468967684155774,
+      "mean_true_minus_null_ndcg@10": 0.0052962979478764,
+      "mean_true_minus_wrong_ndcg@10": 0.0040077944872348205,
+      "mean_true_ndcg@10": 0.17856922828021393,
+      "mean_true_over_wrong_signed_alignment": -0.01469146348373836,
+      "num_active_direction_requests": 554,
+      "num_active_requests": 1281,
+      "num_direction_eligible_requests": 555,
+      "num_requests": 1285,
+      "surface_request_ids_path": "data/interim/kuaisearch/full_scout10k_query_history_v1/request_surfaces_dev/strict_nonrepeat.txt",
+      "surface_request_ids_sha256": "908b63b856ef8c355bd5247199cd059014f06eb752918844e4b872adf60e20e3"
+    }
+  },
+  "utility_epsilon": 0.0
+}

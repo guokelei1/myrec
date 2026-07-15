@@ -1,0 +1,23 @@
+schema_version: 1
+dataset_version: lite_scout10k_v1
+evidence_mode: exploratory
+split: dev
+methods:
+  source_order:
+    fields: [candidate_source_position]
+    tuning: none
+  popularity:
+    fields: [train_candidate_click, candidate_item_id]
+    tuning: none
+  recent_behavior:
+    fields: [history_item_id, history_category, history_event, candidate_item_id, candidate_category]
+    tuning: none
+  bm25_request:
+    fields: [query, candidate_text]
+    tokenizer: cjk_2_3gram
+    idf_scope: request
+    tuning: none
+claim_boundary: >-
+  Mechanical evaluator and data-difficulty scouts only. These methods are not
+  adequate E-QC/E-FULL families and their outcomes cannot support a direction-gap
+  or architecture claim.

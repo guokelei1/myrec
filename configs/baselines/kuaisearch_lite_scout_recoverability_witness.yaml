@@ -1,0 +1,26 @@
+schema_version: 1
+dataset_version: lite_scout10k_v1
+role: train_only_strict_nonrepeat_recoverability_diagnostic
+eligible_as_baseline_or_proposed_system: false
+embedding_model: BAAI/bge-small-zh-v1.5
+embedding_mode:
+  query: retrieval_instruction_plus_query
+  candidate_and_history: document_text
+  normalized: true
+learner: sklearn.HistGradientBoostingClassifier
+training_surface: strict_nonrepeat_train_requests_with_click
+objective: request_balanced_candidate_click_classification
+nested_models: [base_only, base_plus_history]
+history_budget: 6
+max_iter: 200
+learning_rate: 0.05
+max_leaf_nodes: 31
+min_samples_leaf: 20
+l2_regularization: 1.0
+seed: 20260714
+dev_conditions: [base, true, null, wrong]
+success_interpretation: >-
+  True history improving over base/null and matched wrong history on dev
+  strict-nonrepeat is evidence that the Lite information object contains
+  train-recoverable personalized direction. Failure is inconclusive because the
+  witness is finite and does not constrain KuaiSearch Full.

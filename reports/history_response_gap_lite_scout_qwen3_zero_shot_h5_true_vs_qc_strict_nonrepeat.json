@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    -0.0056886273747840995,
+    0.009177244168254257
+  ],
+  "delta": 0.0016106460398757035,
+  "metric": "ndcg@10",
+  "num_requests": 1112,
+  "request_ids_path": "artifacts/history_response_gap/lite_scout10k_v1/surfaces/strict_nonrepeat.txt",
+  "samples": 10000,
+  "seed": 20260714,
+  "significant_a_gt_b": false
+}

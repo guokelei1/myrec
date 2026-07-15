@@ -1,0 +1,25 @@
+{
+  "backbone_gradient_tensor_count": 0,
+  "backbone_parameter_count": 595779584,
+  "candidate_identity_equal_across_conditions": true,
+  "decision": "pass",
+  "feature_boundary": "deterministic_hash_cf_mechanics_only",
+  "finite_loss": true,
+  "finite_scores": true,
+  "model": "models/huggingface/Qwen3-Reranker-0.6B",
+  "package_versions": {
+    "torch": "2.12.1+cu130",
+    "transformers": "5.13.0"
+  },
+  "qrels_read": false,
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "score_shape": [
+    2,
+    2
+  ],
+  "standardized_dir": "data/standardized/kuaisearch/lite_scout10k_v1",
+  "trainable_gradient_tensor_count": 26,
+  "true_null_user_difference": true,
+  "true_wrong_user_difference": true
+}

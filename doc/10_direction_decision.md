@@ -1,23 +1,39 @@
 # Current direction decision
 
-Status: active scope note, 2026-07-14.
+Status: active scope note, 2026-07-15.
 
-The project remains in PPS, but the scientific question has changed. The
-active question is the bounded hypothesis in doc 34:
+The project remains Query-conditioned Personalized Product Ranking and
+LLM4Rec. The universal direction-gap hypothesis in doc 34 was useful but did
+not survive unchanged: Amazon-C4 has strongly correct history direction and
+JDsearch strict-nonrepeat direction is reliably above chance.
 
-> ordinary full-token rerankers can respond to history while failing to turn
-> that response into a stable, query-conditioned, candidate-relative ranking
-> direction on an eligible search population.
+The active motivation is the controlled-history-composition problem in doc 35:
 
-This is unproven. It must be tested and may be falsified.
+> ordinary full-token LLM4Rec rankers can read history, but do not reliably
+> preserve query-candidate base capability while adding a high-efficiency,
+> candidate-relative history update. Positive true-over-null utility can repay
+> a base deficit created by joint history training, while recurrence masks the
+> problem overall.
 
-## Tracks
+## Evidence tracks
 
-- **Main:** KuaiSearch Full, if source/collision/power audit admits it.
-- **Replication:** KuaiSAR Full if its search slate and temporal history can
-  be reconstructed; otherwise the pre-registered JDsearch fallback.
-- **Non-binding stress test:** Amazon-C4 plus its history companion. It cannot
-  carry the main natural-search claim.
+- **Main natural-language source:** KuaiSearch Full. Its strict-nonrepeat
+  surface localizes the direction-allocation failure; Lite supplies
+  cross-family and cross-objective exploratory evidence only.
+- **Independent functional replication:** JDsearch v3. Its label-free hash
+  candidate order and anonymized terms support ranking/accounting evidence,
+  not a pretrained-semantic claim.
+- **English semantic positive boundary:** Amazon-C4 plus Reviews-2023 history.
+  Its constructed target-revealing query falsifies universal direction failure
+  while exposing the base/history tradeoff under a longer history budget.
 
-No C81, C80 rescue, old R0 round, or new architecture implementation is part
-of this decision.
+These are exploratory development populations, not independent confirmation.
+KuaiSAR is no longer required for the completed motivation decision; it may be
+considered later only under a new pre-outcome confirmation protocol.
+
+## Authorization
+
+The next authorized step is a frozen Failure Card testing standard repairs,
+train-only direction recoverability, independent-family replication, and
+confirmation. No C81, C80 rescue, old R0 round, proposed architecture source,
+or architecture GPU training is authorized by this decision.

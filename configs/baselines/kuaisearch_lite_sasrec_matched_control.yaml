@@ -1,0 +1,51 @@
+schema_version: 1
+config_id: kuaisearch_lite_sasrec_matched_control_v1
+frozen_at: "2026-07-15"
+purpose: matched_control_for_hstu_and_teacher_for_llm_srec
+scientific_evidence: exploratory
+confirmation_authorized: false
+test_authorized: false
+
+dataset:
+  standardized_dir: data/standardized/kuaisearch/lite_scout10k_v1
+  split_train: train
+  split_evaluate: dev
+  history_assignments_dir: data/interim/kuaisearch/lite_scout10k_v1/history_assignments_train_donor_v2
+
+content_features:
+  store: artifacts/representative_text_features/kuaisearch_lite_bge_small_zh_cls_l128
+  contract: frozen_transformer_cls_l2_v1
+  model: BAAI/bge-small-zh-v1.5
+  vectors_sha256: d804fa87e7c1983caaa40a3a16abf0c7bd0670359fdf582f4866586b3a1773e3
+  trainable: false
+
+architecture:
+  name: sasrec
+  source: baselines/hstu
+  upstream_commit: 6135bc30398f97e5786674192558d91f2ef2fa90
+  adaptation: official_same_tree_sasrec_core_plus_shared_pps_adapter
+  embedding_dim: 128
+  num_blocks: 2
+  num_heads: 4
+  dropout_rate: 0.1
+  history_budget: 8
+  scorer: normalized_dot_product
+
+matched_variants:
+  qc:
+    input_mode: qc
+  full:
+    input_mode: full
+    inference_conditions: [true, null, wrong]
+
+training:
+  objective: multi_positive_listwise_softmax
+  batch_size: 16
+  epochs: 5
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  max_grad_norm: 1.0
+  seed: 20260715
+  labels: qrels_train_only
+  dev_labels_visible_to_training: false
+

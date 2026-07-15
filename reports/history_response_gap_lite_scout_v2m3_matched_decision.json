@@ -1,0 +1,74 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "lite_scout10k_v1",
+  "decision": "repeat_only_pattern_replicated_but_architecture_entry_not_authorized",
+  "evidence_mode": "exploratory_lite_only",
+  "bundle": "experiments/history_response_gap/lite_v2m3_h6_counterfactual_bundle.yaml",
+  "integrity": {
+    "candidate_rows_aligned": true,
+    "no_history_candidate_rows": 8649,
+    "no_history_cross_condition_score_mismatches": 0,
+    "train_and_dev_token_overflow_at_history_budget_6": 0
+  },
+  "base_adequacy": {
+    "qc_ndcg@10": 0.19342247397869497,
+    "full_null_ndcg@10": 0.19077501054325047,
+    "full_null_minus_qc": {
+      "delta_ndcg@10": -0.002647463435444494,
+      "ci95": [-0.010211353947437723, 0.004898270624941793]
+    },
+    "adequate_family_confirmed": false,
+    "interpretation": "Matched FULL-null is statistically comparable to the selected QC, but the selected QC itself is only comparable to BM25."
+  },
+  "overall": {
+    "full_true_ndcg@10": 0.20293032169325997,
+    "full_null_ndcg@10": 0.19077501054325047,
+    "mean_true_minus_null_ndcg@10": 0.012155311150009495,
+    "query_cluster_ci95_true_minus_null_ndcg@10": [0.0046473235162968075, 0.019777794222846288],
+    "common_mode_ratio": 0.8166570568859641,
+    "mean_pairwise_directional_accuracy": 0.5191404965529808,
+    "query_cluster_ci95_pairwise_directional_accuracy": [0.49841943654150217, 0.5407571674347459]
+  },
+  "repeat": {
+    "requests": 515,
+    "mean_true_minus_null_ndcg@10": 0.04143026155129779,
+    "query_cluster_ci95_true_minus_null_ndcg@10": [0.01889058994675139, 0.06235057028990242],
+    "mean_pairwise_directional_accuracy": 0.5710805302840003,
+    "full_true_minus_qc_ndcg@10": 0.04979286450832851,
+    "full_true_minus_qc_ci95": [0.028451816450235604, 0.07141941372762743]
+  },
+  "strict_nonrepeat": {
+    "requests": 1112,
+    "active_response_rate": 0.9973021582733813,
+    "common_mode_ratio": 0.7800375898200895,
+    "mean_pairwise_directional_accuracy": 0.48526191488069015,
+    "query_cluster_ci95_pairwise_directional_accuracy": [0.45982308309651215, 0.511275112778047],
+    "mean_signed_delta_alignment": -0.029362097215056032,
+    "mean_true_minus_null_ndcg@10": 0.0026744942455940884,
+    "query_cluster_ci95_true_minus_null_ndcg@10": [-0.0054848921182514415, 0.010912654715953044],
+    "full_true_minus_qc_ndcg@10": -0.005056559789606048,
+    "full_true_minus_qc_ci95": [-0.015587018871695635, 0.005553285870609109]
+  },
+  "same_query_wrong_user_strict_nonrepeat": {
+    "requests": 228,
+    "mean_pairwise_directional_accuracy": 0.49507075867681744,
+    "mean_true_minus_wrong_ndcg@10": 0.011781087106801168,
+    "query_cluster_ci95_true_minus_wrong_ndcg@10": [-0.004954816925885438, 0.02857686399990538],
+    "interpretation": "The point estimate favors the true user, but query-cluster uncertainty does not establish user-specific nonrepeat utility."
+  },
+  "claim_status": {
+    "model_responds_to_history": "supported_on_lite",
+    "overall_history_utility": "supported_on_lite",
+    "strict_nonrepeat_direction_gap": "replicated_exploratory_pattern",
+    "query_conditioned_user_specific_gap": "suggestive_not_established",
+    "shared_transformer_blind_spot": "not_tested",
+    "recoverable_personalized_signal": "not_tested",
+    "ordinary_objective_exhausted": "not_tested",
+    "architecture_entry": "closed"
+  },
+  "next_actions": [
+    "Build a train-only strict-nonrepeat recoverable-direction witness before spending on another ranker family.",
+    "If the witness succeeds, compare matched pointwise or listwise ordinary objectives against the pairwise recipe.",
+    "Use Full and a second dataset only after the Lite mechanism survives recoverability and ordinary-objective controls."
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-15",
+  "scope": "KuaiSearch Lite exploratory development",
+  "decision": "supportive_cross_paradigm_pattern_but_sequence_family_adequacy_not_passed",
+  "supported": "On KuaiSearch Lite, task-adapted HSTU, matched SASRec, and the independently implemented LLM-SRec mechanism all produce broad candidate-relative history response while strict-nonrepeat response direction remains statistically compatible with chance and ranking utility remains unstable. This is consistent with the ordinary Qwen and BGE full-token observation.",
+  "not_supported": [
+    "HSTU, SASRec, or LLM-SRec is already an adequate paper-level baseline on query-conditioned product search.",
+    "The shared pattern is a universal Transformer limitation.",
+    "LLM-SRec has been numerically reproduced under its original Amazon next-item setting.",
+    "A new architecture is authorized by these Lite results."
+  ],
+  "reference_controls": {
+    "bm25_ndcg@10": 0.1964485743824624,
+    "qwen_strict_nonrepeat": {
+      "active_response_rate": 0.9964028776978417,
+      "direction_accuracy": 0.5049835659089696,
+      "true_minus_null_ndcg@10": 0.0007461370149703794
+    },
+    "bge_strict_nonrepeat": {
+      "active_response_rate": 0.9955035971223022,
+      "direction_accuracy": 0.4986042582024822,
+      "true_minus_null_ndcg@10": 0.0011352989130866571
+    }
+  },
+  "representative_sequence_results": {
+    "hstu": {
+      "boundary": "official HSTU core at 6135bc30398f97e5786674192558d91f2ef2fa90 plus shared PPS adapter",
+      "qc_ndcg@10": 0.18457144732450093,
+      "full_true_ndcg@10": 0.1837272716197992,
+      "full_null_ndcg@10": 0.18413467792795327,
+      "full_wrong_ndcg@10": 0.18452259831270137,
+      "history_present_active_response_rate": 0.9956976029502151,
+      "strict_nonrepeat": {
+        "active_response_rate": 0.9946043165467626,
+        "direction_accuracy": 0.4850564907934683,
+        "direction_accuracy_query_ci95": [0.457835111003728, 0.5117403373701342],
+        "true_minus_null_ndcg@10": -0.0029963277587329593,
+        "true_minus_null_query_ci95": [-0.008281157901550621, 0.0015917303174688535]
+      },
+      "adequacy": "provisional_only_qc_below_bm25_and_repeat_utility_not_significant"
+    },
+    "sasrec_matched": {
+      "boundary": "official same-tree SASRec core with the identical PPS adapter and budget",
+      "qc_ndcg@10": 0.1798235919319925,
+      "full_true_ndcg@10": 0.17906015570878853,
+      "full_null_ndcg@10": 0.17940863741661855,
+      "full_wrong_ndcg@10": 0.17915363991897318,
+      "strict_nonrepeat": {
+        "active_response_rate": 0.9973021582733813,
+        "direction_accuracy": 0.4996285665292627,
+        "direction_accuracy_query_ci95": [0.4710758643663561, 0.5294383902482466],
+        "true_minus_null_ndcg@10": -0.0003923826206421515,
+        "true_minus_null_query_ci95": [-0.00313884065691663, 0.0026981406971103242]
+      },
+      "adequacy": "control_only_qc_below_bm25"
+    },
+    "llm_srec": {
+      "boundary": "independent paper-mechanism implementation; frozen Qwen3-Reranker-0.6B plus frozen train-only SASRec teacher; PPS query/fixed-slate adaptation",
+      "full_true_ndcg@10": 0.18340200537706633,
+      "full_null_ndcg@10": 0.18509255608553993,
+      "full_wrong_ndcg@10": 0.18365141782482022,
+      "strict_nonrepeat": {
+        "active_response_rate": 0.9973021582733813,
+        "direction_accuracy": 0.48488158651913604,
+        "direction_accuracy_query_ci95": [0.458042406937624, 0.5102505552457742],
+        "true_minus_null_ndcg@10": 0.000516183023163296,
+        "true_minus_null_query_ci95": [-0.0034454385477129066, 0.004400467849595189]
+      },
+      "adequacy": "mechanism_complete_but_one_epoch_no_independent_qc_and_origin_compatible_amazon_replication_pending"
+    }
+  },
+  "interpretation": {
+    "positive": "The original Lite symptom is not confined to encoder versus decoder full-token serialization: three sequence-oriented implementations also react broadly without reliable strict-nonrepeat direction.",
+    "limitation": "Because the task-adapted HSTU/SASRec query-candidate base is below BM25 and LLM-SRec is not yet normally tuned in its origin-compatible data regime, they cannot currently bind a negative shared-failure claim.",
+    "hstu_vs_sasrec": "The matched SASRec control shows that the first sequence result is not uniquely caused by HSTU's transduction unit; the outer search adaptation, supervision, data, or generic sequence-to-slate interface remains a live cause.",
+    "llm_srec": "One full Lite epoch of explicit sequence distillation does not remove the symptom, but this is a reason to continue adequacy work, not evidence that the published method fails generally."
+  },
+  "next_actions": [
+    "Build a stronger shared query-candidate task adapter or ordinary sequential pretraining recipe so HSTU-QC is at least competitive with the strong base control.",
+    "Run LLM-SRec first on Amazon-C4, its rich-text and source-compatible boundary, with a bounded normal training budget.",
+    "Repeat adequate survivors on a second seed before any representative-family claim.",
+    "Move the adequate recipes to KuaiSearch Full when Full preparation is complete."
+  ],
+  "primary_artifacts": [
+    "reports/history_response_gap_lite_scout_hstu_biencoder_rep_arch_surfaces.json",
+    "reports/history_response_gap_lite_scout_sasrec_rep_arch_surfaces.json",
+    "reports/history_response_gap_lite_scout_llm_srec_rep_arch_surfaces.json",
+    "reports/hstu_official_core_smoke.json",
+    "reports/llm_srec_pps_adapter_lite_smoke.json"
+  ]
+}

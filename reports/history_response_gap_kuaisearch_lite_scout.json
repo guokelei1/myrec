@@ -1,0 +1,162 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "lite_scout10k_v1",
+  "evidence_mode": "exploratory",
+  "generated_at": "2026-07-14T02:42:04.463374+00:00",
+  "history": {
+    "causal_rule": "event_time < request_time",
+    "outside_log_events": "unobserved",
+    "raw_rank_recent_fields_used": false,
+    "source": "same-user recall click/purchase events"
+  },
+  "item_join": {
+    "loaded_item_ids": 177254,
+    "missing_item_examples": [],
+    "missing_item_ids": 0,
+    "needed_item_ids": 177254
+  },
+  "outputs": {
+    "candidate_count": {
+      "count": 10000,
+      "max": 100,
+      "mean": 20.8605,
+      "min": 2
+    },
+    "counts": {
+      "dev_history_present": 1627,
+      "dev_requests": 2000,
+      "dev_strict_nonrepeat": 1112,
+      "dev_with_click": 1044,
+      "dev_with_purchase": 176,
+      "train_history_present": 6366,
+      "train_requests": 8000,
+      "train_strict_nonrepeat": 4512,
+      "train_with_click": 4129,
+      "train_with_purchase": 713
+    },
+    "files": {
+      "candidate_manifest": {
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/candidate_manifest.json",
+        "sha256": "5789261cae32a316300859627c381a0ad434b475eaf23dcc732e0d48d45accea",
+        "size_bytes": 5101032
+      },
+      "qrels_dev": {
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/qrels_dev.jsonl",
+        "sha256": "2c13abd65077a3104b9ce7862016c175f5c1e78993e92c5b8c137453e19b725a",
+        "size_bytes": 236901
+      },
+      "qrels_train": {
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/qrels_train.jsonl",
+        "sha256": "b861b94c0d8daa99629afda62197d80f0cc389a43a854fec0d5ed972423e8307",
+        "size_bytes": 945129
+      },
+      "records_dev": {
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/records_dev.jsonl",
+        "sha256": "c526cb6f6a8b1507ea7554f01b347190fef3dea544d93f671c64cd6ad097b10a",
+        "size_bytes": 12505582
+      },
+      "records_train": {
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/records_train.jsonl",
+        "sha256": "02d26e2d04195b556f6aa074072f1f6e1b7e32b29e48404abc3bd6287e44e935",
+        "size_bytes": 56959503
+      },
+      "request_manifest": {
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/request_manifest.json",
+        "sha256": "a85b0febbfae0ee875d4af348fedfe46adbac1a8b1fd12adc5c564721ecc20ba",
+        "size_bytes": 2796063
+      }
+    },
+    "history_length": {
+      "count": 10000,
+      "max": 20,
+      "mean": 7.7607,
+      "min": 0
+    },
+    "label_isolation": {
+      "dev_labels_path": "data/standardized/kuaisearch/lite_scout10k_v1/qrels_dev.jsonl",
+      "dev_records_label_free": true,
+      "scoring_code_may_read_dev_labels": false
+    },
+    "manifest": {
+      "path": "data/standardized/kuaisearch/lite_scout10k_v1/manifest.json",
+      "sha256_status": "self_reference_not_recorded"
+    },
+    "repeated_query_requests": {
+      "dev": 574,
+      "train": 2657
+    },
+    "structural_audits": {
+      "dev": {
+        "candidate_count": {
+          "max": 100,
+          "mean": 21.428,
+          "min": 2
+        },
+        "history_length": {
+          "max": 20,
+          "mean": 7.5365,
+          "min": 0
+        },
+        "history_present_requests": 1627,
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/records_dev.jsonl",
+        "repeated_query_requests": 574,
+        "request_count": 2000,
+        "sha256": "c526cb6f6a8b1507ea7554f01b347190fef3dea544d93f671c64cd6ad097b10a",
+        "split": "dev",
+        "strict_nonrepeat_requests": 1112,
+        "unique_normalized_queries": 1655
+      },
+      "train": {
+        "candidate_count": {
+          "max": 100,
+          "mean": 20.718625,
+          "min": 2
+        },
+        "history_length": {
+          "max": 20,
+          "mean": 7.81675,
+          "min": 0
+        },
+        "history_present_requests": 6366,
+        "path": "data/standardized/kuaisearch/lite_scout10k_v1/records_train.jsonl",
+        "repeated_query_requests": 2657,
+        "request_count": 8000,
+        "sha256": "02d26e2d04195b556f6aa074072f1f6e1b7e32b29e48404abc3bd6287e44e935",
+        "split": "train",
+        "strict_nonrepeat_requests": 4512,
+        "unique_normalized_queries": 6342
+      }
+    }
+  },
+  "scope_warning": "This is a Lite source-train scout for implementation and dev exploration. It is not an independent confirmation cohort and does not determine what KuaiSearch Full can support.",
+  "selection": {
+    "dev_requests": 2000,
+    "dev_time_index_min": 933016,
+    "eligible_source_requests": 492686,
+    "max_candidate_count": 100,
+    "max_history_len": 20,
+    "max_requests": 10000,
+    "min_candidate_count": 2,
+    "selected_requests": 10000,
+    "session_overlap": 0,
+    "strategy": "latest source-train time window after label-free candidate-size filter",
+    "time_index_max": 936724,
+    "time_index_min": 917463,
+    "time_ties_kept_with_dev": 0,
+    "train_requests": 8000
+  },
+  "source": {
+    "evaluation_source_behavior_fields_accessed": false,
+    "excluded_source_split_counts": {
+      "test": 16541
+    },
+    "included_source_splits": [
+      "train"
+    ],
+    "items_path": "data/raw/kuaisearch/items_lite/train.jsonl",
+    "items_size_bytes": 2789868956,
+    "raw_dir": "data/raw/kuaisearch",
+    "recall_path": "data/raw/kuaisearch/recall_lite/train.jsonl",
+    "recall_sha256": "8949ed6b5cf685bb69067710ac70da12fd7999f66e66bafea4b9d8d78bfefe8a"
+  }
+}

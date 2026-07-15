@@ -1,0 +1,58 @@
+{
+  "donor_pool_requests": 10000,
+  "donor_records_path": "data/standardized/jdsearch/hash_scout10k_v3/records_train.jsonl",
+  "donor_records_sha256": "d8b0e74ca2c544665d8f993064f2420416fbc693bfe53f61d47578ebfc919ac2",
+  "evidence_mode": "exploratory",
+  "files": {
+    "null": {
+      "path": "data/interim/jdsearch/hash_scout10k_v3/history_assignments_dev_v1/null.jsonl",
+      "sha256": "681e8858a7af45b48eee48a69e6b4ad38e48316094a54069099c7fcb28850293"
+    },
+    "true": {
+      "path": "data/interim/jdsearch/hash_scout10k_v3/history_assignments_dev_v1/true.jsonl",
+      "sha256": "684fa309ad5b0212141671db3c25a5dffda5beb15270084e9c5aa0a0c862fad2"
+    },
+    "wrong": {
+      "path": "data/interim/jdsearch/hash_scout10k_v3/history_assignments_dev_v1/wrong.jsonl",
+      "sha256": "dda6a29b01d9f10a77237a601a7b718b14101b56defc5f79725999725a7627a5"
+    }
+  },
+  "history_not_strictly_before_target_violations": 0,
+  "match_counts": {
+    "exact_query_other_user": 273,
+    "global_other_user": 1727
+  },
+  "matched_history_length_absolute_difference": {
+    "count": 2000,
+    "max": 49,
+    "mean": 1.9715,
+    "min": 0
+  },
+  "matching": {
+    "caveat": "Global fallback is a mechanical pilot control, not a final provenance-matched wrong-user design.",
+    "constraints": [
+      "different_user",
+      "donor events truncated to ts < target ts",
+      "donor history excludes every target candidate item"
+    ],
+    "distance": [
+      "history_length_absolute_difference",
+      "click_purchase_composition_l1",
+      "history_time_span_absolute_difference",
+      "seeded_hash_tie_break"
+    ],
+    "global_donor_shortlist_size": 512,
+    "global_shortlist": "deterministic cyclic window over source-order donors, with start derived from seed and target request id; all exact-query donors remain eligible",
+    "priority": [
+      "exact_query_other_user",
+      "global_other_user"
+    ]
+  },
+  "model_scores_read": false,
+  "qrels_read": false,
+  "requests": 2000,
+  "seed": 20260714,
+  "source_records_path": "data/standardized/jdsearch/hash_scout10k_v3/records_dev.jsonl",
+  "source_records_sha256": "cfb83a2ea09c8deb54f25d9195abf75a3e7db690232229a185f8104ad0ac5724",
+  "target_candidate_leakage_violations": 0
+}

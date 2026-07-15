@@ -1,0 +1,18 @@
+schema_version: 1
+dataset_version: lite_scout10k_v1
+evidence_mode: exploratory_instrumentation
+model_name: BAAI/bge-reranker-base
+family: ordinary_encoder_cross_encoder
+conditions: ["true", "null", "wrong"]
+serialization_version: query_history_event_text_v1
+max_length: 512
+history_budget: 10
+candidate_scoring: independent_candidate_raw_logit
+checkpoint_policy: identical_across_conditions
+local_files_only: true
+request_aligned_batches: true
+claim_boundary: >-
+  Zero-shot, locally cached fallback used because the stronger v2-m3 checkpoint
+  download stalled before scoring. It may validate mechanics and expose Lite
+  hypotheses, but it is not a normally tuned adequate E-FULL family and cannot
+  support a shared Failure Card.

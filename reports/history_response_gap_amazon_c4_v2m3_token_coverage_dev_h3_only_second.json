@@ -1,0 +1,92 @@
+{
+  "analysis_type": "full_token_input_coverage",
+  "candidate_capacity_if_context_preserved": {
+    "count": 1876,
+    "max": 416,
+    "mean": 248.67377398720683,
+    "min": 31,
+    "p50": 251,
+    "p90": 305,
+    "p95": 318,
+    "p99": 360
+  },
+  "candidate_pairs": 189102,
+  "candidate_token_length": {
+    "count": 189102,
+    "max": 1151,
+    "mean": 133.52664699474357,
+    "min": 1,
+    "p50": 79,
+    "p90": 324,
+    "p95": 431,
+    "p99": 530
+  },
+  "context_preserved_under_configured_truncation": true,
+  "context_token_length": {
+    "count": 1876,
+    "max": 477,
+    "mean": 259.3262260127932,
+    "min": 92,
+    "p50": 257,
+    "p90": 316,
+    "p95": 341,
+    "p99": 396
+  },
+  "history_budget": 3,
+  "history_increment_token_length": {
+    "count": 1876,
+    "max": 443,
+    "mean": 203.1449893390192,
+    "min": 51,
+    "p50": 205,
+    "p90": 245,
+    "p95": 255,
+    "p99": 268
+  },
+  "history_present_overflow_pairs": 31089,
+  "history_present_overflow_rate": 0.1644033378811435,
+  "history_present_requests": 1876,
+  "label_fields_read": false,
+  "local_files_only": true,
+  "max_length": 512,
+  "model_name": "BAAI/bge-reranker-v2-m3",
+  "overflow_pair_rate": 0.1644033378811435,
+  "overflow_pairs": 31089,
+  "overflow_token_count": {
+    "count": 189102,
+    "max": 945,
+    "mean": 21.022173218686213,
+    "min": 0,
+    "p50": 0,
+    "p90": 79,
+    "p95": 178,
+    "p99": 286
+  },
+  "pair_special_tokens": 4,
+  "pair_token_length_before_truncation": {
+    "count": 189102,
+    "max": 1457,
+    "mean": 396.84277797167664,
+    "min": 119,
+    "p50": 359,
+    "p90": 591,
+    "p95": 690,
+    "p99": 798
+  },
+  "qrels_read": false,
+  "query_token_length": {
+    "count": 1876,
+    "max": 247,
+    "mean": 56.18123667377399,
+    "min": 12,
+    "p50": 47,
+    "p90": 96,
+    "p95": 128,
+    "p99": 173
+  },
+  "records_path": "data/standardized/amazon_c4/history_bm25_100_v1/records_dev.jsonl",
+  "records_sha256": "ba4f6103332b92062e4f2046fa1311f9507033f4415efb89d193ce6c7db82a63",
+  "requests": 1876,
+  "truncation_strategy": "only_second",
+  "unique_candidate_documents": 147919
+}

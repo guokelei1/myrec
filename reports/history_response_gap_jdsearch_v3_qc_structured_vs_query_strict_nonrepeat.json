@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    -0.01592537093705413,
+    0.004034554226724141
+  ],
+  "delta": -0.005929811024154975,
+  "metric": "ndcg@10",
+  "num_requests": 1520,
+  "request_ids_path": "data/interim/jdsearch/hash_scout10k_v3/request_surfaces_dev/strict_nonrepeat.txt",
+  "samples": 5000,
+  "seed": 20260714,
+  "significant_a_gt_b": false
+}

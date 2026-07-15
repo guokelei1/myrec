@@ -17,13 +17,27 @@ Expected local-only contents:
 - generated materializations in `artifacts/`;
 - standardized records in `data/standardized/`.
 
-Current status: E0 and metric-instrumentation development ready. No E0
-admission decision, model training, dev/confirmation label evaluation, or
-proposed architecture is authorized yet.
+Current status: the exploratory controlled-history-composition motivation is
+established across KuaiSearch, Amazon-C4, and JDsearch. The representative Lite
+matrix is now executable end to end: Qwen/BGE evidence is available, HSTU and
+matched SASRec have QC/FULL bundles, and the independent LLM-SRec mechanism has
+a frozen teacher plus true/null/wrong results. The sequence-oriented outcomes
+are supportive but not binding because their adequacy gates are still open.
+Authorized next work is ordinary baseline adequacy, Amazon-C4 replication,
+standard repair, recoverability, and later confirmation. Test and proposed
+architecture remain locked.
 
 ## Active files
 
+- `../../doc/35_controlled_history_composition_motivation.md`: current
+  cross-dataset motivation decision and architecture boundary;
 - `experiment_manifest.yaml`: machine-readable phase and authorization state;
+- `exploration_protocol.md`: flexible exploration/confirmation boundary and
+  observation discipline;
+- `pipeline_state.yaml`: current question, evidence delta, correction, and next
+  reversible probe;
+- `representative_architecture_protocol.yaml`: frozen exploratory comparison of
+  Qwen, HSTU, LLM-SRec, and the existing BGE encoder anchor;
 - `e0_admission_protocol.md`: human-review draft for the first gate;
 - `_dataset_admission_card.yaml`: one card per candidate dataset;
 - `_counterfactual_bundle_card.yaml`: true/null/wrong execution lock template;

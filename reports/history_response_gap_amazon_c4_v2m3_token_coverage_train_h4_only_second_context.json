@@ -1,0 +1,93 @@
+{
+  "analysis_type": "full_token_input_coverage",
+  "candidate_capacity_if_context_preserved": {
+    "count": 11199,
+    "max": 440,
+    "mean": 186.1577819448165,
+    "min": -137,
+    "p50": 187,
+    "p90": 252,
+    "p95": 274,
+    "p99": 361
+  },
+  "candidate_pairs": 11199,
+  "candidate_token_length": {
+    "count": 11199,
+    "max": 880,
+    "mean": 121.95704973658363,
+    "min": 7,
+    "p50": 79,
+    "p90": 277,
+    "p95": 376,
+    "p99": 513
+  },
+  "context_preserved_under_configured_truncation": false,
+  "context_token_length": {
+    "count": 11199,
+    "max": 645,
+    "mean": 321.8422180551835,
+    "min": 68,
+    "p50": 321,
+    "p90": 391,
+    "p95": 419,
+    "p99": 482
+  },
+  "history_budget": 4,
+  "history_increment_token_length": {
+    "count": 11199,
+    "max": 415,
+    "mean": 264.07018483793195,
+    "min": 37,
+    "p50": 269,
+    "p90": 316,
+    "p95": 327,
+    "p99": 347
+  },
+  "history_present_overflow_pairs": 2484,
+  "history_present_overflow_rate": 0.22180551834985265,
+  "history_present_requests": 11199,
+  "label_fields_read": false,
+  "local_files_only": true,
+  "max_candidates_per_request": 1,
+  "max_length": 512,
+  "model_name": "BAAI/bge-reranker-v2-m3",
+  "overflow_pair_rate": 0.22180551834985265,
+  "overflow_pairs": 2484,
+  "overflow_token_count": {
+    "count": 11199,
+    "max": 842,
+    "mean": 26.77569425841593,
+    "min": 0,
+    "p50": 0,
+    "p90": 104,
+    "p95": 198,
+    "p99": 339
+  },
+  "pair_special_tokens": 4,
+  "pair_token_length_before_truncation": {
+    "count": 11199,
+    "max": 1354,
+    "mean": 447.79926779176714,
+    "min": 106,
+    "p50": 420,
+    "p90": 616,
+    "p95": 710,
+    "p99": 851
+  },
+  "qrels_read": false,
+  "query_token_length": {
+    "count": 11199,
+    "max": 301,
+    "mean": 57.77203321725154,
+    "min": 7,
+    "p50": 48,
+    "p90": 100,
+    "p95": 129,
+    "p99": 189
+  },
+  "records_path": "data/standardized/amazon_c4/history_bm25_100_v1/records_train.jsonl",
+  "records_sha256": "e55a02d155266210ee0546c96e67be1db253eb3eccf68a695be4141afeeb64a4",
+  "requests": 11199,
+  "truncation_strategy": "only_second",
+  "unique_candidate_documents": 10394
+}

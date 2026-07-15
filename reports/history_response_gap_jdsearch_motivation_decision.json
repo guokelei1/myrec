@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "decision": "jdsearch_replicates_low_efficiency_nonrepeat_conversion_and_training_induced_base_erosion",
+  "status": "independent_functional_replication_supports_revised_cross_dataset_motivation",
+  "scope": {
+    "dataset": "JDsearch official source plus verified Kaggle mirror",
+    "dataset_version": "hash_scout10k_v3",
+    "dev_requests": 2000,
+    "strict_nonrepeat_requests": 1520,
+    "repeat_requests": 480,
+    "natural_language_semantics": false,
+    "confirmation": false
+  },
+  "source_and_label_integrity": {
+    "official_source_counts_and_samples_verified": true,
+    "candidate_order_is_label_free_seeded_hash": true,
+    "invalid_source_order_v1_excluded": true,
+    "event_codes_canonicalized_before_training": true,
+    "dev_records_label_free": true,
+    "candidate_hash_asserted": true,
+    "wrong_history_target_candidate_leakage_violations": 0,
+    "wrong_history_context_repair": "One of 2,000 wrong-user assignments exceeded the only-second first-sequence budget. A label-free tokenizer guard dropped only that assignment's oldest effective event; the other 1,999 effective inputs were unchanged.",
+    "wrong_history_context_preserved_after_repair": true
+  },
+  "model_adequacy": {
+    "checkpoint_family": "BAAI/bge-reranker-v2-m3",
+    "objective": "pairwise_logistic_softplus",
+    "qc_and_full_training_examples_each": 29517,
+    "qc_and_full_optimizer_updates_each": 1846,
+    "history_budget": 3,
+    "max_length": 1024,
+    "qc_ndcg_at_10": 0.1409688594984866,
+    "bm25_ndcg_at_10": 0.0894001,
+    "recent_behavior_ndcg_at_10": 0.1676945577574574,
+    "full_true_ndcg_at_10": 0.17733175533381632,
+    "adequacy_conclusion": "QC is nontrivial and significantly above BM25; FULL-true exceeds QC and the recent-behavior control overall, while repeat requests provide a strong history-use positive control."
+  },
+  "strict_nonrepeat": {
+    "requests": 1520,
+    "active_response_rate": 1.0,
+    "active_pair_fraction": 0.9821074936188888,
+    "direction_accuracy": 0.5607976152482351,
+    "direction_accuracy_query_ci95": [
+      0.5474523806827634,
+      0.5747628904963357
+    ],
+    "true_minus_null_ndcg_at_10": 0.02855816263276978,
+    "true_minus_null_query_ci95": [
+      0.01632898909641069,
+      0.04117164471609867
+    ],
+    "true_minus_wrong_ndcg_at_10": 0.01927703810200889,
+    "true_minus_wrong_query_ci95": [
+      0.008391857952598454,
+      0.030325812513038106
+    ],
+    "common_mode_ratio": 0.9334202744052266,
+    "direction_conversion_efficiency": 0.038299601637343306,
+    "direction_conversion_efficiency_query_ci95": [
+      0.026763018155052682,
+      0.05093740952794594
+    ],
+    "actual_minus_random_ndcg_at_10": 0.03365668835296036,
+    "label_aligned_minus_actual_ndcg_at_10": 0.845117160828386,
+    "active_response_precision": 0.24736842105263157,
+    "active_response_harm_rate": 0.1769736842105263,
+    "exact_query_wrong_user_requests": 206,
+    "exact_query_true_minus_wrong_ndcg_at_10": 0.0025431846698905805,
+    "exact_query_true_minus_wrong_request_ci95": [
+      -0.02887924409902025,
+      0.03439141363170376
+    ]
+  },
+  "repeat_positive_control": {
+    "requests": 480,
+    "direction_accuracy": 0.7036883503251062,
+    "direction_accuracy_query_ci95": [
+      0.678643649784878,
+      0.7281447611473991
+    ],
+    "true_minus_null_ndcg_at_10": 0.23880850655349103,
+    "true_minus_wrong_ndcg_at_10": 0.22083538458867286,
+    "direction_conversion_efficiency": 0.26384417419313855,
+    "full_true_minus_qc_ndcg_at_10": 0.18881797939172754,
+    "full_true_minus_qc_ci95": [
+      0.15354657817613715,
+      0.22393321276778366
+    ]
+  },
+  "base_history_accounting": {
+    "identity": "FULL_true - QC = (FULL_null - QC) + (FULL_true - FULL_null)",
+    "overall": {
+      "base_retention_full_null_minus_qc": -0.04319488742441664,
+      "history_utility_full_true_minus_full_null": 0.07955778325974637,
+      "net_full_true_minus_qc": 0.03636289583532973
+    },
+    "strict_nonrepeat": {
+      "base_retention_full_null_minus_qc": -0.04065235274976763,
+      "base_retention_ci95": [
+        -0.0532346749792844,
+        -0.028096913972985388
+      ],
+      "history_utility_full_true_minus_full_null": 0.028871537988340162,
+      "history_utility_ci95": [
+        0.016958594175923748,
+        0.04125350982614278
+      ],
+      "net_full_true_minus_qc": -0.011780814761427472,
+      "net_ci95": [
+        -0.024551301712406985,
+        0.0015532992379820496
+      ],
+      "interpretation": "True history is useful relative to the damaged FULL-null path, but its gain is smaller than the base capability lost during joint history training, so strict-nonrepeat ranking does not beat QC."
+    },
+    "repeat": {
+      "base_retention_full_null_minus_qc": -0.05124624722747184,
+      "history_utility_full_true_minus_full_null": 0.24006422661919938,
+      "net_full_true_minus_qc": 0.18881797939172754,
+      "interpretation": "Exact recurrence produces enough history utility to mask and overwhelm the same base erosion."
+    }
+  },
+  "serialization_factorial_control": {
+    "qc_query_only_ndcg_at_10": 0.1409688594984866,
+    "qc_structured_empty_ndcg_at_10": 0.13350559796786152,
+    "qc_structured_minus_query_only": -0.007463261530625076,
+    "qc_format_ci95": [
+      -0.01631683176028354,
+      0.0010221457710611844
+    ],
+    "full_query_only_ndcg_at_10": 0.10280730969468597,
+    "full_structured_empty_ndcg_at_10": 0.09777397207406993,
+    "full_structured_minus_query_only": -0.005033337620616034,
+    "full_format_ci95": [
+      -0.01219111326652556,
+      0.0020092217859704674
+    ],
+    "full_minus_qc_under_query_only": -0.03816154980380061,
+    "full_minus_qc_under_query_only_ci95": [
+      -0.04901623655838649,
+      -0.02721931383662903
+    ],
+    "full_minus_qc_under_structured_empty": -0.035731625893791565,
+    "full_minus_qc_under_structured_empty_ci95": [
+      -0.04591750052867689,
+      -0.025546077331040355
+    ],
+    "conclusion": "The empty-history marker has only a small, statistically unstable effect. The large base loss persists under both serializations and is therefore localized primarily to the jointly history-trained weights rather than the marker format."
+  },
+  "interpretation": {
+    "primary": "JDsearch does not replicate literal chance direction or zero history utility. It replicates the more defensible bottleneck: nonrepeat history creates almost universal score motion but converts only a small fraction of fixed response budget into correct ranking gains, far below recurrence.",
+    "accounting": "A positive true-over-null number is misleading by itself. On strict-nonrepeat requests it measures partial recovery from a base path damaged by history training, not improvement over an independently trained query-candidate ranker.",
+    "positive_control": "The same model converts recurrence into much stronger direction, history utility, and net gain, ruling out inactivity or generic inability to read history.",
+    "provenance_boundary": "True history beats the predominantly global wrong-user control on strict-nonrepeat, but the same-query other-user subset is underpowered and does not establish query-matched user specificity.",
+    "semantic_boundary": "JDsearch uses anonymized terms. It supports a functional ranking and credit-allocation law, not a pretrained-language semantic mechanism."
+  },
+  "unsupported": [
+    "Strict-nonrepeat JDsearch direction is indistinguishable from chance.",
+    "JDsearch history is useless overall.",
+    "The empty-history text marker explains the base degradation.",
+    "Same-query user provenance is established on JDsearch strict-nonrepeat.",
+    "The observed tradeoff is already proven to require a new Transformer architecture."
+  ],
+  "source_artifacts": [
+    "reports/history_response_gap_jdsearch_source_admission.json",
+    "reports/history_response_gap_jdsearch_v1_candidate_order_invalidation.json",
+    "reports/history_response_gap_jdsearch_wrong_context_budget_fit.json",
+    "reports/history_response_gap_jdsearch_v2m3_token_coverage_dev_wrong_h3_l1024_contextsafe.json",
+    "reports/history_response_gap_jdsearch_v3_qc_vs_bm25.json",
+    "reports/history_response_gap_jdsearch_v3_v2m3_pairwise_h3_surfaces.json",
+    "reports/history_response_gap_jdsearch_v3_v2m3_pairwise_h3_donor_surfaces.json",
+    "reports/history_response_gap_jdsearch_v3_v2m3_pairwise_h3_direction_intervention_surfaces.json",
+    "reports/history_response_gap_jdsearch_v3_true_vs_qc_strict_nonrepeat.json",
+    "reports/history_response_gap_jdsearch_v3_null_vs_qc_strict_nonrepeat.json",
+    "reports/history_response_gap_jdsearch_v3_full_vs_qc_query_serialization_strict_nonrepeat.json",
+    "reports/history_response_gap_jdsearch_v3_full_vs_qc_structured_serialization_strict_nonrepeat.json"
+  ],
+  "next_action": "Synthesize KuaiSearch, Amazon-C4 and JDsearch into the narrow controlled-composition motivation. Keep architecture locked until a frozen Failure Card additionally establishes recoverability and rules out a simple standard objective or training repair."
+}

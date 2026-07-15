@@ -1,0 +1,57 @@
+{
+  "donor_pool_requests": 10000,
+  "donor_records_path": "data/standardized/kuaisearch/full_scout10k_v1/records_train.jsonl",
+  "donor_records_sha256": "38c4c321703b4ef7fa1f4d0676f179b2e55c897085f4144af1d92c60057f6ea4",
+  "evidence_mode": "exploratory",
+  "files": {
+    "null": {
+      "path": "data/interim/kuaisearch/full_scout10k_v1/history_assignments_train_donor_v1/null.jsonl",
+      "sha256": "964d278ec3a43520bd682fb2e9e03cce2123a39e0abc7916a441e44b7d42c069"
+    },
+    "true": {
+      "path": "data/interim/kuaisearch/full_scout10k_v1/history_assignments_train_donor_v1/true.jsonl",
+      "sha256": "8f7f5129b62e0e00ac3db18d99b8a462a920a7527f7e43b7da20ee00d8ead375"
+    },
+    "wrong": {
+      "path": "data/interim/kuaisearch/full_scout10k_v1/history_assignments_train_donor_v1/wrong.jsonl",
+      "sha256": "6f963389fb584322ea7c7d16ef4589be73ce4e8b3d0ea631007e76cf64487a3d"
+    }
+  },
+  "history_not_strictly_before_target_violations": 0,
+  "match_counts": {
+    "exact_query_other_user": 272,
+    "global_other_user": 1547,
+    "target_no_history": 183
+  },
+  "matched_history_length_absolute_difference": {
+    "count": 1819,
+    "max": 19,
+    "mean": 0.6866410115448048,
+    "min": 0
+  },
+  "matching": {
+    "caveat": "Global fallback is a mechanical pilot control, not a final provenance-matched wrong-user design.",
+    "constraints": [
+      "different_user",
+      "donor events truncated to ts < target ts",
+      "donor history excludes every target candidate item"
+    ],
+    "distance": [
+      "history_length_absolute_difference",
+      "click_purchase_composition_l1",
+      "history_time_span_absolute_difference",
+      "seeded_hash_tie_break"
+    ],
+    "priority": [
+      "exact_query_other_user",
+      "global_other_user"
+    ]
+  },
+  "model_scores_read": false,
+  "qrels_read": false,
+  "requests": 2002,
+  "seed": 20260714,
+  "source_records_path": "data/standardized/kuaisearch/full_scout10k_v1/records_dev.jsonl",
+  "source_records_sha256": "3263acad77a8b1a674abdcdb989b0e4db38ab8027f8d314c73dcb8caa677f3c6",
+  "target_candidate_leakage_violations": 0
+}

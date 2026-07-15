@@ -1,47 +1,90 @@
 schema_version: 1
 experiment_id: history_response_direction_gap
-status: e0_review
-active_phase: E0
+status: exploration_active
+active_phase: MOTIVATION_VALIDATION
 authorization:
+  public_data_acquisition: true
   data_source_audit: true
   standardized_contract_development: true
   metric_instrumentation_development: true
-  model_training: false
-  dev_label_evaluation: false
+  ordinary_model_exploratory_training: true
+  exploratory_dev_label_evaluation_via_shared_evaluator: true
+  model_training_scope: ordinary_baselines_only
   confirmation_label_evaluation: false
   test_evaluation: false
   proposed_architecture: false
 
+evidence_mode:
+  current: exploratory
+  lite_result_scope: lite_only
+  full_source_scout_scope: latest_window_exploratory_population_replication
+  cross_dataset_motivation: controlled_history_composition_established
+  dataset_outcome_may_redirect_exploration: true
+  outcome_selected_data_cannot_be_independent_confirmation: true
+  confirmation_protocol_status: not_frozen
+
 scientific_question: >-
-  Do adequate ordinary full-token rerankers produce candidate-relative
-  responses to true user history without reliably converting those responses
-  into the correct query-conditioned ranking direction?
+  Can adequate ordinary full-token rerankers simultaneously preserve the
+  query-candidate base and convert history response into useful
+  candidate-relative direction, especially on strict-nonrepeat traffic?
 
 datasets:
+  kuaisearch_lite:
+    role: engineering_and_population_scout
+    admission_status: standardized_exploratory_scout
+    active_version: lite_scout10k_v1
   kuaisearch_full:
-    role: binding_primary
-    admission_status: pending
+    role_candidate: primary_natural_language_search
+    exploration_status: >-
+      official source present; bounded audit and independent full_scout10k_v1
+      population replication completed; whole-Full admission not frozen
+  kuaisar_small:
+    role: secondary_adapter_and_population_scout
+    exploration_status: acquisition_pending
   kuaisar_full:
-    role: functional_replication
-    admission_status: pending
+    role_candidate: functional_replication
+    exploration_status: acquisition_pending
   jdsearch:
-    role: preregistered_replication_fallback
-    admission_status: pending
+    role: independent_functional_product_search_replication
+    exploration_status: >-
+      hash_scout10k_v3 admitted after candidate-order invalidation and event-code
+      repair; matched QC/FULL, true/null/wrong, fixed-delta, and serialization
+      factorial probes completed
   amazon_c4:
-    role: nonbinding_semantic_stress_and_legacy_pilot
-    admission_status: nonbinding_only
+    role: english_semantic_positive_boundary
+    exploration_status: >-
+      fresh history_bm25_100_v1 materialization completed; two-event and
+      eight-event matched QC/FULL probes establish correct direction plus a
+      base/history tradeoff
 
 ordinary_model_families:
   encoder:
     qc_id: E-QC
     full_id: E-FULL
     initial_checkpoint: BAAI/bge-reranker-v2-m3
-    status: blocked_on_e0
+    status: >-
+      Matched v2-m3 pairwise and pointwise QC/FULL Lite controls completed. Both
+      provide repeat-positive and strict-nonrepeat direction-gap evidence.
   decoder:
     qc_id: D-QC
     full_id: D-FULL
     initial_checkpoint: Qwen/Qwen3-Reranker-0.6B
-    status: blocked_on_e0
+    status: >-
+      Official checkpoint cached; real-preprocess budget-five coverage audited;
+      matched pointwise QC/FULL Lite controls and counterfactual bundle completed.
+
+representative_architecture_families:
+  protocol: experiments/history_response_gap/representative_architecture_protocol.yaml
+  hstu:
+    role: rec_native_boundary
+    status: official_core_and_pps_adapter_mechanics_pass_training_pending
+  llm_srec:
+    role: published_sequence_enhanced_boundary
+    status: independent_paper_mechanism_and_frozen_qwen_mechanics_pass_teacher_pending
+  bge:
+    role: existing_encoder_anchor
+  qwen:
+    role: ordinary_decoder_language_baseline
 
 counterfactual_conditions:
   binding: ["true", "null", "wrong"]
@@ -57,19 +100,23 @@ counterfactual_conditions:
 
 endpoints:
   primary_utility:
-    name: null
-    status: not_frozen
+    name: mean_true_minus_null_ndcg@10
+    status: locked_for_lite_v2m3_h6_exploration
   primary_direction:
-    name: null
-    status: not_frozen
+    name: active_pair_direction_accuracy
+    status: locked_for_lite_v2m3_h6_exploration
   activity_epsilon:
-    value: null
-    status: not_frozen
+    value: 0.01
+    status: locked_before_label_read
   utility_epsilon:
-    value: null
-    status: not_frozen
+    value: 0.0
+    status: locked_before_label_read
 
-next_decision:
-  phase: E0
-  required_artifact: dataset_admission_card
-  protocol: experiments/history_response_gap/e0_admission_protocol.md
+next_action:
+  phase: FAILURE_CARD_FREEZE
+  question: >-
+    Does the controlled-composition failure survive ordinary standard repairs,
+    a train-only direction-recoverability witness, an independent family, and a
+    separately frozen confirmation population?
+  required_artifact: reports/pps_c3_motivation.json
+  protocol: doc/31_problem_discovery_and_architecture_iteration_protocol.md

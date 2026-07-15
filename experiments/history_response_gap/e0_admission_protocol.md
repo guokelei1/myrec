@@ -1,8 +1,9 @@
-# E0 source and admission protocol — review draft
+# E0 source and confirmation-admission protocol
 
-Status: **draft; no download, training, evaluator call, or dev/test label
-opening is authorized by this file.** It is the operational companion to
-`doc/34_history_response_direction_gap_validation_plan.md`.
+Status: **reserved for the later confirmation lock.** Open exploration now
+follows `exploration_protocol.md`; failure to meet this card on Lite does not
+reject KuaiSearch Full or stop another dataset from being understood. This
+file becomes binding only when a confirmation cohort is frozen.
 
 ## Decision question
 
@@ -35,10 +36,11 @@ independent time/user boundary, and enough eligible requests for the frozen
 primary endpoints. If any binding condition fails, record the narrowest
 supported role (`replication`, `stress test`, or `rejected`) and stop.
 
-KuaiSearch Full is audited first. KuaiSAR Full is the pre-registered
-functional replication; JDsearch is the fallback only for claims supported by
-its information object. Amazon-C4 remains non-binding for the natural-search
-claim.
+Candidate roles are KuaiSearch Full for natural-language search, KuaiSAR for
+functional replication, JDsearch for graded behavioral robustness, and
+Amazon-C4 for semantic stress. Exploration may inspect them in any cost-aware
+order. Their final confirmation roles are assigned only after source and power
+evidence is understood, before independent confirmation outcomes are opened.
 
 ## Deliverables
 
@@ -47,3 +49,16 @@ under this directory. Put generated samples, joins, and records under
 `data/`, and put audit JSON under `reports/` using the common report naming
 convention. Do not create model configs or `systems/` source during E0.
 
+## Current exploratory reuse note
+
+Amazon-C4 motivation replication needs a fresh standardized scout from the
+locally present official query, history, catalog, and Reviews-2023 metadata
+files. The current implementation may rewrite only the raw field parsing,
+temporal-target exclusion, deterministic BM25 candidate construction, metadata
+join, and physical label-isolation logic from
+`archive/legacy_20260714/source/src/myrec/data/data/amazon_c4_standardize.py`.
+The deterministic candidate manifest may be used only as a computation cache
+after current code asserts the current raw-catalog hash, rebuilt FTS index hash,
+cache hash, request set, slate uniqueness, and positive inclusion. No archived
+standardized record, score, outcome, threshold, gate, or admission decision is
+promoted; current contracts and new tests are binding.

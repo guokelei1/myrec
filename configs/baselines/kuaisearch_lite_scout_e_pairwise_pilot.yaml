@@ -1,0 +1,23 @@
+schema_version: 1
+dataset_version: lite_scout10k_v1
+evidence_mode: exploratory_supervised_pilot
+base_model_name: BAAI/bge-reranker-base
+input_modes: [qc, full]
+serialization_version: query_history_event_text_v1
+objective: pairwise_logistic_softplus
+compute_dtype: bfloat16
+max_length: 512
+history_budget: 10
+negatives_per_positive: 2
+batch_size: 8
+gradient_accumulation_steps: 4
+epochs: 2
+learning_rate: 2.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.1
+seed: 20260714
+checkpoint_policy: independent_qc_and_full_from_same_base
+claim_boundary: >-
+  First fixed supervised recipe on the Lite scout. It tests whether the
+  zero-shot response-direction pattern survives ordinary pairwise supervision;
+  one recipe and one seed are not a normally tuned adequate family.

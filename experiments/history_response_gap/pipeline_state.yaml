@@ -1,0 +1,554 @@
+schema_version: 1
+updated_at: 2026-07-15
+mode: exploratory
+status: motivation_established_architecture_locked
+current_question: >-
+  Can ordinary full-token Transformers simultaneously retain query-candidate
+  base capability and convert history response into useful candidate-relative
+  direction, especially on strict-nonrepeat traffic?
+active_dataset: kuaisearch_amazon_c4_jdsearch_synthesis
+active_model_family: qwen_hstu_llm_srec_representative_validation
+last_artifact: experiments/history_response_gap/representative_architecture_protocol.yaml
+observations:
+  - id: O000
+    evidence: >-
+      Local source inventory contains KuaiSearch Lite, Amazon-C4 plus history,
+      and JDsearch samples; KuaiSearch Full and KuaiSAR are absent.
+    interpretation: >-
+      Exploration can start with source/instrumentation audits, while Full and
+      KuaiSAR acquisition remain parallel future actions.
+    uncertainty: >-
+      Lite population coverage cannot establish Full population coverage.
+  - id: O001
+    artifact: reports/history_response_gap_kuaisearch_lite_source_audit.json
+    evidence: >-
+      Corrected train-only Lite scan finds broad repeated-query,
+      history-present, strict-nonrepeat, and shared-candidate opportunity.
+    interpretation: >-
+      Lite is sufficient for the first mechanism/metric pilot, not for a Full
+      or cross-dataset conclusion.
+    uncertainty: >-
+      Structural opportunity does not establish label reversals, predictable
+      direction, or a model failure; pair counts are cluster-dependent.
+  - id: O002
+    artifact: reports/history_response_gap_kuaisearch_lite_source_audit.json
+    evidence: >-
+      Sampled raw recent-history fields have no per-event timestamps, mostly
+      lack recall-log support, and include some future-only observed items.
+    interpretation: >-
+      Use recall-log events strictly before the target as the active causal
+      history boundary; raw recent history is diagnostic only.
+    uncertainty: >-
+      Recall-log reconstruction misses interactions outside the observed log.
+  - id: O003
+    artifact: reports/history_response_gap_kuaisearch_lite_scout.json
+    evidence: >-
+      A source-train-only 10k latest-window scout was materialized with complete
+      item joins, causal reconstructed history, time split, and dev qrels isolation.
+    interpretation: >-
+      The workspace can now support real score and counterfactual instrumentation.
+    uncertainty: >-
+      Latest-window selection can shift user activity, query headness, and recurrence.
+  - id: O004
+    artifact: reports/history_response_gap_scout_recent_vs_pop_strict_nonrepeat.json
+    evidence: >-
+      Simple recent-history scoring improves over weak controls primarily on
+      repeat requests and has no observed strict-nonrepeat advantage.
+    interpretation: >-
+      The current witness recovers recurrence, not nonrepeat personalized direction.
+    uncertainty: >-
+      This is not a full-token model and may be too weak or semantically crude.
+  - id: O005
+    artifact: reports/history_response_gap_lite_scout_history_assignments.json
+    evidence: >-
+      True/null/wrong assignments are causal and candidate-safe; exact-query
+      other-user donors exist for only a minority of history-present requests.
+    interpretation: >-
+      The bundle is adequate for mechanics and broad provenance exploration,
+      but not for a binding same-query user-specificity claim.
+    uncertainty: >-
+      Most wrong histories use a global donor fallback, despite close length and
+      action matching, and may be easier to distinguish than natural same-query donors.
+  - id: O006
+    artifact: reports/history_response_gap_lite_scout_bge_base_zero_shot_surfaces.json
+    evidence: >-
+      A request-aligned zero-shot BGE reranker actively changes nearly every
+      history-present slate, while direction is near chance and strict-nonrepeat
+      utility is negative.
+    interpretation: >-
+      The metric and counterfactual mechanics expose a response-direction gap.
+    uncertainty: >-
+      Zero-shot history serialization is out of distribution and the model is
+      neither normally tuned nor an adequate family.
+  - id: O007
+    artifact: reports/history_response_gap_lite_scout_bge_base_pairwise_pilot_surfaces.json
+    evidence: >-
+      With matched pairwise supervision, FULL improves overall over its own null
+      condition, but the gain and reliable direction localize to exact recurrence;
+      strict-nonrepeat response remains nearly universal without reliable direction
+      or utility.
+    interpretation: >-
+      On this Lite pilot, ordinary supervision learns recurrence but does not yet
+      convert nonrepeat semantic history response into stable signed ranking gains.
+    uncertainty: >-
+      One seed and one fixed BGE-base recipe do not establish a normally tuned
+      family; independent QC does not significantly beat BM25.
+  - id: O008
+    artifact: reports/history_response_gap_lite_scout_bge_base_pairwise_pilot_surfaces.json
+    evidence: >-
+      The label-free repeated-query/strict-nonrepeat intersection shows the same
+      adverse point pattern, whereas repeated-query/repeat is strongly positive.
+    interpretation: >-
+      Query repetition alone does not remove the recurrence-versus-transfer split.
+    uncertainty: >-
+      This intersection was inspected during exploration, has modest query-cluster
+      support, and cannot be represented as independently confirmed evidence.
+  - id: O009
+    evidence: >-
+      BAAI/bge-reranker-v2-m3 commit 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+      is fully cached and passes a local-files-only load check.
+    interpretation: >-
+      The next encoder adequacy probe no longer depends on a model download.
+    uncertainty: >-
+      A stronger checkpoint may remove the observed gap; no v2-m3 Lite training
+      or evaluation has yet been run.
+  - id: O010
+    artifact: reports/history_response_gap_lite_scout_encoder_adequacy.json
+    evidence: >-
+      Zero-shot v2-m3 QC underperforms BM25 with both the old constant empty-history
+      format and the corrected pure-query format.
+    interpretation: >-
+      Ranking pretraining alone is not an adequate Lite QC; dataset supervision is
+      necessary before using v2-m3 as a strong-base argument.
+    uncertainty: >-
+      Zero-shot mismatch does not predict how a normally adapted checkpoint behaves.
+  - id: O011
+    artifact: reports/history_response_gap_lite_scout_encoder_adequacy.json
+    evidence: >-
+      Pairwise v2-m3 adaptation improves over zero-shot; the lower learning rate
+      has the best encoder QC point estimate but remains statistically comparable
+      to, rather than better than, BM25.
+    interpretation: >-
+      This is a provisionally usable matched QC for the next FULL discriminator,
+      not a passed paper-level adequacy gate.
+    uncertainty: >-
+      Random negative sampling, a single pairwise objective, and one seed may leave
+      query-candidate capability on the table.
+  - id: O012
+    artifact: reports/history_response_gap_lite_scout_v2m3_token_coverage_dev.json
+    evidence: >-
+      With history budget 10, roughly two fifths of history-present candidate pairs
+      exceed 512 tokens; budget 6 has zero measured overflow on both train and dev.
+    interpretation: >-
+      The original FULL recipe had a substantial truncation confound. Budget 6 is
+      the cleaner discriminator while still retaining multiple recent events.
+    uncertainty: >-
+      Zero length overflow does not prove that every history event is useful or
+      that six events are the optimal semantic evidence boundary.
+  - id: O013
+    artifact: experiments/history_response_gap/lite_v2m3_h6_counterfactual_bundle.yaml
+    evidence: >-
+      The matched v2-m3 true/null/wrong bundle has identical checkpoint, slate,
+      scoring signature, zero measured token overflow, and exact cross-condition
+      scores for all target requests without history.
+    interpretation: >-
+      Dynamic-padding and truncation artifacts are no longer sufficient explanations
+      for the observed history-response pattern.
+    uncertainty: >-
+      Numerical integrity does not establish model-family adequacy or useful signal.
+  - id: O014
+    artifact: reports/history_response_gap_lite_scout_v2m3_matched_decision.json
+    evidence: >-
+      v2-m3 FULL gains over null overall while candidate-relative direction remains
+      near chance and most response variance is request-level common mode.
+    interpretation: >-
+      A higher-capacity ranking-pretrained encoder still responds more strongly than
+      it converts history into consistently correct candidate-relative direction.
+    uncertainty: >-
+      The overall gain alone mixes recurrence and semantic transfer surfaces.
+  - id: O015
+    artifact: reports/history_response_gap_lite_scout_v2m3_pairwise_h6_surfaces.json
+    evidence: >-
+      Reliable utility and direction again localize to repeat requests. On
+      strict-nonrepeat, response is nearly universal, directional accuracy is near
+      chance, and utility uncertainty crosses zero; FULL-true does not beat QC.
+    interpretation: >-
+      The prior repeat-versus-transfer split survives increased encoder capacity,
+      matched supervision, and removal of the history truncation confound.
+    uncertainty: >-
+      Lite, one seed, and one ordinary pairwise objective cannot establish a shared
+      architectural blind spot.
+  - id: O016
+    artifact: reports/history_response_gap_lite_scout_v2m3_pairwise_h6_donor_surfaces.json
+    evidence: >-
+      Within same-query other-user donor requests, the strict-nonrepeat true-minus-wrong
+      point estimate is positive but query-cluster uncertainty crosses zero and pair
+      direction remains near chance.
+    interpretation: >-
+      User provenance may matter, but this Lite bundle does not yet establish stable
+      query-conditioned user-specific nonrepeat ranking utility.
+    uncertainty: >-
+      The exact-query strict-nonrepeat intersection is modest and outcome-selected
+      exploratory evidence.
+  - id: O017
+    artifact: reports/history_response_gap_lite_scout_v2m3_direction_intervention_decision.json
+    evidence: >-
+      On strict-nonrepeat, actual Transformer deltas do not reliably outperform
+      random reassignment of the exact same per-request delta multiset. A label-aligned
+      reassignment of that unchanged multiset exposes large ranking headroom, while
+      repeat requests provide a positive observed-direction control.
+    interpretation: >-
+      The Lite failure is more precisely localized to candidate attribution and
+      direction conversion, rather than absence of history-response magnitude.
+    uncertainty: >-
+      Label-aligned reassignment is an oracle diagnostic. It does not show that the
+      direction can be learned from train information or that another Transformer
+      objective, family, dataset, or Full population shares the failure.
+  - id: O018
+    artifact: reports/history_response_gap_lite_scout_v2m3_pointwise_decision.json
+    evidence: >-
+      A matched ordinary pointwise BCE Transformer repeats the pairwise pattern:
+      overall and repeat utility are positive, but strict-nonrepeat direction is
+      near random, true history does not reliably beat null/wrong/QC, and actual
+      fixed-delta attribution does not beat random reassignment.
+    interpretation: >-
+      The core Lite motivation is not an artifact of the pairwise logistic loss.
+      It is now replicated across two ordinary objectives within v2-m3.
+    uncertainty: >-
+      Both objectives share one encoder family, initialization, seed, dataset and
+      negative sample. This does not yet establish a cross-family Transformer issue.
+  - id: O019
+    artifact: reports/history_response_gap_lite_scout_recoverability_witness_decision.json
+    evidence: >-
+      A frozen BGE semantic plus gradient-boosting train-only witness recovers repeat
+      response but not reliable strict-nonrepeat utility, provenance, or improvement
+      over its nested base on dev.
+    interpretation: >-
+      Recoverable Lite nonrepeat personalization remains unproven; the oracle
+      direction headroom cannot be described as learnable headroom.
+    uncertainty: >-
+      The witness base is weak and its full-null path degrades relative to its base,
+      so failure is inconclusive and does not constrain Full.
+  - id: O020
+    artifact: reports/history_response_gap_lite_scout_qwen3_zero_shot_h5_surfaces.json
+    evidence: >-
+      The official zero-shot Qwen3 decoder reranker responds on strict-nonrepeat
+      with near-random direction, but does not provide a reliable repeat positive
+      control under the unadapted query-plus-history serialization.
+    interpretation: >-
+      Zero-shot decoder behavior is only a candidate cross-family symptom and is
+      not used as motivation evidence.
+    uncertainty: >-
+      The official reranking checkpoint was not trained on this history interface.
+  - id: O021
+    artifact: reports/history_response_gap_lite_scout_cross_family_motivation_decision.json
+    evidence: >-
+      After matched train-only pointwise adaptation, the Qwen3 causal-LM reranker
+      has reliable repeat direction and utility, but its nearly universal
+      strict-nonrepeat response again has chance-level candidate direction, no
+      stable null/wrong/QC advantage, and no advantage over random reassignment
+      of the exact same response-delta multiset.
+    interpretation: >-
+      The scoped Lite motivation now replicates across encoder and decoder-only
+      Transformer families and across two ordinary encoder objectives. The problem
+      is response-to-direction conversion on nonrepeat transfer, not inability to
+      read history or learn recurrence.
+    uncertainty: >-
+      Qwen QC did not improve over its zero-shot point estimate, although the
+      difference is not significant. This remains one Lite dataset and does not
+      establish architectural inevitability, learnable headroom, or Full behavior.
+  - id: O022
+    artifact: reports/history_response_gap_kuaisearch_full_scout10k.json
+    evidence: >-
+      The user-prepared official KuaiSearch Full source passed a bounded schema,
+      slate-integrity and collision-opportunity audit, and an independent latest-
+      window 10k scout was materialized with causal recall-log history, complete
+      item joins, time splitting, and dev-label isolation.
+    interpretation: >-
+      Full-source files provide an independent population probe rather than a
+      relabeling of the Lite scout.
+    uncertainty: >-
+      This is a bounded source audit and latest-window exploratory scout, not a
+      whole-Full admitted version or frozen confirmation population.
+  - id: O023
+    artifact: reports/history_response_gap_full_scout_population_replication_decision.json
+    evidence: >-
+      A Full-source v2-m3 matched QC/FULL pairwise replication retains universal
+      strict-nonrepeat response, weak direction and no stable true-over-null,
+      wrong-user, or QC utility. Unlike Lite, actual delta attribution is slightly
+      but significantly better than random, converting only about 3.6% of the
+      label-aligned diagnostic headroom; repeat gains remain large and reliable.
+    interpretation: >-
+      The cross-population motivation is low and population-unstable conversion,
+      not literal random direction. Ordinary Transformers exploit recurrence but
+      do not realize stable nonrepeat personalized ranking utility.
+    uncertainty: >-
+      Only one model family and fixed Lite-selected recipe were run on this Full
+      scout. The oracle gap is not proven learnable, and architecture cause,
+      absolute degradation, whole-Full coverage, and cross-dataset generality
+      remain unestablished.
+  - id: O024
+    artifact: reports/history_response_gap_full_scout_query_history_information_probe_decision.json
+    evidence: >-
+      Restoring the original query to every retained KuaiSearch Full history
+      event leaves strict-nonrepeat direction near chance, true-over-null utility
+      small, and fixed-response direction conversion near four percent, while
+      repeat remains a positive control.
+    interpretation: >-
+      Dropping the behavioral query is not a sufficient adapter explanation for
+      the KuaiSearch response-direction gap.
+    uncertainty: >-
+      This is one information-object intervention on one Full-source scout, not
+      a proof that every richer history representation would fail.
+  - id: O025
+    artifact: reports/history_response_gap_amazon_c4_motivation_contrast_decision.json
+    evidence: >-
+      Amazon-C4 produces strongly correct candidate-relative history direction.
+      Increasing history from two to eight events strengthens true-over-null and
+      true-over-wrong utility, yet base erosion grows faster and FULL-true becomes
+      significantly worse than QC and the shorter-history FULL model.
+    interpretation: >-
+      Universal direction failure is rejected. Correct history response is still
+      insufficient for safe joint integration when the base path deteriorates.
+    uncertainty: >-
+      Amazon uses a constructed target-revealing query and candidate pool, so it
+      is a positive semantic boundary rather than a natural-search replication.
+  - id: O026
+    artifact: reports/history_response_gap_jdsearch_v1_candidate_order_invalidation.json
+    evidence: >-
+      The official JDsearch candidate source order perfectly exposed graded
+      labels. It was detected before any admitted Transformer outcome and replaced
+      by deterministic label-free hash ordering; event codes were canonicalized
+      before the final v3 training runs.
+    interpretation: >-
+      JDsearch v1/v2 outcomes are excluded; only hash_scout10k_v3 can support the
+      independent functional replication.
+    uncertainty: >-
+      Hash ordering removes the direct leak but does not make anonymous-term
+      JDsearch a natural-language semantic dataset.
+  - id: O027
+    artifact: reports/history_response_gap_jdsearch_motivation_decision.json
+    evidence: >-
+      JDsearch FULL-true beats QC and recent behavior overall, but the gain is
+      recurrence-dominated. On strict-nonrepeat traffic, true history is useful
+      relative to FULL-null yet smaller than FULL-null's loss relative to QC, so
+      the net FULL-true versus QC interval crosses zero with a negative point
+      estimate. Fixed-response direction conversion is near four percent versus
+      roughly one quarter on repeat requests.
+    interpretation: >-
+      The independent source replicates low-efficiency nonrepeat conversion and
+      shows why positive true-over-null utility can be misleading: it may repay a
+      base deficit created by joint history training.
+    uncertainty: >-
+      JD strict direction is significantly above chance, and same-query
+      true-over-wrong specificity is not established. The claim is inefficient
+      controlled composition, not useless or random history.
+  - id: O028
+    artifact: reports/history_response_gap_jdsearch_motivation_decision.json
+    evidence: >-
+      A QC/FULL by pure-query/structured-empty factorial finds small unstable
+      format effects but a large significant FULL-versus-QC weight gap under
+      either serialization.
+    interpretation: >-
+      JDsearch base erosion is localized primarily to the jointly history-trained
+      weights rather than the literal empty-history marker.
+    uncertainty: >-
+      The factorial localizes weights versus serialization, not a Transformer
+      layer, objective, or optimization cause.
+  - id: O029
+    artifact: doc/35_controlled_history_composition_motivation.md
+    evidence: >-
+      Across KuaiSearch, JDsearch and Amazon-C4, history observability and
+      true-over-null utility do not guarantee simultaneous base retention and
+      useful candidate-relative updates. Different information objects expose
+      different sides of the same accounting failure.
+    interpretation: >-
+      Exploratory CCF-A-level motivation is established around controlled history
+      composition. The universal direction-failure statement is closed.
+    uncertainty: >-
+      Simple standard repairs, train-only recoverability, independent-family
+      replication and frozen confirmation remain missing, so architecture is
+      still unauthorized.
+  - id: O030
+    artifact: reports/history_response_gap_amazon_c4_motivation_contrast_decision.json
+    evidence: >-
+      The Amazon-C4 QC/FULL by query-only/structured-empty factorial finds a
+      checkpoint-dependent format interaction, but FULL weights remain far below
+      QC under both serializations.
+    interpretation: >-
+      Like JDsearch, Amazon base erosion cannot be explained away by the literal
+      empty-history marker; the jointly trained weights carry the dominant loss.
+    uncertainty: >-
+      The factorial localizes weights versus serialization, not the objective,
+      optimizer, Transformer layer, or necessity of an architecture repair.
+  - id: O031
+    artifact: experiments/history_response_gap/representative_architecture_protocol.yaml
+    evidence: >-
+      Qwen, HSTU, and LLM-SRec are frozen as language, rec-native, and published
+      sequence-enhanced representatives, with BGE retained as an encoder anchor.
+      The shared label-free sequence adapter passes current KuaiSearch,
+      Amazon-C4, and JDsearch train/dev audits without opening qrels.
+    interpretation: >-
+      Independent-family replication now has a bounded architecture matrix and
+      a common causal data interface. High development item OOV makes frozen
+      text content features binding for HSTU rather than an optional rescue.
+    uncertainty: >-
+      Official HSTU model integration, LLM-SRec independent implementation,
+      adequacy, training, and outcome replication have not yet been completed.
+  - id: O032
+    artifact: reports/history_response_gap_lite_scout_hstu_biencoder_rep_arch_surfaces.json
+    evidence: >-
+      The official-core HSTU PPS adapter produces active candidate-relative
+      response on nearly every history-present request. Strict-nonrepeat
+      direction is compatible with chance and true-minus-null utility is
+      negative with uncertainty crossing zero.
+    interpretation: >-
+      The Lite symptom survives a rec-native sequential transducer in a real
+      train/dev run, not only full-token language serialization.
+    uncertainty: >-
+      HSTU-QC remains below BM25 and repeat utility is not significant, so this
+      family has not passed adequacy and cannot bind a negative shared-failure claim.
+  - id: O033
+    artifact: reports/history_response_gap_lite_scout_sasrec_rep_arch_surfaces.json
+    evidence: >-
+      The same-tree SASRec core under the identical PPS adapter and budget also
+      reacts broadly while strict-nonrepeat direction and utility remain unstable.
+    interpretation: >-
+      The current sequence symptom is not uniquely attributable to HSTU's
+      transduction unit; the task adapter, objective, data, or generic
+      sequence-to-slate interface remains a live cause.
+    uncertainty: >-
+      SASRec-QC is below BM25 and is an architecture-specific control only.
+  - id: O034
+    artifact: reports/history_response_gap_lite_representative_architecture_decision.json
+    evidence: >-
+      The independently implemented LLM-SRec mechanism completed a frozen-Qwen,
+      frozen-SASRec full Lite train and true/null/wrong bundle. Its
+      strict-nonrepeat response is broad, direction is compatible with chance,
+      and utility is unstable, consistent with HSTU/SASRec and ordinary Qwen/BGE.
+    interpretation: >-
+      Explicit sequential distillation does not automatically remove the Lite
+      symptom under the current PPS adaptation.
+    uncertainty: >-
+      One epoch, no independent LLM-SRec QC, and no origin-compatible Amazon run
+      make this supportive rather than binding evidence.
+corrections:
+  - id: C000
+    prior: A failed Lite admission would close the dataset track.
+    revised: Lite outcomes have Lite-only scope and may redirect a Full probe.
+  - id: C001
+    prior: The physical recall_lite/train.jsonl file could be audited as one training source.
+    revised: >-
+      It contains source train and test rows. The first aggregate report is
+      invalidated; active audits discard non-train rows before behavior access.
+  - id: C002
+    prior: >-
+      Cross-condition global batching was numerically harmless because candidate
+      order and checkpoint were fixed.
+    revised: >-
+      Dynamic padding changed fp16 logits for some identical no-history inputs.
+      The first zero-shot analysis is invalidated; request-aligned batching now
+      makes every no-history score exactly equal across conditions.
+  - id: C003
+    prior: Direct fp16 parameter loading was suitable for local fine-tuning.
+    revised: >-
+      Mixed-precision training keeps fp32 master parameters and uses bf16 autocast
+      on A40. Failed/interrupted fp16 attempts produced no checkpoint or dev result.
+  - id: C004
+    prior: >-
+      An independently trained QC could use the same query-plus-empty-history string
+      as FULL-null without changing its role.
+    revised: >-
+      That is information-equivalent but not a clean zero-shot QC input. Independent
+      QC now uses query_only_text_v1; FULL-null retains the structured empty-history
+      format because it must share the FULL checkpoint and scoring signature.
+  - id: C005
+    prior: A ten-event history budget was a safe default under max_length 512.
+    revised: >-
+      Token audits found material overflow and likely recent-event truncation. The
+      incomplete budget-10 v2-m3 FULL run was stopped without a checkpoint; active
+      matched FULL uses six recent events with zero train/dev overflow.
+  - id: C006
+    prior: >-
+      Calling the recoverability tree once per request was a harmless scoring
+      implementation choice.
+    revised: >-
+      Per-request prediction overhead made four main runs and one debug run
+      impractically slow. They were stopped without metadata or evaluation. Batched
+      feature prediction produced the complete v2 bundle used for all results.
+  - id: C007
+    prior: >-
+      Request-level common-mode dominance might be the defining mechanism of the
+      response-direction gap.
+    revised: >-
+      Common-mode energy is objective-sensitive and falls materially under pointwise
+      BCE while strict-nonrepeat direction failure persists. The thesis is candidate-
+      relative direction conversion; common mode is one diagnostic manifestation.
+  - id: C008
+    prior: >-
+      A tokenizer-only history-budget audit was sufficient for the Qwen3 decoder
+      reranker's official CrossEncoder interface.
+    revised: >-
+      The official prompt/chat preprocessing adds tokens not visible to a simple
+      tokenizer-pair audit. Real preprocess auditing found a small budget-six
+      overflow tail; budget five has zero train/dev overflow. Budget-six score
+      bundles were never evaluated.
+  - id: C009
+    prior: >-
+      Decoder training metadata recorded every accumulated training diagnostic.
+    revised: >-
+      The completed QC/FULL runs omitted the already accumulated mean-loss field
+      from metadata. Their matched sample/update counts and finite checkpoints are
+      valid; the source now records mean loss for future runs, and this pair was
+      not retrained or selected using dev outcomes.
+  - id: C010
+    prior: >-
+      Strict-nonrepeat candidate attribution is generally indistinguishable from
+      random reassignment of the same history-response deltas.
+    revised: >-
+      That exact statement holds on the Lite probes but does not replicate on the
+      Full-source scout, where attribution is slightly better than random. The
+      supported cross-population statement is that correct-direction conversion
+      is small, utility-unstable, and far below label-aligned diagnostic headroom.
+  - id: C011
+    prior: >-
+      Cross-dataset motivation should require every independent dataset to show
+      chance-level strict-nonrepeat direction.
+    revised: >-
+      Amazon strongly rejects universal direction failure and JD direction is
+      reliably above chance. The supported problem is failure to jointly control
+      base retention and direction-conversion efficiency; positive boundary data
+      localizes rather than vetoes that claim.
+  - id: C012
+    prior: >-
+      JDsearch's original wrong-user assignments were valid under the audited
+      three-event true-history token budget.
+    revised: >-
+      One wrong donor's effective context exceeded the only-second first-sequence
+      limit. Two interrupted score runs produced no metadata or evaluator call.
+      A label-free guard dropped that one assignment's oldest effective event,
+      preserved candidate capacity, and the complete context-safe run is the only
+      wrong condition used in analysis.
+  - id: C013
+    prior: >-
+      FULL-null degradation might mainly reflect the structured empty-history
+      marker used by FULL but not QC.
+    revised: >-
+      The JD QC/FULL by serialization factorial finds small unstable format
+      effects and a large significant FULL-weight deficit under both pure-query
+      and structured-empty inputs. The marker explanation is rejected on JD.
+resource_ledger:
+  exploratory_dev_evaluator_calls: 104
+  invalidated_dev_evaluator_calls: 1
+  model_training_attempts: 34
+  completed_model_training_runs: 27
+next_reversible_probe: >-
+  Improve ordinary HSTU/SASRec query-candidate adequacy with a predeclared shared
+  search task adapter or standard sequential pretraining recipe, and run the
+  already implemented LLM-SRec mechanism on origin-compatible Amazon-C4. Only
+  adequate survivors receive a second seed or move to KuaiSearch Full. None of
+  these actions formulates or trains a proposed architecture.
+locked:
+  confirmation: true
+  test: true
+  proposed_architecture: true

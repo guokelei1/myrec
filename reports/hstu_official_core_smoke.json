@@ -1,0 +1,67 @@
+{
+  "checks": [
+    {
+      "architecture": "hstu",
+      "finite_difference": {
+        "absolute_error": 2.9709190130233765e-07,
+        "analytic": -0.007599294651299715,
+        "epsilon": 0.001,
+        "numeric": -0.007599591743201017,
+        "parameter": "_hstu._attention_layers.0._uvqk",
+        "passed": true,
+        "tolerance": 0.005
+      },
+      "finite_gradients": true,
+      "finite_loss": true,
+      "finite_output": true,
+      "gradient_tensor_count": 7,
+      "nonzero_gradient_tensor_count": 7,
+      "output_shape": [
+        2,
+        16
+      ],
+      "warning_messages": [
+        "fbgemm::dense_to_jagged: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)",
+        "fbgemm::jagged_to_padded_dense: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)"
+      ]
+    },
+    {
+      "architecture": "sasrec",
+      "finite_difference": {
+        "absolute_error": 3.8107391446828842e-06,
+        "analytic": -0.0037216502241790295,
+        "epsilon": 0.001,
+        "numeric": -0.0037178394850343466,
+        "parameter": "attention_layers.0.in_proj_weight",
+        "passed": true,
+        "tolerance": 0.005
+      },
+      "finite_gradients": true,
+      "finite_loss": true,
+      "finite_output": true,
+      "gradient_tensor_count": 10,
+      "nonzero_gradient_tensor_count": 10,
+      "output_shape": [
+        2,
+        16
+      ],
+      "warning_messages": []
+    }
+  ],
+  "decision": "pass",
+  "device": "cuda:0",
+  "package_versions": {
+    "fbgemm_gpu": "1.1.0",
+    "python": "3.10.20",
+    "torch": "2.6.0+cu124",
+    "torch_cuda": "12.4",
+    "torchrec": "1.1.0",
+    "triton": "3.2.0"
+  },
+  "qrels_read": false,
+  "schema_version": 1,
+  "sparse_cumsum_library": "already_registered",
+  "sparse_cumsum_manual_load": false,
+  "upstream_commit": "6135bc30398f97e5786674192558d91f2ef2fa90",
+  "upstream_root": "/data/gkl/myrec/baselines/hstu"
+}

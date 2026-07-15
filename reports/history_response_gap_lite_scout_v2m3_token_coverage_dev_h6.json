@@ -1,0 +1,80 @@
+{
+  "analysis_type": "full_token_input_coverage",
+  "candidate_pairs": 42856,
+  "candidate_token_length": {
+    "count": 42856,
+    "max": 67,
+    "mean": 42.01360369609856,
+    "min": 14,
+    "p50": 42,
+    "p90": 49,
+    "p95": 51,
+    "p99": 56
+  },
+  "context_token_length": {
+    "count": 2000,
+    "max": 384,
+    "mean": 205.967,
+    "min": 17,
+    "p50": 256,
+    "p90": 339,
+    "p95": 349,
+    "p99": 366
+  },
+  "history_budget": 6,
+  "history_increment_token_length": {
+    "count": 2000,
+    "max": 375,
+    "mean": 199.532,
+    "min": 16,
+    "p50": 249,
+    "p90": 331,
+    "p95": 343,
+    "p99": 359
+  },
+  "history_present_overflow_pairs": 0,
+  "history_present_overflow_rate": 0.0,
+  "history_present_requests": 1627,
+  "label_fields_read": false,
+  "local_files_only": true,
+  "max_length": 512,
+  "model_name": "BAAI/bge-reranker-v2-m3",
+  "overflow_pair_rate": 0.0,
+  "overflow_pairs": 0,
+  "overflow_token_count": {
+    "count": 42856,
+    "max": 0,
+    "mean": 0.0,
+    "min": 0,
+    "p50": 0,
+    "p90": 0,
+    "p95": 0,
+    "p99": 0
+  },
+  "pair_special_tokens": 4,
+  "pair_token_length_before_truncation": {
+    "count": 42856,
+    "max": 446,
+    "mean": 252.36314635056934,
+    "min": 39,
+    "p50": 308,
+    "p90": 386,
+    "p95": 398,
+    "p99": 417
+  },
+  "qrels_read": false,
+  "query_token_length": {
+    "count": 2000,
+    "max": 76,
+    "mean": 6.435,
+    "min": 1,
+    "p50": 6,
+    "p90": 10,
+    "p95": 11,
+    "p99": 14
+  },
+  "records_path": "data/standardized/kuaisearch/lite_scout10k_v1/records_dev.jsonl",
+  "records_sha256": "c526cb6f6a8b1507ea7554f01b347190fef3dea544d93f671c64cd6ad097b10a",
+  "requests": 2000,
+  "unique_candidate_documents": 36110
+}

@@ -15,8 +15,8 @@ The research scope is documented in [doc/](doc/). Key documents:
 - `doc/07_paper_design_constraints.md` — paper design constraints (Tier 1
   rules that govern all experiments).
 - `doc/10_direction_decision.md` — current bounded direction and dataset
-  roles: KuaiSearch Full main, KuaiSAR functional replication, JDsearch
-  fallback, and Amazon-C4 non-binding stress test.
+  roles: KuaiSearch Full main, JDsearch independent functional replication,
+  and Amazon-C4 English semantic positive boundary.
 - `doc/11_experiment_and_dataset_plan.md` — active unified-record, split,
   label-isolation, E0–E8, and metric contract.
 - `doc/12_experiment_execution_protocol.md` — run boundaries, dev-eval
@@ -31,9 +31,13 @@ The research scope is documented in [doc/](doc/). Key documents:
   failure discovery, architecture formulation, dev iteration, and confirmation.
 - `doc/32_autonomous_pipeline_controller.md` — autonomous loop, persistent
   state, feedback transitions, recovery, budgets, and whole-pipeline end states.
-- `doc/34_history_response_direction_gap_validation_plan.md` — active
-  scientific plan; it validates the direction gap before any Failure Card or
-  architecture work.
+- `doc/34_history_response_direction_gap_validation_plan.md` — original
+  pre-outcome validation plan; its universal direction-gap hypothesis was
+  narrowed by the completed exploration.
+- `doc/35_controlled_history_composition_motivation.md` — current empirical
+  motivation decision: base retention and candidate-relative history utility
+  are separate obligations, and architecture remains locked pending a Failure
+  Card.
 - `doc/24_parallel_llm4rec_design_protocol.md` — historical C01--C04 isolation
   protocol; it does not authorize current work.
 
@@ -117,9 +121,10 @@ Architecture search ended at C80. There is no C81 and no C80 precision,
 canonicalization, threshold, label-opening, dev, or test rescue. The C01--C80
 trees under `systems/` are historical evidence, not active templates.
 
-Current work first follows
-`doc/34_history_response_direction_gap_validation_plan.md`. A replicated
-Failure Card then enters `doc/31_problem_discovery_and_architecture_iteration_protocol.md`
+Current work follows the outcome in
+`doc/35_controlled_history_composition_motivation.md`. The next authorized step
+is to freeze and validate a controlled-composition Failure Card under
+`doc/31_problem_discovery_and_architecture_iteration_protocol.md`
 under the autonomous controller in `doc/32_autonomous_pipeline_controller.md`:
 
 1. audit the cross-dataset information objects and confirmation data;

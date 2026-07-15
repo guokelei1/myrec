@@ -1,0 +1,163 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "full_scout10k_v1",
+  "evidence_mode": "exploratory",
+  "generated_at": "2026-07-14T10:55:27.460651+00:00",
+  "history": {
+    "causal_rule": "event_time < request_time",
+    "outside_log_events": "unobserved",
+    "raw_rank_recent_fields_used": false,
+    "source": "same-user recall click/purchase events"
+  },
+  "item_join": {
+    "loaded_item_ids": 185723,
+    "missing_item_examples": [],
+    "missing_item_ids": 0,
+    "needed_item_ids": 185723
+  },
+  "outputs": {
+    "candidate_count": {
+      "count": 10000,
+      "max": 100,
+      "mean": 20.9176,
+      "min": 2
+    },
+    "counts": {
+      "dev_history_present": 1819,
+      "dev_requests": 2002,
+      "dev_strict_nonrepeat": 1285,
+      "dev_with_click": 990,
+      "dev_with_purchase": 137,
+      "train_history_present": 7325,
+      "train_requests": 7998,
+      "train_strict_nonrepeat": 5129,
+      "train_with_click": 3958,
+      "train_with_purchase": 622
+    },
+    "files": {
+      "candidate_manifest": {
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/candidate_manifest.json",
+        "sha256": "bc227efc745fe1263d45cf451b92ea1c06e99c702e856474986f6048acf18754",
+        "size_bytes": 5174702
+      },
+      "qrels_dev": {
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/qrels_dev.jsonl",
+        "sha256": "a13441e2cf1167c06b018f7217a022de42b0b5cce9be6defe9c37bc007ecd2c0",
+        "size_bytes": 237010
+      },
+      "qrels_train": {
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/qrels_train.jsonl",
+        "sha256": "d92aeab4a743a430eb555272fdb5f7b0e870262d368583369d332b392eca75e4",
+        "size_bytes": 947245
+      },
+      "records_dev": {
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/records_dev.jsonl",
+        "sha256": "3263acad77a8b1a674abdcdb989b0e4db38ab8027f8d314c73dcb8caa677f3c6",
+        "size_bytes": 14011885
+      },
+      "records_train": {
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/records_train.jsonl",
+        "sha256": "38c4c321703b4ef7fa1f4d0676f179b2e55c897085f4144af1d92c60057f6ea4",
+        "size_bytes": 64460665
+      },
+      "request_manifest": {
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/request_manifest.json",
+        "sha256": "90aeda715bcd889e3ade119c10ed914a1aa0a553246fb28d5383223712b5a9e7",
+        "size_bytes": 2796059
+      }
+    },
+    "history_length": {
+      "count": 10000,
+      "max": 20,
+      "mean": 11.7259,
+      "min": 0
+    },
+    "label_isolation": {
+      "dev_labels_path": "data/standardized/kuaisearch/full_scout10k_v1/qrels_dev.jsonl",
+      "dev_records_label_free": true,
+      "scoring_code_may_read_dev_labels": false
+    },
+    "manifest": {
+      "path": "data/standardized/kuaisearch/full_scout10k_v1/manifest.json",
+      "sha256_status": "self_reference_not_recorded"
+    },
+    "repeated_query_requests": {
+      "dev": 539,
+      "train": 2870
+    },
+    "structural_audits": {
+      "dev": {
+        "candidate_count": {
+          "max": 100,
+          "mean": 20.75224775224775,
+          "min": 2
+        },
+        "history_length": {
+          "max": 20,
+          "mean": 11.504495504495505,
+          "min": 0
+        },
+        "history_present_requests": 1819,
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/records_dev.jsonl",
+        "repeated_query_requests": 539,
+        "request_count": 2002,
+        "sha256": "3263acad77a8b1a674abdcdb989b0e4db38ab8027f8d314c73dcb8caa677f3c6",
+        "split": "dev",
+        "strict_nonrepeat_requests": 1285,
+        "unique_normalized_queries": 1679
+      },
+      "train": {
+        "candidate_count": {
+          "max": 100,
+          "mean": 20.95898974743686,
+          "min": 2
+        },
+        "history_length": {
+          "max": 20,
+          "mean": 11.78132033008252,
+          "min": 0
+        },
+        "history_present_requests": 7325,
+        "path": "data/standardized/kuaisearch/full_scout10k_v1/records_train.jsonl",
+        "repeated_query_requests": 2870,
+        "request_count": 7998,
+        "sha256": "38c4c321703b4ef7fa1f4d0676f179b2e55c897085f4144af1d92c60057f6ea4",
+        "split": "train",
+        "strict_nonrepeat_requests": 5129,
+        "unique_normalized_queries": 6154
+      }
+    }
+  },
+  "scope_warning": "This is a source-train time-window scout for implementation and motivation exploration. It is not a frozen confirmation cohort and does not represent the entire source population.",
+  "selection": {
+    "dev_requests": 2002,
+    "dev_time_index_min": 1903719,
+    "eligible_source_requests": 2321406,
+    "max_candidate_count": 100,
+    "max_history_len": 20,
+    "max_requests": 10000,
+    "min_candidate_count": 2,
+    "selected_requests": 10000,
+    "session_overlap": 0,
+    "strategy": "latest source-train time window after label-free candidate-size filter",
+    "time_index_max": 1905379,
+    "time_index_min": 1897788,
+    "time_ties_kept_with_dev": 2,
+    "train_requests": 7998
+  },
+  "source": {
+    "evaluation_source_behavior_fields_accessed": false,
+    "excluded_source_split_counts": {
+      "test": 34670
+    },
+    "included_source_splits": [
+      "train"
+    ],
+    "items_path": "data/raw/kuaisearch_full/items/train.jsonl",
+    "items_size_bytes": 7837345198,
+    "raw_dir": "data/raw/kuaisearch_full",
+    "recall_path": "data/raw/kuaisearch_full/recall/train.jsonl",
+    "recall_sha256": "90935bde721321f8ece70a84065f15e81167725f678b9275c9edf1d4297e5830",
+    "source_variant": "full"
+  }
+}

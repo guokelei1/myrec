@@ -1,0 +1,31 @@
+schema_version: 1
+dataset_version: full_scout10k_query_history_v1
+evidence_mode: exploratory_history_information_equalization
+base_model_name: BAAI/bge-reranker-v2-m3
+input_modes: [full]
+serialization:
+  full: query_history_event_text_v1_with_prior_query
+objective: pairwise_logistic_softplus
+recipe_source: frozen_kuaisearch_full_item_only_pairwise_recipe
+max_length: 768
+history_budget: 6
+truncation_strategy: only_second
+negatives_per_positive: 2
+negative_sampling: seeded_uniform
+batch_size: 4
+gradient_accumulation_steps: 8
+epochs: 2
+learning_rate: 1.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.1
+seed: 20260714
+input_lock_reason: >-
+  This dataset has the exact requests, candidates, labels and six-event history
+  items used by the completed Full-source scout, with only each event's original
+  prior query restored. A label-free token audit selected 768 so the complete
+  query-plus-history sequence is preserved; the ordinary Transformer, loss and
+  optimizer recipe are unchanged.
+claim_boundary: >-
+  This is an information-interface falsification probe, not a proposed method.
+  If prior-query restoration repairs direction, the item-only architecture
+  motivation must be closed or rewritten.

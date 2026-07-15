@@ -1,0 +1,58 @@
+{
+  "candidate_identity_equal_across_conditions": true,
+  "checks": [
+    {
+      "architecture": "hstu",
+      "finite_gradients": true,
+      "finite_scores": true,
+      "nonzero_gradient_tensor_count": 13,
+      "score_shapes": {
+        "null": [
+          2,
+          40
+        ],
+        "true": [
+          2,
+          40
+        ],
+        "wrong": [
+          2,
+          40
+        ]
+      },
+      "true_null_score_difference": true
+    },
+    {
+      "architecture": "sasrec",
+      "finite_gradients": true,
+      "finite_scores": true,
+      "nonzero_gradient_tensor_count": 16,
+      "score_shapes": {
+        "null": [
+          2,
+          40
+        ],
+        "true": [
+          2,
+          40
+        ],
+        "wrong": [
+          2,
+          40
+        ]
+      },
+      "true_null_score_difference": true
+    }
+  ],
+  "decision": "pass",
+  "feature_boundary": "frozen_cross_encoder_cls_l2_v1",
+  "feature_store": "artifacts/representative_text_features/kuaisearch_lite_v2m3_cls_l128",
+  "null_sequence_lengths": [
+    1,
+    1
+  ],
+  "qrels_read": false,
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "standardized_dir": "data/standardized/kuaisearch/lite_scout10k_v1"
+}

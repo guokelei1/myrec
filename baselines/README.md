@@ -11,6 +11,8 @@ identifiers are provenance labels, not the active experiment structure.
 | `kuaisearch_official/` | B5: DIN / DCNv2 | KuaiSearch official repo |
 | `recbole/` | B4: SASRec / BERT4Rec | RecBole framework |
 | `pps_classic/` | B6: HEM / ZAM / TEM | PPS classic paper code |
+| `hstu/` | HSTU plus matched SASRec | Generative Recommenders, ICML 2024, locked Apache-2.0 snapshot |
+| `llm_srec/` | LLM-SRec mechanism boundary | KDD 2025 paper; upstream code not vendored because no license was found |
 
 Self-implemented source-order/popularity/BM25/static controls live under
 `src/myrec/baselines/`. E-QC/E-FULL and D-QC/D-FULL will be added only after E0

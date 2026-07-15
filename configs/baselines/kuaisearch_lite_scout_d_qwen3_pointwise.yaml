@@ -1,0 +1,30 @@
+schema_version: 1
+dataset_version: lite_scout10k_v1
+evidence_mode: exploratory_second_transformer_family_adaptation
+base_model_name: models/huggingface/Qwen3-Reranker-0.6B
+model_type: decoder_only_causal_lm_reranker
+official_interface: sentence_transformers.CrossEncoder
+input_modes: [qc, full]
+serialization:
+  qc: query_only_text_v1
+  full: query_history_event_text_v1
+objective: pointwise_binary_cross_entropy
+score: raw_yes_minus_no_logit
+max_length: 512
+history_budget: 5
+negatives_per_positive: 2
+negative_sampling: seeded_uniform
+batch_size: 8
+gradient_accumulation_steps: 2
+epochs: 1
+learning_rate: 1.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.1
+seed: 20260714
+dtype: bfloat16
+gradient_checkpointing: false
+claim_boundary: >-
+  Ordinary train-only task adaptation for a second Transformer family. QC and
+  FULL share initialization, sampled train pairs, pointwise objective, update
+  count and seed. This is a motivation probe, not a proposed architecture; a
+  Lite result neither predicts Full nor proves a universal Transformer limit.

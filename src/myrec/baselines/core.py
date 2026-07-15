@@ -21,6 +21,39 @@ ScoreRecordFn = Callable[[dict[str, Any]], dict[str, float]]
 _ASCII_RE = re.compile(r"[a-z0-9]+")
 
 
+def write_source_order_scores(
+    standardized_dir: str | Path,
+    split: str,
+    run_id: str,
+    runs_dir: str | Path = "runs",
+    config_path: str | Path | None = None,
+) -> dict[str, Any]:
+    """Score candidates by their preserved source-slate position."""
+
+    standardized_dir = Path(standardized_dir)
+
+    def score_record(record: dict[str, Any]) -> dict[str, float]:
+        size = len(record["candidates"])
+        return {
+            str(candidate["item_id"]): float(size - index)
+            for index, candidate in enumerate(record["candidates"])
+        }
+
+    return _write_scores_from_records(
+        standardized_dir=standardized_dir,
+        split=split,
+        run_id=run_id,
+        method_id="source_order",
+        runs_dir=runs_dir,
+        config_path=config_path,
+        score_record=score_record,
+        metadata_extra={
+            "input_fields_used": ["candidate source position"],
+            "score_definition": "candidate_count - zero_based_source_position",
+        },
+    )
+
+
 def write_popularity_scores(
     standardized_dir: str | Path,
     split: str,
@@ -31,8 +64,10 @@ def write_popularity_scores(
 ) -> dict[str, Any]:
     standardized_dir = Path(standardized_dir)
     artifacts_dir = Path(artifacts_dir)
-    artifacts_dir.mkdir(parents=True, exist_ok=True)
-    stats_path = artifacts_dir / "kuaisearch_b0a_popularity_stats.jsonl"
+    _, dataset_version = _dataset_identity(standardized_dir)
+    stats_dir = artifacts_dir / _safe_path_component(dataset_version)
+    stats_dir.mkdir(parents=True, exist_ok=True)
+    stats_path = stats_dir / "popularity_stats.jsonl"
     if stats_path.exists():
         click_counts = _load_popularity_stats(stats_path)
     else:
@@ -123,7 +158,12 @@ def write_bm25_scores(
     bm25_stats = None
     stats_metadata = {}
     if idf_scope == "global":
-        stats_path = Path(artifacts_dir) / f"kuaisearch_b1_bm25_stats_{tokenizer_mode}.json"
+        _, dataset_version = _dataset_identity(standardized_dir)
+        stats_path = (
+            Path(artifacts_dir)
+            / _safe_path_component(dataset_version)
+            / f"bm25_stats_{tokenizer_mode}.json"
+        )
         bm25_stats = _load_or_build_bm25_stats(
             item_catalog_path=standardized_dir / "item_catalog.jsonl",
             stats_path=stats_path,
@@ -532,12 +572,13 @@ def _base_metadata(
     candidate_manifest_path: Path,
     config_path: str | Path | None,
 ) -> dict[str, Any]:
+    dataset_id, dataset_version = _dataset_identity(standardized_dir)
     return {
         "candidate_manifest_path": str(candidate_manifest_path),
         "candidate_manifest_sha256": sha256_file(candidate_manifest_path),
         "config_path": str(config_path) if config_path else None,
-        "dataset_id": "kuaisearch",
-        "dataset_version": "v0_lite",
+        "dataset_id": dataset_id,
+        "dataset_version": dataset_version,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "method_id": method_id,
         "qrels_read": False,
@@ -545,6 +586,28 @@ def _base_metadata(
         "split": split,
         "standardized_dir": str(standardized_dir) if standardized_dir else None,
     }
+
+
+def _dataset_identity(standardized_dir: Path | None) -> tuple[str, str]:
+    if standardized_dir is None:
+        return "unknown", "unknown"
+    manifest_path = standardized_dir / "manifest.json"
+    if not manifest_path.exists():
+        raise FileNotFoundError(f"standardized manifest missing: {manifest_path}")
+    with manifest_path.open("r", encoding="utf-8") as handle:
+        manifest = json.load(handle)
+    dataset_id = str(manifest.get("dataset_id") or "").strip()
+    dataset_version = str(manifest.get("dataset_version") or "").strip()
+    if not dataset_id or not dataset_version:
+        raise ValueError("standardized manifest must define dataset_id and dataset_version")
+    return dataset_id, dataset_version
+
+
+def _safe_path_component(value: str) -> str:
+    safe = re.sub(r"[^A-Za-z0-9._-]+", "_", value).strip("._")
+    if not safe:
+        raise ValueError("dataset version cannot form a safe artifact path")
+    return safe
 
 
 def _copy_config(config_path: str | Path | None, run_dir: Path) -> None:

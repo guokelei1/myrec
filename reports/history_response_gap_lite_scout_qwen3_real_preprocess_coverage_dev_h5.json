@@ -1,0 +1,32 @@
+{
+  "analysis_type": "cross_encoder_real_preprocess_coverage",
+  "audit_max_length": 4096,
+  "batch_size": 256,
+  "candidate_pairs": 42856,
+  "dtype": "bfloat16",
+  "history_budget": 5,
+  "history_present_overflow_pairs": 0,
+  "history_present_overflow_rate": 0.0,
+  "history_present_pairs": 34207,
+  "label_fields_read": false,
+  "local_files_only": true,
+  "max_length": 512,
+  "model_name": "models/huggingface/Qwen3-Reranker-0.6B",
+  "overflow_pair_rate": 0.0,
+  "overflow_pairs": 0,
+  "pair_token_length_before_truncation": {
+    "count": 42856,
+    "max": 482,
+    "mean": 288.42866809781594,
+    "min": 102,
+    "p50": 336,
+    "p90": 392,
+    "p95": 404,
+    "p99": 423
+  },
+  "preprocess_prompt": "Given a web search query, retrieve relevant passages that answer the query",
+  "qrels_read": false,
+  "records_path": "data/standardized/kuaisearch/lite_scout10k_v1/records_dev.jsonl",
+  "records_sha256": "c526cb6f6a8b1507ea7554f01b347190fef3dea544d93f671c64cd6ad097b10a",
+  "requests": 2000
+}

@@ -1,0 +1,214 @@
+{
+  "audit_id": "history_response_gap_kuaisearch_lite_source_audit",
+  "dataset_id": "kuaisearch_full",
+  "direct_observations": [
+    "Scanned 200000 recall requests; 105609 belong to repeated exact-query groups.",
+    "Observed-log prior history exists for 114234 requests; 72272 of those have no recurrent candidate.",
+    "The label-free exact-query scout found 69751 cross-user request pairs with at least two shared strict candidates.",
+    "Raw recent-history lookup found 28/1000 sampled requests; timestamp validity remains only partially observable."
+  ],
+  "evidence_mode": "exploratory",
+  "exact_query_collision_scout": {
+    "cross_user_pairs_with_at_least_two_shared_strict_candidates": 69751,
+    "eligible_pairs_per_query": {
+      "count": 490,
+      "max": 952,
+      "mean": 142.34897959183672,
+      "min": 1,
+      "p50": 69.5,
+      "p90": 391.60000000000014,
+      "p99": 784.33
+    },
+    "eligible_query_groups": 490,
+    "eligible_requests": 10366,
+    "eligible_users": 6142,
+    "pair_concentration": {
+      "largest_query_share": 0.013648549841579332,
+      "top_10_query_share": 0.11390517698670986,
+      "warning": "Request-pair count is not an effective sample size; inference must cluster by query and account for reused users/requests."
+    },
+    "same_user_pairs_skipped": 4041,
+    "scope": "Power/opportunity scout only; no labels or model scores were used and this is not a frozen confirmation cohort.",
+    "selection": {
+      "query_groups_considered": 500,
+      "requests_per_query_cap": 50,
+      "sampled_requests": 11650,
+      "source_requests_in_considered_groups": 26674,
+      "strategy": "top exact normalized queries by source frequency, then a seeded per-query request reservoir"
+    },
+    "shared_strict_candidate_count": {
+      "count": 69751,
+      "max": 275,
+      "mean": 7.1425642643116225,
+      "min": 2,
+      "p50": 4,
+      "p90": 15,
+      "p99": 42.0
+    }
+  },
+  "generated_at": "2026-07-14T10:52:21.852950+00:00",
+  "integrity": {
+    "evaluation_source_behavior_fields_accessed": false,
+    "included_source_splits": [
+      "train"
+    ],
+    "note": "Rows outside the included split are counted by split name and discarded before click, purchase, candidate, query, user, or history fields are accessed."
+  },
+  "parameters": {
+    "collision_query_limit": 500,
+    "collision_requests_per_query": 50,
+    "included_source_splits": [
+      "train"
+    ],
+    "max_rank_scan_rows": 500000,
+    "max_recall_rows": 200000,
+    "rank_history_sample_size": 1000,
+    "seed": 20260714,
+    "source_variant": "full"
+  },
+  "raw_rank_recent_history_sample": {
+    "caveat": "The rank file provides no per-event history timestamps. These classifications only cross-reference events visible in recall.",
+    "classification": {
+      "future_only": 10,
+      "future_only_over_observed": 0.06802721088435375,
+      "observed_history_items": 147,
+      "past_supported": 137,
+      "past_supported_over_total": 0.13686313686313686,
+      "same_time_only": 0,
+      "total_history_items": 1001,
+      "unobserved": 854,
+      "unobserved_over_total": 0.8531468531468531
+    },
+    "complete_rank_scan": false,
+    "found_requests": 28,
+    "history_fields": [
+      "recently_clicked_item_ids",
+      "recently_purchased_item_ids"
+    ],
+    "missing_requests": 972,
+    "per_history_timestamp_fields": [],
+    "rank_rows_scanned": 500000,
+    "raw_history_length": {
+      "count": 28,
+      "max": 40,
+      "mean": 35.75,
+      "min": 21,
+      "p50": 40.0,
+      "p90": 40.0,
+      "p99": 40.0
+    },
+    "requested_requests": 1000,
+    "requests_with_raw_history_candidate_overlap": 19,
+    "unique_history_length": {
+      "count": 28,
+      "max": 40,
+      "mean": 30.464285714285715,
+      "min": 18,
+      "p50": 32.5,
+      "p90": 38.0,
+      "p99": 39.730000000000004
+    }
+  },
+  "recall": {
+    "candidate_count": {
+      "count": 200000,
+      "max": 2196,
+      "mean": 40.03696,
+      "min": 1,
+      "p50": 20.0,
+      "p90": 94.0,
+      "p99": 301.0
+    },
+    "click_outside_slate": 0,
+    "clicked_count": {
+      "count": 200000,
+      "max": 192,
+      "mean": 1.438505,
+      "min": 0,
+      "p50": 1.0,
+      "p90": 4.0,
+      "p99": 11.0
+    },
+    "complete_scan": false,
+    "duplicate_candidate_requests": 0,
+    "duplicate_request_keys": 0,
+    "excluded_source_rows": 0,
+    "first_row_keys": [
+      "clicked_item_ids",
+      "impressed_item_ids",
+      "purchased_item_ids",
+      "query",
+      "session_id",
+      "split",
+      "time_index",
+      "user_id"
+    ],
+    "missing_required_fields": {},
+    "purchase_outside_slate": 0,
+    "purchased_count": {
+      "count": 200000,
+      "max": 9,
+      "mean": 0.095615,
+      "min": 0,
+      "p50": 0.0,
+      "p90": 0.0,
+      "p99": 1.0
+    },
+    "repeated_exact_query_groups": 24484,
+    "repeated_exact_query_requests": 105609,
+    "requests_with_click": 116102,
+    "requests_with_purchase": 18206,
+    "rows": 200000,
+    "source_rows_seen": 200000,
+    "source_split_counts_seen": {
+      "train": 200000
+    },
+    "split_counts": {
+      "train": 200000
+    },
+    "time_index": {
+      "count": 200000,
+      "max": 471438,
+      "mean": 238958.258625,
+      "min": 11,
+      "p50": 238021.5,
+      "p90": 426276.1,
+      "p99": 467192.01
+    },
+    "unique_normalized_queries": 118875,
+    "unique_users": 58112
+  },
+  "reconstructed_prior_history": {
+    "caveat": "This history is causally valid inside the observed recall log, but interactions outside that log are unobserved.",
+    "definition": "same-user clicked/purchased items observed in recall rows with event time strictly before the target request",
+    "history_present_rate": 0.57117,
+    "history_present_requests": 114234,
+    "recurrent_candidate_count": {
+      "count": 200000,
+      "max": 50,
+      "mean": 0.537695,
+      "min": 0,
+      "p50": 0.0,
+      "p90": 2.0,
+      "p99": 7.0
+    },
+    "requests_with_recurrent_candidate": 41962,
+    "strict_nonrepeat_rate_over_history_present": 0.6326662814923752,
+    "strict_nonrepeat_requests": 72272
+  },
+  "scope_warning": "All observations have full-source exploratory scope. A bounded scan or time-window scout is not a frozen confirmation.",
+  "source_files": {
+    "rank": {
+      "path": "data/raw/kuaisearch_full/rank/train.jsonl",
+      "sha256": null,
+      "sha256_status": "skipped_large_file",
+      "size_bytes": 77675031316
+    },
+    "recall": {
+      "path": "data/raw/kuaisearch_full/recall/train.jsonl",
+      "sha256": null,
+      "sha256_status": "skipped_large_file",
+      "size_bytes": 1211473290
+    }
+  }
+}

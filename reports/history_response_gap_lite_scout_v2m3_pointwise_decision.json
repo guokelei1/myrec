@@ -1,0 +1,56 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "lite_scout10k_v1",
+  "evidence_mode": "exploratory_lite_motivation",
+  "control": "matched_v2m3_pointwise_binary_cross_entropy",
+  "matched_pairwise_reference": "reports/history_response_gap_lite_scout_v2m3_matched_decision.json",
+  "base_and_overall": {
+    "qc_ndcg@10": 0.18918407654530928,
+    "full_null_ndcg@10": 0.1864461530658519,
+    "full_true_ndcg@10": 0.1990898746756457,
+    "full_true_minus_qc_ndcg@10": 0.00990579813033645,
+    "full_true_minus_qc_ci95": [0.000026491860150096366, 0.01970030962758351]
+  },
+  "repeat": {
+    "requests": 515,
+    "mean_true_minus_null_ndcg@10": 0.046650467627641204,
+    "query_cluster_ci95_true_minus_null_ndcg@10": [0.022973822920442925, 0.06912814847259806],
+    "mean_pairwise_directional_accuracy": 0.5836899060951126,
+    "full_true_minus_qc_ndcg@10": 0.05740731811350574,
+    "full_true_minus_qc_ci95": [0.033695371282126865, 0.08054391737051853]
+  },
+  "strict_nonrepeat": {
+    "requests": 1112,
+    "common_mode_ratio": 0.5568335739849783,
+    "mean_pairwise_directional_accuracy": 0.4986042582024822,
+    "query_cluster_ci95_pairwise_directional_accuracy": [0.4722889146321504, 0.524581201858559],
+    "mean_signed_delta_alignment": 0.0009114703876348061,
+    "mean_true_minus_null_ndcg@10": 0.0011352989130866571,
+    "query_cluster_ci95_true_minus_null_ndcg@10": [-0.00808032280035997, 0.01076124126015455],
+    "mean_true_minus_wrong_ndcg@10": 0.005660782974090658,
+    "query_cluster_ci95_true_minus_wrong_ndcg@10": [-0.0021229215397335004, 0.013866350798396586],
+    "full_true_minus_qc_ndcg@10": -0.0037622099730278257,
+    "full_true_minus_qc_ci95": [-0.015714704443927984, 0.007554962837438483]
+  },
+  "fixed_delta_intervention_strict_nonrepeat": {
+    "mean_actual_minus_random_ndcg@10": 0.0029821584051236247,
+    "query_cluster_ci95_actual_minus_random_ndcg@10": [-0.004499986551995454, 0.010732004328922623],
+    "mean_gain_aligned_minus_actual_ndcg@10": 0.22836247556536046,
+    "query_cluster_ci95_gain_aligned_minus_actual_ndcg@10": [0.20713751386844806, 0.24949701907528657],
+    "direction_conversion_efficiency": 0.012890544958583695,
+    "query_cluster_ci95_direction_conversion_efficiency": [-0.019831825633637785, 0.046070576574798176]
+  },
+  "cross_objective_observation": {
+    "survives": [
+      "history produces widespread candidate-relative response",
+      "repeat direction and utility are reliably positive",
+      "strict-nonrepeat direction is near random",
+      "strict-nonrepeat true history does not reliably improve over null, wrong, or matched QC",
+      "fixed-delta actual attribution is not reliably better than random"
+    ],
+    "does_not_survive_as_a_fixed_mechanism": [
+      "the exact common-mode ratio; it is substantially lower under pointwise than pairwise"
+    ]
+  },
+  "decision": "core_lite_motivation_replicates_across_pairwise_and_pointwise_objectives; common_mode_is_diagnostic_not_the_thesis; next_replication_requires_a_second_transformer_family_or_dataset"
+}

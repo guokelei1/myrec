@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "checkpoint": "C3_motivation",
+  "generated_at": "2026-07-15",
+  "evidence_mode": "exploratory_development",
+  "decision": "pass_exploratory_motivation_only",
+  "architecture_authorized": false,
+  "confirmation_claim_authorized": false,
+  "motivation": "Ordinary full-token LLM4Rec rankers can read and exploit history, but do not controllably compose query-candidate base relevance with a candidate-relative history update. Nonrepeat response is low-efficiency, and joint history training can erode the base so that positive true-over-null utility repays self-created damage while recurrence masks the failure overall.",
+  "superseded_hypothesis": "The universal claim that history response is chance-directional across LLM4Rec datasets is rejected by Amazon-C4 and narrowed by JDsearch.",
+  "accounting_identity": "FULL_true - QC = (FULL_null - QC) + (FULL_true - FULL_null)",
+  "dataset_decisions": {
+    "kuaisearch": {
+      "role": "primary_natural_language_localization",
+      "supported": "Broad strict-nonrepeat response, chance-like or population-unstable direction, and about four-percent conversion of fixed response-direction headroom; recurrence is a positive control.",
+      "controls": "The Lite symptom survives encoder/decoder families and pairwise/pointwise encoder objectives. Full-source prior-query restoration does not repair it.",
+      "boundary": "Lite and Full are populations from one source; Full is an exploratory latest-window scout rather than whole-source confirmation."
+    },
+    "jdsearch": {
+      "role": "independent_functional_product_search_replication",
+      "supported": "Strict-nonrepeat true history is useful and direction is above chance, but conversion efficiency is 0.0383 versus 0.2638 on repeat. Base retention is -0.0407, history utility is +0.0289, and net FULL-true versus QC is -0.0118 with an interval crossing zero.",
+      "controls": "Candidate order is label-free hash order; event codes are canonicalized; QC beats BM25; FULL-true beats QC and recent behavior overall; a QC/FULL by serialization factorial localizes base erosion primarily to the history-trained weights.",
+      "boundary": "Anonymous terms support a functional ranking law, and same-query strict-nonrepeat user specificity is not established."
+    },
+    "amazon_c4": {
+      "role": "english_semantic_positive_boundary",
+      "supported": "History direction is strongly correct. At eight events, base retention is -0.1343 and history utility is +0.1131, yielding a significant -0.0211 net result versus QC; increasing history improves direction and counterfactual utility while worsening end ranking.",
+      "controls": "History expansion uses label-free token coverage and matched QC/FULL examples, objective, seed, and update budget. A QC/FULL by serialization factorial leaves a very large FULL-weight deficit under both pure-query and structured-empty inputs.",
+      "boundary": "The constructed target-review query and candidate pool are not natural search and do not support a universal prevalence claim."
+    }
+  },
+  "surviving_alternative_explanations": [
+    "A standard objective, history dropout, anchoring, or other simple training repair may close the joint tradeoff.",
+    "Oracle fixed-delta direction headroom may not be recoverable from train information.",
+    "The failure may localize to objective, optimization, or interface rather than a Transformer primitive.",
+    "A second adequate model family on an independent dataset and frozen confirmation are still missing."
+  ],
+  "rejected_or_narrowed_explanations": [
+    "The ranker is simply inactive or unable to read history.",
+    "Exact recurrence and nonrepeat transfer behave equivalently.",
+    "KuaiSearch missing prior behavioral queries are the main cause.",
+    "KuaiSearch Lite direction failure is only a pairwise-loss artifact.",
+    "JDsearch base erosion is mainly the structured empty-history marker.",
+    "Amazon-C4 base erosion is removed by changing the empty-history serialization.",
+    "Every dataset must show chance direction for the motivation to be useful."
+  ],
+  "next_gate": {
+    "name": "controlled_composition_failure_card",
+    "required": [
+      "standard ordinary repair control",
+      "train-only non-oracle direction recoverability",
+      "independent-family replication",
+      "separately frozen confirmation"
+    ],
+    "forbidden_until_pass": [
+      "new architecture source tree",
+      "architecture GPU training",
+      "test evaluation",
+      "paper-level causal claim"
+    ]
+  },
+  "primary_artifacts": [
+    "doc/35_controlled_history_composition_motivation.md",
+    "reports/history_response_gap_motivation_status.json",
+    "reports/history_response_gap_lite_scout_cross_family_motivation_decision.json",
+    "reports/history_response_gap_full_scout_query_history_information_probe_decision.json",
+    "reports/history_response_gap_amazon_c4_motivation_contrast_decision.json",
+    "reports/history_response_gap_jdsearch_motivation_decision.json"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "ci95": [
+    0.09838568373081438,
+    0.1276730753736116
+  ],
+  "delta": 0.11312578321913895,
+  "metric": "ndcg@10",
+  "num_requests": 1868,
+  "request_ids_path": "data/interim/amazon_c4/history_bm25_100_v1/request_surfaces_dev/strict_nonrepeat.txt",
+  "samples": 5000,
+  "seed": 20260714,
+  "significant_a_gt_b": true
+}
