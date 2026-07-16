@@ -1,6 +1,9 @@
-# Current direction decision
+# Motivation V1 direction decision (historical)
 
-Status: active scope after Motivation V1 consolidation, 2026-07-16.
+Status: frozen historical scope after Motivation V1 consolidation. Current
+execution is governed by `doc/43_llm_rerank_recurrence_transfer_research_logic_zh.md`
+and `experiments/motivation_v1_2/plan.md`. The dataset and authorization order
+below is retained only to interpret V1 evidence and must not redirect V1.2.
 
 The project remains Query-conditioned Personalized Product Ranking and
 LLM4Rec. The universal direction-gap hypothesis is closed: Amazon-C4 has
@@ -58,7 +61,7 @@ pre-registered ordinary-decoder result. TEM and InstructRec add a matched
 post-confirmation cross-model surface replication on the same frozen population;
 they do not convert the result into a universal LLM-family theorem.
 
-## Current authorization
+## Historical authorization (inactive)
 
 The motivation-repair round is complete. Its superseded plans, duplicate
 audits, and exploratory generated reports were removed during V1 consolidation.
@@ -66,5 +69,5 @@ The active evidence chain is now limited to the disjoint frozen Qwen
 confirmation and the same-population Qwen3/TEM/InstructRec audit linked from
 the V1 entry.
 
-No proposed-system tree, architecture GPU training, additional confirmation
-outcome access, or test evaluation is authorized by this decision.
+This authorization paragraph described the stopped V1 workflow. It is not the
+current task boundary; use the V1.2 plan and execution prompt instead.

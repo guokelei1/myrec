@@ -91,7 +91,7 @@ evaluator 错误。
 - TEM 或 InstructRec 已建立正的 aggregate history gain；
 - no-overlap 上最终排序模型本身一定差于 query-only 模型；
 - 现象已经被定位到 architecture，而不是数据、监督、目标、优化或接口；
-- V1 单独通过了 proposed-system Failure Card 或证明必须设计新架构。
+- V1 单独授权了 proposed-system 工作或证明必须设计新架构。
 
 ## 6. V1 与后续证据边界
 

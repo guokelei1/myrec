@@ -300,6 +300,133 @@ def materialize_prodsearch_format(
     return manifest
 
 
+def prepare_prodsearch_shared_history_view(
+    *,
+    catalog_root: str | Path,
+    history_root: str | Path,
+    output_root: str | Path,
+    history_condition: str,
+) -> dict[str, Any]:
+    """Create a counterfactual score view with one fixed official catalog.
+
+    The official TEM checkpoint sizes its product and vocabulary embeddings
+    from the materialized catalog.  Re-materializing true/null/wrong views
+    independently can therefore change those sizes when a condition exposes
+    a different set of history items.  This helper copies the trained true
+    catalog and replaces only the serialized user-history lines for the dev
+    requests.  The source history view is used only as an item-id-to-index
+    lookup for the wrong-history diagnostic.
+    """
+
+    if history_condition not in {"null", "wrong"}:
+        raise ValueError("shared score views support only null and wrong histories")
+    catalog_root = Path(catalog_root)
+    history_root = Path(history_root)
+    output_root = Path(output_root)
+    if output_root.exists():
+        raise FileExistsError(f"refusing to overwrite an existing score view: {output_root}")
+    for root in (catalog_root, history_root):
+        for relative in (
+            "data/product.txt.gz",
+            "data/u_r_seq.txt.gz",
+            "dev_request_map.jsonl",
+            "split/test_id.txt.gz",
+        ):
+            if not (root / relative).exists():
+                raise FileNotFoundError(root / relative)
+
+    catalog_requests = [
+        str(row["request_id"])
+        for row in iter_jsonl(catalog_root / "dev_request_map.jsonl")
+    ]
+    history_requests = [
+        str(row["request_id"])
+        for row in iter_jsonl(history_root / "dev_request_map.jsonl")
+    ]
+    if catalog_requests != history_requests:
+        raise ValueError("catalog and history views do not have the same dev request order")
+    with gzip.open(catalog_root / "split/test_id.txt.gz", "rt", encoding="utf-8") as handle:
+        dev_count = sum(1 for _ in handle)
+    if dev_count != len(catalog_requests):
+        raise ValueError(
+            f"dev request map/test id mismatch: map={len(catalog_requests)} test={dev_count}"
+        )
+
+    def read_gzip_lines(path: Path) -> list[list[int]]:
+        with gzip.open(path, "rt", encoding="utf-8") as handle:
+            return [
+                [int(value) for value in line.split()]
+                for line in handle
+            ]
+
+    catalog_sequences = read_gzip_lines(catalog_root / "data/u_r_seq.txt.gz")
+    history_sequences = read_gzip_lines(history_root / "data/u_r_seq.txt.gz")
+    if len(catalog_sequences) != len(history_sequences):
+        raise ValueError("catalog and history views do not have the same user count")
+    if dev_count > len(catalog_sequences):
+        raise ValueError("dev request count exceeds serialized user count")
+
+    def read_gzip_text_lines(path: Path) -> list[str]:
+        with gzip.open(path, "rt", encoding="utf-8") as handle:
+            return [line.rstrip("\n") for line in handle]
+
+    catalog_products = read_gzip_text_lines(catalog_root / "data/product.txt.gz")
+    history_products = read_gzip_text_lines(history_root / "data/product.txt.gz")
+    catalog_product_to_idx = {item_id: idx for idx, item_id in enumerate(catalog_products)}
+    history_product_ids = {idx: item_id for idx, item_id in enumerate(history_products)}
+
+    updated_sequences = [list(row) for row in catalog_sequences]
+    first_dev_user = len(updated_sequences) - dev_count
+    for offset in range(dev_count):
+        user_idx = first_dev_user + offset
+        catalog_target = catalog_sequences[user_idx][-1:]
+        history_row = history_sequences[user_idx]
+        if not catalog_target or not history_row:
+            raise ValueError(f"missing target review for dev user {user_idx}")
+        if history_condition == "null":
+            updated_sequences[user_idx] = catalog_target
+            continue
+        history_review_ids = history_row[:-1]
+        mapped_history: list[int] = []
+        for history_review_id in history_review_ids:
+            if history_review_id not in history_product_ids:
+                raise ValueError(
+                    "wrong-history view contains a non-catalog review before its target: "
+                    f"user={user_idx} review={history_review_id}"
+                )
+            item_id = history_product_ids[history_review_id]
+            if item_id not in catalog_product_to_idx:
+                raise ValueError(
+                    f"catalog view is missing wrong-history item {item_id!r}"
+                )
+            mapped_history.append(catalog_product_to_idx[item_id])
+        updated_sequences[user_idx] = mapped_history + catalog_target
+
+    shutil.copytree(catalog_root, output_root)
+    with gzip.open(output_root / "data/u_r_seq.txt.gz", "wt", encoding="utf-8") as handle:
+        for row in updated_sequences:
+            handle.write(" ".join(str(value) for value in row) + "\n")
+
+    manifest = {
+        "status": "passed",
+        "view_type": "shared_catalog_counterfactual_score_view",
+        "history_condition": history_condition,
+        "catalog_root": str(catalog_root),
+        "history_root": str(history_root),
+        "catalog_product_sha256": sha256_file(catalog_root / "data/product.txt.gz"),
+        "catalog_vocab_sha256": sha256_file(catalog_root / "data/vocab.txt.gz"),
+        "catalog_history_sha256": sha256_file(catalog_root / "data/u_r_seq.txt.gz"),
+        "source_history_sha256": sha256_file(history_root / "data/u_r_seq.txt.gz"),
+        "output_history_sha256": sha256_file(output_root / "data/u_r_seq.txt.gz"),
+        "dev_request_count": dev_count,
+        "shared_catalog": True,
+        "training_files_copied_from_catalog": True,
+        "qrels_read": False,
+    }
+    write_json(output_root / "shared_history_view_manifest.json", manifest)
+    return manifest
+
+
 def _scan_train_records(
     path: Path,
     examples_out: TextIO,

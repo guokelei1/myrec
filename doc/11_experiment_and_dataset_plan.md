@@ -1,6 +1,8 @@
 # Experiment and dataset contract
 
-Status: active contract for doc 34. The former C0–C5 plan is archived.
+Status: supporting technical contract for unified records, split isolation,
+labels, and metrics. V1.2 execution order comes from
+`experiments/motivation_v1_2/plan.md`.
 
 ## Unified records
 
@@ -36,22 +38,6 @@ confirmation records are label-free by construction; training/scoring code must
 not open `qrels_dev.jsonl`, `qrels_confirmation.jsonl`, or `qrels_test.jsonl`.
 Confirmation labels may be opened only once by the shared evaluator after the
 frozen score bundle passes its pre-label audit.
-
-## Active phases
-
-The scientific phases are E0–E8 in doc 34:
-
-1. E0 source, collision, eligibility, and power admission;
-2. E1 strong query-candidate bases;
-3. E2 ordinary full-token family adequacy;
-4. E3 label-free candidate-relative response;
-5. E4 direction and user-specificity;
-6. E5 train-only signal witness;
-7. E6 simple alternative explanations;
-8. E7 independent data/family replication;
-9. E8 Failure Card or explicit terminal conclusion.
-
-No later phase can be used to rescue a failed earlier premise.
 
 ## Metrics
 

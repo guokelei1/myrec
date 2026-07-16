@@ -13,6 +13,7 @@ from myrec.baselines.prodsearch_adapter import (
     _prodsearch_counterfactual_metadata,
     build_official_command,
     materialize_prodsearch_format,
+    prepare_prodsearch_shared_history_view,
 )
 
 
@@ -224,6 +225,114 @@ class ProdSearchAdapterTest(unittest.TestCase):
                 null_last = handle.read().splitlines()[-1].split()
             self.assertEqual(len(true_last), 2)
             self.assertEqual(len(null_last), 1)
+
+    def test_shared_counterfactual_view_reuses_catalog_and_maps_wrong_history(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            standardized = root / "standardized"
+            standardized.mkdir()
+            _write_jsonl(
+                standardized / "records_train.jsonl",
+                [
+                    {
+                        "request_id": "tr1",
+                        "query": "phone",
+                        "ts": 10,
+                        "history": [_item("h")],
+                        "candidates": [_item("p1", clicked=1), _item("p2", clicked=0)],
+                    },
+                    {
+                        "request_id": "tr2",
+                        "query": "case",
+                        "ts": 20,
+                        "history": [_item("p1")],
+                        "candidates": [_item("p2", clicked=1), _item("p1", clicked=0)],
+                    },
+                ],
+            )
+            _write_jsonl(
+                standardized / "records_dev.jsonl",
+                [
+                    {
+                        "request_id": "dev1",
+                        "query": "charger",
+                        "ts": 30,
+                        "history": [_item("h")],
+                        "candidates": [_item("p1"), _item("p2")],
+                    }
+                ],
+            )
+            (standardized / "candidate_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "entries": [
+                            {
+                                "split": "dev",
+                                "request_id": "dev1",
+                                "candidate_item_ids": ["p1", "p2"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (standardized / "manifest.json").write_text(
+                json.dumps({"dataset_id": "fixture", "dataset_version": "v1"}),
+                encoding="utf-8",
+            )
+            (standardized / "request_manifest.json").write_text(
+                json.dumps({"dataset_version": "v1"}), encoding="utf-8"
+            )
+            true_root = root / "true"
+            wrong_root = root / "wrong"
+            materialize_prodsearch_format(
+                standardized,
+                true_root,
+                seed=7,
+                valid_examples=1,
+                valid_candidate_size=2,
+                test_candidate_size=2,
+                dev_history_condition="true",
+            )
+            materialize_prodsearch_format(
+                standardized,
+                wrong_root,
+                seed=7,
+                valid_examples=1,
+                valid_candidate_size=2,
+                test_candidate_size=2,
+                dev_history_condition="null",
+            )
+            with gzip.open(wrong_root / "data/product.txt.gz", "rt") as handle:
+                wrong_products = [line.rstrip("\n") for line in handle]
+            with gzip.open(wrong_root / "data/product.txt.gz", "wt") as handle:
+                for product_id in reversed(wrong_products):
+                    handle.write(product_id + "\n")
+            with gzip.open(wrong_root / "data/u_r_seq.txt.gz", "rt") as handle:
+                wrong_sequences = [line.split() for line in handle]
+            wrong_sequences[-1] = ["0", wrong_sequences[-1][-1]]
+            with gzip.open(wrong_root / "data/u_r_seq.txt.gz", "wt") as handle:
+                for row in wrong_sequences:
+                    handle.write(" ".join(row) + "\n")
+            shared_root = root / "shared"
+            manifest = prepare_prodsearch_shared_history_view(
+                catalog_root=true_root,
+                history_root=wrong_root,
+                output_root=shared_root,
+                history_condition="wrong",
+            )
+            self.assertTrue(manifest["shared_catalog"])
+            self.assertEqual(
+                (true_root / "data/product.txt.gz").read_bytes(),
+                (shared_root / "data/product.txt.gz").read_bytes(),
+            )
+            with gzip.open(shared_root / "data/u_r_seq.txt.gz", "rt") as handle:
+                rows = [line.split() for line in handle]
+            with gzip.open(true_root / "data/u_r_seq.txt.gz", "rt") as handle:
+                true_rows = [line.split() for line in handle]
+            self.assertEqual(rows[:-1], true_rows[:-1])
+            self.assertEqual(rows[-1][-1], true_rows[-1][-1])
+            self.assertEqual(rows[-1][:-1], [str(len(true_rows[0]) - 1)])
 
 
 if __name__ == "__main__":

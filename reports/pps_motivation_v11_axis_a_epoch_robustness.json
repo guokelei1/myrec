@@ -1,0 +1,404 @@
+{
+  "analyses": {
+    "instructrec_seed20260717": {
+      "analysis_run_id": "instructrec_axisA_seed20260717_history_response",
+      "candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+      "label_mode": "graded",
+      "null_run_id": "20260716_kuaisearch_axisA_instructrec_null_seed20260717",
+      "num_requests": 2000,
+      "overall_history_gain": {
+        "active_response_rate": 0.8535,
+        "mean_true_minus_null_ndcg_at_10": -0.0008385937692231273
+      },
+      "repeat_minus_no_overlap": {
+        "bootstrap_ci95": [
+          0.0034212903125764795,
+          0.06705650875172965
+        ],
+        "bootstrap_samples": 5000,
+        "left": {
+          "group": "target_repeat",
+          "mean": 0.03257585057870778,
+          "num_requests": 121
+        },
+        "num_clusters": 667,
+        "point_estimate": 0.034822944188985475,
+        "right": {
+          "group": "target_nonrepeat_no_candidate_overlap",
+          "mean": -0.0022470936102776946,
+          "num_requests": 582
+        },
+        "valid_bootstrap_samples": 5000
+      },
+      "shared_evaluator_target_surface_counts": {
+        "all": 2000,
+        "candidate_overlap": 456,
+        "history_present": 1783,
+        "no_candidate_overlap_history_present": 1327,
+        "no_history": 217,
+        "no_observed_positive": 1013,
+        "observed_positive": 987,
+        "target_nonrepeat_no_candidate_overlap": 582,
+        "target_nonrepeat_no_history": 137,
+        "target_nonrepeat_other_candidate_overlap": 147,
+        "target_repeat": 121
+      },
+      "split": "confirmation",
+      "surfaces": {
+        "all": {
+          "ci95_query_cluster": [
+            -0.004703123603676332,
+            0.003112151784478124
+          ],
+          "mean": -0.0008385937692231273,
+          "num_requests": 2000
+        },
+        "target_nonrepeat_no_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.0122594934438501,
+            0.007875076963645105
+          ],
+          "mean": -0.0022470936102776946,
+          "num_requests": 582
+        },
+        "target_nonrepeat_no_history": {
+          "ci95_query_cluster": [
+            0.0,
+            0.0
+          ],
+          "mean": 0.0,
+          "num_requests": 137
+        },
+        "target_nonrepeat_other_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.05614105272727482,
+            -0.00406776473635982
+          ],
+          "mean": -0.029326918212845426,
+          "num_requests": 147
+        },
+        "target_repeat": {
+          "ci95_query_cluster": [
+            0.003366995715091169,
+            0.06450106736265106
+          ],
+          "mean": 0.03257585057870778,
+          "num_requests": 121
+        }
+      },
+      "task_capability": {
+        "true_ndcg_at_10_all": 0.17613035061604765,
+        "true_ndcg_at_10_positive": 0.3569004065168139
+      },
+      "true_run_id": "20260716_kuaisearch_axisA_instructrec_true_seed20260717",
+      "wrong_run_id": "20260716_kuaisearch_axisA_instructrec_wrong_seed20260717"
+    },
+    "instructrec_seed20260718": {
+      "analysis_run_id": "instructrec_axisA_seed20260718_history_response",
+      "candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+      "label_mode": "graded",
+      "null_run_id": "20260716_kuaisearch_axisA_instructrec_null_seed20260718",
+      "num_requests": 2000,
+      "overall_history_gain": {
+        "active_response_rate": 0.852,
+        "mean_true_minus_null_ndcg_at_10": 0.0012640950890761245
+      },
+      "repeat_minus_no_overlap": {
+        "bootstrap_ci95": [
+          0.020758073739624863,
+          0.0747984621528575
+        ],
+        "bootstrap_samples": 5000,
+        "left": {
+          "group": "target_repeat",
+          "mean": 0.042065562669836215,
+          "num_requests": 121
+        },
+        "num_clusters": 667,
+        "point_estimate": 0.04732917647895586,
+        "right": {
+          "group": "target_nonrepeat_no_candidate_overlap",
+          "mean": -0.0052636138091196475,
+          "num_requests": 582
+        },
+        "valid_bootstrap_samples": 5000
+      },
+      "shared_evaluator_target_surface_counts": {
+        "all": 2000,
+        "candidate_overlap": 456,
+        "history_present": 1783,
+        "no_candidate_overlap_history_present": 1327,
+        "no_history": 217,
+        "no_observed_positive": 1013,
+        "observed_positive": 987,
+        "target_nonrepeat_no_candidate_overlap": 582,
+        "target_nonrepeat_no_history": 137,
+        "target_nonrepeat_other_candidate_overlap": 147,
+        "target_repeat": 121
+      },
+      "split": "confirmation",
+      "surfaces": {
+        "all": {
+          "ci95_query_cluster": [
+            -0.0026049910904316314,
+            0.005231573962313684
+          ],
+          "mean": 0.0012640950890761245,
+          "num_requests": 2000
+        },
+        "target_nonrepeat_no_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.01515360733845989,
+            0.004294259475656775
+          ],
+          "mean": -0.0052636138091196475,
+          "num_requests": 582
+        },
+        "target_nonrepeat_no_history": {
+          "ci95_query_cluster": [
+            0.0,
+            0.0
+          ],
+          "mean": 0.0,
+          "num_requests": 137
+        },
+        "target_nonrepeat_other_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.02307513694117921,
+            0.03138632127985355
+          ],
+          "mean": 0.003412791374215656,
+          "num_requests": 147
+        },
+        "target_repeat": {
+          "ci95_query_cluster": [
+            0.01644071185945831,
+            0.06740001537327765
+          ],
+          "mean": 0.042065562669836215,
+          "num_requests": 121
+        }
+      },
+      "task_capability": {
+        "true_ndcg_at_10_all": 0.17877455164125516,
+        "true_ndcg_at_10_positive": 0.36225846330548156
+      },
+      "true_run_id": "20260716_kuaisearch_axisA_instructrec_true_seed20260718",
+      "wrong_run_id": "20260716_kuaisearch_axisA_instructrec_wrong_seed20260718"
+    },
+    "tem_seed20260717": {
+      "analysis_run_id": "tem_axisA_seed20260717_history_response",
+      "candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+      "label_mode": "graded",
+      "null_run_id": "20260716_kuaisearch_axisA_tem_null_seed20260717",
+      "num_requests": 2000,
+      "overall_history_gain": {
+        "active_response_rate": 0.89,
+        "mean_true_minus_null_ndcg_at_10": 0.005163473707315167
+      },
+      "repeat_minus_no_overlap": {
+        "bootstrap_ci95": [
+          -0.057759728547390365,
+          0.02661144030652812
+        ],
+        "bootstrap_samples": 5000,
+        "left": {
+          "group": "target_repeat",
+          "mean": 0.00026649087568450606,
+          "num_requests": 121
+        },
+        "num_clusters": 667,
+        "point_estimate": -0.015943462307260143,
+        "right": {
+          "group": "target_nonrepeat_no_candidate_overlap",
+          "mean": 0.016209953182944648,
+          "num_requests": 582
+        },
+        "valid_bootstrap_samples": 5000
+      },
+      "shared_evaluator_target_surface_counts": {
+        "all": 2000,
+        "candidate_overlap": 456,
+        "history_present": 1783,
+        "no_candidate_overlap_history_present": 1327,
+        "no_history": 217,
+        "no_observed_positive": 1013,
+        "observed_positive": 987,
+        "target_nonrepeat_no_candidate_overlap": 582,
+        "target_nonrepeat_no_history": 137,
+        "target_nonrepeat_other_candidate_overlap": 147,
+        "target_repeat": 121
+      },
+      "split": "confirmation",
+      "surfaces": {
+        "all": {
+          "ci95_query_cluster": [
+            -0.0011741086266384615,
+            0.011574977040125603
+          ],
+          "mean": 0.005163473707315167,
+          "num_requests": 2000
+        },
+        "target_nonrepeat_no_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.002383809261601569,
+            0.03421787065160676
+          ],
+          "mean": 0.016209953182944648,
+          "num_requests": 582
+        },
+        "target_nonrepeat_no_history": {
+          "ci95_query_cluster": [
+            0.0,
+            0.0
+          ],
+          "mean": 0.0,
+          "num_requests": 137
+        },
+        "target_nonrepeat_other_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.02990573973129802,
+            0.04190797889983106
+          ],
+          "mean": 0.005853804531964097,
+          "num_requests": 147
+        },
+        "target_repeat": {
+          "ci95_query_cluster": [
+            -0.0352863045720685,
+            0.036113634813398826
+          ],
+          "mean": 0.00026649087568450606,
+          "num_requests": 121
+        }
+      },
+      "task_capability": {
+        "true_ndcg_at_10_all": 0.18478875358950506,
+        "true_ndcg_at_10_positive": 0.37444529602736587
+      },
+      "true_run_id": "20260716_kuaisearch_axisA_tem_v1_seed20260717",
+      "wrong_run_id": "20260716_kuaisearch_axisA_tem_wrong_seed20260717"
+    },
+    "tem_seed20260718": {
+      "analysis_run_id": "tem_axisA_seed20260718_history_response",
+      "candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+      "label_mode": "graded",
+      "null_run_id": "20260716_kuaisearch_axisA_tem_null_seed20260718",
+      "num_requests": 2000,
+      "overall_history_gain": {
+        "active_response_rate": 0.8895,
+        "mean_true_minus_null_ndcg_at_10": 0.002351308767321215
+      },
+      "repeat_minus_no_overlap": {
+        "bootstrap_ci95": [
+          -0.028083190057786863,
+          0.05010925422067903
+        ],
+        "bootstrap_samples": 5000,
+        "left": {
+          "group": "target_repeat",
+          "mean": 0.021076478009570594,
+          "num_requests": 121
+        },
+        "num_clusters": 667,
+        "point_estimate": 0.011195282954521962,
+        "right": {
+          "group": "target_nonrepeat_no_candidate_overlap",
+          "mean": 0.009881195055048631,
+          "num_requests": 582
+        },
+        "valid_bootstrap_samples": 5000
+      },
+      "shared_evaluator_target_surface_counts": {
+        "all": 2000,
+        "candidate_overlap": 456,
+        "history_present": 1783,
+        "no_candidate_overlap_history_present": 1327,
+        "no_history": 217,
+        "no_observed_positive": 1013,
+        "observed_positive": 987,
+        "target_nonrepeat_no_candidate_overlap": 582,
+        "target_nonrepeat_no_history": 137,
+        "target_nonrepeat_other_candidate_overlap": 147,
+        "target_repeat": 121
+      },
+      "split": "confirmation",
+      "surfaces": {
+        "all": {
+          "ci95_query_cluster": [
+            -0.0038642721674516604,
+            0.008524580823633119
+          ],
+          "mean": 0.002351308767321215,
+          "num_requests": 2000
+        },
+        "target_nonrepeat_no_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.009521737002976068,
+            0.029397528609183893
+          ],
+          "mean": 0.009881195055048631,
+          "num_requests": 582
+        },
+        "target_nonrepeat_no_history": {
+          "ci95_query_cluster": [
+            0.0,
+            0.0
+          ],
+          "mean": 0.0,
+          "num_requests": 137
+        },
+        "target_nonrepeat_other_candidate_overlap": {
+          "ci95_query_cluster": [
+            -0.06036730785463391,
+            0.011235318676124519
+          ],
+          "mean": -0.02447953623506065,
+          "num_requests": 147
+        },
+        "target_repeat": {
+          "ci95_query_cluster": [
+            -0.013762865526340751,
+            0.05454870920403472
+          ],
+          "mean": 0.021076478009570594,
+          "num_requests": 121
+        }
+      },
+      "task_capability": {
+        "true_ndcg_at_10_all": 0.17641358660112932,
+        "true_ndcg_at_10_positive": 0.3574743396172833
+      },
+      "true_run_id": "20260716_kuaisearch_axisA_tem_v1_seed20260718",
+      "wrong_run_id": "20260716_kuaisearch_axisA_tem_wrong_seed20260718"
+    }
+  },
+  "axis_description": "Fixed V1 KuaiSearch population; more epochs only (TEM 20->40, InstructRec 1->2)",
+  "axis_id": "axis_a_epoch_robustness",
+  "evidence_mode": "staged_axis_confirmation_only",
+  "generated_from": {
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260715,
+    "protocol": {
+      "path": "experiments/motivation_v1_1/protocol.md",
+      "sha256": "e34478d08a80c4112af208fff0f21171ce4534e990737d78fd61f77efa4f3f7d"
+    },
+    "standardized_dir": "data/standardized/kuaisearch/full_confirm_preceding10k_v1",
+    "test_opened": false,
+    "v1_entry_unchanged": true
+  },
+  "interpretation": {
+    "claim_boundary": "On fixed-population KuaiSearch Axis A, the ordinary InstructRec model shows a replicated positive target-repeat response and a positive repeat-versus-nonrepeat-no-overlap contrast. The non-overlap point estimate is negative but not individually reliable, so this does not license a universal negative-history-effect claim. TEM does not provide the same stable decomposition, and no family-level upgrade is made.",
+    "family_prevalence_upgrade": false,
+    "instructrec_no_overlap_not_reliably_positive": true,
+    "instructrec_no_overlap_point_negative_all_seeds": true,
+    "instructrec_repeat_minus_no_overlap_positive": true,
+    "instructrec_repeat_positive_all_seeds": true,
+    "tem_available": true,
+    "tem_replicates_instructrec_repeat_pattern": false
+  },
+  "next_action": "Freeze Axis A interpretation, then run Axis B with the Axis A epoch rule and a strictly larger preceding KuaiSearch training population.",
+  "report_id": "pps_motivation_v11_axis_a_epoch_robustness",
+  "schema_version": 1,
+  "v1_not_modified": true
+}

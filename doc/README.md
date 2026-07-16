@@ -1,25 +1,31 @@
-# Active research documents
+# Research document index
 
-The current empirical entry point is
-[`40_transformer_recurrence_transfer_motivation_v1_zh.md`](40_transformer_recurrence_transfer_motivation_v1_zh.md).
-It contains the three-model result, interpretation boundary, and remaining
-robustness obligations. Superseded motivation plans and duplicate audits were
-removed after V1 consolidation.
+## Current Motivation V1.2 core
 
-## Governing contracts
+Read these first:
 
-| Document | Role |
-|---|---|
-| `07_paper_design_constraints.md` | evidence hygiene and claim boundaries |
-| `10_direction_decision.md` | current scope, dataset roles, and exclusions |
-| `11_experiment_and_dataset_plan.md` | record, split, metric, and phase contract |
-| `12_experiment_execution_protocol.md` | run, logging, determinism, and label boundaries |
-| `13_baseline_implementation_plan.md` | baseline roles, fairness, and tuning budgets |
-| `15_proposed_system_design_principles.md` | architecture-entry constraints |
-| `31_problem_discovery_and_architecture_iteration_protocol.md` | Failure Card and hypothesis gate |
-| `32_autonomous_pipeline_controller.md` | persistent execution-state contract |
-| `40_transformer_recurrence_transfer_motivation_v1_zh.md` | current Motivation V1 claim and evidence index |
+1. [`../experiments/motivation_v1_2/execution_prompt_zh.md`](../experiments/motivation_v1_2/execution_prompt_zh.md)
+   -- requested implementation, experiment, and stopping point;
+2. [`../experiments/motivation_v1_2/plan.md`](../experiments/motivation_v1_2/plan.md)
+   -- active methods, data flow, seed/compute policy, and evaluation;
+3. [`43_llm_rerank_recurrence_transfer_research_logic_zh.md`](43_llm_rerank_recurrence_transfer_research_logic_zh.md)
+   -- current motivation, evidence chain, and hypothesis.
 
-Only the latest consolidation note is retained in `dev_log/`. Raw runs,
-checkpoints, scores, and standardized data remain in their ignored local
-directories.
+Supporting technical contracts:
+
+- [`11_experiment_and_dataset_plan.md`](11_experiment_and_dataset_plan.md) --
+  unified records, labels, split isolation, and metrics;
+- [`12_experiment_execution_protocol.md`](12_experiment_execution_protocol.md)
+  -- run metadata, shared evaluation, and confirmation safety;
+- [`13_baseline_implementation_plan.md`](13_baseline_implementation_plan.md) --
+  concise fairness and source-adaptation notes.
+
+Frozen evidence and literature:
+
+- [`40_transformer_recurrence_transfer_motivation_v1_zh.md`](40_transformer_recurrence_transfer_motivation_v1_zh.md);
+- [`41_motivation_v11_current_conclusion_zh.md`](41_motivation_v11_current_conclusion_zh.md);
+- [`42_recurrence_transfer_related_work_zh.md`](42_recurrence_transfer_related_work_zh.md).
+
+`07`, `10`, `15`, `31`, and `32` are supporting or inactive historical files.
+They do not override the V1.2 core. Raw runs, checkpoints, scores, and
+standardized data remain in their ignored local directories.

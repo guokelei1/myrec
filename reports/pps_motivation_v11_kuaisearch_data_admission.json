@@ -1,0 +1,113 @@
+{
+  "admission_passed": true,
+  "confirmation_lock": {
+    "confirmation_candidate_projection_sha256": "b45293bcd03ca0fbc13d25d6c8d454dc8227c7a659bdb6623127be2be9762b1d",
+    "confirmation_request_projection_sha256": "b4b8ff7ed743adbcfd6f77200eb62cac70c4c429b495a6c117b584866079fc2d",
+    "copied_byte_identical": true,
+    "v1_candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+    "v1_dir": "data/standardized/kuaisearch/full_confirm_preceding10k_v1",
+    "v1_qrels_sha256": "19c80f19ff0b11b4329093952e1a1c10b38c7f17bdabf4b236dc3931cad24c7c",
+    "v1_records_sha256": "312143db6acb23006cd2b4788fd9e475a2cbdc06398bfeec229d96f657f2d355",
+    "v1_request_manifest_sha256": "8ad24b29dfadfd6a81d31111cafed68ee6685c0b3e0d9db626a087a7c72e8968"
+  },
+  "dataset_id": "kuaisearch",
+  "dataset_version": "full_confirm_preceding40k_v11",
+  "evidence_mode": "frozen_v1_1_train_extension_with_v1_confirmation",
+  "label_isolation": {
+    "confirmation_qrels_present_but_not_opened_by_materializer": true,
+    "confirmation_records_label_free": true,
+    "dev_records_label_free": true,
+    "train_records_have_source_labels": true
+  },
+  "outputs": {
+    "candidate_manifest": {
+      "path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/candidate_manifest.json",
+      "sha256": "434cb08ef7248bc0c763a7c5d8bc43342b239398066623e051e263b97cc17a9e"
+    },
+    "records_confirmation": {
+      "candidate_count": {
+        "max": 100,
+        "mean": 19.6345,
+        "min": 2
+      },
+      "history_length": {
+        "max": 20,
+        "mean": 11.353,
+        "min": 0
+      },
+      "history_present_requests": 1783,
+      "path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/records_confirmation.jsonl",
+      "repeated_query_requests": 529,
+      "request_count": 2000,
+      "sha256": "312143db6acb23006cd2b4788fd9e475a2cbdc06398bfeec229d96f657f2d355",
+      "split": "confirmation",
+      "strict_nonrepeat_requests": 1327,
+      "unique_normalized_queries": 1691
+    },
+    "records_dev": {
+      "candidate_count": {
+        "max": 100,
+        "mean": 20.094125,
+        "min": 2
+      },
+      "history_length": {
+        "max": 20,
+        "mean": 11.658,
+        "min": 0
+      },
+      "history_present_requests": 7254,
+      "path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/records_dev.jsonl",
+      "repeated_query_requests": 2722,
+      "request_count": 8000,
+      "sha256": "907046aa0ed69bced6a6115c15ce4f81ac6ada2937cdc810fc48a82822a2a06e",
+      "split": "dev",
+      "strict_nonrepeat_requests": 5274,
+      "unique_normalized_queries": 6281
+    },
+    "records_train": {
+      "candidate_count": {
+        "max": 100,
+        "mean": 20.4775625,
+        "min": 2
+      },
+      "history_length": {
+        "max": 20,
+        "mean": 11.56503125,
+        "min": 0
+      },
+      "history_present_requests": 28991,
+      "path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/records_train.jsonl",
+      "repeated_query_requests": 13521,
+      "request_count": 32000,
+      "sha256": "3bcc86ff867ada54f90289153b1b1cf3f9277efdabba6672b73c865a2433beea",
+      "split": "train",
+      "strict_nonrepeat_requests": 20876,
+      "unique_normalized_queries": 22714
+    },
+    "request_manifest": {
+      "path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/request_manifest.json",
+      "sha256": "c4054a5b7d775a81b292293daa552022bf8b2d5d8004cd96f23dcbcb46b8b4f7"
+    }
+  },
+  "protocol": "experiments/motivation_v1_1/protocol.md",
+  "schema_version": 1,
+  "selection": {
+    "confirmation_requests": 2000,
+    "confirmation_session_overlap": 0,
+    "dev_fraction": 0.2,
+    "internal_dev_requests": 8000,
+    "max_history_len": 20,
+    "max_requests_before_internal_dev_split": 40000,
+    "strictly_before_confirmation": true,
+    "train_requests": 32000
+  },
+  "source": {
+    "confirmation_min_timestamp": 1896226,
+    "raw_dir": "data/raw/kuaisearch_full",
+    "source_splits_used": [
+      "train"
+    ],
+    "staging_manifest": "data/interim/kuaisearch/motivation_v11_train_window40k_manifest.json",
+    "staging_manifest_sha256": "1a85d5ae759b3466f052a5236150b1ad67408b5e4a84302ddfcfb75b7e6cd1cd"
+  }
+}

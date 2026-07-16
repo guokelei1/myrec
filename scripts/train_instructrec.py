@@ -40,6 +40,7 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=20260716)
     parser.add_argument("--max-train-examples", type=int)
     parser.add_argument("--no-gradient-checkpointing", action="store_true")
+    parser.add_argument("--internal-dev-fraction", type=float, default=0.0)
     args = parser.parse_args()
     result = train_instructrec(
         args.standardized_dir,
@@ -66,6 +67,7 @@ def main() -> int:
         seed=args.seed,
         gradient_checkpointing=not args.no_gradient_checkpointing,
         max_train_examples=args.max_train_examples,
+        internal_dev_fraction=args.internal_dev_fraction,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     return 0

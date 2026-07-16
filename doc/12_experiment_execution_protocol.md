@@ -1,6 +1,7 @@
 # Experiment execution protocol
 
-Status: active. This is the operational layer below doc 34.
+Status: supporting operational contract for Motivation V1.2. Method order,
+seed staging, compute limits, and stopping rules come from the V1.2 plan.
 
 Every run records its command, config, code revision, dataset/version and
 manifest hash, seed, environment, checkpoint reference, and output paths.

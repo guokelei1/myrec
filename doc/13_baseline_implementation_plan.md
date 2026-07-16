@@ -1,42 +1,30 @@
-# Baseline implementation plan for the new direction
+# Baseline implementation notes
 
-Status: active. This plan covers controls for doc 34, not the old B0–B9
-leaderboard as a paper claim.
+Status: supporting fairness notes. The active methods, witness, model sizes,
+seed staging, and budgets are defined only in
+`experiments/motivation_v1_2/plan.md`.
 
-## Required roles
+## Durable fairness boundary
 
-1. deterministic popularity/source-order and BM25 controls;
-2. an eligible query-candidate dense/cross-encoder control;
-3. a query-only strong base (`E-QC`/`D-QC`);
-4. an ordinary full-token history model (`E-FULL`/`D-FULL`);
-5. one traditional query-aware personalized control;
-6. one train-only cross-fitted signal witness.
+- All methods read the standardized interface and fixed candidate slate.
+- Each method declares its visible fields and boundary card.
+- Training labels may supervise a loss but may not become model input fields.
+- All paper metrics come from the shared evaluator.
+- A method must have non-degenerate query-candidate ranking behavior before its
+  history-surface result is interpreted.
+- Ordinary method-specific choices such as learning rate, epoch, truncation,
+  sampling, and loss weight may be tuned only on train-only internal-dev and
+  must be logged.
+- Report all completed seeds; never promote only the best seed.
+- A diagnostic witness establishes information availability or recoverability;
+  it is not silently promoted into a main LLM method.
 
-The encoder and decoder families must use matched input boundaries, candidate
-scoring, data split, and evaluation. `E-FULL`/`D-FULL` are ordinary controls,
-not proposed architectures.
+## V1.2 source boundary
 
-## Tuning and reporting
+Published source may be inspected, but active paper mechanisms are independently
+and minimally reimplemented inside the shared project harness. Record upstream
+URL, commit, license, migrated mechanism, omitted pieces, and local files in
+`experiments/pps_baseline_cards.md`.
 
-Use a small pre-registered budget per family. Tune only ordinary choices such
-as objective, learning rate, history length, truncation, capacity, and
-initialization. Record every dev call. Report frozen multi-seed results, not
-the best seed. A family that cannot produce an adequate query-candidate base
-is excluded from the shared-failure claim.
-
-## Fairness boundary
-
-All methods read the standardized interface and fixed candidate slate. A
-baseline may use identity, text, action, and time only when those fields are
-available in the same record and declared in its boundary card. A witness is
-diagnostic only and cannot become the proposed method by renaming it.
-
-## Motivation-repair controls
-
-Before any Failure Card, ordinary FULL must be compared with a pre-frozen
-training-time history-dropout matched-null control, a small number of standard
-QC/consistency or anchoring controls, and at least one classic selective-
-personalization baseline such as ZAM/TEM/HEM. These are baseline discriminators,
-not proposed designs. PCGrad is eligible only after two explicit losses and a
-measured gradient-conflict question are registered; EWC is not a default
-control for the current single-stage ranking setup.
+Old B0--B9 role names, doc 34 phases, matched-null repair rounds, and proposed-
+system eligibility rules are historical and do not add work to V1.2.

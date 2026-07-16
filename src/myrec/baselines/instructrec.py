@@ -9,6 +9,7 @@ scoring reads label-free records plus a pre-materialized history assignment.
 from __future__ import annotations
 
 import json
+import hashlib
 import math
 import random
 import shutil
@@ -180,6 +181,7 @@ def train_instructrec(
     seed: int = 20260716,
     gradient_checkpointing: bool = True,
     max_train_examples: int | None = None,
+    internal_dev_fraction: float = 0.0,
 ) -> dict[str, Any]:
     """Train an InstructRec T3 candidate-likelihood model on train labels."""
 
@@ -189,6 +191,8 @@ def train_instructrec(
         raise ValueError("batch size, accumulation, and epochs must be positive")
     if max_train_examples is not None and max_train_examples <= 0:
         raise ValueError("max_train_examples must be positive when provided")
+    if not 0.0 <= internal_dev_fraction < 1.0:
+        raise ValueError("internal_dev_fraction must be in [0, 1)")
     standardized_dir = Path(standardized_dir)
     run_dir = Path(runs_dir) / run_id
     output_model_dir = Path(output_model_dir)
@@ -215,6 +219,27 @@ def train_instructrec(
         "examples_before_cap": examples_before_cap,
         "examples_after_cap": len(examples),
     }
+
+    internal_dev_request_ids = _stable_internal_dev_request_ids(
+        {example.request_id for example in examples},
+        fraction=internal_dev_fraction,
+        seed=seed,
+    )
+    if internal_dev_fraction > 0.0 and not internal_dev_request_ids:
+        raise ValueError("internal-dev partition is empty")
+    train_examples = [
+        example for example in examples if example.request_id not in internal_dev_request_ids
+    ]
+    if not train_examples:
+        raise ValueError("internal-dev partition consumed every training example")
+    example_stats.update(
+        {
+            "internal_dev_fraction": internal_dev_fraction,
+            "internal_dev_request_ids": len(internal_dev_request_ids),
+            "train_examples_after_internal_dev_split": len(train_examples),
+            "internal_dev_partition": "stable_request_id_hash",
+        }
+    )
 
     import torch
     import transformers
@@ -269,7 +294,7 @@ def train_instructrec(
         return inputs
 
     loader = DataLoader(
-        examples,
+        train_examples,
         batch_size=batch_size,
         shuffle=True,
         generator=torch.Generator().manual_seed(seed),
@@ -294,8 +319,23 @@ def train_instructrec(
     loss_sum = 0.0
     micro_steps = 0
     optimizer_steps = 0
+    internal_dev_history: list[dict[str, Any]] = []
+    best_internal_dev_metric: float | None = None
+    best_epoch: int | None = None
+    internal_dev_records: dict[str, dict[str, Any]] = {}
+    internal_dev_gains: dict[str, dict[str, float]] = {}
+    if internal_dev_fraction > 0.0:
+        records_by_id = {
+            str(row["request_id"]): row for row in iter_jsonl(records_path)
+        }
+        train_gains = _load_train_gains(qrels_path)
+        for request_id in sorted(internal_dev_request_ids):
+            if request_id not in records_by_id or request_id not in train_gains:
+                raise ValueError(f"internal-dev request is missing records/qrels: {request_id}")
+            internal_dev_records[request_id] = records_by_id[request_id]
+            internal_dev_gains[request_id] = train_gains[request_id]
     started = time.perf_counter()
-    for _epoch in range(epochs):
+    for epoch_index in range(epochs):
         for batch_index, batch in enumerate(loader, start=1):
             batch = {
                 key: value.to(device) if hasattr(value, "to") else value
@@ -323,9 +363,37 @@ def train_instructrec(
                 scheduler.step()
                 optimizer_steps += 1
 
+        if internal_dev_fraction > 0.0:
+            internal_metrics = _evaluate_internal_dev(
+                model,
+                tokenizer,
+                internal_dev_records,
+                internal_dev_gains,
+                input_mode=input_mode,
+                history_budget=history_budget,
+                max_source_length=max_source_length,
+                max_target_length=max_target_length,
+                batch_size=max(1, batch_size),
+                device=device,
+                dtype=dtype,
+                torch_dtype=torch_dtype,
+            )
+            internal_metrics["epoch"] = epoch_index + 1
+            internal_dev_history.append(internal_metrics)
+            metric = float(internal_metrics["ndcg@10"])
+            # Strict > keeps the earliest checkpoint on a tie.
+            if best_internal_dev_metric is None or metric > best_internal_dev_metric:
+                best_internal_dev_metric = metric
+                best_epoch = epoch_index + 1
+                model.eval()
+                model.save_pretrained(str(output_model_dir), safe_serialization=True)
+                tokenizer.save_pretrained(str(output_model_dir))
+                model.train()
+
     elapsed = time.perf_counter() - started
-    model.save_pretrained(str(output_model_dir), safe_serialization=True)
-    tokenizer.save_pretrained(str(output_model_dir))
+    if best_epoch is None:
+        model.save_pretrained(str(output_model_dir), safe_serialization=True)
+        tokenizer.save_pretrained(str(output_model_dir))
     weight_files = sorted(
         path for path in output_model_dir.iterdir() if path.name.endswith((".safetensors", ".bin"))
     )
@@ -360,6 +428,11 @@ def train_instructrec(
             "max_source_length": max_source_length,
             "max_target_length": max_target_length,
             "max_train_examples": max_train_examples,
+            "internal_dev_fraction": internal_dev_fraction,
+            "internal_dev_metric": "graded_ndcg@10" if internal_dev_fraction > 0 else None,
+            "internal_dev_history": internal_dev_history,
+            "best_internal_dev_metric": best_internal_dev_metric,
+            "best_epoch": best_epoch if best_epoch is not None else epochs,
             "mean_microbatch_loss": loss_sum / micro_steps,
             "micro_steps": micro_steps,
             "optimizer_steps": optimizer_steps,
@@ -376,6 +449,147 @@ def train_instructrec(
     if config_path and Path(config_path).exists():
         shutil.copyfile(config_path, run_dir / f"config_snapshot{Path(config_path).suffix}")
     return metadata
+
+
+def _stable_internal_dev_request_ids(
+    request_ids: set[str], *, fraction: float, seed: int
+) -> set[str]:
+    """Choose a train-only dev partition without using any evaluation labels."""
+
+    if fraction <= 0.0:
+        return set()
+    selected = {
+        request_id
+        for request_id in request_ids
+        if int.from_bytes(
+            hashlib.sha256(f"{seed}|instructrec-internal-dev|{request_id}".encode()).digest()[:8],
+            "big",
+        )
+        / float(2**64)
+        < fraction
+    }
+    if not selected:
+        selected.add(min(request_ids))
+    if selected == request_ids and len(request_ids) > 1:
+        selected.remove(max(request_ids))
+    return selected
+
+
+def _load_train_gains(path: Path) -> dict[str, dict[str, float]]:
+    gains: dict[str, dict[str, float]] = {}
+    for row in iter_jsonl(path):
+        request_id = str(row["request_id"])
+        relevance = row.get("relevance", {})
+        if not isinstance(relevance, dict):
+            raise ValueError("train qrels relevance must be an object")
+        gains[request_id] = {str(item_id): float(value) for item_id, value in relevance.items()}
+    if not gains:
+        raise ValueError(f"empty training qrels: {path}")
+    return gains
+
+
+def _evaluate_internal_dev(
+    model: Any,
+    tokenizer: Any,
+    records: dict[str, dict[str, Any]],
+    gains: dict[str, dict[str, float]],
+    *,
+    input_mode: str,
+    history_budget: int,
+    max_source_length: int,
+    max_target_length: int,
+    batch_size: int,
+    device: str,
+    dtype: str,
+    torch_dtype: Any,
+) -> dict[str, float | int]:
+    """Select a checkpoint using only graded train-qrels ranking quality."""
+
+    import torch
+
+    from myrec.eval.history_response import gain_ndcg_at_k
+    from transformers.modeling_outputs import BaseModelOutput
+
+    model.eval()
+    rows: list[float] = []
+    positive_rows: list[float] = []
+    for request_id in sorted(records):
+        record = records[request_id]
+        history = list(record.get("history", [])) if input_mode == "full" else []
+        prompt = serialize_instructrec_prompt(
+            record, history, history_budget=history_budget
+        )
+        candidates = list(record["candidates"])
+        targets = [candidate_text(candidate) for candidate in candidates]
+        prompt_inputs = tokenizer(
+            [prompt],
+            padding=True,
+            truncation=True,
+            max_length=max_source_length,
+            return_tensors="pt",
+        )
+        input_ids = prompt_inputs["input_ids"].to(device)
+        attention_mask = prompt_inputs["attention_mask"].to(device)
+        with torch.inference_mode(), torch.autocast(
+            device_type="cuda",
+            dtype=torch_dtype,
+            enabled=device.startswith("cuda") and dtype != "float32",
+        ):
+            encoded = model.get_encoder()(
+                input_ids=input_ids,
+                attention_mask=attention_mask,
+                return_dict=True,
+            )
+        scores: list[float] = []
+        for start in range(0, len(targets), batch_size):
+            target_batch = targets[start : start + batch_size]
+            target_tokens = tokenizer(
+                text_target=target_batch,
+                padding=True,
+                truncation=True,
+                max_length=max_target_length,
+                return_tensors="pt",
+            )
+            labels = target_tokens["input_ids"]
+            labels[labels == tokenizer.pad_token_id] = -100
+            labels = labels.to(device)
+            count = len(target_batch)
+            hidden = encoded.last_hidden_state.expand(count, -1, -1).contiguous()
+            repeated_attention_mask = attention_mask.expand(count, -1)
+            with torch.inference_mode(), torch.autocast(
+                device_type="cuda",
+                dtype=torch_dtype,
+                enabled=device.startswith("cuda") and dtype != "float32",
+            ):
+                logits = model(
+                    encoder_outputs=BaseModelOutput(last_hidden_state=hidden),
+                    attention_mask=repeated_attention_mask,
+                    labels=labels,
+                ).logits
+                log_probs = torch.log_softmax(logits.float(), dim=-1)
+                safe_labels = labels.masked_fill(labels.eq(-100), 0)
+                token_log_probs = log_probs.gather(
+                    2, safe_labels.unsqueeze(-1)
+                ).squeeze(-1)
+                mask = labels.ne(-100)
+                values = (token_log_probs * mask).sum(dim=1) / mask.sum(dim=1).clamp_min(1)
+            scores.extend(float(value.detach().cpu()) for value in values)
+        item_ids = [str(candidate["item_id"]) for candidate in candidates]
+        candidate_gains = [float(gains[request_id].get(item_id, 0.0)) for item_id in item_ids]
+        value = gain_ndcg_at_k(request_id, item_ids, scores, candidate_gains, 10)
+        rows.append(value)
+        if any(gain > 0 for gain in candidate_gains):
+            positive_rows.append(value)
+    if not rows:
+        raise ValueError("empty internal-dev evaluation")
+    return {
+        "ndcg@10": sum(rows) / len(rows),
+        "ndcg@10_positive": sum(positive_rows) / len(positive_rows)
+        if positive_rows
+        else 0.0,
+        "num_requests": len(rows),
+        "num_positive_requests": len(positive_rows),
+    }
 
 
 def write_instructrec_scores(

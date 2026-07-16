@@ -1,0 +1,49 @@
+schema_version: 1
+config_id: kuaisearch_motivation_v11_tem
+protocol: experiments/motivation_v1_1/protocol.md
+evidence_mode: staged_axis_b_population_only
+axis: B_population_extension_after_epoch_axis
+test_authorized: false
+proposed_architecture_authorized: false
+
+dataset:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  evaluation_split: confirmation
+  confirmation_requests: 2000
+  confirmation_candidate_projection: V1_byte_identical
+
+model:
+  baseline: TEM
+  official_commit: 449335ba652fe7c877a008e154157d7b2a4b0e76
+  embedding_size: 128
+  inter_layers: 1
+  heads: 8
+  ff_size: 512
+  history_budget: 20
+  query_encoder: fs
+  explicit_query_binding: true
+
+training:
+  seeds: [20260717, 20260718]
+  max_train_epoch: 40  # Axis B fixed epoch selected by completed Axis A
+  learning_rate: 0.0005
+  batch_size: 256
+  valid_batch_size: 24
+  valid_candidate_size: 100
+  test_candidate_size: 100
+  candidate_batch_size: 100
+  num_workers: 4
+  checkpoint_selection: train_only_internal_valid_mrr
+  checkpoint_name: model_best.ckpt
+
+evaluation:
+  shared_history_response_evaluator: true
+  label_mode: graded
+  conditions: [true, null, wrong]
+  activity_epsilon: 0.01
+  utility_epsilon: 0.0
+  query_cluster_bootstrap_samples: 5000
+  bootstrap_seed: 20260715
+  test_opened: false
