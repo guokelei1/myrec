@@ -211,7 +211,7 @@ class MultiHeadedAttention(nn.Module):
             #mask is (batch_size, 1, key_len)
             if len(mask.size()) == 3:
                 mask = mask.unsqueeze(1).expand_as(scores)
-            scores = scores.masked_fill(mask, -1e18)
+            scores = scores.masked_fill(mask.bool(), -1e18)
 
         # 3) Apply attention dropout and compute context vectors.
 
@@ -241,4 +241,3 @@ class MultiHeadedAttention(nn.Module):
         # aeq(d, d_)
 
         # Return one attn
-

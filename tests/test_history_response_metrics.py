@@ -10,11 +10,25 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from myrec.eval.history_response import (
     ResponseCandidate,
     aggregate_history_response,
+    gain_ndcg_at_k,
     request_history_response,
 )
 
 
 class HistoryResponseMetricTest(unittest.TestCase):
+    def test_graded_ndcg_is_hand_computed(self):
+        actual = gain_ndcg_at_k(
+            "graded",
+            ["high", "low"],
+            [0.0, 1.0],
+            [2.0, 1.0],
+            10,
+        )
+        expected = (1.0 + 3.0 / math.log2(3)) / (
+            3.0 + 1.0 / math.log2(3)
+        )
+        self.assertAlmostEqual(actual, expected)
+
     def test_common_mode_shift_has_no_candidate_relative_activity(self):
         row = request_history_response(
             "r1",
@@ -117,6 +131,9 @@ class HistoryResponseMetricTest(unittest.TestCase):
         result = aggregate_history_response([positive, no_preference], utility_epsilon=1e-9)
         self.assertEqual(result["num_active_requests"], 2)
         self.assertEqual(result["num_active_direction_requests"], 1)
+        self.assertEqual(result["num_positive_eligible_requests"], 1)
+        self.assertEqual(result["positive_eligible_rate"], 0.5)
+        self.assertEqual(result["mean_true_ndcg@10_positive"], 1.0)
         self.assertEqual(result["active_response_precision"], 1.0)
 
 

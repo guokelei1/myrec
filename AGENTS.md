@@ -31,15 +31,9 @@ The research scope is documented in [doc/](doc/). Key documents:
   failure discovery, architecture formulation, dev iteration, and confirmation.
 - `doc/32_autonomous_pipeline_controller.md` — autonomous loop, persistent
   state, feedback transitions, recovery, budgets, and whole-pipeline end states.
-- `doc/34_history_response_direction_gap_validation_plan.md` — original
-  pre-outcome validation plan; its universal direction-gap hypothesis was
-  narrowed by the completed exploration.
-- `doc/35_controlled_history_composition_motivation.md` — current empirical
-  motivation decision: base retention and candidate-relative history utility
-  are separate obligations, and architecture remains locked pending a Failure
-  Card.
-- `doc/24_parallel_llm4rec_design_protocol.md` — historical C01--C04 isolation
-  protocol; it does not authorize current work.
+- `doc/40_transformer_recurrence_transfer_motivation_v1_zh.md` — current
+  empirical motivation, three-model result, claim boundary, and remaining
+  robustness obligations.
 
 Before adding a file, decide whether it is source/protocol evidence or
 local experiment state.
@@ -121,9 +115,10 @@ Architecture search ended at C80. There is no C81 and no C80 precision,
 canonicalization, threshold, label-opening, dev, or test rescue. The C01--C80
 trees under `systems/` are historical evidence, not active templates.
 
-Current work follows the outcome in
-`doc/35_controlled_history_composition_motivation.md`. The next authorized step
-is to freeze and validate a controlled-composition Failure Card under
+Current work follows the bounded Motivation V1 outcome in
+`doc/40_transformer_recurrence_transfer_motivation_v1_zh.md`. V1 does not
+authorize a new architecture. Any later proposed-system step must first freeze
+and validate a Failure Card under
 `doc/31_problem_discovery_and_architecture_iteration_protocol.md`
 under the autonomous controller in `doc/32_autonomous_pipeline_controller.md`:
 

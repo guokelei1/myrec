@@ -5,6 +5,9 @@ Active shared entry points:
 - `validate_standardized_records.py`: validates method-visible records without
   opening qrels;
 - `evaluate_scores.py`: standard ranking evaluator;
+- `evaluate_label_mode_scores.py`: immutable score-run evaluation under one
+  registered click, purchase, or graded endpoint, with all-request and
+  conditional-positive estimands;
 - `analyze_history_response.py`: qrels-reading true/null/wrong direction
   evaluator with counterfactual identity checks;
 - `audit_kuaisearch_source.py`: exploratory outcome-free KuaiSearch Lite/Full source,
@@ -15,8 +18,9 @@ Active shared entry points:
   stress-test materialization with current causal and label-isolation checks;
 - `run_simple_baseline.py`: source-order, train-popularity, recent-history,
   and request-local BM25 exploratory controls;
-- `materialize_request_surfaces.py`: label-free history, recurrence, and
-  repeated-query request-ID surfaces and their pre-defined intersections;
+- `materialize_request_surfaces.py`: legacy label-free candidate-overlap,
+  no-candidate-overlap, history, and repeated-query diagnostics; it does not
+  identify target recurrence;
 - `materialize_request_manifest.py`: dataset-independent hashes for visible
   query and candidate identity used by shared scorers;
 - `materialize_history_assignments.py`: causal true/null and deterministic
@@ -56,11 +60,20 @@ Active shared entry points:
   representations for the LLM-SRec mechanism, without dev qrels;
 - `train_llm_srec.py` and `run_llm_srec.py`: independent paper-mechanism
   LLM-SRec lightweight training and fixed-checkpoint counterfactual scoring.
-
-Source-specific exploratory audits and ordinary-model pilots may be added under
-the active exploration manifest. They must log their scope, write shared
-record/score contracts where applicable, and may not read qrels. Confirmation
-commands still require a separately frozen admission/model-family card.
+- `train_instructrec.py` and `run_instructrec.py`: InstructRec T3
+  encoder-decoder candidate-likelihood training and fixed-slate scoring.
+- `audit_confirmation_score_bundle.py`: verifies confirmation score coverage,
+  checkpoint identity, request/candidate hashes, and qrels isolation before the
+  one-time label opening.
+- `build_motivation_confirmation_decision.py`: applies the five frozen ordered
+  gates to the already evaluated confirmation artifacts.
+- `build_motivation_confirmation_figure.py`: renders the paper-ready frozen
+  confirmation figure and metadata.
+The one-off builders for superseded exploration, repair, cross-dataset, and
+failed representative-model reports were removed with those materials. The
+remaining model/data utilities are reusable code, not an active experiment
+plan. Any future method round needs separate authorization and must preserve the
+shared evaluator and label boundaries.
 
 The old C01–C80 and R0/round1–5 scripts are archived. Do not revive them by
 copying their locks or output paths.

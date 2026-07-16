@@ -1,0 +1,48 @@
+purpose: advanced_task_aligned_llm_personalized_search_baseline
+method_id: INSTRUCTREC-T3
+paper: Recommendation as Instruction Following: A Large Language Model Empowered Recommendation Approach
+venue: TOIS
+paper_url: https://arxiv.org/abs/2305.07001
+dataset:
+  id: kuaisearch
+  version: full_confirm_preceding10k_v1
+  role: main_confirmation_population
+  train_requests: 8000
+  confirmation_requests: 2000
+  confirmation_positive_requests: 987
+input_boundary:
+  query: true
+  history: true
+  candidate_slate: all_frozen_candidates_in_prompt
+  item_fields: [title, brand, cat]
+architecture:
+  family: encoder_decoder_seq2seq_llm
+  original_backbone: google/flan-t5-xl
+  original_parameter_count: 3B
+  local_default_backbone: google/flan-t5-xl
+  objective: candidate_text_sequence_likelihood
+  task_form: T3_reranking
+  history_budget: 6
+training:
+  labels: train_qrels_only
+  dev_labels_read: false
+  confirmation_labels_read: false
+  train_variants: [qc, full]
+  epochs: 1
+  batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 0.00001
+  # The frozen KuaiSearch slate can contain up to ~100 products. 2048 is a
+  # declared local context extension so T3 does not silently truncate the
+  # candidate slate; it is not the original Flan-T5-XL 512-token boundary.
+  max_source_length: 2048
+  max_target_length: 64
+evaluation:
+  shared_evaluator: true
+  conditions: [true, null, wrong]
+  candidate_manifest_assertion: true
+  test_authorized: false
+boundary_notes:
+  - The local prompt uses real query and history text; no GPT-generated preference annotations are used.
+  - Candidate scores are normalized seq2seq log likelihoods of candidate text under one unchanged checkpoint.
+  - Any backbone or token-budget change is a boundary amendment and must be recorded in the run metadata.

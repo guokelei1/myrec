@@ -35,6 +35,9 @@ def main() -> int:
     parser.add_argument("--learning-rate", type=float, default=1e-4)
     parser.add_argument("--weight-decay", type=float, default=0.0)
     parser.add_argument("--max-grad-norm", type=float, default=1.0)
+    parser.add_argument("--retrieval-weight", type=float, default=1.0)
+    parser.add_argument("--distillation-weight", type=float, default=1.0)
+    parser.add_argument("--uniformity-weight", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=20260715)
     parser.add_argument("--max-train-requests", type=int)
     args = parser.parse_args()
@@ -58,6 +61,9 @@ def main() -> int:
         learning_rate=args.learning_rate,
         weight_decay=args.weight_decay,
         max_grad_norm=args.max_grad_norm,
+        retrieval_weight=args.retrieval_weight,
+        distillation_weight=args.distillation_weight,
+        uniformity_weight=args.uniformity_weight,
         seed=args.seed,
         max_train_requests=args.max_train_requests,
     )
@@ -67,4 +73,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

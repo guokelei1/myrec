@@ -157,6 +157,8 @@ def aggregate_direction_interventions(rows: list[dict[str, Any]]) -> dict[str, A
     eligible_denominator = (
         result["eligible_mean_aligned_ndcg@10"]
         - result["eligible_mean_random_mean_ndcg@10"]
+        if eligible
+        else None
     )
     result["eligible_direction_conversion_efficiency"] = (
         (
@@ -164,7 +166,9 @@ def aggregate_direction_interventions(rows: list[dict[str, Any]]) -> dict[str, A
             - result["eligible_mean_random_mean_ndcg@10"]
         )
         / eligible_denominator
-        if eligible and abs(eligible_denominator) > 1e-12
+        if eligible
+        and eligible_denominator is not None
+        and abs(eligible_denominator) > 1e-12
         else None
     )
     return result

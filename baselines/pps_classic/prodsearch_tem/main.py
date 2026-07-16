@@ -97,6 +97,8 @@ def parse_args():
     parser.add_argument("--log_file", type=str, default="train.log", help="log file name")
     parser.add_argument("--query_encoder_name", type=str, default="fs", choices=["fs","avg"],
             help="Specify network structure parameters. Please read readme.txt for details.")
+    parser.add_argument("--use_review_query_idx", type=str2bool, nargs='?', const=True,
+            default=False, help="Bind each interaction to its explicit query id instead of a product-level query union.")
     parser.add_argument("--review_encoder_name", type=str, default="pvc", choices=["pv", "pvc", "fs", "avg"],
             help="Specify network structure parameters. ")
     parser.add_argument("--embedding_size", type=int, default=128, help="Size of each embedding.")
@@ -152,7 +154,8 @@ def create_model(args, global_data, prod_data, load_path=''):
     #if load_path != '':
         logger.info('Loading checkpoint from %s' % load_path)
         checkpoint = torch.load(load_path,
-                                map_location=lambda storage, loc: storage)
+                                map_location=lambda storage, loc: storage,
+                                weights_only=False)
         opt = vars(checkpoint['opt'])
         for k in opt.keys():
             if (k in model_flags):

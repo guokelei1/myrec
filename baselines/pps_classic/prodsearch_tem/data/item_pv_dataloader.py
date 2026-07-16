@@ -39,6 +39,8 @@ class ItemPVDataloader(DataLoader):
             do_seq = self.args.do_seq_review_test and not self.args.train_review_only
             u_prev_review_idxs = self.get_user_review_idxs(user_idx, review_idx, do_seq, fix=True)
             u_item_idxs = [self.global_data.review_u_p[x][1] for x in u_prev_review_idxs]
+            if not u_item_idxs:
+                u_item_idxs = [self.prod_pad_idx]
             candi_u_item_idxs.append(u_item_idxs)
 
         candi_prod_idxs = util.pad(candi_prod_idxs, pad_id = self.prod_pad_idx)
@@ -128,7 +130,10 @@ class ItemPVDataloader(DataLoader):
         for word_idxs, review_idx in batch:
             batch_word_idxs.append(word_idxs)
             user_idx, prod_idx = self.global_data.review_u_p[review_idx]
-            query_idx = random.choice(self.prod_data.product_query_idx[prod_idx])
+            if self.args.use_review_query_idx:
+                query_idx = self.prod_data.review_query_by_review_idx[review_idx]
+            else:
+                query_idx = random.choice(self.prod_data.product_query_idx[prod_idx])
             query_word_idxs = self.global_data.query_words[query_idx]
 
             u_prev_review_idxs = self.get_user_review_idxs(
@@ -153,7 +158,10 @@ class ItemPVDataloader(DataLoader):
         for word_idxs, review_idx in batch:
             batch_word_idxs.append(word_idxs)
             user_idx, prod_idx = self.global_data.review_u_p[review_idx]
-            query_idx = random.choice(self.prod_data.product_query_idx[prod_idx])
+            if self.args.use_review_query_idx:
+                query_idx = self.prod_data.review_query_by_review_idx[review_idx]
+            else:
+                query_idx = random.choice(self.prod_data.product_query_idx[prod_idx])
             query_word_idxs = self.global_data.query_words[query_idx]
 
             u_prev_review_idxs = self.get_user_review_idxs(user_idx, review_idx, self.args.do_seq_review_train, fix=False)
@@ -191,4 +199,3 @@ class ItemPVDataloader(DataLoader):
         batch = ItemPVBatch(query_word_idxs, target_prod_idxs, [], pos_seg_idxs,
                 neg_seg_idxs, pos_seq_item_idxs, neg_seq_item_idxs, pos_iword_idxs=pos_iword_idxs)
         return batch
-

@@ -1,7 +1,7 @@
 # PPS HSTU baseline boundary
 
-This directory is a vendored upstream snapshot used to build the rec-native
-representative baseline in `doc/37_representative_architecture_validation.md`.
+This directory is a vendored upstream snapshot for the reusable rec-native
+diagnostic baseline recorded in `experiments/pps_baseline_cards.md`.
 
 ## Upstream
 
@@ -79,13 +79,10 @@ metadata required by `experiments/history_response_gap/score_bundle_contract.md`
 Do not write processed datasets, checkpoints, embeddings, caches, or logs into
 this directory. Use `data/`, `models/`, `artifacts/`, and `runs/`.
 
-## Current smoke status
+## Current status
 
-- `reports/hstu_official_core_smoke.json`: official HSTU and matched SASRec GPU
-  forward/backward plus finite-difference checks pass at the locked commit;
-- `reports/hstu_pps_adapter_lite_smoke.json`: the shared causal record adapter and
-  PPS fixed-slate scorer pass true/null/wrong mechanics on real Lite records.
-
-The second report uses deterministic synthetic content features and does not
-establish ranking adequacy or motivation. The production adapter source is
-`src/myrec/baselines/hstu_pps_adapter.py`.
+The adapter passed historical mechanics checks but did not pass the ranking
+adequacy gate needed for the current motivation. Generated smoke reports were
+removed from the curated report set during V1 consolidation. The reusable
+production adapter remains `src/myrec/baselines/hstu_pps_adapter.py`; any future
+use must rerun its tests and emit fresh evidence through the shared evaluator.

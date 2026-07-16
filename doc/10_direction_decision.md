@@ -1,39 +1,70 @@
 # Current direction decision
 
-Status: active scope note, 2026-07-15.
+Status: active scope after Motivation V1 consolidation, 2026-07-16.
 
 The project remains Query-conditioned Personalized Product Ranking and
-LLM4Rec. The universal direction-gap hypothesis in doc 34 was useful but did
-not survive unchanged: Amazon-C4 has strongly correct history direction and
-JDsearch strict-nonrepeat direction is reliably above chance.
+LLM4Rec. The universal direction-gap hypothesis is closed: Amazon-C4 has
+strong target-nonrepeat direction, and JDsearch nonrepeat direction is above
+chance. The pre-audit candidate-overlap surface is also no longer called target
+recurrence.
 
-The active motivation is the controlled-history-composition problem in doc 35:
+The active motivation is the target-aware incremental-personalization problem:
 
-> ordinary full-token LLM4Rec rankers can read history, but do not reliably
-> preserve query-candidate base capability while adding a high-efficiency,
-> candidate-relative history update. Positive true-over-null utility can repay
-> a base deficit created by joint history training, while recurrence masks the
-> problem overall.
+> Ordinary full-token history rankers can respond broadly to history while
+> target recurrence, target-nonrepeat recovery, and the end-model observed-label
+> gap remain sharply different. In the frozen KuaiSearch Full confirmation, an
+> aggregate-successful task-adequate model learns strong target recurrence, but
+> does not establish practically meaningful same-checkpoint history increment on
+> the majority target-nonrepeat/no-candidate-overlap surface. Response,
+> true/null, and overall therefore do not individually identify reliable
+> incremental personalization.
 
-## Evidence tracks
+The 2026-07-16 V1 extension applies the identical target-aware decomposition to
+three frozen query-conditioned Transformer rankers on the same KuaiSearch
+confirmation population. Qwen3, TEM, and InstructRec all have a significant
+target-repeat positive control and a positive repeat-minus-no-overlap contrast,
+while none establishes recovery on target-nonrepeat/no-candidate-overlap. TEM
+and InstructRec have near-zero aggregate true-minus-null because surface gains
+and losses cancel, not because their scores ignore history. The current concise
+claim and code audit are in
+[`40_transformer_recurrence_transfer_motivation_v1_zh.md`](40_transformer_recurrence_transfer_motivation_v1_zh.md).
 
-- **Main natural-language source:** KuaiSearch Full. Its strict-nonrepeat
-  surface localizes the direction-allocation failure; Lite supplies
-  cross-family and cross-objective exploratory evidence only.
-- **Independent functional replication:** JDsearch v3. Its label-free hash
-  candidate order and anonymized terms support ranking/accounting evidence,
-  not a pretrained-semantic claim.
-- **English semantic positive boundary:** Amazon-C4 plus Reviews-2023 history.
-  Its constructed target-revealing query falsifies universal direction failure
-  while exposing the base/history tradeoff under a longer history budget.
+The exact descriptive accounting is:
 
-These are exploratory development populations, not independent confirmation.
-KuaiSAR is no longer required for the completed motivation decision; it may be
-considered later only under a new pre-outcome confirmation protocol.
+```text
+end-model gap = null-path gap + same-checkpoint recovery
+```
 
-## Authorization
+Matched-null has now shown that missing-history OOD explains part of old
+null-path gaps. `base erosion`, `repayment`, negative transfer, and architecture
+failure remain unsupported causal descriptions of the final bounded result.
 
-The next authorized step is a frozen Failure Card testing standard repairs,
-train-only direction recoverability, independent-family replication, and
-confirmation. No C81, C80 rescue, old R0 round, proposed architecture source,
-or architecture GPU training is authorized by this decision.
+## Dataset roles
+
+- **Main:** KuaiSearch Full. Latest-window runs supply exploration, and the
+  older disjoint `full_confirm_preceding10k_v1` population supplies the passed
+  frozen confirmation.
+- **Replication:** KuaiSAR Full. It supplies functional behavioral replication
+  and cannot support a plaintext-semantic claim.
+- **Pre-registered fallback:** JDsearch. Existing v3 results remain valid
+  exploratory functional evidence. It replaces KuaiSAR only if the latter
+  fails its source boundary, not because of model outcome.
+- **Non-binding boundary:** Amazon-C4 plus history companion. It is a constructed
+  semantic stress test and cannot estimate natural-search prevalence.
+
+KuaiSearch Lite, HSTU, SASRec, ZAM, and LLM-SRec remain exploratory or
+diagnostic boundary evidence. The fresh Qwen confirmation remains the binding
+pre-registered ordinary-decoder result. TEM and InstructRec add a matched
+post-confirmation cross-model surface replication on the same frozen population;
+they do not convert the result into a universal LLM-family theorem.
+
+## Current authorization
+
+The motivation-repair round is complete. Its superseded plans, duplicate
+audits, and exploratory generated reports were removed during V1 consolidation.
+The active evidence chain is now limited to the disjoint frozen Qwen
+confirmation and the same-population Qwen3/TEM/InstructRec audit linked from
+the V1 entry.
+
+No proposed-system tree, architecture GPU training, additional confirmation
+outcome access, or test evaluation is authorized by this decision.

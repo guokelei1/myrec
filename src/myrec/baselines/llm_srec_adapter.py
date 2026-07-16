@@ -130,8 +130,13 @@ class LLMSRecRetrievalHead(nn.Module):
             scores.masked_fill(~candidate_mask, torch.finfo(scores.dtype).min),
             positive_indices,
         )
+        # The paper aligns unit-normalized LLM and CF-SRec user
+        # representations. Keep the unnormalized projections for retrieval,
+        # but normalize both representations for matching.
         projected_cf_user = self.cf_user_projection(cf_user.detach())
-        distillation = F.mse_loss(projected_user, projected_cf_user)
+        normalized_user = F.normalize(projected_user, dim=-1)
+        normalized_cf_user = F.normalize(projected_cf_user, dim=-1)
+        distillation = F.mse_loss(normalized_user, normalized_cf_user)
         uniformity = uniformity_loss(projected_user) + uniformity_loss(
             projected_cf_user
         )

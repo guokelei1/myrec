@@ -40,8 +40,11 @@ def build_kuaisearch_lite_scout(
     max_candidate_count: int = 100,
     max_history_len: int = 20,
     include_history_query: bool = False,
+    evaluation_split: str = "dev",
+    end_before_time: int | None = None,
+    exclude_request_manifest_path: str | Path | None = None,
 ) -> dict[str, Any]:
-    """Materialize an exploratory time-window scout without source-test rows."""
+    """Materialize a label-isolated time window without source-test rows."""
 
     if max_requests < 10:
         raise ValueError("max_requests must be at least 10")
@@ -51,6 +54,8 @@ def build_kuaisearch_lite_scout(
         raise ValueError("invalid candidate-count boundary")
     if max_history_len < 1:
         raise ValueError("max_history_len must be positive")
+    if evaluation_split not in {"dev", "confirmation"}:
+        raise ValueError("evaluation_split must be dev or confirmation")
 
     raw_dir = Path(raw_dir)
     output_dir = Path(output_dir)
@@ -74,7 +79,17 @@ def build_kuaisearch_lite_scout(
         source["eligible_keys"],
         max_requests=max_requests,
         dev_fraction=dev_fraction,
+        evaluation_split=evaluation_split,
+        end_before_time=end_before_time,
     )
+    excluded_request_ids = _load_manifest_request_ids(exclude_request_manifest_path)
+    selected_request_ids = {_request_id(key) for key in selected_keys}
+    request_overlap = selected_request_ids & excluded_request_ids
+    if request_overlap:
+        raise ValueError(
+            "selected requests overlap excluded manifest: "
+            f"{sorted(request_overlap)[:5]}"
+        )
     selected = _load_selected_requests(
         recall_path,
         selected_keys=selected_keys,
@@ -97,17 +112,27 @@ def build_kuaisearch_lite_scout(
         item_map=item_map,
         dataset_version=dataset_version,
         include_history_query=include_history_query,
+        evaluation_split=evaluation_split,
     )
 
     manifest = {
         "dataset_id": "kuaisearch",
         "dataset_version": dataset_version,
-        "evidence_mode": "exploratory",
+        "evidence_mode": (
+            "frozen_confirmation_population_label_unopened"
+            if evaluation_split == "confirmation"
+            else "exploratory"
+        ),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scope_warning": (
-            "This is a source-train time-window scout for implementation and "
-            "motivation exploration. It is not a frozen confirmation cohort "
-            "and does not represent the entire source population."
+            (
+                "This is a frozen, disjoint source-train confirmation window; "
+                "it does not represent source test or future temporal generalization."
+                if evaluation_split == "confirmation"
+                else "This is a source-train time-window scout for implementation "
+                "and motivation exploration. It is not a frozen confirmation "
+                "cohort and does not represent the entire source population."
+            )
         ),
         "source": {
             "raw_dir": str(raw_dir),
@@ -122,6 +147,20 @@ def build_kuaisearch_lite_scout(
         },
         "selection": {
             "strategy": "latest source-train time window after label-free candidate-size filter",
+            "evaluation_split": evaluation_split,
+            "end_before_time_exclusive": end_before_time,
+            "excluded_request_manifest_path": (
+                str(exclude_request_manifest_path)
+                if exclude_request_manifest_path is not None
+                else None
+            ),
+            "excluded_request_manifest_sha256": (
+                sha256_file(exclude_request_manifest_path)
+                if exclude_request_manifest_path is not None
+                else None
+            ),
+            "excluded_request_ids": len(excluded_request_ids),
+            "excluded_request_overlap": len(request_overlap),
             "max_requests": max_requests,
             "min_candidate_count": min_candidate_count,
             "max_candidate_count": max_candidate_count,
@@ -212,10 +251,17 @@ def _select_latest_time_window(
     *,
     max_requests: int,
     dev_fraction: float,
+    evaluation_split: str = "dev",
+    end_before_time: int | None = None,
 ) -> tuple[set[RequestKey], dict[RequestKey, str], dict[str, Any]]:
-    if len(eligible_keys) < 10:
+    bounded_keys = (
+        [key for key in eligible_keys if key[3] < end_before_time]
+        if end_before_time is not None
+        else eligible_keys
+    )
+    if len(bounded_keys) < 10:
         raise ValueError("not enough eligible source-train requests")
-    ordered = sorted(eligible_keys, key=lambda key: (key[3], _request_id(key)))
+    ordered = sorted(bounded_keys, key=lambda key: (key[3], _request_id(key)))
     selected = ordered[-min(max_requests, len(ordered)) :]
     tentative = max(1, int(len(selected) * (1.0 - dev_fraction)))
     boundary_time = selected[tentative][3]
@@ -225,24 +271,24 @@ def _select_latest_time_window(
     if split_index == 0 or split_index == len(selected):
         raise ValueError("time-tie containment produced an empty train or dev split")
     train = selected[:split_index]
-    dev = selected[split_index:]
+    evaluation = selected[split_index:]
     train_sessions = {key[1] for key in train}
-    dev_sessions = {key[1] for key in dev}
-    overlap = train_sessions & dev_sessions
+    evaluation_sessions = {key[1] for key in evaluation}
+    overlap = train_sessions & evaluation_sessions
     if overlap:
         raise ValueError(
             f"session identifiers cross the scout split: {sorted(overlap)[:5]}"
         )
     split_by_key = {key: "train" for key in train}
-    split_by_key.update({key: "dev" for key in dev})
+    split_by_key.update({key: evaluation_split for key in evaluation})
     return set(selected), split_by_key, {
         "selected_requests": len(selected),
         "train_requests": len(train),
-        "dev_requests": len(dev),
+        f"{evaluation_split}_requests": len(evaluation),
         "time_index_min": selected[0][3],
         "time_index_max": selected[-1][3],
-        "dev_time_index_min": boundary_time,
-        "time_ties_kept_with_dev": tentative - split_index,
+        f"{evaluation_split}_time_index_min": boundary_time,
+        f"time_ties_kept_with_{evaluation_split}": tentative - split_index,
         "session_overlap": 0,
     }
 
@@ -327,12 +373,14 @@ def _write_scout(
     item_map: dict[int, dict[str, Any]],
     dataset_version: str,
     include_history_query: bool,
+    evaluation_split: str = "dev",
 ) -> dict[str, Any]:
+    splits = ("train", evaluation_split)
     record_paths = {
-        split: output_dir / f"records_{split}.jsonl" for split in ("train", "dev")
+        split: output_dir / f"records_{split}.jsonl" for split in splits
     }
     qrels_paths = {
-        split: output_dir / f"qrels_{split}.jsonl" for split in ("train", "dev")
+        split: output_dir / f"qrels_{split}.jsonl" for split in splits
     }
     record_handles = {
         split: path.open("w", encoding="utf-8")
@@ -465,7 +513,7 @@ def _write_scout(
     )
     audits = {
         split: audit_standardized_file(record_paths[split], split)
-        for split in ("train", "dev")
+        for split in splits
     }
     return {
         "counts": dict(counts),
@@ -481,21 +529,35 @@ def _write_scout(
         "files": {
             **{
                 f"records_{split}": _file_info(record_paths[split])
-                for split in ("train", "dev")
+                for split in splits
             },
             **{
                 f"qrels_{split}": _file_info(qrels_paths[split])
-                for split in ("train", "dev")
+                for split in splits
             },
             "candidate_manifest": _file_info(candidate_manifest_path),
             "request_manifest": _file_info(request_manifest_path),
         },
         "label_isolation": {
-            "dev_records_label_free": True,
-            "dev_labels_path": str(qrels_paths["dev"]),
-            "scoring_code_may_read_dev_labels": False,
+            f"{evaluation_split}_records_label_free": True,
+            f"{evaluation_split}_labels_path": str(qrels_paths[evaluation_split]),
+            f"scoring_code_may_read_{evaluation_split}_labels": False,
         },
     }
+
+
+def _load_manifest_request_ids(path: str | Path | None) -> set[str]:
+    if path is None:
+        return set()
+    manifest_path = Path(path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    entries = manifest.get("entries")
+    if not isinstance(entries, list):
+        raise ValueError(f"request manifest has no entries list: {manifest_path}")
+    request_ids = {str(row["request_id"]) for row in entries}
+    if len(request_ids) != len(entries):
+        raise ValueError(f"duplicate request ids in manifest: {manifest_path}")
+    return request_ids
 
 
 def _request_key(row: dict[str, Any]) -> RequestKey:

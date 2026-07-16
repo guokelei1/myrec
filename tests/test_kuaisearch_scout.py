@@ -106,6 +106,84 @@ class KuaiSearchScoutTest(unittest.TestCase):
                 dev_audit["request_count"],
             )
 
+    def test_builds_disjoint_confirmation_window(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            raw = root / "raw"
+            recall_rows = []
+            item_ids = set()
+            for index in range(30):
+                candidates = [100 + index, 200 + index]
+                item_ids.update(candidates)
+                recall_rows.append(
+                    {
+                        "user_id": index % 3,
+                        "session_id": index,
+                        "query": f"query {index % 5}",
+                        "time_index": index + 1,
+                        "impressed_item_ids": candidates,
+                        "clicked_item_ids": [candidates[0]],
+                        "purchased_item_ids": [],
+                        "split": "train",
+                    }
+                )
+            _write_jsonl(raw / "recall" / "train.jsonl", recall_rows)
+            _write_jsonl(
+                raw / "items" / "train.jsonl",
+                [
+                    {
+                        "item_id": item_id,
+                        "item_title": f"item {item_id}",
+                        "brand_name": "brand",
+                        "category_level1_name": "cat",
+                    }
+                    for item_id in sorted(item_ids)
+                ],
+            )
+
+            explored = root / "explored"
+            build_kuaisearch_lite_scout(
+                raw,
+                explored,
+                root / "explored_report.json",
+                max_requests=10,
+                dev_fraction=0.2,
+            )
+            confirmation = root / "confirmation"
+            report = build_kuaisearch_lite_scout(
+                raw,
+                confirmation,
+                root / "confirmation_report.json",
+                dataset_version="confirmation_v1",
+                max_requests=10,
+                dev_fraction=0.2,
+                evaluation_split="confirmation",
+                end_before_time=21,
+                exclude_request_manifest_path=explored / "request_manifest.json",
+            )
+
+            self.assertEqual(report["selection"]["excluded_request_overlap"], 0)
+            self.assertEqual(report["selection"]["time_index_max"], 20)
+            self.assertFalse((confirmation / "records_dev.jsonl").exists())
+            confirmation_rows = list(
+                iter_jsonl(confirmation / "records_confirmation.jsonl")
+            )
+            self.assertTrue(confirmation_rows)
+            self.assertTrue(
+                all(
+                    "clicked" not in candidate
+                    for row in confirmation_rows
+                    for candidate in row["candidates"]
+                )
+            )
+            audit = audit_standardized_file(
+                confirmation / "records_confirmation.jsonl", "confirmation"
+            )
+            self.assertEqual(
+                len(list(iter_jsonl(confirmation / "qrels_confirmation.jsonl"))),
+                audit["request_count"],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

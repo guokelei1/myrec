@@ -48,6 +48,14 @@ class ProdSearchData():
             #franklist = '{}/test.bias_product.ranklist'.format(input_train_dir)
             if args.test_candi_size > 0 and os.path.exists(franklist): #otherwise use all the product ids
                 self.uq_pids = self.read_ranklist(franklist, global_data.product_asin2ids)
+        self.review_query_by_review_idx = {}
+        if self.args.use_review_query_idx:
+            if len(self.review_query_idx) != len(self.review_info):
+                raise ValueError("review/query id coverage mismatch")
+            self.review_query_by_review_idx = {
+                review_idx: self.review_query_idx[line_id]
+                for line_id, _, _, review_idx in self.review_info
+            }
             #if args.train_review_only:
         #self.u_reviews, self.p_reviews = self.get_u_i_reviews(
         self.u_reviews, self.p_reviews = self.get_u_i_reviews_set(
@@ -285,4 +293,3 @@ class GlobalProdSearchData():
                 else:
                     line_arr.append(words[:cutoff])
         return line_arr
-

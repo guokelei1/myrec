@@ -19,7 +19,7 @@ from myrec.baselines.full_token_cross_encoder import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--standardized-dir", required=True)
-    parser.add_argument("--split", default="dev", choices=("dev",))
+    parser.add_argument("--split", default="dev", choices=("dev", "confirmation"))
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--history-condition", required=True, choices=("true", "null", "wrong"))
     parser.add_argument("--history-assignments", required=True)

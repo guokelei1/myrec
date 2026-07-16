@@ -68,6 +68,100 @@ class FullTokenTrainingTest(unittest.TestCase):
                 [row.negative_document for row in qc],
             )
 
+    def test_history_dropout_is_deterministic_train_only_and_request_level(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            records = root / "records.jsonl"
+            qrels = root / "qrels.jsonl"
+            _write_jsonl(
+                records,
+                [
+                    {
+                        "request_id": request_id,
+                        "query": "shoe",
+                        "history": [
+                            {"item_id": "h", "title": f"history {request_id}", "event": "click"}
+                        ],
+                        "candidates": [
+                            {"item_id": "p", "title": "positive"},
+                            {"item_id": "n1", "title": "negative one"},
+                            {"item_id": "n2", "title": "negative two"},
+                        ],
+                    }
+                    for request_id in ("r1", "r2", "r3", "r4")
+                ],
+            )
+            _write_jsonl(
+                qrels,
+                [
+                    {"request_id": request_id, "clicked": ["p"], "purchased": []}
+                    for request_id in ("r1", "r2", "r3", "r4")
+                ],
+            )
+            left, left_stats = build_pairwise_examples(
+                records,
+                qrels,
+                input_mode="full",
+                history_budget=2,
+                negatives_per_positive=2,
+                seed=9,
+                history_dropout_probability=0.5,
+            )
+            right, right_stats = build_pairwise_examples(
+                records,
+                qrels,
+                input_mode="full",
+                history_budget=2,
+                negatives_per_positive=2,
+                seed=9,
+                history_dropout_probability=0.5,
+            )
+            self.assertEqual(left, right)
+            self.assertEqual(left_stats, right_stats)
+            contexts_by_request = {}
+            for example in left:
+                contexts_by_request.setdefault(example.request_id, set()).add(example.context)
+            self.assertTrue(all(len(contexts) == 1 for contexts in contexts_by_request.values()))
+            dropout = left_stats["history_dropout"]
+            self.assertEqual(dropout["history_present_labeled_requests"], 4)
+            self.assertEqual(
+                dropout["history_dropped_requests"] + dropout["history_retained_requests"],
+                4,
+            )
+            self.assertGreater(dropout["history_dropped_requests"], 0)
+            self.assertGreater(dropout["history_retained_requests"], 0)
+
+    def test_qc_rejects_nonzero_history_dropout(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            records = root / "records.jsonl"
+            qrels = root / "qrels.jsonl"
+            _write_jsonl(
+                records,
+                [
+                    {
+                        "request_id": "r",
+                        "query": "q",
+                        "history": [{"item_id": "h"}],
+                        "candidates": [{"item_id": "p"}, {"item_id": "n"}],
+                    }
+                ],
+            )
+            _write_jsonl(
+                qrels,
+                [{"request_id": "r", "clicked": ["p"], "purchased": []}],
+            )
+            with self.assertRaisesRegex(ValueError, "input_mode=full"):
+                build_pairwise_examples(
+                    records,
+                    qrels,
+                    input_mode="qc",
+                    history_budget=2,
+                    negatives_per_positive=1,
+                    seed=1,
+                    history_dropout_probability=0.5,
+                )
+
 
 if __name__ == "__main__":
     unittest.main()

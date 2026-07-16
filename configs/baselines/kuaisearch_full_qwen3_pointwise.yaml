@@ -1,0 +1,68 @@
+schema_version: 1
+config_id: kuaisearch_full_qwen3_pointwise_rep_family_v1
+frozen_at: "2026-07-15"
+purpose: exploratory_second_full_token_transformer_family_adequacy_and_replication
+protocol: experiments/history_response_gap/experiment_manifest.yaml
+architecture_authorized: false
+confirmation_authorized: false
+test_authorized: false
+
+dataset:
+  standardized_dir: data/standardized/kuaisearch/full_scout10k_query_history_v1
+  dataset_id: kuaisearch
+  dataset_version: full_scout10k_query_history_v1
+  endpoint: graded
+
+model:
+  family: ordinary_decoder_only_full_token_language_transformer
+  base_model_name: models/huggingface/Qwen3-Reranker-0.6B
+  official_interface: sentence_transformers.CrossEncoder
+  score: raw_yes_minus_no_logit
+  max_length: 768
+  history_budget: 6
+  dtype: bfloat16
+  gradient_checkpointing: false
+  preprocessing: official_crossencoder_prompt_and_default_pair_truncation
+
+coverage:
+  train_report: reports/history_response_gap_full_scout_query_history_qwen3_real_preprocess_coverage_train_h6_l768.json
+  dev_report: reports/history_response_gap_full_scout_query_history_qwen3_real_preprocess_coverage_dev_h6_l768.json
+  train_overflow_pairs: 0
+  dev_overflow_pairs: 0
+
+training:
+  variants: [qc, full]
+  objective: pointwise_binary_cross_entropy
+  negatives_per_positive: 2
+  batch_size: 8
+  gradient_accumulation_steps: 2
+  epochs: 1
+  learning_rate: 1.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  seeds: [20260714, 20260715]
+  model_selection: no_dev_selection_recipe_copied_from_completed_lite_probe
+  report_all_seeds: true
+
+evaluation:
+  qc_condition: query_only
+  full_conditions: [true, null, wrong]
+  request_aligned_batches: true
+  shared_evaluator: scripts/analyze_history_response.py
+  candidate_hash_required: true
+  all_request_and_conditional_positive: true
+  target_aware_surfaces: true
+  activity_epsilon: 0.01
+  utility_epsilon: 0.0
+  adequacy_required:
+    - finite_training_and_scores
+    - qc_competitive_with_bm25_and_bge_qc
+    - target_repeat_history_positive_control
+    - exact_counterfactual_identity
+
+claim_boundary: >-
+  Qwen is a second ordinary full-token Transformer family. Only seeds passing
+  the frozen task-adequacy gates may support a shared-family motivation claim;
+  every seed and failure remains reported. These runs cannot establish a
+  universal Transformer limitation or authorize a proposed architecture.

@@ -1,0 +1,231 @@
+{
+  "report_id": "pps_three_transformer_history_surface_audit_v1",
+  "status": "three_model_surface_signature_observed",
+  "generated_on": "2026-07-16",
+  "human_entry": "doc/40_transformer_recurrence_transfer_motivation_v1_zh.md",
+  "scope": "Frozen KuaiSearch confirmation population; same-checkpoint true-minus-null history utility for three query-conditioned Transformer rankers.",
+  "population": {
+    "candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+    "num_requests": 2000,
+    "num_positive_eligible_requests": 987,
+    "qrels_sha256": "19c80f19ff0b11b4329093952e1a1c10b38c7f17bdabf4b236dc3931cad24c7c",
+    "request_manifest_sha256": "8ad24b29dfadfd6a81d31111cafed68ee6685c0b3e0d9db626a087a7c72e8968",
+    "surface_counts": {
+      "target_nonrepeat_no_candidate_overlap": 582,
+      "target_nonrepeat_other_candidate_overlap": 147,
+      "target_repeat": 121
+    }
+  },
+  "estimand": {
+    "metric": "mean per-request graded NDCG@10(true history) minus NDCG@10(null history)",
+    "checkpoint_policy": "The true and null scores for each model use one unchanged checkpoint.",
+    "uncertainty": "Query-cluster bootstrap with 5000 draws. Qwen3 values are copied from the frozen confirmation artifacts; TEM and InstructRec use the same cluster definition and bootstrap implementation."
+  },
+  "models": [
+    {
+      "model": "Qwen3-Reranker-0.6B",
+      "family": "decoder-only language reranker",
+      "active_response_rate": 0.8885,
+      "overall": {
+        "delta": 0.01305101343211455,
+        "ci95": [
+          0.005750833769053827,
+          0.02023474236294809
+        ]
+      },
+      "target_repeat": {
+        "delta": 0.23149919884909503,
+        "ci95": [
+          0.17834078748988028,
+          0.28447080466872565
+        ],
+        "num_requests": 121
+      },
+      "target_nonrepeat_other_candidate_overlap": {
+        "delta": -0.025820666458431705,
+        "num_requests": 147
+      },
+      "target_nonrepeat_no_candidate_overlap": {
+        "delta": 0.003240999609756125,
+        "ci95": [
+          -0.014374051240985335,
+          0.021474821652506384
+        ],
+        "num_requests": 582
+      },
+      "repeat_minus_nonrepeat_no_overlap": {
+        "delta": 0.2282581992393389,
+        "ci95": [
+          0.17164322082306677,
+          0.28292988006654396
+        ]
+      },
+      "evidence": [
+        "reports/pps_motivation_confirmation_decision.json",
+        "reports/pps_history_response_confirmation_target_aware_surfaces.json"
+      ]
+    },
+    {
+      "model": "TEM",
+      "family": "published personalized-product-search item Transformer",
+      "active_response_rate": 0.8915,
+      "overall": {
+        "delta": 0.00031969823125683414,
+        "ci95": [
+          -0.005782350095995255,
+          0.0063691419802267175
+        ]
+      },
+      "target_repeat": {
+        "delta": 0.05716375565048062,
+        "ci95": [
+          0.017644935009860956,
+          0.0975957552593135
+        ],
+        "num_requests": 121
+      },
+      "target_nonrepeat_other_candidate_overlap": {
+        "delta": 0.021951626429694344,
+        "ci95": [
+          -0.01513911055963775,
+          0.05802206085012797
+        ],
+        "num_requests": 147
+      },
+      "target_nonrepeat_no_candidate_overlap": {
+        "delta": -0.016330424495463156,
+        "ci95": [
+          -0.03316900112142166,
+          0.00038599259916640273
+        ],
+        "num_requests": 582
+      },
+      "repeat_minus_nonrepeat_no_overlap": {
+        "delta": 0.07349418014594378,
+        "ci95": [
+          0.030226085137415416,
+          0.11923824422468965
+        ]
+      },
+      "evidence": [
+        "runs/20260716_kuaisearch_tem_confirmation_seed20260716_response_graded_v2/per_request_history_response.jsonl",
+        "runs/20260716_kuaisearch_tem_confirmation_seed20260716_response_graded_v2/target_aware_surfaces"
+      ]
+    },
+    {
+      "model": "InstructRec (Flan-T5-XL)",
+      "family": "encoder-decoder instruction-following language ranker",
+      "active_response_rate": 0.8575,
+      "overall": {
+        "delta": 0.0006077229315324008,
+        "ci95": [
+          -0.0027856992866217463,
+          0.004097435735148661
+        ]
+      },
+      "target_repeat": {
+        "delta": 0.03375071969783774,
+        "ci95": [
+          0.009046521613256713,
+          0.060639071583745686
+        ],
+        "num_requests": 121
+      },
+      "target_nonrepeat_other_candidate_overlap": {
+        "delta": -0.018838711683137974,
+        "ci95": [
+          -0.03715603231968852,
+          -0.0016192942187764716
+        ],
+        "num_requests": 147
+      },
+      "target_nonrepeat_no_candidate_overlap": {
+        "delta": -0.0001702759500898333,
+        "ci95": [
+          -0.009468036619550518,
+          0.009377423461954956
+        ],
+        "num_requests": 582
+      },
+      "repeat_minus_nonrepeat_no_overlap": {
+        "delta": 0.03392099564792757,
+        "ci95": [
+          0.006733718423351481,
+          0.06253289526304522
+        ]
+      },
+      "evidence": [
+        "runs/20260716_kuaisearch_instructrec_full_seed20260716_cached_response_graded/per_request_history_response.jsonl",
+        "runs/20260716_kuaisearch_instructrec_full_seed20260716_cached_response_graded/target_aware_surfaces"
+      ]
+    }
+  ],
+  "descriptive_accounting": {
+    "TEM": {
+      "target_repeat_contribution_to_all_request_delta": 0.003458407216854077,
+      "target_nonrepeat_other_candidate_overlap_contribution": 0.0016134445425825344,
+      "target_nonrepeat_no_candidate_overlap_contribution": -0.004752153528179779,
+      "sum": 0.00031969823125683246
+    },
+    "InstructRec": {
+      "target_repeat_contribution_to_all_request_delta": 0.002041918541719183,
+      "target_nonrepeat_other_candidate_overlap_contribution": -0.0013846453087106411,
+      "target_nonrepeat_no_candidate_overlap_contribution": -0.000049550301476141494,
+      "sum": 0.0006077229315324006
+    },
+    "interpretation": "The near-zero TEM and InstructRec aggregate is a cancellation result. It is not evidence that their rankings are invariant to history."
+  },
+  "implementation_audit": {
+    "candidate_and_request_identity": "passed for all three models",
+    "same_checkpoint_true_null": "passed for all three models",
+    "TEM_materialization": {
+      "true_confirmation_history_events": 22706,
+      "null_confirmation_history_events": 0,
+      "same_train_materialization": true,
+      "same_candidate_manifest": true,
+      "history_present_active_requests": 1783,
+      "no_history_requests": 217,
+      "no_history_max_absolute_score_delta": 0.000002,
+      "note": "The residual is below the registered 0.01 activity epsilon and is consistent with the official scorer's rerun precision; no-history ranking utility is unchanged."
+    },
+    "InstructRec_materialization": {
+      "same_model_checkpoint_true_null_wrong": true,
+      "no_history_scores_exactly_equal_true_null": true,
+      "confirmation_true_prompt_overflow_rate_at_2048": 0.0095,
+      "confirmation_null_prompt_overflow_rate_at_2048": 0.008,
+      "train_prompt_overflow_rate_at_2048": 0.009,
+      "no_overflow_target_repeat_delta": 0.03644604265326304,
+      "no_overflow_target_repeat_ci95": [
+        0.011126103341190251,
+        0.06421833695459463
+      ],
+      "no_overflow_target_nonrepeat_no_candidate_overlap_delta": -0.00030560912249368765,
+      "no_overflow_target_nonrepeat_no_candidate_overlap_ci95": [
+        -0.01010027192988131,
+        0.009307956114811288
+      ],
+      "note": "Removing every request that overflows under any true/null/wrong prompt leaves the recurrence-transfer result unchanged."
+    },
+    "focused_unit_tests": "21 passed in the final V1 consolidation check"
+  },
+  "decision": {
+    "mechanical_history_use": "passed for all three models",
+    "positive_aggregate_true_over_null": "passed only for Qwen3; not established for TEM or InstructRec",
+    "positive_target_repeat_control": "passed for all three models",
+    "target_nonrepeat_no_overlap_increment": "not established for any of the three models",
+    "repeat_minus_nonrepeat_no_overlap_contrast": "positive with a query-cluster bootstrap interval above zero for all three models",
+    "code_failure_explanation": "No supporting evidence after input, identity, no-history, truncation, and focused-test audits.",
+    "supported_claim": "On this frozen population, all three selected query-conditioned Transformer rankers react to history and gain on direct target recurrence, while incremental utility is absent on the much larger target-nonrepeat/no-candidate-overlap surface.",
+    "not_supported": [
+      "Every Transformer or LLM has this failure.",
+      "Every model receives a positive aggregate gain from history.",
+      "The shared surface signature identifies an internal architectural cause.",
+      "This single-population model extension alone passes the full Failure Card or authorizes a new architecture."
+    ]
+  },
+  "remaining_controls": [
+    "Add a wrong-user provenance condition for TEM before making a correct-history-specific TEM claim.",
+    "Use frozen multi-seed TEM and InstructRec confirmation if the paper wording claims family-level prevalence rather than a three-model observation.",
+    "Train an independently matched query-only InstructRec checkpoint only if the paper needs a train-time FULL-true versus QC endpoint claim; same-checkpoint true-minus-null does not answer that question."
+  ]
+}

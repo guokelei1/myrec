@@ -43,7 +43,10 @@ class ItemPVDataset(Dataset):
                 progress = (line_id+1.) / len(prod_data.review_info) * 100
                 print("{}% data processed".format(progress))
             #query_idx = prod_data.review_query_idx[line_id]
-            query_idxs = prod_data.product_query_idx[prod_idx]
+            if self.args.use_review_query_idx:
+                query_idxs = [prod_data.review_query_by_review_idx[review_idx]]
+            else:
+                query_idxs = prod_data.product_query_idx[prod_idx]
             for query_idx in query_idxs:
                 if (user_idx, query_idx) in uq_set:
                     continue

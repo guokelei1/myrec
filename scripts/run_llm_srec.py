@@ -21,6 +21,9 @@ def main() -> int:
     parser.add_argument("--checkpoint-dir", required=True)
     parser.add_argument("--history-assignments", required=True)
     parser.add_argument("--history-condition", choices=("true", "null", "wrong"), required=True)
+    parser.add_argument(
+        "--split", default="dev", choices=("dev", "internal", "confirmation")
+    )
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--device", default="cuda:0")
@@ -32,6 +35,7 @@ def main() -> int:
         args.history_assignments,
         args.run_id,
         history_condition=args.history_condition,
+        split=args.split,
         runs_dir=args.runs_dir,
         device=args.device,
     )
@@ -41,4 +45,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

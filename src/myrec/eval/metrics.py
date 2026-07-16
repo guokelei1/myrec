@@ -82,6 +82,7 @@ def request_metrics(
         "recall@10": recall_at_k(ranked_item_ids, clicked_item_ids, 10),
         "purchase_ndcg@10": purchase_ndcg,
         "clicked_positives": len(clicked_item_ids),
+        "click_positive_eligible": bool(clicked_item_ids),
         "purchased_positives": len(purchased_item_ids),
     }
 
@@ -90,6 +91,7 @@ def aggregate_request_metrics(rows: list[dict[str, float | int | str | None]]) -
     if not rows:
         raise ValueError("cannot aggregate empty request metric list")
     purchase_rows = [row for row in rows if row["purchase_ndcg@10"] is not None]
+    click_positive_rows = [row for row in rows if int(row["clicked_positives"]) > 0]
     return {
         "num_requests": len(rows),
         "ndcg@10": _mean(float(row["ndcg@10"]) for row in rows),
@@ -100,6 +102,15 @@ def aggregate_request_metrics(rows: list[dict[str, float | int | str | None]]) -
         else 0.0,
         "purchase_coverage": len(purchase_rows) / len(rows),
         "purchase_num_requests": len(purchase_rows),
+        "click_positive_coverage": len(click_positive_rows) / len(rows),
+        "click_positive_num_requests": len(click_positive_rows),
+        "click_positive_ndcg@10": _mean(
+            float(row["ndcg@10"]) for row in click_positive_rows
+        ),
+        "click_positive_mrr": _mean(float(row["mrr"]) for row in click_positive_rows),
+        "click_positive_recall@10": _mean(
+            float(row["recall@10"]) for row in click_positive_rows
+        ),
     }
 
 

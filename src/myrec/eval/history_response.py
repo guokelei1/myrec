@@ -49,8 +49,8 @@ def request_history_response(
     delta = [true - null for true, null in zip(true_scores, null_scores)]
     response = _response_components(delta, activity_epsilon)
     direction = _direction_components(delta, gains, activity_epsilon)
-    true_ndcg = _ndcg(request_id, item_ids, true_scores, gains, k)
-    null_ndcg = _ndcg(request_id, item_ids, null_scores, gains, k)
+    true_ndcg = gain_ndcg_at_k(request_id, item_ids, true_scores, gains, k)
+    null_ndcg = gain_ndcg_at_k(request_id, item_ids, null_scores, gains, k)
     null_centered_rms = _centered_rms(null_scores)
 
     result: dict[str, Any] = {
@@ -73,6 +73,7 @@ def request_history_response(
         ),
         "pair_count": response["pair_count"],
         "pairwise_directional_accuracy": direction["directional_accuracy"],
+        "positive_eligible": any(gain > 0 for gain in gains),
         "request_id": request_id,
         "response_active": response["active_pairs"] > 0,
         "response_common_mean": response["common_mean"],
@@ -89,7 +90,9 @@ def request_history_response(
         concrete_wrong = [float(score) for score in wrong_scores if score is not None]
         wrong_delta = [wrong - null for wrong, null in zip(concrete_wrong, null_scores)]
         wrong_direction = _direction_components(wrong_delta, gains, activity_epsilon)
-        wrong_ndcg = _ndcg(request_id, item_ids, concrete_wrong, gains, k)
+        wrong_ndcg = gain_ndcg_at_k(
+            request_id, item_ids, concrete_wrong, gains, k
+        )
         result.update(
             {
                 "true_minus_wrong_ndcg@10": true_ndcg - wrong_ndcg,
@@ -113,6 +116,19 @@ def aggregate_history_response(
     if not rows:
         raise ValueError("cannot aggregate empty history-response rows")
     active = [row for row in rows if row["response_active"]]
+    # Older frozen evaluator rows predate the explicit eligibility field.  For
+    # those artifacts, distinct-gain pair availability is the narrowest safe
+    # compatibility proxy; newly repaired rows always carry the exact field.
+    positive_eligible = [
+        row
+        for row in rows
+        if bool(
+            row.get(
+                "positive_eligible",
+                int(row.get("direction_preferred_pairs", 0)) > 0,
+            )
+        )
+    ]
     direction_eligible = [row for row in rows if row["direction_preferred_pairs"] > 0]
     active_direction = [row for row in direction_eligible if row["response_active"]]
     common_energy = sum(float(row["common_energy"]) for row in rows)
@@ -148,11 +164,19 @@ def aggregate_history_response(
         ),
         "mean_signed_delta_alignment": _mean_present(rows, "signed_delta_alignment"),
         "mean_true_minus_null_ndcg@10": _mean_present(rows, "true_minus_null_ndcg@10"),
+        "mean_true_minus_null_ndcg@10_positive": _mean_present(
+            positive_eligible, "true_minus_null_ndcg@10"
+        ),
         "mean_true_ndcg@10": _mean_present(rows, "true_ndcg@10"),
+        "mean_true_ndcg@10_positive": _mean_present(
+            positive_eligible, "true_ndcg@10"
+        ),
         "num_active_requests": len(active),
         "num_active_direction_requests": len(active_direction),
         "num_direction_eligible_requests": len(direction_eligible),
+        "num_positive_eligible_requests": len(positive_eligible),
         "num_requests": len(rows),
+        "positive_eligible_rate": len(positive_eligible) / len(rows),
     }
     if any("true_minus_wrong_ndcg@10" in row for row in rows):
         if not all("true_minus_wrong_ndcg@10" in row for row in rows):
@@ -234,13 +258,23 @@ def _direction_components(
     }
 
 
-def _ndcg(
+def gain_ndcg_at_k(
     request_id: str,
     item_ids: list[str],
     scores: list[float],
     gains: list[float],
-    k: int,
+    k: int = 10,
 ) -> float:
+    """Compute gain-aware NDCG with the repository's deterministic tie break."""
+
+    if not (len(item_ids) == len(scores) == len(gains)):
+        raise ValueError("item, score, and gain lengths differ")
+    if len(set(item_ids)) != len(item_ids):
+        raise ValueError("candidate item_id values must be unique")
+    if any(not math.isfinite(value) for value in (*scores, *gains)):
+        raise ValueError("gain-aware NDCG inputs must be finite")
+    if any(gain < 0 for gain in gains):
+        raise ValueError("candidate gains must be non-negative")
     gain_by_item = dict(zip(item_ids, gains))
     ranked = sort_candidates(
         request_id,

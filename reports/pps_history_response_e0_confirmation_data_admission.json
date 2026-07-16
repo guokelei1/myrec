@@ -1,0 +1,170 @@
+{
+  "dataset_id": "kuaisearch",
+  "dataset_version": "full_confirm_preceding10k_v1",
+  "evidence_mode": "frozen_confirmation_population_label_unopened",
+  "generated_at": "2026-07-15T12:07:09.934380+00:00",
+  "history": {
+    "causal_rule": "event_time < request_time",
+    "outside_log_events": "unobserved",
+    "prior_query_included": true,
+    "raw_rank_recent_fields_used": false,
+    "source": "same-user recall click/purchase events"
+  },
+  "item_join": {
+    "loaded_item_ids": 187252,
+    "missing_item_examples": [],
+    "missing_item_ids": 0,
+    "needed_item_ids": 187252
+  },
+  "outputs": {
+    "candidate_count": {
+      "count": 10000,
+      "max": 100,
+      "mean": 20.0022,
+      "min": 2
+    },
+    "counts": {
+      "confirmation_history_present": 1783,
+      "confirmation_requests": 2000,
+      "confirmation_strict_nonrepeat": 1327,
+      "confirmation_with_click": 986,
+      "confirmation_with_purchase": 166,
+      "train_history_present": 7254,
+      "train_requests": 8000,
+      "train_strict_nonrepeat": 5274,
+      "train_with_click": 3889,
+      "train_with_purchase": 654
+    },
+    "files": {
+      "candidate_manifest": {
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/candidate_manifest.json",
+        "sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+        "size_bytes": 5030737
+      },
+      "qrels_confirmation": {
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/qrels_confirmation.jsonl",
+        "sha256": "19c80f19ff0b11b4329093952e1a1c10b38c7f17bdabf4b236dc3931cad24c7c",
+        "size_bytes": 234365
+      },
+      "qrels_train": {
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/qrels_train.jsonl",
+        "sha256": "202c87b6e946ddc551f1ebc6f1799681ff7c541bb4cd3313ab46aeee23b210ab",
+        "size_bytes": 933192
+      },
+      "records_confirmation": {
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/records_confirmation.jsonl",
+        "sha256": "312143db6acb23006cd2b4788fd9e475a2cbdc06398bfeec229d96f657f2d355",
+        "size_bytes": 14249028
+      },
+      "records_train": {
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/records_train.jsonl",
+        "sha256": "405453cfda0198070fcc5484c87b3df55175c494443c61b173bdf8a6ec441f82",
+        "size_bytes": 65687158
+      },
+      "request_manifest": {
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/request_manifest.json",
+        "sha256": "8ad24b29dfadfd6a81d31111cafed68ee6685c0b3e0d9db626a087a7c72e8968",
+        "size_bytes": 2814075
+      }
+    },
+    "history_length": {
+      "count": 10000,
+      "max": 20,
+      "mean": 11.597,
+      "min": 0
+    },
+    "label_isolation": {
+      "confirmation_labels_path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/qrels_confirmation.jsonl",
+      "confirmation_records_label_free": true,
+      "scoring_code_may_read_confirmation_labels": false
+    },
+    "manifest": {
+      "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/manifest.json",
+      "sha256_status": "self_reference_not_recorded"
+    },
+    "repeated_query_requests": {
+      "confirmation": 529,
+      "train": 2722
+    },
+    "structural_audits": {
+      "confirmation": {
+        "candidate_count": {
+          "max": 100,
+          "mean": 19.6345,
+          "min": 2
+        },
+        "history_length": {
+          "max": 20,
+          "mean": 11.353,
+          "min": 0
+        },
+        "history_present_requests": 1783,
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/records_confirmation.jsonl",
+        "repeated_query_requests": 529,
+        "request_count": 2000,
+        "sha256": "312143db6acb23006cd2b4788fd9e475a2cbdc06398bfeec229d96f657f2d355",
+        "split": "confirmation",
+        "strict_nonrepeat_requests": 1327,
+        "unique_normalized_queries": 1691
+      },
+      "train": {
+        "candidate_count": {
+          "max": 100,
+          "mean": 20.094125,
+          "min": 2
+        },
+        "history_length": {
+          "max": 20,
+          "mean": 11.658,
+          "min": 0
+        },
+        "history_present_requests": 7254,
+        "path": "data/standardized/kuaisearch/full_confirm_preceding10k_v1/records_train.jsonl",
+        "repeated_query_requests": 2722,
+        "request_count": 8000,
+        "sha256": "405453cfda0198070fcc5484c87b3df55175c494443c61b173bdf8a6ec441f82",
+        "split": "train",
+        "strict_nonrepeat_requests": 5274,
+        "unique_normalized_queries": 6281
+      }
+    }
+  },
+  "scope_warning": "This is a frozen, disjoint source-train confirmation window; it does not represent source test or future temporal generalization.",
+  "selection": {
+    "confirmation_requests": 2000,
+    "confirmation_time_index_min": 1896226,
+    "eligible_source_requests": 2321406,
+    "end_before_time_exclusive": 1897788,
+    "evaluation_split": "confirmation",
+    "excluded_request_ids": 10000,
+    "excluded_request_manifest_path": "data/standardized/kuaisearch/full_scout10k_query_history_v1/request_manifest.json",
+    "excluded_request_manifest_sha256": "c121441729bb208eddc4c7de4dd1ad7edff3839091dd1543b6ff0bd3c73fcbc1",
+    "excluded_request_overlap": 0,
+    "max_candidate_count": 100,
+    "max_history_len": 20,
+    "max_requests": 10000,
+    "min_candidate_count": 2,
+    "selected_requests": 10000,
+    "session_overlap": 0,
+    "strategy": "latest source-train time window after label-free candidate-size filter",
+    "time_index_max": 1897787,
+    "time_index_min": 1889445,
+    "time_ties_kept_with_confirmation": 0,
+    "train_requests": 8000
+  },
+  "source": {
+    "evaluation_source_behavior_fields_accessed": false,
+    "excluded_source_split_counts": {
+      "test": 34670
+    },
+    "included_source_splits": [
+      "train"
+    ],
+    "items_path": "data/raw/kuaisearch_full/items/train.jsonl",
+    "items_size_bytes": 7837345198,
+    "raw_dir": "data/raw/kuaisearch_full",
+    "recall_path": "data/raw/kuaisearch_full/recall/train.jsonl",
+    "recall_sha256": "90935bde721321f8ece70a84065f15e81167725f678b9275c9edf1d4297e5830",
+    "source_variant": "full"
+  }
+}

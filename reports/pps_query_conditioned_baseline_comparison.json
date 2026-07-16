@@ -1,0 +1,126 @@
+{
+  "report_id": "pps_query_conditioned_baseline_comparison_v1",
+  "status": "three_methods_confirmed",
+  "scope": "query-conditioned fixed-slate personalized product ranking",
+  "purpose": "Establish task-matched comparison evidence before interpreting LLM-SRec motivation.",
+  "methods": [
+    {
+      "method_id": "QWEN3_RERANKER_FULL",
+      "family": "decoder_only_language_reranker",
+      "information_boundary": ["query", "history", "candidate_product"],
+      "dataset": "kuaisearch/full_confirm_preceding10k_v1",
+      "split": "confirmation",
+      "ndcg_at_10_all": 0.19826102856112998,
+      "ndcg_at_10_positive": 0.401744738725694,
+      "true_minus_null_ndcg_at_10": 0.01305101343211455,
+      "target_aware_signature": {
+        "target_repeat_delta": 0.23149919884909503,
+        "target_nonrepeat_no_candidate_overlap_delta": 0.003240999609756125,
+        "repeat_minus_no_overlap_delta": 0.2282581992393389,
+        "repeat_minus_no_overlap_ci95": [0.17164322082306677, 0.28292988006654396]
+      },
+      "evidence": {
+        "path": "reports/pps_history_response_confirmation_target_aware_surfaces.json",
+        "sha256": "932c3a6958d221e74d9e7c0a682a3db3352b5be2d66deb7402e3fe260e7b5928"
+      },
+      "decision": "task_competitive_llm_baseline"
+    },
+    {
+      "method_id": "TEM_FULL",
+      "family": "published_personalized_product_search_transformer",
+      "information_boundary": ["query", "purchase_history", "candidate_product"],
+      "dataset": "kuaisearch/full_confirm_preceding10k_v1",
+      "split": "confirmation",
+      "ndcg_at_10_all": 0.18124304375373715,
+      "ndcg_at_10_positive": 0.3672604736651209,
+      "true_minus_null_ndcg_at_10": 0.00031969823125683414,
+      "target_aware_signature": {
+        "target_repeat_delta": 0.05716375565048062,
+        "target_nonrepeat_no_candidate_overlap_delta": -0.016330424495463156,
+        "repeat_minus_no_overlap_delta": 0.07349418014594378,
+        "repeat_minus_no_overlap_ci95": [0.030226085137415416, 0.11923824422468965]
+      },
+      "evidence": {
+        "path": "runs/20260716_kuaisearch_tem_confirmation_seed20260716_response_graded_v2/metrics.json",
+        "sha256": "77f0ee11465c8f7a618fd4e955b35046ad10557127299f5b459e4790645501f1"
+      },
+      "counterfactual": {
+        "null_ndcg_at_10_all": 0.1809233455224803,
+        "null_ndcg_at_10_positive": 0.36661265556733597,
+        "null_score_run": "20260716_kuaisearch_tem_confirmation_null_from_true_seed20260716",
+        "true_score_run": "20260716_kuaisearch_tem_confirmation_true_seed20260716_v2",
+        "same_checkpoint": true
+      },
+      "decision": "task_matched_transformer_confirmation"
+    },
+    {
+      "method_id": "TEM_FULL_NULL",
+      "family": "published_personalized_product_search_transformer",
+      "information_boundary": ["query", "candidate_product"],
+      "dataset": "kuaisearch/full_confirm_preceding10k_v1",
+      "split": "confirmation",
+      "ndcg_at_10_all": 0.1809233455224803,
+      "ndcg_at_10_positive": 0.36661265556733597,
+      "evidence": {
+        "path": "runs/20260716_kuaisearch_tem_confirmation_null_from_true_seed20260716_graded/metrics.json",
+        "sha256": "4ce3bb79bdba05dc032dd42867623da76ad99d5e45f83474e52ce6db7dadb68e"
+      },
+      "decision": "same_checkpoint_matched_null_counterfactual_not_independently_trained_qc"
+    },
+    {
+      "method_id": "INSTRUCTREC_T3",
+      "family": "encoder_decoder_instruction_tuned_llm",
+      "information_boundary": ["query", "history", "candidate_slate", "candidate_product"],
+      "dataset": "kuaisearch/full_confirm_preceding10k_v1",
+      "split": "confirmation",
+      "ndcg_at_10_all": 0.1791141811402592,
+      "ndcg_at_10_positive": 0.3629466689772223,
+      "true_minus_null_ndcg_at_10": 0.0006077229315324008,
+      "true_minus_wrong_ndcg_at_10": -0.0010946143594125328,
+      "target_aware_signature": {
+        "target_repeat_delta": 0.03375071969783774,
+        "target_nonrepeat_no_candidate_overlap_delta": -0.0001702759500898333,
+        "repeat_minus_no_overlap_delta": 0.03392099564792757,
+        "repeat_minus_no_overlap_ci95": [0.006733718423351481, 0.06253289526304522]
+      },
+      "evidence": {
+        "path": "runs/20260716_kuaisearch_instructrec_full_seed20260716_cached_response_graded/metrics.json",
+        "sha256": "f02cbbb3f6282ad29e6600ca442a79c75b667bd8c885b30f43e31715a5d8b448"
+      },
+      "counterfactual": {
+        "null_ndcg_at_10_all": 0.1785064582087268,
+        "null_ndcg_at_10_positive": 0.36171521420208064,
+        "wrong_ndcg_at_10_all": 0.18020879549967173,
+        "wrong_ndcg_at_10_positive": 0.36516473252213116,
+        "same_checkpoint": true
+      },
+      "training_evidence": {
+        "path": "models/instructrec/20260716_full_seed20260716/myrec_training_metadata.json",
+        "sha256": "39805933fc9060402c70799f3213d76756c8762d848b6dbf8f340aa67c079319",
+        "base_model": "google/flan-t5-xl",
+        "train_examples": 7426,
+        "confirmation_labels_read": false
+      },
+      "decision": "task_matched_published_llm_baseline"
+    }
+  ],
+  "reference": {
+    "bm25_confirmation_ndcg_at_10_all": 0.18734053296775316,
+    "bm25_confirmation_ndcg_at_10_positive": 0.3796160749093275,
+    "qwen3_confirmation_qc_ndcg_at_10_all": 0.1839227171650793,
+    "qwen3_confirmation_qc_ndcg_at_10_positive": 0.37269040965568245
+  },
+  "completion_basis": {
+    "minimum_two_methods_on_same_confirmation_population": true,
+    "methods": ["QWEN3_RERANKER_FULL", "TEM_FULL", "INSTRUCTREC_T3"],
+    "shared_candidate_manifest_sha256": "f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15",
+    "note": "The manifest hash above is retained as a comparison key; the authoritative per-run hashes are recorded in each evidence artifact."
+  },
+  "interpretation": "Qwen3, TEM, and InstructRec all provide task-matched query/history/candidate ranking boundaries and reproduce one target-aware surface signature: significant target-repeat gains, no established target-nonrepeat/no-candidate-overlap recovery, and a positive repeat-minus-no-overlap contrast. TEM and InstructRec aggregate true-minus-null values are near zero because surface contributions cancel, not because their scores ignore history. This is a three-selected-model Transformer observation, not a universal LLM failure claim.",
+  "motivation_v1_evidence": "reports/pps_three_transformer_history_surface_audit.json",
+  "not_supported": [
+    "A universal failure claim for LLMs or Transformers",
+    "A proposed architecture claim",
+    "A universal claim that every query-conditioned LM misuses history"
+  ]
+}

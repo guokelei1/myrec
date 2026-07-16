@@ -1,43 +1,34 @@
 {
-  "schema_version": 2,
-  "status": "exploratory_ccf_a_level_motivation_established_architecture_locked",
-  "current_claim": "Ordinary full-token LLM4Rec rankers can read and exploit history, but do not controllably compose query-candidate base relevance with a candidate-relative history update. Nonrepeat response is low-efficiency, and joint history training can erode the base so that positive true-over-null utility merely repays self-created damage while recurrence masks the problem overall.",
-  "decision": "Replace the universal direction-failure hypothesis with the empirically supported controlled-history-composition problem.",
-  "why_the_motivation_is_now_plausible": [
-    "KuaiSearch Lite and an independent Full-source population both show broad strict-nonrepeat response with very low conversion of fixed response budget into correct candidate-relative ranking, while repeat requests are a strong positive control.",
-    "The KuaiSearch Lite symptom survives encoder and decoder-only Transformer families and pairwise and pointwise encoder objectives; restoring the original query to every Full-source history event does not repair it.",
-    "JDsearch independently replicates low strict-nonrepeat direction-conversion efficiency. Its true-over-null gain is real, but smaller than the base capability lost by the jointly history-trained checkpoint, so FULL-true does not beat QC on strict-nonrepeat traffic.",
-    "JDsearch and Amazon-C4 QC/FULL by query-only/structured-empty factorials leave large FULL-weight deficits under both formats, rejecting the empty-history marker as the base-loss explanation.",
-    "Amazon-C4 falsifies universal direction failure: it has strongly correct history direction. Yet increasing history strengthens history utility while eroding base even more, producing a significant net loss relative to QC and the shorter-history FULL model."
+  "schema_version": 4,
+  "updated_on": "2026-07-16",
+  "status": "motivation_v1_frozen",
+  "current_claim": "On one frozen natural-product-search population, Qwen3, TEM, and InstructRec respond to history and obtain significant target-repeat gains, while none establishes same-checkpoint history increment on the larger target-nonrepeat/no-candidate-overlap surface.",
+  "decision": "Use this bounded recurrence-transfer separation as Motivation V1. Qwen is the binding frozen confirmation; TEM and InstructRec are same-population one-checkpoint extensions.",
+  "supported": [
+    "All three selected rankers pass the target-repeat positive control.",
+    "All three have a positive repeat-minus-no-overlap contrast with a query-cluster bootstrap interval above zero.",
+    "None establishes reliable no-overlap nonrepeat history increment.",
+    "Near-zero TEM and InstructRec aggregate gains are surface cancellation rather than score invariance."
   ],
-  "important_corrections": [
-    "JDsearch strict-nonrepeat direction is significantly better than chance and true history has positive utility; the cross-source claim is low and surface-dependent conversion, not literal inability to use nonrepeat history.",
-    "Amazon-C4 is a positive boundary, not a failed dataset. It demonstrates that direction can succeed while controlled composition still fails through base erosion.",
-    "The fixed-delta label-aligned intervention is oracle diagnostic headroom, not proof that the missing direction is learnable.",
-    "KuaiSearch Lite and Full are two populations from one source, not independent datasets; JDsearch supplies the independent functional replication."
+  "not_supported": [
+    "Every Transformer or LLM has this behavior.",
+    "Every model receives positive aggregate history gain.",
+    "The cause is architectural.",
+    "Motivation V1 passes a proposed-system Failure Card."
   ],
-  "evidence_scope": {
-    "kuaisearch_lite": "cross_family_cross_objective_exploration",
-    "kuaisearch_full_source_scout": "independent_population_fixed_recipe_and_information_object_probe",
-    "amazon_c4": "independent_positive_boundary_and_history_budget_tradeoff",
-    "jdsearch": "independent_functional_replication_with_interface_factorial",
-    "confirmation": false,
-    "architecture_failure_card_passed": false
-  },
-  "not_yet_proven": [
-    "that a simple standard objective, anchoring, dropout, or training-interface repair cannot solve the tradeoff",
-    "that the diagnostic direction headroom is recoverable from train information",
-    "that the same joint failure survives a second adequate model family on an independent dataset",
-    "that a particular Transformer primitive causes the failure or that architecture is necessary",
-    "that the exploratory effects survive a separately frozen confirmation population"
+  "remaining_controls": [
+    "Frozen multi-seed TEM and InstructRec confirmation for a family-prevalence claim.",
+    "TEM wrong-user provenance.",
+    "Preferably replication on a second natural-search population."
   ],
-  "next_decision": "Freeze one Failure Card around simultaneous base retention and candidate-relative history utility, then run the cheapest standard-repair, recoverability, independent-family, and confirmation controls before proposing architecture.",
-  "source_artifacts": [
-    "doc/35_controlled_history_composition_motivation.md",
-    "reports/history_response_gap_lite_scout_cross_family_motivation_decision.json",
-    "reports/history_response_gap_full_scout_population_replication_decision.json",
-    "reports/history_response_gap_full_scout_query_history_information_probe_decision.json",
-    "reports/history_response_gap_amazon_c4_motivation_contrast_decision.json",
-    "reports/history_response_gap_jdsearch_motivation_decision.json"
-  ]
+  "active_evidence": [
+    "doc/40_transformer_recurrence_transfer_motivation_v1_zh.md",
+    "reports/pps_three_transformer_history_surface_audit.json",
+    "reports/pps_motivation_confirmation_decision.json",
+    "reports/pps_history_response_confirmation_score_integrity.json",
+    "reports/pps_history_response_confirmation_target_aware_surfaces.json",
+    "reports/pps_query_conditioned_baseline_comparison.json"
+  ],
+  "test_opened": false,
+  "architecture_authorized": false
 }

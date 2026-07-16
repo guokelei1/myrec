@@ -24,6 +24,9 @@ def main() -> int:
     parser.add_argument("--checkpoint-dir", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--dev-assignments", nargs="+", required=True)
+    parser.add_argument(
+        "--evaluation-split", default="dev", choices=("dev", "internal", "confirmation")
+    )
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--batch-size", type=int, default=64)
     args = parser.parse_args()
@@ -33,6 +36,7 @@ def main() -> int:
         args.checkpoint_dir,
         args.output_dir,
         dev_assignment_paths=args.dev_assignments,
+        evaluation_split=args.evaluation_split,
         device=args.device,
         batch_size=args.batch_size,
     )
@@ -42,4 +46,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

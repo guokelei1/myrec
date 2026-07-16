@@ -66,12 +66,17 @@ def materialize_sequence_teacher_features(
     output_dir: str | Path,
     *,
     dev_assignment_paths: Sequence[str | Path],
+    evaluation_split: str = "dev",
     device: str = "cuda:0",
     batch_size: int = 64,
 ) -> dict[str, Any]:
     """Materialize frozen teacher items and train user vectors without dev qrels."""
 
     standardized_dir = Path(standardized_dir)
+    if evaluation_split not in {"dev", "internal", "confirmation"}:
+        raise ValueError(
+            "teacher materialization supports dev, internal, or confirmation only"
+        )
     checkpoint_dir = Path(checkpoint_dir)
     output_dir = Path(output_dir)
     if output_dir.exists() and any(output_dir.iterdir()):
@@ -95,9 +100,15 @@ def materialize_sequence_teacher_features(
         build_sequence_request(row, vocabulary, history_budget=history_budget)
         for row in iter_jsonl(standardized_dir / "records_train.jsonl")
     ]
-    dev_visible = {
+    evaluation_records_path = standardized_dir / f"records_{evaluation_split}.jsonl"
+    if not evaluation_records_path.exists():
+        raise FileNotFoundError(
+            f"missing standardized records for split={evaluation_split}: "
+            f"{evaluation_records_path}"
+        )
+    evaluation_visible = {
         str(row["request_id"]): row
-        for row in iter_jsonl(standardized_dir / "records_dev.jsonl")
+        for row in iter_jsonl(evaluation_records_path)
     }
     dev_requests: list[SequenceRequest] = []
     assignment_hashes = []
@@ -107,7 +118,10 @@ def materialize_sequence_teacher_features(
         )
         for assignment in iter_jsonl(assignment_path):
             request_id = str(assignment["request_id"])
-            record = dict(dev_visible[request_id], history=assignment.get("history", []))
+            record = dict(
+                evaluation_visible[request_id],
+                history=assignment.get("history", []),
+            )
             dev_requests.append(
                 build_sequence_request(record, vocabulary, history_budget=history_budget)
             )
@@ -183,7 +197,8 @@ def materialize_sequence_teacher_features(
         "qrels_read": False,
         "dev_qrels_read": False,
         "records_train_sha256": sha256_file(standardized_dir / "records_train.jsonl"),
-        "records_dev_sha256": sha256_file(standardized_dir / "records_dev.jsonl"),
+        "evaluation_split": evaluation_split,
+        "records_evaluation_sha256": sha256_file(evaluation_records_path),
         "dev_assignments": assignment_hashes,
         "item_vectors_sha256": sha256_file(output_dir / "item_vectors.npy"),
         "train_user_vectors_sha256": sha256_file(
@@ -193,4 +208,3 @@ def materialize_sequence_teacher_features(
     }
     write_json(output_dir / "metadata.json", metadata)
     return metadata
-

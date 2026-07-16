@@ -34,6 +34,7 @@ def build_pairwise_examples(
     history_budget: int,
     negatives_per_positive: int,
     seed: int,
+    history_dropout_probability: float = 0.0,
 ) -> tuple[list[PairwiseExample], dict[str, Any]]:
     """Build deterministic train-only pairs without reading development labels."""
 
@@ -41,6 +42,10 @@ def build_pairwise_examples(
         raise ValueError(f"unsupported input_mode={input_mode}")
     if negatives_per_positive <= 0:
         raise ValueError("negatives_per_positive must be positive")
+    if not 0.0 <= history_dropout_probability <= 1.0:
+        raise ValueError("history_dropout_probability must be between zero and one")
+    if input_mode != "full" and history_dropout_probability != 0.0:
+        raise ValueError("history dropout is defined only for input_mode=full")
     qrels = {}
     for row in iter_jsonl(qrels_path):
         request_id = str(row["request_id"])
@@ -56,6 +61,9 @@ def build_pairwise_examples(
     labeled_requests = 0
     skipped_no_positive = 0
     skipped_no_negative = 0
+    history_present_labeled_requests = 0
+    history_dropped_requests: set[str] = set()
+    native_no_history_labeled_requests = 0
     for record in iter_jsonl(records_path):
         request_id = str(record["request_id"])
         if request_id in seen_requests:
@@ -86,6 +94,15 @@ def build_pairwise_examples(
             continue
         labeled_requests += 1
         history = list(record.get("history", [])) if input_mode == "full" else []
+        if input_mode == "full":
+            if history:
+                history_present_labeled_requests += 1
+                dropout_draw = _stable_uniform(seed, "history_dropout", request_id)
+                if dropout_draw < history_dropout_probability:
+                    history = []
+                    history_dropped_requests.add(request_id)
+            else:
+                native_no_history_labeled_requests += 1
         serialization_version = (
             "query_history_event_text_v1"
             if input_mode == "full"
@@ -124,6 +141,19 @@ def build_pairwise_examples(
             else "query_only_text_v1"
         ),
         "labeled_requests": labeled_requests,
+        "history_dropout": {
+            "assignment_scope": "deterministic_request_level_train_only",
+            "dropped_history_request_ids_sha256": _request_ids_sha256(
+                history_dropped_requests
+            ),
+            "history_dropped_requests": len(history_dropped_requests),
+            "history_present_labeled_requests": history_present_labeled_requests,
+            "history_retained_requests": (
+                history_present_labeled_requests - len(history_dropped_requests)
+            ),
+            "native_no_history_labeled_requests": native_no_history_labeled_requests,
+            "probability": history_dropout_probability,
+        },
         "negatives_per_positive": negatives_per_positive,
         "requests": len(seen_requests),
         "skipped_no_negative": skipped_no_negative,
@@ -158,6 +188,7 @@ def train_pairwise_cross_encoder(
     seed: int = 20260714,
     objective: str = "pairwise_logistic_softplus",
     truncation_strategy: str = "longest_first",
+    history_dropout_probability: float = 0.0,
 ) -> dict[str, Any]:
     """Train one fixed-recipe ordinary ranker with a standard ranking loss."""
 
@@ -191,6 +222,7 @@ def train_pairwise_cross_encoder(
         history_budget=history_budget,
         negatives_per_positive=negatives_per_positive,
         seed=seed,
+        history_dropout_probability=history_dropout_probability,
     )
 
     import sentence_transformers
@@ -351,6 +383,7 @@ def train_pairwise_cross_encoder(
             "epochs": epochs,
             "gradient_accumulation_steps": gradient_accumulation_steps,
             "history_budget": history_budget,
+            "history_dropout_probability": history_dropout_probability,
             "learning_rate": learning_rate,
             "max_grad_norm": max_grad_norm,
             "max_length": max_length,
@@ -377,3 +410,12 @@ def train_pairwise_cross_encoder(
 def _stable_seed(seed: int, *parts: str) -> int:
     value = ":".join((str(seed), *parts)).encode("utf-8")
     return int(hashlib.sha256(value).hexdigest()[:16], 16)
+
+
+def _stable_uniform(seed: int, *parts: str) -> float:
+    return _stable_seed(seed, *parts) / float(16**16)
+
+
+def _request_ids_sha256(request_ids: set[str]) -> str:
+    payload = "\n".join(sorted(request_ids)) + ("\n" if request_ids else "")
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()

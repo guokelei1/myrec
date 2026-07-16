@@ -47,6 +47,11 @@ class KuaiSarScoutTest(unittest.TestCase):
                             "search_session_time": "2023-05-22 00:00:00",
                         }
                     )
+            # The official source contains occasional rows from a session that
+            # recur after intervening sessions.  This exact duplicate exercises
+            # deterministic global consolidation rather than a contiguity
+            # assumption.
+            src_rows.append(dict(src_rows[0]))
             _write_csv(
                 raw / "src_inter.csv",
                 [
@@ -132,6 +137,7 @@ class KuaiSarScoutTest(unittest.TestCase):
             self.assertTrue(result["admission_checks"]["candidate_text_coverage_at_least_95pct"])
             self.assertFalse(result["admission_passed"])
             self.assertEqual(result["selection"]["selected_requests"], 10)
+            self.assertEqual(result["selection"]["source_duplicate_candidate_rows"], 1)
             dev = list(iter_jsonl(output / "records_dev.jsonl"))
             self.assertTrue(dev)
             self.assertTrue(all(row["query"] == "w11 w12" for row in dev))

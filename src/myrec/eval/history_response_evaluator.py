@@ -14,6 +14,7 @@ from myrec.eval.history_response import (
     aggregate_history_response,
     request_history_response,
 )
+from myrec.eval.target_aware_surfaces import materialize_target_aware_surfaces
 from myrec.utils.hashing import sha256_file
 from myrec.utils.jsonl import iter_jsonl, write_json, write_jsonl
 
@@ -141,6 +142,19 @@ def evaluate_history_response_runs(
     )
 
     analysis_dir.mkdir(parents=True, exist_ok=False)
+    records_path = standardized_dir / f"records_{split}.jsonl"
+    target_surfaces = materialize_target_aware_surfaces(
+        records_path,
+        candidates,
+        gains,
+        analysis_dir / "target_aware_surfaces",
+        label_mode=label_mode,
+        candidate_manifest_path=candidate_manifest_path,
+        qrels_path=qrels_path,
+    )
+    metrics["target_aware_surface_counts"] = {
+        name: values["requests"] for name, values in target_surfaces["files"].items()
+    }
     write_jsonl(analysis_dir / "per_request_history_response.jsonl", per_request)
     write_json(analysis_dir / "metrics.json", metrics)
     metadata = {
@@ -163,10 +177,16 @@ def evaluate_history_response_runs(
         "qrels_read": True,
         "request_manifest_path": str(request_manifest_path),
         "request_manifest_sha256": request_sha256,
+        "target_aware_surfaces_manifest": str(
+            analysis_dir / "target_aware_surfaces" / "manifest.json"
+        ),
+        "target_aware_surfaces_manifest_sha256": sha256_file(
+            analysis_dir / "target_aware_surfaces" / "manifest.json"
+        ),
         "split": split,
     }
     write_json(analysis_dir / "metadata.json", metadata)
-    if split == "dev":
+    if split in {"dev", "confirmation"}:
         _append_dev_log(dev_eval_log_path, metrics)
     return metrics
 

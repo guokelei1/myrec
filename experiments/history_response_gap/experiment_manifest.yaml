@@ -1,122 +1,59 @@
-schema_version: 1
-experiment_id: history_response_direction_gap
-status: exploration_active
-active_phase: MOTIVATION_VALIDATION
+schema_version: 2
+experiment_id: transformer_recurrence_transfer_motivation_v1
+status: frozen_three_model_observation
+updated_on: 2026-07-16
+
+scientific_question: >-
+  Do selected query-conditioned Transformer rankers obtain reliable history
+  utility from target recurrence while failing to establish same-checkpoint
+  increment on target-nonrepeat traffic whose history is disjoint from the
+  complete candidate slate?
+
 authorization:
-  public_data_acquisition: true
-  data_source_audit: true
-  standardized_contract_development: true
-  metric_instrumentation_development: true
-  ordinary_model_exploratory_training: true
-  exploratory_dev_label_evaluation_via_shared_evaluator: true
-  model_training_scope: ordinary_baselines_only
-  confirmation_label_evaluation: false
+  motivation_v1_documentation: complete
+  ordinary_baseline_training: requires_new_explicit_plan
+  confirmation_label_evaluation: completed_once_under_frozen_protocol
   test_evaluation: false
   proposed_architecture: false
 
-evidence_mode:
-  current: exploratory
-  lite_result_scope: lite_only
-  full_source_scout_scope: latest_window_exploratory_population_replication
-  cross_dataset_motivation: controlled_history_composition_established
-  dataset_outcome_may_redirect_exploration: true
-  outcome_selected_data_cannot_be_independent_confirmation: true
-  confirmation_protocol_status: not_frozen
+population:
+  dataset_version: kuaisearch/full_confirm_preceding10k_v1
+  requests: 2000
+  positive_eligible_requests: 987
+  target_repeat_requests: 121
+  target_nonrepeat_no_candidate_overlap_requests: 582
+  candidate_manifest_sha256: f535c43774c88387440df0f1dec3273c3a6401523973c2a37ad1d75f1e3a7d15
+  request_manifest_sha256: 8ad24b29dfadfd6a81d31111cafed68ee6685c0b3e0d9db626a087a7c72e8968
 
-scientific_question: >-
-  Can adequate ordinary full-token rerankers simultaneously preserve the
-  query-candidate base and convert history response into useful
-  candidate-relative direction, especially on strict-nonrepeat traffic?
+models:
+  - id: Qwen3-Reranker-0.6B
+    role: binding_frozen_confirmation
+    seed_scope: one_confirmation_seed_plus_prior_exploratory_robustness
+  - id: TEM
+    role: exact_task_transformer_extension
+    seed_scope: one_frozen_checkpoint
+  - id: InstructRec-Flan-T5-XL
+    role: published_llm_extension
+    seed_scope: one_frozen_checkpoint
 
-datasets:
-  kuaisearch_lite:
-    role: engineering_and_population_scout
-    admission_status: standardized_exploratory_scout
-    active_version: lite_scout10k_v1
-  kuaisearch_full:
-    role_candidate: primary_natural_language_search
-    exploration_status: >-
-      official source present; bounded audit and independent full_scout10k_v1
-      population replication completed; whole-Full admission not frozen
-  kuaisar_small:
-    role: secondary_adapter_and_population_scout
-    exploration_status: acquisition_pending
-  kuaisar_full:
-    role_candidate: functional_replication
-    exploration_status: acquisition_pending
-  jdsearch:
-    role: independent_functional_product_search_replication
-    exploration_status: >-
-      hash_scout10k_v3 admitted after candidate-order invalidation and event-code
-      repair; matched QC/FULL, true/null/wrong, fixed-delta, and serialization
-      factorial probes completed
-  amazon_c4:
-    role: english_semantic_positive_boundary
-    exploration_status: >-
-      fresh history_bm25_100_v1 materialization completed; two-event and
-      eight-event matched QC/FULL probes establish correct direction plus a
-      base/history tradeoff
+decision:
+  target_repeat_positive_control: pass_all_three
+  repeat_minus_no_overlap_contrast: pass_all_three
+  no_overlap_nonrepeat_recovery: not_established_all_three
+  positive_aggregate_history_gain: qwen_only
+  universal_transformer_claim: false
+  architecture_failure_card_passed: false
 
-ordinary_model_families:
-  encoder:
-    qc_id: E-QC
-    full_id: E-FULL
-    initial_checkpoint: BAAI/bge-reranker-v2-m3
-    status: >-
-      Matched v2-m3 pairwise and pointwise QC/FULL Lite controls completed. Both
-      provide repeat-positive and strict-nonrepeat direction-gap evidence.
-  decoder:
-    qc_id: D-QC
-    full_id: D-FULL
-    initial_checkpoint: Qwen/Qwen3-Reranker-0.6B
-    status: >-
-      Official checkpoint cached; real-preprocess budget-five coverage audited;
-      matched pointwise QC/FULL Lite controls and counterfactual bundle completed.
+active_evidence:
+  human_entry: doc/40_transformer_recurrence_transfer_motivation_v1_zh.md
+  three_model_audit: reports/pps_three_transformer_history_surface_audit.json
+  qwen_confirmation: reports/pps_motivation_confirmation_decision.json
+  qwen_score_integrity: reports/pps_history_response_confirmation_score_integrity.json
+  qwen_target_surfaces: reports/pps_history_response_confirmation_target_aware_surfaces.json
+  model_boundary_comparison: reports/pps_query_conditioned_baseline_comparison.json
 
-representative_architecture_families:
-  protocol: experiments/history_response_gap/representative_architecture_protocol.yaml
-  hstu:
-    role: rec_native_boundary
-    status: official_core_and_pps_adapter_mechanics_pass_training_pending
-  llm_srec:
-    role: published_sequence_enhanced_boundary
-    status: independent_paper_mechanism_and_frozen_qwen_mechanics_pass_teacher_pending
-  bge:
-    role: existing_encoder_anchor
-  qwen:
-    role: ordinary_decoder_language_baseline
-
-counterfactual_conditions:
-  binding: ["true", "null", "wrong"]
-  diagnostic_only: ["shuffle"]
-  invariant_fields:
-    - checkpoint_id
-    - dataset_id
-    - dataset_version
-    - split
-    - candidate_manifest_sha256
-    - request_manifest_sha256
-    - scoring_signature
-
-endpoints:
-  primary_utility:
-    name: mean_true_minus_null_ndcg@10
-    status: locked_for_lite_v2m3_h6_exploration
-  primary_direction:
-    name: active_pair_direction_accuracy
-    status: locked_for_lite_v2m3_h6_exploration
-  activity_epsilon:
-    value: 0.01
-    status: locked_before_label_read
-  utility_epsilon:
-    value: 0.0
-    status: locked_before_label_read
-
-next_action:
-  phase: FAILURE_CARD_FREEZE
-  question: >-
-    Does the controlled-composition failure survive ordinary standard repairs,
-    a train-only direction-recoverability witness, an independent family, and a
-    separately frozen confirmation population?
-  required_artifact: reports/pps_c3_motivation.json
-  protocol: doc/31_problem_discovery_and_architecture_iteration_protocol.md
+remaining_before_family_prevalence_claim:
+  - frozen_multi_seed_TEM
+  - frozen_multi_seed_InstructRec
+  - TEM_wrong_user_provenance
+  - preferably_second_natural_search_population

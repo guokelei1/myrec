@@ -31,9 +31,11 @@ not reopen raw data during scoring.
 ## Split and labels
 
 Use a time-ordered split with session containment and a separate confirmation
-cohort. Keep click and purchase/graded labels distinct. Development records
-are label-free by construction; training/scoring code must not open
-`qrels_dev.jsonl` or `qrels_test.jsonl`.
+cohort. Keep click and purchase/graded labels distinct. Development and
+confirmation records are label-free by construction; training/scoring code must
+not open `qrels_dev.jsonl`, `qrels_confirmation.jsonl`, or `qrels_test.jsonl`.
+Confirmation labels may be opened only once by the shared evaluator after the
+frozen score bundle passes its pre-label audit.
 
 ## Active phases
 
@@ -59,3 +61,12 @@ incremental NDCG, signed delta alignment, active-response precision, and
 true-over-matched-wrong advantage. Freeze one primary utility endpoint and one
 primary direction endpoint before confirmation; all other measures are
 secondary diagnostics.
+
+Every registered endpoint reports both the legacy all-request observed-label
+aggregate and the conditional-positive estimand. Requests without a positive
+gain are counted and reported separately; they cannot be interpreted as target-
+nonrepeat ranking failures. Evaluator-side target-aware surfaces partition the
+positive-eligible population into target recurrence, target-nonrepeat with
+other-candidate overlap, target-nonrepeat with no candidate overlap, and
+target-nonrepeat with no history. Label-free candidate overlap remains a
+separate diagnostic.

@@ -27,7 +27,9 @@ def parse_args() -> argparse.Namespace:
         choices=("source_order", "popularity", "recent_behavior", "bm25_request"),
     )
     parser.add_argument("--standardized-dir", required=True)
-    parser.add_argument("--split", default="dev", choices=("train", "dev"))
+    parser.add_argument(
+        "--split", default="dev", choices=("train", "dev", "confirmation")
+    )
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--artifacts-dir", default="artifacts/baselines")

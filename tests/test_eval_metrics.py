@@ -7,10 +7,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from myrec.eval.metrics import (
     ScoredCandidate,
+    aggregate_request_metrics,
     mrr,
     ndcg_at_k,
     recall_at_k,
     sort_candidates,
+    request_metrics,
 )
 
 
@@ -41,6 +43,25 @@ class MetricsTest(unittest.TestCase):
             [item.item_id for item in sort_candidates("req_tie", first)],
             [item.item_id for item in sort_candidates("req_tie", second)],
         )
+
+    def test_aggregate_separates_all_request_and_click_positive_estimands(self):
+        positive = request_metrics(
+            "positive",
+            [ScoredCandidate("a", 1.0), ScoredCandidate("b", 0.0)],
+            {"a"},
+            set(),
+        )
+        no_positive = request_metrics(
+            "no-positive",
+            [ScoredCandidate("a", 1.0), ScoredCandidate("b", 0.0)],
+            set(),
+            set(),
+        )
+        result = aggregate_request_metrics([positive, no_positive])
+        self.assertAlmostEqual(result["ndcg@10"], 0.5)
+        self.assertAlmostEqual(result["click_positive_ndcg@10"], 1.0)
+        self.assertEqual(result["click_positive_num_requests"], 1)
+        self.assertAlmostEqual(result["click_positive_coverage"], 0.5)
 
 
 if __name__ == "__main__":

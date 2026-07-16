@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import io
 import json
 import os
 import platform
@@ -12,7 +13,7 @@ import subprocess
 import sys
 import time
 from collections import Counter, defaultdict
-from contextlib import ExitStack
+from contextlib import ExitStack, contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -100,6 +101,7 @@ def materialize_prodsearch_format(
     test_candidate_size: int = DEFAULT_TEST_SIZE,
     max_train_requests: int | None = None,
     max_dev_requests: int | None = None,
+    dev_history_condition: str = "true",
 ) -> dict[str, Any]:
     """Materialize request records into the official ProdSearch file layout.
 
@@ -110,6 +112,8 @@ def materialize_prodsearch_format(
     upstream parser, and that target is never used by the shared evaluator.
     """
 
+    if dev_history_condition not in {"true", "null"}:
+        raise ValueError("dev_history_condition must be true or null")
     standardized_dir = Path(standardized_dir)
     output_root = Path(output_root)
     data_dir = output_root / "data"
@@ -150,6 +154,7 @@ def materialize_prodsearch_format(
             train_positive_items,
             dev_stats,
             max_requests=max_dev_requests,
+            history_condition=dev_history_condition,
         )
 
     selected_valid = {
@@ -186,12 +191,13 @@ def materialize_prodsearch_format(
         test_candidate_size=test_candidate_size,
     )
     subset_manifest_path = output_root / "dev_candidate_manifest.json"
+    dataset_metadata = _read_standardized_metadata(standardized_dir)
     write_json(
         subset_manifest_path,
         {
-            "dataset_id": "kuaisearch",
-            "dataset_version": "v0_lite",
-            "scope": "materialized dev subset; smoke support only when not full dev",
+            "dataset_id": dataset_metadata["dataset_id"],
+            "dataset_version": dataset_metadata["dataset_version"],
+            "scope": "materialized exact dev request set before deterministic filler removal",
             "entries": [
                 {
                     "split": "dev",
@@ -238,7 +244,14 @@ def materialize_prodsearch_format(
             "validation_examples": len(selected_valid),
             "synthetic_user_per_positive": True,
             "dev_dummy_target": "first frozen candidate; parser-only and ignored by shared evaluator",
-            "history_contract": "exact frozen record history; upstream uprev_review_limit later truncates to most recent 20",
+            "history_contract": (
+                "train uses exact frozen record history; dev uses the frozen "
+                f"{dev_history_condition} condition; upstream uprev_review_limit "
+                "later truncates to most recent 20"
+            ),
+            "dev_history_condition": dev_history_condition,
+            "dev_original_history_events": int(dev_stats["original_history_events"]),
+            "dev_effective_history_events": int(dev_stats["effective_history_events"]),
         },
         "multi_positive_guard": {
             "synthetic_histories_equal_input": bool(write_stats["history_exact_assertions_passed"]),
@@ -282,8 +295,7 @@ def materialize_prodsearch_format(
         "files": _collect_materialized_files(paths),
     }
     manifest["files"]["dev_candidate_manifest.json"] = _file_info(subset_manifest_path)
-    write_json(paths.manifest, manifest)
-    manifest["files"]["materializer_manifest.json"] = _file_info(paths.manifest)
+    manifest["manifest_path"] = str(paths.manifest)
     write_json(paths.manifest, manifest)
     return manifest
 
@@ -347,6 +359,7 @@ def _scan_dev_records(
     stats: Counter[str],
     *,
     max_requests: int | None,
+    history_condition: str,
 ) -> None:
     unique_candidates: set[str] = set()
     covered_unique: set[str] = set()
@@ -360,7 +373,10 @@ def _scan_dev_records(
         if not candidates:
             raise ValueError(f"dev request has no candidates: {record['request_id']}")
         candidate_idxs = [registry.register_item(item) for item in candidates]
-        history_idxs = [registry.register_item(item) for item in history]
+        original_history_idxs = [registry.register_item(item) for item in history]
+        history_idxs = original_history_idxs if history_condition == "true" else []
+        stats["original_history_events"] += len(original_history_idxs)
+        stats["effective_history_events"] += len(history_idxs)
         for item in candidates:
             item_id = str(item["item_id"])
             unique_candidates.add(item_id)
@@ -831,6 +847,8 @@ def build_official_command(
         "adam",
         "--query_encoder_name",
         "fs",
+        "--use_review_query_idx",
+        "true",
         "--pv_window_size",
         "1",
         "--device",
@@ -870,10 +888,15 @@ def run_official_prodsearch(
     num_workers: int,
     candidate_manifest_path: str | Path,
     method_id: str,
+    history_condition: str = "true",
+    split: str = "dev",
     mode: str = "train",
     rankfname: str = "official.ranklist",
 ) -> dict[str, Any]:
     """Run official code and convert scores; this function never evaluates."""
+
+    if split not in {"dev", "confirmation"}:
+        raise ValueError(f"unsupported scoring split={split}")
 
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=False)
@@ -929,7 +952,21 @@ def run_official_prodsearch(
         run_dir / "scores.jsonl",
         method_id=method_id,
         candidate_manifest_path=candidate_manifest_path,
-        split="dev",
+        split=split,
+    )
+    counterfactual_metadata = _prodsearch_counterfactual_metadata(
+        materialized_root=materialized_root,
+        candidate_manifest_path=candidate_manifest_path,
+        checkpoint_path=official_dir / "model_best.ckpt",
+        model=model,
+        embedding_size=embedding_size,
+        batch_size=batch_size,
+        valid_batch_size=valid_batch_size,
+        valid_candidate_size=valid_candidate_size,
+        test_candidate_size=test_candidate_size,
+        candidate_batch_size=candidate_batch_size,
+        history_condition=history_condition,
+        split=split,
     )
     metadata = {
         "status": "scored_not_evaluated",
@@ -946,10 +983,12 @@ def run_official_prodsearch(
         "hostname": platform.node(),
         "candidate_manifest_path": str(candidate_manifest_path),
         "candidate_manifest_sha256": sha256_file(candidate_manifest_path),
+        "split": split,
         "conversion": conversion,
         "qrels_read": False,
         "records_test_read": False,
         "shared_evaluator_pending": True,
+        **counterfactual_metadata,
     }
     write_json(run_dir / "metadata.json", metadata)
     return metadata
@@ -973,9 +1012,14 @@ def rescore_official_prodsearch(
     num_workers: int,
     candidate_manifest_path: str | Path,
     method_id: str,
+    history_condition: str,
+    split: str = "dev",
     rankfname: str = "determinism.ranklist",
 ) -> dict[str, Any]:
     """Score an existing best checkpoint without retraining or evaluating."""
+
+    if split not in {"dev", "confirmation"}:
+        raise ValueError(f"unsupported scoring split={split}")
 
     checkpoint_official_dir = Path(checkpoint_official_dir).resolve()
     if not (checkpoint_official_dir / "model_best.ckpt").exists():
@@ -1023,7 +1067,21 @@ def rescore_official_prodsearch(
         output_dir / "scores.jsonl",
         method_id=method_id,
         candidate_manifest_path=candidate_manifest_path,
-        split="dev",
+        split=split,
+    )
+    counterfactual_metadata = _prodsearch_counterfactual_metadata(
+        materialized_root=materialized_root,
+        candidate_manifest_path=candidate_manifest_path,
+        checkpoint_path=checkpoint_official_dir / "model_best.ckpt",
+        model=model,
+        embedding_size=embedding_size,
+        batch_size=batch_size,
+        valid_batch_size=valid_batch_size,
+        valid_candidate_size=valid_candidate_size,
+        test_candidate_size=test_candidate_size,
+        candidate_batch_size=candidate_batch_size,
+        history_condition=history_condition,
+        split=split,
     )
     result = {
         "status": "passed",
@@ -1032,12 +1090,93 @@ def rescore_official_prodsearch(
         "checkpoint": str(checkpoint_official_dir / "model_best.ckpt"),
         "checkpoint_sha256": sha256_file(checkpoint_official_dir / "model_best.ckpt"),
         "elapsed_seconds": elapsed,
+        "split": split,
         "conversion": conversion,
         "qrels_read": False,
         "records_test_read": False,
+        **counterfactual_metadata,
     }
     write_json(output_dir / "metadata.json", result)
     return result
+
+
+def _prodsearch_counterfactual_metadata(
+    *,
+    materialized_root: str | Path,
+    candidate_manifest_path: str | Path,
+    checkpoint_path: str | Path,
+    model: str,
+    embedding_size: int,
+    batch_size: int,
+    valid_batch_size: int,
+    valid_candidate_size: int,
+    test_candidate_size: int,
+    candidate_batch_size: int,
+    history_condition: str,
+    split: str = "dev",
+) -> dict[str, Any]:
+    """Build the identity contract required by the shared evaluator.
+
+    The true and null materializations intentionally have different serialized
+    user-history files.  All remaining fields are derived from the frozen
+    standardized manifest or fixed checkpoint so that the evaluator can reject
+    an accidental model, slate, request-cohort, or scoring change.
+    """
+
+    if history_condition not in {"true", "null", "wrong"}:
+        raise ValueError(f"unsupported history_condition={history_condition}")
+    materialized_root = Path(materialized_root)
+    candidate_manifest_path = Path(candidate_manifest_path)
+    checkpoint_path = Path(checkpoint_path)
+    request_manifest_path = candidate_manifest_path.parent / "request_manifest.json"
+    history_path = materialized_root / "data" / "u_r_seq.txt.gz"
+    for required in (
+        candidate_manifest_path,
+        request_manifest_path,
+        checkpoint_path,
+        history_path,
+    ):
+        if not required.exists():
+            raise FileNotFoundError(required)
+    with candidate_manifest_path.open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    standardized_metadata = _read_standardized_metadata(candidate_manifest_path.parent)
+    dataset_id = candidate_manifest.get("dataset_id") or standardized_metadata["dataset_id"]
+    dataset_version = (
+        candidate_manifest.get("dataset_version")
+        or standardized_metadata["dataset_version"]
+    )
+    if not dataset_id or not dataset_version:
+        raise ValueError("candidate manifest is missing dataset_id/dataset_version")
+    checkpoint_sha256 = sha256_file(checkpoint_path)
+    normalized_model = model.lower()
+    scoring_signature = {
+        "adapter": "official_prodsearch_ranklist_v1",
+        "official_commit": OFFICIAL_COMMIT,
+        "model": normalized_model,
+        "embedding_size": embedding_size,
+        "batch_size": batch_size,
+        "valid_batch_size": valid_batch_size,
+        "valid_candidate_size": valid_candidate_size,
+        "test_candidate_size": test_candidate_size,
+        "candidate_batch_size": candidate_batch_size,
+        "query_encoder_name": "fs",
+        "query_binding": "explicit_per_review_query_idx",
+        "history_limit": 20,
+        "candidate_filter": "remove_deterministic_fillers_then_restore_frozen_order",
+    }
+    return {
+        "candidate_manifest_sha256": sha256_file(candidate_manifest_path),
+        "checkpoint_id": f"prodsearch-{normalized_model}@{checkpoint_sha256[:20]}",
+        "dataset_id": str(dataset_id),
+        "dataset_version": str(dataset_version),
+        "history_assignment_path": str(history_path),
+        "history_assignment_sha256": sha256_file(history_path),
+        "history_condition": history_condition,
+        "request_manifest_sha256": sha256_file(request_manifest_path),
+        "scoring_signature": scoring_signature,
+        "split": split,
+    }
 
 
 def _collect_materialized_files(paths: MaterializedPaths) -> dict[str, Any]:
@@ -1055,8 +1194,32 @@ def _file_info(path: Path) -> dict[str, Any]:
     return {"path": str(path), "bytes": path.stat().st_size, "sha256": sha256_file(path)}
 
 
+@contextmanager
 def _gzip_text(path: Path, mode: str):
-    return gzip.open(path, mode, encoding="utf-8", newline="\n")
+    if mode == "rt":
+        with gzip.open(path, mode, encoding="utf-8", newline="\n") as handle:
+            yield handle
+        return
+    if mode != "wt":
+        raise ValueError(f"unsupported gzip text mode: {mode}")
+    with path.open("wb") as raw:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as compressed:
+            with io.TextIOWrapper(compressed, encoding="utf-8", newline="\n") as handle:
+                yield handle
+
+
+def _read_standardized_metadata(standardized_dir: Path) -> dict[str, str]:
+    manifest_path = standardized_dir / "manifest.json"
+    if manifest_path.is_file():
+        payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        return {
+            "dataset_id": str(payload.get("dataset_id") or standardized_dir.parent.name),
+            "dataset_version": str(payload.get("dataset_version") or standardized_dir.name),
+        }
+    return {
+        "dataset_id": standardized_dir.parent.name,
+        "dataset_version": standardized_dir.name,
+    }
 
 
 def _encode_text(text: str, token_to_idx: dict[str, int]) -> str:

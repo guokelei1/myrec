@@ -30,3 +30,13 @@ All methods read the standardized interface and fixed candidate slate. A
 baseline may use identity, text, action, and time only when those fields are
 available in the same record and declared in its boundary card. A witness is
 diagnostic only and cannot become the proposed method by renaming it.
+
+## Motivation-repair controls
+
+Before any Failure Card, ordinary FULL must be compared with a pre-frozen
+training-time history-dropout matched-null control, a small number of standard
+QC/consistency or anchoring controls, and at least one classic selective-
+personalization baseline such as ZAM/TEM/HEM. These are baseline discriminators,
+not proposed designs. PCGrad is eligible only after two explicit losses and a
+measured gradient-conflict question are registered; EWC is not a default
+control for the current single-stage ranking setup.

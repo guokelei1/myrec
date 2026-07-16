@@ -1,0 +1,32 @@
+schema_version: 1
+purpose: motivation_training_randomness_robustness
+evidence_mode: exploratory_multiseed_no_model_selection
+dataset_version: full_scout10k_query_history_v1
+base_model_name: BAAI/bge-reranker-v2-m3
+seeds: [20260715, 20260716]
+input_modes: [qc, full]
+serialization:
+  qc: query_only_text_v1
+  full: query_history_event_text_v1_with_prior_query
+objective: pairwise_logistic_softplus
+history_budget:
+  qc: 0
+  full: 6
+max_length:
+  qc: 512
+  full: 768
+truncation_strategy: only_second
+negatives_per_positive: 2
+negative_sampling: seeded_uniform
+batch_size: 4
+gradient_accumulation_steps: 8
+epochs: 2
+learning_rate: 1.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.1
+dtype: bfloat16
+selection_rule: include_both_seeds_regardless_of_outcome
+claim_boundary: >-
+  This matrix tests robustness of an existing motivation observation to
+  ordinary training randomness. It is not confirmation, method development,
+  architecture search, or a best-seed sweep.

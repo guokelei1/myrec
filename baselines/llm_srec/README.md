@@ -42,12 +42,12 @@ retrieval loss, MSE user-representation distillation, hypersphere uniformity
 loss, CF item embedding injection, and frozen-Qwen user/item output-token
 extraction. The true query is added only as the declared PPS task adaptation.
 
-The real-record mechanics smoke is
-`reports/llm_srec_pps_adapter_lite_smoke.json`. It confirms that the Qwen
-backbone remains frozen and lightweight modules receive finite gradients, but
-uses deterministic synthetic CF representations and is not scientific model
-evidence. A trained SASRec teacher and real frozen content features remain
-required before adequacy evaluation.
+Historical mechanics checks confirmed that the Qwen backbone remained frozen
+and lightweight modules received finite gradients, but they used deterministic
+synthetic CF representations and were not scientific model evidence. Their
+generated report was removed from the curated V1 set. A future use must rerun
+the mechanics checks with a trained SASRec teacher and real frozen content
+features before adequacy evaluation.
 
 Generated teachers, checkpoints, embeddings, runs, and score dumps belong under
 ignored project state directories.

@@ -48,6 +48,20 @@ class ResponseDirectionInterventionTest(unittest.TestCase):
         self.assertEqual(aggregate["num_requests"], 2)
         self.assertIsNotNone(aggregate["direction_conversion_efficiency"])
 
+    def test_aggregate_handles_no_direction_eligible_requests(self):
+        row = request_direction_intervention(
+            "unlabeled",
+            [
+                DirectionInterventionCandidate("a", 1.0, 0.0, 0.0),
+                DirectionInterventionCandidate("b", 0.0, 1.0, 0.0),
+            ],
+            random_permutations=20,
+            seed=3,
+        )
+        aggregate = aggregate_direction_interventions([row])
+        self.assertEqual(aggregate["num_direction_eligible_requests"], 0)
+        self.assertIsNone(aggregate["eligible_direction_conversion_efficiency"])
+
 
 if __name__ == "__main__":
     unittest.main()

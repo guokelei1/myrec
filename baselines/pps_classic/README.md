@@ -32,6 +32,30 @@ CLI help path passed:
 python baselines/pps_classic/prodsearch_tem/main.py --help
 ```
 
+### Local compatibility patch
+
+The tracked upstream tree has narrowly scoped compatibility and input-boundary
+patches. For current PyTorch, its own locally generated checkpoint is loaded with
+`weights_only=False`.  The upstream checkpoint contains an `argparse`
+namespace and optimizer object in addition to tensor weights, which the newer
+safe weights-only default cannot deserialize.  No model, objective, data,
+selection, scoring, or ranking behavior is changed, and only checkpoints
+created by this local run are eligible for loading.
+The legacy byte attention mask is converted to boolean at `masked_fill`, as
+required by current PyTorch; the mask values and attention computation are
+otherwise unchanged.
+For an all-empty-history inference batch, the adapter inserts the model's
+existing product padding index before tensorization.  Its mask remains false,
+so ZAM attends only to its native zero-attention slot and receives no synthetic
+history event.
+
+The native-format adapter also enables a local `use_review_query_idx` boundary
+mode.  The original benchmark stores a product-level query union, whereas the
+unified PPS records contain the exact query for each request/interaction.  In
+this mode the unchanged model receives that explicit per-interaction query for
+train, validation, and scoring.  It prevents cross-request query expansion and
+does not alter ZAM attention, loss, optimization, or scores.
+
 ## External Alignment State
 
 HEM Path 1 is active. The Amazon Cell Phones & Accessories benchmark was

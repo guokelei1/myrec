@@ -23,7 +23,7 @@ def main() -> int:
     parser.add_argument("--history-assignments", required=True)
     parser.add_argument("--history-condition", choices=("true", "null", "wrong"), required=True)
     parser.add_argument("--run-id", required=True)
-    parser.add_argument("--split", default="dev", choices=("dev",))
+    parser.add_argument("--split", default="dev", choices=("dev", "confirmation"))
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--batch-size", type=int, default=16)

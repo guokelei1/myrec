@@ -96,6 +96,9 @@ def train_llm_srec(
     learning_rate: float = 1e-4,
     weight_decay: float = 0.0,
     max_grad_norm: float = 1.0,
+    retrieval_weight: float = 1.0,
+    distillation_weight: float = 1.0,
+    uniformity_weight: float = 1.0,
     seed: int = 20260715,
     max_train_requests: int | None = None,
 ) -> dict[str, Any]:
@@ -139,6 +142,9 @@ def train_llm_srec(
         cf_dim=teacher.dimension,
         projection_dim=projection_dim,
         hidden_dim=hidden_dim,
+        retrieval_weight=retrieval_weight,
+        distillation_weight=distillation_weight,
+        uniformity_weight=uniformity_weight,
     ).to(device)
     trainable = [
         parameter
@@ -260,6 +266,9 @@ def train_llm_srec(
             "epochs": epochs,
             "learning_rate": learning_rate,
             "weight_decay": weight_decay,
+            "retrieval_weight": retrieval_weight,
+            "distillation_weight": distillation_weight,
+            "uniformity_weight": uniformity_weight,
             "seed": seed,
             "max_train_requests": max_train_requests,
             "used_train_requests": len(rows),
@@ -269,10 +278,12 @@ def train_llm_srec(
             "elapsed_seconds": elapsed,
             "multi_positive_policy": "first_positive_deterministic",
         },
+        "standardized_dir": str(standardized_dir),
         "records_train_sha256": sha256_file(records_path),
         "qrels_train_sha256": sha256_file(qrels_path),
         "training_labels_read": True,
         "dev_labels_read": False,
+        "confirmation_labels_read": False,
         "weights_sha256": sha256_file(weights_path),
         "example_stats": example_stats,
     }
@@ -324,11 +335,14 @@ def write_llm_srec_scores(
     run_id: str,
     *,
     history_condition: str,
+    split: str = "dev",
     runs_dir: str | Path = "runs",
     device: str = "cuda:0",
 ) -> dict[str, Any]:
     if history_condition not in {"true", "null", "wrong"}:
         raise ValueError("history condition must be true/null/wrong")
+    if split not in {"dev", "internal", "confirmation"}:
+        raise ValueError("LLM-SRec scoring supports dev, internal, or confirmation only")
     standardized_dir = Path(standardized_dir)
     assignments_path = Path(assignments_path)
     checkpoint_dir = Path(checkpoint_dir)
@@ -340,17 +354,27 @@ def write_llm_srec_scores(
     teacher = FrozenSequenceTeacherStore(teacher_store_dir)
     with (checkpoint_dir / "vocabulary.json").open("r", encoding="utf-8") as handle:
         vocabulary = TrainVocabulary.from_dict(json.load(handle))
-    assignments = {}
+    assignments: dict[str, list[dict[str, Any]]] = {}
     for row in iter_jsonl(assignments_path):
         if row.get("assignment") != history_condition:
             raise ValueError("assignment condition mismatch")
-        assignments[str(row["request_id"])] = row.get("history", [])
+        request_id = str(row["request_id"])
+        if request_id in assignments:
+            raise ValueError(f"duplicate history assignment request_id={request_id}")
+        assignments[request_id] = row.get("history", [])
     rows_written = 0
     requests_written = 0
     started = time.perf_counter()
+    records_path = standardized_dir / f"records_{split}.jsonl"
+    if not records_path.exists():
+        raise FileNotFoundError(f"missing standardized records for split={split}: {records_path}")
+    seen_request_ids: set[str] = set()
     with (run_dir / "scores.jsonl").open("w", encoding="utf-8") as handle:
-        for visible in iter_jsonl(standardized_dir / "records_dev.jsonl"):
+        for visible in iter_jsonl(records_path):
             request_id = str(visible["request_id"])
+            if request_id not in assignments:
+                raise ValueError(f"assignment missing request_id={request_id}")
+            seen_request_ids.add(request_id)
             request = build_sequence_request(
                 dict(visible, history=assignments[request_id]),
                 vocabulary,
@@ -390,17 +414,23 @@ def write_llm_srec_scores(
                 )
                 rows_written += 1
             requests_written += 1
+    if seen_request_ids != set(assignments):
+        raise ValueError("assignment and scored request coverage differ")
+    with (standardized_dir / "manifest.json").open("r", encoding="utf-8") as handle:
+        dataset_manifest = json.load(handle)
     output = {
         "schema_version": 1,
         "run_id": run_id,
         "method_id": "llm_srec_pps",
         "checkpoint_id": metadata["checkpoint_id"],
-        "dataset_id": "kuaisearch",
-        "dataset_version": "lite_scout10k_v1",
-        "split": "dev",
+        "dataset_id": dataset_manifest["dataset_id"],
+        "dataset_version": dataset_manifest["dataset_version"],
+        "split": split,
         "history_condition": history_condition,
         "history_assignments_path": str(assignments_path),
         "history_assignment_sha256": sha256_file(assignments_path),
+        "records_path": str(records_path),
+        "records_sha256": sha256_file(records_path),
         "candidate_manifest_sha256": sha256_file(
             standardized_dir / "candidate_manifest.json"
         ),
@@ -417,8 +447,8 @@ def write_llm_srec_scores(
             "teacher_metadata_sha256": metadata["teacher_metadata_sha256"],
             "history_budget": metadata["history_budget"],
             "max_length": metadata["max_length"],
+            "serialization_version": "llm_srec_pps_query_history_embedding_v1",
         },
     }
     write_json(run_dir / "metadata.json", output)
     return output
-

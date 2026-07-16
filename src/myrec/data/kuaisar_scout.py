@@ -5,6 +5,7 @@ from __future__ import annotations
 import ast
 import bisect
 import csv
+import hashlib
 import heapq
 import json
 from collections import Counter, defaultdict
@@ -34,6 +35,10 @@ class SearchRequest:
     query_tokens: tuple[str, ...]
     search_source: str
     candidates: tuple[SearchCandidate, ...]
+    raw_candidate_rows: int
+    duplicate_candidate_rows: int
+    conflicting_click_rows: int
+    conflicting_item_type_rows: int
 
 
 HistoryEvent = tuple[int, str, str]
@@ -51,8 +56,12 @@ def build_kuaisar_small_scout(
     max_candidate_count: int = 100,
     max_history_len: int = 20,
     search_sources: tuple[str, ...] = ("USER_INPUT",),
+    dataset_id: str = "kuaisar_small",
+    release_name: str = "KuaiSAR Small",
+    archive_md5_expected: str = "daea8cbf605db6bd5841740f0e4a12d9",
+    archive_path: str | Path | None = None,
 ) -> dict[str, Any]:
-    """Materialize a latest-window exploratory scout from official CSV files."""
+    """Materialize a latest-window exploratory scout from a KuaiSAR release."""
 
     if max_requests < 10:
         raise ValueError("max_requests must be at least 10")
@@ -65,7 +74,14 @@ def build_kuaisar_small_scout(
     if not search_sources:
         raise ValueError("search_sources must be non-empty")
 
-    source_dir = _resolve_source_dir(Path(raw_dir))
+    raw_dir = Path(raw_dir)
+    source_dir = _resolve_source_dir(raw_dir)
+    if archive_path is None:
+        archive_name = "KuaiSAR_v2.zip" if dataset_id == "kuaisar_full" else "KuaiSAR.zip"
+        archive = raw_dir / archive_name
+    else:
+        archive = Path(archive_path)
+    archive_md5_actual = _md5_file(archive) if archive.is_file() else None
     src_path = source_dir / "src_inter.csv"
     rec_path = source_dir / "rec_inter.csv"
     item_path = source_dir / "item_features.csv"
@@ -117,7 +133,7 @@ def build_kuaisar_small_scout(
     )
 
     manifest = {
-        "dataset_id": "kuaisar_small",
+        "dataset_id": dataset_id,
         "dataset_version": dataset_version,
         "evidence_mode": "exploratory_independent_source_replication",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -128,8 +144,10 @@ def build_kuaisar_small_scout(
         ),
         "source": {
             "raw_dir": str(source_dir),
-            "release": "KuaiSAR Small",
-            "archive_md5_expected": "daea8cbf605db6bd5841740f0e4a12d9",
+            "release": release_name,
+            "archive_md5_expected": archive_md5_expected,
+            "archive_path": str(archive),
+            "archive_md5_actual": archive_md5_actual,
             "src_inter": _file_info(src_path),
             "rec_inter": _file_info(rec_path),
             "item_features": _file_info(item_path),
@@ -162,6 +180,7 @@ def build_kuaisar_small_scout(
         },
         "outputs": outputs,
         "admission_checks": {
+            "archive_md5_matches": archive_md5_actual == archive_md5_expected,
             "reconstructable_mixed_feedback_slates": source_audit["eligible_sessions"] > 0,
             "strict_causal_history": outputs["history_not_strictly_before_target_violations"] == 0,
             "candidate_identity_unique": outputs["duplicate_candidate_id_violations"] == 0,
@@ -179,8 +198,11 @@ def build_kuaisar_small_scout(
 
 
 def _resolve_source_dir(raw_dir: Path) -> Path:
-    nested = raw_dir / "KuaiSAR_final"
-    return nested if nested.is_dir() else raw_dir
+    for dirname in ("KuaiSAR_v2", "KuaiSAR_final"):
+        nested = raw_dir / dirname
+        if nested.is_dir():
+            return nested
+    return raw_dir
 
 
 def _select_latest_sessions(
@@ -193,9 +215,19 @@ def _select_latest_sessions(
 ) -> tuple[list[SearchRequest], dict[str, Any]]:
     heap: list[tuple[int, str, SearchRequest]] = []
     counts: Counter[str] = Counter()
+    seen_source_identities: set[tuple[str, str]] = set()
     candidate_counts: list[int] = []
     for request in _iter_search_sessions(src_path):
         counts["source_sessions"] += 1
+        source_identity = (request.user_id, request.session_id)
+        if source_identity in seen_source_identities:
+            counts["source_session_identity_reuse_variants"] += 1
+        else:
+            seen_source_identities.add(source_identity)
+        counts["source_candidate_rows"] += request.raw_candidate_rows
+        counts["source_duplicate_candidate_rows"] += request.duplicate_candidate_rows
+        counts["source_conflicting_click_rows"] += request.conflicting_click_rows
+        counts["source_conflicting_item_type_rows"] += request.conflicting_item_type_rows
         counts[f"source_{request.search_source}"] += 1
         if request.search_source not in search_sources:
             continue
@@ -320,6 +352,9 @@ def _causal_histories(
 def _load_item_map(
     item_path: Path, needed_item_ids: set[str], *, max_caption_tokens: int = 32
 ) -> dict[str, dict[str, Any]]:
+    # Full contains a few very long quoted feature fields.  They are not used
+    # as free text, but the CSV parser must cross them to reach later rows.
+    csv.field_size_limit(256 * 1024 * 1024)
     result: dict[str, dict[str, Any]] = {}
     with item_path.open("r", encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
@@ -497,9 +532,19 @@ def _write_scout(
 
 
 def _iter_search_sessions(path: Path) -> Iterator[SearchRequest]:
-    seen_session_ids: set[str] = set()
-    current_key: tuple[str, str, int, tuple[str, ...], str] | None = None
-    candidates: list[SearchCandidate] = []
+    """Yield source sessions after deterministic global consolidation.
+
+    The official release contains a small number of session rows that recur
+    after intervening sessions.  Contiguity is therefore not a source
+    invariant.  Grouping by the complete session identity prevents an input
+    ordering artifact from rejecting the dataset.  Repeated item rows are
+    collapsed in first-observed order and their click flag is combined with
+    logical OR; the raw/duplicate/conflict counts remain attached to the
+    request for admission auditing.
+    """
+
+    SessionKey = tuple[str, str, int, tuple[str, ...], str]
+    sessions: dict[SessionKey, dict[str, Any]] = {}
     with path.open("r", encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
             key = (
@@ -507,34 +552,68 @@ def _iter_search_sessions(path: Path) -> Iterator[SearchRequest]:
                 str(row["search_session_id"]),
                 int(float(row["search_session_timestamp"])),
                 _parse_token_sequence(row["keyword"]),
-                str(row["search_source"]),
+                str(row.get("search_source") or row.get("search_session_source") or ""),
             )
             if not key[3]:
                 raise ValueError(f"empty KuaiSAR keyword for session={key[1]}")
-            if current_key is None:
-                current_key = key
-            elif key != current_key:
-                if key[1] in seen_session_ids:
-                    raise ValueError(f"non-contiguous KuaiSAR session={key[1]}")
-                seen_session_ids.add(current_key[1])
-                yield _make_request(current_key, candidates)
-                current_key = key
-                candidates = []
-            candidates.append(
-                SearchCandidate(
-                    item_id=str(row["item_id"]),
-                    clicked=int(float(row["click_cnt"])) > 0,
-                    item_type=str(row["item_type"]),
-                    source_position=len(candidates),
-                )
+            if not key[4]:
+                raise ValueError(f"empty KuaiSAR search source for session={key[1]}")
+            state = sessions.setdefault(
+                key,
+                {
+                    "candidates": {},
+                    "raw_candidate_rows": 0,
+                    "duplicate_candidate_rows": 0,
+                    "conflicting_click_rows": 0,
+                    "conflicting_item_type_rows": 0,
+                },
             )
-    if current_key is not None:
-        yield _make_request(current_key, candidates)
+            state["raw_candidate_rows"] += 1
+            item_id = str(row["item_id"])
+            clicked = int(float(row["click_cnt"])) > 0
+            item_type = str(row["item_type"])
+            existing = state["candidates"].get(item_id)
+            if existing is None:
+                state["candidates"][item_id] = SearchCandidate(
+                    item_id=item_id,
+                    clicked=clicked,
+                    item_type=item_type,
+                    source_position=len(state["candidates"]),
+                )
+                continue
+            state["duplicate_candidate_rows"] += 1
+            if existing.clicked != clicked:
+                state["conflicting_click_rows"] += 1
+            if existing.item_type != item_type:
+                state["conflicting_item_type_rows"] += 1
+            if clicked and not existing.clicked:
+                state["candidates"][item_id] = SearchCandidate(
+                    item_id=item_id,
+                    clicked=True,
+                    item_type=item_type,
+                    source_position=existing.source_position,
+                )
+    for key, state in sorted(
+        sessions.items(), key=lambda pair: (pair[0][2], pair[0][0], pair[0][1])
+    ):
+        yield _make_request(
+            key,
+            list(state["candidates"].values()),
+            raw_candidate_rows=int(state["raw_candidate_rows"]),
+            duplicate_candidate_rows=int(state["duplicate_candidate_rows"]),
+            conflicting_click_rows=int(state["conflicting_click_rows"]),
+            conflicting_item_type_rows=int(state["conflicting_item_type_rows"]),
+        )
 
 
 def _make_request(
     key: tuple[str, str, int, tuple[str, ...], str],
     candidates: list[SearchCandidate],
+    *,
+    raw_candidate_rows: int,
+    duplicate_candidate_rows: int,
+    conflicting_click_rows: int,
+    conflicting_item_type_rows: int,
 ) -> SearchRequest:
     return SearchRequest(
         user_id=key[0],
@@ -543,6 +622,10 @@ def _make_request(
         query_tokens=key[3],
         search_source=key[4],
         candidates=tuple(candidates),
+        raw_candidate_rows=raw_candidate_rows,
+        duplicate_candidate_rows=duplicate_candidate_rows,
+        conflicting_click_rows=conflicting_click_rows,
+        conflicting_item_type_rows=conflicting_item_type_rows,
     )
 
 
@@ -555,7 +638,13 @@ def _parse_token_sequence(value: str) -> tuple[str, ...]:
 
 def _request_id(request: SearchRequest) -> str:
     payload = json.dumps(
-        [request.user_id, request.session_id, request.timestamp, request.query_tokens],
+        [
+            request.user_id,
+            request.session_id,
+            request.timestamp,
+            request.query_tokens,
+            request.search_source,
+        ],
         ensure_ascii=False,
         separators=(",", ":"),
     )
@@ -568,6 +657,14 @@ def _missing_item(item_id: str) -> dict[str, Any]:
 
 def _file_info(path: Path) -> dict[str, Any]:
     return {"path": str(path), "size_bytes": path.stat().st_size, "sha256": sha256_file(path)}
+
+
+def _md5_file(path: Path) -> str:
+    digest = hashlib.md5(usedforsecurity=False)
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _summary(values: list[int]) -> dict[str, float | int | None]:

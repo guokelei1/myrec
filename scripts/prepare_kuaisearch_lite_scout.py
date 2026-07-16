@@ -36,6 +36,20 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Retain the prior query attached to each clicked/purchased history item.",
     )
+    parser.add_argument(
+        "--evaluation-split",
+        choices=("dev", "confirmation"),
+        default="dev",
+    )
+    parser.add_argument(
+        "--end-before-time",
+        type=int,
+        help="Exclusive source time-index cutoff for a disjoint earlier window.",
+    )
+    parser.add_argument(
+        "--exclude-request-manifest",
+        help="Assert zero request overlap with this existing request manifest.",
+    )
     return parser.parse_args()
 
 
@@ -52,6 +66,9 @@ def main() -> int:
         max_candidate_count=args.max_candidate_count,
         max_history_len=args.max_history_len,
         include_history_query=args.include_history_query,
+        evaluation_split=args.evaluation_split,
+        end_before_time=args.end_before_time,
+        exclude_request_manifest_path=args.exclude_request_manifest,
     )
     preview = {
         "dataset_version": manifest["dataset_version"],

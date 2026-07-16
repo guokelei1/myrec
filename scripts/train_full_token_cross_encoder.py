@@ -44,6 +44,12 @@ def main() -> int:
     parser.add_argument("--max-grad-norm", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=20260714)
     parser.add_argument(
+        "--history-dropout-probability",
+        type=float,
+        default=0.0,
+        help="Deterministic request-level train-only history dropout for ordinary FULL.",
+    )
+    parser.add_argument(
         "--objective",
         default="pairwise_logistic_softplus",
         choices=(
@@ -77,6 +83,7 @@ def main() -> int:
         seed=args.seed,
         objective=args.objective,
         truncation_strategy=args.truncation_strategy,
+        history_dropout_probability=args.history_dropout_probability,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
