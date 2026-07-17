@@ -1,8 +1,8 @@
 # Experiment and dataset contract
 
 Status: supporting technical contract for unified records, split isolation,
-labels, and metrics. V1.2 execution order comes from
-`experiments/motivation_v1_2/plan.md`.
+labels, and metrics. Current execution order comes from
+`experiments/motivation/mechanism_analysis_plan.md`.
 
 ## Unified records
 

@@ -1,0 +1,34 @@
+schema_version: 1
+config_id: kuaisearch_motivation_v12_q0_qwen3_reranker_06b_v1
+protocol:
+  path: experiments/motivation_v1_2/protocol.yaml
+  sha256: 6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43
+method_id: q0_qwen3_reranker_06b
+model:
+  base_model_path: models/huggingface/Qwen3-Reranker-0.6B
+  base_weights_sha256: 27cd75a405b9c1b46b59abfd88aaa209e6fed2a1972cde9b70e7659537c5e65b
+  tokenizer_sha256: aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4
+  base_artifact_manifest_sha256: 3727b9e53efc2cb5cb40cbc02fc722ed09998187c208930e3c0a3289bcdfbd78
+  adaptation: full_parameter
+training:
+  seed: 20260714
+  epochs: 1
+  batch_requests: 8
+  gradient_accumulation_steps: 2
+  history_budget: 6
+  max_length: 2048
+  negatives_per_positive: 2
+  learning_rate: 1.0e-5
+  dtype: bfloat16
+  weight_decay: 0.01
+  warmup_ratio: 0.10
+  max_grad_norm: 1.0
+  gradient_checkpointing: true
+  history_dropout_probability: 0.0
+  checkpoint_every_optimizer_steps: 500
+  max_continuous_job_seconds: 14400
+  safe_exit_seconds: 13500
+method:
+  mechanism: specialized_reranker_pointwise_binary_cross_entropy
+scoring:
+  batch_size: 16

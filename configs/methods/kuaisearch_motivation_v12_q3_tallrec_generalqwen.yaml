@@ -1,0 +1,38 @@
+schema_version: 1
+config_id: kuaisearch_motivation_v12_q3_tallrec_generalqwen_v1
+protocol:
+  path: experiments/motivation_v1_2/protocol.yaml
+  sha256: 6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43
+method_id: q3_tallrec_generalqwen
+model:
+  base_model_path: models/huggingface/Qwen3-0.6B
+  base_weights_sha256: f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b
+  tokenizer_sha256: aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4
+  base_artifact_manifest_sha256: 12a7e5ae8ecc02a88453fc1daec97853151f320a6ad1f242615594f2b8dd1663
+  adaptation: lora
+training:
+  seed: 20260714
+  epochs: 1
+  batch_requests: 2
+  gradient_accumulation_steps: 8
+  history_budget: 6
+  max_length: 2048
+  negatives_per_positive: 2
+  learning_rate: 2.0e-4
+  dtype: bfloat16
+  weight_decay: 0.01
+  warmup_ratio: 0.10
+  max_grad_norm: 1.0
+  gradient_checkpointing: true
+  history_dropout_probability: 0.0
+  checkpoint_every_optimizer_steps: 500
+  max_continuous_job_seconds: 14400
+  safe_exit_seconds: 13500
+method:
+  mechanism: recommendation_alignment_with_parameter_efficient_yes_no_tuning
+  lora_rank: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  lora_targets: [q_proj, v_proj]
+scoring:
+  batch_size: 8

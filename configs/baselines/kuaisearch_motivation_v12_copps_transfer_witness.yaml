@@ -1,0 +1,92 @@
+schema_version: 1
+config_id: kuaisearch_motivation_v12_copps_transfer_witness_v1
+frozen_at: "2026-07-16T18:00:50Z"
+protocol:
+  path: experiments/motivation_v1_2/protocol.yaml
+  sha256: 6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43
+method_id: w0_copps_style_transfer_witness
+role: non_llm_structural_witness_outside_main_table
+reproduction_boundary: independent_CoPPS_style_reimplementation_not_official
+
+dataset:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  train_requests: 32000
+  internal_dev_requests: 8000
+  labels: qrels_train_only
+  dev_qrels_visible_to_training_or_scoring: false
+  source_test_opened: false
+
+input_boundary:
+  unified_jsonl_only: true
+  request_fields: [request_id, user_id, session_id, ts, query, history, candidates, masks]
+  history_fields: [item_id, title, brand, cat, event, query, ts]
+  candidate_fields: [item_id, title, brand, cat]
+  forbidden_model_inputs: [clicked, purchased, relevance, is_clicked, is_purchased, label, labels, target]
+
+content_features:
+  store: artifacts/motivation_v1_2/frozen_text_features/kuaisearch_full_confirm_preceding40k_v11_bge_small_zh_itemsem_v2_l128_bf16_a40
+  materializer: scripts/materialize_frozen_text_features.py
+  contract: frozen_transformer_cls_l2_v1
+  visible_text_contract: query_context_and_canonical_item_semantics_v2
+  model: BAAI/bge-small-zh-v1.5
+  cache_folder: models/huggingface/sentence_transformers
+  max_length: 128
+  batch_size: 128
+  inference_dtype: bfloat16
+  storage_dtype: float16
+  encoder_fingerprint_sha256: 0527b3ecdfb3a33ccda8fbd7e434f54c2e0b77bf793e34f366a07ef9fa0e6f16
+  store_fingerprint_sha256: 62b48e5ee25fb2b4b7ddad76d8a5f9aa732884f6b7a24ba56872d805c7cb6caf
+  trainable: false
+  qrels_read: false
+
+mechanism:
+  scorer: shared_projection_query_aware_history_pooling
+  history_attention: unscaled_cosine_softmax
+  projection_dim: 128
+  item_id_embedding: false
+  llm: false
+  semantic_replacement:
+    views_per_request: 2
+    replacement_ratio: 0.3
+    positions_per_view: ceil_replacement_ratio_times_retained_history_length
+    category_key: deepest_complete_category
+    semantic_feature: canonical_item_only_title_brand_category
+    donor_population: train_visible_history_and_candidates_only
+    different_item_id_required: true
+    exclude_original_history_and_current_candidates: true
+    deterministic_shortlist_size: 64
+    selection: highest_frozen_bge_cosine
+    missing_replacement: drop_selected_event_from_augmented_view_and_audit
+
+training:
+  seed: 20260714
+  history_budget: 6
+  epochs: 2
+  batch_requests: 128
+  learning_rate: 0.001
+  projection_dim: 128
+  contrastive_temperature: 0.1
+  contrastive_loss_weight: 0.2
+  ranking_loss: multi_positive_listwise_softmax_from_qrels_train
+  contrastive_loss: symmetric_in_batch_InfoNCE_between_two_replacement_views
+  optimizer: AdamW
+  weight_decay: 0.01
+  warmup_ratio: 0.10
+  max_grad_norm: 1.0
+  max_continuous_job_seconds: 14400
+  safe_exit_seconds: 13500
+  resume_state: [model, optimizer, scheduler, rng, epoch, data_cursor]
+
+scoring:
+  internal_dev_assignments_dir: data/interim/kuaisearch/full_confirm_preceding40k_v11/history_assignments_internal_dev_v12
+  internal_dev_conditions: [full, null]
+  new_holdout_conditions: [full, null, wrong]
+  full_assignment_serialization: true
+  shared_evaluator_history_condition: true
+  complete_candidate_coverage_required: true
+  finite_scores_required: true
+  candidate_manifest_hash_required: true
+  request_manifest_hash_required: true
+  qrels_read: false

@@ -1,3 +1,0 @@
-[submodule "generative_recommenders/ops/cpp/cutlass"]
-	path = generative_recommenders/ops/cpp/cutlass
-	url = https://github.com/NVIDIA/cutlass.git

@@ -98,6 +98,35 @@ class HistoryAssignmentTest(unittest.TestCase):
                 self.assertEqual(report["matching"]["global_donor_shortlist_size"], 5)
             self.assertEqual(donors[0], donors[1])
 
+    def test_registered_v12_confirmation_requires_release_lock(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            records = root / "records_confirmation.jsonl"
+            records.write_text(
+                json.dumps(
+                    _record("target", "u1", 30, "q", ["x"], [("h", 20)])
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (root / "manifest.json").write_text(
+                json.dumps(
+                    {
+                        "dataset_version": (
+                            "full_confirm_preceding40k_newholdout4k_v12"
+                        )
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "require.*release lock"):
+                materialize_history_assignments(
+                    records,
+                    root / "assignments",
+                    root / "report.json",
+                )
+            self.assertFalse((root / "assignments").exists())
+
 
 def _record(request_id, user_id, ts, query, candidates, history):
     return {

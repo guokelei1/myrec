@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "report_id": "pps_motivation_v12_first_round_single_seed",
+  "as_of_date": "2026-07-17",
+  "status": "first_round_single_seed_complete_preliminary",
+  "authority": {
+    "execution_prompt": "experiments/motivation/execution_prompt_zh.md",
+    "plan": "experiments/motivation/plan.md",
+    "research_logic": "doc/motivation.md"
+  },
+  "evidence_boundary": {
+    "dataset_id": "kuaisearch",
+    "dataset_version": "full_confirm_preceding40k_newholdout4k_v12",
+    "pilot_seed": 20260714,
+    "second_seed_run": false,
+    "bootstrap": {
+      "cluster": "normalized_query",
+      "samples": 5000,
+      "seed": 20260715
+    },
+    "metric": "graded_ndcg_at_10",
+    "primary_counterfactual": "full_minus_null",
+    "registered_confirmation_conditions": [
+      "full",
+      "null",
+      "wrong_user"
+    ],
+    "shared_evaluator_only": true,
+    "source_test_opened": false,
+    "result_scope": "preliminary_single_training_seed_not_multiseed_or_family_robustness"
+  },
+  "frozen_identity": {
+    "protocol_sha256": "6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43",
+    "repository_revision_at_training": "b87cf0ff5548509484a72a5529e9eef41720e35e",
+    "development_dataset_manifest_sha256": "bd042a76411bffd3a1b81b2a547ca7abd3dec66e2e7be577b9c21d04b812c57d",
+    "post_selection_release_lock": {
+      "path": "runs/20260717_kuaisearch_motivation_v12_post_selection_release_lock/post_selection_release_lock.json",
+      "sha256": "a4ae744d78e084685a1c14f6703fe9d4f3f05805da8f5ae2ee8d423f2a3e9d3f"
+    },
+    "evaluator_implementation_digest": "6a2c3fe9fcc5d630158dcd395d26fd69dea16403b0725454c579135f49cf6ce9",
+    "q_ranker_implementation_digest": "ccae915c402151faee71204803062bd346ef28737ac2c1ee796ec987026b4e93",
+    "w0_implementation_digest": "17de7c74a05437e349cbe436c21f7f577baba5d14dcc7573911215338a21b2bf",
+    "methods": {
+      "q0_qwen3_reranker_06b": {
+        "checkpoint_id": "q0_qwen3_reranker_06b@654f929996f7eb09f7b2",
+        "config_sha256": "6e9f7d93dadf2c6946049ba7290912e753ab8a6c9297116e211926748429dd66",
+        "training_run_id": "20260717_kuaisearch_q0_pilot_train_seg01",
+        "training_metadata_path": "artifacts/motivation_v1_2/checkpoints/q0_qwen3_reranker_06b_seed20260714/training_metadata.json",
+        "training_command": ["scripts/train_motivation_v12_ranker.py", "--standardized-dir", "data/standardized/kuaisearch/full_confirm_preceding40k_v11", "--config", "configs/methods/kuaisearch_motivation_v12_q0_qwen3_reranker_06b.yaml", "--run-id", "20260717_kuaisearch_q0_pilot_train_seg01", "--output-model-dir", "artifacts/motivation_v1_2/checkpoints/q0_qwen3_reranker_06b_seed20260714", "--device", "cuda:0"],
+        "training_status": "completed",
+        "optimizer_steps": 967
+      },
+      "q1_instructrec_generalqwen": {
+        "checkpoint_id": "q1_instructrec_generalqwen@9625a8c5a36327cec65f",
+        "config_sha256": "1b68a3f4e79807862a0c1da369caa7b2d12218de1fe0dbf6ab2dfe18a5f15493",
+        "training_run_id": "20260717_kuaisearch_q1_pilot_train_seg01",
+        "training_metadata_path": "artifacts/motivation_v1_2/checkpoints/q1_instructrec_generalqwen_seed20260714/training_metadata.json",
+        "training_command": ["scripts/train_motivation_v12_ranker.py", "--standardized-dir", "data/standardized/kuaisearch/full_confirm_preceding40k_v11", "--config", "configs/methods/kuaisearch_motivation_v12_q1_instructrec_generalqwen.yaml", "--run-id", "20260717_kuaisearch_q1_pilot_train_seg01", "--output-model-dir", "artifacts/motivation_v1_2/checkpoints/q1_instructrec_generalqwen_seed20260714", "--device", "cuda:1"],
+        "training_status": "completed",
+        "optimizer_steps": 967
+      },
+      "q2_recranker_generalqwen": {
+        "checkpoint_id": "q2_recranker_generalqwen@e207d2213741c16f997a",
+        "config_sha256": "88a463fe48e5a884e99bf72cc3522a82031194f13cdd4b98966b160378e9a11e",
+        "training_run_id": "20260717_kuaisearch_q2_pilot_train_seg01",
+        "training_metadata_path": "artifacts/motivation_v1_2/checkpoints/q2_recranker_generalqwen_seed20260714/training_metadata.json",
+        "training_command": ["scripts/train_motivation_v12_ranker.py", "--standardized-dir", "data/standardized/kuaisearch/full_confirm_preceding40k_v11", "--config", "configs/methods/kuaisearch_motivation_v12_q2_recranker_generalqwen.yaml", "--run-id", "20260717_kuaisearch_q2_pilot_train_seg01", "--output-model-dir", "artifacts/motivation_v1_2/checkpoints/q2_recranker_generalqwen_seed20260714", "--device", "cuda:2"],
+        "training_status": "completed",
+        "optimizer_steps": 967
+      },
+      "q3_tallrec_generalqwen": {
+        "checkpoint_id": "q3_tallrec_generalqwen@ea46a89671b63741ada8",
+        "config_sha256": "ea8e0fb2d3421408cc51ecc216bfcfc7c7a0524e14a594d24009c9678235bd91",
+        "training_run_id": "20260717_kuaisearch_q3_pilot_train_seg01",
+        "training_metadata_path": "artifacts/motivation_v1_2/checkpoints/q3_tallrec_generalqwen_seed20260714/training_metadata.json",
+        "training_command": ["scripts/train_motivation_v12_ranker.py", "--standardized-dir", "data/standardized/kuaisearch/full_confirm_preceding40k_v11", "--config", "configs/methods/kuaisearch_motivation_v12_q3_tallrec_generalqwen.yaml", "--run-id", "20260717_kuaisearch_q3_pilot_train_seg01", "--output-model-dir", "artifacts/motivation_v1_2/checkpoints/q3_tallrec_generalqwen_seed20260714", "--device", "cuda:3"],
+        "training_status": "completed",
+        "optimizer_steps": 967
+      },
+      "w0_copps_style_transfer_witness": {
+        "checkpoint_id": "w0_copps_style_transfer_witness@ddee4f219794be9e77f5",
+        "config_sha256": "70c6a0290259f0ef1cef73b3505c111ebac7e8cddeba77c6eb6abb893709d784",
+        "training_run_id": "20260717_kuaisearch_w0_pilot_train_query_identity_fix_seg01",
+        "training_metadata_path": "artifacts/motivation_v1_2/checkpoints/w0_copps_style_transfer_witness_seed20260714_query_identity_fix_v2/metadata.json",
+        "training_command": ["scripts/train_copps_transfer_witness.py", "--standardized-dir", "data/standardized/kuaisearch/full_confirm_preceding40k_v11", "--feature-store", "artifacts/motivation_v1_2/frozen_text_features/kuaisearch_full_confirm_preceding40k_v11_bge_small_zh_itemsem_v2_l128_bf16_a40", "--output-model-dir", "artifacts/motivation_v1_2/checkpoints/w0_copps_style_transfer_witness_seed20260714_query_identity_fix_v2", "--run-id", "20260717_kuaisearch_w0_pilot_train_query_identity_fix_seg01", "--runs-dir", "runs", "--device", "cpu", "--config", "configs/baselines/kuaisearch_motivation_v12_copps_transfer_witness.yaml"],
+        "training_status": "completed",
+        "optimizer_steps": 242
+      }
+    }
+  },
+  "new_holdout_admission": {
+    "manifest_path": "data/standardized/kuaisearch/full_confirm_preceding40k_newholdout4k_v12/manifest.json",
+    "manifest_sha256": "21f4c45b4e796a3808cb0db9de066f1e3fbf8e50a2eff8a4bdf3f1bf17d8f3bb",
+    "confirmation_integrity_lock_sha256": "4643f3d7eb28366bc855c363cd5af3fabc6fbbf6aa6679462995df5e6e97a054",
+    "records_confirmation_sha256": "828127bb611e1b7429e596a1a66977854cb9bbaf64ae443d00f1b1c32c203e8f",
+    "candidate_manifest_sha256": "8b2c859bcd35400bed58b6df2cad4911e043a2c5ba2cac19c243392a3fff4c29",
+    "request_manifest_sha256": "5586653149a4a17fd617f0beabae842170e996713539e4481eb0a08c67352db2",
+    "requests": 4000,
+    "candidate_rows": 77836,
+    "request_overlap_across_registered_populations": 0,
+    "session_overlap_across_registered_populations": 0,
+    "strict_time_boundaries": true,
+    "selection_used_model_outputs": false,
+    "confirmation_records_label_free": true,
+    "qrels_separate_and_evaluator_only": true,
+    "retrospective_holdout": true,
+    "forward_temporal_holdout": false,
+    "user_item_query_isolation_claimed": false,
+    "retrospective_training_leakage_audit": {
+      "holdout_requests_with_event_in_train_history": 460,
+      "train_requests_with_holdout_event_in_history": 1018,
+      "overlapping_users": 416
+    },
+    "scope_warning": "The confirmation population is earlier than the reused 32k training population. It establishes frozen recipe and request/session/time-boundary isolation, not forward temporal generalization; later training histories can contain earlier holdout events."
+  },
+  "history_assignments": {
+    "report": "reports/motivation_kuaisearch_assignments.json",
+    "full_sha256": "069fa8227d5189617cf2a1ea98c929ff76aabe33f9962a8f99b44a3fe469fd9a",
+    "null_sha256": "ecbdf118b0f39865a8e55002dfad5fce65d38f55c0bb0f730fb5d6abb46f2c9a",
+    "wrong_user_sha256": "c146733d48a848763753d1affb0c7b35f7f121a4eb16934d90aa061283c9e0c2",
+    "deterministic_regeneration_passed": true,
+    "qrels_read": false,
+    "model_scores_read": false,
+    "wrong_user_caveat": "2745 of 3571 history-present requests use a deterministic global-other-user fallback; this is a diagnostic control, not a provenance-matched causal-history design."
+  },
+  "new_holdout_surface_counts": {
+    "all": 4000,
+    "recurrence_target_repeat": 288,
+    "strict_transfer_target_nonrepeat_no_candidate_overlap": 1079,
+    "other_overlap_target_nonrepeat_other_candidate_overlap": 290,
+    "target_nonrepeat_no_history": 266,
+    "no_observed_positive": 2077
+  },
+  "new_holdout_primary_results": {
+    "q0_qwen3_reranker_06b": {
+      "analysis_run_id": "20260717_kuaisearch_q0_qwen3_reranker_06b_newholdout4k_analysis",
+      "full_ndcg_at_10": 0.20573326504337267,
+      "full_minus_null": {
+        "overall": {"mean": 0.013625261070750105, "query_cluster_ci95": [0.008585758471656066, 0.0188243141895706]},
+        "recurrence": {"mean": 0.21541945369819093, "query_cluster_ci95": [0.17658410467783425, 0.25389801001085194]},
+        "strict_transfer": {"mean": 0.00999694721584022, "query_cluster_ci95": [-0.0014226097828673988, 0.021827846382170314]},
+        "other_overlap": {"mean": -0.0631947049240348, "query_cluster_ci95": [-0.09347730767829673, -0.03293656380468988]}
+      },
+      "full_minus_wrong_user": {
+        "overall": {"mean": 0.015104568775387546, "query_cluster_ci95": [0.010284813990763034, 0.020132376205437535]},
+        "recurrence": {"mean": 0.23010090910575645, "query_cluster_ci95": [0.19198713586341745, 0.268193710535082]},
+        "strict_transfer": {"mean": 0.007387398063219378, "query_cluster_ci95": [-0.0038791168233913683, 0.018474426629785604]},
+        "other_overlap": {"mean": -0.047661342176280756, "query_cluster_ci95": [-0.07568408126475597, -0.019815961696382316]}
+      },
+      "full_minus_null_population_weighted_contribution": {
+        "recurrence": 0.015510200666269746,
+        "strict_transfer": 0.002696676511472899,
+        "other_overlap": -0.004581616106992523
+      },
+      "evidence_path": "runs/20260717_kuaisearch_q0_qwen3_reranker_06b_newholdout4k_analysis/motivation_v12_evidence.json",
+      "evidence_sha256": "659292cc76d408578d322569fc7118cd1300c1b91f141c5d0b87a6541977fbd5",
+      "metrics_sha256": "5ee836cb60f4aceacd03213fb1a1bebff12cc942d091f9374d48ab35a21bb206",
+      "pre_qrels_audit_passed": true
+    },
+    "q1_instructrec_generalqwen": {
+      "analysis_run_id": "20260717_kuaisearch_q1_instructrec_generalqwen_newholdout4k_analysis",
+      "full_ndcg_at_10": 0.19734729236636003,
+      "full_minus_null": {
+        "overall": {"mean": 0.014123912418449323, "query_cluster_ci95": [0.009921341696861647, 0.018232393550873822]},
+        "recurrence": {"mean": 0.20732291670519742, "query_cluster_ci95": [0.17373685364584326, 0.24300382439577684]},
+        "strict_transfer": {"mean": 0.006951766512099469, "query_cluster_ci95": [-0.0015418938589130769, 0.015339119289369653]},
+        "other_overlap": {"mean": -0.03694588415122389, "query_cluster_ci95": [-0.058725742070418946, -0.0158061235633418]}
+      },
+      "full_minus_wrong_user": {
+        "overall": {"mean": 0.01454466181881836, "query_cluster_ci95": [0.010252650127105451, 0.01896632911184316]},
+        "recurrence": {"mean": 0.22014757039879884, "query_cluster_ci95": [0.1839745392489331, 0.25703874794867937]},
+        "strict_transfer": {"mean": 0.006940650284670393, "query_cluster_ci95": [-0.0015500786629586418, 0.015556879217526257]},
+        "other_overlap": {"mean": -0.043837291919793006, "query_cluster_ci95": [-0.06585202532049966, -0.02266448657060138]}
+      },
+      "full_minus_null_population_weighted_contribution": {
+        "recurrence": 0.014927250002774213,
+        "strict_transfer": 0.0018752390166388315,
+        "other_overlap": -0.002678576600963732
+      },
+      "evidence_path": "runs/20260717_kuaisearch_q1_instructrec_generalqwen_newholdout4k_analysis/motivation_v12_evidence.json",
+      "evidence_sha256": "02dc4e85066778a44746af67d04f7db58c484dfeba75e56a09b52feb21f9da67",
+      "metrics_sha256": "5dfdac5d7cbc217a27da466d34179cd8804999736abf8540a1d954caa5a31d4c",
+      "pre_qrels_audit_passed": true
+    },
+    "q2_recranker_generalqwen": {
+      "analysis_run_id": "20260717_kuaisearch_q2_recranker_generalqwen_newholdout4k_analysis",
+      "full_ndcg_at_10": 0.2043267926137048,
+      "full_minus_null": {
+        "overall": {"mean": 0.015465424592572212, "query_cluster_ci95": [0.010483405650533174, 0.020654943631812722]},
+        "recurrence": {"mean": 0.20970611550579965, "query_cluster_ci95": [0.17460730937961189, 0.24402766067364545]},
+        "strict_transfer": {"mean": 0.009516324454170182, "query_cluster_ci95": [-0.002520590118462954, 0.021743223484844726]},
+        "other_overlap": {"mean": -0.030350955108382902, "query_cluster_ci95": [-0.05882968082468504, -0.002062225171980034]}
+      },
+      "full_minus_wrong_user": {
+        "overall": {"mean": 0.013482166268188192, "query_cluster_ci95": [0.008747485175728343, 0.018324702491882186]},
+        "recurrence": {"mean": 0.203193015091957, "query_cluster_ci95": [0.1677423095886798, 0.23911907686034412]},
+        "strict_transfer": {"mean": 0.006837252467971225, "query_cluster_ci95": [-0.0036938973425100813, 0.017475651821925474]},
+        "other_overlap": {"mean": -0.04127006443679918, "query_cluster_ci95": [-0.06858047668778204, -0.015101648189220912]}
+      },
+      "full_minus_null_population_weighted_contribution": {
+        "recurrence": 0.015098840316417573,
+        "strict_transfer": 0.0025670285215124065,
+        "other_overlap": -0.0022004442453577603
+      },
+      "evidence_path": "runs/20260717_kuaisearch_q2_recranker_generalqwen_newholdout4k_analysis/motivation_v12_evidence.json",
+      "evidence_sha256": "155bda5c735435d08642df3f8156aaf49739db840bfd5a100be8c5576780d8ae",
+      "metrics_sha256": "93d16a99bd8db172b3bd0eaf195b253b9a4565d6dcf2b62db7109454f2563fda",
+      "pre_qrels_audit_passed": true
+    },
+    "q3_tallrec_generalqwen": {
+      "analysis_run_id": "20260717_kuaisearch_q3_tallrec_generalqwen_newholdout4k_analysis",
+      "full_ndcg_at_10": 0.19738287091324844,
+      "full_minus_null": {
+        "overall": {"mean": 0.013397721086875656, "query_cluster_ci95": [0.007573495478635253, 0.019325905195198615]},
+        "recurrence": {"mean": 0.25671034382115254, "query_cluster_ci95": [0.21936711585782717, 0.29387101584686787]},
+        "strict_transfer": {"mean": -0.0016415494295340663, "query_cluster_ci95": [-0.016512324003094388, 0.01362658126103521]},
+        "other_overlap": {"mean": -0.06403607875352409, "query_cluster_ci95": [-0.09083281598304425, -0.03661546524480298]}
+      },
+      "full_minus_wrong_user": {
+        "overall": {"mean": 0.012273110045841404, "query_cluster_ci95": [0.0068757173538035446, 0.017831361772381385]},
+        "recurrence": {"mean": 0.24066423277534843, "query_cluster_ci95": [0.20394081520997506, 0.27648082987764466]},
+        "strict_transfer": {"mean": -0.0019597541948919725, "query_cluster_ci95": [-0.015353562078387357, 0.011190270438140694]},
+        "other_overlap": {"mean": -0.06242856579188358, "query_cluster_ci95": [-0.0914824807596403, -0.03513760302527815]}
+      },
+      "full_minus_null_population_weighted_contribution": {
+        "recurrence": 0.01848314475512298,
+        "strict_transfer": -0.0004428079586168144,
+        "other_overlap": -0.004642615709630496
+      },
+      "score_caveat": "The same 2 of 4000 requests are tied under all three conditions; all 4000 requests and 77836 candidate rows remain complete and finite.",
+      "evidence_path": "runs/20260717_kuaisearch_q3_tallrec_generalqwen_newholdout4k_analysis/motivation_v12_evidence.json",
+      "evidence_sha256": "6359cd51a075642ed3c4b6821705659001e5c693008068503aa8e1ca34a617f9",
+      "metrics_sha256": "3625966876884eba96d267d5e1c6bb55e361cea2934aac8fcd6c7e3ade43056a",
+      "pre_qrels_audit_passed": true
+    }
+  },
+  "w0_diagnostic_result": {
+    "analysis_run_id": "20260717_kuaisearch_w0_copps_style_transfer_witness_newholdout4k_analysis",
+    "new_holdout_feature_store": {
+      "fingerprint_sha256": "0237c51234320bb8931a20c0b582a19748ca2abb579915f0cd8eaae0fea09be8",
+      "metadata_sha256": "ee50aefa2615a9b8114eaf2677e1295ab704f93f2366aa6c213dc5614581f7e0",
+      "reused_text_rows": 764473,
+      "new_text_rows": 55633,
+      "qrels_read": false
+    },
+    "full_ndcg_at_10": 0.18855729717122086,
+    "full_minus_null": {
+      "overall": {"mean": 0.0012045907613015866, "query_cluster_ci95": [-0.0006629350660166736, 0.0033676086516870184]},
+      "recurrence": {"mean": 0.020144867701267992, "query_cluster_ci95": [0.006080808381219785, 0.03875184007131775]},
+      "strict_transfer": {"mean": 0.0003419396533854259, "query_cluster_ci95": [-0.004734883418913395, 0.0052779133327130415]},
+      "other_overlap": {"mean": -0.004663143926764502, "query_cluster_ci95": [-0.011834899888699358, 0.0022178812386841277]}
+    },
+    "full_minus_wrong_user": {
+      "overall": {"mean": 0.001969685479784197, "query_cluster_ci95": [-0.00002484961103321487, 0.004121158449592508]},
+      "recurrence": {"mean": 0.024695961134070018, "query_cluster_ci95": [0.011862521020079862, 0.03902332074401092]},
+      "strict_transfer": {"mean": 0.001026855136928894, "query_cluster_ci95": [-0.0051849075545605545, 0.007237626229890884]},
+      "other_overlap": {"mean": -0.001178177862833269, "query_cluster_ci95": [-0.010606499460596955, 0.00804240221986728]}
+    },
+    "full_minus_null_population_weighted_contribution": {
+      "recurrence": 0.0014504304744912954,
+      "strict_transfer": 0.00009223822150071863,
+      "other_overlap": -0.00033807793469042634
+    },
+    "evidence_path": "runs/20260717_kuaisearch_w0_copps_style_transfer_witness_newholdout4k_analysis/motivation_v12_evidence.json",
+    "evidence_sha256": "a168403ea2be1be34422e8cf27c244c7fd3779bdd88d842ffd93dcfb034ce6e2",
+    "metrics_sha256": "080fb2a1e804733f6c9753e0e41e56c600a0c85af97f81b0198d6c79f8388856",
+    "pre_qrels_audit_passed": true,
+    "verdict": "does_not_establish_recoverable_strict_transfer_headroom"
+  },
+  "supporting_population_results": {
+    "note": "All values below are full-minus-null means; full normalized-query cluster intervals remain in each shared-evaluator evidence artifact.",
+    "internal_dev_8000": {
+      "q0": {"overall": 0.014378955349174376, "recurrence": 0.2526908378133236, "strict_transfer": 0.0020539876506979527, "strict_transfer_ci95": [-0.006180203588345609, 0.010244866221595832], "other_overlap": -0.035227111485110284},
+      "q1": {"overall": 0.012187754286809094, "recurrence": 0.18752387972229603, "strict_transfer": 0.012217456398350682, "strict_transfer_ci95": [0.005946514698689448, 0.018572529464017152], "other_overlap": -0.04358137075889147},
+      "q2": {"overall": 0.016388550314547785, "recurrence": 0.23915818855689963, "strict_transfer": 0.01090560628887709, "strict_transfer_ci95": [0.00292602218934925, 0.018949003502578426], "other_overlap": -0.02939219514730125},
+      "q3": {"overall": 0.01337311030271858, "recurrence": 0.25179600025955384, "strict_transfer": 0.003425002801329801, "strict_transfer_ci95": [-0.007292032059139483, 0.014370117427022919], "other_overlap": -0.05150967209879179},
+      "w0": {"overall": 0.0024854490360094713, "recurrence": 0.02274336586580737, "strict_transfer": 0.0033416220733538753, "strict_transfer_ci95": [0.00013405929572264018, 0.006434003159225006], "other_overlap": 0.0008311302460272614}
+    },
+    "legacy_compatibility_2000": {
+      "q0": {"overall": 0.013898471832629149, "recurrence": 0.24649372926283922, "strict_transfer": 0.001652688923651536, "strict_transfer_ci95": [-0.015815603039338974, 0.01919705331664935], "other_overlap": -0.020344643055173074},
+      "q1": {"overall": 0.010242288792387632, "recurrence": 0.15010753154627055, "strict_transfer": 0.010311194092041483, "strict_transfer_ci95": [-0.0026109292340018315, 0.023306485702935607], "other_overlap": -0.025030943495861324},
+      "q2": {"overall": 0.011578058132705855, "recurrence": 0.22642198523399432, "strict_transfer": -0.0012078299927468113, "strict_transfer_ci95": [-0.019308639971648497, 0.016641996482569775], "other_overlap": -0.024067938041652703},
+      "q3": {"overall": 0.01632012219478505, "recurrence": 0.27121399234328, "strict_transfer": -0.0018945833278077781, "strict_transfer_ci95": [-0.022736020460913865, 0.019225179775626565], "other_overlap": 0.006299311651818516},
+      "w0": {"overall": 0.0009799184209398173, "recurrence": 0.01741925892481521, "strict_transfer": -0.0027640270524358465, "strict_transfer_ci95": [-0.008648077317781205, 0.0029595305597670124], "other_overlap": 0.009937212629215358}
+    }
+  },
+  "mechanical_non_results": [
+    {
+      "run_id": "20260717_kuaisearch_w0_copps_style_transfer_witness_internal_dev_full_score",
+      "status": "failed_superseded_non_result",
+      "failure": "request query hash mismatch caused by hashing a whitespace-normalized encoder query instead of the raw-query request identity",
+      "score_rows_before_failure": 15880,
+      "metadata_published": false,
+      "qrels_read": false,
+      "failure_record_path": "runs/20260717_kuaisearch_w0_copps_style_transfer_witness_internal_dev_full_score/failure.json",
+      "failure_record_sha256": "568fcb24578654d126f5a51152181f1d677a88dc3ac8faf4e26a2557d559590b",
+      "superseded_by_run_id": "20260717_kuaisearch_w0_copps_style_transfer_witness_internal_dev_full_score_v2"
+    },
+    {
+      "run_ids": [
+        "20260717_kuaisearch_q2_resume_canary_step500",
+        "20260717_kuaisearch_q3_resume_canary_step500"
+      ],
+      "status": "resume_contract_diagnostics_not_transfer_results"
+    }
+  ],
+  "integrated_conclusion": {
+    "hypothesis_status": "partially_supported_and_witness_headroom_component_not_supported",
+    "supported": [
+      "At the frozen pilot seed, all four Q methods have positive overall full-minus-null and full-minus-wrong-user intervals on the new holdout.",
+      "All four Q methods have large positive recurrence intervals under both counterfactuals.",
+      "For every Q method, recurrence contributes more to the all-request full-minus-null gain than strict transfer; Q3 strict-transfer contribution is negative.",
+      "The recurrence-dominant pattern is compatible with the 8000-request internal-dev and legacy 2000-request cohort."
+    ],
+    "not_supported": [
+      "No Q method establishes strict-transfer gain on the registered new holdout under either null or wrong-user comparison; every interval crosses zero.",
+      "W0 establishes recurrence response but not overall or strict-transfer recovery on the new holdout, so this witness does not establish recoverable strict-transfer headroom.",
+      "The dev-only positive strict-transfer intervals for Q1, Q2, and W0 do not replicate in both compatibility populations."
+    ],
+    "forbidden_overclaims": [
+      "No claim that transferable preference signal is absent.",
+      "No claim that official InstructRec, RecRanker, TALLRec, or CoPPS fails.",
+      "No multi-seed or cross-family robustness claim.",
+      "No forward-temporal generalization claim."
+    ]
+  },
+  "completion_and_stop": {
+    "valid_methods_complete": ["q0", "q1", "q2", "q3", "w0"],
+    "under_converged_or_pending_methods": [],
+    "all_internal_dev_evaluations_logged": true,
+    "all_legacy_compatibility_evaluations_logged": true,
+    "all_new_holdout_evaluations_logged": true,
+    "stop_after_first_round": true,
+    "next_action_requires_user_direction": true
+  }
+}

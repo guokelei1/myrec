@@ -1,17 +1,10 @@
 # Shared source
 
-`src/myrec/` contains reusable baseline adapters, evaluation, metrics, hashing,
-and JSONL utilities. The old Lite/C0 data materializers and analysis modules
-are archived; a new E0 data adapter will be added only after its source
-contract is reviewed.
+`src/myrec/` contains the project-owned data adapters, frozen Q0--Q3 Qwen
+baseline harness, W0 witness, shared evaluator, metrics, hashing, and JSONL
+utilities used by the current Motivation.
 
-The new direction must use the standardized record interface and shared
-evaluator, and must not read dev/test qrels from training or scoring code.
-
-`src/myrec/data/contracts.py` and `src/myrec/eval/history_response*.py` are the
-active foundations for E0 and counterfactual direction measurement. Historical
-analysis modules remain in `archive/` and are not import dependencies.
-
-Future shared data conversion belongs under `src/myrec/data/`. Hypothesis-
-specific model code belongs under `systems/<hypothesis>/` only after doc 31
-authorizes it.
+All methods use the standardized record interface and shared evaluator.
+Training and scoring code must not read confirmation or test qrels. The current
+mechanism plan authorizes isolated diagnostic probes and matched controls, not
+a new transfer architecture.

@@ -1,6 +1,6 @@
 # Dataset configs
 
-No new-direction dataset version is frozen yet. E0 source/admission cards are
-kept under `experiments/history_response_gap/`; promote a compact dataset
-config here only after the admission decision.
-
+The current Motivation mechanism analysis uses the KuaiSearch standardized
+populations and data-use boundary recorded by
+`experiments/motivation/mechanism_analysis_plan.md`. Dataset materialization is
+kept outside tracked configs when it produces data.

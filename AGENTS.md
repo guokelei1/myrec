@@ -4,32 +4,33 @@ These instructions apply to the whole repository.
 
 ## Current source of truth
 
-`AGENTS.md` is a repository bootstrap, not the scientific plan. For the current
-Motivation V1.2 work, read and follow these three files as the primary source of
-truth:
+`AGENTS.md` is a repository bootstrap, not the scientific plan. The repository
+is now in the Motivation mechanism-analysis stage. Read and follow:
 
-1. `experiments/motivation_v1_2/execution_prompt_zh.md` -- requested work and
-   completion point;
-2. `experiments/motivation_v1_2/plan.md` -- methods, data flow, seed/compute
-   policy, evaluation, and reporting;
-3. `doc/43_llm_rerank_recurrence_transfer_research_logic_zh.md` -- scientific
-   motivation, prior evidence, and hypothesis.
+1. `doc/motivation.md` -- frozen observation, claim boundary, and current
+   mechanism question;
+2. `experiments/motivation/mechanism_analysis_plan.md` -- competing
+   hypotheses, probe order, data/compute policy, evaluation, and stopping point;
+3. `experiments/motivation/protocol.yaml` and
+   `reports/motivation_current_summary.json` -- immutable first-round protocol
+   and evidence baseline.
 
 Use `doc/11_experiment_and_dataset_plan.md` and
 `doc/12_experiment_execution_protocol.md` only as supporting technical
 contracts for unified records, label isolation, run metadata, and shared
-evaluation. Frozen V1/V1.1 documents (`doc/40*`, `doc/41*`) are prior evidence,
-not current execution plans.
+evaluation. The completed first-round execution prompt and planning document
+were removed after closeout; do not recreate or follow them as active work.
 
 Older references to doc 34, E0--E8, Failure Cards, R0, C01--C80, or the former
-`history_response_gap` controller are inactive and must not redirect or block
-Motivation V1.2. Files that describe those workflows are retained only as
-historical context unless the user explicitly reactivates them.
+`history_response_gap` controller are obsolete and must not redirect or block
+the current mechanism analysis. Frozen V1.2 IDs and paths may remain inside
+evidence records and runtime artifacts solely for reproducibility.
 
-The current authorized stopping point is the first-round V1.2 implementation,
-real evaluation, and concise evidence summary described by the execution
-prompt. Do not proceed into a proposed architecture or a different dataset;
-stop and wait for user direction after that summary.
+The current authorized stopping point is a first mechanism diagnosis and
+concise H0--H5 evidence matrix. Do not implement a proposed transfer
+architecture, switch datasets, open source test, or present a diagnostic
+training control as the new paper method. Stop after the mechanism summary and
+wait for user direction.
 
 ## Repository purpose
 
@@ -47,14 +48,12 @@ local experiment state.
 - Runnable scripts under `scripts/`.
 - Reusable configuration under `configs/`.
 - Tests and tiny fixtures under `tests/`.
-- Baseline reference trees, adapters, patches, and provenance notes under
-  `baselines/`.
+- Current baseline adapters, configs, and provenance notes under `src/` and
+  `configs/`.
 - Experiment plans and short manifests under `experiments/`.
 - Concise research notes under `doc/`, especially `doc/dev_log/`.
 - Curated paper-ready results under `reports/` and manuscript files under
   `paper/`.
-
-Do not add active source under `systems/` during Motivation V1.2.
 
 ## What not to track
 
@@ -69,8 +68,11 @@ Do not add active source under `systems/` during Motivation V1.2.
 
 ## Current implementation policy
 
-Follow the exact active methods and roles in the V1.2 plan; do not add, replace,
-or outcome-select a method or seed.
+Treat Q0--Q3, W0, their configs/checkpoints, the release lock, and the
+first-round score bundles as frozen baselines. Do not overwrite them or
+outcome-select a method, seed, layer, probe, slice, or endpoint. Mechanism code
+must isolate the diagnostic intervention from shared loading, scoring, and
+evaluation.
 
 Published papers and repositories may be downloaded and read, but active
 variants should be independent minimal reimplementations of their load-bearing
@@ -97,8 +99,8 @@ score dumps inside tracked baseline source trees.
 - All methods consume the unified standardized JSONL interface. A dataset
   adapter may construct it, but scoring code may not reopen raw data or add a
   method-only dataset branch.
-- Use the KuaiSearch populations, candidate contracts, and holdout sequence in
-  the active V1.2 plan. Do not open source test.
+- Use the KuaiSearch populations, candidate contracts, and development boundary
+  in the mechanism-analysis plan. Do not open source test.
 - Training records may contain supervision. Internal-dev/confirmation records
   are label-free, with qrels stored separately.
 - `clicked`, `purchased`, and `relevance` may be training targets but must never
@@ -113,7 +115,7 @@ score dumps inside tracked baseline source trees.
 - Preserve all valid pilot seeds and contradictory outcomes. A mechanical,
   numerical, or under-converged run is a run-state diagnosis, not a transfer
   result.
-- Follow the active plan for `full`, `null`, `wrong-user`, recurrence, strict
+- Follow the mechanism-analysis plan for `full`, `null`, `wrong-user`, recurrence, strict
   transfer, overlap surfaces, uncertainty, and weighted contributions.
 
 ## Runs and reporting
@@ -129,14 +131,15 @@ tracked summary containing command, config, code revision, dataset/manifest
 hash, seed, checkpoint reference, metrics, conclusion, and next action.
 
 Seed staging, four-hour resumable job boundaries, and four-GPU scheduling are
-defined only in `experiments/motivation_v1_2/plan.md`. Do not duplicate or
-reinterpret those rules here. Every job must have an independent writable
-output/checkpoint directory and a recorded lineage.
+defined only in `experiments/motivation/mechanism_analysis_plan.md`. Every job
+must have an independent writable output/checkpoint directory and a recorded
+lineage.
 
-Append every internal-dev evaluation to `reports/dev_eval_log.jsonl`. Register
-paper-table numbers in `experiments/pps_results.md`, copied verbatim from the
-shared evaluator's `metrics.json`. Never overwrite a frozen report; add a new
-versioned report or concise superseding summary.
+Append every internal-dev evaluation to `reports/dev_eval_log.jsonl`.
+First-round paper-table numbers remain frozen in `experiments/pps_results.md`.
+Mechanism results belong in a new mechanism-stage report and may not overwrite
+the frozen first-round report; every registered metric must still be copied
+verbatim from the shared evaluator's `metrics.json`.
 
 ## Engineering rules
 

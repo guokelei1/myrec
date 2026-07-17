@@ -1,7 +1,8 @@
 # Experiment execution protocol
 
-Status: supporting operational contract for Motivation V1.2. Method order,
-seed staging, compute limits, and stopping rules come from the V1.2 plan.
+Status: supporting operational contract for the Motivation mechanism-analysis
+stage. Probe order, seed staging, compute limits, and stopping rules come from
+`experiments/motivation/mechanism_analysis_plan.md`.
 
 Every run records its command, config, code revision, dataset/version and
 manifest hash, seed, environment, checkpoint reference, and output paths.

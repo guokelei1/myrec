@@ -1,0 +1,141 @@
+{
+  "condition_assignment_names": {
+    "full": "true",
+    "null": "null",
+    "wrong": "wrong"
+  },
+  "conditions": [
+    "full",
+    "null",
+    "wrong"
+  ],
+  "donor_pool_construction": "external_records_then_append_target_requests_absent_by_request_id",
+  "donor_pool_requests": 36000,
+  "donor_records_path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/records_train.jsonl",
+  "donor_records_sha256": "3bcc86ff867ada54f90289153b1b1cf3f9277efdabba6672b73c865a2433beea",
+  "evidence_mode": "first_round_pilot",
+  "files": {
+    "null": {
+      "path": "data/interim/kuaisearch/full_confirm_preceding40k_newholdout4k_v12/history_assignments_confirmation_v12/null.jsonl",
+      "sha256": "ecbdf118b0f39865a8e55002dfad5fce65d38f55c0bb0f730fb5d6abb46f2c9a"
+    },
+    "true": {
+      "path": "data/interim/kuaisearch/full_confirm_preceding40k_newholdout4k_v12/history_assignments_confirmation_v12/true.jsonl",
+      "sha256": "069fa8227d5189617cf2a1ea98c929ff76aabe33f9962a8f99b44a3fe469fd9a"
+    },
+    "wrong": {
+      "path": "data/interim/kuaisearch/full_confirm_preceding40k_newholdout4k_v12/history_assignments_confirmation_v12/wrong.jsonl",
+      "sha256": "c146733d48a848763753d1affb0c7b35f7f121a4eb16934d90aa061283c9e0c2"
+    }
+  },
+  "history_not_strictly_before_target_violations": 0,
+  "match_counts": {
+    "exact_query_other_user": 826,
+    "global_other_user": 2745,
+    "target_no_history": 429
+  },
+  "matched_history_length_absolute_difference": {
+    "count": 3571,
+    "max": 19,
+    "mean": 0.9915989918790254,
+    "min": 0
+  },
+  "matching": {
+    "caveat": "Global fallback is a mechanical pilot control, not a final provenance-matched wrong-user design.",
+    "constraints": [
+      "different_user",
+      "donor events truncated to ts < target ts",
+      "donor history excludes every target candidate item"
+    ],
+    "distance": [
+      "history_length_absolute_difference",
+      "click_purchase_composition_l1",
+      "history_time_span_absolute_difference",
+      "seeded_hash_tie_break"
+    ],
+    "global_donor_shortlist_size": 512,
+    "global_shortlist": "deterministic cyclic window over source-order donors, with start derived from seed and target request id; all exact-query donors remain eligible",
+    "priority": [
+      "exact_query_other_user",
+      "global_other_user"
+    ]
+  },
+  "model_scores_read": false,
+  "motivation_v12_release_binding": {
+    "condition_assignment_names": {
+      "full": "true",
+      "null": "null",
+      "wrong": "wrong"
+    },
+    "conditions": [
+      "full",
+      "null",
+      "wrong"
+    ],
+    "dataset_id": "kuaisearch",
+    "dataset_version": "full_confirm_preceding40k_newholdout4k_v12",
+    "external_donor_records_path": "data/standardized/kuaisearch/full_confirm_preceding40k_v11/records_train.jsonl",
+    "external_donor_records_role": "development_records_train",
+    "external_donor_records_sha256": "3bcc86ff867ada54f90289153b1b1cf3f9277efdabba6672b73c865a2433beea",
+    "holdout_integrity_lock_sha256": "4643f3d7eb28366bc855c363cd5af3fabc6fbbf6aa6679462995df5e6e97a054",
+    "holdout_manifest_sha256": "21f4c45b4e796a3808cb0db9de066f1e3fbf8e50a2eff8a4bdf3f1bf17d8f3bb",
+    "implementation": {
+      "digest": "f6ec6991f34466eb02ff164d5575c34547e68861798901ad4bcbda5c51b6255e",
+      "files": [
+        {
+          "path": "scripts/materialize_history_assignments.py",
+          "sha256": "6b4243d114c4d3cf42775728e187406b3942fba36b9710dd2f4f212868872fd4"
+        },
+        {
+          "path": "src/myrec/data/history_assignments.py",
+          "sha256": "57c868689db6fd6f978590c15296c6093d1cf48e9d7141c9a00bd83391b187bd"
+        }
+      ],
+      "schema_version": 1
+    },
+    "model_scores_read": false,
+    "post_selection_release_lock_path": "runs/20260717_kuaisearch_motivation_v12_post_selection_release_lock/post_selection_release_lock.json",
+    "post_selection_release_lock_sha256": "a4ae744d78e084685a1c14f6703fe9d4f3f05805da8f5ae2ee8d423f2a3e9d3f",
+    "protocol_sha256": "6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43",
+    "qrels_read": false,
+    "recipe": {
+      "condition_assignment_names": {
+        "full": "true",
+        "null": "null",
+        "wrong": "wrong"
+      },
+      "conditions": [
+        "full",
+        "null",
+        "wrong"
+      ],
+      "global_donor_shortlist_size": 512,
+      "global_shortlist_scope": "global_other_user_fallback_only_exact_query_donors_never_shortened",
+      "model_scores_read": false,
+      "qrels_read": false,
+      "schema_version": 1,
+      "seed": 20260714,
+      "target_population_included_in_wrong_user_donor_pool": true,
+      "wrong_user_constraints": [
+        "different_user",
+        "donor_events_strictly_before_target_ts",
+        "donor_history_excludes_every_target_candidate_item"
+      ],
+      "wrong_user_donor_pool_construction": "external_records_train_then_append_target_requests_absent_by_request_id",
+      "wrong_user_external_donor_records_role": "development_records_train"
+    },
+    "schema_version": 1,
+    "source_records_path": "data/standardized/kuaisearch/full_confirm_preceding40k_newholdout4k_v12/records_confirmation.jsonl",
+    "source_records_role": "registered_new_holdout_confirmation",
+    "source_records_sha256": "828127bb611e1b7429e596a1a66977854cb9bbaf64ae443d00f1b1c32c203e8f",
+    "target_population_included_in_wrong_user_donor_pool": true,
+    "verified_before_materialization": true
+  },
+  "qrels_read": false,
+  "requests": 4000,
+  "schema_version": 1,
+  "seed": 20260714,
+  "source_records_path": "data/standardized/kuaisearch/full_confirm_preceding40k_newholdout4k_v12/records_confirmation.jsonl",
+  "source_records_sha256": "828127bb611e1b7429e596a1a66977854cb9bbaf64ae443d00f1b1c32c203e8f",
+  "target_candidate_leakage_violations": 0
+}

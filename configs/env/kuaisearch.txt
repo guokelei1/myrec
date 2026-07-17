@@ -1,12 +1,10 @@
-# pps-kuaisearch environment manifest
+# Motivation V1.2 KuaiSearch environment manifest
 
-Purpose: Batch 2b B5o KuaiSearch official ranking code.
-Source requirements: `baselines/kuaisearch_official/requirements.txt`.
+Purpose: reproduce the current KuaiSearch Motivation V1.2 data preparation,
+Q0--Q3 Qwen rankers, W0 witness, and shared evaluation commands.
 
-This file records the clean, reproducible dependency surface used for B5o
-environment sanity. It is intentionally not a raw `pip freeze`, because the
-working environment was cloned from an existing PyTorch environment and the raw
-freeze included unrelated editable local packages and build paths.
+This is a compact dependency contract rather than a raw `pip freeze`; it
+excludes machine-local editable packages and build paths.
 
 Environment:
 
@@ -38,8 +36,10 @@ wandb==0.28.0
 pyyaml==6.0.2
 ```
 
-Sanity command:
+Sanity commands:
 
 ```bash
-conda run -n pps-kuaisearch python baselines/kuaisearch_official/ranking/main.py --help
+python scripts/validate_standardized_records.py --help
+python scripts/train_motivation_v12_ranker.py --help
+python scripts/evaluate_motivation_v12_evidence.py --help
 ```

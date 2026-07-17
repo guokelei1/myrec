@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import bisect
 import json
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 from myrec.data.contracts import audit_standardized_file, validate_standardized_record
 from myrec.utils.hashing import sha256_file, sha256_text
@@ -17,6 +18,9 @@ from myrec.utils.jsonl import iter_jsonl, write_json
 RequestKey = tuple[str, str, str, int]
 Event = tuple[int, int, str, str]
 
+_SOURCE_SPLIT_SUFFIX_RE = re.compile(
+    r'(?<!\\)"split"\s*:\s*"([^"\\]*)"\s*}\s*$'
+)
 
 @dataclass(frozen=True)
 class SourceRequest:
@@ -144,6 +148,8 @@ def build_kuaisearch_lite_scout(
             "included_source_splits": ["train"],
             "excluded_source_split_counts": dict(source["excluded_split_counts"]),
             "evaluation_source_behavior_fields_accessed": False,
+            "non_train_rows_split_gated_before_json_decode": True,
+            "non_train_json_payloads_deserialized": False,
         },
         "selection": {
             "strategy": "latest source-train time window after label-free candidate-size filter",
@@ -221,9 +227,8 @@ def _collect_source_state(
     eligible_keys: list[RequestKey] = []
     events_by_user: defaultdict[str, list[Event]] = defaultdict(list)
     excluded_split_counts: Counter[str] = Counter()
-    for row in iter_jsonl(path):
-        source_split = str(row.get("split", ""))
-        if source_split != "train":
+    for source_split, row in _iter_split_gated_source_rows(path):
+        if row is None:
             excluded_split_counts[source_split] += 1
             continue
         key = _request_key(row)
@@ -306,8 +311,8 @@ def _load_selected_requests(
         user: [event[0] for event in events]
         for user, events in events_by_user.items()
     }
-    for row in iter_jsonl(path):
-        if str(row.get("split", "")) != "train":
+    for _, row in _iter_split_gated_source_rows(path):
+        if row is None:
             continue
         key = _request_key(row)
         if key not in selected_keys:
@@ -374,8 +379,27 @@ def _write_scout(
     dataset_version: str,
     include_history_query: bool,
     evaluation_split: str = "dev",
+    output_splits: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
-    splits = ("train", evaluation_split)
+    splits = (
+        ("train", evaluation_split)
+        if output_splits is None
+        else output_splits
+    )
+    if not splits or len(set(splits)) != len(splits):
+        raise ValueError("output_splits must contain distinct split names")
+    unsupported = set(splits) - {"train", evaluation_split}
+    if unsupported:
+        raise ValueError(
+            "output_splits may only contain train and the evaluation split: "
+            f"{sorted(unsupported)}"
+        )
+    request_splits = {request.split for request in requests}
+    if request_splits != set(splits):
+        raise ValueError(
+            "request/output split coverage mismatch: "
+            f"requests={sorted(request_splits)} outputs={sorted(splits)}"
+        )
     record_paths = {
         split: output_dir / f"records_{split}.jsonl" for split in splits
     }
@@ -538,11 +562,17 @@ def _write_scout(
             "candidate_manifest": _file_info(candidate_manifest_path),
             "request_manifest": _file_info(request_manifest_path),
         },
-        "label_isolation": {
-            f"{evaluation_split}_records_label_free": True,
-            f"{evaluation_split}_labels_path": str(qrels_paths[evaluation_split]),
-            f"scoring_code_may_read_{evaluation_split}_labels": False,
-        },
+        "label_isolation": (
+            {
+                f"{evaluation_split}_records_label_free": True,
+                f"{evaluation_split}_labels_path": str(
+                    qrels_paths[evaluation_split]
+                ),
+                f"scoring_code_may_read_{evaluation_split}_labels": False,
+            }
+            if evaluation_split in splits
+            else {f"{evaluation_split}_written": False}
+        ),
     }
 
 
@@ -558,6 +588,129 @@ def _load_manifest_request_ids(path: str | Path | None) -> set[str]:
     if len(request_ids) != len(entries):
         raise ValueError(f"duplicate request ids in manifest: {manifest_path}")
     return request_ids
+
+
+def _iter_split_gated_source_rows(
+    path: Path,
+) -> Iterable[tuple[str, dict[str, Any] | None]]:
+    """Decode only logical source-train rows from a physically mixed JSONL.
+
+    KuaiSearch's public ``recall/train.jsonl`` contains logical ``split=test``
+    rows.  Reading the top-level split marker from raw text before ``json.loads``
+    prevents candidate, click, purchase, query, user, and history-bearing fields
+    in those rows from being deserialized or exposed to the materializer.
+    """
+
+    with path.open("r", encoding="utf-8") as handle:
+        for line_no, line in enumerate(handle, start=1):
+            if not line.strip():
+                continue
+            suffix_match = _SOURCE_SPLIT_SUFFIX_RE.search(line)
+            source_split = (
+                suffix_match.group(1)
+                if suffix_match is not None
+                else _top_level_string_field(line, "split")
+            )
+            if source_split is None:
+                raise ValueError(f"{path}:{line_no}: source row has no split marker")
+            if source_split != "train":
+                yield source_split, None
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError as exc:
+                raise ValueError(f"{path}:{line_no}: invalid source-train JSON") from exc
+            if not isinstance(row, dict):
+                raise ValueError(f"{path}:{line_no}: source-train row is not an object")
+            if str(row.get("split")) != "train":
+                raise ValueError(f"{path}:{line_no}: source split gate mismatch")
+            yield source_split, row
+
+
+def _top_level_string_field(line: str, field: str) -> str | None:
+    """Read one top-level JSON string field without decoding other values."""
+
+    decoder = json.JSONDecoder()
+    index = _skip_whitespace(line, 0)
+    if index >= len(line) or line[index] != "{":
+        return None
+    index += 1
+    while True:
+        index = _skip_whitespace(line, index)
+        if index >= len(line) or line[index] == "}":
+            return None
+        try:
+            key, index = decoder.raw_decode(line, index)
+        except json.JSONDecodeError:
+            return None
+        if not isinstance(key, str):
+            return None
+        index = _skip_whitespace(line, index)
+        if index >= len(line) or line[index] != ":":
+            return None
+        index = _skip_whitespace(line, index + 1)
+        if key == field:
+            try:
+                value, _ = decoder.raw_decode(line, index)
+            except json.JSONDecodeError:
+                return None
+            return value if isinstance(value, str) else None
+        index = _skip_json_value(line, index)
+        index = _skip_whitespace(line, index)
+        if index >= len(line):
+            return None
+        if line[index] == ",":
+            index += 1
+            continue
+        if line[index] == "}":
+            return None
+        return None
+
+
+def _skip_json_value(line: str, index: int) -> int:
+    """Skip raw JSON value bytes without constructing the represented value."""
+
+    if index >= len(line):
+        return index
+    opening = line[index]
+    if opening == '"':
+        return _skip_json_string(line, index)
+    if opening not in "[{":
+        while index < len(line) and line[index] not in ",}":
+            index += 1
+        return index
+    closing = {"[": "]", "{": "}"}
+    stack = [closing[opening]]
+    index += 1
+    while index < len(line) and stack:
+        character = line[index]
+        if character == '"':
+            index = _skip_json_string(line, index)
+            continue
+        if character in "[{":
+            stack.append(closing[character])
+        elif character == stack[-1]:
+            stack.pop()
+        index += 1
+    return index
+
+
+def _skip_json_string(line: str, index: int) -> int:
+    index += 1
+    while index < len(line):
+        if line[index] == "\\":
+            index += 2
+            continue
+        if line[index] == '"':
+            return index + 1
+        index += 1
+    return index
+
+
+def _skip_whitespace(line: str, index: int) -> int:
+    while index < len(line) and line[index].isspace():
+        index += 1
+    return index
 
 
 def _request_key(row: dict[str, Any]) -> RequestKey:

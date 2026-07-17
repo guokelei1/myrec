@@ -1,7 +1,8 @@
 # Paper evidence constraints
 
-Status: supporting evidence-hygiene rules. Current methods, datasets, budgets,
-and execution order come from `experiments/motivation_v1_2/plan.md`.
+Status: supporting evidence-hygiene rules. Current probes, data use, budgets,
+and execution order come from
+`experiments/motivation/mechanism_analysis_plan.md`.
 
 1. Use one unified record contract with strictly prior history, a fixed
    candidate slate, and labels outside internal-dev/confirmation records.
@@ -17,5 +18,5 @@ and execution order come from `experiments/motivation_v1_2/plan.md`.
 6. Preserve negative and contradictory results; do not rescue a claim with an
    outcome-selected seed, method, slice, or endpoint.
 
-Former doc 34/E0--E8, C01--C80, R0, and Failure Card workflows are inactive and
-are not part of Motivation V1.2.
+Former doc 34/E0--E8, C01--C80, R0, and Failure Card workflows are removed and
+are not part of the current Motivation mechanism analysis.

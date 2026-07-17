@@ -1,15 +1,14 @@
 # 商品重排中 recurrence–transfer 失衡的相关工作
 
-状态：2026-07-16 文献调研记录。本文服务于 Motivation V1.1 的学术定位，记录与
-`recurrence–transfer` 观察最相关的原始论文、已有优化路径和当前未被覆盖的证据空缺。
-本文只整理相关工作，不授权新的方法扩展或训练范围。
+状态：2026-07-17 文献与机制假设索引。本文服务于当前 Motivation 的学术定位，记录与
+`recurrence–transfer` 观察最相关的原始论文、已有优化路径和待判别机制。具体执行与训练
+边界只由 `experiments/motivation/mechanism_analysis_plan.md` 定义。
 
 当前实验结论和数值以
-[`41_motivation_v11_current_conclusion_zh.md`](41_motivation_v11_current_conclusion_zh.md)
-为准；冻结 V1 证据见
-[`40_transformer_recurrence_transfer_motivation_v1_zh.md`](40_transformer_recurrence_transfer_motivation_v1_zh.md)。
+[`motivation.md`](motivation.md)
+为准；先导证据已经压缩进当前 Motivation 文档。
 实验、文献与下一步假设的完整推理链见
-[`43_llm_rerank_recurrence_transfer_research_logic_zh.md`](43_llm_rerank_recurrence_transfer_research_logic_zh.md)。
+[`motivation.md`](motivation.md)。
 
 ## 1. 术语与调研结论
 
@@ -172,29 +171,34 @@ transfer；但它们共同支持一个机制判断：要改善未见候选，模
 因此，已有论文报告“加入历史后总体 NDCG/MRR 提升”，并不能确定提升来自 recurrence、
 transfer，还是二者的流量加权。这个 attribution gap 是本项目最清楚的学术位置。
 
-结合 V1.1，当前应使用的有界表述是：
+结合冻结的 V1.2 第一轮证据，当前应使用的有界表述是：
 
 > Target recurrence can strongly amplify a ranker's response to history. Transfer
 > to candidate-disjoint targets is possible—as demonstrated on JDsearch—but its
 > per-request effect is much smaller and is less stable across datasets and models.
 
-不能声称 transfer 不存在，也不能声称所有 Transformer 都有固定比例的失衡。KuaiSearch
-冻结 V1 和 InstructRec 多 seed 提供弱/不可靠 no-overlap 证据；TEM 扩展没有稳定复现；
-JDsearch 则提供可靠但远小于 recurrence 的 no-overlap 正增量。
+不能声称 transfer 不存在，也不能声称所有 Transformer 都有固定比例的失衡。当前 Q0--Q3
+只在单 seed、回溯式 KuaiSearch 确认人口上共同表现为 recurrence-dominant；W0 也没有建立
+recoverable headroom。此前 JDsearch 结果说明跨商品 transfer 在相邻设置中可能存在，但不能
+替代当前信息边界内的 recoverability control。
 
-## 6. 对 Motivation V1.2 后续诊断的文献启示
+## 6. 对当前机制分析的文献启示
 
-在提出新架构前，最有信息量的顺序是：
+第一轮多方法与 W0 实测已经完成。当前在提出新架构前，最有信息量的顺序是：
 
-1. 将 CoPPS/BATA 一类强历史模型接入同一 target-aware evaluator，先判断其总体提升是否
-   真正提高 no-overlap history delta；
-2. 在冻结训练人口上使用 repeat/no-overlap 平衡采样或分层 loss，检查容易的 repeat 样本
-   是否主导梯度；
-3. 使用 query-relevant history selection 和 query-matched hard negatives，区分“筛掉噪声”
-   与“学会跨商品偏好”两个机制；
-4. 以同类别/同属性但不同 ID 的历史替换做最便宜的可逆 probe，判断模型是否保持预测；
-5. 先完成当前多方法与 witness 的实测，再依据结果决定是否需要新的机制研究；本文不预先
-   授权后续架构。
+1. 用同一可见字段建立简单、可解释的 transfer-only positive control，先判断信号上界；
+2. 使用 query-relevant history selection、等长无关历史注入和 query-matched hard negatives，
+   区分“没有读到相关历史”与“读到后不会迁移”；
+3. 以同类别/同属性但不同 ID 的历史替换做可逆 probe，区分 item recurrence 与偏好抽象；
+4. 结合 layerwise representation/activation patch，区分“没有形成偏好表示”与“表示没有进入
+   candidate readout”；
+5. 在冻结训练人口上使用 repeat/no-overlap 分层梯度统计、平衡采样和分层 loss 对照，检查
+   容易的 repeat 样本是否主导优化；
+6. 将 population shift、seed 和最小可检测效应作为竞争解释，而不是把区间跨 0 直接解释为
+   模型无能力。
+
+继续优化当前 W0 recipe 不是机制阶段的前置条件；其科学角色可以由满足相同信息边界的更简单
+positive control 承担。诊断性干预与平衡训练只用于识别瓶颈，不自动成为解决方案。
 
 候选技术来源可以归纳为四类：CoPPS/COCA 的对比增强，BATA/HMPPS/UR4Rec 的
 query/candidate-conditioned 历史读取，CAMI/MemRerank 的兴趣分解或记忆压缩，以及

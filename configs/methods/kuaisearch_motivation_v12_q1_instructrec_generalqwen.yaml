@@ -1,0 +1,36 @@
+schema_version: 1
+config_id: kuaisearch_motivation_v12_q1_instructrec_generalqwen_v1
+protocol:
+  path: experiments/motivation_v1_2/protocol.yaml
+  sha256: 6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43
+method_id: q1_instructrec_generalqwen
+model:
+  base_model_path: models/huggingface/Qwen3-0.6B
+  base_weights_sha256: f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b
+  tokenizer_sha256: aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4
+  base_artifact_manifest_sha256: 12a7e5ae8ecc02a88453fc1daec97853151f320a6ad1f242615594f2b8dd1663
+  adaptation: full_parameter
+training:
+  seed: 20260714
+  epochs: 1
+  batch_requests: 2
+  gradient_accumulation_steps: 8
+  history_budget: 6
+  max_length: 2048
+  max_target_length: 96
+  context_token_budget: 512
+  negatives_per_positive: 2
+  learning_rate: 1.0e-5
+  dtype: bfloat16
+  weight_decay: 0.01
+  warmup_ratio: 0.10
+  max_grad_norm: 1.0
+  gradient_checkpointing: true
+  history_dropout_probability: 0.0
+  checkpoint_every_optimizer_steps: 500
+  max_continuous_job_seconds: 14400
+  safe_exit_seconds: 13500
+method:
+  mechanism: recommendation_and_search_instruction_templates_with_normalized_candidate_response_likelihood
+scoring:
+  batch_size: 2

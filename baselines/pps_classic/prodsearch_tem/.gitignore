@@ -1,9 +1,0 @@
-__pycache__
-ConvProductSearchNF
-src
-HEM
-*log*
-*bak*
-*.sh
-*.pyc
-filter.py

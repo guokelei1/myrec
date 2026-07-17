@@ -31,6 +31,13 @@ def main() -> int:
         "--dtype", choices=("float16", "bfloat16", "float32"), default="bfloat16"
     )
     parser.add_argument("--allow-network", action="store_true")
+    parser.add_argument(
+        "--base-store",
+        help=(
+            "Optional verified ancestor store. Every base text/record must be present; "
+            "shared float16 rows are copied bitwise and only new texts are encoded."
+        ),
+    )
     args = parser.parse_args()
     result = materialize_frozen_text_features(
         args.records,
@@ -42,6 +49,7 @@ def main() -> int:
         max_length=args.max_length,
         dtype=args.dtype,
         local_files_only=not args.allow_network,
+        base_store=args.base_store,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     return 0

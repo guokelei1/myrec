@@ -10,7 +10,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from myrec.data.contracts import audit_standardized_file
 from myrec.data.kuaisearch_scout import (
+    SourceRequest,
     _resolve_source_path,
+    _top_level_string_field,
+    _write_scout,
     build_kuaisearch_lite_scout,
 )
 from myrec.utils.jsonl import iter_jsonl
@@ -24,6 +27,38 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class KuaiSearchScoutTest(unittest.TestCase):
+    def test_split_gate_ignores_split_like_text_inside_query(self):
+        line = json.dumps(
+            {"query": 'literal "split": "test" text', "split": "train"}
+        )
+        self.assertEqual(_top_level_string_field(line, "split"), "train")
+
+    def test_private_writer_supports_train_only_without_eval_key_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "output"
+            output.mkdir()
+            result = _write_scout(
+                output,
+                [
+                    SourceRequest(
+                        key=("u", "s", "q", 2),
+                        candidate_item_ids=(1, 2),
+                        clicked_item_ids=frozenset({1}),
+                        purchased_item_ids=frozenset(),
+                        split="train",
+                        history=(),
+                    )
+                ],
+                item_map={
+                    1: {"item_id": "1", "title": "one", "brand": "", "cat": []},
+                    2: {"item_id": "2", "title": "two", "brand": "", "cat": []},
+                },
+                dataset_version="train_only",
+                include_history_query=False,
+                output_splits=("train",),
+            )
+            self.assertEqual(result["label_isolation"], {"dev_written": False})
+
     def test_resolves_full_source_directory(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -89,7 +124,13 @@ class KuaiSearchScoutTest(unittest.TestCase):
             self.assertEqual(report["source"]["excluded_source_split_counts"], {"test": 1})
             dev_rows = list(iter_jsonl(output / "records_dev.jsonl"))
             self.assertTrue(dev_rows)
-            self.assertTrue(all("clicked" not in candidate for row in dev_rows for candidate in row["candidates"]))
+            self.assertTrue(
+                all(
+                    "clicked" not in candidate
+                    for row in dev_rows
+                    for candidate in row["candidates"]
+                )
+            )
             self.assertTrue(
                 all(event["ts"] < row["ts"] for row in dev_rows for event in row["history"])
             )

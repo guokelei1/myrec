@@ -67,12 +67,6 @@ ENV/
 !/tmp/
 !/tmp/README.md
 
-# Dated legacy source archive. The archive is preserved locally but is not part
-# of the reproducible active core.
-/archive/**
-!/archive/
-!/archive/README.md
-
 # ---------------------------------------------------------------------------
 # Common alternate names for local-only heavy outputs (catch accidental drops)
 # ---------------------------------------------------------------------------
@@ -89,34 +83,6 @@ ENV/
 /mlruns/
 /lightning_logs/
 /tensorboard/
-
-# ---------------------------------------------------------------------------
-# Proposed-system (systems/) local heavy outputs.
-# Source code under systems/ is tracked; generated artifacts are not.
-# ---------------------------------------------------------------------------
-
-/systems/**/checkpoints/
-/systems/**/runs/
-/systems/**/logs/
-/systems/**/outputs/
-/systems/**/.cache/
-/systems/**/wandb/
-/systems/**/mlruns/
-
-# ---------------------------------------------------------------------------
-# Baseline working copies: track source + patches + notes, ignore generated
-# artifacts (caught by global patterns below as well).
-# ---------------------------------------------------------------------------
-
-/baselines/**/checkpoints/
-/baselines/**/runs/
-/baselines/**/logs/
-/baselines/**/outputs/
-/baselines/**/.cache/
-/baselines/**/wandb/
-/baselines/**/mlruns/
-/baselines/**/saved_models/
-/baselines/**/__pycache__/
 
 # ---------------------------------------------------------------------------
 # Model weights, checkpoints, indexes, and binary experiment artifacts
