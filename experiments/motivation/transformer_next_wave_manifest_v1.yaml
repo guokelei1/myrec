@@ -1,0 +1,95 @@
+schema_version: 1
+manifest_id: motivation_transformer_next_wave_v1
+status: frozen_before_next_wave_outcomes
+frozen_at: "2026-07-20T06:01:00+08:00"
+
+parent_contracts:
+  plan_path: experiments/motivation/transformer_next_wave_plan_v1.md
+  parent_deep_dive_plan: experiments/motivation/transformer_deep_dive_plan.md
+  parent_supplemental_registry: experiments/motivation/transformer_supplemental_evidence_registry.yaml
+  source_test_opened: false
+  transfer_architecture_implemented: false
+
+scope:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  q0_q1_scope: only_n10_readout_geometry_after_parent_d6
+  selected_block_source: immutable_component_contract
+  fixed_blocks_for_n9: [13, 20, 27]
+  normalized_query_fold: 1
+  qrels_policy: scorer_false_shared_evaluator_true_after_integrity
+
+statistics:
+  endpoints: [target_margin, ndcg_at_10]
+  bootstrap_cluster: normalized_query
+  bootstrap_draws: 5000
+  bootstrap_seed: 20260715
+  multiple_testing: benjamini_hochberg_within_registered_family
+  effect_values_read_before_freeze: false
+
+families:
+  - id: n8_joint_component_composition
+    components: [attention_o_projection, mlp_down_projection, residual_composition]
+    models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    nodes: [attention_o_projection, mlp_down_projection]
+    conditions:
+      - baseline_full
+      - baseline_null
+      - attention_neutral_removal
+      - mlp_neutral_removal
+      - joint_attention_mlp_neutral_removal
+      - full_identity
+      - neutral_identity
+    primary_contrast: joint_minus_additive_single_removals
+    expected_sign: unresolved_before_outcomes
+    evidence_level: preregistered_interaction_diagnostic
+    qrels_required: true
+
+  - id: n9_history_path
+    components: [history_routing, attention_query_key_routing, attention_value_transport, candidate_conditioned_interaction]
+    models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    blocks: [13, 20, 27]
+    conditions:
+      - formation_logits_mask
+      - formation_value_zero
+      - transport_logits_mask
+      - transport_value_zero
+      - formation_transport_joint
+      - no_op_identity
+    endpoints: [target_margin, ndcg_at_10]
+    expected_sign: unresolved_before_outcomes
+    evidence_level: preregistered_path_diagnostic
+    qrels_required: true
+
+  - id: n10_q3_lora_rank_path
+    components: [lora_parameterization, attention_output, optimizer_effective_update]
+    models: [q3_tallrec_generalqwen]
+    scope: all_28_blocks_all_registered_qv_adapter_rank_groups
+    conditions: [a_only, b_only, outer_product_rank_group, no_adapter_identity]
+    selection_policy: report_all_registered_rank_groups
+    evidence_level: preregistered_parameterization_diagnostic
+    qrels_required: true
+
+  - id: n10_candidate_gap_geometry
+    components: [native_readout, normalization, candidate_conditioned_interaction, score_calibration_nullspace]
+    models: [q0_qwen3_reranker_06b, q1_instructrec_generalqwen, q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    nodes: [final_rmsnorm_input, final_rmsnorm_output]
+    conditions: [full_null_direction, candidate_common_direction, orthogonal_direction, identity]
+    selection_policy: no_outcome_dependent_coordinate_or_layer_selection
+    evidence_level: preregistered_readout_geometry_diagnostic
+    qrels_required: false
+
+mechanical_gates:
+  score_identity_max_abs_error: 1.0e-5
+  complete_finite_request_candidate_coverage: true
+  position_ids_and_token_ids_unchanged_for_n9: true
+  q3_shared_prompt_path_identity: true
+  source_test_opened: false
+  max_continuous_job_seconds: 13500
+
+compute:
+  gpu_count: 4
+  no_preemption_of_current_wave: true
+  independent_output_directory_per_lane: true
+  resume_required: true

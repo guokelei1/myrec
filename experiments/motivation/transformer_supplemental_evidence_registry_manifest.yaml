@@ -1,0 +1,29 @@
+schema_version: 1
+manifest_id: motivation_transformer_supplemental_evidence_registry_manifest_v1
+status: frozen_before_four_pending_supplement_outputs
+frozen_at: "2026-07-19T04:32:00Z"
+
+registry:
+  path: experiments/motivation/transformer_supplemental_evidence_registry.yaml
+  sha256: 1c53204d1e7644c1271da9e9b65b8eb9ed23d64ee7f0d0b4c4e7e7181bede251
+  total_entries: 21
+  completed_retrospective_inventory_entries: 17
+  pending_pre_output_entries: 4
+
+parent_contracts:
+  comprehensive_report_plan_sha256: edbf2c94474e194f91f7856e2a4a57ac33250f671319d4e6d5c0ad880c1e32ab
+  deep_dive_plan_sha256: 07440f4ad82c841281aa09e061a3095f48d030015a3eee6e4da8322ea7e1a584
+  deep_dive_manifest_sha256: 76445ae3c43f6ab21a708f50cc64f1e81d04d0a8541884769a596d320251a758
+  component_necessity_plan_v2_sha256: 866b04d3b072fb37e1374db754efe80056fc39d067ce9d58de47b9b2cf95c614
+  component_necessity_manifest_v2_sha256: 6b784682239e5ce8e6f1c37fed1c648658912ed03801750fe99d256b0777c0e3
+
+freeze_boundary:
+  completed_entries_are_exhaustive_retrospective_inventory: true
+  completed_descriptive_entries_cannot_upgrade_confirmatory_claims: true
+  pending_entries_frozen_before_output: true
+  pending_effect_values_read_before_freeze: false
+  pending_qrels_read_before_freeze: false
+  source_test_opened: false
+  parent_families_modified: false
+  exact_layer_index_is_architecture_evidence: false
+  only_component_functional_design_gate_may_change_design_ranking: true

@@ -1,0 +1,74 @@
+schema_version: 1
+manifest_id: transformer_n15_n16_operator_v1
+analysis_stage: transformer_deep_dive_n15_n16_operator
+purpose: >-
+  Separate two remaining Transformer operator debts after the embedding, QK-logit,
+  SwiGLU-stage, and Q/K/V projection probes: branch-residual composition and
+  RMSNorm variance/gain. The intervention changes only a registered branch
+  coefficient or one RMSNorm factor; token IDs, spans, masks, positions,
+  projection weights, and native readout algebra remain frozen.
+claim_boundary:
+  diagnostic_only: true
+  architecture_authorized: false
+  layer_or_head_selection_authorized: false
+  source_test_opened: false
+  qrels_read_by_scorer: false
+frozen_inputs:
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  records: records_dev.jsonl
+  request_count: 8000
+  methods:
+    - q2_recranker_generalqwen
+    - q3_tallrec_generalqwen
+  blocks: [13, 20, 27]
+  content_control: experiments/motivation/transformer_deep_dive_manifest.yaml
+  dataset_manifest_sha256: bd042a76411bffd3a1b81b2a547ca7abd3dec66e2e7be577b9c21d04b812c57d
+  records_sha256: 907046aa0ed69bced6a6115c15ce4f81ac6ada2937cdc810fc48a82822a2a06e
+  request_manifest_sha256: c4054a5b7d775a81b292293daa552022bf8b2d5d8004cd96f23dcbcb46b8b4f7
+  candidate_manifest_sha256: 434cb08ef7248bc0c763a7c5d8bc43342b239398066623e051e263b97cc17a9e
+model_bindings:
+  q2_recranker_generalqwen:
+    config_sha256: 88a463fe48e5a884e99bf72cc3522a82031194f13cdd4b98966b160378e9a11e
+    checkpoint_id: q2_recranker_generalqwen@e207d2213741c16f997a
+  q3_tallrec_generalqwen:
+    config_sha256: ea8e0fb2d3421408cc51ecc216bfcfc7c7a0524e14a594d24009c9678235bd91
+    checkpoint_id: q3_tallrec_generalqwen@ea46a89671b63741ada8
+operator_families:
+  residual_composition:
+    branches: [attention, mlp]
+    scope: registered_readout_rows_in_one_decoder_block
+    modes: [identity, scale_half, scale_double, sign_flip, zero]
+    holds_fixed: [incoming_residual, branch_tensor_before_coefficient, downstream_weights]
+    identity_conditions: [attention_identity, mlp_identity]
+  rmsnorm:
+    scopes: [input, post_attention, final]
+    modes:
+      - identity
+      - variance_scale_half
+      - variance_scale_double
+      - gain_scale_half
+      - gain_scale_double
+      - gain_sign_flip
+      - zero
+    holds_fixed: [hidden_input, norm_epsilon, downstream_weights, readout_positions]
+    identity_conditions: [input_identity, post_attention_identity, final_identity]
+conditions:
+  baseline_full: true
+  baseline_null: true
+  full_null_each_operator_mode: true
+data_policy:
+  scorer_qrels_read: false
+  evaluator_qrels_read_after_integrity: true
+  input_field_whitelist: true
+  normalized_query_cluster_bootstrap: true
+mechanical_gates:
+  identity_tolerance: 1.0e-5
+  require_complete_finite_coverage: true
+  require_shared_prompt_path_identity_q3: true
+  require_exactly_once_branch_or_norm_hook: true
+  require_native_operator_recomposition: true
+  max_wall_seconds: 13500
+interpretation:
+  primary_contrast: operator_effect_minus_baseline
+  secondary_contrasts: [full_null_gap_change, scale_half_vs_double, sign_flip_vs_zero]
+  unresolved_if_any_identity_or_recomposition_gate_fails: true

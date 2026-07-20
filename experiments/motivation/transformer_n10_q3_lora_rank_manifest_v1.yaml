@@ -1,0 +1,58 @@
+schema_version: 1
+manifest_id: motivation_transformer_n10_q3_lora_rank_v1
+status: frozen_before_n10_rank_outcomes
+frozen_at: "2026-07-20T06:44:00+08:00"
+
+parent_contract:
+  next_wave_manifest: experiments/motivation/transformer_next_wave_manifest_v1.yaml
+  parent_deep_dive_manifest: experiments/motivation/transformer_deep_dive_manifest.yaml
+  parent_deep_dive_manifest_sha256: 76445ae3c43f6ab21a708f50cc64f1e81d04d0a8541884769a596d320251a758
+  source_test_opened: false
+  transfer_architecture_implemented: false
+
+scope:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  model: q3_tallrec_generalqwen
+  blocks: all_28
+  projections: [q_proj, v_proj]
+  lora_rank: 8
+  normalized_query_fold: 1
+  qrels_policy: scorer_false_shared_evaluator_true_after_integrity
+
+conditions:
+  - baseline_full
+  - baseline_null
+  - a_only
+  - b_only
+  - no_adapter_identity
+  - outer_product_rank_0
+  - outer_product_rank_1
+  - outer_product_rank_2
+  - outer_product_rank_3
+  - outer_product_rank_4
+  - outer_product_rank_5
+  - outer_product_rank_6
+  - outer_product_rank_7
+
+factor_definition:
+  effective_update: B @ A
+  outer_product_rank_r: B[:,r:r+1] @ A[r:r+1,:]
+  a_only: preserve_A_zero_B_control
+  b_only: zero_A_preserve_B_control
+  no_adapter_identity: zero_B_control
+  report_all_rank_groups: true
+  outcome_dependent_rank_selection: false
+
+mechanical_gates:
+  score_identity_max_abs_error: 1.0e-5
+  complete_finite_request_candidate_coverage: true
+  factor_pairs_exactly: 56
+  source_test_opened: false
+  max_continuous_job_seconds: 13500
+
+claim_boundary:
+  highest_authorized_claim: q3_lora_parameterization_path_diagnostic
+  rank_path_is_not_architecture_necessity: true
+  transfer_architecture_authorized: false

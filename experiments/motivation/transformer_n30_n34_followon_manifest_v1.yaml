@@ -1,0 +1,64 @@
+schema_version: 1
+manifest_id: transformer_n30_n34_followon_v1
+status: preregistered_inactive
+purpose: fixed operator diagnostics for the remaining Transformer causal-debt interfaces
+parent_manifests:
+  - experiments/motivation/transformer_n25_n29_followon_manifest_v1.yaml
+  - src/myrec/mechanism/transformer_interface_inventory.py
+authorization:
+  architecture_authorized: false
+  dataset_switch_authorized: false
+  source_test_authorized: false
+  outcome_dependent_expansion: false
+models:
+  - q2_recranker_generalqwen
+  - q3_tallrec_generalqwen
+fixed_blocks: [13, 20, 27]
+families:
+  n30_token_embedding_interface:
+    scope: query_history_candidate_embedding_rows
+    operators: [identity, zero, scale_half, scale_double, sign_flip, output_norm_matched_random]
+    controls: [same_token_identity, full, null, wrong_user, reverse_removal]
+    required_audits: [token_ids_unchanged, position_ids_unchanged, mask_unchanged, span_isolation]
+  n31_rmsnorm_operator:
+    scopes: [input_rmsnorm, post_attention_rmsnorm]
+    operators: [variance_rescale, learned_gain]
+    modes: [identity, half, double, sign_flip, output_norm_matched_random]
+    controls: [full, null, wrong_user, reverse_removal, recompose_identity]
+  n32_residual_addition:
+    scopes: [attention_residual_add, mlp_residual_add]
+    operators: [native_increment, coefficient]
+    modes: [identity, zero, scale_half, scale_double, sign_flip, output_norm_matched_random]
+    controls: [full, null, wrong_user, reverse_removal]
+  n33_gqa_grouping:
+    scope: query_to_shared_kv_group_assignment
+    operators: [identity, group_permutation, group_rotation, output_norm_matched_random]
+    controls: [full, null, wrong_user, reverse_removal, same_group_identity]
+    required_audits: [qkv_values_unchanged, head_count_unchanged, mask_unchanged]
+  n34_q3_adapter_contribution:
+    model_scope: q3_tallrec_generalqwen
+    execution_mode: integrate_existing_n19_before_any_replication
+    scopes: [q_projection_adapter, v_projection_adapter]
+    operators: [identity, zero, scale_half, scale_double, sign_flip, output_norm_matched_random]
+    controls: [full, null, wrong_user, reverse_removal, shared_prompt_identity]
+mechanical_gates:
+  identity_tolerance: 1.0e-5
+  require_complete_finite_coverage: true
+  require_exact_once_hook_fire: true
+  require_shared_evaluator: true
+  require_qrels_blind_scoring: true
+  require_token_position_integrity: true
+  require_cross_model_replication: true
+  max_wall_seconds: 13500
+compute:
+  gpu_count: 4
+  launch_condition: after_n25_n29_and_component_necessity_closeout
+  wave_a: [n30_token_embedding_interface, n31_rmsnorm_operator]
+  wave_b: [n32_residual_addition, n33_gqa_grouping]
+  wave_c: [n34_q3_adapter_contribution]
+  independent_output_directory_per_lane: true
+  resume_required: true
+interpretation:
+  highest_authorized_claim: mechanism_diagnostic_only
+  no_architecture_promotion: true
+  no_outcome_dependent_expansion: true

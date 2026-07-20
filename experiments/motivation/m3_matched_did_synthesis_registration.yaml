@@ -1,0 +1,99 @@
+schema_version: 1
+registration_id: motivation_m3_q2_matched_did_synthesis_v1
+frozen_at: "2026-07-17T10:38:27Z"
+status: frozen_before_matched_control_outcomes
+repository_revision_at_freeze: 0f5c5be4d5ff97d7784ea9180e4099fb712ea000
+
+parent_probe_manifest:
+  path: experiments/motivation/probe_manifest.yaml
+  sha256: adedf0e662b9d8529162b8abffedcf6b10962913f28580af6119d807cc5d929c
+  modified_by_this_registration: false
+
+outcome_independence:
+  matched_training_outcomes_inspected: false
+  matched_scoring_outcomes_inspected: false
+  matched_evaluation_outcomes_inspected: false
+  selectors_or_family_chosen_from_outcomes: false
+
+scope:
+  dataset_id: kuaisearch
+  population: full_internal_dev_8000
+  split: dev
+  method_id: q2_recranker_generalqwen
+  role: diagnostic_control_not_paper_method
+  source_test_opened: false
+  qrels_reader: none_uses_only_admitted_shared_evaluator_outputs
+
+inputs:
+  top_level_analysis_run_id: 20260717_kuaisearch_mech_m3_q2_matched_control_analysis
+  original_pair_analysis_run_id: 20260717_kuaisearch_mech_m3_q2_matched_control_analysis_original_mixture_full_vs_null
+  surface_balanced_pair_analysis_run_id: 20260717_kuaisearch_mech_m3_q2_matched_control_analysis_surface_balanced_full_vs_null
+  required_files_per_pair: [metrics.json, metadata.json, per_request.jsonl]
+  join_key: request_id
+  exact_request_coverage: 8000
+  required_equalities:
+    - request_id_set
+    - normalized_query_cluster_per_request
+    - target_aware_surface_per_request
+    - candidate_manifest_sha256
+    - request_manifest_sha256
+    - qrels_sha256
+    - dataset_id
+    - dataset_version
+    - split
+    - label_mode
+
+analysis:
+  treatment_arm: surface_balanced
+  control_arm: original_mixture
+  arm_contrast: surface_balanced_full_minus_null_minus_original_mixture_full_minus_null
+  primary_surface: target_nonrepeat_no_candidate_overlap
+  inferential_surfaces: [target_nonrepeat_no_candidate_overlap]
+  explanatory_surfaces:
+    - all
+    - observed_positive
+    - target_repeat
+    - target_nonrepeat_other_candidate_overlap
+    - target_nonrepeat_no_history
+    - no_observed_positive
+  endpoints:
+    - endpoint_id: strict_transfer_ndcg_history_response_did
+      role: primary
+      pair_row_key: treatment_minus_control_ndcg@10
+      formula: surface_balanced_pair_value_minus_original_mixture_pair_value
+    - endpoint_id: strict_transfer_target_margin_change_did
+      role: secondary_coherence
+      pair_row_key: target_margin_change
+      formula: surface_balanced_pair_value_minus_original_mixture_pair_value
+  all_registered_endpoints_reported: true
+
+randomization_and_inference:
+  bootstrap:
+    cluster: normalized_query
+    samples: 5000
+    seed: 20260715
+    estimator: request_weighted_mean_after_resampling_normalized_query_clusters
+    ci95: sorted_draws_index_int_0.025B_and_min_B_minus_1_int_0.975B
+    p_value: finite_sample_corrected_two_sided_inclusive_zero_sign_tail
+  two_fold_check:
+    count: 2
+    normalization: concatenate_casefolded_query_after_removing_all_whitespace
+    assignment: int_sha256_normalized_query_hex_mod_2
+    selector: joined_per_request_did_mean_within_fold
+  fdr:
+    family_id: m3_q2_matched_strict_transfer_did
+    method: benjamini_hochberg
+    alpha: 0.05
+    family_size: 2
+    hypothesis_ids:
+      - strict_transfer_ndcg_history_response_did
+      - strict_transfer_target_margin_change_did
+
+decision_boundary:
+  primary_h4_selector: strict_transfer_ndcg_history_response_did
+  secondary_h4_coherence_selector: strict_transfer_target_margin_change_did
+  positive_direction: surface_balanced_greater_than_original_mixture
+  two_fold_direction_consistency_required_for_major_mechanism_claim: true
+  cross_arm_bh_rejection_required_for_confirmatory_significance_language: true
+  learning_curves_are_run_state_diagnostics_not_transfer_endpoints: true
+  diagnostic_control_must_not_be_presented_as_paper_method: true

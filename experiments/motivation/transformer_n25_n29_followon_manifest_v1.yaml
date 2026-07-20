@@ -1,0 +1,53 @@
+schema_version: 1
+manifest_id: transformer_n25_n29_followon_v1
+status: preregistered_inactive
+purpose: fixed follow-on mechanism diagnostics for previously unisolated Transformer interfaces
+parent_manifest: experiments/motivation/transformer_n17_n20_boundary_manifest_v1.yaml
+authorization:
+  architecture_authorized: false
+  dataset_switch_authorized: false
+  source_test_authorized: false
+  outcome_dependent_expansion: false
+models:
+  - q2_recranker_generalqwen
+  - q3_tallrec_generalqwen
+fixed_blocks: [13, 20, 27]
+families:
+  n25_swiglu_formation:
+    operators: [gate_proj, up_proj, silu_gate, swiglu_product]
+    modes: [identity, zero, scale_half, scale_double, sign_flip, output_norm_matched_random]
+    controls: [full, null, wrong_user, reverse_removal, same_prompt_identity]
+  n26_final_rmsnorm_readout:
+    execution_mode: integrate_existing_d6_before_any_replication
+    operators: [final_rms_variance, final_rms_gain, native_readout_rows]
+    modes: [identity, zero, scale_half, scale_double, sign_flip, output_norm_matched_random]
+    controls: [full, null, wrong_user, native_cache_free_identity]
+  n27_mask_softmax_topology:
+    operators: [causal_visibility, softmax_temperature]
+    modes: [identity, prefix_history_swap, candidate_visibility_swap, temperature_half, temperature_double]
+    controls: [answer_causal_integrity, token_position_integrity, full, null, wrong_user]
+  n28_scaled_qk_logit_formation:
+    operators: [complete_pre_mask_qk_logits]
+    modes: [identity, centered_scale_half, centered_scale_double, sign_flip, head_preserving_random]
+    controls: [full, null, wrong_user, reverse_removal, same_prompt_identity]
+  n29_attention_mlp_interaction:
+    operators: [attention_increment, mlp_increment, factorial_interaction]
+    modes: [native_native, removed_native, native_removed, removed_removed, matched_scale, sign_flip]
+    controls: [full, null, wrong_user, reverse_removal]
+mechanical_gates:
+  identity_tolerance: 1.0e-5
+  require_complete_finite_coverage: true
+  require_exact_once_hook_fire: true
+  require_shared_evaluator: true
+  require_qrels_blind_scoring: true
+  require_answer_causal_integrity: true
+  max_wall_seconds: 13500
+compute:
+  gpu_count: 4
+  launch_condition: after_n17_n20_evaluator_closeout
+  independent_output_directory_per_lane: true
+  resume_required: true
+interpretation:
+  highest_authorized_claim: mechanism_diagnostic_only
+  no_architecture_promotion: true
+  no_outcome_dependent_expansion: true

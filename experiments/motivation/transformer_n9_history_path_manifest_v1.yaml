@@ -1,0 +1,61 @@
+schema_version: 1
+manifest_id: motivation_transformer_n9_history_path_v1
+status: frozen_before_n9_outcomes
+frozen_at: "2026-07-20T06:28:00+08:00"
+
+parent_contract:
+  next_wave_manifest: experiments/motivation/transformer_next_wave_manifest_v1.yaml
+  parent_deep_dive_manifest: experiments/motivation/transformer_deep_dive_manifest.yaml
+  parent_deep_dive_manifest_sha256: 76445ae3c43f6ab21a708f50cc64f1e81d04d0a8541884769a596d320251a758
+  source_test_opened: false
+  transfer_architecture_implemented: false
+
+scope:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  blocks: [13, 20, 27]
+  normalized_query_fold: 1
+  qrels_policy: scorer_false_shared_evaluator_true_after_integrity
+
+path_definition:
+  formation_query_scope: history_summary
+  formation_span: query
+  transport_query_scope: native_readout
+  transport_span: history
+  token_ids_unchanged: true
+  position_ids_unchanged: true
+  candidate_slate_unchanged: true
+  q3_paths: [shared_prompt_last, teacher_forced_yes_last, teacher_forced_no_last]
+  no_outcome_dependent_group_selection: true
+
+conditions:
+  - baseline_full
+  - baseline_null
+  - formation_logits_mask
+  - formation_value_zero
+  - transport_logits_mask
+  - transport_value_zero
+  - formation_transport_joint
+  - no_op_identity
+
+endpoints: [target_margin, ndcg@10]
+statistics:
+  bootstrap_cluster: normalized_query
+  bootstrap_draws: 5000
+  bootstrap_seed: 20260715
+  multiple_testing: benjamini_hochberg
+  family_size: 24
+
+mechanical_gates:
+  score_identity_max_abs_error: 1.0e-5
+  complete_finite_request_candidate_coverage: true
+  formation_and_transport_hook_fire_exactly_once: true
+  source_test_opened: false
+  max_continuous_job_seconds: 13500
+
+claim_boundary:
+  highest_authorized_claim: history_formation_transport_candidate_readout_path_diagnostic
+  edge_sensitivity_is_not_operator_necessity: true
+  transfer_architecture_unauthorized: true

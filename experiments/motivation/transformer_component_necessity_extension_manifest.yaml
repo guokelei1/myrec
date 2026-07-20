@@ -1,0 +1,98 @@
+schema_version: 1
+manifest_id: motivation_transformer_component_necessity_extension_v1
+status: frozen_before_component_necessity_outcomes
+frozen_at: "2026-07-19T03:24:00Z"
+repository_revision_at_freeze: 0f5c5be4d5ff97d7784ea9180e4099fb712ea000
+
+scientific_plan:
+  path: experiments/motivation/transformer_component_necessity_extension_plan.md
+  sha256: 124beb7a19a8d22a5d5ddb9e87d67c868c038b2250027c6822382c2985c7fb40
+  scientific_effect_values_read_before_freeze: false
+  source_test_opened_before_freeze: false
+
+parent_deep_dive:
+  plan_path: experiments/motivation/transformer_deep_dive_plan.md
+  plan_sha256: 07440f4ad82c841281aa09e061a3095f48d030015a3eee6e4da8322ea7e1a584
+  manifest_path: experiments/motivation/transformer_deep_dive_manifest.yaml
+  manifest_sha256: 76445ae3c43f6ab21a708f50cc64f1e81d04d0a8541884769a596d320251a758
+  parent_families_modified: false
+  required_predecessor: d2_selected_branch_completed_or_gate_stopped
+
+frozen_inputs:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  dataset_manifest_sha256: bd042a76411bffd3a1b81b2a547ca7abd3dec66e2e7be577b9c21d04b812c57d
+  records_dev_sha256: 907046aa0ed69bced6a6115c15ce4f81ac6ada2937cdc810fc48a82822a2a06e
+  request_manifest_sha256: c4054a5b7d775a81b292293daa552022bf8b2d5d8004cd96f23dcbcb46b8b4f7
+  candidate_manifest_sha256: 434cb08ef7248bc0c763a7c5d8bc43342b239398066623e051e263b97cc17a9e
+  models:
+    q2_recranker_generalqwen:
+      config_path: configs/methods/kuaisearch_motivation_v12_q2_recranker_generalqwen.yaml
+      config_sha256: 88a463fe48e5a884e99bf72cc3522a82031194f13cdd4b98966b160378e9a11e
+      checkpoint_id: q2_recranker_generalqwen@e207d2213741c16f997a
+    q3_tallrec_generalqwen:
+      config_path: configs/methods/kuaisearch_motivation_v12_q3_tallrec_generalqwen.yaml
+      config_sha256: ea8e0fb2d3421408cc51ecc216bfcfc7c7a0524e14a594d24009c9678235bd91
+      checkpoint_id: q3_tallrec_generalqwen@ea46a89671b63741ada8
+  source_test_opened: false
+
+registered_design:
+  models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  fold: normalized_query_sha256_mod_2_fold_1
+  selected_block_source: immutable_parent_d2_selected_branch_contract
+  exact_layer_index_is_architecture_evidence: false
+  nodes:
+    - block_input_residual
+    - attention_o_projection
+    - mlp_down_projection
+    - block_output_residual
+  conditions:
+    - baseline_full
+    - baseline_null
+    - full_to_full_identity
+    - null_to_full_removal
+  q3_native_positions:
+    - shared_prompt_last
+    - teacher_forced_yes_last
+    - teacher_forced_no_last
+  endpoints: [target_margin, ndcg_at_10]
+  primary_contrast: null_to_full_removal_minus_baseline_full
+  expected_harm_removal_sign: positive
+  family_policy:
+    target_margin_units: 8
+    ndcg_at_10_units: 8
+    multiple_testing: benjamini_hochberg_within_endpoint
+    alpha: 0.05
+    missing_or_gate_stopped_cell_p: 1.0
+  bootstrap:
+    cluster: normalized_query
+    draws: 5000
+    seed: 20260715
+  ndcg_equivalence_band: [-0.005, 0.005]
+  target_margin_sesoi: null
+
+mechanical_gates:
+  score_identity_max_abs_error: 1.0e-5
+  frozen_baseline_recompute: path_local_bf16_bound
+  complete_finite_request_candidate_condition_coverage: true
+  q3_shared_prompt_path_identity: exact
+  selected_branch_contract_sha_bound: true
+  implementation_digest_bound: true
+
+claim_boundary:
+  highest_authorized_claim: component_state_is_a_necessary_mediator_conditional_on_full_recipient_context
+  operator_necessity_authorized: false
+  exclusive_origin_authorized: false
+  cross_dataset_or_model_scale_generalization_authorized: false
+  design_ranking_requires_parent_sufficiency_and_specificity: true
+
+compute_and_safety:
+  maximum_continuous_job_seconds: 13500
+  run_after_parent_selected_branch: true
+  may_preempt_parent_or_d3_to_d7_jobs: false
+  scorer_reads_dev_qrels: false
+  evaluator_reads_qrels_after_integrity: true
+  implement_transfer_architecture: false
+  switch_dataset: false
+  open_source_test: false

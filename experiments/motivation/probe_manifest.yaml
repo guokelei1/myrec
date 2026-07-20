@@ -1,0 +1,176 @@
+schema_version: 1
+probe_manifest_id: motivation_mechanism_first_diagnosis_v1
+frozen_at: "2026-07-17T04:13:18Z"
+status: frozen_before_mechanism_outcomes
+repository_revision_at_freeze: 0f5c5be4d5ff97d7784ea9180e4099fb712ea000
+
+scope:
+  dataset_id: kuaisearch
+  development_population: full_confirm_preceding40k_v11
+  model_selection_population: train_only
+  evaluation_population: internal_dev_only
+  legacy_2k_role: descriptive_compatibility_after_mechanism_status_freeze
+  new_4k_role: descriptive_compatibility_after_mechanism_status_freeze
+  source_test_opened: false
+  proposed_architecture_implementation_authorized: false
+
+frozen_inputs:
+  first_round_protocol:
+    path: experiments/motivation/protocol.yaml
+    sha256: 6788d27cce8186be02dae4595129157fcca5032b49c1107ec83fdd2f9ecf8e43
+  release_lock:
+    path: runs/20260717_kuaisearch_motivation_v12_post_selection_release_lock/post_selection_release_lock.json
+    sha256: a4ae744d78e084685a1c14f6703fe9d4f3f05805da8f5ae2ee8d423f2a3e9d3f
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  dataset_manifest_sha256: bd042a76411bffd3a1b81b2a547ca7abd3dec66e2e7be577b9c21d04b812c57d
+  records_train_sha256: 3bcc86ff867ada54f90289153b1b1cf3f9277efdabba6672b73c865a2433beea
+  records_dev_sha256: 907046aa0ed69bced6a6115c15ce4f81ac6ada2937cdc810fc48a82822a2a06e
+  qrels_train_sha256: ffffd39ee1e3fe1290c0797c11730ae11945b3a36a60fa24cae9a11e2a311a5c
+  qrels_dev_sha256: 202c87b6e946ddc551f1ebc6f1799681ff7c541bb4cd3313ab46aeee23b210ab
+  candidate_manifest_sha256: 434cb08ef7248bc0c763a7c5d8bc43342b239398066623e051e263b97cc17a9e
+  request_manifest_sha256: c4054a5b7d775a81b292293daa552022bf8b2d5d8004cd96f23dcbcb46b8b4f7
+  frozen_text_features:
+    path: artifacts/motivation_v1_2/frozen_text_features/kuaisearch_full_confirm_preceding40k_v11_bge_small_zh_itemsem_v2_l128_bf16_a40
+    store_fingerprint_sha256: 62b48e5ee25fb2b4b7ddad76d8a5f9aa732884f6b7a24ba56872d805c7cb6caf
+    qrels_read: false
+  models:
+    q0_qwen3_reranker_06b:
+      config: configs/methods/kuaisearch_motivation_v12_q0_qwen3_reranker_06b.yaml
+      config_sha256: 6e9f7d93dadf2c6946049ba7290912e753ab8a6c9297116e211926748429dd66
+      checkpoint: artifacts/motivation_v1_2/checkpoints/q0_qwen3_reranker_06b_seed20260714
+      checkpoint_id: q0_qwen3_reranker_06b@654f929996f7eb09f7b2
+    q1_instructrec_generalqwen:
+      config: configs/methods/kuaisearch_motivation_v12_q1_instructrec_generalqwen.yaml
+      config_sha256: 1b68a3f4e79807862a0c1da369caa7b2d12218de1fe0dbf6ab2dfe18a5f15493
+      checkpoint: artifacts/motivation_v1_2/checkpoints/q1_instructrec_generalqwen_seed20260714
+      checkpoint_id: q1_instructrec_generalqwen@9625a8c5a36327cec65f
+    q2_recranker_generalqwen:
+      config: configs/methods/kuaisearch_motivation_v12_q2_recranker_generalqwen.yaml
+      config_sha256: 88a463fe48e5a884e99bf72cc3522a82031194f13cdd4b98966b160378e9a11e
+      checkpoint: artifacts/motivation_v1_2/checkpoints/q2_recranker_generalqwen_seed20260714
+      checkpoint_id: q2_recranker_generalqwen@e207d2213741c16f997a
+    q3_tallrec_generalqwen:
+      config: configs/methods/kuaisearch_motivation_v12_q3_tallrec_generalqwen.yaml
+      config_sha256: ea8e0fb2d3421408cc51ecc216bfcfc7c7a0524e14a594d24009c9678235bd91
+      checkpoint: artifacts/motivation_v1_2/checkpoints/q3_tallrec_generalqwen_seed20260714
+      checkpoint_id: q3_tallrec_generalqwen@ea46a89671b63741ada8
+
+isolation:
+  request_input_whitelist: [request_id, user_id, session_id, ts, query, history, candidates, masks]
+  history_input_whitelist: [item_id, title, brand, cat, event, query, ts]
+  candidate_input_whitelist: [item_id, title, brand, cat]
+  forbidden_model_inputs: [clicked, purchased, relevance, is_clicked, is_purchased, label, labels, target]
+  raw_item_id_serialized_as_model_feature: false
+  train_qrels_reader: training_and_train_only_probe_only
+  dev_qrels_reader: shared_mechanism_evaluator_only_after_score_integrity_audit
+  complete_finite_score_coverage_required: true
+  candidate_and_request_hashes_required: true
+
+randomization:
+  intervention_seed: 20260717
+  frozen_training_seed: 20260714
+  bootstrap_seed: 20260715
+  bootstrap_samples: 5000
+  bootstrap_cluster: normalized_query
+  two_fold_check: sha256_normalized_query_mod_2
+  within_family_fdr: benjamini_hochberg_0_05
+
+m0_recoverability:
+  implementation: train_only_pairwise_linear_probe_over_frozen_visible_field_bge_features
+  train_surface: history_present_and_no_candidate_history_id_overlap
+  raw_item_id_features: forbidden
+  history_budget: 6
+  routing_temperature: 5.0
+  maximum_pairs_per_request: 16
+  regularization: logistic_regression_C_1_no_intercept_no_tuning
+  conditions: [full, null, history_shuffle, routing_query_shuffle]
+  separately_fitted_negative_control: within_request_label_shuffle
+  primary_endpoint: strict_transfer_treatment_minus_null_graded_ndcg_at_10
+  secondary_endpoint: strict_transfer_target_vs_best_lower_gain_competitor_margin_change
+  required_controls: [label_shuffle, history_shuffle, routing_query_shuffle]
+  power_effect_sizes: [0.005, 0.01, 0.02]
+
+m1_input_interventions:
+  models: [q0_qwen3_reranker_06b, q1_instructrec_generalqwen, q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  population: full_internal_dev_8000
+  visible_history_budget: 6
+  donor_population: train_history_events_only
+  donor_exclusions: [all_current_candidates, all_original_history_items]
+  conditions:
+    relevant_6: highest_query_to_history_BGE_cosine_keep_original_temporal_order
+    irrelevant_6: lowest_query_to_history_BGE_cosine_keep_original_temporal_order
+    recent_6_order_shuffle: stable_shuffle_of_exact_recent_6_set
+    semantic_preserving_different_id: different_id_same_brand_and_deepest_category_then_same_deepest_category_fallback
+    semantic_breaking_different_id: different_top_category_and_brand_length_matched_low_similarity
+    candidate_overlap_semantic_swap: label_blind_replace_only_history_items_present_in_candidate_slate
+  registered_comparisons:
+    - [relevant_6, irrelevant_6]
+    - [relevant_6, frozen_full]
+    - [recent_6_order_shuffle, frozen_full]
+    - [semantic_preserving_different_id, semantic_breaking_different_id]
+    - [semantic_preserving_different_id, frozen_full]
+    - [candidate_overlap_semantic_swap, frozen_full]
+  primary_surface: strict_transfer_target_nonrepeat_no_candidate_overlap
+  primary_endpoints:
+    - target_vs_best_lower_gain_competitor_margin_change
+    - treatment_minus_control_graded_ndcg_at_10
+  explanatory_surfaces: [recurrence, other_overlap, overall]
+  all_conditions_reported: true
+
+m2_representation_and_mediation:
+  anchors: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  anchor_reason: shared_general_qwen_initialization_with_full_parameter_vs_lora_training_boundary
+  transformer_blocks_zero_based: [6, 13, 20, 27]
+  hidden_state_indices: [0, 7, 14, 21, 28]
+  representation_train_population: train_only_strict_transfer_stable_hash_first_8192
+  representation_split: normalized_query_cluster_75_25_stable_hash
+  labels:
+    category: top_64_deepest_positive_categories_by_train_frequency_min_100
+    brand: top_64_positive_brands_by_train_frequency_min_100
+  representation_conditions: [full, null, relevant_6, irrelevant_6]
+  representation_negative_controls: [random_labels, embedding_state_index_0]
+  patch_population: full_internal_dev_8000
+  patch_blocks_zero_based: [13, 27]
+  patch_direction: full_readout_position_to_null_same_request_same_candidate
+  patch_negative_controls: [full_to_full_identity, cross_request_same_layer_patch]
+  primary_readout_endpoint: strict_transfer_target_margin_mediated_fraction
+  expansion_to_q0_q1_allowed: false
+
+m3_objective_and_gradients:
+  anchors: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  surfaces: [recurrence, strict_transfer, other_overlap]
+  requests_per_surface: 96
+  selection: stable_hash_within_surface_before_loss_or_gradient_access
+  states: [base_initialization, frozen_final_checkpoint]
+  q2_parameter_blocks:
+    attention_qv_blocks_zero_based: [0, 6, 13, 20, 27]
+    readout_rows: [yes_token, no_token]
+  q3_parameter_blocks: all_trainable_lora_qv_parameters
+  endpoints: [loss, gradient_norm, gradient_cosine, normalized_update_share]
+  negative_control: within_request_label_shuffle
+  matched_training_control:
+    anchor: q2_recranker_generalqwen
+    train_groups: 4096
+    optimizer_steps: 256
+    conditions: [original_mixture, surface_balanced]
+    fixed: [backbone_initialization, optimizer, learning_rate, visible_fields, total_steps]
+    role: diagnostic_control_not_paper_method
+
+decision_and_stop:
+  minimum_mechanism_evidence:
+    - one_reversible_behavior_intervention
+    - one_independent_representation_mediation_gradient_or_recoverability_source
+    - corresponding_negative_control
+    - direction_consistent_in_both_normalized_query_folds
+  statuses: [supported, weakened, rejected, unresolved]
+  contradictory_valid_results_must_be_retained: true
+  no_outcome_selected_conditions_layers_models_slices_or_seeds: true
+  stop_after:
+    - H0_H5_evidence_matrix
+    - architecture_opportunity_matrix
+    - concise_mechanism_stage_report
+  forbidden_after_stop_without_new_user_direction:
+    - implement_transfer_architecture
+    - switch_dataset
+    - open_source_test
+    - present_diagnostic_training_control_as_paper_method

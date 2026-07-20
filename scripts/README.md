@@ -14,8 +14,10 @@ These are the frozen V1.2 baseline and reusable shared entry points:
 - `evaluate_motivation_v12_evidence.py`: run the shared audit, evaluator, and summary path.
 
 First-round result-producing commands bind the frozen
-[`protocol.yaml`](../experiments/motivation/protocol.yaml). Mechanism probes and
-diagnostic controls must follow the active
-[`mechanism analysis plan`](../experiments/motivation/mechanism_analysis_plan.md),
+[`protocol.yaml`](../experiments/motivation/protocol.yaml). Historical mechanism
+probes remain governed by the frozen
+[`mechanism analysis plan`](../experiments/motivation/mechanism_analysis_plan.md).
+New method scripts must follow the active
+[`Candidate-Contrast architecture plan`](../experiments/motivation/candidate_contrast_architecture_plan.md),
 use new run identities, and leave frozen outputs unchanged. No script opens
 source-test qrels during training or scoring.

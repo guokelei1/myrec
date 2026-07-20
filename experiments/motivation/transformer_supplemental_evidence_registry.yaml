@@ -1,0 +1,244 @@
+schema_version: 1
+registry_id: motivation_transformer_supplemental_evidence_v1
+status: frozen_inventory_and_future_output_contract
+frozen_at: "2026-07-19T04:30:00Z"
+
+scope:
+  purpose: exhaustive_supplement_inventory_for_final_comprehensive_report
+  modifies_parent_deep_dive_families: false
+  completed_entries_are_retrospective_inventory_only: true
+  completed_descriptive_entries_may_upgrade_confirmatory_claims: false
+  pending_entries_registered_before_their_outputs: true
+  source_test_opened: false
+  exact_layer_index_is_architecture_evidence: false
+
+entries:
+  - evidence_id: d0_embedding_readout_geometry
+    path: runs/20260718_kuaisearch_mech_d0_embedding_readout_v1/embedding_readout.json
+    expected_analysis_type: transformer_deep_dive_d0_embedding_readout_geometry
+    status_at_registry: completed
+    frozen_sha256: c8d08329aa2d7e99ef5133110c6227b22508edab06a58fd29c9282cc41801b08
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [token_embedding, native_readout]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d1_activation_anisotropy
+    path: runs/20260718_kuaisearch_mech_d1_activation_anisotropy_v1/activation_anisotropy.json
+    expected_analysis_type: transformer_deep_dive_d1_activation_anisotropy
+    status_at_registry: completed
+    frozen_sha256: ed02819400ff04ba7e6dde58117eef9d29ee0576d2b09aae28c5bcf72a44bfe8
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [layerwise_representation, normalization]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d1_candidate_block_flow
+    path: runs/20260718_kuaisearch_mech_d1_candidate_block_flow_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d1_candidate_block_flow
+    status_at_registry: completed
+    frozen_sha256: 78220e91afc060af149d6d6ef9ca31ee3bbc067905c964741f4906c30f2d801e
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [candidate_conditioned_interaction, layerwise_representation]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d1_candidate_residual_geometry
+    path: runs/20260718_kuaisearch_mech_d1_candidate_residual_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d1_candidate_residual_geometry
+    status_at_registry: completed
+    frozen_sha256: e9055d5011d71e85df1582e15bc885f93e4744a07d0c2fc995ad5f634a1d7c5f
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [candidate_conditioned_interaction, score_calibration_nullspace]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d1_query_causal_floor
+    path: runs/20260718_kuaisearch_mech_d1_causal_floor_v1/causal_floor.json
+    expected_analysis_type: transformer_deep_dive_d1_query_causal_floor
+    status_at_registry: completed
+    frozen_sha256: 7c50239e78dab0e1a2978ba61ba9109be3deee0a06ff642536d10e04a886e284
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [layerwise_representation, history_routing]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d1_preference_subspace_geometry
+    path: runs/20260718_kuaisearch_mech_d1_preference_subspace_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d1_preference_subspace_geometry
+    status_at_registry: completed
+    frozen_sha256: e73a7b0472bc22e7a9d37d05c91be3fd5135d214e0c3c3a4704922e1b71cbaee
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [layerwise_representation, candidate_conditioned_interaction]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d2_rmsnorm_flow
+    path: runs/20260718_kuaisearch_mech_d2_rmsnorm_flow_v1/rmsnorm_flow.json
+    expected_analysis_type: transformer_deep_dive_d2_rmsnorm_flow
+    status_at_registry: completed
+    frozen_sha256: 7239f9e8247cb613c034e9c9ac138c696a2d8254b22a4814fd234e4729ffafdd
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [normalization, residual_composition]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d3_attention_pattern_synthesis
+    path: runs/20260719_kuaisearch_mech_d3_attention_patterns_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d3_attention_pattern_synthesis
+    status_at_registry: completed
+    frozen_sha256: 9322c916c29e8283c44e9c5bedee679d0bcf0725e669c38281394abc79900c00
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [attention_query_key_routing, attention_value_transport]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d3_full_null_position_shift_audit
+    path: runs/20260719_kuaisearch_mech_d3_position_shift_audit_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d3_attention_position_shift
+    status_at_registry: completed
+    frozen_sha256: 97bec9c4c793130ecaa19e797c249d20b42355f4d0dd151ffa7f80280609194a
+    evidence_level: qrels_blind_measurement_confound_audit
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [positional_encoding_rope, serialization_tokenization]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d3_qk_stage_geometry_v3
+    path: runs/20260719_kuaisearch_mech_d3_qk_geometry_v3/metrics.json
+    expected_analysis_type: transformer_deep_dive_d3_qk_stage_geometry
+    status_at_registry: completed
+    frozen_sha256: 4f19c4eedd221da342b4e340512e719c634b3eca84518d1ba07e23aaabe1a6d6
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [attention_query_key_routing, normalization, positional_encoding_rope]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+    supersedes:
+      - runs/20260719_kuaisearch_mech_d3_qk_geometry_v1/metrics.json
+      - runs/20260719_kuaisearch_mech_d3_qk_geometry_v2/metrics.json
+
+  - evidence_id: d5_rope_position_geometry
+    path: runs/20260718_kuaisearch_mech_d5_rope_geometry_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d5_rope_position_geometry
+    status_at_registry: completed
+    frozen_sha256: 0753729b54a83146b39b1ca8844dbee5e9a5b65398b399fbf3800d6ed8a4eec6
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [positional_encoding_rope, attention_query_key_routing]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d6_frozen_logit_lens
+    path: runs/20260718_kuaisearch_mech_d6_logit_lens_v1/logit_lens.json
+    expected_analysis_type: transformer_deep_dive_d6_frozen_logit_lens
+    status_at_registry: completed
+    frozen_sha256: 978c08f0396e66d11448c8cc9426a267af03f0c034a075173805ac9edd3e0e32
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [native_readout, layerwise_representation]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d7_objective_common_nullspace
+    path: runs/20260718_kuaisearch_mech_d7_objective_nullspace_v1/objective_nullspace.json
+    expected_analysis_type: transformer_deep_dive_d7_objective_common_nullspace
+    status_at_registry: completed
+    frozen_sha256: 0d9e5e1cdf9c99119aa1b8c4847c425ad356fbd44a9b21cce8bd22df726d6535
+    evidence_level: descriptive_derived_from_completed_qrels_evaluator
+    model_scope: [q2_recranker_generalqwen]
+    components: [loss_gradient, score_calibration_nullspace]
+    qrels_policy: true_allowed_from_completed_parent_evaluator
+    may_change_design_ranking: false
+
+  - evidence_id: d7_q2_objective_family_shares
+    path: runs/20260718_kuaisearch_mech_d7_q2_objective_conflict_synthesis_v1/parameter_family_share_analysis.json
+    expected_analysis_type: transformer_deep_dive_d7_q2_objective_family_shares
+    status_at_registry: completed
+    frozen_sha256: a4c19627b3712a4366b71bdad753d595af67445c34c2460c34a165121defe149
+    evidence_level: descriptive_derived_from_registered_objective_family
+    model_scope: [q2_recranker_generalqwen]
+    components: [loss_gradient, optimizer_effective_update]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d7_q2_parameter_update_geometry
+    path: runs/20260718_kuaisearch_mech_d7_q2_parameter_update_geometry_v1/parameter_update_geometry.json
+    expected_analysis_type: transformer_deep_dive_d7_q2_parameter_update_geometry
+    status_at_registry: completed
+    frozen_sha256: e9502da40e7473c34baccfba8fb4aa9876f3b739bfc338a8dada1a7bf3c578c3
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen]
+    components: [optimizer_effective_update, lora_parameterization]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d7_q2_update_anisotropy
+    path: runs/20260718_kuaisearch_mech_d7_q2_update_anisotropy_v1/update_anisotropy.json
+    expected_analysis_type: transformer_deep_dive_d7_q2_update_anisotropy
+    status_at_registry: completed
+    frozen_sha256: 0df0390970355476d8c8d680500524b96581e3210b519631c5bd95bba9110314
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen]
+    components: [optimizer_effective_update, layerwise_representation]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d7_q3_lora_head_geometry
+    path: runs/20260718_kuaisearch_mech_d7_q3_lora_head_geometry_v1/lora_head_geometry.json
+    expected_analysis_type: transformer_deep_dive_d7_q3_lora_head_geometry
+    status_at_registry: completed
+    frozen_sha256: 2e43d058a9e3e553596fa5359b491211960369f86efe0105cfdae08014653349
+    evidence_level: qrels_blind_descriptive
+    model_scope: [q3_tallrec_generalqwen]
+    components: [lora_parameterization, attention_output]
+    qrels_policy: absent_or_false
+    may_change_design_ranking: false
+
+  - evidence_id: d4_mlp_feature_formation_extension
+    path: runs/20260719_kuaisearch_mech_d4_mlp_formation_eval_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d4_mlp_feature_formation_extension
+    status_at_registry: pending
+    evidence_level: preregistered_qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [mlp_feature_formation, mlp_output]
+    qrels_policy: false_required
+    may_change_design_ranking: false
+
+  - evidence_id: d6_native_readout_diagnostics
+    path: runs/20260719_kuaisearch_mech_d6_native_readout_diagnostics_v1/metrics.json
+    expected_analysis_type: transformer_deep_dive_d6_native_readout_diagnostics
+    status_at_registry: pending
+    evidence_level: preregistered_qrels_blind_descriptive
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [native_readout, normalization, score_calibration_nullspace]
+    qrels_policy: false_required
+    may_change_design_ranking: false
+
+  - evidence_id: component_state_reverse_necessity_v2
+    path: runs/20260719_kuaisearch_mech_component_necessity_eval_v1/metrics.json
+    expected_analysis_type: transformer_component_necessity_extension
+    status_at_registry: pending
+    evidence_level: preregistered_reverse_causal_extension
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [attention_output, mlp_output, residual_composition, history_routing]
+    qrels_policy: true_required_after_pre_qrels_integrity
+    may_change_design_ranking: false
+
+  - evidence_id: component_functional_design_gate_synthesis
+    path: runs/20260719_kuaisearch_mech_component_design_synthesis_v1/metrics.json
+    expected_analysis_type: transformer_component_design_gate_synthesis
+    status_at_registry: pending
+    evidence_level: preregistered_design_gate_synthesis
+    model_scope: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    components: [attention_output, mlp_output, residual_composition, history_routing]
+    qrels_policy: false_required_for_synthesis
+    may_change_design_ranking: true

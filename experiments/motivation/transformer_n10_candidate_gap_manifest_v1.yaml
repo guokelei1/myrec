@@ -1,0 +1,48 @@
+schema_version: 1
+manifest_id: motivation_transformer_n10_candidate_gap_v1
+status: frozen_before_candidate_gap_outcomes
+frozen_at: "2026-07-20T07:00:00+08:00"
+
+parent_contract:
+  next_wave_manifest: experiments/motivation/transformer_next_wave_manifest_v1.yaml
+  parent_next_wave_manifest_sha256: 7c01947295d19a36c744ed9ea319b92c15c3b99ee9bd52c3b23405cfb2aa54c4
+  source_test_opened: false
+  transfer_architecture_implemented: false
+
+scope:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  models: [q0_qwen3_reranker_06b, q1_instructrec_generalqwen, q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  requests: all_8000_internal_dev
+  nodes: [final_rmsnorm_input, final_rmsnorm_output]
+  qrels_policy: scorer_false_evaluator_false
+
+conditions:
+  - baseline_full
+  - baseline_null
+  - node_full_identity
+  - node_full_null_direction
+  - node_candidate_common_direction
+  - node_orthogonal_direction
+
+direction_definition:
+  full_null_direction: full_state_minus_null_state
+  candidate_common_direction: mean_over_candidate_rows_of_full_minus_null
+  orthogonal_direction: candidate_relative_component_gram_schmidt_against_full_null_with_fixed_basis_fallback
+  perturbation_fraction: 0.10
+  norm_matching: each_row_direction_norm_matches_full_minus_null_norm
+  outcome_dependent_coordinate_selection: false
+  layer_selection: none
+
+reported_geometry:
+  - mean_common_score_shift
+  - candidate_relative_l2_shift
+  - pairwise_order_flip_rate
+  - mean_absolute_score_shift
+
+mechanical_gates:
+  score_identity_max_abs_error: 1.0e-5
+  complete_finite_request_candidate_coverage: true
+  qrels_read: false
+  source_test_opened: false
+  max_continuous_job_seconds: 13500

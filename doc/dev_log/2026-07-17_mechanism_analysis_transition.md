@@ -17,3 +17,12 @@ score bundles, and release hashes remain frozen evidence. Current work is
 governed by `experiments/motivation/mechanism_analysis_plan.md` and stops after
 a bounded mechanism evidence matrix; it does not yet authorize a solution
 architecture.
+
+The user further set the research priority: data/supervision/power analysis
+must remain architecture-facing rather than become an isolated data study.
+Every data-construction result should identify the architectural limitation it
+exposes and how the training signal should interact with history routing,
+cross-item preference abstraction, candidate readout, or objective shortcuts.
+No fixed effort percentage is imposed. Train-only data construction may be
+co-designed with a future architecture, but the shared evaluation population
+and evidence boundary remain fixed.

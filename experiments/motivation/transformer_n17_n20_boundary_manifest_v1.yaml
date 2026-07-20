@@ -1,0 +1,76 @@
+schema_version: 1
+manifest_id: transformer_n17_n20_boundary_v1
+status: preregistered_inactive_before_n15_n16_closeout
+analysis_stage: transformer_deep_dive_n17_n20_boundary
+purpose: >-
+  Register four unresolved Transformer operator boundaries after N15/N16 without
+  starting outcome-dependent scoring: q/k head RMSNorm, GQA repeat-KV grouping,
+  complete Q3 LoRA branch injection, and Q1 cache phase.
+claim_boundary:
+  diagnostic_only: true
+  architecture_authorized: false
+  layer_or_head_selection_authorized: false
+  source_test_opened: false
+  qrels_read_by_scorer: false
+parent_plan: experiments/motivation/transformer_n17_n20_boundary_plan_v1.md
+parent_closeout_required:
+  n15_n16_evaluator_metrics: true
+  n8_n14_evaluator_metrics: true
+  frozen_model_architecture_audit: true
+frozen_inputs:
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  request_count: 8000
+  models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  q1_scope: q1_instructrec_generalqwen_only
+  blocks: [13, 20, 27]
+  candidate_contract: experiments/motivation/transformer_deep_dive_manifest.yaml
+statistics:
+  endpoints: [target_margin, ndcg_at_10]
+  bootstrap_cluster: normalized_query
+  bootstrap_draws: 5000
+  bootstrap_seed: 20260715
+  multiple_testing: benjamini_hochberg_within_registered_family
+  effect_values_read_before_freeze: false
+families:
+  n17_head_rmsnorm:
+    models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    blocks: [13, 20, 27]
+    scopes: [q_norm, k_norm]
+    modes: [identity, variance_scale_half, variance_scale_double, gain_scale_half, gain_scale_double, gain_sign_flip, zero]
+    controls: [same_history, wrong_user, random_direction, output_norm_matched]
+  n18_gqa_grouping:
+    models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    blocks: [13, 20, 27]
+    kv_groups: 8
+    query_heads_per_group: 2
+    modes: [identity, cyclic_permutation, reverse_permutation, seeded_random_permutation]
+    controls: [same_history, wrong_user, permutation_reversal]
+  n19_q3_lora_branch:
+    models: [q3_tallrec_generalqwen]
+    blocks: all_28
+    branches: [q_proj, v_proj]
+    modes: [identity, zero, scale_half, scale_double, sign_flip, output_norm_matched_random]
+    controls: [full, null, wrong_user, shared_prompt_identity]
+  n20_q1_cache_phase:
+    models: [q1_instructrec_generalqwen]
+    phases: [prefix_materialization, cached_continuation, answer_tokens]
+    modes: [native_cache_identity, no_cache_rebuild, wrong_user_prefix_cache, prefix_cache_replacement, continuation_replacement]
+    controls: [token_position_integrity, cache_key_integrity, full_sequence_identity]
+mechanical_gates:
+  identity_tolerance: 1.0e-5
+  require_complete_finite_coverage: true
+  require_same_wrong_history_specificity: true
+  require_reverse_or_reversal_control: true
+  require_q3_shared_prompt_identity: true
+  require_q1_token_position_cache_integrity: true
+  max_wall_seconds: 13500
+compute:
+  gpu_count: 4
+  no_preemption_of_current_wave: true
+  independent_output_directory_per_lane: true
+  resume_required: true
+  launch_condition: after_n15_n16_and_n8_n14_evaluator_closeout
+interpretation:
+  highest_authorized_claim: unresolved_until_cross_model_or_q1_scoped_gates_pass
+  no_architecture_promotion: true
+  no_outcome_dependent_expansion: true

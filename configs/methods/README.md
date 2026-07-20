@@ -13,9 +13,11 @@ The shared implementation is in
 [`src/myrec/baselines/motivation_v12_ranker.py`](../../src/myrec/baselines/motivation_v12_ranker.py)
 and [`motivation_v12_contracts.py`](../../src/myrec/baselines/motivation_v12_contracts.py).
 Their result-producing authority is the frozen
-[`protocol.yaml`](../../experiments/motivation/protocol.yaml). Diagnostic reuse
-is governed by the current
+[`protocol.yaml`](../../experiments/motivation/protocol.yaml). Historical
+diagnostic reuse is governed by the frozen
 [`mechanism analysis plan`](../../experiments/motivation/mechanism_analysis_plan.md).
+New method configs must use distinct IDs and follow the active
+[`Candidate-Contrast architecture plan`](../../experiments/motivation/candidate_contrast_architecture_plan.md).
 
 W0 is intentionally separate because it is a non-LLM structural witness:
 [`../baselines/kuaisearch_motivation_v12_copps_transfer_witness.yaml`](../baselines/kuaisearch_motivation_v12_copps_transfer_witness.yaml).

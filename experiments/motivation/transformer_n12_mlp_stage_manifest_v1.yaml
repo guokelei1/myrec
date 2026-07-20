@@ -1,0 +1,58 @@
+schema_version: 1
+manifest_id: transformer_n12_mlp_stage_v1
+analysis_stage: transformer_deep_dive_n12_mlp_stage_operator
+purpose: >-
+  Causal operator-level diagnosis of whether transfer loss is formed in the
+  SwiGLU gate path, the up/value path, or their joint nonlinear composition.
+claim_boundary:
+  diagnostic_only: true
+  architecture_authorized: false
+  neuron_or_group_selection_authorized: false
+  source_test_opened: false
+  qrels_read_by_scorer: false
+frozen_inputs:
+  standardized_dir: data/standardized/kuaisearch/full_confirm_preceding40k_v11
+  records: records_dev.jsonl
+  request_count: 8000
+  blocks: [13, 20, 27]
+  methods: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+  dataset_manifest_sha256: bd042a76411bffd3a1b81b2a547ca7abd3dec66e2e7be577b9c21d04b812c57d
+  records_sha256: 907046aa0ed69bced6a6115c15ce4f81ac6ada2937cdc810fc48a82822a2a06e
+  request_manifest_sha256: c4054a5b7d775a81b292293daa552022bf8b2d5d8004cd96f23dcbcb46b8b4f7
+  candidate_manifest_sha256: 434cb08ef7248bc0c763a7c5d8bc43342b239398066623e051e263b97cc17a9e
+model_bindings:
+  q2_recranker_generalqwen:
+    config_sha256: 88a463fe48e5a884e99bf72cc3522a82031194f13cdd4b98966b160378e9a11e
+    checkpoint_id: q2_recranker_generalqwen@e207d2213741c16f997a
+  q3_tallrec_generalqwen:
+    config_sha256: ea8e0fb2d3421408cc51ecc216bfcfc7c7a0524e14a594d24009c9678235bd91
+    checkpoint_id: q3_tallrec_generalqwen@ea46a89671b63741ada8
+stage_contract:
+  holds_fixed: [token_ids, positions, attention_mask, down_projection, candidate_slate]
+  gate_path: gate_proj_output_then_native_silu
+  up_path: up_proj_output
+  joint_path: native_swiglu_product
+conditions:
+  - baseline_full
+  - baseline_null
+  - full_gate_identity
+  - null_gate_identity
+  - null_gate_from_full
+  - null_up_from_full
+  - null_joint_from_full
+  - full_gate_from_null
+  - full_up_from_null
+  - full_joint_from_null
+  - null_gate_sign_flip
+  - null_up_sign_flip
+identity_conditions: [full_gate_identity, null_gate_identity]
+mechanical_gates:
+  identity_tolerance: 1.0e-5
+  require_complete_finite_coverage: true
+  require_native_swiglu_recomposition: true
+  max_wall_seconds: 13500
+interpretation:
+  primary_contrasts: [null_gate_from_full, null_up_from_full, null_joint_from_full]
+  necessity_controls: [full_gate_from_null, full_up_from_null, full_joint_from_null]
+  direction_controls: [null_gate_sign_flip, null_up_sign_flip]
+  unresolved_if_controls_fail: true

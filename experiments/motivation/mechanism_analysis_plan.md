@@ -12,8 +12,11 @@ LLM 原理上无法 transfer，也不直接提出或实现解决架构。
 漂移。
 
 本阶段目标是把这些解释拆成可证伪的竞争假设，用行为干预、表示诊断和训练动力学证据定位
-主要瓶颈。完成点是一份有边界的机制结论；方法设计与优化实验属于下一阶段，需再次获得用户
-指示。
+主要瓶颈，并把结论转化为面向 CCF-A 级方法工作的架构设计约束。数据、监督与统计功效不作为
+脱离模型的独立主线；分析数据构造时必须同时追问它暴露了什么架构限制、需要什么表示或路由
+能力，以及训练信号应如何与架构共同设计。重点机制包括 history routing、跨 item-ID 偏好
+抽象、candidate-conditioned readout 和训练目标 shortcut。完成点是一份机制结论与架构机会
+矩阵；具体方法实现仍在机制证据收束后单独开展。
 
 ## 2. 不可越过的证据边界
 
@@ -27,6 +30,9 @@ LLM 原理上无法 transfer，也不直接提出或实现解决架构。
 - 需要标签的评估仍由共享 evaluator 在 score integrity audit 通过后执行。
 - 诊断性重训练必须保留原 checkpoint 与 matched control；不得把结果更好的诊断变体冒充
   第一轮 baseline 或论文方法。
+- 可以为机制诊断或后续架构设计 train-only 的采样、配对、增强与辅助监督，但不得改变统一
+  标准记录接口、确认人口、候选集合、qrels 边界或共享 evaluator。数据设计必须服务于明确
+  架构假设，不能成为绕开模型问题的 method-only evaluation branch。
 
 ## 3. 竞争假设
 
@@ -44,23 +50,25 @@ LLM 原理上无法 transfer，也不直接提出或实现解决架构。
 
 ## 4. 执行顺序
 
-### M0：数据、信号上界与统计功效
+### M0：数据、信号与功效的架构关联审计
 
-先回答“有没有东西可学”，避免把数据问题误称为模型机制：
+先排除明显的数据与测量问题，并把每项观察映射到可能的架构约束，避免把致命混淆误称为
+模型机制，也避免把数据现象当作与模型无关的终点：
 
 1. 审计 strict-transfer 请求的历史长度、query--history 语义相关性、brand/category/attribute
    可对齐率、正例等级、候选难度和 query-cluster 有效样本量；
-2. 计算当前方差下的最小可检测效应，并报告 bootstrap 对小正效应的功效边界；
-3. 建立不使用 raw item ID、只使用当前允许字段的 train-only supervised transfer probe；
+2. 粗略计算当前方差下的最小可检测效应，确认现有 strict-transfer 人口不是显然无功效；
+3. 建立一个不使用 raw item ID、只使用当前允许字段的轻量 train-only transfer probe；
 4. 同时运行 label-shuffle、history-shuffle 和 query-shuffle negative controls；
 5. 报告 oracle/probe ceiling，而不是只报告是否显著。
 
-W0 的具体 CoPPS-style recipe 可以低优先级维护；但“同一信息边界是否存在可恢复信号”是
-机制归因的高优先级门。positive control 可以是更简单、可解释的 transfer-only probe，不要求
-继续救 W0。
+W0 的具体 CoPPS-style recipe 低优先级维护。positive control 可以是更简单、可解释的
+transfer-only probe，不要求继续救 W0，也不要求把 recoverability 做成独立研究。其结果必须
+继续追问：当前架构缺少哪种归纳偏置，以及何种数据构造只有与该架构机制结合才会有效。
 
-若 M0 没有建立任何 recoverability，停止模型内部归因，把结论收窄为数据/监督/功效尚未
-排除。只有在 signal ceiling 为正时，才把 H1--H4 作为主要解释继续推进。
+M0 默认不阻断 M1--M3。只有发现标签泄漏、候选/时间边界错误、strict-transfer 有效样本近乎
+不可用或字段内完全不存在可定义的偏好关系时才暂停。普通的弱 ceiling、宽区间或 probe 失败
+记为竞争解释和论文边界，但继续开展架构导向的模型内部分析。
 
 ### M1：输入级可逆干预
 
@@ -107,7 +115,7 @@ General Qwen 初始化，但分别代表 full-parameter joint ranking 与 LoRA a
 
 平衡控制若改善 strict transfer，只支持“目标/梯度分配是瓶颈之一”，不自动等于最终解决方案。
 
-### M4：三角验证与机制判定
+### M4：三角验证、机制判定与架构机会矩阵
 
 一个主要机制结论至少需要：
 
@@ -118,6 +126,20 @@ General Qwen 初始化，但分别代表 full-parameter joint ranking 与 LoRA a
 
 如果证据只来自 post-hoc slice、单层 probe 或单个 checkpoint，结论必须标为 exploratory。
 第一轮 4k 可以用于检查已经冻结的机制预测是否与旧观察相容，但不能恢复“未见确认”的身份。
+
+机制证据收束后，将 H1--H4 映射为架构要求，而不是立刻拼装模块：
+
+- routing failure 对应显式 query-conditioned history routing 与可审计稀疏选择；
+- abstraction failure 对应去 item-ID 的 preference bottleneck、属性/意图因子化或跨商品原型；
+- readout failure 对应 candidate-conditioned preference matching 与可传递的相对分数路径；
+- objective shortcut 对应 transfer-aware pair construction、counterfactual supervision、分层梯度
+  约束或 curriculum；
+- 若多个环节同时成立，优先形成一个端到端可证伪的统一机制，而不是若干松散 trick。
+
+数据可以与新架构共同设计，例如 different-ID preference pairs、query-matched hard negatives、
+attribute-preserving counterfactual history 和 recurrence/transfer 分层 batch；但这些只能改变
+train-only 学习信号，不能改变评测定义。最终机会矩阵需说明创新点、必要模块、训练信号、
+可证伪预测、关键消融以及与 CoPPS/BATA/HMPPS/MemRerank 等工作的实质差异。
 
 ## 5. 统计与报告
 
@@ -134,9 +156,12 @@ General Qwen 初始化，但分别代表 full-parameter joint ranking 与 LoRA a
 
 ## 6. 计算与阶段门
 
-- 先做无训练的 M0/M1 与小样本 instrumentation smoke，再启动 activation dump 或诊断训练；
+- 不设置数据分析、内部诊断和架构综合之间的固定时间或算力比例，按信息增益动态推进；
+- 数据构造实验必须登记对应的架构假设、预期行为变化和反证条件，不能只比较数据 recipe；
+- 可以并行推进 M0、无训练 M1 与小样本 instrumentation smoke，再按证据启动 activation dump
+  或诊断训练；不等待 M0 形成完整独立结论；
 - 单个连续 GPU job 仍不超过 4 小时，必须可 resume；存在独立 ready job 时使用四卡并行；
-- M0 signal gate 未通过时，不消耗预算做大规模内部归因；
+- 只有数据完整性或有效人口出现致命失败时才阻断内部归因；普通 recoverability 不确定不阻断；
 - 任一机械失败、数值异常或 coverage 缺失只算工程状态，不算机制证据；
 - 不按结果增加模型、数据集、seed、层或 slice。
 
@@ -147,6 +172,7 @@ General Qwen 初始化，但分别代表 full-parameter joint ranking 与 LoRA a
 - 一个冻结的 probe manifest 与输入/标签/候选完整性审计；
 - signal ceiling、输入干预、表示/中介和梯度诊断的机器可读聚合结果；
 - 一张 H0--H5 证据矩阵，逐项标记 supported、weakened、rejected 或 unresolved；
+- 一张架构机会矩阵，明确最值得形成统一创新机制的瓶颈组合、训练数据需求和关键消融；
 - `doc/motivation.md` 中的机制结论与下一步方法设计约束。
 
 完成首轮机制判定后停止。未经新的用户指示，不实现 transfer 架构、不进入新数据集、不打开

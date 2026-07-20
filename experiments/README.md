@@ -1,8 +1,10 @@
-# Active experiment manifests
+# Active experiment plans and frozen manifests
 
 The current experiment entry point is [`motivation/`](motivation/). Read
-[`motivation/mechanism_analysis_plan.md`](motivation/mechanism_analysis_plan.md)
-for the active mechanism hypotheses, probes, evidence gates, and stopping point.
+[`motivation/candidate_contrast_architecture_plan.md`](motivation/candidate_contrast_architecture_plan.md)
+for the active method contract, development gates, benchmark, and stopping
+point. The mechanism and Transformer deep-dive plans are historical evidence
+authorities and must not release their old queues automatically.
 
 `motivation/protocol.yaml` is the immutable first-round V1.2 protocol retained
 to audit the frozen result. The completed execution prompt and old planning

@@ -7,20 +7,20 @@ Ranking (PPS)** paper.
 
 The active scientific entry point is [`doc/motivation.md`](doc/motivation.md).
 It records the recurrence–transfer research question, the frozen V1.2
-first-round evidence, the claim boundary, and the current mechanism question.
-The active work plan is
-[`experiments/motivation/mechanism_analysis_plan.md`](experiments/motivation/mechanism_analysis_plan.md).
+first-round evidence, and the mechanism-derived design boundary. The active
+work plan is
+[`experiments/motivation/candidate_contrast_architecture_plan.md`](experiments/motivation/candidate_contrast_architecture_plan.md).
 
 The frozen result is a preliminary motivation finding: the tested
 history-conditioned Qwen rankers reliably respond on recurrence requests, but
-strict transfer is not yet established. The authorized next step is mechanism
-analysis across signal availability, history selection, preference abstraction,
-candidate readout, training dynamics, and population stability. It is not yet
-a proposed architecture.
+strict transfer is not yet established. The mechanism inventory is complete;
+the authorized next step is implementation and matched validation of the
+Candidate-Contrast Personalization architecture on the same Qwen3-0.6B and
+KuaiSearch boundary.
 
-Only the current Motivation question, mechanism plan, frozen first-round
-evidence, reusable code/contracts, and runtime inputs are kept in the active
-tree. Superseded execution plans and experiment controllers are removed.
+The active tree preserves the Motivation question, historical mechanism plans,
+frozen evidence, reusable code/contracts, and the new architecture plan.
+Deferred deep-dive queues remain provenance and are not active prerequisites.
 
 ## Active repository contract
 
@@ -31,7 +31,7 @@ Keep the reproducible core in:
 - `configs/`: reusable dataset, baseline, method, and environment configuration;
 - `tests/`: shared contracts and hand-computed metric tests;
 - `doc/`: current protocols and concise decisions;
-- `experiments/motivation/`: the current mechanism plan and frozen first-round protocol;
+- `experiments/motivation/`: the active architecture plan, historical mechanism plans, and frozen protocol;
 - `reports/`: current curated results and the development ledger;
 - `paper/`: manuscript source after the evidence boundary is settled.
 

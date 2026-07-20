@@ -1,0 +1,65 @@
+schema_version: 1
+manifest_id: transformer_n21_n24_training_boundary_v1
+status: preregistered_inactive_before_mechanism_closeout
+analysis_stage: transformer_deep_dive_n21_n24_training_boundary
+purpose: >-
+  Register four training-side internal boundaries that are not isolated by
+  inference-operator probes: Q3 dtype casting, LoRA input dropout, gradient
+  bridge/checkpoint recomputation, and objective/optimizer effective updates.
+claim_boundary:
+  diagnostic_only: true
+  architecture_authorized: false
+  diagnostic_training_is_paper_method: false
+  source_test_opened: false
+  qrels_read_by_training_or_scorer: false
+parent_plan: experiments/motivation/transformer_n21_n24_training_boundary_plan_v1.md
+launch_gate:
+  n8_n20_inference_closeout: true
+  h0_h5_matrix_written: true
+  seed_count_for_training_family: 2
+frozen_data:
+  dataset_id: kuaisearch
+  dataset_version: full_confirm_preceding40k_v11
+  training_population: train_only
+  evaluation_population: internal_dev_label_free_to_scorer
+  candidate_contract: experiments/motivation/transformer_deep_dive_manifest.yaml
+  source_test_opened: false
+statistics:
+  endpoints: [loss, gradient_cosine, effective_update, target_margin, ndcg_at_10]
+  bootstrap_cluster: normalized_query
+  bootstrap_draws: 5000
+  bootstrap_seed: 20260715
+  effect_values_read_before_freeze: false
+families:
+  n21_dtype_cast:
+    model: q3_tallrec_generalqwen
+    controls: [native_bf16_base_fp32_adapter, dtype_aligned_adapter, fp32_base_reference]
+    fixed_contracts: [initial_BA_function, dropout_masks, optimizer_state, update_budget]
+  n22_lora_input_dropout:
+    model: q3_tallrec_generalqwen
+    scope: all_28_blocks_qv_paths
+    controls: [native_dropout, fixed_mask_replay, dropout_zero_reference]
+    reports: [qv_covariance, gradient_cosine, BA_update, loss_share]
+  n23_gradient_bridge_checkpoint:
+    model: q3_tallrec_generalqwen
+    controls: [native_bridge_nonreentrant, explicit_bridge_reference, no_bridge_gate_stop]
+    required_gates: [forward_identity, complete_qv_gradient_coverage]
+  n24_objective_optimizer:
+    models: [q2_recranker_generalqwen, q3_tallrec_generalqwen]
+    q2_controls: [listwise_plus_pairwise, listwise_only, pairwise_only]
+    q3_controls: [alignment_nll, token_balanced_nll_reference]
+    fixed_contracts: [steps, initialization, batch_tokens, negative_contract, optimizer_hparams]
+mechanical_gates:
+  exact_forward_identity_before_training: true
+  complete_gradient_coverage: true
+  multiple_seeds_required: true
+  max_wall_seconds: 13500
+compute:
+  gpu_count: 4
+  no_preemption_of_current_wave: true
+  independent_output_directory_per_seed_and_condition: true
+  resume_required: true
+interpretation:
+  highest_authorized_claim: training_mechanism_candidate_only_after_multiseed_update_and_behavior_concordance
+  no_architecture_promotion: true
+  no_outcome_dependent_expansion: true

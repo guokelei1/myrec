@@ -5,15 +5,26 @@ These instructions apply to the whole repository.
 ## Current source of truth
 
 `AGENTS.md` is a repository bootstrap, not the scientific plan. The repository
-is now in the Motivation mechanism-analysis stage. Read and follow:
+has completed its Motivation mechanism inventory and is now authorized to enter
+the transfer-architecture development stage. Read and follow:
 
 1. `doc/motivation.md` -- frozen observation, claim boundary, and current
    mechanism question;
-2. `experiments/motivation/mechanism_analysis_plan.md` -- competing
-   hypotheses, probe order, data/compute policy, evaluation, and stopping point;
+2. `reports/motivation_post_stage_experiment_inventory_zh.md` -- unified status,
+   elapsed-time accounting, completed conclusions, partial diagnostics, and
+   deferred experiment inventory;
 3. `experiments/motivation/protocol.yaml` and
    `reports/motivation_current_summary.json` -- immutable first-round protocol
-   and evidence baseline.
+   and evidence baseline;
+4. `experiments/motivation/candidate_contrast_architecture_plan.md` -- the
+   user-authorized 2026-07-20 architecture contract, development stages,
+   benchmark, evidence boundary, and stopping rule.
+
+`experiments/motivation/mechanism_analysis_plan.md`,
+`experiments/motivation/transformer_deep_dive_plan.md`, their manifests, and
+N8--N34 follow-on plans are preserved historical authorities. Do not resume an
+old queue or treat a deferred diagnostic as a prerequisite for method work
+unless the user explicitly reauthorizes it.
 
 Use `doc/11_experiment_and_dataset_plan.md` and
 `doc/12_experiment_execution_protocol.md` only as supporting technical
@@ -23,14 +34,15 @@ were removed after closeout; do not recreate or follow them as active work.
 
 Older references to doc 34, E0--E8, Failure Cards, R0, C01--C80, or the former
 `history_response_gap` controller are obsolete and must not redirect or block
-the current mechanism analysis. Frozen V1.2 IDs and paths may remain inside
+the current architecture work. Frozen V1.2 IDs and paths may remain inside
 evidence records and runtime artifacts solely for reproducibility.
 
-The current authorized stopping point is a first mechanism diagnosis and
-concise H0--H5 evidence matrix. Do not implement a proposed transfer
-architecture, switch datasets, open source test, or present a diagnostic
-training control as the new paper method. Stop after the mechanism summary and
-wait for user direction.
+The first mechanism diagnosis and concise H0--H5 matrix are complete and
+frozen. The deep-dive is a partial evidence snapshot, not a completed universal
+component-root-cause claim. The user has now explicitly authorized implementation
+of the Candidate-Contrast Personalization architecture. Do not switch datasets,
+open source test, overwrite Q0--Q3/W0, resume archived diagnostic queues, or
+present an old diagnostic training control as the new paper method.
 
 ## Repository purpose
 
@@ -70,9 +82,9 @@ local experiment state.
 
 Treat Q0--Q3, W0, their configs/checkpoints, the release lock, and the
 first-round score bundles as frozen baselines. Do not overwrite them or
-outcome-select a method, seed, layer, probe, slice, or endpoint. Mechanism code
-must isolate the diagnostic intervention from shared loading, scoring, and
-evaluation.
+outcome-select a method, seed, layer, probe, slice, or endpoint. New method code
+must use distinct names and outputs and isolate architecture-specific behavior
+from shared loading, field whitelisting, scoring, and evaluation.
 
 Published papers and repositories may be downloaded and read, but active
 variants should be independent minimal reimplementations of their load-bearing
@@ -115,8 +127,9 @@ score dumps inside tracked baseline source trees.
 - Preserve all valid pilot seeds and contradictory outcomes. A mechanical,
   numerical, or under-converged run is a run-state diagnosis, not a transfer
   result.
-- Follow the mechanism-analysis plan for `full`, `null`, `wrong-user`, recurrence, strict
-  transfer, overlap surfaces, uncertainty, and weighted contributions.
+- Follow the Candidate-Contrast plan and frozen Motivation protocol for `full`,
+  `null`, `wrong-user`, recurrence, strict transfer, overlap surfaces,
+  uncertainty, and weighted contributions.
 
 ## Runs and reporting
 
@@ -130,9 +143,9 @@ Raw state belongs in `runs/<run_id>/`. An important run promotes only a concise
 tracked summary containing command, config, code revision, dataset/manifest
 hash, seed, checkpoint reference, metrics, conclusion, and next action.
 
-Seed staging, four-hour resumable job boundaries, and four-GPU scheduling are
-defined only in `experiments/motivation/mechanism_analysis_plan.md`. Every job
-must have an independent writable output/checkpoint directory and a recorded
+Seed staging and development gates are defined by the active Candidate-Contrast
+plan. Continue to use resumable jobs no longer than four hours, independent
+writable output/checkpoint directories, explicit GPU ownership, and recorded
 lineage.
 
 Append every internal-dev evaluation to `reports/dev_eval_log.jsonl`.
